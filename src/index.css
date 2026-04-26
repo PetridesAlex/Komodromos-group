@@ -13427,11 +13427,16 @@ footer.footer2 {
   max-width: 40rem;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  border: 2px solid color-mix(in srgb, var(--service-light-blue) 78%, #c8e4f8);
+  box-shadow:
+    0 20px 56px rgba(0, 0, 0, 0.4),
+    0 0 0 1px color-mix(in srgb, var(--service-light-blue) 32%, transparent) inset,
+    0 0 36px rgba(120, 175, 220, 0.28),
+    0 0 1px rgba(165, 200, 232, 0.9);
   background: #0a1018;
   aspect-ratio: 16 / 9;
   min-height: min(36vh, 20rem);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 @media (min-width: 800px) {
@@ -13446,6 +13451,16 @@ footer.footer2 {
   .air-hero__frame {
     min-height: min(44vh, 30rem);
     border-radius: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .air-hero__figure:hover .air-hero__frame {
+    border-color: color-mix(in srgb, var(--service-light-blue) 92%, #fff);
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, 0.45),
+      0 0 0 1px color-mix(in srgb, var(--service-light-blue) 45%, transparent) inset,
+      0 0 48px rgba(130, 185, 230, 0.38);
   }
 }
 
@@ -13920,12 +13935,256 @@ footer.footer2 {
   margin-bottom: 0;
 }
 
+.air-light-experiences__hook {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.05rem, 2.1vw, 1.28rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: rgba(232, 238, 248, 0.94);
+  margin: 0 0 1.15rem;
+  text-wrap: balance;
+}
+
+.air-light-experiences__prose {
+  max-width: 44rem;
+  margin: 2.25rem auto 0;
+  padding: 0 0.25rem;
+}
+
+.air-light-experiences__journeys {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.air-light-experiences__journey {
+  position: relative;
+  padding: 1.35rem 1.35rem 1.45rem 1.5rem;
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.035) 0%, rgba(8, 14, 28, 0.55) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
+  border-left: 3px solid color-mix(in srgb, var(--service-light-blue) 65%, transparent);
+}
+
+.air-light-experiences__journey--alt {
+  border-left-color: color-mix(in srgb, var(--gold) 55%, transparent);
+}
+
+.air-light-experiences__journey-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--service-light-blue) 82%, #fff);
+  margin: 0 0 0.85rem;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.air-light-experiences__journey--alt .air-light-experiences__journey-title {
+  color: color-mix(in srgb, var(--gold) 78%, #e8eef8);
+}
+
+.air-light-experiences__journey-p {
+  font-size: 0.9rem;
+  line-height: 1.72;
+  letter-spacing: 0.02em;
+  color: rgba(200, 215, 235, 0.9);
+  margin: 0 0 0.75rem;
+}
+
+.air-light-experiences__journey-p:last-child {
+  margin-bottom: 0;
+}
+
+.air-light-experiences__school {
+  margin-top: 2.25rem;
+  padding: 1.5rem 1.4rem 1.6rem;
+  border-radius: 16px;
+  background: radial-gradient(ellipse 80% 80% at 0% 0%, rgba(100, 150, 210, 0.08) 0%, transparent 55%),
+    linear-gradient(165deg, rgba(12, 20, 36, 0.75) 0%, rgba(4, 8, 16, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.air-light-experiences__school-title {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  font-weight: 500;
+  color: #f4efe6;
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+
+.air-light-experiences__school-p {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: rgba(200, 215, 235, 0.9);
+  margin: 0 0 0.85rem;
+}
+
+.air-light-experiences__school-p:last-child {
+  margin-bottom: 0;
+}
+
+.air-light-experiences__qual {
+  margin-top: 2rem;
+  padding: 1.45rem 1.4rem 1.55rem;
+  border-radius: 16px;
+  border: 1px solid rgba(197, 160, 89, 0.22);
+  background: linear-gradient(160deg, rgba(197, 160, 89, 0.06) 0%, rgba(8, 12, 22, 0.72) 100%);
+}
+
+.air-light-experiences__qual-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--gold) 85%, #fff);
+  margin: 0 0 0.75rem;
+}
+
+.air-light-experiences__qual-lead {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(205, 218, 235, 0.88);
+  margin: 0 0 1rem;
+}
+
+.air-light-experiences__qual-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+@media (min-width: 640px) {
+  .air-light-experiences__qual-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 1.25rem;
+  }
+}
+
+.air-light-experiences__qual-item {
+  position: relative;
+  padding-left: 1.15rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(215, 225, 240, 0.92);
+}
+
+.air-light-experiences__qual-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), color-mix(in srgb, var(--service-light-blue) 70%, #fff));
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.35);
+}
+
+.air-light-experiences__trial {
+  margin-top: 2rem;
+  padding: 1.45rem 1.4rem 1.55rem;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(6, 10, 20, 0.65) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.air-light-experiences__trial-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(210, 222, 240, 0.9);
+  margin: 0 0 0.9rem;
+}
+
+.air-light-experiences__trial-p {
+  font-size: 0.9rem;
+  line-height: 1.72;
+  color: rgba(200, 215, 235, 0.9);
+  margin: 0 0 0.85rem;
+}
+
+.air-light-experiences__trial-membership-lead {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(220, 230, 245, 0.92);
+  margin: 1.1rem 0 0.65rem;
+}
+
+.air-light-experiences__trial-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.air-light-experiences__trial-item {
+  position: relative;
+  padding-left: 1.2rem;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: rgba(195, 210, 228, 0.9);
+}
+
+.air-light-experiences__trial-item::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: color-mix(in srgb, var(--service-light-blue) 75%, transparent);
+  font-weight: 600;
+}
+
+.air-light-experiences__outro {
+  margin-top: 2.25rem;
+  padding: 1.5rem 1.35rem 1.65rem;
+  text-align: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(20, 35, 60, 0.45) 50%, rgba(8, 14, 26, 0.8) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.28);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.air-light-experiences__outro-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  color: #faf6ef;
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.air-light-experiences__outro-body {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(210, 220, 235, 0.92);
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
 .air-light-experiences__gallery {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.15rem;
   list-style: none;
-  margin: 2.25rem 0 0;
+  margin: 2.75rem 0 0;
   padding: 0;
 }
 
@@ -14165,12 +14424,19 @@ footer.footer2 {
 .air-jets-inflight .container {
   position: relative;
   z-index: 1;
-  max-width: 52rem;
+  width: 100%;
+  max-width: none;
+  padding-left: clamp(1rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
 }
 
 .air-jets-inflight__header {
   text-align: center;
   margin-bottom: 1.75rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .air-jets-inflight__eyebrow {
@@ -14215,7 +14481,8 @@ footer.footer2 {
 
 .air-jets-inflight__quote {
   position: relative;
-  margin: 0 0 2.5rem;
+  margin: 0 auto 2.5rem;
+  max-width: 48rem;
   padding: 1.35rem 1.25rem 1.5rem;
   border: none;
   border-radius: 16px;
@@ -14261,57 +14528,224 @@ footer.footer2 {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0;
+}
+
+.air-jets-inflight__article {
+  margin: 0;
+  padding: 0 0 2.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.air-jets-inflight__article:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.air-jets-inflight__article-title {
+  position: relative;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.35rem, 2.85vw, 1.72rem);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.055em;
+  line-height: 1.22;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'onum' 1;
+  margin: 0 0 1.35rem;
+  padding: 0 0 1rem 1.2rem;
+  border-bottom: none;
+  text-wrap: balance;
+  background: linear-gradient(
+    125deg,
+    color-mix(in srgb, var(--service-light-blue) 92%, #fff) 0%,
+    #f2f7fc 42%,
+    color-mix(in srgb, var(--service-light-blue) 78%, #e8eef6) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 20px rgba(80, 130, 185, 0.22));
+}
+
+.air-jets-inflight__article-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  bottom: 0.35em;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--service-light-blue) 85%, #fff) 0%,
+    color-mix(in srgb, var(--gold) 55%, var(--service-light-blue)) 100%
+  );
+  box-shadow: 0 0 18px color-mix(in srgb, var(--service-light-blue) 35%, transparent);
+}
+
+.air-jets-inflight__article-title::after {
+  content: '';
+  display: block;
+  margin-top: 0.95rem;
+  height: 1px;
+  width: calc(100% + 1.2rem);
+  margin-left: -1.2rem;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--service-light-blue) 52%, transparent) 0%,
+    color-mix(in srgb, var(--service-light-blue) 16%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+.air-jets-inflight__article-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.85rem;
+}
+
+.air-jets-inflight__segment {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 @media (min-width: 900px) {
-  .air-jets-inflight__features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem 1.75rem;
+  .air-jets-inflight__segment {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
   }
 
-  .air-jets-inflight__block:nth-child(2n) {
-    margin-top: 0.35rem;
+  .air-jets-inflight__segment--flip {
+    flex-direction: row-reverse;
   }
 }
 
-.air-jets-inflight__block {
+.air-jets-inflight__segment-text {
+  font-size: clamp(0.93rem, 1.05vw, 1.02rem);
+  line-height: 1.78;
+  letter-spacing: 0.015em;
+  color: rgba(205, 215, 232, 0.93);
   margin: 0;
-  padding: 1.2rem 1.15rem 1.3rem 1.25rem;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .air-jets-inflight__segment-text {
+    flex: 1 1 48%;
+    max-width: none;
+  }
+}
+
+.air-jets-inflight__segment-fig {
+  margin: 0;
+  width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .air-jets-inflight__segment-fig {
+    flex: 1 1 52%;
+  }
+}
+
+.air-jets-inflight__segment-frame {
+  position: relative;
+  width: 100%;
   border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(8, 12, 22, 0.5) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-  border-left: 3px solid color-mix(in srgb, var(--gold) 70%, transparent);
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #070c14;
+  border: 1px solid color-mix(in srgb, var(--service-light-blue) 42%, transparent);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.42),
+    0 0 0 1px color-mix(in srgb, var(--service-light-blue) 18%, transparent) inset,
+    0 0 24px rgba(100, 160, 210, 0.08);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+@media (min-width: 900px) {
+  .air-jets-inflight__segment-frame {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.air-jets-inflight__segment-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.12) 100%);
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .air-jets-inflight__block:hover {
-    border-left-color: color-mix(in srgb, var(--gold) 95%, #fff);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-    transform: translateY(-2px);
+  .air-jets-inflight__segment:hover .air-jets-inflight__segment-frame {
+    border-color: color-mix(in srgb, var(--service-light-blue) 72%, #fff);
+    box-shadow:
+      0 22px 56px rgba(0, 0, 0, 0.48),
+      0 0 0 1px color-mix(in srgb, var(--service-light-blue) 28%, transparent) inset,
+      0 0 36px rgba(120, 175, 220, 0.14);
   }
 }
 
-.air-jets-inflight__block-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.64rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--gold) 88%, #fff);
-  margin: 0 0 0.65rem;
-  line-height: 1.4;
-  text-wrap: balance;
+.air-jets-inflight__segment-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.01);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  filter: contrast(1.03) saturate(1.03);
+  position: relative;
+  z-index: 0;
 }
 
-.air-jets-inflight__block-text {
-  font-size: 0.88rem;
-  line-height: 1.72;
-  color: rgba(200, 210, 225, 0.9);
-  margin: 0;
+.air-jets-inflight__segment-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.05) 45%, transparent 70%);
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .air-jets-inflight__segment:hover .air-jets-inflight__segment-img {
+    transform: scale(1.04);
+    filter: contrast(1.05) saturate(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .air-jets-inflight__segment:hover .air-jets-inflight__segment-img {
+    transform: scale(1.01);
+  }
+}
+
+.air-jets-inflight__segment-cap {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(185, 200, 220, 0.78);
+  margin: 0.55rem 0 0;
+  line-height: 1.4;
+}
+
+@media (min-width: 900px) {
+  .air-jets-inflight__segment-cap {
+    text-align: left;
+  }
+
+  .air-jets-inflight__segment--flip .air-jets-inflight__segment-cap {
+    text-align: right;
+  }
 }
 
 .air-jets-inflight__gallery {

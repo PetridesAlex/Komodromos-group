@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion, type Variants } from 'motion/react'
 import Footer from './Footer'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
@@ -15,6 +15,8 @@ import {
 
 const IDS: AirCategoryId[] = ['jets', 'light']
 
+const JETS_EASE = [0.16, 1, 0.3, 1] as const
+
 export default function AirServicesPage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [selected, setSelected] = useState<AirCategoryId>('jets')
@@ -23,6 +25,112 @@ export default function AirServicesPage() {
   const lightSectionRef = useRef<HTMLElement | null>(null)
   const prevSelected = useRef<AirCategoryId>('jets')
   const reduceMotion = useReducedMotion()
+
+  const jetsAnim = useMemo(() => {
+    if (reduceMotion) {
+      const still: Variants = { hidden: {}, visible: {} }
+      return {
+        introGroup: { hidden: {}, visible: { transition: { staggerChildren: 0 } } },
+        introItem: still,
+        listGroup: { hidden: {}, visible: { transition: { staggerChildren: 0 } } },
+        article: still,
+        articleBody: { hidden: {}, visible: { transition: { staggerChildren: 0 } } },
+        articleHeading: still,
+        segmentRow: { hidden: {}, visible: { transition: { staggerChildren: 0 } } },
+        segmentText: still,
+        segmentFig: still,
+        galleryGroup: { hidden: {}, visible: { transition: { staggerChildren: 0 } } },
+        galleryCell: still,
+        foot: still,
+      }
+    }
+    return {
+      introGroup: {
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: { duration: 0.4, staggerChildren: 0.1, delayChildren: 0.14 },
+        },
+      },
+      introItem: {
+        hidden: { opacity: 0, y: 24 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: JETS_EASE } },
+      },
+      listGroup: {
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: { staggerChildren: 0.16, delayChildren: 0.06 },
+        },
+      },
+      article: {
+        hidden: { opacity: 0, y: 48 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.68,
+            ease: JETS_EASE,
+            staggerChildren: 0.13,
+            delayChildren: 0.06,
+          },
+        },
+      },
+      articleBody: {
+        hidden: {},
+        visible: {
+          transition: { staggerChildren: 0.16, delayChildren: 0.02 },
+        },
+      },
+      articleHeading: {
+        hidden: { opacity: 0, y: 20, scale: 0.98 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { duration: 0.58, ease: JETS_EASE },
+        },
+      },
+      segmentRow: {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.15, delayChildren: 0.04 } },
+      },
+      segmentText: {
+        hidden: (flip: boolean) => ({ opacity: 0, x: flip ? 40 : -40 }),
+        visible: {
+          opacity: 1,
+          x: 0,
+          transition: { duration: 0.58, ease: JETS_EASE },
+        },
+      },
+      segmentFig: {
+        hidden: (flip: boolean) => ({ opacity: 0, x: flip ? -44 : 44, scale: 0.94 }),
+        visible: {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          transition: { duration: 0.65, ease: JETS_EASE },
+        },
+      },
+      galleryGroup: {
+        hidden: { opacity: 0 },
+        visible: { transition: { staggerChildren: 0.1, delayChildren: 0.08 } },
+      },
+      galleryCell: {
+        hidden: { opacity: 0, y: 36, scale: 0.96 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { duration: 0.58, ease: JETS_EASE },
+        },
+      },
+      foot: {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: JETS_EASE } },
+      },
+    }
+  }, [reduceMotion])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -189,90 +297,107 @@ export default function AirServicesPage() {
             <span className="air-jets-inflight__glow air-jets-inflight__glow--2" />
           </div>
           <div className="container">
-            <header className="air-jets-inflight__header">
-              <motion.p
-                className="air-jets-inflight__eyebrow"
-                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Private jet
-              </motion.p>
-              <motion.h2
-                className="air-jets-inflight__title"
-                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: reduceMotion ? 0.01 : 0.65,
-                  delay: reduceMotion ? 0 : 0.06,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              >
-                {airJetsInFlight.headline}
-              </motion.h2>
-              <div className="air-jets-inflight__intro">
-                {airJetsInFlight.intro.map((para, i) => (
-                  <motion.p
-                    key={i}
-                    className="air-jets-inflight__intro-p"
-                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: reduceMotion ? 0.01 : 0.55,
-                      delay: reduceMotion ? 0 : 0.1 + i * 0.08,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                  >
-                    {para}
-                  </motion.p>
-                ))}
-              </div>
-            </header>
-
-            <motion.blockquote
-              className="air-jets-inflight__quote"
-              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-20px' }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.6, ease: [0.16, 1, 0.3, 1] }}
+            <motion.div
+              className="air-jets-inflight__load-hero"
+              variants={jetsAnim.introGroup}
+              initial="hidden"
+              animate="visible"
             >
-              <p className="air-jets-inflight__quote-text">{airJetsInFlight.quote}</p>
-            </motion.blockquote>
+              <header className="air-jets-inflight__header">
+                <motion.p className="air-jets-inflight__eyebrow" variants={jetsAnim.introItem}>
+                  Private jet
+                </motion.p>
+                <motion.h2 className="air-jets-inflight__title" variants={jetsAnim.introItem}>
+                  {airJetsInFlight.headline}
+                </motion.h2>
+                <div className="air-jets-inflight__intro">
+                  {airJetsInFlight.intro.map((para, i) => (
+                    <motion.p key={i} className="air-jets-inflight__intro-p" variants={jetsAnim.introItem}>
+                      {para}
+                    </motion.p>
+                  ))}
+                </div>
+              </header>
 
-            <ol className="air-jets-inflight__features" aria-label="In-flight service pillars">
-              {airJetsInFlight.sections.map((block, i) => (
-                <motion.li
-                  key={block.title}
-                  className="air-jets-inflight__block"
-                  initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-32px' }}
-                  transition={{
-                    duration: reduceMotion ? 0.01 : 0.55,
-                    delay: reduceMotion ? 0 : Math.min(i * 0.05, 0.35),
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
-                  <h3 className="air-jets-inflight__block-title">{block.title}</h3>
-                  <p className="air-jets-inflight__block-text">{block.body}</p>
-                </motion.li>
-              ))}
-            </ol>
+              <motion.blockquote className="air-jets-inflight__quote" variants={jetsAnim.introItem}>
+                <p className="air-jets-inflight__quote-text">{airJetsInFlight.quote}</p>
+              </motion.blockquote>
+            </motion.div>
 
-            <ul className="air-jets-inflight__gallery" aria-label="Private aviation imagery">
-              {airJetsInFlight.gallery.map((item, i) => (
-                <motion.li
-                  key={item.src}
-                  className="air-jets-inflight__cell"
-                  initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.98 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{
-                    duration: reduceMotion ? 0.01 : 0.55,
-                    delay: reduceMotion ? 0 : i * 0.07,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
+            <motion.ol
+              className="air-jets-inflight__features"
+              aria-label="In-flight service articles"
+              variants={jetsAnim.listGroup}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.06, margin: '0px 0px -8% 0px' }}
+            >
+              {airJetsInFlight.sections.map((block, i) => {
+                const segmentsBefore = airJetsInFlight.sections
+                  .slice(0, i)
+                  .reduce((acc, s) => acc + s.segments.length, 0)
+                return (
+                  <motion.li key={block.title} className="air-jets-inflight__article" variants={jetsAnim.article}>
+                    <motion.h3 className="air-jets-inflight__article-title" variants={jetsAnim.articleHeading}>
+                      {block.title}
+                    </motion.h3>
+                    <motion.div className="air-jets-inflight__article-body" variants={jetsAnim.articleBody}>
+                      {block.segments.map((seg, si) => {
+                        const globalSegIndex = segmentsBefore + si
+                        const flipLayout = globalSegIndex % 2 === 1
+                        return (
+                          <motion.div
+                            key={`${block.title}-${si}`}
+                            className={`air-jets-inflight__segment${flipLayout ? ' air-jets-inflight__segment--flip' : ''}`}
+                            variants={jetsAnim.segmentRow}
+                          >
+                            <motion.p
+                              className="air-jets-inflight__segment-text"
+                              variants={jetsAnim.segmentText}
+                              custom={flipLayout}
+                            >
+                              {seg.paragraph}
+                            </motion.p>
+                            <motion.figure
+                              className="air-jets-inflight__segment-fig"
+                              variants={jetsAnim.segmentFig}
+                              custom={flipLayout}
+                            >
+                              <div className="air-jets-inflight__segment-frame">
+                                <img
+                                  className="air-jets-inflight__segment-img"
+                                  src={seg.image.src}
+                                  alt={seg.image.alt}
+                                  width={960}
+                                  height={540}
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                                <span className="air-jets-inflight__segment-shine" aria-hidden />
+                              </div>
+                              {seg.caption ? (
+                                <figcaption className="air-jets-inflight__segment-cap">{seg.caption}</figcaption>
+                              ) : null}
+                            </motion.figure>
+                          </motion.div>
+                        )
+                      })}
+                    </motion.div>
+                  </motion.li>
+                )
+              })}
+            </motion.ol>
+
+            <motion.ul
+              className="air-jets-inflight__gallery"
+              aria-label="Private aviation imagery"
+              variants={jetsAnim.galleryGroup}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.12, margin: '0px 0px -10% 0px' }}
+            >
+              {airJetsInFlight.gallery.map((item) => (
+                <motion.li key={item.src} className="air-jets-inflight__cell" variants={jetsAnim.galleryCell}>
                   <figure className="air-jets-inflight__fig">
                     <div className="air-jets-inflight__img-wrap">
                       <img
@@ -290,17 +415,14 @@ export default function AirServicesPage() {
                   </figure>
                 </motion.li>
               ))}
-            </ul>
+            </motion.ul>
 
             <motion.div
               className="air-jets-inflight__foot"
-              initial={reduceMotion ? false : { opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: reduceMotion ? 0 : 0.15,
-                duration: reduceMotion ? 0.01 : 0.5,
-              }}
+              variants={jetsAnim.foot}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
             >
               <Link
                 to="/contact"
@@ -353,6 +475,18 @@ export default function AirServicesPage() {
                 {airLightExperiences.headline}
               </motion.h2>
               <div className="air-light-experiences__intro">
+                <motion.p
+                  className="air-light-experiences__hook"
+                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: reduceMotion ? 0.01 : 0.55,
+                    delay: reduceMotion ? 0 : 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {airLightExperiences.introHook}
+                </motion.p>
                 {airLightExperiences.intro.map((para, i) => (
                   <motion.p
                     key={i}
@@ -361,7 +495,7 @@ export default function AirServicesPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
                       duration: reduceMotion ? 0.01 : 0.55,
-                      delay: reduceMotion ? 0 : 0.12 + i * 0.08,
+                      delay: reduceMotion ? 0 : 0.16 + i * 0.08,
                       ease: [0.16, 1, 0.3, 1],
                     }}
                   >
@@ -370,6 +504,113 @@ export default function AirServicesPage() {
                 ))}
               </div>
             </header>
+
+            <div className="air-light-experiences__prose">
+              <div className="air-light-experiences__journeys" aria-label="Experience types">
+                {airLightExperiences.journeys.map((journey, ji) => (
+                  <motion.article
+                    key={journey.title}
+                    className={`air-light-experiences__journey ${ji % 2 === 1 ? 'air-light-experiences__journey--alt' : ''}`}
+                    initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-36px' }}
+                    transition={{
+                      duration: reduceMotion ? 0.01 : 0.55,
+                      delay: reduceMotion ? 0 : Math.min(ji * 0.06, 0.24),
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    <h3 className="air-light-experiences__journey-title">{journey.title}</h3>
+                    {journey.paragraphs.map((p, pi) => (
+                      <p key={pi} className="air-light-experiences__journey-p">
+                        {p}
+                      </p>
+                    ))}
+                  </motion.article>
+                ))}
+              </div>
+
+              <motion.section
+                className="air-light-experiences__school"
+                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-32px' }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.16, 1, 0.3, 1] }}
+                aria-labelledby="air-light-school-heading"
+              >
+                <h3 id="air-light-school-heading" className="air-light-experiences__school-title">
+                  {airLightExperiences.flightSchool.title}
+                </h3>
+                {airLightExperiences.flightSchool.paragraphs.map((p, i) => (
+                  <p key={i} className="air-light-experiences__school-p">
+                    {p}
+                  </p>
+                ))}
+              </motion.section>
+
+              <motion.section
+                className="air-light-experiences__qual"
+                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-32px' }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.16, 1, 0.3, 1] }}
+                aria-labelledby="air-light-qual-heading"
+              >
+                <h3 id="air-light-qual-heading" className="air-light-experiences__qual-title">
+                  {airLightExperiences.qualifications.title}
+                </h3>
+                <p className="air-light-experiences__qual-lead">{airLightExperiences.qualifications.lead}</p>
+                <ul className="air-light-experiences__qual-list">
+                  {airLightExperiences.qualifications.items.map((item) => (
+                    <li key={item} className="air-light-experiences__qual-item">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.section>
+
+              <motion.section
+                className="air-light-experiences__trial"
+                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-32px' }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.16, 1, 0.3, 1] }}
+                aria-labelledby="air-light-trial-heading"
+              >
+                <h3 id="air-light-trial-heading" className="air-light-experiences__trial-title">
+                  {airLightExperiences.trialAndMembership.title}
+                </h3>
+                {airLightExperiences.trialAndMembership.paragraphs.map((p, i) => (
+                  <p key={i} className="air-light-experiences__trial-p">
+                    {p}
+                  </p>
+                ))}
+                <p className="air-light-experiences__trial-membership-lead">
+                  {airLightExperiences.trialAndMembership.membershipLead}
+                </p>
+                <ul className="air-light-experiences__trial-list">
+                  {airLightExperiences.trialAndMembership.membershipItems.map((item) => (
+                    <li key={item} className="air-light-experiences__trial-item">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.section>
+
+              <motion.aside
+                className="air-light-experiences__outro"
+                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-24px' }}
+                transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.16, 1, 0.3, 1] }}
+                aria-labelledby="air-light-outro-heading"
+              >
+                <h3 id="air-light-outro-heading" className="air-light-experiences__outro-title">
+                  {airLightExperiences.closing.title}
+                </h3>
+                <p className="air-light-experiences__outro-body">{airLightExperiences.closing.body}</p>
+              </motion.aside>
+            </div>
 
             <ul className="air-light-experiences__gallery" aria-label="Scenes from light aircraft experiences">
               {airLightExperiences.gallery.map((item, i) => (
@@ -421,10 +662,10 @@ export default function AirServicesPage() {
                 className="air-light-experiences__btn"
                 state={{
                   serviceInterest: 'VIP Services',
-                  vipSubService: 'Light Aircraft — Air tours & experiences',
+                  vipSubService: 'Light Aircraft — Experiences, tours & flying school',
                 }}
               >
-                Plan an air tour
+                {airLightExperiences.closing.buttonLabel}
               </Link>
             </motion.div>
           </div>
