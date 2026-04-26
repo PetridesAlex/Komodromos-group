@@ -29,31 +29,54 @@ export default function ContactPage() {
       vipSubService?: string
       consultingTopic?: string
       weddingPackage?: string
+      contactPrefill?: {
+        name?: string
+        email?: string
+        phone?: string
+        company?: string
+        service?: string
+        message?: string
+      }
     } | null
-    const interest = s?.serviceInterest
-    const vipSub = s?.vipSubService
-    const consultingTopic = s?.consultingTopic
-    const weddingPackage = s?.weddingPackage
-    if (typeof interest === 'string' && interest) {
-      setForm((f) => ({
-        ...f,
-        service: interest,
-        message:
-          typeof vipSub === 'string' &&
-          vipSub &&
-          !f.message.trim()
-            ? `Interested in: ${vipSub}`
-            : typeof consultingTopic === 'string' &&
-                consultingTopic &&
-                !f.message.trim()
-              ? `Topic: ${consultingTopic}`
-              : typeof weddingPackage === 'string' &&
-                  weddingPackage &&
-                  !f.message.trim()
-                ? `Wedding package interest: ${weddingPackage}`
-                : f.message,
-      }))
-    }
+
+    if (!s) return
+
+    setForm((f) => {
+      let next = { ...f }
+      const p = s.contactPrefill
+      if (p) {
+        if (p.name !== undefined && p.name !== '') next = { ...next, name: p.name }
+        if (p.email !== undefined && p.email !== '') next = { ...next, email: p.email }
+        if (p.phone !== undefined && p.phone !== '') next = { ...next, phone: p.phone }
+        if (p.company !== undefined) next = { ...next, company: p.company }
+        if (p.service !== undefined && p.service !== '') next = { ...next, service: p.service }
+        if (p.message !== undefined && p.message !== '') next = { ...next, message: p.message }
+      }
+
+      const interest = s.serviceInterest
+      if (typeof interest === 'string' && interest) {
+        next = { ...next, service: interest }
+      }
+
+      if (!next.message.trim()) {
+        const vipSub = s.vipSubService
+        if (typeof vipSub === 'string' && vipSub) {
+          next = { ...next, message: `Interested in: ${vipSub}` }
+        } else {
+          const consultingTopic = s.consultingTopic
+          if (typeof consultingTopic === 'string' && consultingTopic) {
+            next = { ...next, message: `Topic: ${consultingTopic}` }
+          } else {
+            const weddingPackage = s.weddingPackage
+            if (typeof weddingPackage === 'string' && weddingPackage) {
+              next = { ...next, message: `Wedding package interest: ${weddingPackage}` }
+            }
+          }
+        }
+      }
+
+      return next
+    })
   }, [location.state])
 
   function handleChange(

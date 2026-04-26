@@ -157,7 +157,7 @@ export const airLightExperiences = {
       caption: 'Signature air tours',
     },
     {
-      src: `${VIP}/Vip-tour-around-the-Island.webp`,
+      src: `${VIP}/vip-tour.webp`,
       alt: 'Aircraft on tour over the island',
       caption: 'Exclusive island routes',
     },
@@ -168,6 +168,127 @@ export const airLightExperiences = {
     },
   ] as const,
 }
+
+/** Premium light-aircraft marketing page (`/services/air/light-aircraft`). */
+export const airLightPremiumPage = {
+  heroEyebrow: 'Luxury Sky · Global Wings',
+  heroTitle: 'Light Aircraft Experiences & Private Air Tours',
+  heroSubtitle:
+    'Discover aviation from a completely new perspective. Explore curated light aircraft experiences across Cyprus, Greece, and beyond.',
+  introParagraphs: [
+    'Light aircraft offer the perfect entry into the world of flying, combining precision handling, responsiveness, and an immersive cockpit experience that turns every journey into something truly unforgettable.',
+    'With Luxury Sky / Global Wings, clients can enjoy scenic flights, private air tours, island escapes, day trips, trial flights, and pilot training experiences.',
+  ] as const,
+  experienceCards: [
+    {
+      title: 'Scenic Air Tours Over Cyprus',
+      description:
+        'Experience Cyprus from a breathtaking bird’s-eye view, including coastlines, landmarks, and untouched landscapes.',
+    },
+    {
+      title: 'Day Trips to Beirut',
+      description:
+        'Fly privately to Beirut and enjoy culture, cuisine, historic districts, stylish cafés, and iconic attractions such as Jeita Grotto.',
+    },
+    {
+      title: 'Greek Island Escapes',
+      description:
+        'Enjoy flexible private flights to the Greek Islands for romantic getaways, family holidays, or weekend escapes.',
+    },
+    {
+      title: 'Learn to Fly',
+      description:
+        'Begin your pilot training journey with Luxury Sky Flying School near Larnaca International Airport.',
+    },
+  ] as const,
+  coursesSectionTitle: 'Courses & Qualifications',
+  coursesLead: 'Professional programmes designed around your goals:',
+  courses: [
+    'PPL – Private Pilot Licence',
+    'LAPL – Light Aircraft Pilot Licence',
+    'IR(R) – Instrument Rating Restricted',
+    'Flying Companion Courses',
+    'Tailwheel Conversion Training',
+    'Aerobatic Rating',
+  ] as const,
+  trialSectionTitle: 'Trial Flights & Membership',
+  trialIntro:
+    'Step into the cockpit with structured introductory flights, premium gifting options, and membership benefits for those who want to fly more often.',
+  trialItems: [
+    '30-minute trial flights',
+    '60-minute trial flights',
+    'Gift vouchers available',
+    'Training on Cessna 172, Diamond, and Tecnam aircraft',
+    'Solo aircraft hire',
+    'Membership programme with preferential rates',
+  ] as const,
+  finalCta: {
+    title: 'Start Your Aviation Journey',
+    body: 'Take the first step into the world of aviation with a personalized flying experience designed around you.',
+    buttonLabel: 'Request Information',
+  },
+} as const
+
+/** Premium marketing content for Private Jet In-Flight Services (`/services/air/private-jets`). */
+export const airPrivateJetInflightPremium = {
+  eyebrow: 'Luxury Sky · Global Wings',
+  title: 'Private Jet In-Flight Services',
+  intro:
+    'Luxury Sky / Global Wings elevates the private aviation experience through refined cabin design and exceptional onboard services. Stepping aboard feels like entering an elegant residence in the sky, where every detail is curated to deliver comfort, efficiency, privacy, and relaxation throughout the journey.',
+  quote:
+    'At the core of our onboard service is genuine attentiveness and a deep commitment to excellence. Our goal is to ensure every passenger feels completely at ease, with every request handled with discretion and precision.',
+  services: [
+    {
+      title: 'A Home Above the Clouds',
+      description:
+        'A warm yet sophisticated cabin environment designed for both productivity and relaxation. Passengers can work from a fully equipped executive space or unwind in a serene family-friendly setting.',
+    },
+    {
+      title: 'An Elite Aviation Team',
+      description:
+        'Every flight is operated by a dedicated Cabin Host and two highly qualified pilots. Our crews are trained to deliver exceptional safety, comfort, and discreet service on every journey.',
+    },
+    {
+      title: 'Exclusive Private Dining',
+      description:
+        'Enjoy bespoke onboard dining, from gourmet menus and Michelin-inspired selections to personalised meals designed around your preferences, lifestyle, and comfort.',
+    },
+    {
+      title: 'Wine Above the World',
+      description:
+        'A curated in-flight wine programme featuring exceptional labels selected to perform beautifully at cruising altitude and complement the onboard dining experience.',
+    },
+    {
+      title: 'Young Traveller Experiences',
+      description:
+        'A tailored programme for younger passengers, combining entertainment, comfort, and educational touches to make every journey enjoyable and memorable.',
+    },
+    {
+      title: 'Pet Travel Reimagined',
+      description:
+        'A thoughtful pet travel programme designed with comfort, safety, nutrition, and care in mind, allowing pets to travel in a calm and comfortable environment.',
+    },
+    {
+      title: 'Wellness in Flight',
+      description:
+        'Wellbeing-focused onboard experiences created to support physical comfort, mental clarity, relaxation, and overall vitality throughout the journey.',
+    },
+    {
+      title: 'High-Speed Connectivity in the Sky',
+      description:
+        'Stay connected with advanced onboard internet suitable for business communication, Ultra-HD streaming, and multi-device connectivity during flight.',
+    },
+  ] as const,
+  discover: {
+    title: 'Discover More',
+    text: 'Luxury Sky / Global Wings provides flexible private aviation solutions designed around your travel lifestyle. Clients benefit from global aircraft availability, elevated onboard service, and access to super-midsize, long-range, and ultra-long-range business jets.',
+    buttonLabel: 'Request Private Jet Information',
+  },
+  enquiry: {
+    title: 'Private jet enquiry',
+    subtitle: 'Share your plans and our team will respond with tailored options.',
+  },
+} as const
 
 /** One image + copy row in Private Jets “in-flight” articles (`image` optional until assets exist). */
 export type AirJetsInflightSegment = {
