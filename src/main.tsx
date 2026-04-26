@@ -11,6 +11,7 @@ import BusinessConsultingPage from './components/BusinessConsultingPage.tsx'
 import PoolGardenServicesPage from './components/PoolGardenServicesPage.tsx'
 import AviationServicesPage from './components/AviationServicesPage.tsx'
 import AirServicesPage from './components/AirServicesPage.tsx'
+import YachtChartersPage from './components/yacht-charters/YachtChartersPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
@@ -33,6 +34,7 @@ function Root() {
             <Route path="/services/pool" element={<PoolGardenServicesPage />} />
             <Route path="/services/aviation" element={<AviationServicesPage />} />
             <Route path="/services/air" element={<AirServicesPage />} />
+            <Route path="/services/yacht-charters" element={<YachtChartersPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
           </Routes>
         </BrowserRouter>

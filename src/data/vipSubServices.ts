@@ -18,7 +18,8 @@ export const vipSubServices: VipSubServiceItem[] = [
     title: 'Maritime Services & Experiences',
     kicker: 'Maritime',
     nameLine: 'Services & experiences',
-    image: `${base}/luxury-yacht.webp`,
+    image: '/images/services/maritime-services/yacht-marine-hero.webp',
+    to: '/services/yacht-charters',
   },
   {
     slug: 'air',
