@@ -24,6 +24,10 @@ import YachtReviewsSection from './YachtReviewsSection'
 
 const HERO_BG = '/images/services/maritime-services/yacht-marine-hero.webp'
 
+const MotionLink = motion(Link)
+
+const heroCtaSpring = { type: 'spring', stiffness: 440, damping: 28 } as const
+
 const defaultFilter: YachtFilterState = {
   type: 'all',
   location: 'all',
@@ -138,19 +142,29 @@ export default function YachtChartersPage() {
               ease: [0.16, 1, 0.3, 1],
             }}
           >
-            <button type="button" className="yacht-btn yacht-btn--gold" onClick={scrollToFleet}>
+            <motion.button
+              type="button"
+              className="yacht-btn yacht-btn--gold"
+              onClick={scrollToFleet}
+              whileHover={reduceMotion ? undefined : { y: -3, scale: 1.04 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.96 }}
+              transition={heroCtaSpring}
+            >
               Explore yachts
-            </button>
-            <Link
+            </motion.button>
+            <MotionLink
               to="/contact"
               className="yacht-btn yacht-btn--outline"
               state={{
                 serviceInterest: 'VIP Services',
                 vipSubService: 'Luxury yacht charter — private quote',
               }}
+              whileHover={reduceMotion ? undefined : { y: -3, scale: 1.04 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.96 }}
+              transition={heroCtaSpring}
             >
               Request a private quote
-            </Link>
+            </MotionLink>
           </motion.div>
         </div>
         <div className="yacht-hero__scroll-hint" aria-hidden>
@@ -235,16 +249,29 @@ export default function YachtChartersPage() {
                   delay: reduceMotion ? 0 : i * 0.06,
                 }}
               >
-                <div className="yacht-charter-info__hub-media">
-                  <img
-                    src={hub.image}
-                    alt={hub.imageAlt}
-                    width={640}
-                    height={420}
-                    sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
-                    loading="lazy"
-                    decoding="async"
-                  />
+                <div
+                  className={`yacht-charter-info__hub-media${hub.image ? '' : ' yacht-charter-info__hub-media--placeholder'}`}
+                >
+                  {hub.image ? (
+                    <img
+                      src={hub.image}
+                      alt={hub.imageAlt ?? hub.title}
+                      width={640}
+                      height={420}
+                      sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div
+                      className="yacht-charter-info__hub-placeholder"
+                      role="img"
+                      aria-label={`Image placeholder for ${hub.title}`}
+                    >
+                      <span className="yacht-charter-info__hub-placeholder__label">Insert image</span>
+                      <span className="yacht-charter-info__hub-placeholder__hint">{hub.title}</span>
+                    </div>
+                  )}
                 </div>
                 <div className="yacht-charter-info__hub-body">
                   <h3 className="yacht-charter-info__hub-title">{hub.title}</h3>

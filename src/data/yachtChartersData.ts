@@ -181,9 +181,9 @@ export const yachtFleet: YachtCharter[] = [
 export type CharterHub = {
   title: string
   text: string
-  /** Cover image under `public/` */
-  image: string
-  imageAlt: string
+  /** Optional cover under `public/` — omit until assets are ready */
+  image?: string
+  imageAlt?: string
 }
 
 export const charteringCyprus = {
@@ -194,34 +194,24 @@ export const charteringCyprus = {
     {
       title: 'Limassol Marina',
       text: 'A flagship superyacht address with refined dining and provisioning steps from your berth — ideal for corporate hospitality and weekend escapes.',
-      image: img('/images/services/maritime-services/yacht-marine-hero.webp'),
-      imageAlt: 'Luxury yacht and marina atmosphere at Limassol',
     },
     {
       title: 'Larnaca Marina',
       text: 'Straightforward access and open-sea reach toward the east coast — flexible for longer coastal passages and multi-stop days.',
-      image: img('/images/services/vip-service/luxury-yacht.webp'),
-      imageAlt: 'Yacht on open water near Larnaca',
     },
     {
       title: 'Ayia Napa & Protaras',
       text: 'Iconic blues, sea caves, and postcard beaches — perfect for swim stops, DJ-led sunsets, and celebration charters.',
-      image: img('/images/services/vip-service/Vip-tour-around-the-Island.webp'),
-      imageAlt: 'Coastal cruise and turquoise waters of eastern Cyprus',
     },
     {
       title: 'Latchi',
       text: 'Gateway to the Akamas — dramatic cliffs, hidden coves, and some of the island’s clearest water.',
-      image: img('/images/services/vip-service/Aerophotography.webp'),
-      imageAlt: 'Aerial view of rugged coastline and clear sea',
     },
     {
       title: 'Paphos Harbour',
       text: 'Historic coastline and golden-hour light — tailored for romantic cruises and intimate gatherings.',
-      image: img('/images/services/vip-service/vip-tour.webp'),
-      imageAlt: 'Sunlit Mediterranean coast near Paphos',
     },
-  ] satisfies CharterHub[],
+  ] as CharterHub[],
   closing:
     'Explore crystal-clear waters, hidden bays, beaches, and coastal villages. Plan sunset cruises, private events, birthdays, corporate outings, or a quiet escape for two — every itinerary is storyboarded with you.',
 }

@@ -15071,7 +15071,62 @@ footer.footer2 {
 .yacht-hero__cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.85rem 1rem;
+  gap: 0.65rem 0.85rem;
+}
+
+/* Hero CTAs: compact type, taller hit-area; motion handles transform on hover/tap */
+.yacht-hero__cta .yacht-btn {
+  padding: 0.88rem 1.35rem;
+  min-height: 2.85rem;
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  will-change: transform;
+  box-sizing: border-box;
+  max-width: min(17.5rem, 100%);
+}
+
+.yacht-hero__cta .yacht-btn--gold:hover,
+.yacht-hero__cta .yacht-btn--gold:active {
+  transform: none;
+}
+
+.yacht-hero__cta .yacht-btn--gold:hover {
+  filter: brightness(1.05);
+}
+
+.yacht-hero__cta .yacht-btn--outline:hover,
+.yacht-hero__cta .yacht-btn--outline:active {
+  transform: none;
+}
+
+@keyframes yachtHeroCtaSheen {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.yacht-hero__cta .yacht-btn--gold {
+  background: linear-gradient(
+    110deg,
+    #e8f6fc 0%,
+    #cceaf7 35%,
+    #bfe4f4 50%,
+    #cceaf7 65%,
+    #a8daf0 100%
+  );
+  background-size: 200% auto;
+  animation: yachtHeroCtaSheen 4.5s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yacht-hero__cta .yacht-btn--gold {
+    animation: none;
+    background: linear-gradient(165deg, #e8f6fc 0%, #cceaf7 38%, #a8daf0 100%);
+  }
 }
 
 .yacht-btn {
@@ -15188,14 +15243,22 @@ footer.footer2 {
 /* Yacht hero — phones & narrow viewports */
 @media (max-width: 639px) {
   .yacht-hero {
-    padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: calc(1rem + env(safe-area-inset-top, 0px));
     padding-right: max(1rem, env(safe-area-inset-right, 0px));
-    padding-bottom: calc(3.25rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
     padding-left: max(1rem, env(safe-area-inset-left, 0px));
   }
 
   .yacht-hero__content {
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
   }
 
   .yacht-hero__eyebrow {
@@ -15205,6 +15268,7 @@ footer.footer2 {
     margin-bottom: 0.85rem;
     max-width: 100%;
     box-sizing: border-box;
+    justify-content: center;
   }
 
   .yacht-hero__title {
@@ -15213,35 +15277,44 @@ footer.footer2 {
     letter-spacing: 0.022em;
     margin-bottom: 0.75rem;
     overflow-wrap: break-word;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
   }
 
   .yacht-hero__title::after {
     width: min(4.25rem, 30vw);
     height: 2px;
     margin-top: 0.75rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .yacht-hero__sub {
     font-size: clamp(0.94rem, 3.8vw, 1.06rem);
     line-height: 1.62;
     margin-bottom: 1.35rem;
-    max-width: 100%;
+    max-width: min(32rem, 100%);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   .yacht-hero__cta {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 0.65rem;
     width: 100%;
+    max-width: 100%;
   }
 
   .yacht-hero__cta .yacht-btn {
-    width: 100%;
-    max-width: none;
+    width: auto;
+    max-width: min(16.75rem, 88vw);
+    min-height: 2.95rem;
+    padding: 0.92rem 1.25rem;
     justify-content: center;
     box-sizing: border-box;
-    padding-left: 1.15rem;
-    padding-right: 1.15rem;
   }
 
   .yacht-hero__bg-img {
@@ -15827,6 +15900,44 @@ footer.footer2 {
 
 .yacht-charter-info .yacht-charter-info__hub:hover .yacht-charter-info__hub-media img {
   transform: scale(1.05);
+}
+
+.yacht-charter-info__hub-media--placeholder::after {
+  display: none;
+}
+
+.yacht-charter-info__hub-placeholder {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 1.15rem 1rem;
+  border-radius: 10px;
+  border: 2px dashed rgba(100, 170, 210, 0.55);
+  background: rgba(252, 254, 255, 0.94);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.yacht-charter-info__hub-placeholder__label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(35, 95, 130, 0.88);
+}
+
+.yacht-charter-info__hub-placeholder__hint {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(55, 70, 95, 0.62);
 }
 
 .yacht-charter-info__hub-body {
