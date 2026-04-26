@@ -101,7 +101,7 @@ function App() {
             >
               <span className="hero-title-glass__inner">
                 <span className="hero-title-glass__kg" aria-hidden="true">
-                  K. Group
+                  KOMODROMOS GROUP
                 </span>
                 <span className="hero-title-glass__line2" aria-hidden="true">
                   OF COMPANIES

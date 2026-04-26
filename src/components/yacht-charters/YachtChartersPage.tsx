@@ -22,7 +22,7 @@ import YachtFAQSection from './YachtFAQSection'
 import YachtFilter, { type YachtFilterState } from './YachtFilter'
 import YachtReviewsSection from './YachtReviewsSection'
 
-const HERO_BG = '/images/services/maritime-services/yacht-marine-hero.webp'
+const HERO_BG = '/images/services/vip-service/luxury-yacht.webp'
 
 const MotionLink = motion(Link)
 

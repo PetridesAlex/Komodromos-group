@@ -3,6 +3,18 @@ const AIR_IMG = '/images/services/vip-service/air-services'
 
 export type AirCategoryId = 'jets' | 'light'
 
+/** URL segment under `/services/air/…` for each category */
+export const airCategoryPath: Record<AirCategoryId, string> = {
+  jets: 'private-jets',
+  light: 'light-aircraft',
+}
+
+export function airSlugToCategoryId(slug: string | undefined): AirCategoryId | null {
+  if (!slug) return null
+  const pair = (Object.entries(airCategoryPath) as [AirCategoryId, string][]).find(([, p]) => p === slug)
+  return pair ? pair[0] : null
+}
+
 export const airServicesHero = {
   eyebrow: 'VIP Air & charter',
   /** Display: first word + accent second line for premium split title */
@@ -157,6 +169,13 @@ export const airLightExperiences = {
   ] as const,
 }
 
+/** One image + copy row in Private Jets “in-flight” articles (`image` optional until assets exist). */
+export type AirJetsInflightSegment = {
+  paragraph: string
+  caption?: string
+  image?: { src: string; alt: string }
+}
+
 /** Full section when Private Jets is selected — in-flight experience story + gallery. */
 export const airJetsInFlight = {
   headline: 'Private Jet In-Flight Services',
@@ -165,7 +184,7 @@ export const airJetsInFlight = {
   ],
   quote:
     'At the core of the service delivered by Luxury Sky / Global Wings Cabin Hosts is genuine attentiveness and a deep commitment to excellence. Our goal is to ensure you feel completely at ease on board — every request is handled with discretion and precision.',
-  /** Blog-style articles: each paragraph is followed by its own image (paths easy to swap). */
+  /** Blog-style articles; optional `image: { src, alt }` per segment when assets are ready (under `public/`). */
   sections: [
     {
       title: 'A home above the clouds',
@@ -173,13 +192,11 @@ export const airJetsInFlight = {
         {
           paragraph:
             'The distinctive cabin concept of Luxury Sky / Global Wings, harmonised across the entire fleet, welcomes travellers worldwide with a warm yet sophisticated ambience.',
-          image: { src: `${VIP}/private-jet.webp`, alt: 'Private jet cabin interior with refined seating' },
           caption: 'Cabin ambience',
         },
         {
           paragraph:
             'Passengers can stay productive within a fully equipped executive workspace or unwind in a serene family-friendly environment. Each cabin is designed to accommodate diverse travel needs with effortless flexibility.',
-          image: { src: `${AIR_IMG}/private-jets.webp`, alt: 'Private jet on the apron, ready for departure' },
           caption: 'Your aircraft, your rhythm',
         },
       ],
@@ -190,13 +207,11 @@ export const airJetsInFlight = {
         {
           paragraph:
             'To guarantee consistently outstanding service, every Luxury Sky / Global Wings flight is operated by a dedicated Cabin Host alongside two highly qualified pilots.',
-          image: { src: `${VIP}/vip-hero.webp`, alt: 'VIP aviation and crew service' },
           caption: 'Crew & hospitality',
         },
         {
           paragraph:
             'Flight crews specialise in a single aircraft type, ensuring exceptional familiarity and instinctive operational performance. Pilots undergo recurrent training twice annually, while Cabin Crew receive advanced hospitality and safety instruction from globally recognised institutions.',
-          image: { src: `${VIP}/air-services.webp`, alt: 'Aviation operations and coordination' },
           caption: 'Training & standards',
         },
       ],
@@ -207,13 +222,11 @@ export const airJetsInFlight = {
         {
           paragraph:
             'The Private Dining specialists of Luxury Sky / Global Wings curate bespoke culinary experiences on board, offering an extensive range of gourmet options.',
-          image: { src: `${VIP}/wedding-package.webp`, alt: 'Elegant dining and celebration setting' },
           caption: 'On-board dining',
         },
         {
           paragraph:
             'From signature menus developed by internationally acclaimed chefs and selections sourced from Michelin-starred partner restaurants, to personalised meal plans designed by in-house nutrition experts or your preferred comfort dishes — every detail is tailored to your tastes.',
-          image: { src: `${VIP}/luxury-travel.webp`, alt: 'Luxury travel and curated experiences' },
           caption: 'Menus tailored to you',
         },
       ],
@@ -224,13 +237,11 @@ export const airJetsInFlight = {
         {
           paragraph:
             'Inspired by the pursuit of the perfect glass of wine at cruising altitude, Luxury Sky / Global Wings presents a carefully crafted Wine Program featuring exceptional labels selected for their optimal performance in flight.',
-          image: { src: `${VIP}/cazino.webp`, alt: 'Champagne and premium beverages' },
           caption: 'Wine at altitude',
         },
         {
           paragraph:
             'Drawn from renowned vineyards across the globe, these wines are chosen to complement the unique sensory conditions experienced at high altitude.',
-          image: { src: `${VIP}/vip-mercendes-tour.webp`, alt: 'Luxury lifestyle and refined service' },
           caption: 'Global cellar selection',
         },
       ],
@@ -241,13 +252,11 @@ export const airJetsInFlight = {
         {
           paragraph:
             'Luxury Sky / Global Wings offers one of the most comprehensive aviation programs designed specifically for younger passengers.',
-          image: { src: `${VIP}/vip-tour.webp`, alt: 'Family and VIP travel experiences' },
           caption: 'Young guests',
         },
         {
           paragraph:
             'Combining immersive entertainment with educational enrichment, each journey can be customised to reflect the child’s age, interests and imagination — transforming travel into a memorable adventure.',
-          image: { src: `${VIP}/Vip-tour-around-the-Island.webp`, alt: 'Scenic tour from the air' },
           caption: 'Adventure in the sky',
         },
       ],
@@ -258,13 +267,11 @@ export const airJetsInFlight = {
         {
           paragraph:
             'Developed in collaboration with veterinary professionals, grooming specialists, nutritionists and behavioural experts, the Luxury Sky / Global Wings Pet Travel Program ensures animals travel safely and comfortably.',
-          image: { src: `${VIP}/luxury-villa.webp`, alt: 'Comfort and care' },
           caption: 'Comfort for companions',
         },
         {
           paragraph:
             'Every aspect is designed to address the practical and emotional needs of travelling with pets.',
-          image: { src: `${VIP}/limouzine.webp`, alt: 'Seamless ground and air travel' },
           caption: 'Door-to-door peace of mind',
         },
       ],
@@ -275,7 +282,6 @@ export const airJetsInFlight = {
         {
           paragraph:
             'Cabin environment, rest programmes and discreet attention to how you feel at altitude are woven into every itinerary. From sleep-friendly scheduling and cabin pressurisation considered for recovery to light movement and hydration guided by the crew, the aim is for you to step off the aircraft restored — ready for what comes next.',
-          image: { src: `${VIP}/Aerophotography.webp`, alt: 'Calm skies and journey above the clouds' },
           caption: 'Arrive restored',
         },
       ],
