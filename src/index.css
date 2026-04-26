@@ -805,6 +805,19 @@ body {
     padding-top: clamp(0.1rem, 1vh, 0.4rem);
   }
 
+  /* Glass hero: scale down so “KOMODROMOS GROUP” fits without horizontal clip (page is overflow-x: hidden) */
+  .home-page .hero-title-glass__inner {
+    max-width: 100%;
+    padding: clamp(1.1rem, 2.6vh, 1.85rem) clamp(0.85rem, 3.5vw, 1.35rem);
+  }
+
+  .home-page .hero-title-glass__kg {
+    font-size: clamp(1.45rem, 3.8vw + 0.85rem, 2.65rem);
+    letter-spacing: 0.022em;
+    line-height: 1.14;
+    text-wrap: balance;
+  }
+
   .home-page #home .hero-h1-stagger {
     font-size: clamp(2.35rem, 9.5vw, 3.25rem) !important;
     line-height: 1.14 !important;
