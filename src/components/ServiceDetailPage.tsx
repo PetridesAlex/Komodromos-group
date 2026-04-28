@@ -47,6 +47,29 @@ export default function ServiceDetailPage() {
         homeHref="/"
         servicesSectionHref="/#services"
       />
+      {slug === 'storage' ? (
+        <div className="storage-page-subnav" aria-label="Storage page navigation">
+          <div className="container">
+            <nav className="storage-page-subnav__inner">
+              <a href="#storage-parallax" className="storage-page-subnav__link">
+                Overview
+              </a>
+              <a href="#storage-offers" className="storage-page-subnav__link">
+                Storage Options
+              </a>
+              <a href="#storage-features" className="storage-page-subnav__link">
+                Features
+              </a>
+              <a href="#storage-rates" className="storage-page-subnav__link">
+                Monthly Rates
+              </a>
+              <a href="#storage-contact" className="storage-page-subnav__link storage-page-subnav__link--cta">
+                Contact
+              </a>
+            </nav>
+          </div>
+        </div>
+      ) : null}
 
       {slug === 'storage' ? (
         <StoragePremiumSection />
