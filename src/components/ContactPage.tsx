@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { serviceCards } from '../data/serviceCards'
 
 export default function ContactPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
   const pageRef = useReveal()
   useEffect(() => {
@@ -94,39 +92,12 @@ export default function ContactPage() {
 
   return (
     <div className="page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link to="/#services" onClick={() => setMenuOpen(false)}>
-              SERVICES
-            </Link>
-            <Link
-              to="/contact"
-              className="nav-active"
-              onClick={() => setMenuOpen(false)}
-            >
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <section className="contact-hero">
         <div className="contact-hero-glow contact-hero-glow-1" />

@@ -2,7 +2,8 @@ import { StrictMode, useState, useCallback } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
-import App from './App.tsx'
+import './tailwind.css'
+import KomodromosGroupHomePage from './components/KomodromosGroupHomePage.tsx'
 import ContactPage from './components/ContactPage.tsx'
 import ServiceDetailPage from './components/ServiceDetailPage.tsx'
 import WeddingServicesPage from './components/WeddingServicesPage.tsx'
@@ -27,7 +28,7 @@ function Root() {
       <div style={loaded ? undefined : { display: 'none' }}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<KomodromosGroupHomePage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/services/wedding" element={<WeddingServicesPage />} />
             <Route path="/services/wedding/packages/:packageId" element={<WeddingPackageDetailPage />} />

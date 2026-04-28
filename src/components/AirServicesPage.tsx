@@ -4,14 +4,8 @@ import Footer from './Footer'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
 import { useReveal } from '../hooks/useReveal'
-import {
-  airCategoryContent,
-  airCategoryPath,
-  airServicesHero,
-  type AirCategoryId,
-} from '../data/airServicesPage'
+import { airCategoryContent, airCategoryPath, airServicesHero } from '../data/airServicesPage'
 
-const IDS: AirCategoryId[] = ['jets', 'light']
 const BASE_TITLE = 'Komodromos'
 
 export default function AirServicesPage() {
@@ -86,7 +80,11 @@ export default function AirServicesPage() {
             <p className="air-hero__sub air-hero__fade air-hero__fade--3">{airServicesHero.subtitle}</p>
           </div>
           <div className="air-hero__showcase">
-            <figure className="air-hero__figure air-hero__figure--jets air-hero__fade air-hero__fade--4">
+            <Link
+              to={`/services/air/${airCategoryPath.jets}`}
+              className="air-hero__figure air-hero__figure--jets air-hero__figure--nav air-hero__fade air-hero__fade--4"
+              aria-label={`${airCategoryContent.jets.title}: open full overview`}
+            >
               <div className="air-hero__frame">
                 <img
                   className="air-hero__img air-hero__img--jets"
@@ -99,9 +97,13 @@ export default function AirServicesPage() {
                 />
                 <span className="air-hero__sheen" aria-hidden />
               </div>
-              <figcaption className="air-hero__cap">{airCategoryContent.jets.title}</figcaption>
-            </figure>
-            <figure className="air-hero__figure air-hero__figure--light air-hero__fade air-hero__fade--5">
+              <span className="air-hero__cap">{airCategoryContent.jets.title}</span>
+            </Link>
+            <Link
+              to={`/services/air/${airCategoryPath.light}`}
+              className="air-hero__figure air-hero__figure--light air-hero__figure--nav air-hero__fade air-hero__fade--5"
+              aria-label={`${airCategoryContent.light.title}: open full overview`}
+            >
               <div className="air-hero__frame">
                 <img
                   className="air-hero__img air-hero__img--light"
@@ -114,42 +116,8 @@ export default function AirServicesPage() {
                 />
                 <span className="air-hero__sheen" aria-hidden />
               </div>
-              <figcaption className="air-hero__cap">{airCategoryContent.light.title}</figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section className="air-pick" aria-label="Choose aircraft category">
-        <div className="container">
-          <header className="air-pick__intro">
-            <h2 className="air-pick__heading">How would you like to fly?</h2>
-            <p className="air-pick__sub">
-              Each category has its own dedicated page with programmes, imagery, and how to book.
-            </p>
-          </header>
-          <div className="air-pick__grid">
-            {IDS.map((id) => {
-              const item = airCategoryContent[id]
-              const to = `/services/air/${airCategoryPath[id]}`
-              return (
-                <Link
-                  key={id}
-                  to={to}
-                  className="air-pick__card air-pick__card--nav"
-                >
-                  <span className="air-pick__card-idx" aria-hidden>
-                    {id === 'jets' ? '01' : '02'}
-                  </span>
-                  <span className="air-pick__card-body">
-                    <span className="air-pick__card-title">{item.title}</span>
-                    <span className="air-pick__card-tag">{item.tagline}</span>
-                    <span className="air-pick__card-hint">Open full overview</span>
-                  </span>
-                  <span className="air-pick__card-arrow" aria-hidden />
-                </Link>
-              )
-            })}
+              <span className="air-hero__cap">{airCategoryContent.light.title}</span>
+            </Link>
           </div>
         </div>
       </section>

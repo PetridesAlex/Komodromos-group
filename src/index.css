@@ -869,6 +869,133 @@ a {
   max-width: 100%;
 }
 
+/* Self Storage Cyprus homepage: light shell; sticky topbar unchanged */
+.ssc-home-page.page {
+  background: #f3f4f6;
+}
+
+/* Storage2Rent (/services/storage): body uses --text white; force readable surfaces */
+.storage2rent-page .storage2rent-marketing-root {
+  color: #111827;
+}
+
+.storage2rent-page #storage-hero {
+  position: relative;
+  isolation: isolate;
+  /* text color: black hero + light copy — see storage2rent-premium.css */
+}
+
+.storage2rent-page #storage-options {
+  color: #111827;
+}
+
+.storage2rent-page .storage2rent-surface {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f8fa 100%);
+  color: #111827;
+  border-color: rgba(15, 23, 42, 0.06);
+}
+
+.storage2rent-page .storage2rent-surface h2,
+.storage2rent-page .storage2rent-surface h3,
+.storage2rent-page .storage2rent-surface .font-display {
+  color: #0a0a0a;
+}
+
+.storage2rent-page .storage2rent-surface p,
+.storage2rent-page .storage2rent-surface li,
+.storage2rent-page .storage2rent-surface span {
+  color: #374151;
+}
+
+.storage2rent-page .storage2rent-surface .storage2rent-muted,
+.storage2rent-page .storage2rent-surface .text-ssc-muted {
+  color: #4d5563 !important;
+}
+
+.storage2rent-page .storage2rent-surface button.font-display {
+  color: #0a0a0a;
+}
+
+.storage2rent-page .storage2rent-surface-grey {
+  background: linear-gradient(180deg, #f0f2f5 0%, #e8eaee 100%);
+  color: #111827;
+}
+
+.storage2rent-page .storage2rent-surface-grey h2,
+.storage2rent-page .storage2rent-surface-grey h3,
+.storage2rent-page .storage2rent-surface-grey .font-display {
+  color: #0a0a0a;
+}
+
+.storage2rent-page .storage2rent-surface-grey p,
+.storage2rent-page .storage2rent-surface-grey li {
+  color: #374151;
+}
+
+.storage2rent-page .storage2rent-surface-grey .text-ssc-muted {
+  color: #4d5563 !important;
+}
+
+.storage2rent-page .storage2rent-trust-band {
+  background: linear-gradient(180deg, #fdfdfd 0%, #f4f5f7 100%);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+  color: #111827;
+}
+
+.storage2rent-page .storage2rent-trust-card {
+  background: #fff;
+  border: 1px solid rgba(197, 160, 89, 0.18);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.storage2rent-page .storage2rent-trust-card:hover {
+  border-color: rgba(197, 160, 89, 0.35);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(197, 160, 89, 0.12) inset;
+  transform: translateY(-2px);
+}
+
+.storage2rent-page .storage2rent-trust-card h3,
+.storage2rent-page .storage2rent-trust-card .trust-title {
+  color: #0a0a0a;
+  font-weight: 700;
+}
+
+.storage2rent-page .storage2rent-trust-card p,
+.storage2rent-page .storage2rent-trust-card .trust-desc {
+  color: #4d5563;
+}
+
+.storage2rent-page .storage2rent-quote-panel {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+  color-scheme: light;
+  color: #111827;
+}
+
+.storage2rent-page .storage2rent-quote-panel select,
+.storage2rent-page .storage2rent-quote-panel input[type='date'] {
+  background-color: #fafafa;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  border-radius: 0.75rem;
+}
+
+.storage2rent-page .storage2rent-quote-panel option {
+  background-color: #ffffff;
+  color: #111827;
+}
+
 .container {
   width: min(1260px, 92%);
   margin: 0 auto;
@@ -5385,7 +5512,45 @@ article[data-service-slug='consulting'] .service-brand-logo {
   position: relative;
   padding: clamp(3.25rem, 7vw, 5rem) 0 clamp(4rem, 9vw, 6.5rem);
   overflow: hidden;
-  background: linear-gradient(180deg, #040608 0%, #070c14 42%, #05070a 100%);
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -12%, rgba(126, 191, 232, 0.18) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 45% at 100% 18%, rgba(197, 160, 89, 0.1) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 52% at 0% 88%, rgba(74, 142, 184, 0.1) 0%, transparent 56%),
+    linear-gradient(180deg, #030509 0%, #0b1828 42%, #050a12 72%, #04070d 100%);
+  border-top: 1px solid rgba(135, 185, 225, 0.16);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.storage-premium-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+  background-size: 100% 56px, 72px 100%;
+  opacity: 0.28;
+  mask-image: radial-gradient(ellipse 85% 70% at 50% 28%, black 15%, transparent 82%);
+}
+
+.storage-premium-section::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(72rem, 92vw);
+  height: 1px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(126, 191, 232, 0.45) 30%,
+    rgba(197, 160, 89, 0.45) 50%,
+    rgba(126, 191, 232, 0.45) 70%,
+    transparent
+  );
 }
 
 .storage-premium-section__glow {
@@ -5419,7 +5584,7 @@ article[data-service-slug='consulting'] .service-brand-logo {
 
 .storage-premium-header {
   text-align: center;
-  max-width: 720px;
+  max-width: 980px;
   margin: 0 auto clamp(2.25rem, 5vw, 3.25rem);
 }
 
@@ -5449,6 +5614,153 @@ article[data-service-slug='consulting'] .service-brand-logo {
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.55);
   margin: 0;
+}
+
+.storage-premium-hero-shell {
+  position: relative;
+}
+
+/* Border/frame like the reference panel */
+.storage-premium-hero-frame {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.4rem;
+  padding: clamp(1.35rem, 2.8vw, 2rem) clamp(1rem, 2.7vw, 1.8rem) clamp(2.4rem, 4.8vw, 3.4rem);
+  background: linear-gradient(180deg, rgba(7, 12, 20, 0.2) 0%, rgba(4, 8, 14, 0.12) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0 0 1px rgba(8, 12, 20, 0.7);
+}
+
+.storage-premium-hero-copy {
+  gap: clamp(1rem, 2.4vw, 1.55rem);
+}
+
+.storage-premium-hero-copy h2 {
+  margin: 0;
+  line-height: 1.08;
+}
+
+.storage-premium-hero-copy p {
+  line-height: 1.62;
+}
+
+.storage-premium-hero-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.2rem;
+}
+
+/* Hero10-like CTA lockup in storage header */
+.storage-premium-hero-cta {
+  min-height: 2.7rem;
+  position: relative;
+  padding: 0.72rem 2.55rem 0.72rem 1.7rem;
+  border-radius: 9999px;
+  background: #ffffff !important;
+  color: #111827 !important;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+.storage-premium-hero-cta:hover,
+.storage-premium-hero-cta:focus-visible {
+  background: #f5f5f5 !important;
+  color: #111827 !important;
+}
+
+.storage-premium-hero-cta__icon {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.2s ease-out;
+}
+
+.storage-premium-hero-cta__text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.storage-premium-hero-cta:hover .storage-premium-hero-cta__icon,
+.storage-premium-hero-cta:focus-visible .storage-premium-hero-cta__icon {
+  transform: translateY(-50%) translateX(6px);
+}
+
+@media (min-width: 640px) {
+  .storage-premium-hero-cta {
+    min-height: 3rem;
+    padding: 0.86rem 3rem 0.86rem 2rem;
+  }
+
+  .storage-premium-hero-cta__icon {
+    right: 0.55rem;
+  }
+}
+
+/* Hero image fan: fixed sizes so cards never stretch from global img rules */
+.storage-premium-hero-fan {
+  isolation: isolate;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: clamp(1.15rem, 2.8vw, 2rem);
+}
+
+.storage-premium-hero-card {
+  width: 7rem;
+  height: 7rem;
+  flex: 0 0 auto;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1rem;
+  background: #0a0f18;
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.storage-premium-hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  opacity: 0.65;
+}
+
+.storage-premium-hero-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (min-width: 640px) {
+  .storage-premium-hero-card {
+    border-radius: 1.5rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .storage-premium-hero-card {
+    width: 18rem;
+    height: 16rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .storage-premium-hero-card {
+    width: 20rem;
+    height: 18rem;
+  }
 }
 
 .storage-features-wrap {
@@ -13444,6 +13756,24 @@ footer.footer2 {
     min-width: 0;
     max-width: none;
   }
+}
+
+/* Hero images link to category pages (replaces air-pick card CTAs) */
+a.air-hero__figure--nav {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a.air-hero__figure--nav:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--service-light-blue) 88%, #fff);
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
+a.air-hero__figure--nav:focus-visible .air-hero__frame {
+  border-color: color-mix(in srgb, var(--service-light-blue) 92%, #fff);
 }
 
 .air-hero__frame {

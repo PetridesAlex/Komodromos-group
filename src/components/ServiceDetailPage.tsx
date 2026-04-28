@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { useCallback, useEffect } from 'react'
+import { Navigate, useParams } from 'react-router-dom'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { getServiceBySlug } from '../data/serviceCards'
 import { getServicePageContent } from '../data/servicePageSections'
@@ -14,7 +13,6 @@ const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
 const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
 
 export default function ServiceDetailPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const { slug } = useParams<{ slug: string }>()
   const card = getServiceBySlug(slug)
   const defaultContent = slug ? getServicePageContent(slug) : undefined
@@ -43,94 +41,71 @@ export default function ServiceDetailPage() {
 
   return (
     <div className="page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link
-              to="/#services"
-              className="nav-active"
-              onClick={() => setMenuOpen(false)}
-            >
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
+
+      {slug === 'storage' ? (
+        <StoragePremiumSection />
+      ) : (
+        <>
+          <section
+            className={`service-detail-hero${isVip ? ' service-detail-hero--vip-full' : ''}`}
           >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
-
-      <section
-        className={`service-detail-hero${isVip ? ' service-detail-hero--vip-full' : ''}`}
-      >
-        {isVip ? (
-          <div className="service-detail-hero-bg service-detail-hero-bg--vip-img" aria-hidden>
-            <img
-              className="service-detail-hero-bg__img"
-              src={VIP_DETAIL_HERO_IMAGE}
-              alt=""
-              width={1920}
-              height={1080}
-              decoding="async"
-              fetchPriority="high"
-              sizes="100vw"
+            {isVip ? (
+              <div className="service-detail-hero-bg service-detail-hero-bg--vip-img" aria-hidden>
+                <img
+                  className="service-detail-hero-bg__img"
+                  src={VIP_DETAIL_HERO_IMAGE}
+                  alt=""
+                  width={1920}
+                  height={1080}
+                  decoding="async"
+                  fetchPriority="high"
+                  sizes="100vw"
+                />
+              </div>
+            ) : (
+              <div
+                className="service-detail-hero-bg"
+                aria-hidden
+                style={{ backgroundImage: `url("${heroBackgroundImage}")` }}
+              />
+            )}
+            <div
+              className={`service-detail-hero-scrim${isVip ? ' service-detail-hero-scrim--vip' : ''}`}
             />
-          </div>
-        ) : (
-          <div
-            className="service-detail-hero-bg"
-            aria-hidden
-            style={{ backgroundImage: `url("${heroBackgroundImage}")` }}
-          />
-        )}
-        <div
-          className={`service-detail-hero-scrim${isVip ? ' service-detail-hero-scrim--vip' : ''}`}
-        />
-        <div className="service-detail-hero-glow service-detail-hero-glow-1" />
-        <div className="service-detail-hero-glow service-detail-hero-glow-2" />
-        <div className="container service-detail-hero-inner">
-          <p className="eyebrow reveal">{card.eyebrow}</p>
-          <h1 className="reveal reveal-delay-1">{card.title}</h1>
-          <p className="service-detail-hero-sub reveal reveal-delay-2">{card.description}</p>
-          {isVip ? (
-            <div className="service-detail-hero-cta reveal reveal-delay-3">
-              <button
-                type="button"
-                className="service-detail-hero-cta__btn"
-                onClick={scrollToVipPortfolio}
-                aria-label="Scroll to concierge portfolio and services"
-              >
-                Explore portfolio
-              </button>
+            <div className="service-detail-hero-glow service-detail-hero-glow-1" />
+            <div className="service-detail-hero-glow service-detail-hero-glow-2" />
+            <div className="container service-detail-hero-inner">
+              <p className="eyebrow reveal">{card.eyebrow}</p>
+              <h1 className="reveal reveal-delay-1">{card.title}</h1>
+              <p className="service-detail-hero-sub reveal reveal-delay-2">{card.description}</p>
+              {isVip ? (
+                <div className="service-detail-hero-cta reveal reveal-delay-3">
+                  <button
+                    type="button"
+                    className="service-detail-hero-cta__btn"
+                    onClick={scrollToVipPortfolio}
+                    aria-label="Scroll to concierge portfolio and services"
+                  >
+                    Explore portfolio
+                  </button>
+                </div>
+              ) : null}
             </div>
+          </section>
+
+          {slug === 'vip' && <VipServicesGrid />}
+
+          {defaultContent && slug !== 'vip' ? (
+            <ServiceDefaultSections content={defaultContent} serviceInterest={card.title} />
           ) : null}
-        </div>
-      </section>
-
-      {slug === 'vip' && <VipServicesGrid />}
-
-      {slug === 'storage' && <StoragePremiumSection />}
-
-      {defaultContent && slug !== 'vip' && slug !== 'storage' ? (
-        <ServiceDefaultSections content={defaultContent} serviceInterest={card.title} />
-      ) : null}
+        </>
+      )}
 
       <Footer />
     </div>

@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Footer from './components/Footer'
-import SiteLogo from './components/SiteLogo'
-import TopbarSocialLinks from './components/TopbarSocialLinks'
-import MeetTheTeam from './components/MeetTheTeam'
-import { useReveal } from './hooks/useReveal'
-import { getServicePagePath, serviceCards } from './data/serviceCards'
+import Footer from './Footer'
+import SiteTopbar from './SiteTopbar'
+import MeetTheTeam from './MeetTheTeam'
+import { useReveal } from '../hooks/useReveal'
+import { getServicePagePath, serviceCards } from '../data/serviceCards'
 
 const marqueeItems = [
   'ADR DISPUTE MEDIATION SERVICES',
@@ -15,65 +13,17 @@ const marqueeItems = [
   'MEDIATION SERVICES',
 ]
 
-function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
+export default function KomodromosGroupHomePage() {
   const pageRef = useReveal()
 
   return (
     <div className="page home-page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <a href="#home" onClick={() => setMenuOpen(false)}>HOME</a>
-            <div className="nav-dropdown">
-              <a
-                href="#services"
-                className="nav-dropdown__trigger"
-                onClick={() => setMenuOpen(false)}
-              >
-                SERVICES
-              </a>
-              <div
-                className="nav-dropdown__panel"
-                role="navigation"
-                aria-label="Group companies and services"
-              >
-                <Link
-                  to="/#services"
-                  className="nav-dropdown__link nav-dropdown__link--all"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  See our services
-                </Link>
-                <ul className="nav-dropdown__list">
-                  {serviceCards.map((card) => (
-                    <li key={card.slug}>
-                      <Link
-                        to={getServicePagePath(card.slug)}
-                        className="nav-dropdown__link"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        <span className="nav-dropdown__title">{card.title}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>CONTACT</Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-          >
-            <span /><span /><span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="#home"
+        servicesSectionHref="#services"
+      />
 
       <div className="marquee-wrap">
         <div className="marquee-row">
@@ -84,7 +34,7 @@ function App() {
                   <span className="pill" key={`${item}-${index}`}>
                     {item}
                   </span>
-                )
+                ),
               )}
             </div>
           </div>
@@ -193,7 +143,9 @@ function App() {
       <section id="services" className="section services">
         <div className="container">
           <p className="eyebrow reveal">GROUP SERVICES</p>
-          <h2 className="reveal reveal-delay-1">Specialized Companies Across Eleven Core Categories</h2>
+          <h2 className="reveal reveal-delay-1">
+            Specialized Companies Across Eleven Core Categories
+          </h2>
           <p className="section-sub reveal reveal-delay-2">
             A curated portfolio designed for private clients, corporates, and
             investors.
@@ -242,10 +194,7 @@ function App() {
                         <span key={tag}>{tag}</span>
                       ))}
                     </div>
-                    <Link
-                      to={`/services/${card.slug}`}
-                      className="action"
-                    >
+                    <Link to={getServicePagePath(card.slug)} className="action">
                       REQUEST DETAILS
                     </Link>
                   </div>
@@ -277,8 +226,17 @@ function App() {
               </p>
               <Link to="/contact" className="contact-card-btn">
                 <span>OPEN CONTACT PAGE</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
@@ -292,5 +250,3 @@ function App() {
     </div>
   )
 }
-
-export default App

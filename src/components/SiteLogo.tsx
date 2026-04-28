@@ -1,24 +1,34 @@
 import { Link, useLocation } from 'react-router-dom'
 import { MAIN_LOGO } from '../data/mainLogo'
 
-export default function SiteLogo() {
+type SiteLogoProps = {
+  /** Router pathname used in the logo link */
+  pathname?: string
+  /** DOM id to scroll to when the user is already on `pathname` */
+  scrollToId?: string
+}
+
+export default function SiteLogo({
+  pathname: logoPathname = '/',
+  scrollToId = 'home',
+}: SiteLogoProps) {
   const location = useLocation()
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (location.pathname !== '/') return
+    if (location.pathname !== logoPathname) return
     e.preventDefault()
-    document.getElementById('home')?.scrollIntoView({
+    document.getElementById(scrollToId)?.scrollIntoView({
       behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
         ? 'auto'
         : 'smooth',
       block: 'start',
     })
-    window.history.replaceState(null, '', '/#home')
+    window.history.replaceState(null, '', `${logoPathname}#${scrollToId}`)
   }
 
   return (
     <Link
-      to={{ pathname: '/', hash: 'home' }}
+      to={{ pathname: logoPathname, hash: scrollToId }}
       className="logo"
       onClick={handleLogoClick}
     >
