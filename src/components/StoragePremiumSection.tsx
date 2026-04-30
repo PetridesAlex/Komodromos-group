@@ -122,7 +122,7 @@ export default function StoragePremiumSection() {
                   aria-hidden
                 />
 
-                <div className="storage-premium-hero-fan relative mx-auto flex w-full max-w-[980px] flex-row items-end justify-center -space-x-6 sm:-space-x-12 lg:-space-x-16">
+                <div className="storage-premium-hero-fan relative mx-auto flex w-full max-w-[1120px] flex-row items-end justify-center -space-x-6 sm:-space-x-12 lg:-space-x-16">
                   {HERO_CARDS.map((card, index) => (
                     <motion.div
                       key={index}

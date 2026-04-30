@@ -14,6 +14,7 @@ import AviationServicesPage from './components/AviationServicesPage.tsx'
 import AirServicesPage from './components/AirServicesPage.tsx'
 import AirCategoryPage from './components/AirCategoryPage.tsx'
 import YachtChartersPage from './components/yacht-charters/YachtChartersPage.tsx'
+import ServicesLandingPage from './components/ServicesLandingPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
@@ -38,6 +39,7 @@ function Root() {
             <Route path="/services/air" element={<AirServicesPage />} />
             <Route path="/services/air/:categorySlug" element={<AirCategoryPage />} />
             <Route path="/services/yacht-charters" element={<YachtChartersPage />} />
+            <Route path="/services" element={<ServicesLandingPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
           </Routes>
         </BrowserRouter>

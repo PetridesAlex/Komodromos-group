@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
@@ -8,6 +8,13 @@ import { getServicePageContent } from '../data/servicePageSections'
 import VipServicesGrid from './VipServicesGrid'
 import StoragePremiumSection from './StoragePremiumSection'
 import ServiceDefaultSections from './ServiceDefaultSections'
+import TaxPremiumHero from './TaxPremiumHero'
+import TaxPremiumPlans from './TaxPremiumPlans'
+import TaxPremiumSteps from './TaxPremiumSteps'
+import TaxPremiumHowItWorks from './TaxPremiumHowItWorks'
+import TaxPremiumBenefits from './TaxPremiumBenefits'
+import TaxPremiumTools from './TaxPremiumTools'
+import TaxPremiumSocialProof from './TaxPremiumSocialProof'
 
 const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
 const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
@@ -45,7 +52,7 @@ export default function ServiceDetailPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref="/services"
       />
       {slug === 'storage' ? (
         <div className="storage-page-subnav" aria-label="Storage page navigation">
@@ -69,10 +76,73 @@ export default function ServiceDetailPage() {
             </nav>
           </div>
         </div>
+      ) : slug === 'tax' ? (
+        <div className="tax-page-subnav" aria-label="Tax page navigation">
+          <div className="container">
+            <nav className="tax-page-subnav__inner">
+              <a href="#tax-hero" className="tax-page-subnav__link">
+                Intro
+              </a>
+              <a href="#tax-plans" className="tax-page-subnav__link">
+                Plans
+              </a>
+              <a href="#tax-steps" className="tax-page-subnav__link">
+                Steps
+              </a>
+              <Link to="/services" className="tax-page-subnav__link">
+                Services
+              </Link>
+              <a href="#tax-how-it-works" className="tax-page-subnav__link">
+                How it works
+              </a>
+              <a href="#tax-benefits" className="tax-page-subnav__link">
+                Benefits
+              </a>
+              <a href="#tax-tools" className="tax-page-subnav__link">
+                Free tools
+              </a>
+              <a href="#tax-partners" className="tax-page-subnav__link">
+                Partners
+              </a>
+              <a href="#service-default-content" className="tax-page-subnav__link tax-page-subnav__link--cta">
+                Request details
+              </a>
+            </nav>
+          </div>
+        </div>
       ) : null}
 
       {slug === 'storage' ? (
         <StoragePremiumSection />
+      ) : slug === 'tax' ? (
+        <>
+          <div id="tax-hero">
+            <TaxPremiumHero />
+          </div>
+          <div id="tax-plans">
+            <TaxPremiumPlans />
+          </div>
+          <div id="tax-steps">
+            <TaxPremiumSteps />
+          </div>
+          <div id="tax-how-it-works">
+            <TaxPremiumHowItWorks />
+          </div>
+          <div id="tax-benefits">
+            <TaxPremiumBenefits />
+          </div>
+          <div id="tax-tools">
+            <TaxPremiumTools />
+          </div>
+          <div id="tax-partners">
+            <TaxPremiumSocialProof />
+          </div>
+          {defaultContent ? (
+            <div id="service-default-content">
+              <ServiceDefaultSections content={defaultContent} serviceInterest={card.title} />
+            </div>
+          ) : null}
+        </>
       ) : (
         <>
           <section

@@ -23,13 +23,13 @@ function NavHome({
   if (href.startsWith('#')) {
     return (
       <a href={href} onClick={onNavigate}>
-        HOME
+        Overview
       </a>
     )
   }
   return (
     <Link to={href} onClick={onNavigate}>
-      HOME
+      Overview
     </Link>
   )
 }
@@ -44,7 +44,7 @@ function NavServicesTrigger({
   if (href.startsWith('#')) {
     return (
       <a href={href} className="nav-dropdown__trigger" onClick={onNavigate}>
-        SERVICES
+        Solutions
       </a>
     )
   }
@@ -58,13 +58,13 @@ function NavServicesTrigger({
         className="nav-dropdown__trigger"
         onClick={onNavigate}
       >
-        SERVICES
+        Solutions
       </Link>
     )
   }
   return (
     <Link to={href} className="nav-dropdown__trigger" onClick={onNavigate}>
-      SERVICES
+      Solutions
     </Link>
   )
 }
@@ -96,7 +96,7 @@ export default function SiteTopbar({
                 className="nav-dropdown__link nav-dropdown__link--all"
                 onClick={close}
               >
-                See our services
+                Explore all solutions
               </Link>
               <ul className="nav-dropdown__list">
                 {serviceCards.map((card) => (
@@ -113,8 +113,8 @@ export default function SiteTopbar({
               </ul>
             </div>
           </div>
-          <Link to="/contact" onClick={close}>
-            CONTACT
+          <Link to="/contact" onClick={close} className="nav-links__cta">
+            Concierge Desk
           </Link>
           <TopbarSocialLinks variant="mobile" />
         </nav>
