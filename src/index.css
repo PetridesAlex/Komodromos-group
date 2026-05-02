@@ -11831,6 +11831,14 @@ article.wedding-highlight-tiles__tile {
 .pool-garden-page {
   background: #030508;
   --pool-garden-topbar-h: 72px;
+  /* Section backgrounds — shared slate/navy (matches --bg / --panel family) */
+  --pg-surface-deep: #05070d;
+  --pg-surface-mid: #080c14;
+  --pg-surface-panel: #0a0f18;
+  --pg-surface-elevated: #0c121e;
+  --pg-divider: rgba(118, 142, 172, 0.14);
+  --pg-divider-soft: rgba(118, 142, 172, 0.09);
+  --pg-divider-gold: rgba(197, 160, 89, 0.12);
 }
 
 .pool-garden-hero {
@@ -12145,8 +12153,12 @@ article.wedding-highlight-tiles__tile {
 
 .pool-garden-lead {
   padding: clamp(3rem, 7vw, 4.5rem) 0;
-  background: linear-gradient(180deg, #05070c 0%, #070d16 45%, #05070a 100%);
-  border-top: 1px solid rgba(100, 140, 180, 0.14);
+  background: linear-gradient(
+    180deg,
+    var(--pg-surface-mid) 0%,
+    var(--pg-surface-deep) 100%
+  );
+  border-top: 1px solid var(--pg-divider);
 }
 
 .pool-garden-lead__inner {
@@ -12172,24 +12184,89 @@ article.wedding-highlight-tiles__tile {
   color: rgba(195, 205, 220, 0.78);
 }
 
+.pool-garden-lead--premium {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 110% 85% at 50% -18%, rgba(72, 98, 138, 0.09) 0%, transparent 52%),
+    linear-gradient(180deg, var(--pg-surface-panel) 0%, var(--pg-surface-mid) 42%, var(--pg-surface-deep) 100%);
+  border-top-color: var(--pg-divider);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 -1px 0 var(--pg-divider-soft);
+}
+
+.pool-garden-lead__glow {
+  position: absolute;
+  inset: -35% -15% auto;
+  height: 120%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 18% 35%, rgba(95, 125, 168, 0.12) 0%, transparent 58%),
+    radial-gradient(ellipse 45% 40% at 82% 55%, rgba(155, 132, 88, 0.07) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(45, 62, 95, 0.06) 0%, transparent 55%);
+  opacity: 0.82;
+  animation: pool-garden-lead-glow-drift 16s ease-in-out infinite alternate;
+}
+
+.pool-garden-lead--premium .pool-garden-lead__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.pool-garden-lead--premium .pool-garden-lead__title {
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.35),
+    0 0 36px rgba(95, 125, 165, 0.08);
+}
+
+@keyframes pool-garden-lead-glow-drift {
+  0% {
+    transform: translate3d(-2.5%, 0, 0) scale(1);
+    opacity: 0.78;
+  }
+  100% {
+    transform: translate3d(2.5%, 2%, 0) scale(1.04);
+    opacity: 0.94;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pool-garden-lead__glow {
+    animation: none;
+    opacity: 0.85;
+    transform: none;
+  }
+}
+
 #pool-categories {
   scroll-margin-top: calc(var(--pool-garden-topbar-h) + 0.75rem);
 }
 
 .pool-garden-flagship {
   padding: clamp(3.5rem, 9vw, 6.25rem) 0;
-  background: linear-gradient(180deg, #070d16 0%, #05070c 42%, #04060a 100%);
-  border-top: 1px solid rgba(100, 140, 180, 0.12);
+  background: linear-gradient(
+    180deg,
+    var(--pg-surface-mid) 0%,
+    var(--pg-surface-deep) 48%,
+    #04060c 100%
+  );
+  border-top: 1px solid var(--pg-divider-soft);
 }
 
 .pool-garden-flagship--repair {
-  background: linear-gradient(180deg, #05070a 0%, #060d18 48%, #05070a 100%);
-  border-top-color: rgba(197, 160, 89, 0.1);
+  background: linear-gradient(
+    180deg,
+    var(--pg-surface-deep) 0%,
+    #0a101a 48%,
+    var(--pg-surface-deep) 100%
+  );
+  border-top-color: var(--pg-divider-gold);
 }
 
 .pool-garden-flagship--linings {
-  background: linear-gradient(180deg, #05070a 0%, #070c14 100%);
-  border-top-color: rgba(100, 140, 180, 0.1);
+  background: linear-gradient(180deg, var(--pg-surface-deep) 0%, var(--pg-surface-mid) 100%);
+  border-top-color: var(--pg-divider-soft);
 }
 
 .pool-garden-flagship__header {
@@ -12249,6 +12326,14 @@ article.wedding-highlight-tiles__tile {
 
 .pool-garden-flagship__grid--repair {
   gap: clamp(1.45rem, 3vw, 2.15rem);
+}
+
+.pool-garden-flagship__grid--repair-animated .pool-garden-showcase-card--repair-motion {
+  border-color: rgba(125, 175, 225, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 6px 28px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(197, 160, 89, 0.07);
 }
 
 .pool-garden-flagship .pool-garden-showcase-card {
@@ -12339,7 +12424,10 @@ article.wedding-highlight-tiles__tile {
 
 .pool-garden-pillars {
   padding: clamp(3rem, 7vw, 5rem) 0;
-  background: #05070a;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(35, 48, 72, 0.22) 0%, transparent 58%),
+    linear-gradient(180deg, #04060c 0%, var(--pg-surface-deep) 100%);
+  border-top: 1px solid var(--pg-divider);
 }
 
 .pool-garden-pillars__inner {
@@ -12488,6 +12576,13 @@ article.wedding-highlight-tiles__tile {
 /* Pool categories — large editorial tiles + tight overflow crop / zoom */
 .pool-garden-flagship--categories {
   padding: clamp(4.25rem, 11vw, 7.75rem) 0;
+  background: linear-gradient(
+    185deg,
+    var(--pg-surface-panel) 0%,
+    var(--pg-surface-mid) 52%,
+    var(--pg-surface-deep) 100%
+  );
+  border-top-color: var(--pg-divider);
 }
 
 .container.container--categories-hero {
@@ -12732,8 +12827,10 @@ article.wedding-highlight-tiles__tile {
 
 .pool-garden-insight {
   padding: clamp(3rem, 7vw, 5.5rem) 0;
-  background: linear-gradient(180deg, #05070a 0%, #060d18 52%, #05070a 100%);
-  border-top: 1px solid rgba(100, 140, 180, 0.12);
+  background:
+    radial-gradient(ellipse 80% 45% at 100% 30%, rgba(65, 88, 125, 0.07) 0%, transparent 52%),
+    linear-gradient(175deg, var(--pg-surface-deep) 0%, var(--pg-surface-elevated) 45%, var(--pg-surface-deep) 100%);
+  border-top: 1px solid var(--pg-divider-soft);
 }
 
 .pool-garden-insight__inner {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
+import { motion, useReducedMotion } from 'motion/react'
 import { Building2, ChevronDown, Home, Layers } from 'lucide-react'
 import Footer from './Footer'
 import SiteLogo from './SiteLogo'
@@ -16,16 +17,35 @@ import {
 
 const pillarIcons = [Home, Building2, Layers] as const
 
+const POOL_EASE = [0.22, 1, 0.36, 1] as const
+
+const repairGridContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.06 },
+  },
+}
+
+const repairGridItemVariants = {
+  hidden: { opacity: 0, y: 38 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: POOL_EASE },
+  },
+}
+
 /** Primary hero — resort-style pool water (consistent with Pool Categories → Infinity) */
 const POOL_HERO_IMAGE =
   '/images/services/swimming-pool-garden-services/pool-hero.webp'
 
 /** Editorial strip — alternate pool detail so hero and insight section differ visually */
 const POOL_EDITORIAL_IMAGE =
-  '/images/services/swimming-pool-garden-services/reconstituted-rock-pool-feature.png'
+  '/images/services/swimming-pool-garden-services/Overflow.webp'
 
 export default function PoolGardenServicesPage() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const reduceMotion = useReducedMotion()
   const pageRef = useReveal()
   const card = getServiceBySlug('pool')
   const content = getServicePageContent('pool')
@@ -37,6 +57,12 @@ export default function PoolGardenServicesPage() {
   if (!card || !content) {
     return <Navigate to="/" replace />
   }
+
+  const fadeUpView = {
+    once: true,
+    amount: 0.35,
+    margin: '-40px 0px',
+  } as const
 
   const scrollToServices = () => {
     const el = document.getElementById('pool-categories')
@@ -132,12 +158,39 @@ export default function PoolGardenServicesPage() {
         </div>
       </section>
 
-      <section className="pool-garden-lead" aria-labelledby="pool-garden-lead-title">
+      <section
+        className="pool-garden-lead pool-garden-lead--premium"
+        aria-labelledby="pool-garden-lead-title"
+      >
+        <div className="pool-garden-lead__glow" aria-hidden />
         <div className="container pool-garden-lead__inner">
-          <h2 id="pool-garden-lead-title" className="pool-garden-lead__title reveal">
+          <motion.h2
+            id="pool-garden-lead-title"
+            className="pool-garden-lead__title"
+            {...(reduceMotion
+              ? {}
+              : {
+                  initial: { opacity: 0, y: 30 },
+                  whileInView: { opacity: 1, y: 0 },
+                  transition: { duration: 0.65, ease: POOL_EASE },
+                  viewport: fadeUpView,
+                })}
+          >
             {content.leadTitle}
-          </h2>
-          <p className="pool-garden-lead__copy reveal reveal-delay-1">{content.lead}</p>
+          </motion.h2>
+          <motion.p
+            className="pool-garden-lead__copy"
+            {...(reduceMotion
+              ? {}
+              : {
+                  initial: { opacity: 0, y: 26 },
+                  whileInView: { opacity: 1, y: 0 },
+                  transition: { duration: 0.58, delay: 0.14, ease: POOL_EASE },
+                  viewport: fadeUpView,
+                })}
+          >
+            {content.lead}
+          </motion.p>
         </div>
       </section>
 
@@ -179,20 +232,41 @@ export default function PoolGardenServicesPage() {
           </h2>
           <div className="pool-garden-flagship__rule reveal reveal-delay-1" aria-hidden />
         </div>
-        <div className="pool-garden-flagship__grid pool-garden-flagship__grid--repair container">
-          {poolServiceRenovationRepair.map((item, i) => (
-            <figure
-              key={item.label}
-              className={`pool-garden-showcase-card reveal reveal-delay-${Math.min((i % 4) + 1, 4)}`}
-            >
-              <div className="pool-garden-showcase-card__media">
-                <img src={item.imageSrc} alt="" loading="lazy" decoding="async" />
-                <span className="pool-garden-showcase-card__veil" aria-hidden />
-              </div>
-              <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>
-            </figure>
-          ))}
-        </div>
+        {reduceMotion ? (
+          <div className="pool-garden-flagship__grid pool-garden-flagship__grid--repair container">
+            {poolServiceRenovationRepair.map((item) => (
+              <figure key={item.label} className="pool-garden-showcase-card">
+                <div className="pool-garden-showcase-card__media">
+                  <img src={item.imageSrc} alt="" loading="lazy" decoding="async" />
+                  <span className="pool-garden-showcase-card__veil" aria-hidden />
+                </div>
+                <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            className="pool-garden-flagship__grid pool-garden-flagship__grid--repair container pool-garden-flagship__grid--repair-animated"
+            variants={repairGridContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={fadeUpView}
+          >
+            {poolServiceRenovationRepair.map((item) => (
+              <motion.figure
+                key={item.label}
+                className="pool-garden-showcase-card pool-garden-showcase-card--repair-motion"
+                variants={repairGridItemVariants}
+              >
+                <div className="pool-garden-showcase-card__media">
+                  <img src={item.imageSrc} alt="" loading="lazy" decoding="async" />
+                  <span className="pool-garden-showcase-card__veil" aria-hidden />
+                </div>
+                <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>
+              </motion.figure>
+            ))}
+          </motion.div>
+        )}
       </section>
 
       <section

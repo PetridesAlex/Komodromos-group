@@ -11,19 +11,19 @@ const cards = [
   {
     rotate: -12,
     translateY: 40,
-    src: '/images/services/storage/local-easy-to-find.webp',
+    src: '/images/services/storage-services/local-easy-to-find.webp',
     alt: 'Storage facility—easy to find, convenient access',
   },
   {
     rotate: 0,
     translateY: 0,
-    src: '/images/services/storage/storage-flexible.webp',
+    src: '/images/services/storage-services/storage-flexible.webp',
     alt: 'Flexible, clean self storage units',
   },
   {
     rotate: 12,
     translateY: 40,
-    src: '/images/services/storage/personal-friendly-proffesional.webp',
+    src: '/images/services/storage-services/personal-friendly-proffesional.webp',
     alt: 'Personal storage—professional, friendly service',
   },
 ] as const

@@ -15,19 +15,19 @@ const HERO_CARDS = [
   {
     rotate: -12,
     translateY: 40,
-    src: '/images/services/storage/hero-storage-two.webp',
+    src: '/images/services/storage-services/hero-storage-two.webp',
     alt: 'Storage facility and access',
   },
   {
     rotate: 0,
     translateY: 0,
-    src: '/images/services/storage/hero-storage.webp',
+    src: '/images/services/storage-services/hero-storage.webp',
     alt: 'Flexible storage unit',
   },
   {
     rotate: 12,
     translateY: 40,
-    src: '/images/services/storage/hero-storage-one.webp',
+    src: '/images/services/storage-services/hero-storage-one.webp',
     alt: 'Professional storage workspace',
   },
 ] as const
@@ -36,17 +36,17 @@ const STORAGE_OFFER_CARDS = [
   {
     title: 'Personal Storage Units',
     desc: 'Flexible storage space for boxes, furniture, and personal belongings with simple monthly options.',
-    image: '/images/services/storage/hero-storage-two.webp',
+    image: '/images/services/storage-services/hero-storage-two.webp',
   },
   {
     title: 'Business Storage Units',
     desc: 'Secure business storage for operational materials, equipment, and seasonal stock overflow.',
-    image: '/images/services/storage/hero-storage.webp',
+    image: '/images/services/storage-services/hero-storage.webp',
   },
   {
     title: 'Pallet Storage Space',
     desc: 'Practical pallet-ready storage designed for organized access and efficient logistics handling.',
-    image: '/images/services/storage/hero-storage-one.webp',
+    image: '/images/services/storage-services/hero-storage-one.webp',
   },
 ] as const
 
@@ -57,10 +57,10 @@ const STORAGE_SIZE_OPTIONS = [
 ] as const
 
 const STORAGE_EXTRA_SERVICES = [
-  { title: 'Removal Storage', image: '/images/services/storage/hero-storage-two.webp' },
-  { title: 'Man with Van for Hire', image: '/images/services/storage/hero-storage.webp' },
-  { title: 'Pallet Storage', image: '/images/services/storage/hero-storage-one.webp' },
-  { title: 'Documents Storage', image: '/images/services/storage/hero-storage-two.webp' },
+  { title: 'Removal Storage', image: '/images/services/storage-services/hero-storage-two.webp' },
+  { title: 'Man with Van for Hire', image: '/images/services/storage-services/hero-storage.webp' },
+  { title: 'Pallet Storage', image: '/images/services/storage-services/hero-storage-one.webp' },
+  { title: 'Documents Storage', image: '/images/services/storage-services/hero-storage-two.webp' },
 ] as const
 
 export default function StoragePremiumSection() {

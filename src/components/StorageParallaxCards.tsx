@@ -1,7 +1,7 @@
 import { useCallback, useRef, useSyncExternalStore } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'motion/react'
 
-const STORAGE_IMG = '/images/services/storage'
+const STORAGE_IMG = '/images/services/storage-services'
 
 const STORAGE_PARALLAX_SLIDES: { title: string; image: string }[] = [
   { title: 'FLEXIBLE STORAGE', image: `${STORAGE_IMG}/storage-flexible.webp` },
