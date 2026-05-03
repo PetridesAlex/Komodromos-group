@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="400" y1="0" x2="400" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a3a5c"/>
+      <stop offset="1" stop-color="#0d2137"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="400" y1="260" x2="400" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f3558"/>
+      <stop offset="1" stop-color="#0a243d"/>
+    </linearGradient>
+    <linearGradient id="deck" x1="200" y1="280" x2="560" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c5a059" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#8cb4d8" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="260" fill="url(#sky)"/>
+  <rect y="260" width="800" height="260" fill="url(#sea)"/>
+  <path d="M0 300c120-20 240-20 400 0s280 20 400 0v220H0V300z" fill="url(#deck)" opacity="0.5"/>
+  <path d="M120 320h560l-40 50H160l-40-50z" fill="rgba(255,255,255,0.08)"/>
+  <path d="M200 300c80-8 160-8 200 0s120 8 200 0" stroke="rgba(200,220,240,0.12)" stroke-width="2" fill="none"/>
+  <text x="400" y="400" text-anchor="middle" fill="rgba(230,240,255,0.45)" font-family="system-ui,sans-serif" font-size="15" font-weight="600" letter-spacing="0.2em">YACHT PHOTO</text>
+  <text x="400" y="424" text-anchor="middle" fill="rgba(200,215,235,0.32)" font-family="system-ui,sans-serif" font-size="12" letter-spacing="0.12em">Image coming soon</text>
+</svg>

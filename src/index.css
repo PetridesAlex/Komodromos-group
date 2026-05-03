@@ -1278,11 +1278,11 @@ a {
 @keyframes nav-dropdown-row-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(14px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -1291,8 +1291,8 @@ a {
   top: 100%;
   left: 0;
   z-index: 45;
-  min-width: min(348px, calc(100vw - 2rem));
-  max-height: min(78vh, 620px);
+  min-width: min(380px, calc(100vw - 2rem));
+  max-height: min(78vh, 680px);
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -1355,16 +1355,16 @@ a {
 @media (min-width: 981px) {
   /* Two-column tile grid — scroll when all services don’t fit */
   .nav-dropdown__panel {
-    min-width: min(600px, calc(100vw - 2rem));
-    max-height: min(78vh, 640px);
-    padding-bottom: 0.4rem;
+    min-width: min(640px, calc(100vw - 2rem));
+    max-height: min(78vh, 720px);
+    padding-bottom: 0.55rem;
   }
 
   .nav-dropdown__list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.42rem 0.55rem;
-    padding: 0 0.5rem 0.45rem;
+    gap: 0.55rem 0.65rem;
+    padding: 0 0.6rem 0.55rem;
     align-items: stretch;
   }
 
@@ -1376,41 +1376,68 @@ a {
   .nav-dropdown__list .nav-dropdown__link {
     flex: 1;
     justify-content: center;
-    padding: 0.5rem 0.72rem 0.52rem 0.95rem;
-    border-radius: 11px;
-    border: 1px solid rgba(118, 158, 208, 0.2);
+    padding: 0.72rem 0.85rem 0.75rem;
+    border-radius: 13px;
+    border: 1px solid rgba(130, 175, 225, 0.28);
     background:
-      radial-gradient(125% 120% at 100% 0%, rgba(197, 160, 89, 0.07) 0%, transparent 52%),
-      rgba(255, 255, 255, 0.028);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+      radial-gradient(125% 120% at 100% 0%, rgba(197, 160, 89, 0.1) 0%, transparent 52%),
+      rgba(255, 255, 255, 0.045);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 4px 14px rgba(0, 6, 18, 0.28);
+    transition:
+      transform 0.38s var(--nav-drop-ease),
+      border-color 0.35s ease,
+      box-shadow 0.38s ease,
+      background 0.38s ease;
   }
 
   .nav-dropdown__list .nav-dropdown__link:hover,
   .nav-dropdown__list .nav-dropdown__link:focus-visible {
-    border-color: rgba(197, 160, 89, 0.38);
-    padding-left: 1.18rem;
+    border-color: rgba(197, 160, 89, 0.52);
+    transform: translateY(-4px) scale(1.02);
+    padding-left: 0.85rem;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 6px 22px rgba(0, 8, 24, 0.35);
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 12px 32px rgba(0, 10, 28, 0.45),
+      0 0 28px rgba(197, 160, 89, 0.18);
   }
 
   .nav-dropdown__list .nav-dropdown__link::before {
-    left: 0.38rem;
-    top: 0.42rem;
-    bottom: 0.42rem;
+    left: 0.42rem;
+    top: 0.48rem;
+    bottom: 0.48rem;
+    width: 3px;
   }
 
   .nav-dropdown__list .nav-dropdown__title {
-    font-size: clamp(0.76rem, 0.85vw, 0.9rem);
-    letter-spacing: 0.02em;
+    font-size: clamp(0.92rem, 1.08vw, 1.06rem);
+    font-weight: 700;
+    letter-spacing: 0.01em;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1.3;
+    line-height: 1.4;
     max-width: 100%;
     text-align: center;
     width: 100%;
+    color: rgba(255, 254, 250, 0.98);
+    text-shadow:
+      0 1px 16px rgba(0, 0, 0, 0.55),
+      0 0 28px rgba(100, 155, 215, 0.14);
+    transition:
+      color 0.32s ease,
+      text-shadow 0.35s ease,
+      transform 0.35s var(--nav-drop-ease);
+  }
+
+  .nav-dropdown__list .nav-dropdown__link:hover .nav-dropdown__title,
+  .nav-dropdown__list .nav-dropdown__link:focus-visible .nav-dropdown__title {
+    color: #fff;
+    text-shadow:
+      0 1px 18px rgba(0, 0, 0, 0.6),
+      0 0 32px rgba(197, 160, 89, 0.35);
   }
 
   .nav-dropdown__link--all {
@@ -1501,12 +1528,12 @@ a {
   align-items: flex-start;
   justify-content: center;
   gap: 0;
-  padding: 0.72rem 1.15rem 0.72rem 1.2rem;
-  font-size: 0.78rem;
-  font-weight: 500;
+  padding: 0.82rem 1.2rem 0.82rem 1.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
   letter-spacing: 0;
-  line-height: 1.35;
-  color: rgba(232, 242, 255, 0.94);
+  line-height: 1.4;
+  color: rgba(245, 248, 255, 0.98);
   text-decoration: none;
   border-radius: 0;
   isolation: isolate;
@@ -1544,14 +1571,16 @@ a {
 .nav-dropdown__link:focus-visible {
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.14) 0%,
-    rgba(197, 160, 89, 0.05) 42%,
+    rgba(197, 160, 89, 0.2) 0%,
+    rgba(197, 160, 89, 0.08) 45%,
     transparent 100%
   );
   color: #fff;
-  transform: translateX(3px);
-  padding-left: 1.38rem;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transform: translateX(5px) translateY(-1px);
+  padding-left: 1.45rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 8px 24px rgba(0, 8, 22, 0.35);
 }
 
 .nav-dropdown__link:hover .nav-dropdown__title,
@@ -1566,13 +1595,15 @@ a {
 }
 
 .nav-dropdown__link--all {
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  font-size: clamp(0.72rem, 0.85vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(190, 218, 248, 0.88);
+  color: rgba(205, 228, 255, 0.95);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
   border-bottom: none;
-  margin-bottom: 0.2rem;
-  padding-bottom: 0.82rem;
+  margin-bottom: 0.28rem;
+  padding-bottom: 0.88rem;
 }
 
 .nav-dropdown__link--all::before {
@@ -1587,13 +1618,18 @@ a {
 
 .nav-dropdown__title {
   font-family: 'Outfit', system-ui, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
-  font-size: clamp(0.78rem, 0.9vw, 0.95rem);
-  letter-spacing: 0.025em;
-  line-height: 1.35;
-  color: rgba(246, 248, 252, 0.96);
-  transition: color 0.35s ease;
+  font-size: clamp(0.9rem, 1.05vw, 1.08rem);
+  letter-spacing: 0.018em;
+  line-height: 1.42;
+  color: rgba(255, 255, 255, 0.98);
+  text-shadow:
+    0 1px 14px rgba(0, 0, 0, 0.5),
+    0 0 22px rgba(95, 145, 210, 0.12);
+  transition:
+    color 0.32s ease,
+    text-shadow 0.35s ease;
 }
 
 .nav-dropdown .nav-dropdown__link::after {
@@ -1626,7 +1662,13 @@ a {
   .nav-dropdown__link:hover,
   .nav-dropdown__link:focus-visible {
     transform: none !important;
-    padding-left: 1.15rem !important;
+    padding-left: 1.35rem !important;
+  }
+
+  .nav-dropdown__list .nav-dropdown__link:hover,
+  .nav-dropdown__list .nav-dropdown__link:focus-visible {
+    transform: none !important;
+    padding-left: 0.85rem !important;
   }
 
   .nav-dropdown__link::before {
@@ -4614,17 +4656,22 @@ article[data-service-slug='consulting'] .service-brand-logo {
   }
 
   .nav-dropdown__link {
-    padding: 0.6rem 0.35rem 0.6rem 0.25rem;
-    font-size: 0.78rem;
-    min-height: 2.6rem;
+    padding: 0.72rem 0.4rem 0.72rem 0.35rem;
+    font-size: 0.88rem;
+    min-height: 2.85rem;
   }
 
   .nav-dropdown__title {
+    font-size: clamp(0.88rem, 3.8vw, 0.98rem);
+    font-weight: 700;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1.35;
+    line-height: 1.42;
+    text-shadow:
+      0 1px 12px rgba(0, 0, 0, 0.5),
+      0 0 18px rgba(100, 155, 215, 0.1);
   }
 
   .nav-dropdown__link--all {
@@ -11897,9 +11944,9 @@ article.wedding-highlight-tiles__tile {
 .pool-garden-hero__lede {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: clamp(0.8rem, 2.2vw, 1.15rem);
   max-width: min(42rem, 100%);
-  margin: 0 0 1.35rem;
+  margin: 0 0 clamp(1.5rem, 3.5vw, 2.1rem);
   padding: clamp(0.88rem, 2.2vw, 1.15rem) clamp(1.05rem, 2.6vw, 1.4rem);
   border-radius: 14px;
   background: rgba(5, 14, 32, 0.62);
@@ -11914,7 +11961,7 @@ article.wedding-highlight-tiles__tile {
 }
 
 .pool-garden-hero__eyebrow {
-  margin: 0 0 0.75rem;
+  margin: 0 0 clamp(0.9rem, 2.2vw, 1.2rem);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.62rem;
   font-weight: 700;
@@ -11926,7 +11973,7 @@ article.wedding-highlight-tiles__tile {
 }
 
 .pool-garden-hero__title {
-  margin: 0 0 1rem;
+  margin: 0 0 clamp(1.2rem, 3.2vw, 1.85rem);
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
   font-size: clamp(2rem, 4.8vw, 3.35rem);
@@ -11974,7 +12021,7 @@ article.wedding-highlight-tiles__tile {
 }
 
 .pool-garden-hero__cta {
-  margin-top: 0.25rem;
+  margin-top: clamp(0.25rem, 1vw, 0.5rem);
 }
 
 .pool-garden-hero__services-btn {
@@ -11984,17 +12031,16 @@ article.wedding-highlight-tiles__tile {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
-  padding: 0.95rem 1.85rem;
+  padding: 1rem 2.35rem;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(6, 18, 38, 0.96);
+  color: rgba(8, 22, 48, 0.97);
   border: 2px solid transparent;
-  border-radius: 6px;
+  border-radius: 9999px;
   background:
     linear-gradient(
       158deg,
@@ -12018,7 +12064,8 @@ article.wedding-highlight-tiles__tile {
   background-position: 0 0, 0% 50%;
   animation:
     pool-hero-cta-glow-pulse 3.2s ease-in-out infinite,
-    pool-hero-cta-border-flow 8s linear infinite;
+    pool-hero-cta-border-flow 8s linear infinite,
+    pool-hero-cta-float 5s ease-in-out infinite;
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.35),
     0 10px 44px rgba(35, 110, 185, 0.35),
@@ -12026,9 +12073,11 @@ article.wedding-highlight-tiles__tile {
     0 4px 0 rgba(0, 0, 0, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
   transition:
-    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.25s ease,
-    box-shadow 0.38s ease;
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.35s ease,
+    filter 0.3s ease,
+    box-shadow 0.45s ease,
+    background 0.45s ease;
 }
 
 .pool-garden-hero__services-btn::before {
@@ -12048,41 +12097,67 @@ article.wedding-highlight-tiles__tile {
   z-index: 0;
 }
 
-.pool-garden-hero__services-btn-text,
-.pool-garden-hero__services-btn-icon {
+.pool-garden-hero__services-btn-text {
   position: relative;
   z-index: 1;
 }
 
 .pool-garden-hero__services-btn:hover {
-  transform: translateY(-4px) scale(1.02);
-  filter: brightness(1.06) saturate(1.08);
-  animation-play-state: paused, paused;
+  transform: translateY(-6px) scale(1.045);
+  color: rgba(4, 18, 42, 0.99);
+  filter: brightness(1.05) saturate(1.12);
+  animation-play-state: paused, paused, paused;
+  background:
+    linear-gradient(
+      162deg,
+      #fff9ef 0%,
+      #f0e4c8 22%,
+      #d4ebfb 55%,
+      #f6ecd4 82%,
+      #eef8ff 100%
+    )
+      padding-box,
+    linear-gradient(
+      115deg,
+      #f0d78c 0%,
+      #4a98e8 26%,
+      #d4af62 48%,
+      #6ab8f0 74%,
+      #e8c978 100%
+    )
+      border-box;
+  background-size: 100% 100%, 320% 320%;
+  background-clip: padding-box, border-box;
+  background-position: 0 0, 60% 50%;
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.45),
-    0 18px 52px rgba(35, 120, 195, 0.48),
-    0 0 52px rgba(197, 160, 89, 0.38),
-    0 8px 0 rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 22px 56px rgba(35, 115, 188, 0.52),
+    0 0 64px rgba(197, 160, 89, 0.45),
+    0 12px 0 rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
 }
 
 .pool-garden-hero__services-btn:hover::before {
   animation-play-state: paused;
 }
 
+.pool-garden-hero__services-btn:focus-visible {
+  outline: 2px solid rgba(200, 225, 255, 0.95);
+  outline-offset: 4px;
+}
+
 .pool-garden-hero__services-btn:active {
-  transform: translateY(-1px) scale(1.01);
+  transform: translateY(-2px) scale(1.02);
 }
 
-.pool-garden-hero__services-btn-icon {
-  flex-shrink: 0;
-  opacity: 0.95;
-  color: rgba(12, 42, 82, 0.95);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.pool-garden-hero__services-btn:hover .pool-garden-hero__services-btn-icon {
-  transform: translateY(4px);
+@keyframes pool-hero-cta-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
 }
 
 @keyframes pool-hero-cta-glow-pulse {
@@ -12143,10 +12218,6 @@ article.wedding-highlight-tiles__tile {
 
   .pool-garden-hero__services-btn:hover,
   .pool-garden-hero__services-btn:active {
-    transform: none;
-  }
-
-  .pool-garden-hero__services-btn:hover .pool-garden-hero__services-btn-icon {
     transform: none;
   }
 }
@@ -12707,14 +12778,61 @@ article.wedding-highlight-tiles__tile {
 }
 
 .pool-garden-flagship--categories .pool-garden-showcase-card--categories .pool-garden-showcase-card__cap {
-  font-size: 0.63rem;
-  letter-spacing: 0.27em;
-  padding: 1.3rem 1.4rem 1.45rem;
+  padding: 1.45rem 1.25rem 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.68rem, 1.15vw, 0.84rem);
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255, 252, 246, 0.98);
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.5),
+    0 2px 20px rgba(0, 0, 0, 0.62),
+    0 0 36px rgba(197, 160, 89, 0.28);
+  border-top: 1px solid rgba(197, 160, 89, 0.38);
+  background: linear-gradient(
+    180deg,
+    rgba(12, 22, 42, 0.08) 0%,
+    rgba(6, 12, 26, 0.78) 42%,
+    rgba(3, 6, 14, 0.94) 100%
+  );
+  backdrop-filter: blur(10px) saturate(1.15);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 -12px 36px rgba(0, 0, 0, 0.35);
+  transition:
+    color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    text-shadow 0.5s ease,
+    border-color 0.45s ease,
+    background 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.pool-garden-flagship--categories .pool-garden-showcase-card--categories:hover .pool-garden-showcase-card__cap {
+  color: #fffef9;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.55),
+    0 2px 24px rgba(0, 0, 0, 0.68),
+    0 0 44px rgba(220, 195, 140, 0.42);
+  border-top-color: rgba(230, 205, 155, 0.55);
+  background: linear-gradient(
+    180deg,
+    rgba(25, 42, 72, 0.12) 0%,
+    rgba(10, 18, 36, 0.85) 45%,
+    rgba(5, 10, 22, 0.96) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 -16px 44px rgba(0, 0, 0, 0.42),
+    0 0 32px rgba(197, 160, 89, 0.12);
 }
 
 .pool-garden-flagship--categories .pool-garden-showcase-card--categories-overflow .pool-garden-showcase-card__cap {
-  font-size: 0.68rem;
-  letter-spacing: 0.3em;
+  font-size: clamp(0.72rem, 1.25vw, 0.9rem);
+  letter-spacing: 0.4em;
+  padding: 1.55rem 1.35rem 1.7rem;
 }
 
 .pool-garden-showcase-card__veil {
@@ -12999,6 +13117,17 @@ article.wedding-highlight-tiles__tile {
     .pool-garden-showcase-card__media {
     min-height: clamp(320px, 56vh, 620px);
   }
+
+  .pool-garden-flagship--categories .pool-garden-showcase-card--categories .pool-garden-showcase-card__cap {
+    letter-spacing: 0.28em;
+    font-size: clamp(0.62rem, 2.9vw, 0.76rem);
+    padding: 1.25rem 0.85rem 1.4rem;
+  }
+
+  .pool-garden-flagship--categories .pool-garden-showcase-card--categories-overflow .pool-garden-showcase-card__cap {
+    letter-spacing: 0.32em;
+    font-size: clamp(0.66rem, 3vw, 0.8rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -13029,6 +13158,10 @@ article.wedding-highlight-tiles__tile {
     img {
     transform: none;
     filter: none;
+    transition: none;
+  }
+
+  .pool-garden-flagship--categories .pool-garden-showcase-card--categories .pool-garden-showcase-card__cap {
     transition: none;
   }
 }
@@ -17644,9 +17777,9 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
 .yacht-fleet {
   padding: 3.5rem 0 3.75rem;
-  background: linear-gradient(180deg, #fbfcfd 0%, #f5f7fa 50%, #eef2f7 100%);
-  border-top: 1px solid rgba(15, 28, 48, 0.07);
-  border-bottom: 1px solid rgba(15, 28, 48, 0.06);
+  background: #ebebeb;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .yacht-fleet .yacht-section__title {
@@ -17666,33 +17799,41 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   text-align: center;
 }
 
+.yacht-fleet__intro {
+  text-align: center;
+  max-width: min(42rem, 100%);
+  margin: 0 auto 0.85rem;
+  padding: 0 0.75rem;
+  font-size: clamp(0.95rem, 1.85vw, 1.06rem);
+  line-height: 1.65;
+  font-weight: 500;
+  color: rgba(45, 58, 82, 0.84);
+}
+
 .yacht-fleet__lead {
   text-align: center;
   color: rgba(185, 200, 220, 0.8);
   font-size: 0.9rem;
-  margin: -0.5rem 0 2rem;
+  margin: 0 0 2rem;
 }
 
 .yacht-fleet .yacht-fleet__lead {
   color: rgba(45, 58, 82, 0.78);
 }
 
+.yacht-fleet .container {
+  width: min(1440px, 94%);
+}
+
 .yacht-fleet__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.75rem;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 640px) {
   .yacht-fleet__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1100px) {
-  .yacht-fleet__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.85rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -17834,6 +17975,15 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   margin: 0;
 }
 
+.yacht-card__focus-hint--request {
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.yacht-card__focus-hint--request strong {
+  font-weight: 700;
+}
+
 .yacht-card__actions {
   display: flex;
   flex-wrap: wrap;
@@ -17877,90 +18027,274 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   transform: translateY(-1px);
 }
 
-/* Fleet grid on light band: white cards, dark type */
-.yacht-fleet .yacht-card {
+/* Fleet listing — reference-style: photo + name only (click opens modal) */
+.yacht-fleet .yacht-card.yacht-card--minimal {
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  align-items: stretch;
+}
+
+.yacht-fleet .yacht-card.yacht-card--minimal:hover,
+.yacht-fleet .yacht-card.yacht-card--minimal:focus-visible {
+  transform: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.yacht-fleet .yacht-card--minimal:focus-visible {
+  outline: 2px solid rgba(17, 24, 39, 0.45);
+  outline-offset: 4px;
+}
+
+.yacht-fleet .yacht-card--minimal .yacht-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.yacht-fleet .yacht-card--minimal:hover .yacht-card__img {
+  transform: none;
+}
+
+.yacht-fleet .yacht-card--minimal .yacht-card__name {
+  margin: 0.65rem 0 0;
+  padding: 0;
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.05rem, 1.65vw, 1.35rem);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.015em;
+  line-height: 1.35;
+  color: #111827;
+  text-align: left;
+}
+
+a.yacht-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Dedicated vessel page — diamantides-style: full-width hero image + light article + info tables */
+.yacht-detail-page {
+  background: #f4f5f7;
+  min-height: 100vh;
+}
+
+.yacht-detail-hero {
+  background: #e8eaee;
+}
+
+.yacht-detail-hero__media {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+}
+
+.yacht-detail-hero__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.yacht-detail-article {
+  padding: 2.25rem 0 3.5rem;
+}
+
+.yacht-detail-article__inner {
+  max-width: min(44rem, 100%);
+  margin: 0 auto;
+}
+
+.yacht-detail-breadcrumb {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.82rem;
+  margin: 0 0 1.25rem;
+  color: rgba(55, 65, 85, 0.75);
+}
+
+.yacht-detail-breadcrumb a {
+  color: #2563ab;
+  text-decoration: none;
+}
+
+.yacht-detail-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.yacht-detail-breadcrumb__sep {
+  margin: 0 0.35rem;
+  color: rgba(55, 65, 85, 0.45);
+}
+
+.yacht-detail-breadcrumb__current {
+  color: rgba(17, 24, 39, 0.88);
+  font-weight: 500;
+}
+
+.yacht-detail-kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(70, 95, 125, 0.85);
+  margin: 0 0 0.5rem;
+}
+
+.yacht-detail-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.85rem, 4vw, 2.65rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #0f1729;
+  margin: 0 0 1.5rem;
+  line-height: 1.15;
+}
+
+.yacht-detail-prose {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: rgba(30, 41, 59, 0.92);
+}
+
+.yacht-detail-prose p {
+  margin: 0 0 1.1rem;
+}
+
+.yacht-detail-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.yacht-detail-h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #0f1729;
+  margin: 2rem 0 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.yacht-detail-tables {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.yacht-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.94rem;
   background: #fff;
-  border: 1px solid rgba(100, 180, 220, 0.4);
+  border: 1px solid rgba(15, 28, 48, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 28, 48, 0.06);
+}
+
+.yacht-detail-table th,
+.yacht-detail-table td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(15, 28, 48, 0.08);
+}
+
+.yacht-detail-table tr:last-child th,
+.yacht-detail-table tr:last-child td {
+  border-bottom: none;
+}
+
+.yacht-detail-table th {
+  width: 42%;
+  font-weight: 600;
+  color: rgba(45, 58, 82, 0.88);
+  background: rgba(248, 250, 252, 0.98);
+}
+
+.yacht-detail-table td {
+  color: rgba(30, 41, 59, 0.92);
+}
+
+.yacht-detail-footnote {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: rgba(70, 85, 105, 0.88);
+  margin: 1.25rem 0 0;
+}
+
+.yacht-detail-included__list {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(30, 41, 59, 0.9);
+}
+
+.yacht-detail-included__list li {
+  margin-bottom: 0.35rem;
+}
+
+.yacht-detail-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(15, 28, 48, 0.08);
+}
+
+.yacht-detail-cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 11rem;
+  padding: 0.75rem 1.35rem;
+  border-radius: 999px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(252, 254, 255, 0.98);
+  background: linear-gradient(165deg, #66b2e8 0%, #3d87c4 38%, #2a6699 100%);
+  border: 1px solid rgba(170, 220, 255, 0.42);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 0 0 1px rgba(130, 200, 235, 0.1),
-    0 16px 44px rgba(15, 28, 48, 0.09);
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 2px 0 rgba(12, 36, 62, 0.35),
+    0 6px 18px rgba(35, 95, 150, 0.32);
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
 }
 
-.yacht-fleet .yacht-card:hover {
-  border-color: rgba(70, 160, 210, 0.58);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 1) inset,
-    0 22px 52px rgba(15, 28, 48, 0.12),
-    0 0 0 1px rgba(100, 190, 230, 0.28);
+.yacht-detail-cta:hover {
+  color: #fff;
+  background: linear-gradient(165deg, #8ecfff 0%, #52a8df 42%, #3888c4 100%);
+  transform: translateY(-1px);
 }
 
-.yacht-fleet .yacht-card__media {
-  border-bottom: 2px solid rgba(130, 200, 235, 0.38);
+.yacht-detail-back {
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.92rem;
+  color: #2563ab;
+  text-decoration: none;
 }
 
-.yacht-fleet .yacht-card__type {
-  border-color: rgba(120, 195, 235, 0.55);
-}
-
-.yacht-fleet .yacht-card__name {
-  color: #152238;
-}
-
-.yacht-fleet .yacht-card__meta {
-  color: rgba(45, 58, 82, 0.82);
-  padding-bottom: 0.55rem;
-  margin-bottom: 0.1rem;
-  border-bottom: 1px solid rgba(130, 200, 235, 0.28);
-}
-
-.yacht-fleet .yacht-card__dot {
-  background: rgba(90, 170, 215, 0.65);
-}
-
-.yacht-fleet .yacht-card__price-label {
-  color: rgba(75, 90, 115, 0.72);
-}
-
-.yacht-fleet .yacht-card__price-num {
-  color: #1c2738;
-}
-
-.yacht-fleet .yacht-card__price-num--focus {
-  color: #7a5f32;
-  text-shadow: none;
-}
-
-.yacht-fleet .yacht-card__focus-hint {
-  color: rgba(60, 75, 95, 0.76);
-}
-
-.yacht-fleet .yacht-card__btn--ghost {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(15, 28, 48, 0.14);
-  color: #243047;
-}
-
-.yacht-fleet .yacht-card__btn--ghost:hover {
-  border-color: rgba(197, 160, 89, 0.45);
-  background: rgba(252, 248, 240, 0.95);
-}
-
-.yacht-fleet .yacht-card__btn--gold {
-  background: linear-gradient(165deg, #e8f6fc 0%, #cceaf7 38%, #a8daf0 100%);
-  border: 1px solid rgba(70, 150, 195, 0.38);
-  color: #0d2137;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.65) inset,
-    0 4px 14px rgba(45, 120, 160, 0.12);
-}
-
-.yacht-fleet .yacht-card__btn--gold:hover {
-  background: linear-gradient(165deg, #f2f9fd 0%, #d8f0fa 40%, #b8e3f5 100%);
-  border-color: rgba(55, 135, 180, 0.48);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.75) inset,
-    0 6px 18px rgba(45, 120, 160, 0.16);
+.yacht-detail-back:hover {
+  text-decoration: underline;
 }
 
 .yacht-section {
@@ -18402,8 +18736,9 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .yacht-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(2, 4, 12, 0.78);
-  backdrop-filter: blur(6px);
+  background: rgba(4, 8, 18, 0.55);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   border: none;
   cursor: pointer;
 }
@@ -18414,10 +18749,23 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   width: min(56rem, 100%);
   max-height: min(92vh, 900px);
   overflow-y: auto;
-  border-radius: 20px;
-  background: linear-gradient(165deg, rgba(18, 24, 42, 0.98) 0%, rgba(6, 10, 20, 0.99) 100%);
-  border: 1px solid rgba(197, 160, 89, 0.3);
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.55);
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(120, 175, 220, 0.06) 35%,
+      rgba(8, 14, 32, 0.42) 100%
+    ),
+    linear-gradient(180deg, rgba(12, 20, 42, 0.55) 0%, rgba(4, 8, 20, 0.72) 100%);
+  backdrop-filter: blur(28px) saturate(1.45);
+  -webkit-backdrop-filter: blur(28px) saturate(1.45);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(197, 160, 89, 0.12) inset,
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 28px 72px rgba(0, 4, 18, 0.55),
+    0 0 48px rgba(100, 160, 220, 0.08);
 }
 
 .yacht-modal__close {
@@ -18428,22 +18776,26 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #fff;
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .yacht-modal__close:hover {
-  background: rgba(197, 160, 89, 0.2);
+  background: rgba(197, 160, 89, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .yacht-modal__grid {
   display: grid;
   grid-template-columns: 1fr;
+  align-items: start;
 }
 
 @media (min-width: 800px) {
@@ -18455,25 +18807,63 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .yacht-modal__gallery {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.35rem;
-  padding: 0.35rem;
+  gap: 0.45rem;
+  padding: 0.45rem 0.4rem 0;
+  align-items: start;
 }
 
+.yacht-modal__gallery-cell {
+  position: relative;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(255, 255, 255, 0.03) 45%,
+    rgba(4, 10, 24, 0.35) 100%
+  );
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+}
+
+/* Hero: uses full gallery column width; native-res WebP scales down crisply with cover */
 .yacht-modal__gallery-cell:first-child {
   grid-column: 1 / -1;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
 }
 
-.yacht-modal__gallery-cell img {
+.yacht-modal__gallery-cell:first-child img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  object-position: center;
   display: block;
-  min-height: 8rem;
+  image-rendering: auto;
+}
+
+.yacht-modal__gallery-cell:not(:first-child) {
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  padding: 0;
+}
+
+.yacht-modal__gallery-cell:not(:first-child) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  image-rendering: auto;
 }
 
 .yacht-modal__content {
   padding: 1.75rem 1.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 42%);
 }
 
 .yacht-modal__kicker {
@@ -18481,7 +18871,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   font-size: 0.58rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--gold) 80%, #fff);
+  color: rgba(185, 225, 255, 0.94);
   margin: 0 0 0.5rem;
 }
 
@@ -18525,7 +18915,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
   font-weight: 600;
-  color: color-mix(in srgb, var(--gold) 85%, #fff);
+  color: rgba(175, 218, 252, 0.95);
   margin-bottom: 1rem;
 }
 
@@ -18549,22 +18939,71 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .yacht-modal__cta {
   display: inline-flex;
   justify-content: center;
-  width: 100%;
-  padding: 0.85rem 1.25rem;
+  align-items: center;
+  width: fit-content;
+  min-width: 10.25rem;
+  margin-inline: auto;
+  padding: 0.72rem 1.25rem;
+  min-height: 2.35rem;
   border-radius: 999px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
+  font-size: 0.52rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
-  color: #0a0e16;
-  background: linear-gradient(135deg, #e8c992, var(--gold));
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  color: rgba(252, 254, 255, 0.98);
+  background: linear-gradient(
+    165deg,
+    #66b2e8 0%,
+    #3d87c4 38%,
+    #2a6699 100%
+  );
+  border: 1px solid rgba(170, 220, 255, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 2px 0 rgba(12, 36, 62, 0.45),
+    0 6px 18px rgba(35, 95, 150, 0.38);
+  transition:
+    color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .yacht-modal__cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  background: linear-gradient(
+    165deg,
+    #8ecfff 0%,
+    #52a8df 42%,
+    #3888c4 100%
+  );
+  border-color: rgba(210, 240, 255, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    0 3px 0 rgba(15, 55, 95, 0.35),
+    0 10px 26px rgba(60, 150, 215, 0.48);
+  transform: translateY(-1px);
+}
+
+.yacht-modal__cta:active {
+  color: rgba(235, 248, 255, 0.96);
+  background: linear-gradient(
+    165deg,
+    #357dad 0%,
+    #286899 48%,
+    #1d527d 100%
+  );
+  border-color: rgba(130, 185, 225, 0.38);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 25, 55, 0.42),
+    0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(1px);
+}
+
+.yacht-modal__cta:focus-visible {
+  outline: 2px solid rgba(140, 200, 255, 0.9);
+  outline-offset: 3px;
 }

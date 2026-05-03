@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
 import SiteLogo from '../SiteLogo'
@@ -11,18 +11,15 @@ import {
   privateEvents,
   whyChooseUs,
   yachtChartersHero,
+  yachtChartersHeroImage,
   yachtFaq,
   yachtFleet,
   yachtReviews,
 } from '../../data/yachtChartersData'
-import type { YachtCharter } from '../../data/yachtChartersData'
 import YachtCard from './YachtCard'
-import YachtDetailsModal from './YachtDetailsModal'
 import YachtFAQSection from './YachtFAQSection'
 import YachtFilter, { type YachtFilterState } from './YachtFilter'
 import YachtReviewsSection from './YachtReviewsSection'
-
-const HERO_BG = '/images/services/vip-service/luxury-yacht.webp'
 
 const MotionLink = motion(Link)
 
@@ -36,10 +33,8 @@ const defaultFilter: YachtFilterState = {
 }
 
 export default function YachtChartersPage() {
-  const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const [filter, setFilter] = useState<YachtFilterState>(defaultFilter)
-  const [modalYacht, setModalYacht] = useState<YachtCharter | null>(null)
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
 
@@ -94,7 +89,13 @@ export default function YachtChartersPage() {
 
       <section className="yacht-hero" aria-labelledby="yacht-hero-title">
         <div className="yacht-hero__bg" aria-hidden>
-          <img className="yacht-hero__bg-img" src={HERO_BG} alt="" width={1920} height={1080} />
+          <img
+            className="yacht-hero__bg-img"
+            src={yachtChartersHeroImage}
+            alt=""
+            width={1920}
+            height={1080}
+          />
           <div className="yacht-hero__overlay" />
           <div className="yacht-hero__grain" aria-hidden />
         </div>
@@ -185,28 +186,18 @@ export default function YachtChartersPage() {
             viewport={{ once: true }}
             transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
           >
-            The fleet
+            Our fleet
           </motion.h2>
+          <p className="yacht-fleet__intro">
+            From private escapes to corporate charters, our services combine comfort, safety, and
+            seamless coordination — every time.
+          </p>
           <p className="yacht-fleet__lead">
             {filteredFleet.length} vessel{filteredFleet.length === 1 ? '' : 's'} match your criteria
           </p>
           <div className="yacht-fleet__grid">
             {filteredFleet.map((yacht) => (
-              <YachtCard
-                key={yacht.id}
-                yacht={yacht}
-                durationHighlight={filter.duration}
-                reduceMotion={reduceMotion}
-                onViewDetails={() => setModalYacht(yacht)}
-                onRequestBooking={() =>
-                  navigate('/contact', {
-                    state: {
-                      serviceInterest: 'VIP Services',
-                      vipSubService: `Yacht charter booking — ${yacht.name} (${yacht.location})`,
-                    },
-                  })
-                }
-              />
+              <YachtCard key={yacht.id} yacht={yacht} reduceMotion={reduceMotion} />
             ))}
           </div>
           {filteredFleet.length === 0 ? (
@@ -408,7 +399,6 @@ export default function YachtChartersPage() {
       </section>
 
       <Footer />
-      <YachtDetailsModal yacht={modalYacht} onClose={() => setModalYacht(null)} reduceMotion={reduceMotion} />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import { Building2, ChevronDown, Home, Layers } from 'lucide-react'
+import { Building2, Home, Layers } from 'lucide-react'
 import Footer from './Footer'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
@@ -147,12 +147,6 @@ export default function PoolGardenServicesPage() {
               <span className="pool-garden-hero__services-btn-text">
                 Click for services
               </span>
-              <ChevronDown
-                className="pool-garden-hero__services-btn-icon"
-                aria-hidden
-                strokeWidth={2}
-                size={18}
-              />
             </button>
           </div>
         </div>
