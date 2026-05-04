@@ -100,8 +100,8 @@ export default function AviationServicesPage() {
         </div>
       </header>
 
-      <section className="aviation-hero" aria-label="Aviation agency introduction">
-        <div className="aviation-hero__bg" aria-hidden>
+      <section className="aviation-hero" aria-label="Aviation agency introduction" data-hero-parallax-root>
+        <div className="aviation-hero__bg" aria-hidden data-hero-parallax>
           <img
             className="aviation-hero__bg-img"
             src={AVIATION_HERO_IMAGE}

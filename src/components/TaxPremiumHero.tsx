@@ -132,6 +132,7 @@ export default function TaxPremiumHero() {
     <section
       ref={sectionRef}
       className="relative overflow-hidden bg-white py-14 sm:py-16"
+      data-hero-parallax-root
     >
       <div className="container relative z-10">
         <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-8 sm:py-14 lg:px-12">
@@ -172,7 +173,7 @@ export default function TaxPremiumHero() {
               transition={{ duration: 0.6, delay: 0.36 }}
             >
               <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#0f172a33] to-transparent" />
-              <div className="aspect-[16/9] w-full bg-[#141922] sm:aspect-[21/9]">
+              <div className="aspect-[16/9] w-full bg-[#141922] sm:aspect-[21/9]" data-hero-parallax>
                 <img
                   src="/images/services/tax-services/tax-thumb.webp"
                   alt="Professional tax support"

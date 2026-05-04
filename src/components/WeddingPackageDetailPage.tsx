@@ -68,8 +68,8 @@ export default function WeddingPackageDetailPage() {
         </div>
       </header>
 
-      <section className="wedding-package-detail-hero">
-        <div className="wedding-package-detail-hero__bg">
+      <section className="wedding-package-detail-hero" data-hero-parallax-root>
+        <div className="wedding-package-detail-hero__bg" data-hero-parallax>
           <img src={packageTier.image} alt="" loading="eager" decoding="async" />
           <div className="wedding-package-detail-hero__scrim" aria-hidden />
         </div>

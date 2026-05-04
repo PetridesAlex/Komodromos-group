@@ -56,8 +56,8 @@ export default function AirServicesPage() {
         </div>
       </header>
 
-      <section className="air-hero" aria-labelledby="air-hero-title">
-        <div className="air-hero__bg" aria-hidden>
+      <section className="air-hero" aria-labelledby="air-hero-title" data-hero-parallax-root>
+        <div className="air-hero__bg" aria-hidden data-hero-parallax>
           <div className="air-hero__gradient" />
         </div>
         <div className="air-hero__ambient" aria-hidden>

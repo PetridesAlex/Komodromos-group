@@ -520,6 +520,28 @@ export const yachtChartersHero = {
     'Private cruises, catamaran experiences, and bespoke sea journeys across Cyprus',
 }
 
+export type YachtCharterIntroParagraph = string | { text: string; emphasis?: boolean }
+
+/** Editorial introduction — shown below the hero on the yacht charters page */
+export const yachtCharterIntro: {
+  title: string
+  lead: string
+  paragraphs: YachtCharterIntroParagraph[]
+} = {
+  title: 'Luxury Yacht Charter Experiences',
+  lead: 'Step into a world where elegance meets freedom at sea.',
+  paragraphs: [
+    'Our luxury yacht charter services are designed for those who seek more than just a journey — they seek an experience. From serene day escapes along the breathtaking coastline of Cyprus to unforgettable sunset celebrations and exclusive private events, every moment on board is crafted with precision, comfort and sophistication.',
+    'Whether you dream of swimming in crystal-clear waters, discovering hidden beaches, enjoying fine dining under the stars or hosting a stylish private gathering, our fleet offers the perfect setting to transform your vision into reality. Each charter can be fully tailored to your preferences, allowing you to create a truly personalised maritime experience.',
+    'Our yachts are available for romantic getaways, birthday celebrations, bachelor and hen parties, corporate events, weddings, christenings and prestigious social occasions. With curated entertainment options, premium hospitality and exceptional onboard service, we ensure that every detail contributes to a seamless and memorable journey.',
+    {
+      text: 'Safety is not simply a requirement — it is the foundation of everything we do. Our professional crews, meticulously maintained yachts and commitment to the highest operational standards allow you to relax completely and enjoy the sea with confidence.',
+      emphasis: true,
+    },
+    'From intimate dinners for two to vibrant celebrations beneath the full moon, your time on board becomes more than an event — it becomes a story worth remembering.',
+  ],
+}
+
 export const yachtFleet: YachtCharter[] = DIAMANTIDES_STYLE_FLEET_NAMES.map((name) =>
   buildCharterForFleetName(name),
 )

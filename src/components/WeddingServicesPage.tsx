@@ -218,10 +218,11 @@ export default function WeddingServicesPage() {
         </div>
       </a>
 
-      <section className="wedding-hero" aria-labelledby="wedding-hero-heading">
+      <section className="wedding-hero" aria-labelledby="wedding-hero-heading" data-hero-parallax-root>
         <div className="wedding-hero__layers" aria-hidden>
           <div
             className="wedding-hero__bg"
+            data-hero-parallax
             style={{
               backgroundImage:
                 'url(/images/services/companie-services-cover/wedding-sky.webp)',

@@ -68,9 +68,11 @@ export default function ServicesLandingPage() {
       <section
         className="relative overflow-hidden bg-[linear-gradient(145deg,#071226_0%,#0d2140_52%,#142f53_100%)] py-20 text-white sm:py-24"
         aria-label="Services"
+        data-hero-parallax-root
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-45"
+          data-hero-parallax
           style={{
             backgroundImage:
               'radial-gradient(circle at 18% 18%, rgba(145,196,255,0.32), transparent 40%), radial-gradient(circle at 80% 0%, rgba(141,98,240,0.22), transparent 35%)',

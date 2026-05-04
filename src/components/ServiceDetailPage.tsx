@@ -147,9 +147,14 @@ export default function ServiceDetailPage() {
         <>
           <section
             className={`service-detail-hero${isVip ? ' service-detail-hero--vip-full' : ''}`}
+            data-hero-parallax-root
           >
             {isVip ? (
-              <div className="service-detail-hero-bg service-detail-hero-bg--vip-img" aria-hidden>
+              <div
+                className="service-detail-hero-bg service-detail-hero-bg--vip-img"
+                aria-hidden
+                data-hero-parallax
+              >
                 <img
                   className="service-detail-hero-bg__img"
                   src={VIP_DETAIL_HERO_IMAGE}
@@ -165,6 +170,7 @@ export default function ServiceDetailPage() {
               <div
                 className="service-detail-hero-bg"
                 aria-hidden
+                data-hero-parallax
                 style={{ backgroundImage: `url("${heroBackgroundImage}")` }}
               />
             )}

@@ -41,8 +41,8 @@ export default function KomodromosGroupHomePage() {
         </div>
       </div>
 
-      <section id="home" className="hero-section">
-        <div className="hero-bg hero-bg--static" aria-hidden />
+      <section id="home" className="hero-section" data-hero-parallax-root>
+        <div className="hero-bg hero-bg--static" aria-hidden data-hero-parallax />
         <div className="container hero-content">
           <div className="hero-text">
             <h1

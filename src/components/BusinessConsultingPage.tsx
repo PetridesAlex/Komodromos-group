@@ -576,11 +576,12 @@ export default function BusinessConsultingPage() {
         </div>
       </header>
 
-      <section className="consulting-hero" aria-labelledby="consulting-hero-title">
+      <section className="consulting-hero" aria-labelledby="consulting-hero-title" data-hero-parallax-root>
         <div
           className="consulting-hero__bg"
           style={{ backgroundImage: `url(${HERO_BG})` }}
           aria-hidden
+          data-hero-parallax
         />
         <div className="consulting-hero__grain" aria-hidden />
         <div className="consulting-hero__scrim" aria-hidden />

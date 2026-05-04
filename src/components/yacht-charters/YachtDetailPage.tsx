@@ -61,8 +61,8 @@ export default function YachtDetailPage() {
         </div>
       </header>
 
-      <section className="yacht-detail-hero" aria-label="Yacht photography">
-        <div className="yacht-detail-hero__media">
+      <section className="yacht-detail-hero" aria-label="Yacht photography" data-hero-parallax-root>
+        <div className="yacht-detail-hero__media" data-hero-parallax>
           <img
             className="yacht-detail-hero__img"
             src={heroSrc}
@@ -77,7 +77,7 @@ export default function YachtDetailPage() {
       </section>
 
       <article className="yacht-detail-article">
-        <div className="container yacht-detail-article__inner">
+        <div className="yacht-detail-article__inner">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

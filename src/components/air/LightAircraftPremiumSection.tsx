@@ -23,8 +23,8 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
 
   return (
     <div className="air-lxp" id="air-light-experiences">
-      <section className="air-lxp__hero" aria-labelledby="air-lxp-hero-title">
-        <div className="air-lxp__hero-media" aria-hidden>
+      <section className="air-lxp__hero" aria-labelledby="air-lxp-hero-title" data-hero-parallax-root>
+        <div className="air-lxp__hero-media" aria-hidden data-hero-parallax>
           <img
             className="air-lxp__hero-img"
             src={light.image}

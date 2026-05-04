@@ -1,8 +1,4 @@
-const COVER = '/images/services/companie-services-cover'
 const POOL_PAGE_ASSETS = '/images/services/swimming-pool-garden-services'
-
-/** Swim spas card — legacy cover art until a dedicated asset is added */
-const POOL_CARD_POOL_2 = `${COVER}/Swimming-ppool.webp`
 
 /** Pool Categories strip — dedicated art per type */
 const POOL_CATEGORY_OVERFLOW = `${POOL_PAGE_ASSETS}/Overflow.webp`
@@ -18,7 +14,8 @@ const POOL_LINING_CERAMIC = `${POOL_PAGE_ASSETS}/Ceramic.webp`
 const POOL_REPAIR_FOUNTAIN = `${POOL_PAGE_ASSETS}/Fountain.webp`
 const POOL_REPAIR_COOLING = `${POOL_PAGE_ASSETS}/Cooling%20and%20Heating.webp`
 const POOL_REPAIR_BAR = `${POOL_PAGE_ASSETS}/Bar-stools.webp`
-const POOL_REPAIR_SERVICE = `${POOL_PAGE_ASSETS}/Service%20and%20maintenance%20.webp`
+const POOL_REPAIR_SWIM_SPAS = `${POOL_PAGE_ASSETS}/Swim-Spas.webp`
+const POOL_REPAIR_SERVICE = `${POOL_PAGE_ASSETS}/Service-maintenance.webp`
 
 export type PoolGardenShowcaseItem = {
   label: string
@@ -58,7 +55,7 @@ export const poolServiceRenovationRepair: PoolServiceRepairItem[] = [
   },
   {
     label: 'Swim spas',
-    imageSrc: POOL_CARD_POOL_2,
+    imageSrc: POOL_REPAIR_SWIM_SPAS,
   },
   {
     label: 'Bar and stools',

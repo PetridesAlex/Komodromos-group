@@ -10,6 +10,7 @@ import {
   popularExperiences,
   privateEvents,
   whyChooseUs,
+  yachtCharterIntro,
   yachtChartersHero,
   yachtChartersHeroImage,
   yachtFaq,
@@ -17,6 +18,7 @@ import {
   yachtReviews,
 } from '../../data/yachtChartersData'
 import YachtCard from './YachtCard'
+import YachtCharterTermsModal from './YachtCharterTermsModal'
 import YachtFAQSection from './YachtFAQSection'
 import YachtFilter, { type YachtFilterState } from './YachtFilter'
 import YachtReviewsSection from './YachtReviewsSection'
@@ -34,6 +36,7 @@ const defaultFilter: YachtFilterState = {
 
 export default function YachtChartersPage() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [termsOpen, setTermsOpen] = useState(false)
   const [filter, setFilter] = useState<YachtFilterState>(defaultFilter)
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
@@ -87,8 +90,8 @@ export default function YachtChartersPage() {
         </div>
       </header>
 
-      <section className="yacht-hero" aria-labelledby="yacht-hero-title">
-        <div className="yacht-hero__bg" aria-hidden>
+      <section className="yacht-hero" aria-labelledby="yacht-hero-title" data-hero-parallax-root>
+        <div className="yacht-hero__bg" aria-hidden data-hero-parallax>
           <img
             className="yacht-hero__bg-img"
             src={yachtChartersHeroImage}
@@ -166,10 +169,57 @@ export default function YachtChartersPage() {
             >
               Request a private quote
             </MotionLink>
+            <motion.button
+              type="button"
+              className="yacht-btn yacht-btn--ghost"
+              onClick={() => setTermsOpen(true)}
+              whileHover={reduceMotion ? undefined : { y: -2, scale: 1.02 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+              transition={heroCtaSpring}
+            >
+              Terms & conditions
+            </motion.button>
           </motion.div>
         </div>
         <div className="yacht-hero__scroll-hint" aria-hidden>
           <span />
+        </div>
+      </section>
+
+      <section
+        className="yacht-intro"
+        id="yacht-charter-intro"
+        aria-labelledby="yacht-intro-heading"
+      >
+        <div className="container yacht-intro__container">
+          <motion.div
+            className="yacht-intro__frame reveal"
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.65, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="yacht-intro__eyebrow">The experience</p>
+            <h2 id="yacht-intro-heading" className="yacht-intro__title">
+              {yachtCharterIntro.title}
+            </h2>
+            <p className="yacht-intro__lead">{yachtCharterIntro.lead}</p>
+            <div className="yacht-intro__rule" aria-hidden />
+            <div className="yacht-intro__prose">
+              {yachtCharterIntro.paragraphs.map((block, i) => {
+                const text = typeof block === 'string' ? block : block.text
+                const emphasis = typeof block === 'object' && block.emphasis
+                return (
+                  <p
+                    key={i}
+                    className={`yacht-intro__p${emphasis ? ' yacht-intro__p--emphasis' : ''}${i === yachtCharterIntro.paragraphs.length - 1 ? ' yacht-intro__p--closing' : ''}`}
+                  >
+                    {text}
+                  </p>
+                )
+              })}
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -394,9 +444,18 @@ export default function YachtChartersPage() {
             >
               Open enquiry form
             </Link>
+            <button
+              type="button"
+              className="yacht-enquiry__terms"
+              onClick={() => setTermsOpen(true)}
+            >
+              Read terms & conditions of carriage & charter
+            </button>
           </motion.div>
         </div>
       </section>
+
+      <YachtCharterTermsModal open={termsOpen} onClose={() => setTermsOpen(false)} />
 
       <Footer />
     </div>

@@ -81,8 +81,8 @@ export default function AirCategoryPage() {
 
       {categoryId === 'jets' ? (
         <>
-          <section className="air-category-hero" aria-labelledby="air-category-title">
-            <div className="air-category-hero__bg" aria-hidden>
+          <section className="air-category-hero" aria-labelledby="air-category-title" data-hero-parallax-root>
+            <div className="air-category-hero__bg" aria-hidden data-hero-parallax>
               <div className="air-category-hero__gradient" />
             </div>
             <div className="container air-category-hero__inner">

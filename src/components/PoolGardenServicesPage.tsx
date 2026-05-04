@@ -111,8 +111,8 @@ export default function PoolGardenServicesPage() {
         </div>
       </header>
 
-      <section className="pool-garden-hero" aria-label="Introduction">
-        <div className="pool-garden-hero__bg" aria-hidden>
+      <section className="pool-garden-hero" aria-label="Introduction" data-hero-parallax-root>
+        <div className="pool-garden-hero__bg" aria-hidden data-hero-parallax>
           <img
             className="pool-garden-hero__bg-img"
             src={POOL_HERO_IMAGE}

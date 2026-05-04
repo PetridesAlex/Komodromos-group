@@ -19,6 +19,7 @@ import ServicesLandingPage from './components/ServicesLandingPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
+import HeroParallaxEffect from './components/HeroParallaxEffect.tsx'
 
 function Root() {
   const [loaded, setLoaded] = useState(false)
@@ -45,6 +46,7 @@ function Root() {
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
           </Routes>
         </BrowserRouter>
+        <HeroParallaxEffect />
         <CookieBanner />
         <SocialHub />
       </div>

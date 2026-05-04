@@ -5400,6 +5400,19 @@ article[data-service-slug='consulting'] .service-brand-logo {
   }
 }
 
+/* Hero backgrounds: subtle inertia-style parallax (HeroParallaxEffect.tsx) */
+[data-hero-parallax] {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-parallax] {
+    transform: none !important;
+    will-change: auto;
+  }
+}
+
 /* ── Service detail page ── */
 
 .service-detail-hero {
@@ -12340,6 +12353,13 @@ article.wedding-highlight-tiles__tile {
   border-top-color: var(--pg-divider-soft);
 }
 
+.pool-garden-flagship.pool-garden-flagship--linings .pool-garden-showcase-card__cap {
+  font-size: clamp(0.84rem, 1.55vw, 1.08rem);
+  letter-spacing: 0.13em;
+  line-height: 1.24;
+  padding: clamp(1.12rem, 2.3vw, 1.4rem) clamp(0.7rem, 1.6vw, 1rem) clamp(1.18rem, 2.5vw, 1.48rem);
+}
+
 .pool-garden-flagship__header {
   text-align: center;
   max-width: min(840px, 100%);
@@ -12424,12 +12444,6 @@ article.wedding-highlight-tiles__tile {
     0 0 42px rgba(70, 130, 210, 0.12);
 }
 
-.pool-garden-flagship .pool-garden-showcase-card__cap {
-  font-size: 0.6rem;
-  letter-spacing: 0.24em;
-  padding: 1.05rem 1.15rem 1.2rem;
-}
-
 /* Service, renovation & repair — crisp square tiles + punchy hover */
 .pool-garden-flagship--repair .pool-garden-showcase-card {
   border-radius: 0;
@@ -12476,6 +12490,13 @@ article.wedding-highlight-tiles__tile {
 
 .pool-garden-flagship--repair .pool-garden-showcase-card:hover .pool-garden-showcase-card__media img {
   transform: scale(1.12);
+}
+
+.pool-garden-flagship.pool-garden-flagship--repair .pool-garden-showcase-card__cap {
+  font-size: clamp(0.82rem, 1.5vw, 1.06rem);
+  letter-spacing: 0.11em;
+  line-height: 1.22;
+  padding: clamp(1.1rem, 2.2vw, 1.35rem) clamp(0.65rem, 1.5vw, 0.95rem) clamp(1.15rem, 2.4vw, 1.45rem);
 }
 
 .pool-garden-section-eyebrow {
@@ -12778,11 +12799,11 @@ article.wedding-highlight-tiles__tile {
 }
 
 .pool-garden-flagship--categories .pool-garden-showcase-card--categories .pool-garden-showcase-card__cap {
-  padding: 1.45rem 1.25rem 1.6rem;
+  padding: 1.5rem 1.2rem 1.65rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.68rem, 1.15vw, 0.84rem);
+  font-size: clamp(0.74rem, 1.25vw, 0.92rem);
   font-weight: 700;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   text-align: center;
   color: rgba(255, 252, 246, 0.98);
@@ -12830,9 +12851,9 @@ article.wedding-highlight-tiles__tile {
 }
 
 .pool-garden-flagship--categories .pool-garden-showcase-card--categories-overflow .pool-garden-showcase-card__cap {
-  font-size: clamp(0.72rem, 1.25vw, 0.9rem);
-  letter-spacing: 0.4em;
-  padding: 1.55rem 1.35rem 1.7rem;
+  font-size: clamp(0.78rem, 1.3vw, 0.96rem);
+  letter-spacing: 0.34em;
+  padding: 1.55rem 1.25rem 1.72rem;
 }
 
 .pool-garden-showcase-card__veil {
@@ -12852,14 +12873,32 @@ article.wedding-highlight-tiles__tile {
   right: 0;
   bottom: 0;
   z-index: 1;
-  padding: 1rem 1.1rem 1.1rem;
+  margin: 0;
+  padding: clamp(1rem, 2.2vw, 1.28rem) clamp(0.7rem, 1.8vw, 1.05rem) clamp(1.05rem, 2.3vw, 1.35rem);
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.58rem;
+  font-size: clamp(0.74rem, 1.25vw, 0.98rem);
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
+  line-height: 1.26;
   text-transform: uppercase;
-  color: rgba(255, 252, 248, 0.96);
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+  text-align: center;
+  color: rgba(255, 252, 248, 0.98);
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.52),
+    0 2px 12px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(0, 0, 0, 0.28);
+  border-top: 1px solid rgba(197, 160, 89, 0.32);
+  background: linear-gradient(
+    180deg,
+    rgba(6, 12, 24, 0.1) 0%,
+    rgba(4, 10, 22, 0.78) 45%,
+    rgba(2, 6, 14, 0.94) 100%
+  );
+  backdrop-filter: blur(11px) saturate(1.12);
+  -webkit-backdrop-filter: blur(11px) saturate(1.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    0 -8px 28px rgba(0, 0, 0, 0.34);
 }
 
 .pool-garden-values {
@@ -13119,14 +13158,26 @@ article.wedding-highlight-tiles__tile {
   }
 
   .pool-garden-flagship--categories .pool-garden-showcase-card--categories .pool-garden-showcase-card__cap {
-    letter-spacing: 0.28em;
-    font-size: clamp(0.62rem, 2.9vw, 0.76rem);
-    padding: 1.25rem 0.85rem 1.4rem;
+    letter-spacing: 0.24em;
+    font-size: clamp(0.7rem, 3.1vw, 0.86rem);
+    padding: 1.28rem 0.8rem 1.45rem;
   }
 
   .pool-garden-flagship--categories .pool-garden-showcase-card--categories-overflow .pool-garden-showcase-card__cap {
-    letter-spacing: 0.32em;
-    font-size: clamp(0.66rem, 3vw, 0.8rem);
+    letter-spacing: 0.26em;
+    font-size: clamp(0.74rem, 3.2vw, 0.9rem);
+  }
+
+  .pool-garden-flagship.pool-garden-flagship--repair .pool-garden-showcase-card__cap {
+    font-size: clamp(0.76rem, 3.4vw, 0.95rem);
+    letter-spacing: 0.09em;
+    padding: 1rem 0.55rem 1.15rem;
+  }
+
+  .pool-garden-flagship.pool-garden-flagship--linings .pool-garden-showcase-card__cap {
+    font-size: clamp(0.78rem, 3.5vw, 0.98rem);
+    letter-spacing: 0.1em;
+    padding: 1.02rem 0.6rem 1.18rem;
   }
 }
 
@@ -17498,6 +17549,172 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   max-width: 22rem;
 }
 
+.yacht-btn--ghost {
+  background: rgba(4, 14, 32, 0.45);
+  color: rgba(255, 252, 248, 0.95);
+  border: 1px solid rgba(197, 160, 89, 0.42);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 8px 28px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+}
+
+.yacht-btn--ghost:hover {
+  background: rgba(197, 160, 89, 0.18);
+  border-color: rgba(224, 200, 150, 0.55);
+  color: #fffefb;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 10px 32px rgba(0, 0, 0, 0.3);
+}
+
+.yacht-enquiry__terms {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1rem auto 0;
+  padding: 0.35rem 0.15rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: rgba(200, 220, 245, 0.88);
+  text-decoration: underline;
+  text-decoration-color: rgba(197, 160, 89, 0.45);
+  text-underline-offset: 0.25em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.yacht-enquiry__terms:hover {
+  color: rgba(232, 240, 255, 0.98);
+  text-decoration-color: rgba(197, 160, 89, 0.85);
+}
+
+.yacht-terms-doc {
+  padding: 2.65rem 1.35rem 1.75rem;
+  color: rgba(218, 228, 242, 0.92);
+}
+
+@media (min-width: 640px) {
+  .yacht-terms-doc {
+    padding: 2.75rem 2rem 2rem;
+  }
+}
+
+.yacht-terms-doc__head {
+  text-align: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.yacht-terms-doc__eyebrow {
+  margin: 0 0 0.65rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(165, 210, 245, 0.95);
+}
+
+.yacht-terms-doc__title {
+  margin: 0 0 0.35rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: #fffefb;
+  letter-spacing: 0.02em;
+}
+
+.yacht-terms-doc__subtitle {
+  margin: 0 0 1rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.72rem, 1.5vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(197, 160, 89, 0.92);
+}
+
+.yacht-terms-doc__notice {
+  margin: 0 auto;
+  max-width: 36rem;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgba(200, 215, 232, 0.9);
+}
+
+.yacht-terms-doc__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.yacht-terms-doc__section {
+  scroll-margin-top: 1rem;
+}
+
+.yacht-terms-doc__section-title {
+  margin: 0 0 0.65rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  color: rgba(240, 246, 255, 0.98);
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.28);
+}
+
+.yacht-terms-doc__p {
+  margin: 0 0 0.55rem;
+  font-size: 0.84rem;
+  line-height: 1.62;
+  color: rgba(205, 218, 235, 0.9);
+}
+
+.yacht-terms-doc__p:last-child {
+  margin-bottom: 0;
+}
+
+.yacht-terms-doc__p--intro {
+  margin-bottom: 0.45rem;
+}
+
+.yacht-terms-doc__block {
+  margin-bottom: 0.35rem;
+}
+
+.yacht-terms-doc__ul {
+  margin: 0 0 0.5rem;
+  padding: 0 0 0 1.15rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(195, 210, 228, 0.88);
+}
+
+.yacht-terms-doc__ul li {
+  margin-bottom: 0.35rem;
+}
+
+.yacht-terms-doc__ul li::marker {
+  color: rgba(197, 160, 89, 0.75);
+}
+
+.yacht-terms-doc__foot {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
 .yacht-hero__scroll-hint {
   position: absolute;
   bottom: 1.25rem;
@@ -17653,6 +17870,152 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
   .yacht-hero__cta {
     gap: 0.75rem 0.9rem;
+  }
+}
+
+/* Editorial intro — directly under hero */
+.yacht-intro {
+  position: relative;
+  padding: clamp(2.75rem, 7vw, 4.5rem) 0 clamp(2.25rem, 5vw, 3.25rem);
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 0%, rgba(90, 150, 210, 0.12) 0%, transparent 55%),
+    linear-gradient(180deg, #070f1c 0%, #03050c 72%, #03050c 100%);
+  border-top: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.yacht-intro__container {
+  width: min(920px, 94%);
+  margin: 0 auto;
+}
+
+.yacht-intro__frame {
+  margin: 0 auto;
+  max-width: 44rem;
+  padding: clamp(1.75rem, 4vw, 2.65rem) clamp(1.35rem, 4vw, 2.5rem);
+  border-radius: clamp(18px, 3vw, 24px);
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(20, 40, 72, 0.18) 42%,
+    rgba(6, 12, 24, 0.55) 100%
+  );
+  border: 1px solid rgba(130, 175, 220, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 56px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(197, 160, 89, 0.08);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.yacht-intro__eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(165, 210, 245, 0.88);
+}
+
+.yacht-intro__title {
+  margin: 0 0 1rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.85rem, 4.2vw, 2.65rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  color: #fffefb;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+.yacht-intro__lead {
+  margin: 0 0 1.25rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.12rem, 2.2vw, 1.35rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(232, 238, 248, 0.92);
+}
+
+.yacht-intro__rule {
+  width: min(5rem, 28vw);
+  height: 3px;
+  margin: 0 0 1.35rem;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(224, 198, 150, 0.95) 0%,
+    rgba(197, 160, 89, 0.55) 55%,
+    rgba(197, 160, 89, 0) 100%
+  );
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.25);
+}
+
+.yacht-intro__prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.yacht-intro__p {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.9rem, 1.65vw, 1.02rem);
+  font-weight: 300;
+  line-height: 1.72;
+  letter-spacing: 0.015em;
+  color: rgba(200, 215, 232, 0.9);
+}
+
+.yacht-intro__p--emphasis {
+  padding: 1rem 1rem 1.05rem 1.15rem;
+  border-left: 3px solid rgba(197, 160, 89, 0.55);
+  border-radius: 0 10px 10px 0;
+  background: rgba(4, 12, 28, 0.45);
+  color: rgba(215, 228, 242, 0.94);
+}
+
+.yacht-intro__p--closing {
+  margin-top: 0.15rem;
+  font-size: clamp(0.95rem, 1.75vw, 1.06rem);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(240, 245, 252, 0.93);
+}
+
+@media (min-width: 900px) {
+  .yacht-intro__frame {
+    max-width: min(52rem, 100%);
+    padding-left: clamp(2.25rem, 5vw, 3rem);
+    padding-right: clamp(2.25rem, 5vw, 3rem);
+  }
+
+  .yacht-intro__prose {
+    column-count: 2;
+    column-gap: clamp(1.75rem, 4vw, 2.5rem);
+    gap: 0;
+  }
+
+  .yacht-intro__p {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .yacht-intro__p--closing {
+    column-span: all;
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+    text-align: center;
+    max-width: 38rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .yacht-intro__p--emphasis {
+    column-span: all;
+    margin-bottom: 1rem;
   }
 }
 
@@ -18087,10 +18450,19 @@ a.yacht-card {
 
 .yacht-detail-hero {
   background: #e8eaee;
+  padding-right: 20px;
+  padding-bottom: 0;
+  padding-left: 20px;
+  /* Breathing room below topbar; respects safe-area on notched phones */
+  padding-top: max(
+    1.5rem,
+    env(safe-area-inset-top, 0px) + clamp(0.85rem, 2.75vw, 1.65rem)
+  );
 }
 
 .yacht-detail-hero__media {
-  width: min(1440px, 100%);
+  width: min(56rem, 100%);
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -18098,9 +18470,10 @@ a.yacht-card {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 21 / 9;
   object-fit: cover;
   object-position: center;
+  border-radius: 10px;
 }
 
 .yacht-detail-article {
@@ -18108,8 +18481,12 @@ a.yacht-card {
 }
 
 .yacht-detail-article__inner {
-  max-width: min(44rem, 100%);
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 
 .yacht-detail-breadcrumb {
@@ -18733,6 +19110,10 @@ a.yacht-card {
   padding: 1rem;
 }
 
+.yacht-modal--terms {
+  z-index: 200;
+}
+
 .yacht-modal__backdrop {
   position: absolute;
   inset: 0;
@@ -18766,6 +19147,14 @@ a.yacht-card {
     0 1px 0 rgba(255, 255, 255, 0.14) inset,
     0 28px 72px rgba(0, 4, 18, 0.55),
     0 0 48px rgba(100, 160, 220, 0.08);
+}
+
+.yacht-modal__panel--terms {
+  width: min(42rem, 100%);
+  max-height: min(90vh, 880px);
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
 }
 
 .yacht-modal__close {
