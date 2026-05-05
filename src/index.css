@@ -17724,6 +17724,86 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
     linear-gradient(180deg, #040913 0%, #03060d 58%, #04070f 100%);
 }
 
+.limo-hero-cta-wrap {
+  margin-top: 1.15rem;
+}
+
+.limo-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.88rem 1.45rem;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #072036;
+  background: linear-gradient(165deg, #f4fdff 0%, #d8f4fd 44%, #9fe5f5 100%);
+  border: 1px solid rgba(175, 230, 248, 0.88);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.78) inset,
+    0 14px 34px rgba(70, 170, 210, 0.34),
+    0 0 28px rgba(95, 205, 235, 0.24);
+  transition: transform 0.26s ease, box-shadow 0.26s ease, filter 0.26s ease, border-color 0.26s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  animation: limoCtaPulse 2.15s ease-in-out infinite;
+}
+
+.limo-hero-cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  border-color: rgba(210, 245, 255, 0.98);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 20px 45px rgba(70, 170, 210, 0.43),
+    0 0 36px rgba(125, 225, 245, 0.34);
+}
+
+.limo-hero-cta::after {
+  content: '';
+  position: absolute;
+  top: -140%;
+  left: -42%;
+  width: 46%;
+  height: 360%;
+  transform: rotate(22deg);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: limoCtaSheen 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes limoCtaSheen {
+  0% {
+    left: -46%;
+  }
+  55% {
+    left: 118%;
+  }
+  100% {
+    left: 118%;
+  }
+}
+
+@keyframes limoCtaPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
 .limo-showcase .container {
   width: min(1520px, 96%);
 }
@@ -18151,6 +18231,11 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   .limo-card__media img,
   .limo-showcase__cta {
     transition: none;
+  }
+
+  .limo-hero-cta,
+  .limo-hero-cta::after {
+    animation: none;
   }
 }
 

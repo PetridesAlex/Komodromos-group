@@ -13,6 +13,12 @@ export default function LimousinesExperiencesPage() {
     window.scrollTo(0, 0)
   }, [])
 
+  function scrollToLimousines() {
+    const el = document.getElementById('limousines-fleet')
+    if (!el) return
+    el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
+  }
+
   return (
     <div className="page" ref={pageRef}>
       <SiteTopbar
@@ -36,10 +42,24 @@ export default function LimousinesExperiencesPage() {
           <p className="service-detail-hero-sub reveal reveal-delay-2">
             Page structure is ready. Content will be added in the next step.
           </p>
+          <motion.div
+            className="limo-hero-cta-wrap reveal reveal-delay-3"
+            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.25 }}
+          >
+            <button
+              type="button"
+              className="limo-hero-cta"
+              onClick={scrollToLimousines}
+            >
+              Book now
+            </button>
+          </motion.div>
         </div>
       </section>
 
-      <section className="service-default-sections limo-showcase">
+      <section className="service-default-sections limo-showcase" id="limousines-fleet">
         <div className="container">
           <motion.div
             className="service-default-block limo-showcase__panel"
