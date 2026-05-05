@@ -40,6 +40,7 @@ export const vipSubServices: VipSubServiceItem[] = [
     kicker: 'Limousines',
     nameLine: 'experiences',
     image: `${base}/limouzine.webp`,
+    to: '/services/limousines-experiences',
   },
   /** General VIP / lifestyle concierge — `public/images/services/vip-service/private-jet.webp` */
   {
