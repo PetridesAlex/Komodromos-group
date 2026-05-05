@@ -17,6 +17,7 @@ import LincolnLimousineDetailPage from './components/LincolnLimousineDetailPage.
 import LimousineDetailPage from './components/LimousineDetailPage.tsx'
 import LimousinesExperiencesPage from './components/LimousinesExperiencesPage.tsx'
 import VipSecurityProtectionPage from './components/VipSecurityProtectionPage.tsx'
+import VipTourIslandPage from './components/VipTourIslandPage.tsx'
 import YachtChartersPage from './components/yacht-charters/YachtChartersPage.tsx'
 import YachtDetailPage from './components/yacht-charters/YachtDetailPage.tsx'
 import ServicesLandingPage from './components/ServicesLandingPage.tsx'
@@ -54,6 +55,7 @@ function Root() {
             />
             <Route path="/services/limousines-experiences" element={<LimousinesExperiencesPage />} />
             <Route path="/services/vip-security-protection" element={<VipSecurityProtectionPage />} />
+            <Route path="/services/vip-tour-around-island" element={<VipTourIslandPage />} />
             <Route path="/services/yacht-charters/:yachtId" element={<YachtDetailPage />} />
             <Route path="/services/yacht-charters" element={<YachtChartersPage />} />
             <Route path="/services" element={<ServicesLandingPage />} />

@@ -72,5 +72,6 @@ export const vipSubServices: VipSubServiceItem[] = [
     slug: 'vip-tour-island',
     title: 'VIP Tour Around the Island & More',
     image: `${base}/vip-transpotration.webp`,
+    to: '/services/vip-tour-around-island',
   },
 ]
