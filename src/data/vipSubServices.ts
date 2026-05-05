@@ -49,6 +49,7 @@ export const vipSubServices: VipSubServiceItem[] = [
     kicker: 'VIP',
     nameLine: 'Security & protection',
     image: `${base}/private-jet.webp`,
+    to: '/services/vip-security-protection',
   },
   {
     slug: 'fishing-scuba',
