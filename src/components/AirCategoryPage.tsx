@@ -7,6 +7,7 @@ import { useReveal } from '../hooks/useReveal'
 import {
   airCategoryContent,
   airCategoryPath,
+  airPrivateJetFleetPath,
   airSlugToCategoryId,
   type AirCategoryId,
 } from '../data/airServicesPage'
@@ -121,6 +122,12 @@ export default function AirCategoryPage() {
                   <div className="air-category-hero__actions">
                     <Link to="/contact" className="air-category-hero__cta" state={{ serviceInterest: 'VIP Services' }}>
                       Enquire
+                    </Link>
+                    <Link
+                      to={airPrivateJetFleetPath}
+                      className="air-category-hero__cta air-category-hero__cta--fleet"
+                    >
+                      See our private fleet
                     </Link>
                     <Link to="/services/air" className="air-category-hero__cta air-category-hero__cta--ghost">
                       All air services

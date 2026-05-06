@@ -15,10 +15,10 @@ export type TermsSection = {
 
 export const yachtCharterTermsDocument = {
   eyebrow: 'Luxury yacht charters · Cyprus',
-  title: 'Luxury Sky',
-  subtitle: 'Terms and conditions of carriage & charter',
+  title: 'Luxury Sky – Terms and conditions of carriage & charter',
+  subtitle: '',
   notice:
-    'These terms govern bookings, charters, excursions, and related services provided by Luxury Sky (the “Company”). By reserving, you confirm that you and all guests have read, understood, and accept them.',
+    'These Terms and Conditions govern all bookings, charters, excursions, and related services provided by Luxury Sky (hereinafter referred to as “the Company”). By making a reservation, the client and all participating guests acknowledge that they have read, understood, and agreed to be legally bound by these Terms.',
   sections: [
     {
       id: 'authority',
@@ -27,16 +27,17 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            '1.1 The Master (Captain) retains absolute discretion regarding navigation, safety, route, operations, and passenger conduct at all times.',
-        },
-        {
-          type: 'p',
-          text: '1.2 All passengers shall comply with directions issued by the Captain or crew.',
+            '1.1 The Master (Captain) of the vessel retains absolute discretion and authority regarding navigation, safety procedures, route selection, operational decisions, and passenger conduct at all times.',
         },
         {
           type: 'p',
           text:
-            '1.3 A mandatory safety briefing is given before departure. Passengers agree to listen carefully and ask for clarification where needed.',
+            '1.2 All passengers shall strictly comply with any directions or instructions issued by the Captain or crew.',
+        },
+        {
+          type: 'p',
+          text:
+            '1.3 A mandatory safety briefing shall be conducted prior to departure. Passengers confirm their obligation to listen attentively and request clarification where necessary.',
         },
       ],
     },
@@ -47,41 +48,42 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            '2.1 Passengers must behave responsibly and respectfully toward crew, other guests, and the vessel.',
-        },
-        {
-          type: 'p',
-          text: '2.2 Children must remain under the direct supervision of a responsible adult at all times.',
+            '2.1 Passengers must behave in a responsible and respectful manner towards crew, other passengers, and the vessel.',
         },
         {
           type: 'p',
           text:
-            '2.3 Smoking or vaping is prohibited in enclosed areas. Where permitted, smoking is only in designated external areas with proper disposal.',
+            '2.2 Children shall remain under the direct supervision of a responsible adult at all times.',
         },
         {
           type: 'p',
           text:
-            '2.4 Discharge of waste into the sea or misuse of onboard sanitary facilities is strictly prohibited.',
+            '2.3 Smoking or vaping is strictly prohibited within enclosed vessel areas. Where permitted, smoking may only take place in designated external areas using appropriate disposal facilities.',
         },
         {
           type: 'p',
           text:
-            '2.5 Alcohol must be consumed in moderation. The Captain may refuse boarding or end participation if intoxication threatens safety.',
+            '2.4 Disposal of waste into the sea or misuse of onboard sanitary facilities is strictly prohibited.',
         },
         {
           type: 'p',
           text:
-            '2.6 Passengers are responsible for personal belongings. The Company is not liable for loss, theft, or damage except where caused by proven gross negligence.',
+            '2.5 Alcohol consumption shall be moderate. The Captain reserves the right to deny boarding or terminate participation where intoxication compromises safety.',
         },
         {
           type: 'p',
           text:
-            '2.7 Passengers must disclose relevant medical conditions, limitations, allergies, or disabilities before booking.',
+            '2.6 Passengers remain solely responsible for their personal belongings. The Company accepts no liability for loss, theft, or damage unless caused by proven gross negligence.',
         },
         {
           type: 'p',
           text:
-            '2.8 Passengers must arrive at the agreed meeting point on time. Late arrival does not entitle anyone to a refund.',
+            '2.7 Passengers must disclose any relevant medical conditions, physical limitations, allergies, or disabilities prior to booking.',
+        },
+        {
+          type: 'p',
+          text:
+            '2.8 Passengers must arrive at the agreed meeting location at the designated time. Failure to do so shall not entitle the passenger to any refund.',
         },
       ],
     },
@@ -92,7 +94,7 @@ export const yachtCharterTermsDocument = {
         {
           type: 'ul',
           intro:
-            '3.1 Maritime excursions involve inherent risks including, but not limited to:',
+            '3.1 Maritime excursions constitute activities involving inherent risks including, but not limited to:',
           items: [
             'Vessel movement',
             'Sea spray or water exposure',
@@ -103,11 +105,13 @@ export const yachtCharterTermsDocument = {
         },
         {
           type: 'p',
-          text: '3.2 By participating, passengers voluntarily accept these risks.',
+          text:
+            '3.2 By participating, passengers expressly acknowledge and voluntarily assume all such risks.',
         },
         {
           type: 'p',
-          text: '3.3 Passengers confirm they are physically and medically fit for the excursion.',
+          text:
+            '3.3 Passengers confirm they are physically and medically fit to participate in the excursion.',
         },
       ],
     },
@@ -123,12 +127,12 @@ export const yachtCharterTermsDocument = {
         {
           type: 'ul',
           items: [
-            'Personal injury',
-            'Illness',
-            'Death',
-            'Property damage',
-            'Financial loss',
-            'Consequential or indirect damages',
+            'personal injury',
+            'illness',
+            'death',
+            'property damage',
+            'financial loss',
+            'consequential or indirect damages',
           ],
         },
         {
@@ -139,16 +143,17 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            '4.2 Onboard medical facilities are limited. In an emergency, assistance is coordinated via maritime communications; treatment may be delayed until transfer ashore.',
-        },
-        {
-          type: 'p',
-          text: '4.3 Passengers are strongly advised to carry comprehensive travel and medical insurance.',
+            '4.2 Medical facilities onboard are limited. In case of emergency, assistance shall be coordinated via maritime communication systems. Passengers accept that treatment may be delayed until transfer ashore.',
         },
         {
           type: 'p',
           text:
-            '4.4 The Company is not liable for damage to belongings from sea conditions, including spray or humidity.',
+            '4.3 Passengers are strongly advised to obtain comprehensive travel and medical insurance.',
+        },
+        {
+          type: 'p',
+          text:
+            '4.4 The Company shall not be liable for any damage to personal belongings caused by sea conditions including water splashes or humidity.',
         },
       ],
     },
@@ -159,11 +164,12 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            '5.1 Routes, timings, or itineraries may be changed at the Captain’s discretion due to weather, safety, port authority instructions, or operations.',
+            '5.1 Routes, timings, or itineraries may be amended at the Captain’s discretion due to weather conditions, safety considerations, port authority instructions, or operational requirements.',
         },
         {
           type: 'p',
-          text: '5.2 Such changes do not entitle passengers to a refund or compensation.',
+          text:
+            '5.2 Such modifications shall not constitute grounds for refund or compensation.',
         },
       ],
     },
@@ -174,12 +180,12 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            '6.1 Where transport, catering, excursions, or other services are supplied by third parties, the Company acts only as an intermediary.',
+            '6.1 Where transport, catering, excursions, or additional services are provided by third-party suppliers, the Company acts solely as an intermediary.',
         },
         {
           type: 'p',
           text:
-            '6.2 The Company is not liable for acts, omissions, delays, or negligence of such suppliers.',
+            '6.2 The Company shall not be liable for acts, omissions, delays, or negligence of such suppliers.',
         },
       ],
     },
@@ -191,25 +197,25 @@ export const yachtCharterTermsDocument = {
           type: 'ul',
           intro: 'Scheduled cruises / semi-private charters / events',
           items: [
-            'Full payment is required at the time of booking.',
-            'Bookings are confirmed only once cleared funds are received.',
+            'Full payment is required at time of booking.',
+            'Bookings are confirmed only upon receipt of cleared funds.',
           ],
         },
         {
           type: 'ul',
           intro: 'Private day charters',
           items: [
-            '50% deposit on booking.',
-            'Balance due no later than 10 days before the charter.',
-            'Food, beverage, or service extras follow the same payment schedule unless agreed otherwise.',
+            '50% deposit upon booking',
+            'Remaining balance payable no later than 10 days prior to charter',
+            'Food, beverage, or service arrangements follow identical payment timelines.',
           ],
         },
         {
           type: 'ul',
           intro: 'Weekly yacht charters',
           items: [
-            '50% deposit on signing the charter agreement.',
-            'Balance due four (4) weeks before departure.',
+            '50% deposit upon signing charter agreement',
+            'Remaining balance payable four (4) weeks prior to departure',
           ],
         },
       ],
@@ -221,7 +227,7 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            'A refundable security deposit (indicatively €4,500, depending on vessel type) is payable before embarkation. Deductions may be made for damage, lost equipment, excessive cleaning, or breach of charter obligations.',
+            'A refundable security deposit (indicatively €4,500 depending on vessel type) shall be payable prior to embarkation. Any damage, loss of equipment, excessive cleaning requirements, or breach of charter obligations may be deducted.',
         },
       ],
     },
@@ -233,25 +239,25 @@ export const yachtCharterTermsDocument = {
           type: 'ul',
           intro: 'Scheduled cruises',
           items: [
-            'Cancellation more than 48 hours before departure → full refund.',
-            'Cancellation within 48 hours → 20% charge.',
-            'Cancellation within 24 hours → 100% charge.',
+            'Cancellation >48 hours before departure → Full refund',
+            'Cancellation within 48 hours → 20% charge',
+            'Cancellation within 24 hours → 100% charge',
           ],
         },
         {
           type: 'ul',
           intro: 'Private charters',
           items: [
-            'Cancellation 30–10 days before → 50% charge.',
-            'Cancellation 9–1 days before → 100% charge.',
+            'Cancellation 30–10 days → 50% charge',
+            'Cancellation 9–1 days → 100% charge',
           ],
         },
         {
           type: 'ul',
           intro: 'Weekly charters',
           items: [
-            'Cancellation 40–16 days before → 50% charge.',
-            'Cancellation 15–1 days before → 100% charge.',
+            'Cancellation 40–16 days → 50% charge',
+            'Cancellation 15–1 days → 100% charge',
           ],
         },
       ],
@@ -263,7 +269,7 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            'Failure to attend at the agreed embarkation time is treated as cancellation with 100% retention of fees. Refund exceptions may apply only with official medical documentation.',
+            'Failure to attend at agreed embarkation time shall be treated as a cancellation with 100% retention of fees. Refund exceptions may be considered only upon presentation of official medical documentation.',
         },
       ],
     },
@@ -273,17 +279,18 @@ export const yachtCharterTermsDocument = {
       pieces: [
         {
           type: 'ul',
-          intro: 'Vessels operated by Luxury Sky carry marine insurance including:',
+          intro: 'All vessels operated by Luxury Sky maintain marine insurance covering:',
           items: [
-            'Third-party liability',
-            'Hull and machinery',
-            'Pollution liability',
-            'Onboard equipment',
+            'third-party liability',
+            'hull and machinery',
+            'pollution liability',
+            'onboard equipment',
           ],
         },
         {
           type: 'p',
-          text: 'This does not replace personal travel or medical insurance for passengers.',
+          text:
+            'Such insurance does not replace personal travel or medical insurance of passengers.',
         },
       ],
     },
@@ -294,7 +301,7 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            'These terms are governed by the laws of the Republic of Cyprus. Any dispute is subject to the exclusive jurisdiction of the courts of Cyprus.',
+            'These Terms shall be governed by and construed in accordance with the laws of the Republic of Cyprus. Any dispute arising shall be subject to the exclusive jurisdiction of the Courts of Cyprus.',
         },
       ],
     },
@@ -305,7 +312,7 @@ export const yachtCharterTermsDocument = {
         {
           type: 'p',
           text:
-            'By completing a booking, the client accepts these terms on behalf of all passengers named in the reservation.',
+            'By completing a booking, the Client confirms acceptance of these Terms on behalf of all passengers included in the reservation.',
         },
       ],
     },

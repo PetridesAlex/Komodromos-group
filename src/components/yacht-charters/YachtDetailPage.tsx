@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
 import SiteLogo from '../SiteLogo'
@@ -12,6 +12,7 @@ import {
 
 export default function YachtDetailPage() {
   const { yachtId } = useParams<{ yachtId: string }>()
+  const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const reduceMotion = useReducedMotion()
   const pageRef = useReveal()
@@ -28,6 +29,8 @@ export default function YachtDetailPage() {
 
   const detail = getYachtDetailContent(yacht)
   const heroSrc = yacht.gallery[0] ?? yacht.image
+  const hasGalleryPhotos =
+    Boolean(yacht.galleryExterior?.length) || Boolean(yacht.galleryInterior?.length)
 
   return (
     <div className="page yacht-detail-page" ref={pageRef}>
@@ -74,6 +77,15 @@ export default function YachtDetailPage() {
             decoding="async"
           />
         </div>
+        <nav className="yacht-detail-hero__nav" aria-label="Previous page">
+          <button
+            type="button"
+            className="yacht-detail-hero-back"
+            onClick={() => navigate(-1)}
+          >
+            ← Previous page
+          </button>
+        </nav>
       </section>
 
       <article className="yacht-detail-article">
@@ -99,6 +111,57 @@ export default function YachtDetailPage() {
                 <p key={i}>{p}</p>
               ))}
             </div>
+
+            {hasGalleryPhotos ? (
+              <h2 id="yacht-detail-photos-heading" className="yacht-detail-h2 yacht-detail-galleries-heading">
+                <span className="yacht-detail-galleries-heading__eyebrow" aria-hidden="true">
+                  Gallery
+                </span>
+                <span className="yacht-detail-galleries-heading__title">See the yacht photos</span>
+              </h2>
+            ) : null}
+
+            {yacht.galleryExterior && yacht.galleryExterior.length > 0 ? (
+              <section
+                className="yacht-detail-gallery yacht-detail-gallery--exterior"
+                aria-label={`${yacht.name} exterior photos`}
+              >
+                <div className="yacht-detail-gallery__grid" role="list">
+                  {yacht.galleryExterior.map((src, i) => (
+                    <figure key={`${src}-${i}`} className="yacht-detail-gallery__cell" role="listitem">
+                      <img
+                        src={src}
+                        alt={`${yacht.name} — exterior photo ${i + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 320px"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            {yacht.galleryInterior && yacht.galleryInterior.length > 0 ? (
+              <section
+                className="yacht-detail-gallery yacht-detail-gallery--interior"
+                aria-label={`${yacht.name} interior photos`}
+              >
+                <div className="yacht-detail-gallery__grid" role="list">
+                  {yacht.galleryInterior.map((src, i) => (
+                    <figure key={`${src}-${i}`} className="yacht-detail-gallery__cell" role="listitem">
+                      <img
+                        src={src}
+                        alt={`${yacht.name} — interior photo ${i + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 320px"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             <h2 className="yacht-detail-h2">Information</h2>
             <div className="yacht-detail-tables">

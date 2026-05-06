@@ -128,7 +128,7 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
       <section className="air-lxp__intro" aria-labelledby="air-lxp-intro-heading">
         <div className="container air-lxp__intro-inner">
           <motion.h2 id="air-lxp-intro-heading" className="air-lxp__section-title air-lxp__section-title--intro">
-            Why light aircraft
+            {d.introHeading}
           </motion.h2>
           <div className="air-lxp__intro-prose">
             {d.introParagraphs.map((para, i) => (
@@ -163,9 +163,7 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
           >
             Signature experiences
           </motion.h2>
-          <p className="air-lxp__section-lead">
-            Curated journeys for discovery, celebration, and the first steps toward your licence.
-          </p>
+          <p className="air-lxp__section-lead">{d.signatureLead}</p>
           <div className="air-lxp__card-grid">
             {d.experienceCards.map((card, i) => (
               <motion.article
@@ -188,6 +186,39 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
                 <p className="air-lxp__card-desc">{card.description}</p>
                 <span className="air-lxp__card-shine" aria-hidden />
               </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="air-lxp__school" aria-labelledby="air-lxp-school-heading">
+        <div className="container air-lxp__school-inner">
+          <motion.h2
+            id="air-lxp-school-heading"
+            className="air-lxp__section-title air-lxp__section-title--intro"
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: reduceMotion ? 0 : 0.55, ease: EASE }}
+          >
+            {d.learnToFlySchool.title}
+          </motion.h2>
+          <div className="air-lxp__school-prose">
+            {d.learnToFlySchool.paragraphs.map((para, i) => (
+              <motion.p
+                key={i}
+                className="air-lxp__intro-p"
+                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{
+                  duration: reduceMotion ? 0 : 0.55,
+                  delay: reduceMotion ? 0 : i * 0.08,
+                  ease: EASE,
+                }}
+              >
+                {para}
+              </motion.p>
             ))}
           </div>
         </div>
@@ -231,34 +262,35 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
 
       <section className="air-lxp__trial" aria-labelledby="air-lxp-trial-heading">
         <div className="container">
-          <div className="air-lxp__trial-panel">
-            <motion.div
-              className="air-lxp__trial-copy"
-              initial={reduceMotion ? false : { opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: reduceMotion ? 0 : 0.6, ease: EASE }}
-            >
+          <motion.div
+            className="air-lxp__trial-panel air-lxp__trial-panel--solo"
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: reduceMotion ? 0 : 0.6, ease: EASE }}
+          >
+            <div className="air-lxp__trial-copy">
               <h2 id="air-lxp-trial-heading" className="air-lxp__section-title air-lxp__section-title--on-dark">
                 {d.trialSectionTitle}
               </h2>
-              <p className="air-lxp__trial-intro">{d.trialIntro}</p>
-            </motion.div>
-            <motion.ul
-              className="air-lxp__trial-list"
-              initial={reduceMotion ? false : { opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.08, ease: EASE }}
-            >
-              {d.trialItems.map((item) => (
-                <li key={item} className="air-lxp__trial-item">
-                  <span className="air-lxp__trial-dot" aria-hidden />
-                  {item}
-                </li>
+              {d.trialParagraphs.map((para, i) => (
+                <motion.p
+                  key={i}
+                  className="air-lxp__trial-intro"
+                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.5,
+                    delay: reduceMotion ? 0 : 0.06 + i * 0.05,
+                    ease: EASE,
+                  }}
+                >
+                  {para}
+                </motion.p>
               ))}
-            </motion.ul>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

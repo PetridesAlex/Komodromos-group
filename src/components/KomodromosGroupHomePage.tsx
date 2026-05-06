@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import AnimatedCounter from './AnimatedCounter'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import MeetTheTeam from './MeetTheTeam'
@@ -121,19 +122,19 @@ export default function KomodromosGroupHomePage() {
           <div className="stats">
             <div className="stat-card stat-card--experience reveal reveal-delay-1">
               <span className="stat-pre">MORE THAN</span>
-              <strong>17</strong>
+              <AnimatedCounter value={17} delayMs={0} />
               <span>YEARS OF EXPERIENCE</span>
             </div>
             <div className="stat-card reveal reveal-delay-2">
-              <strong>14</strong>
+              <AnimatedCounter value={14} delayMs={120} />
               <span>INTERNATIONAL PARTNERS</span>
             </div>
             <div className="stat-card reveal reveal-delay-3">
-              <strong>74</strong>
+              <AnimatedCounter value={74} delayMs={240} />
               <span>QUALIFIED SPECIALISTS</span>
             </div>
             <div className="stat-card reveal reveal-delay-4">
-              <strong>100</strong>
+              <AnimatedCounter value={100} delayMs={360} />
               <span>SERVICES</span>
             </div>
           </div>

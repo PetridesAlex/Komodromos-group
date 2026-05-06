@@ -3,6 +3,48 @@ const AIR_IMG = '/images/services/vip-service/air-services'
 
 export type AirCategoryId = 'jets' | 'light'
 
+/** Private jet fleet showcase (three aircraft) — `/services/air/private-jets/fleet` */
+export const airPrivateJetFleetPath = '/services/air/private-jets/fleet' as const
+
+export const airPrivateJetFleet = {
+  eyebrow: 'Luxury Sky · Global Wings',
+  title: 'Private jet fleet',
+  lead:
+    'Three aircraft families within our private jet programme. Layouts, range and availability are matched to every mission — from efficient regional legs to intercontinental comfort.',
+  aircraft: [
+    {
+      id: 'challenger-604',
+      name: 'Bombardier Challenger 604 / 605',
+      segment: 'Super-midsize',
+      description:
+        'Stand-up cabin, generous luggage volume and a refined executive interior — a favourite for medium-haul charter, board moves and clients who value space to work and rest in the air.',
+      image: `${AIR_IMG}/private-jet-bombardier/Bombardier-challenger%20.webp`,
+      imageAlt: 'Bombardier Challenger private jet on the ramp',
+      highlights: ['Typically 8–12 passengers', 'Smooth ride, executive cabin zones'],
+    },
+    {
+      id: 'learjet-60-xr',
+      name: 'Bombardier Learjet 60 XR',
+      segment: 'Midsize jet',
+      description:
+        'Fast climbs and efficient cruise performance with an agile cabin footprint — suited to tight schedules, shorter runways and principals who value pace between meetings.',
+      image: `${AIR_IMG}/private-jet-bombardier-learjet-60-xr/on%20air.webp`,
+      imageAlt: 'Bombardier Learjet 60 XR in flight',
+      highlights: ['Responsive regional missions', 'Executive cabin comfort'],
+    },
+    {
+      id: 'global-charter',
+      name: 'World',
+      segment: 'Heavy jet',
+      description:
+        'Flagship range and cabin volume for principals, larger entourages and overnight routes — built for intercontinental schedules with full discretion and onboard hospitality.',
+      image: `${AIR_IMG}/private-jet-world/world-5.webp`,
+      imageAlt: 'Private long-range jet exterior',
+      highlights: ['Intercontinental capability', 'Flexible cabin layouts'],
+    },
+  ],
+} as const
+
 /** URL segment under `/services/air/…` for each category */
 export const airCategoryPath: Record<AirCategoryId, string> = {
   jets: 'private-jets',
@@ -172,60 +214,68 @@ export const airLightExperiences = {
 /** Premium light-aircraft marketing page (`/services/air/light-aircraft`). */
 export const airLightPremiumPage = {
   heroEyebrow: 'Luxury Sky · Global Wings',
-  heroTitle: 'Light Aircraft Experiences & Private Air Tours',
+  heroTitle: 'Light Aircraft Flying Experiences',
   heroSubtitle:
-    'Discover aviation from a completely new perspective. Explore curated light aircraft experiences across Cyprus, Greece, and beyond.',
+    'Exclusive air tours and pilot pathways across Cyprus, Greece and beyond — designed to inspire confidence, excitement and a genuine passion for flight.',
+  introHeading: 'Light Aircraft Flying Experiences & Exclusive Air Tours',
   introParagraphs: [
-    'Light aircraft offer the perfect entry into the world of flying, combining precision handling, responsiveness, and an immersive cockpit experience that turns every journey into something truly unforgettable.',
-    'With Luxury Sky / Global Wings, clients can enjoy scenic flights, private air tours, island escapes, day trips, trial flights, and pilot training experiences.',
+    'Have you ever dreamed of taking control of an aircraft and discovering the world from an entirely new perspective? Light aircraft offer the perfect gateway into aviation, combining precision handling, responsiveness and an immersive cockpit experience that transforms every flight into a truly unforgettable adventure.',
+    'With Luxury Sky / Global Wings, you can explore a carefully curated range of Light Aircraft Flying Experiences across breathtaking destinations in Cyprus, Greece and beyond, designed to inspire confidence, excitement and a genuine passion for flight. Whether you are seeking a once-in-a-lifetime experience, a unique gift for someone special, or the first step toward earning your Private Pilot Licence, your journey begins here.',
   ] as const,
+  signatureLead:
+    'From scenic Cyprus tours and regional adventures to structured training — each journey is tailored to you.',
   experienceCards: [
     {
       title: 'Scenic Air Tours Over Cyprus',
       description:
-        'Experience Cyprus from a breathtaking bird’s-eye view, including coastlines, landmarks, and untouched landscapes.',
+        'Experience the magic of Cyprus from a spectacular bird’s-eye perspective. Our scenic air tours reveal the island’s most captivating coastlines, historic landmarks and untouched landscapes — many of which can only truly be appreciated from the sky. This extraordinary aerial journey allows you to “travel” across the island in a completely unique way, blending discovery, relaxation and pure aviation thrill into one seamless experience.',
     },
     {
-      title: 'Day Trips to Beirut',
+      title: 'Day Trip Adventures to Beirut',
       description:
-        'Fly privately to Beirut and enjoy culture, cuisine, historic districts, stylish cafés, and iconic attractions such as Jeita Grotto.',
+        'For travellers seeking something truly distinctive, Luxury Sky / Global Wings offers exclusive light aircraft journeys to the vibrant city of Beirut, the cosmopolitan capital of Lebanon. Immerse yourself in rich culture, authentic cuisine, stylish shopping districts and traditional Middle Eastern experiences. From iconic natural attractions such as the famous Jeita Grotto stalactites to lively cafés and historic neighbourhoods, Beirut offers unforgettable memories — made even more special by arriving in the refined comfort and exclusivity of a private aviation experience.',
     },
     {
-      title: 'Greek Island Escapes',
+      title: 'Weekend Escapes to the Greek Islands',
       description:
-        'Enjoy flexible private flights to the Greek Islands for romantic getaways, family holidays, or weekend escapes.',
+        'Our light aircraft fleet enables effortless access to the stunning Greek Islands, offering you and your companions the freedom to plan spontaneous weekend getaways or extended relaxing retreats. Whether it’s a romantic escape, a family holiday or a friends’ adventure, flying privately between the islands creates a seamless and elevated travel experience defined by flexibility, privacy and spectacular scenery. All services are fully tailored to your preferences, allowing you to select the most suitable aircraft from our curated fleet.',
     },
     {
-      title: 'Learn to Fly',
+      title: 'Learn to Fly with Luxury Sky',
       description:
-        'Begin your pilot training journey with Luxury Sky Flying School near Larnaca International Airport.',
+        'For aviation enthusiasts — or those seeking the thrill of mastering the skies — begin your pilot training journey with Luxury Sky Flying School. Based near Larnaca International Airport, our academy delivers high-quality instruction from experienced and approachable flight instructors within a dynamic and welcoming aviation community.',
     },
   ] as const,
-  coursesSectionTitle: 'Courses & Qualifications',
-  coursesLead: 'Professional programmes designed around your goals:',
+  learnToFlySchool: {
+    title: 'Learn to Fly with Luxury Sky',
+    paragraphs: [
+      'For aviation enthusiasts — or those simply seeking the thrill of mastering the skies — Luxury Sky Flying School provides an inspiring environment to begin your pilot training journey.',
+      'Based near Larnaca International Airport, our academy delivers high-quality instruction from experienced and approachable flight instructors within a dynamic and welcoming aviation community.',
+      'Building upon the proud heritage of historic flying traditions in Cyprus, Luxury Sky continues a legacy of excellence in pilot training, offering a modern yet authentic learning experience in one of the region’s most beautiful flying locations.',
+      'Whether your motivation is to fulfil a lifelong dream, pursue a professional pathway or simply enjoy the joy of flying, Luxury Sky offers an exceptional combination of expertise, atmosphere and aviation passion.',
+    ],
+  } as const,
+  coursesSectionTitle: 'Flying Courses & Qualifications',
+  coursesLead:
+    'We currently offer training programmes leading to the following certifications and specialised ratings:',
   courses: [
     'PPL – Private Pilot Licence',
     'LAPL – Light Aircraft Pilot Licence',
-    'IR(R) – Instrument Rating Restricted',
+    'IR(R) – Instrument Rating (Restricted)',
     'Flying Companion Courses',
     'Tailwheel Conversion Training',
     'Aerobatic Rating',
   ] as const,
-  trialSectionTitle: 'Trial Flights & Membership',
-  trialIntro:
-    'Step into the cockpit with structured introductory flights, premium gifting options, and membership benefits for those who want to fly more often.',
-  trialItems: [
-    '30-minute trial flights',
-    '60-minute trial flights',
-    'Gift vouchers available',
-    'Training on Cessna 172, Diamond, and Tecnam aircraft',
-    'Solo aircraft hire',
-    'Membership programme with preferential rates',
+  trialSectionTitle: 'Trial Flights & Membership Benefits',
+  trialParagraphs: [
+    'Guests can enjoy introductory flying lessons lasting either 30 minutes or a full hour, with gift vouchers available for personal experiences or premium presents.',
+    'Training and trial flights are also available on the trusted Cessna 172, Diamonds, Tecnams platform, ideal for both beginners and progressing student pilots.',
+    'For more frequent flyers, we provide solo aircraft hire rates and an exclusive membership programme offering attractive flight discounts and enhanced flexibility.',
   ] as const,
   finalCta: {
-    title: 'Start Your Aviation Journey',
-    body: 'Take the first step into the world of aviation with a personalized flying experience designed around you.',
-    buttonLabel: 'Request Information',
+    title: 'Arrange Your Experience',
+    body: 'To learn more or arrange your experience, contact us — our team will be delighted to help.',
+    buttonLabel: 'Contact us',
   },
 } as const
 

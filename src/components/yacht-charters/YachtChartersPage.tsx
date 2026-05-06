@@ -17,6 +17,7 @@ import {
   yachtFleet,
   yachtReviews,
 } from '../../data/yachtChartersData'
+import MaritimeTermsConsent from './MaritimeTermsConsent'
 import YachtCard from './YachtCard'
 import YachtCharterTermsModal from './YachtCharterTermsModal'
 import YachtFAQSection from './YachtFAQSection'
@@ -194,10 +195,10 @@ export default function YachtChartersPage() {
         <div className="container yacht-intro__container">
           <motion.div
             className="yacht-intro__frame reveal"
-            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 36, scale: 0.985 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.65, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.72, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="yacht-intro__eyebrow">The experience</p>
             <h2 id="yacht-intro-heading" className="yacht-intro__title">
@@ -455,6 +456,7 @@ export default function YachtChartersPage() {
         </div>
       </section>
 
+      <MaritimeTermsConsent />
       <YachtCharterTermsModal open={termsOpen} onClose={() => setTermsOpen(false)} />
 
       <Footer />

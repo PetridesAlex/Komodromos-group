@@ -28,6 +28,9 @@ export type YachtCharter = {
   priceFullDay: string
   image: string
   gallery: string[]
+  /** Optional detail-page grids (hero uses `gallery[0]` or `image`). */
+  galleryExterior?: string[]
+  galleryInterior?: string[]
   description: string
   included: string[]
   durations: string[]
@@ -479,6 +482,203 @@ function buildCharterForFleetName(name: (typeof DIAMANTIDES_STYLE_FLEET_NAMES)[n
   return base
 }
 
+const LUXURY_SKY_1_DIR = '/images/services/maritime-services/luxury-sky-1'
+const luxurySky1Asset = (file: string) => img(`${LUXURY_SKY_1_DIR}/${file}`)
+
+const LUXURY_SKY_1_IMAGE = luxurySky1Asset('luxury-sky-11.webp')
+
+/** Exterior / interior splits — refine filenames in data as you curate shots. Hero is `luxury-sky-11.webp` (excluded from grids). */
+const LUXURY_SKY_1_EXTERIOR = [
+  'luxury-sky.webp',
+  'luxury-sky-1.webp',
+  'luxury-sky-2.webp',
+  'luxury-sky-3.webp',
+  'luxury-sky-4.webp',
+  'luxury-sky-5.webp',
+  'luxury-sky-6.webp',
+  'luxury-sky-7.webp',
+  'luxury-sky-8.webp',
+].map(luxurySky1Asset)
+
+const LUXURY_SKY_1_INTERIOR = [
+  'luxury-sky-9.webp',
+  'luxury-sky-10.webp',
+  'luxury-sky-12.webp',
+  'luxury-sky-13.webp',
+  'luxury-sky-14.webp',
+  'luxury-sky-15.webp',
+].map(luxurySky1Asset)
+
+const LUXURY_SKY_1_DETAIL: YachtDetailPageContent = {
+  paragraphs: [
+    'Luxury Sky 1 is a 25 m motor yacht based in Protaras — ideal for large groups with professional crew, multiple cabins, and flexible charter durations along the eastern Cyprus coast.',
+  ],
+  charterRates: [
+    { label: '2 hours', value: '€1,100' },
+    { label: '4 hours', value: '€2,000' },
+    { label: '6 hours', value: '€3,000' },
+  ],
+  vesselSpecs: [
+    { label: 'No. of guests', value: '150' },
+    { label: 'Type', value: 'Motor Yacht' },
+    { label: 'Crew', value: '4' },
+    { label: 'Yacht brand', value: 'N/A' },
+    { label: 'Location', value: 'Protaras' },
+    { label: 'Cabins', value: '3' },
+    { label: 'Toilets', value: '3' },
+    { label: 'Yacht length', value: '25 m' },
+  ],
+}
+
+/** Additional fleet entry — custom cover asset outside `yacht-cards/`. */
+const LUXURY_SKY_1: YachtCharter = {
+  id: 'luxury-sky-1',
+  name: 'Luxury Sky 1',
+  type: 'Motor Yacht',
+  location: 'Protaras',
+  guests: 150,
+  price4h: '€2,000',
+  price6h: '€3,000',
+  priceFullDay: 'On request',
+  image: LUXURY_SKY_1_IMAGE,
+  gallery: [LUXURY_SKY_1_IMAGE],
+  galleryExterior: LUXURY_SKY_1_EXTERIOR,
+  galleryInterior: LUXURY_SKY_1_INTERIOR,
+  description:
+    'Luxury Sky 1 — 25 m motor yacht in Protaras for up to 150 guests, crew of four, three cabins; charters from €1,100 (2h).',
+  included: [...DEFAULT_INCLUDED],
+  durations: ['2 hours', '4 hours', '6 hours'],
+  detailPage: LUXURY_SKY_1_DETAIL,
+}
+
+const LUXURY_SKY_2_DIR = '/images/services/maritime-services/luxury-sky-2'
+const luxurySky2Asset = (file: string) => img(`${LUXURY_SKY_2_DIR}/${file}`)
+
+const LUXURY_SKY_2_IMAGE = luxurySky2Asset('luxury-sky-25.webp')
+
+/** Hero is `luxury-sky-25.webp`; remaining assets split for detail galleries. */
+const LUXURY_SKY_2_EXTERIOR = [
+  'luxury-sky-16.webp',
+  'luxury-sky-17.webp',
+  'luxury-sky-18.webp',
+  'luxury-sky-19.webp',
+  'luxury-sky-20.webp',
+].map(luxurySky2Asset)
+
+const LUXURY_SKY_2_INTERIOR = [
+  'luxury-sky-21.webp',
+  'luxury-sky-22.webp',
+  'luxury-sky-23.webp',
+  'luxury-sky-24.webp',
+  'luxury-sky-26.webp',
+].map(luxurySky2Asset)
+
+const LUXURY_SKY_2_DETAIL: YachtDetailPageContent = {
+  paragraphs: [
+    'Luxury Sky 2 is a 21 m motor yacht based in Protaras — refined flybridge comfort for medium-large groups, crew of four, three cabins, and flexible charter durations along the eastern Cyprus coast.',
+  ],
+  charterRates: [
+    { label: '2 hours', value: '€600' },
+    { label: '4 hours', value: '€1,000' },
+    { label: '6 hours', value: '€1,500' },
+  ],
+  vesselSpecs: [
+    { label: 'No. of guests', value: '60' },
+    { label: 'Type', value: 'Motor Yacht' },
+    { label: 'Crew', value: '4' },
+    { label: 'Yacht brand', value: 'N/A' },
+    { label: 'Location', value: 'Protaras' },
+    { label: 'Cabins', value: '3' },
+    { label: 'Toilets', value: '3' },
+    { label: 'Yacht length', value: '21 m' },
+  ],
+}
+
+const LUXURY_SKY_2: YachtCharter = {
+  id: 'luxury-sky-2',
+  name: 'Luxury Sky 2',
+  type: 'Motor Yacht',
+  location: 'Protaras',
+  guests: 60,
+  price4h: '€1,000',
+  price6h: '€1,500',
+  priceFullDay: 'On request',
+  image: LUXURY_SKY_2_IMAGE,
+  gallery: [LUXURY_SKY_2_IMAGE],
+  galleryExterior: LUXURY_SKY_2_EXTERIOR,
+  galleryInterior: LUXURY_SKY_2_INTERIOR,
+  description:
+    'Luxury Sky 2 — 21 m motor yacht in Protaras for up to 60 guests, crew of four, three cabins; charters from €600 (2h).',
+  included: [...DEFAULT_INCLUDED],
+  durations: ['2 hours', '4 hours', '6 hours'],
+  detailPage: LUXURY_SKY_2_DETAIL,
+}
+
+const LUXURY_SKY_3_DIR = '/images/services/maritime-services/luxury-sky-3'
+const luxurySky3Asset = (file: string) => img(`${LUXURY_SKY_3_DIR}/${file}`)
+
+const LUXURY_SKY_3_IMAGE = luxurySky3Asset('luxury-sky-32.webp')
+
+/** Hero is `luxury-sky-32.webp`; remaining assets split for detail galleries. */
+const LUXURY_SKY_3_EXTERIOR = [
+  'luxury-sky-27.webp',
+  'luxury-sky-28.webp',
+  'luxury-sky-29.webp',
+  'luxury-sky-30.webp',
+  'luxury-sky-31.webp',
+  'luxury-sky-33.webp',
+].map(luxurySky3Asset)
+
+const LUXURY_SKY_3_INTERIOR = [
+  'luxury-sky-34.webp',
+  'luxury-sky-35.webp',
+  'luxury-sky-36.webp',
+  'luxury-sky-37.webp',
+  'luxury-sky-38.webp',
+  'luxury-sky-39.webp',
+].map(luxurySky3Asset)
+
+const LUXURY_SKY_3_DETAIL: YachtDetailPageContent = {
+  paragraphs: [
+    'Luxury Sky 3 is a 29 m motor yacht based in Protaras — flagship-scale volume for large gatherings, crew of four, four cabins, and flexible charter durations along the eastern Cyprus coast.',
+  ],
+  charterRates: [
+    { label: '2 hours', value: '€1,100' },
+    { label: '4 hours', value: '€2,000' },
+    { label: '6 hours', value: '€2,900' },
+  ],
+  vesselSpecs: [
+    { label: 'No. of guests', value: '150' },
+    { label: 'Type', value: 'Motor Yacht' },
+    { label: 'Crew', value: '4' },
+    { label: 'Yacht brand', value: 'N/A' },
+    { label: 'Location', value: 'Protaras' },
+    { label: 'Cabins', value: '4' },
+    { label: 'Toilets', value: '3' },
+    { label: 'Yacht length', value: '29 m' },
+  ],
+}
+
+const LUXURY_SKY_3: YachtCharter = {
+  id: 'luxury-sky-3',
+  name: 'Luxury Sky 3',
+  type: 'Motor Yacht',
+  location: 'Protaras',
+  guests: 150,
+  price4h: '€2,000',
+  price6h: '€2,900',
+  priceFullDay: 'On request',
+  image: LUXURY_SKY_3_IMAGE,
+  gallery: [LUXURY_SKY_3_IMAGE],
+  galleryExterior: LUXURY_SKY_3_EXTERIOR,
+  galleryInterior: LUXURY_SKY_3_INTERIOR,
+  description:
+    'Luxury Sky 3 — 29 m motor yacht in Protaras for up to 150 guests, crew of four, four cabins; charters from €1,100 (2h).',
+  included: [...DEFAULT_INCLUDED],
+  durations: ['2 hours', '4 hours', '6 hours'],
+  detailPage: LUXURY_SKY_3_DETAIL,
+}
+
 /** Resolved copy + tables for `/services/yacht-charters/:id` (falls back from fleet card fields). */
 export function getYachtDetailContent(yacht: YachtCharter): YachtDetailPageContent {
   if (yacht.detailPage) return yacht.detailPage
@@ -542,9 +742,12 @@ export const yachtCharterIntro: {
   ],
 }
 
-export const yachtFleet: YachtCharter[] = DIAMANTIDES_STYLE_FLEET_NAMES.map((name) =>
-  buildCharterForFleetName(name),
-)
+export const yachtFleet: YachtCharter[] = [
+  ...DIAMANTIDES_STYLE_FLEET_NAMES.map((name) => buildCharterForFleetName(name)),
+  LUXURY_SKY_1,
+  LUXURY_SKY_2,
+  LUXURY_SKY_3,
+]
 
 export type CharterHub = {
   title: string
