@@ -14,6 +14,8 @@ import AviationServicesPage from './components/AviationServicesPage.tsx'
 import AirServicesPage from './components/AirServicesPage.tsx'
 import AirCategoryPage from './components/AirCategoryPage.tsx'
 import PrivateJetFleetPage from './components/air/PrivateJetFleetPage.tsx'
+import LightAircraftFleetPage from './components/air/LightAircraftFleetPage.tsx'
+import LightAircraftFleetDetailPage from './components/air/LightAircraftFleetDetailPage.tsx'
 import LincolnLimousineDetailPage from './components/LincolnLimousineDetailPage.tsx'
 import LimousineDetailPage from './components/LimousineDetailPage.tsx'
 import LimousinesExperiencesPage from './components/LimousinesExperiencesPage.tsx'
@@ -46,6 +48,8 @@ function Root() {
             <Route path="/services/aviation" element={<AviationServicesPage />} />
             <Route path="/services/air" element={<AirServicesPage />} />
             <Route path="/services/air/private-jets/fleet" element={<PrivateJetFleetPage />} />
+            <Route path="/services/air/light-aircraft/fleet" element={<LightAircraftFleetPage />} />
+            <Route path="/services/air/light-aircraft/fleet/:aircraftId" element={<LightAircraftFleetDetailPage />} />
             <Route path="/services/air/:categorySlug" element={<AirCategoryPage />} />
             <Route
               path="/services/limousines-experiences/chrysler-300-super-stretch"

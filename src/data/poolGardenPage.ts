@@ -1,7 +1,7 @@
 const POOL_PAGE_ASSETS = '/images/services/swimming-pool-garden-services'
 
 /** Pool Categories strip — dedicated art per type */
-const POOL_CATEGORY_OVERFLOW = `${POOL_PAGE_ASSETS}/Overflow.webp`
+const POOL_CATEGORY_OVERFLOW = `${POOL_PAGE_ASSETS}/over-flow-1.webp`
 const POOL_CATEGORY_SKIMMER = `${POOL_PAGE_ASSETS}/Skimmer.webp`
 const POOL_CATEGORY_INFINITY = `${POOL_PAGE_ASSETS}/infinity.webp`
 

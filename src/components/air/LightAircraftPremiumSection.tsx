@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import {
   airCategoryContent,
+  airLightFleetPath,
   airLightExperiences,
   airLightPremiumPage,
 } from '../../data/airServicesPage'
@@ -23,8 +24,8 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
 
   return (
     <div className="air-lxp" id="air-light-experiences">
-      <section className="air-lxp__hero" aria-labelledby="air-lxp-hero-title" data-hero-parallax-root>
-        <div className="air-lxp__hero-media" aria-hidden data-hero-parallax>
+      <section className="air-lxp__hero" aria-labelledby="air-lxp-hero-title">
+        <div className="air-lxp__hero-media" aria-hidden>
           <img
             className="air-lxp__hero-img"
             src={light.image}
@@ -118,6 +119,9 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
             >
               Book an Experience
             </Link>
+            <Link to={airLightFleetPath} className="air-lxp__btn air-lxp__btn--outline air-lxp__btn--fleet">
+              See our light aircraft fleet
+            </Link>
             <a href="#air-lxp-courses" className="air-lxp__btn air-lxp__btn--outline">
               Learn to Fly
             </a>
@@ -125,7 +129,14 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
         </div>
       </section>
 
-      <section className="air-lxp__intro" aria-labelledby="air-lxp-intro-heading">
+      <motion.section
+        className="air-lxp__intro"
+        aria-labelledby="air-lxp-intro-heading"
+        initial={reduceMotion ? false : { opacity: 0, y: 26 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
+      >
         <div className="container air-lxp__intro-inner">
           <motion.h2 id="air-lxp-intro-heading" className="air-lxp__section-title air-lxp__section-title--intro">
             {d.introHeading}
@@ -149,9 +160,16 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="air-lxp__cards" aria-labelledby="air-lxp-cards-heading">
+      <motion.section
+        className="air-lxp__cards"
+        aria-labelledby="air-lxp-cards-heading"
+        initial={reduceMotion ? false : { opacity: 0, y: 26 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
+      >
         <div className="container">
           <motion.h2
             id="air-lxp-cards-heading"
@@ -179,9 +197,20 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
                 }}
                 whileHover={reduceMotion ? undefined : { y: -8, scale: 1.02 }}
               >
-                <span className="air-lxp__card-index" aria-hidden>
+                <motion.span
+                  className="air-lxp__card-index"
+                  aria-hidden
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.72, y: 8 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.42,
+                    delay: reduceMotion ? 0 : 0.12 + Math.min(i * 0.12, 0.45),
+                    ease: EASE,
+                  }}
+                >
                   {String(i + 1).padStart(2, '0')}
-                </span>
+                </motion.span>
                 <h3 className="air-lxp__card-title">{card.title}</h3>
                 <p className="air-lxp__card-desc">{card.description}</p>
                 <span className="air-lxp__card-shine" aria-hidden />
@@ -189,9 +218,16 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="air-lxp__school" aria-labelledby="air-lxp-school-heading">
+      <motion.section
+        className="air-lxp__school"
+        aria-labelledby="air-lxp-school-heading"
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: reduceMotion ? 0 : 0.6, ease: EASE }}
+      >
         <div className="container air-lxp__school-inner">
           <motion.h2
             id="air-lxp-school-heading"
@@ -222,7 +258,7 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="air-lxp__courses" id="air-lxp-courses" aria-labelledby="air-lxp-courses-heading">
         <div className="container">
@@ -260,7 +296,14 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
         </div>
       </section>
 
-      <section className="air-lxp__trial" aria-labelledby="air-lxp-trial-heading">
+      <motion.section
+        className="air-lxp__trial"
+        aria-labelledby="air-lxp-trial-heading"
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: reduceMotion ? 0 : 0.6, ease: EASE }}
+      >
         <div className="container">
           <motion.div
             className="air-lxp__trial-panel air-lxp__trial-panel--solo"
@@ -292,7 +335,7 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="air-lxp__finale" aria-labelledby="air-lxp-finale-heading">
         <div className="container">
@@ -322,7 +365,14 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
         </div>
       </section>
 
-      <section className="air-lxp__gallery" aria-label="Light aircraft imagery">
+      <motion.section
+        className="air-lxp__gallery"
+        aria-label="Light aircraft imagery"
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
+      >
         <div className="container">
           <h2 className="air-lxp__gallery-title">In the air</h2>
           <ul className="air-lxp__gallery-grid">
@@ -358,7 +408,7 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
             ))}
           </ul>
         </div>
-      </section>
+      </motion.section>
     </div>
   )
 }

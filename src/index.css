@@ -15377,11 +15377,20 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
 .air-lxp__hero {
   position: relative;
-  min-height: min(88vh, 52rem);
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
-  align-items: flex-end;
-  padding: 0 0 clamp(2.5rem, 6vh, 4rem);
+  align-items: center;
+  padding-top: calc(4.8rem + env(safe-area-inset-top, 0px));
+  padding-right: 0;
+  padding-bottom: calc(2.2rem + env(safe-area-inset-bottom, 0px));
+  padding-left: 0;
   overflow: hidden;
+}
+
+.air-lxp__hero::after {
+  display: none;
 }
 
 .air-lxp__hero-media {
@@ -15527,14 +15536,134 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   transform: translateY(-2px);
 }
 
+@keyframes air-lxp-fleet-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 34px rgba(0, 12, 35, 0.5),
+      0 0 0 1px rgba(140, 215, 255, 0.45),
+      0 0 38px rgba(50, 165, 245, 0.42);
+  }
+  50% {
+    box-shadow:
+      0 12px 42px rgba(0, 18, 45, 0.55),
+      0 0 0 1px rgba(190, 235, 255, 0.58),
+      0 0 56px rgba(90, 195, 255, 0.55);
+  }
+}
+
+@keyframes air-lxp-fleet-bob {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  45% {
+    transform: translateY(-7px) scale(1.03);
+  }
+  70% {
+    transform: translateY(-3px) scale(1.015);
+  }
+}
+
+@keyframes air-lxp-fleet-shimmer {
+  0% {
+    background-position:
+      0% 50%,
+      0% 0%;
+  }
+  100% {
+    background-position:
+      200% 50%,
+      0% 0%;
+  }
+}
+
+/* Light aircraft hero — fleet CTA mirrors private-jet CTA intensity */
+.air-lxp__btn--fleet {
+  padding: 0.95rem 2.15rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  color: #020d1c;
+  border: 1px solid rgba(190, 238, 255, 0.65);
+  background:
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0) 42%,
+      rgba(255, 255, 255, 0.22) 100%
+    ),
+    linear-gradient(145deg, #8ad4ff 0%, #42a8ee 32%, #2388dc 58%, #1568c4 100%);
+  background-size:
+    220% 100%,
+    100% 100%;
+  background-position:
+    0% 50%,
+    0% 0%;
+  box-shadow:
+    0 10px 34px rgba(0, 12, 35, 0.5),
+    0 0 0 1px rgba(140, 215, 255, 0.45),
+    0 0 38px rgba(50, 165, 245, 0.42);
+  animation:
+    air-lxp-fleet-bob 2.2s ease-in-out infinite,
+    air-lxp-fleet-glow 2.6s ease-in-out infinite,
+    air-lxp-fleet-shimmer 3.5s linear infinite;
+  will-change: transform;
+}
+
+.air-lxp__btn--fleet:hover {
+  transform: translateY(-4px) scale(1.05);
+  animation: none;
+  filter: none;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(255, 255, 255, 0.08) 42%,
+      rgba(255, 255, 255, 0.3) 100%
+    ),
+    linear-gradient(145deg, #a8e2ff 0%, #58b8f4 34%, #2f95e5 62%, #1d73cf 100%);
+  box-shadow:
+    0 16px 44px rgba(0, 16, 42, 0.58),
+    0 0 0 1px rgba(210, 245, 255, 0.72),
+    0 0 64px rgba(100, 205, 255, 0.55);
+}
+
+.air-lxp__btn--fleet:active {
+  transform: translateY(-1px) scale(1.02);
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .air-lxp__btn--fleet {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+}
+
 .air-lxp__btn--lg {
   padding: 0.85rem 1.85rem;
   font-size: 0.68rem;
 }
 
 .air-lxp__intro {
+  position: relative;
+  overflow: hidden;
   padding: clamp(3rem, 8vh, 5rem) 0;
-  background: linear-gradient(180deg, #03050a 0%, #060a14 50%, #03050a 100%);
+  background:
+    radial-gradient(ellipse 120% 80% at 10% 0%, rgba(116, 198, 255, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 70% at 100% 85%, rgba(78, 146, 232, 0.14) 0%, transparent 60%),
+    linear-gradient(182deg, #03060c 0%, #081222 46%, #040913 100%);
+}
+
+.air-lxp__intro::before {
+  content: '';
+  position: absolute;
+  inset: -12% -8%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.05) 0%, transparent 46%);
+  opacity: 0.52;
+  pointer-events: none;
+  animation: air-lxp-premium-drift 16s ease-in-out infinite;
 }
 
 .air-lxp__intro-inner {
@@ -15569,8 +15698,22 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .air-lxp__school {
+  position: relative;
+  overflow: hidden;
   padding: clamp(2.25rem, 6vh, 3.75rem) 0;
-  background: linear-gradient(180deg, #03050a 0%, #060a14 50%, #03050a 100%);
+  background:
+    radial-gradient(ellipse 110% 90% at 86% 0%, rgba(125, 208, 255, 0.15) 0%, transparent 62%),
+    radial-gradient(ellipse 90% 70% at 6% 90%, rgba(72, 140, 222, 0.14) 0%, transparent 58%),
+    linear-gradient(180deg, #040912 0%, #081427 48%, #050a14 100%);
+}
+
+.air-lxp__school::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 10%, rgba(180, 226, 255, 0.11) 0%, transparent 54%);
+  pointer-events: none;
+  animation: air-lxp-premium-pulse 9.5s ease-in-out infinite;
 }
 
 .air-lxp__school-inner {
@@ -15593,6 +15736,10 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .air-lxp__cards {
   padding: clamp(2.5rem, 6vh, 4rem) 0 clamp(3.5rem, 7vh, 5rem);
   position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 125% 95% at 50% -15%, rgba(95, 178, 245, 0.18) 0%, transparent 62%),
+    linear-gradient(180deg, #050b15 0%, #091626 44%, #050b15 100%);
 }
 
 .air-lxp__cards .air-lxp__section-title {
@@ -15605,6 +15752,15 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   inset: 0;
   background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(40, 80, 140, 0.12) 0%, transparent 60%);
   pointer-events: none;
+}
+
+.air-lxp__cards::after {
+  content: '';
+  position: absolute;
+  inset: -6% -10%;
+  background: linear-gradient(125deg, transparent 24%, rgba(170, 225, 255, 0.08) 50%, transparent 74%);
+  pointer-events: none;
+  animation: air-lxp-premium-sheen 14s linear infinite;
 }
 
 .air-lxp__cards .container {
@@ -15654,29 +15810,55 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .air-lxp__card-index {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 0.8rem;
-  color: var(--air-sky, #b0e2ff);
+  font-size: 0.92rem;
+  color: rgba(198, 235, 255, 0.98);
   opacity: 0.95;
-  letter-spacing: 0.12em;
-  margin-bottom: 0.65rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.72rem;
+  text-shadow: 0 0 12px rgba(95, 194, 245, 0.26);
+}
+
+.air-lxp__card-index::after {
+  content: 'LIVE';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 1rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #e9f7ff;
+  background: linear-gradient(135deg, rgba(118, 212, 255, 0.42) 0%, rgba(48, 142, 218, 0.54) 100%);
+  border: 1px solid rgba(165, 228, 255, 0.56);
+  box-shadow:
+    0 0 16px rgba(85, 188, 245, 0.24),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  animation: air-lxp-live-pulse 2.2s ease-in-out infinite;
 }
 
 .air-lxp__card-title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-size: clamp(1.3rem, 2.2vw, 1.58rem);
   font-weight: 500;
   color: #faf8f3;
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.78rem;
   letter-spacing: 0.02em;
+  line-height: 1.28;
 }
 
 .air-lxp__card-desc {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.82rem;
-  line-height: 1.6;
-  color: rgba(190, 205, 228, 0.88);
+  font-size: clamp(0.94rem, 1.05vw, 1.04rem);
+  line-height: 1.72;
+  color: rgba(212, 226, 244, 0.93);
   margin: 0;
 }
 
@@ -15688,6 +15870,20 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   height: 100%;
   background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.04) 50%, transparent 70%);
   pointer-events: none;
+  opacity: 0.8;
+  animation: air-lxp-card-sheen 4.8s linear infinite;
+}
+
+.air-lxp__card:nth-child(2) .air-lxp__card-shine {
+  animation-delay: 0.6s;
+}
+
+.air-lxp__card:nth-child(3) .air-lxp__card-shine {
+  animation-delay: 1.2s;
+}
+
+.air-lxp__card:nth-child(4) .air-lxp__card-shine {
+  animation-delay: 1.8s;
 }
 
 .air-lxp__courses {
@@ -15752,7 +15948,21 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .air-lxp__trial {
+  position: relative;
+  overflow: hidden;
   padding: clamp(3rem, 7vh, 4.5rem) 0;
+  background:
+    radial-gradient(ellipse 130% 88% at 8% 0%, rgba(103, 190, 255, 0.14) 0%, transparent 60%),
+    linear-gradient(180deg, #040a14 0%, #081424 46%, #050b14 100%);
+}
+
+.air-lxp__trial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 88% 80%, rgba(150, 220, 255, 0.11) 0%, transparent 45%);
+  animation: air-lxp-premium-pulse 10.5s ease-in-out infinite;
 }
 
 .air-lxp__trial-panel {
@@ -15874,8 +16084,22 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .air-lxp__gallery {
+  position: relative;
+  overflow: hidden;
   padding: clamp(2.5rem, 6vh, 4rem) 0 clamp(3.5rem, 8vh, 5rem);
-  background: linear-gradient(180deg, #03050a 0%, #050810 100%);
+  background:
+    radial-gradient(ellipse 120% 95% at 12% 0%, rgba(118, 200, 255, 0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 100% 80% at 88% 100%, rgba(82, 152, 232, 0.14) 0%, transparent 60%),
+    linear-gradient(180deg, #040913 0%, #060f1e 46%, #040913 100%);
+}
+
+.air-lxp__gallery::before {
+  content: '';
+  position: absolute;
+  inset: -8% -8%;
+  background: linear-gradient(118deg, transparent 28%, rgba(184, 230, 255, 0.08) 50%, transparent 72%);
+  pointer-events: none;
+  animation: air-lxp-premium-sheen 16s linear infinite;
 }
 
 .air-lxp__gallery-title {
@@ -15888,10 +16112,14 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   letter-spacing: 0.04em;
 }
 
+.air-lxp__gallery .container {
+  width: min(1480px, 96%);
+}
+
 .air-lxp__gallery-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -15899,13 +16127,13 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
 @media (max-width: 1100px) {
   .air-lxp__gallery-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
   .air-lxp__gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 }
 
@@ -15950,6 +16178,78 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
 .air-lxp__trial-copy .air-lxp__section-title {
   text-align: left;
+}
+
+@keyframes air-lxp-premium-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(1.2%, -1.4%, 0);
+  }
+}
+
+@keyframes air-lxp-premium-pulse {
+  0%,
+  100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes air-lxp-premium-sheen {
+  0% {
+    transform: translateX(-8%);
+  }
+  100% {
+    transform: translateX(8%);
+  }
+}
+
+@keyframes air-lxp-card-sheen {
+  0% {
+    transform: translateX(-28%);
+    opacity: 0.48;
+  }
+  50% {
+    transform: translateX(0%);
+    opacity: 0.82;
+  }
+  100% {
+    transform: translateX(28%);
+    opacity: 0.48;
+  }
+}
+
+@keyframes air-lxp-live-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 16px rgba(85, 188, 245, 0.24),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow:
+      0 0 22px rgba(108, 206, 255, 0.38),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .air-lxp__intro::before,
+  .air-lxp__school::after,
+  .air-lxp__cards::after,
+  .air-lxp__trial::before,
+  .air-lxp__gallery::before,
+  .air-lxp__card-shine,
+  .air-lxp__card-index::after {
+    animation: none;
+  }
 }
 
 /* ═══ Private Jets — in-flight premium (/services/air/private-jets) ═══ */
@@ -16404,10 +16704,51 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   padding: clamp(1.25rem, 3vh, 2rem) 0 clamp(1.75rem, 4vh, 2.5rem);
 }
 
+.air-pjf-detail .air-pjf__masthead {
+  background:
+    radial-gradient(ellipse 120% 85% at 15% 0%, rgba(108, 196, 255, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 70% at 100% 8%, rgba(90, 170, 245, 0.15) 0%, transparent 62%),
+    linear-gradient(180deg, #163256 0%, #102743 42%, #0d2139 100%);
+}
+
 .air-pjf__masthead-inner {
   max-width: 48rem;
   margin: 0 auto;
   text-align: center;
+}
+
+.air-pjf-detail .air-pjf__masthead-inner {
+  max-width: 56rem;
+  padding: clamp(0.9rem, 2.2vw, 1.35rem);
+  border-radius: 4px;
+  background:
+    radial-gradient(ellipse 125% 95% at 8% 0%, rgba(126, 214, 255, 0.28) 0%, transparent 56%),
+    radial-gradient(ellipse 95% 70% at 100% 8%, rgba(90, 186, 255, 0.18) 0%, transparent 62%),
+    linear-gradient(165deg, rgba(34, 66, 108, 0.62) 0%, rgba(12, 30, 54, 0.88) 54%, rgba(6, 16, 34, 0.94) 100%);
+  box-shadow:
+    0 22px 58px rgba(0, 0, 0, 0.44),
+    0 0 56px rgba(100, 200, 255, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.air-pjf-detail .air-category-breadcrumb__list {
+  border-radius: 4px;
+  border-color: rgba(120, 210, 255, 0.42);
+  background: linear-gradient(150deg, rgba(16, 38, 66, 0.88) 0%, rgba(8, 20, 40, 0.95) 100%);
+  box-shadow:
+    0 12px 36px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(68, 180, 245, 0.16);
+}
+
+.air-pjf-detail .air-category-breadcrumb__link {
+  color: rgba(205, 232, 252, 0.9);
+}
+
+.air-pjf-detail .air-category-breadcrumb__item--current span {
+  color: #ffffff;
+  text-shadow:
+    0 0 20px rgba(110, 205, 255, 0.4),
+    0 1px 0 rgba(0, 0, 0, 0.28);
 }
 
 .air-pjf__eyebrow {
@@ -16476,6 +16817,12 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   background: linear-gradient(155deg, rgba(255, 255, 255, 0.06) 0%, rgba(8, 14, 28, 0.72) 100%);
   border: 1px solid var(--air-sky-border, rgba(130, 210, 255, 0.35));
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+}
+
+.air-pjf__card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 
 .air-pjf__card-media {
@@ -16577,6 +16924,462 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   gap: 0.75rem 1rem;
   justify-content: center;
   margin-top: clamp(2rem, 5vh, 3rem);
+}
+
+/* Light-aircraft fleet variant: bigger cards + dynamic image motion */
+.air-pjf--light .air-pjf__fleet > .container {
+  width: min(1520px, 96%);
+}
+
+.air-pjf--light .air-pjf__masthead {
+  padding: clamp(1.2rem, 3vh, 2rem) 0 clamp(2.2rem, 4.6vh, 3rem);
+  background:
+    radial-gradient(ellipse 120% 88% at 8% 0%, rgba(112, 198, 255, 0.22) 0%, transparent 58%),
+    radial-gradient(ellipse 90% 72% at 100% 8%, rgba(102, 168, 235, 0.16) 0%, transparent 62%),
+    linear-gradient(180deg, #122843 0%, #0d1e34 44%, #091626 100%);
+}
+
+.air-pjf--light .air-pjf__masthead-inner {
+  max-width: min(58rem, 94vw);
+  padding: clamp(1rem, 2.5vw, 1.5rem) clamp(0.95rem, 2.2vw, 1.4rem);
+  border: 1px solid rgba(145, 214, 255, 0.34);
+  border-radius: 6px;
+  background:
+    linear-gradient(130deg, rgba(165, 228, 255, 0.08) 0%, transparent 44%),
+    linear-gradient(160deg, rgba(22, 48, 82, 0.66) 0%, rgba(8, 22, 42, 0.9) 54%, rgba(5, 16, 31, 0.96) 100%);
+  box-shadow:
+    0 26px 64px rgba(0, 0, 0, 0.46),
+    0 0 42px rgba(88, 186, 245, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.air-pjf__eyebrow--light-premium {
+  color: rgba(186, 231, 255, 0.96);
+  text-shadow: 0 0 14px rgba(88, 192, 255, 0.32);
+}
+
+.air-pjf__title--light-premium {
+  position: relative;
+  font-size: clamp(2.1rem, 4.7vw, 3.35rem);
+  letter-spacing: 0.03em;
+  background: linear-gradient(180deg, #ffffff 0%, #eef6ff 42%, #bdd8ef 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18),
+    0 14px 38px rgba(70, 165, 235, 0.2);
+  animation: air-pjf-light-title-float 6.5s ease-in-out infinite;
+}
+
+.air-pjf__title--light-premium::after {
+  content: '';
+  display: block;
+  width: min(16rem, 38%);
+  height: 1px;
+  margin: 0.55rem auto 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(182, 226, 252, 0.9) 52%, transparent 100%);
+  opacity: 0.85;
+  animation: air-pjf-light-line-pulse 4.8s ease-in-out infinite;
+}
+
+.air-pjf__lead--light-premium {
+  font-size: clamp(0.94rem, 1.45vw, 1.1rem);
+  line-height: 1.76;
+  color: rgba(220, 234, 248, 0.94);
+  max-width: 46rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.36);
+  animation: air-pjf-light-lead-breathe 5.8s ease-in-out infinite;
+}
+
+@keyframes air-pjf-light-title-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 0 rgba(106, 200, 255, 0));
+  }
+  50% {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 16px rgba(106, 200, 255, 0.25));
+  }
+}
+
+@keyframes air-pjf-light-lead-breathe {
+  0%,
+  100% {
+    opacity: 0.93;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes air-pjf-light-line-pulse {
+  0%,
+  100% {
+    opacity: 0.58;
+    transform: scaleX(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.02);
+  }
+}
+
+.air-pjf--light .air-pjf__grid {
+  gap: clamp(1.2rem, 2.4vw, 1.8rem);
+}
+
+@media (min-width: 900px) {
+  .air-pjf--light .air-pjf__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+
+.air-pjf--light .air-pjf__card {
+  border-color: rgba(135, 215, 255, 0.42);
+  box-shadow:
+    0 24px 58px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(50, 165, 245, 0.14);
+}
+
+.air-pjf--light .air-pjf__card-media {
+  aspect-ratio: 16 / 10;
+}
+
+.air-pjf--light .air-pjf__card-body {
+  padding: clamp(1.3rem, 2.7vw, 1.65rem);
+}
+
+.air-pjf--light .air-pjf__card-img {
+  transform: scale(1.06);
+  animation: air-pjf-light-pan 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.air-pjf--light .air-pjf__cell:nth-child(even) .air-pjf__card-img {
+  animation-name: air-pjf-light-pan-reverse;
+}
+
+.air-pjf--light .air-pjf__card:hover .air-pjf__card-img {
+  animation-play-state: paused;
+  transform: scale(1.12);
+}
+
+.air-pjf--light .air-pjf__card-link:hover .air-pjf__card {
+  transform: translateY(-6px);
+  border-color: rgba(180, 235, 255, 0.62);
+}
+
+@keyframes air-pjf-light-pan {
+  0% {
+    transform: scale(1.06) translateX(-3%) translateY(0%);
+  }
+  50% {
+    transform: scale(1.09) translateX(1%) translateY(-1.4%);
+  }
+  100% {
+    transform: scale(1.07) translateX(3%) translateY(0.5%);
+  }
+}
+
+@keyframes air-pjf-light-pan-reverse {
+  0% {
+    transform: scale(1.06) translateX(3%) translateY(0%);
+  }
+  50% {
+    transform: scale(1.09) translateX(-1%) translateY(-1.4%);
+  }
+  100% {
+    transform: scale(1.07) translateX(-3%) translateY(0.5%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .air-pjf--light .air-pjf__card-img {
+    animation: none;
+    transform: scale(1.03);
+    will-change: auto;
+  }
+
+  .air-pjf__title--light-premium,
+  .air-pjf__title--light-premium::after,
+  .air-pjf__lead--light-premium {
+    animation: none;
+  }
+}
+
+.air-pjf__lead--detail {
+  margin-top: 0.85rem;
+  max-width: 52rem;
+  color: rgba(224, 236, 255, 0.92);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+
+.air-pjf__detail-list {
+  list-style: none;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.62rem;
+  max-width: 60rem;
+}
+
+.air-pjf__detail-list li {
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  font-size: 0.93rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.42;
+  color: rgba(240, 246, 255, 0.98);
+  padding: 0.72rem 0.78rem;
+  border-radius: 2px;
+  background: linear-gradient(150deg, rgba(24, 52, 90, 0.72) 0%, rgba(10, 24, 46, 0.9) 100%);
+  border: 1px solid rgba(138, 214, 255, 0.35);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 18px rgba(66, 176, 240, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition:
+    color 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+@media (max-width: 900px) {
+  .air-pjf__detail-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.air-pjf__detail-list li:hover {
+  color: #ffffff;
+  background: linear-gradient(150deg, rgba(70, 130, 196, 0.9) 0%, rgba(28, 72, 132, 0.94) 100%);
+  border-color: rgba(228, 246, 255, 0.88);
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.34),
+    0 0 34px rgba(165, 225, 255, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.air-pjf__detail-sections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.2vw, 1.45rem);
+}
+
+@media (max-width: 900px) {
+  .air-pjf__detail-sections {
+    grid-template-columns: 1fr;
+  }
+}
+
+.air-pjf__detail-section-card,
+.air-pjf__detail-specs-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(150, 225, 255, 0.42);
+  background:
+    radial-gradient(ellipse 120% 80% at 0% 0%, rgba(120, 205, 255, 0.18) 0%, transparent 58%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.08) 0%, rgba(9, 18, 38, 0.86) 100%);
+  box-shadow:
+    0 20px 52px rgba(0, 0, 0, 0.42),
+    0 0 34px rgba(75, 185, 245, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  padding: clamp(1.05rem, 2.4vw, 1.5rem);
+}
+
+.air-pjf__detail-section-card::before,
+.air-pjf__detail-specs-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.air-pjf__detail-section-card--compact {
+  padding: clamp(0.85rem, 2vw, 1.15rem);
+}
+
+.air-pjf__detail-section-card--compact .air-pjf__detail-section-title {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  margin-bottom: 0.5rem;
+}
+
+.air-pjf__detail-section-card--compact .air-pjf__detail-section-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-bottom: 0.55rem;
+}
+
+.air-pjf__detail-section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: 0.012em;
+  margin: 0 0 0.7rem;
+  color: #fffaf2;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(120, 205, 255, 0.2);
+}
+
+.air-pjf__detail-section-text {
+  margin: 0 0 0.75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.87rem;
+  line-height: 1.64;
+  color: rgba(224, 233, 246, 0.94);
+}
+
+.air-pjf__detail-section-text:last-child {
+  margin-bottom: 0;
+}
+
+.air-pjf__detail-specs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.58rem;
+}
+
+@media (max-width: 900px) {
+  .air-pjf__detail-specs-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.air-pjf__detail-specs-list li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.84rem;
+  line-height: 1.46;
+  color: rgba(236, 242, 252, 0.97);
+  padding: 0.68rem 0.78rem;
+  border-radius: 2px;
+  background: linear-gradient(150deg, rgba(24, 54, 92, 0.65) 0%, rgba(10, 24, 46, 0.88) 100%);
+  border: 1px solid rgba(142, 214, 255, 0.24);
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.air-pjf__detail-price {
+  margin: 1.05rem 0 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #d8f1ff;
+  text-shadow: 0 0 20px rgba(95, 195, 255, 0.45);
+}
+
+.air-pjf__video .container {
+  width: min(1240px, 95%);
+}
+
+.air-pjf__video-shell {
+  position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  border: 1px solid rgba(140, 220, 255, 0.38);
+  background:
+    radial-gradient(ellipse 120% 90% at 10% 0%, rgba(110, 205, 255, 0.2) 0%, transparent 58%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, rgba(6, 14, 30, 0.9) 100%);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.48),
+    0 0 36px rgba(75, 190, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.air-pjf__video-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.09) 0%, transparent 44%);
+}
+
+.air-pjf__video-player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  background: #02050c;
+}
+
+.air-pjf__detail-gallery {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+}
+
+@media (max-width: 900px) {
+  .air-pjf__detail-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .air-pjf__detail-gallery {
+    gap: 0;
+  }
+
+  .air-pjf__detail-fig {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+}
+
+.air-pjf__detail-fig {
+  margin: 0;
+  border-radius: 0;
+  overflow: hidden;
+  border: 1px solid rgba(130, 210, 255, 0.32);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.38);
+  transition:
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 420ms ease;
+}
+
+.air-pjf__detail-img {
+  width: 100%;
+  height: clamp(230px, 30vw, 340px);
+  object-fit: cover;
+  display: block;
+  transform: scale(1.001);
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1), filter 360ms ease;
+}
+
+.air-pjf__detail-cell:hover .air-pjf__detail-fig,
+.air-pjf__detail-cell:focus-within .air-pjf__detail-fig {
+  transform: translateY(-4px);
+  border-color: rgba(165, 225, 255, 0.62);
+  box-shadow:
+    0 22px 58px rgba(0, 0, 0, 0.42),
+    0 0 26px rgba(95, 190, 245, 0.24);
+}
+
+.air-pjf__detail-cell:hover .air-pjf__detail-img,
+.air-pjf__detail-cell:focus-within .air-pjf__detail-img {
+  transform: scale(1.04);
+  filter: saturate(1.05) contrast(1.04);
 }
 
 /* Light Aircraft — full experiences “page” + gallery (legacy; unused on category route) */

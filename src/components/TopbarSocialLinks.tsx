@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import { ChevronDown, Share2 } from 'lucide-react'
+import { ChevronDown, Orbit } from 'lucide-react'
 import { socialLinks } from '../data/socialLinks'
 
 type Props = { variant: 'desktop' | 'mobile' }
@@ -69,7 +69,7 @@ export default function TopbarSocialLinks({ variant }: Props) {
       onClick={() => setOpen((v) => !v)}
     >
       <span className="social-hub-trigger__glow" aria-hidden />
-      <Share2
+      <Orbit
         className="social-hub-trigger__share"
         size={17}
         strokeWidth={2}

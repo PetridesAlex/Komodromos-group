@@ -41,7 +41,7 @@ const POOL_HERO_IMAGE =
 
 /** Editorial strip — alternate pool detail so hero and insight section differ visually */
 const POOL_EDITORIAL_IMAGE =
-  '/images/services/swimming-pool-garden-services/Overflow.webp'
+  '/images/services/swimming-pool-garden-services/over-flow-1.webp'
 
 export default function PoolGardenServicesPage() {
   const [menuOpen, setMenuOpen] = useState(false)

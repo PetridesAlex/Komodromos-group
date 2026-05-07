@@ -1,5 +1,6 @@
 /** Images in `public/images/services/vip-service/air-services/` */
 const AIR_IMG = '/images/services/vip-service/air-services'
+const VIP = '/images/services/vip-service'
 
 export type AirCategoryId = 'jets' | 'light'
 
@@ -44,6 +45,212 @@ export const airPrivateJetFleet = {
     },
   ],
 } as const
+
+/** Light aircraft fleet showcase (three cards) — `/services/air/light-aircraft/fleet` */
+export const airLightFleetPath = '/services/air/light-aircraft/fleet' as const
+
+export const airLightFleet = {
+  eyebrow: 'Luxury Sky · Global Wings',
+  title: 'Light aircraft fleet',
+  lead:
+    'Three light-aircraft profiles tailored for scenic routes, regional access and pilot training missions, with flexibility for private itineraries across Cyprus, Greece and nearby destinations.',
+  aircraft: [
+    {
+      id: 'regional-light',
+      name: 'C-172',
+      segment: 'Light aircraft',
+      description:
+        'A versatile platform for short sectors and coastal flights, balancing comfort, efficiency and access to smaller airfields.',
+      image: `${AIR_IMG}/light-aircrafts/light-aircraft-1.webp`,
+      imageAlt: 'Light aircraft in flight',
+      highlights: ['Ideal for short sectors', 'Flexible departure windows'],
+    },
+    {
+      id: 'scenic-tour',
+      name: 'The DA42',
+      segment: 'Experiences',
+      description:
+        'Configured for panoramic routes and private air tours, perfect for discovery flights and special-occasion journeys.',
+      image: `${AIR_IMG}/light-aircrafts-2/light-aircraft-19.webp`,
+      imageAlt: 'Aerial view from light aircraft over coastline',
+      highlights: ['Signature scenic routes', 'Private experience format'],
+    },
+  ],
+} as const
+
+export type AirLightFleetAircraftId = (typeof airLightFleet.aircraft)[number]['id']
+
+export const airLightFleetDetails: Record<
+  AirLightFleetAircraftId,
+  {
+    intro: string
+    description: string
+    sections?: { title: string; paragraphs: string[] }[]
+    bullets?: string[]
+    specs?: string[]
+    price?: string
+    gallery: { src: string; alt: string }[]
+  }
+> = {
+  'regional-light': {
+    intro: 'Cessna 172 Skyhawk - the legendary flying experience.',
+    description:
+      'One of the most trusted and iconic aircraft in aviation history, the C-172 combines comfort, safety, stability and pure flying enjoyment for premium training and unforgettable scenic flights above Cyprus and the Greek Islands.',
+    sections: [
+      {
+        title: 'Discover Cyprus & the Greek Islands from Above',
+        paragraphs: [
+          'As the aircraft climbs above the Mediterranean coastline, beaches, mountain landscapes and historical landmarks open below in a panoramic aerial view.',
+          'The C-172 experience is designed for private weekend escapes, lifestyle flights and memorable discovery routes across island destinations.',
+        ],
+      },
+      {
+        title: 'Premium Flying Training Experience',
+        paragraphs: [
+          'Globally recognized as a leading training aircraft, the C-172 is trusted by pilots and aviation academies for stable handling and confidence-building flight characteristics.',
+          'Training flights include guided cockpit experience, real flight procedures and navigation fundamentals with professional instructors.',
+        ],
+      },
+      {
+        title: 'Ideal for Scenic & Discovery Flights',
+        paragraphs: [
+          'Whether it is your first flight or a tailored aviation moment, each mission can be customized for sightseeing, pilot discovery or short regional hops.',
+        ],
+      },
+      {
+        title: 'The Aviation Legend Experience',
+        paragraphs: [
+          'Flying the C-172 is more than transport: it is an aviation milestone built around prestige, safety, comfort and inspiring Mediterranean scenery.',
+        ],
+      },
+    ],
+    bullets: [
+      'Spectacular aerial views of island villages and white-washed architecture',
+      'Magical sunsets above the Aegean Sea',
+      'Private weekend air escapes',
+      'Romantic and lifestyle aerial experiences',
+      'Hands-on cockpit experience with professional instructors',
+      'Perfect platform for Private Pilot Licence (PPL) progression',
+    ],
+    specs: [
+      'Aircraft Type: Single-engine light aircraft',
+      'Engine: Lycoming IO-360 series',
+      'Cruise Speed: approx. 120 knots (222 km/h)',
+      'Maximum Range: approx. 640 nautical miles (1,185 km)',
+      'Service Ceiling: 13,500 ft',
+      'Avionics: Garmin glass cockpit (G1000 or equivalent)',
+      'Cruising Altitude: 8,000 ft',
+      'Cruising Speed (ops profile): 85 kts',
+      'Crew: 1',
+      'Capacity: up to 3 passengers + 120 lb (54 kg) baggage',
+      'Length: 27 ft 2 in (8.28 m)',
+      'Wingspan: 36 ft 1 in (11.00 m)',
+      'Height: 8 ft 11 in (2.72 m)',
+      'Wing Area: 174 sq ft (16.2 m2)',
+    ],
+    price: 'EUR 350 per hour',
+    gallery: [
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-1.webp`, alt: 'Regional light aircraft in flight' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-2.webp`, alt: 'Light aircraft on approach' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-3.webp`, alt: 'Light aircraft over coastline' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-4.webp`, alt: 'Light aircraft wing and sky view' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-5.webp`, alt: 'Light aircraft in Mediterranean airspace' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-6.webp`, alt: 'C-172 private scenic flight view' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-7.webp`, alt: 'Light aircraft above island route' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-8.webp`, alt: 'Aerial view during regional flight' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-9.webp`, alt: 'C-172 exterior profile in operation' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-10.webp`, alt: 'Light aircraft cockpit and controls' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-11.webp`, alt: 'Light aircraft prepared for departure' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-12.webp`, alt: 'C-172 over coastal landscape' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-13.webp`, alt: 'Pilot perspective from light aircraft' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-14.webp`, alt: 'Light aircraft after scenic mission' },
+    ],
+  },
+  'scenic-tour': {
+    intro: 'Diamond DA42 - The Ultimate Luxury Light Aircraft Experience',
+    description:
+      'Step into a world where precision aviation meets pure lifestyle luxury. Our magnificent Diamond DA42 is not just an aircraft - it is an exclusive gateway to unforgettable skies, elite pilot training, and breathtaking Mediterranean views. Whether you dream of becoming a pilot or simply wish to enjoy a once-in-a-lifetime aerial experience, the DA42 offers a refined, smooth and prestigious journey above Cyprus and the Greek Islands.',
+    sections: [
+      {
+        title: 'Discover the Sky in Absolute Style',
+        paragraphs: [
+          'Imagine departing from Cyprus and soaring effortlessly over the turquoise coastline, ancient historical landmarks, hidden coves and world-famous Greek island landscapes.',
+          'From the dramatic cliffs of Santorini to the golden beaches of Mykonos, every flight becomes a luxury cinematic experience - elegant, serene and deeply inspiring.',
+          'The Diamond DA42 combines exceptional comfort, advanced safety technology and impressive performance, making it one of the most sophisticated light aircraft in its class.',
+        ],
+      },
+      {
+        title: 'Elite Flying Training Experience',
+        paragraphs: [
+          'Our premium flying programs allow aviation enthusiasts and future pilots to experience real cockpit operations with professional instructors, learn advanced navigation and flight techniques, enjoy panoramic sightseeing while training, and build confidence in one of the world\'s safest modern aircraft.',
+          'This is not just training - it is a transformational aviation experience designed for ambitious individuals who seek excellence.',
+        ],
+      },
+      {
+        title: 'Exclusive Scenic Flights',
+        paragraphs: [
+          'Every flight is tailored according to your wishes - creating memories that last forever.',
+        ],
+      },
+      {
+        title: 'A Sky Experience Beyond Ordinary',
+        paragraphs: [
+          'Flying with the Diamond DA42 is about more than transport or training.',
+          'It is about freedom, elegance, confidence and discovery.',
+          'It is about seeing the Mediterranean from a perspective reserved for the truly privileged.',
+          'Welcome to the sky. Welcome to your next extraordinary experience.',
+        ],
+      },
+    ],
+    bullets: [
+      'Luxury air tours over Cyprus',
+      'Weekend escapes to Greek islands',
+      'VIP romantic or private experiences',
+      'Aviation discovery flights',
+      'Premium aerial photography and lifestyle moments',
+      'Experience real cockpit operations with professional instructors',
+      'Learn advanced navigation and flight techniques',
+      'Enjoy panoramic sightseeing while training',
+      'Build confidence in one of the world\'s safest modern aircraft',
+    ],
+    specs: [
+      'Aircraft Type: Twin-Engine Luxury Light Aircraft',
+      'Engines: 2 x Austro Engine AE300 turbo-diesel',
+      'Cruise Speed: approx. 180 knots (333 km/h)',
+      'Maximum Range: approx. 1,200 nautical miles (2,200 km)',
+      'Service Ceiling: 18,000 ft',
+      'Avionics: Advanced Garmin Glass Cockpit (G1000 / G1000 NXi)',
+      'Fuel Efficiency: Exceptionally economical twin-engine performance',
+      'Safety: Full composite airframe and modern redundancy systems',
+      'Passenger Capacity: 1 Professional Pilot + up to 3 Passengers',
+      '(or Instructor + Student + Guests depending on flight type)',
+      'Designed for intimate, premium experiences, the cabin offers superb visibility and comfort - ensuring every passenger enjoys the spectacular views.',
+    ],
+    gallery: [
+      { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-19.webp`, alt: 'Diamond DA42 scenic route 1' },
+      { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-16.webp`, alt: 'Diamond DA42 scenic route 2' },
+      { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-17.webp`, alt: 'Diamond DA42 scenic route 3' },
+      { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-18.webp`, alt: 'Diamond DA42 scenic route 4' },
+      { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-20.webp`, alt: 'Diamond DA42 scenic route 5' },
+      { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-21.webp`, alt: 'Diamond DA42 scenic route 6' },
+      { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-22.webp`, alt: 'Diamond DA42 scenic route 7' },
+      { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-23.webp`, alt: 'Diamond DA42 scenic route 8' },
+    ],
+  },
+  'training-platform': {
+    intro: 'Flying-school-oriented platform for progression and confidence.',
+    description:
+      'Designed for trial lessons and structured progression, this category supports first flights through to advanced practice, with stable handling and training-friendly mission profiles.',
+    gallery: [
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-9.webp`, alt: 'Training platform aircraft exterior' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-10.webp`, alt: 'Training aircraft cockpit perspective' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-11.webp`, alt: 'Light aircraft on runway for training' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-12.webp`, alt: 'Flight-school light aircraft in operation' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-13.webp`, alt: 'Pilot training flight scene' },
+      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-14.webp`, alt: 'Light aircraft after training session' },
+    ],
+  },
+}
 
 /** URL segment under `/services/air/…` for each category */
 export const airCategoryPath: Record<AirCategoryId, string> = {
@@ -105,8 +312,6 @@ export const airCategoryContent: Record<
     footnote: 'Well suited to island archipelagos, multi-stop day trips, and connections where a heavy jet is simply more metal than the mission needs.',
   },
 }
-
-const VIP = '/images/services/vip-service'
 
 /** Full “page” section when Light Aircraft is selected — all copy is data-driven for easy updates. */
 export const airLightExperiences = {
@@ -184,29 +389,119 @@ export const airLightExperiences = {
   },
   gallery: [
     {
-      src: `${VIP}/Aerophotography.webp`,
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-1.webp`,
+      alt: 'Light aircraft in Mediterranean skies',
+      caption: 'Mediterranean departures',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-2.webp`,
+      alt: 'Light aircraft approach above coast',
+      caption: 'Coastal approach',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-3.webp`,
+      alt: 'Light aircraft crossing shoreline',
+      caption: 'Bluewater crossings',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-4.webp`,
+      alt: 'Wing view from light aircraft cockpit',
+      caption: 'Cockpit perspective',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-5.webp`,
+      alt: 'Scenic light aircraft route above sea',
+      caption: 'Scenic island routes',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-6.webp`,
+      alt: 'Private scenic flight experience',
+      caption: 'Private experiences',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-7.webp`,
+      alt: 'Aerial scenic tour over Cyprus',
+      caption: 'Cyprus aerial tours',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-8.webp`,
+      alt: 'Light aircraft destination approach',
+      caption: 'Destination arrivals',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-9.webp`,
+      alt: 'Light aircraft exterior in operation',
+      caption: 'Fleet in operation',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-10.webp`,
+      alt: 'Light aircraft cockpit controls',
+      caption: 'Advanced cockpit',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-11.webp`,
+      alt: 'Light aircraft prepared for departure',
+      caption: 'Preflight moments',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-12.webp`,
+      alt: 'Light aircraft over island landscape',
+      caption: 'Island landscapes',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-13.webp`,
+      alt: 'Pilot view during light aircraft flight',
+      caption: 'Pilot viewpoint',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-14.webp`,
+      alt: 'Light aircraft after scenic mission',
+      caption: 'After-flight elegance',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts/light-aircraft-15.webp`,
+      alt: 'Light aircraft on premium itinerary',
+      caption: 'Premium itineraries',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-19.webp`,
       alt: 'Aerial view from light aircraft over coastline',
       caption: 'Coastal passes',
     },
     {
-      src: `${AIR_IMG}/Light-aircrafts.webp`,
+      src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-16.webp`,
       alt: 'Light aircraft in flight',
       caption: 'Island & short sectors',
     },
     {
-      src: `${VIP}/vip-tour.webp`,
+      src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-17.webp`,
       alt: 'VIP scenic air tour',
       caption: 'Signature air tours',
     },
     {
-      src: `${VIP}/vip-tour.webp`,
+      src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-18.webp`,
       alt: 'Aircraft on tour over the island',
       caption: 'Exclusive island routes',
     },
     {
-      src: `${VIP}/air-services.webp`,
+      src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-20.webp`,
       alt: 'Aviation and concierge coordination',
       caption: 'Door-to-cockpit coordination',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-21.webp`,
+      alt: 'Light aircraft over Mediterranean waters',
+      caption: 'Mediterranean horizons',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-22.webp`,
+      alt: 'Light aircraft route over islands',
+      caption: 'Island panoramas',
+    },
+    {
+      src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-23.webp`,
+      alt: 'Premium light aircraft scenic mission',
+      caption: 'Premium flight moments',
     },
   ] as const,
 }
