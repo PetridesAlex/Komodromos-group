@@ -6,7 +6,6 @@ import {
   FileCheck2,
   FileSearch2,
   HandCoins,
-  Landmark,
   PiggyBank,
   ReceiptEuro,
   ReceiptText,
