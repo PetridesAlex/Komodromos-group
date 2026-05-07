@@ -237,19 +237,6 @@ export const airLightFleetDetails: Record<
       { src: `${AIR_IMG}/light-aircrafts-2/light-aircraft-23.webp`, alt: 'Diamond DA42 scenic route 8' },
     ],
   },
-  'training-platform': {
-    intro: 'Flying-school-oriented platform for progression and confidence.',
-    description:
-      'Designed for trial lessons and structured progression, this category supports first flights through to advanced practice, with stable handling and training-friendly mission profiles.',
-    gallery: [
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-9.webp`, alt: 'Training platform aircraft exterior' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-10.webp`, alt: 'Training aircraft cockpit perspective' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-11.webp`, alt: 'Light aircraft on runway for training' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-12.webp`, alt: 'Flight-school light aircraft in operation' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-13.webp`, alt: 'Pilot training flight scene' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-14.webp`, alt: 'Light aircraft after training session' },
-    ],
-  },
 }
 
 /** URL segment under `/services/air/…` for each category */
