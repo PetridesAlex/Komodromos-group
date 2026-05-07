@@ -28,6 +28,8 @@ import ServicesLandingPage from './components/ServicesLandingPage.tsx'
 import TaxHowToTicPage from './components/TaxHowToTicPage.tsx'
 import TaxHowToTaxisnetPage from './components/TaxHowToTaxisnetPage.tsx'
 import TaxTransferFeesCalculatorPage from './components/TaxTransferFeesCalculatorPage.tsx'
+import AstrealDevelopersPage from './components/AstrealDevelopersPage.tsx'
+import AstrealProjectDetailPage from './components/AstrealProjectDetailPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
@@ -72,6 +74,8 @@ function Root() {
             <Route path="/services/tax/how-to-get-a-tic" element={<TaxHowToTicPage />} />
             <Route path="/services/tax/how-to-register-to-taxisnet" element={<TaxHowToTaxisnetPage />} />
             <Route path="/services/tax/transfer-fees-calculator" element={<TaxTransferFeesCalculatorPage />} />
+            <Route path="/services/astreal" element={<AstrealDevelopersPage />} />
+            <Route path="/services/astreal/projects/:projectId" element={<AstrealProjectDetailPage />} />
             <Route path="/services" element={<ServicesLandingPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
           </Routes>
