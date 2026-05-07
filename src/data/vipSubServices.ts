@@ -60,6 +60,7 @@ export const vipSubServices: VipSubServiceItem[] = [
     slug: 'real-estate',
     title: 'Real Estate',
     image: `${base}/Real-estate.webp`,
+    to: '/services/astreal',
   },
   {
     slug: 'casino',

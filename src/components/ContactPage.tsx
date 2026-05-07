@@ -27,6 +27,8 @@ export default function ContactPage() {
       vipSubService?: string
       consultingTopic?: string
       weddingPackage?: string
+      taxFilingPackage?: string
+      taxFilingTitle?: string
       contactPrefill?: {
         name?: string
         email?: string
@@ -57,17 +59,29 @@ export default function ContactPage() {
       }
 
       if (!next.message.trim()) {
-        const vipSub = s.vipSubService
-        if (typeof vipSub === 'string' && vipSub) {
-          next = { ...next, message: `Interested in: ${vipSub}` }
+        const taxTitle = s.taxFilingTitle
+        if (typeof taxTitle === 'string' && taxTitle) {
+          const pkg = s.taxFilingPackage
+          next = {
+            ...next,
+            message:
+              pkg !== undefined && pkg !== ''
+                ? `Αίτημα πληρωμής φορολογικής δήλωσης — ${taxTitle} (πακέτο: ${pkg})`
+                : `Αίτημα πληρωμής φορολογικής δήλωσης — ${taxTitle}`,
+          }
         } else {
-          const consultingTopic = s.consultingTopic
-          if (typeof consultingTopic === 'string' && consultingTopic) {
-            next = { ...next, message: `Topic: ${consultingTopic}` }
+          const vipSub = s.vipSubService
+          if (typeof vipSub === 'string' && vipSub) {
+            next = { ...next, message: `Interested in: ${vipSub}` }
           } else {
-            const weddingPackage = s.weddingPackage
-            if (typeof weddingPackage === 'string' && weddingPackage) {
-              next = { ...next, message: `Wedding package interest: ${weddingPackage}` }
+            const consultingTopic = s.consultingTopic
+            if (typeof consultingTopic === 'string' && consultingTopic) {
+              next = { ...next, message: `Topic: ${consultingTopic}` }
+            } else {
+              const weddingPackage = s.weddingPackage
+              if (typeof weddingPackage === 'string' && weddingPackage) {
+                next = { ...next, message: `Wedding package interest: ${weddingPackage}` }
+              }
             }
           }
         }

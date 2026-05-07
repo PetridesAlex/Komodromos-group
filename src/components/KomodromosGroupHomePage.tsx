@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import AnimatedCounter from './AnimatedCounter'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
@@ -16,6 +17,19 @@ const marqueeItems = [
 
 export default function KomodromosGroupHomePage() {
   const pageRef = useReveal()
+  const location = useLocation()
+
+  useEffect(() => {
+    const id = location.hash.replace(/^#/, '')
+    if (!id) return
+    const el = document.getElementById(id)
+    if (!el) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const t = window.setTimeout(() => {
+      el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+    }, 0)
+    return () => window.clearTimeout(t)
+  }, [location.pathname, location.hash])
 
   return (
     <div className="page home-page" ref={pageRef}>

@@ -21,6 +21,13 @@ export default function AstrealDevelopersPage() {
     window.scrollTo(0, 0)
   }, [])
 
+  function scrollToProjectsSection() {
+    document.getElementById('astreal-projects')?.scrollIntoView({
+      behavior: reduceMotion ? 'auto' : 'smooth',
+      block: 'start',
+    })
+  }
+
   /** Above-the-fold hero — mount-driven “live” entrance (not scroll) */
   const heroBgReveal = reduceMotion
     ? {}
@@ -30,12 +37,20 @@ export default function AstrealDevelopersPage() {
         transition: { duration: 1.15, ease: EASE },
       }
 
+  const heroMarkLive = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, scale: 0.88, y: 28, rotate: -2 },
+        animate: { opacity: 1, scale: 1, y: 0, rotate: 0 },
+        transition: { type: 'spring' as const, stiffness: 88, damping: 17, mass: 0.72, delay: 0.08 },
+      }
+
   const heroEyebrowLive = reduceMotion
     ? {}
     : {
         initial: { opacity: 0, y: 32, filter: 'blur(14px)' },
         animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
-        transition: { duration: 0.85, ease: EASE, delay: 0.15 },
+        transition: { duration: 0.85, ease: EASE, delay: 0.22 },
       }
 
   const heroRuleLive = reduceMotion
@@ -43,7 +58,7 @@ export default function AstrealDevelopersPage() {
     : {
         initial: { opacity: 0, scaleX: 0 },
         animate: { opacity: 1, scaleX: 1 },
-        transition: { duration: 1.05, ease: EASE, delay: 0.28 },
+        transition: { duration: 1.05, ease: EASE, delay: 0.32 },
       }
 
   const heroTitleMainLive = reduceMotion
@@ -61,7 +76,7 @@ export default function AstrealDevelopersPage() {
           filter: 'blur(0px)',
           clipPath: 'inset(0 0% 0 0)',
         },
-        transition: { duration: 1.05, ease: EASE, delay: 0.38 },
+        transition: { duration: 1.05, ease: EASE, delay: 0.42 },
       }
 
   const heroTitleSubLive = reduceMotion
@@ -69,15 +84,7 @@ export default function AstrealDevelopersPage() {
     : {
         initial: { opacity: 0, y: 36, filter: 'blur(16px)' },
         animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
-        transition: { duration: 0.95, ease: EASE, delay: 0.52 },
-      }
-
-  const heroBrandLive = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, scale: 0.88, y: 28, rotate: -2 },
-        animate: { opacity: 1, scale: 1, y: 0, rotate: 0 },
-        transition: { type: 'spring' as const, stiffness: 88, damping: 17, mass: 0.72, delay: 0.62 },
+        transition: { duration: 0.95, ease: EASE, delay: 0.56 },
       }
 
   const fadeUp = reduceMotion
@@ -253,6 +260,10 @@ export default function AstrealDevelopersPage() {
           <div className="astreal-hero__scanlines" aria-hidden />
         </motion.div>
         <div className="container astreal-hero__inner">
+          <motion.div className="astreal-hero__mark" {...heroMarkLive}>
+            <span className="astreal-hero__brand-glow" aria-hidden />
+            <img src={astrealBrandLogo} alt="Astreal Developers" width={440} height={160} />
+          </motion.div>
           <motion.p
             className={`astreal-hero__eyebrow${reduceMotion ? '' : ' astreal-hero__eyebrow--live'}`}
             {...heroEyebrowLive}
@@ -273,10 +284,44 @@ export default function AstrealDevelopersPage() {
               We master plan to perfection
             </motion.span>
           </h1>
-          <motion.div className="astreal-hero__brand" {...heroBrandLive}>
-            <span className="astreal-hero__brand-glow" aria-hidden />
-            <img src={astrealBrandLogo} alt="Astreal Developers" width={220} height={80} />
-          </motion.div>
+        </div>
+        <div className="astreal-hero__scroll-zone">
+          <button
+            type="button"
+            className="astreal-hero__projects-jump"
+            onClick={scrollToProjectsSection}
+            aria-label="See our projects — scroll to latest projects"
+          >
+            <span className="astreal-hero__projects-jump-ring" aria-hidden />
+            <span className="astreal-hero__projects-jump-row">
+              <span className="astreal-hero__projects-jump-label">
+                <span className="astreal-hero__projects-jump-kicker">See our</span>
+                <span className="astreal-hero__projects-jump-title">projects</span>
+              </span>
+              <span className="astreal-hero__projects-jump-arrows" aria-hidden>
+                <svg className="astreal-hero__projects-jump-svg" viewBox="0 0 20 34" width="17" height="28">
+                  <path
+                    className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--1"
+                    d="M5 9l5 5 5-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--2"
+                    d="M5 18l5 5 5-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.55"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </span>
+          </button>
         </div>
       </header>
 

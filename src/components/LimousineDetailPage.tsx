@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
+import LimoGalleryLightbox from './LimoGalleryLightbox'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 
@@ -19,6 +20,7 @@ const CHRYSLER_GALLERY = [
 export default function LimousineDetailPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -63,12 +65,19 @@ export default function LimousineDetailPage() {
                 key={src}
                 className={`limo-detail-gallery__item${index === 0 ? ' limo-detail-gallery__item--hero' : ''}`}
               >
-                <img
-                  src={src}
-                  alt={`Chrysler 300 Super Stretch Limousine gallery image ${index + 1}`}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                />
+                <button
+                  type="button"
+                  className="limo-detail-gallery__trigger"
+                  onClick={() => setLightboxIndex(index)}
+                  aria-label={`Προβολή μεγαλύτερης εικόνας ${index + 1} από ${CHRYSLER_GALLERY.length}`}
+                >
+                  <img
+                    src={src}
+                    alt={`Chrysler 300 Super Stretch Limousine gallery image ${index + 1}`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                </button>
               </figure>
             ))}
           </motion.div>
@@ -174,6 +183,14 @@ export default function LimousineDetailPage() {
           </motion.div>
         </div>
       </section>
+
+      <LimoGalleryLightbox
+        images={CHRYSLER_GALLERY}
+        activeIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onNavigate={setLightboxIndex}
+        altForIndex={(i) => `Chrysler 300 Super Stretch Limousine gallery image ${i + 1}`}
+      />
 
       <Footer />
     </div>

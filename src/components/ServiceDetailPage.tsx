@@ -1,33 +1,45 @@
 import { useCallback, useEffect } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { getServiceBySlug } from '../data/serviceCards'
 import { getServicePageContent } from '../data/servicePageSections'
+import { TAX_NEX_FAQ_SECTION_ID } from '../data/taxNexFaqData'
 import VipServicesGrid from './VipServicesGrid'
 import StoragePremiumSection from './StoragePremiumSection'
 import ServiceDefaultSections from './ServiceDefaultSections'
-import TaxPremiumHero from './TaxPremiumHero'
-import TaxPremiumPlans from './TaxPremiumPlans'
-import TaxPremiumSteps from './TaxPremiumSteps'
-import TaxPremiumHowItWorks from './TaxPremiumHowItWorks'
-import TaxPremiumBenefits from './TaxPremiumBenefits'
-import TaxPremiumTools from './TaxPremiumTools'
-import TaxPremiumSocialProof from './TaxPremiumSocialProof'
+import TaxNexCyprusPage from './TaxNexCyprusPage'
 
 const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
 const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
 
 export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>()
+  const location = useLocation()
   const card = getServiceBySlug(slug)
   const defaultContent = slug ? getServicePageContent(slug) : undefined
   const pageRef = useReveal()
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [slug])
+    const id = location.hash.replace(/^#/, '')
+    if (id) {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const t = window.setTimeout(
+        () => {
+          const el = document.getElementById(id)
+          if (el) {
+            el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+          } else {
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+          }
+        },
+        id === 'tax-faq' ? 100 : 0,
+      )
+      return () => window.clearTimeout(t)
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [slug, location.hash])
 
   if (!card) {
     return <Navigate to="/" replace />
@@ -81,60 +93,58 @@ export default function ServiceDetailPage() {
           <div className="container">
             <nav className="tax-page-subnav__inner">
               <a href="#tax-hero" className="tax-page-subnav__link">
-                Intro
+                Εισαγωγή
               </a>
-              <a href="#tax-plans" className="tax-page-subnav__link">
-                Plans
+              <a href="#tax-services" className="tax-page-subnav__link">
+                Υπηρεσίες
+              </a>
+              <a href="#tax-pricing" className="tax-page-subnav__link">
+                Πακέτα
+              </a>
+              <a href="#tax-mission" className="tax-page-subnav__link">
+                Στόχος
               </a>
               <a href="#tax-steps" className="tax-page-subnav__link">
-                Steps
+                Βήματα
               </a>
               <Link to="/services" className="tax-page-subnav__link">
                 Services
               </Link>
-              <a href="#tax-how-it-works" className="tax-page-subnav__link">
-                How it works
-              </a>
-              <a href="#tax-benefits" className="tax-page-subnav__link">
-                Benefits
-              </a>
               <div className="tax-page-subnav__tools">
                 <a href="#tax-tools" className="tax-page-subnav__link">
-                  Free tools
+                  Εργαλεία
                 </a>
                 <div className="tax-page-subnav__tools-menu" role="menu" aria-label="Tax tools menu">
-                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                    Domicile Test
-                  </a>
+                  <Link
+                    to="/services/tax/income-tax-calculator"
+                    className="tax-page-subnav__tools-item"
+                    role="menuitem"
+                  >
+                    Φόρος εισοδήματος
+                  </Link>
                   <Link
                     to="/services/tax/transfer-fees-calculator"
                     className="tax-page-subnav__tools-item"
                     role="menuitem"
                   >
-                    Transfer Fees Calculator
+                    Μεταβιβαστικά τέλη
                   </Link>
                   <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                    Capital Gains Tax Calculator
+                    Domicile test
                   </a>
-                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                    Income Tax Calculator
-                  </a>
-                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                    20% Tax Exemption
-                  </a>
-                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                    50% Tax Exemption
-                  </a>
-                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                    Form TD59 (2026) - Short Guide
-                  </a>
+                  <Link to="/contact" className="tax-page-subnav__tools-item" role="menuitem">
+                    Αίτημα συμβουλής
+                  </Link>
                 </div>
               </div>
-              <a href="#tax-partners" className="tax-page-subnav__link">
-                Partners
+              <Link to={`/services/tax#${TAX_NEX_FAQ_SECTION_ID}`} className="tax-page-subnav__link">
+                Συχνές ερωτήσεις
+              </Link>
+              <a href="#tax-newsletter" className="tax-page-subnav__link">
+                Ενημέρωση
               </a>
-              <a href="#service-default-content" className="tax-page-subnav__link tax-page-subnav__link--cta">
-                Request details
+              <a href="#tax-contact" className="tax-page-subnav__link tax-page-subnav__link--cta">
+                Αίτημα
               </a>
             </nav>
           </div>
@@ -144,34 +154,7 @@ export default function ServiceDetailPage() {
       {slug === 'storage' ? (
         <StoragePremiumSection />
       ) : slug === 'tax' ? (
-        <>
-          <div id="tax-hero">
-            <TaxPremiumHero />
-          </div>
-          <div id="tax-plans">
-            <TaxPremiumPlans />
-          </div>
-          <div id="tax-steps">
-            <TaxPremiumSteps />
-          </div>
-          <div id="tax-how-it-works">
-            <TaxPremiumHowItWorks />
-          </div>
-          <div id="tax-benefits">
-            <TaxPremiumBenefits />
-          </div>
-          <div id="tax-tools">
-            <TaxPremiumTools />
-          </div>
-          <div id="tax-partners">
-            <TaxPremiumSocialProof />
-          </div>
-          {defaultContent ? (
-            <div id="service-default-content">
-              <ServiceDefaultSections content={defaultContent} serviceInterest={card.title} />
-            </div>
-          ) : null}
-        </>
+        <TaxNexCyprusPage />
       ) : (
         <>
           <section

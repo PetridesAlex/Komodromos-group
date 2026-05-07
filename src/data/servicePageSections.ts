@@ -103,34 +103,6 @@ export const SERVICE_PAGE_CONTENT: Partial<Record<string, ServicePageContent>> =
       'Metrics that leadership can actually use',
     ],
   },
-  tax: {
-    leadTitle: 'Financial clarity under pressure',
-    lead:
-      'Tax & Accounting Services delivers structured compliance, reporting, and advisory support — so decisions rest on numbers you can defend.',
-    offeringsTitle: 'Core support',
-    offerings: [
-      {
-        title: 'Compliance & filings',
-        description:
-          'Calendars, reconciliations, and submissions managed with audit-friendly trails.',
-      },
-      {
-        title: 'Reporting',
-        description:
-          'Management views tailored to owners, boards, and lenders.',
-      },
-      {
-        title: 'Advisory',
-        description:
-          'Scenario planning when structures, jurisdictions, or transactions shift.',
-      },
-    ],
-    bullets: [
-      'Coordination with legal counsel where matters overlap',
-      'Clear escalation when judgement calls are required',
-      'Discretion as a default, not an add-on',
-    ],
-  },
   janchapelle: {
     leadTitle: 'Couture bridal with uncompromising craft',
     lead:
