@@ -12,13 +12,13 @@ const TAX_STEPS: TaxStep[] = [
   {
     title: 'Step 1: Get a TIC',
     ctaLabel: 'How to get a TIC',
-    ctaTo: '/contact',
+    ctaTo: '/services/tax/how-to-get-a-tic',
     Icon: FileCheck2,
   },
   {
     title: 'Step 2: Register at TAXISnet',
     ctaLabel: 'How to register to TAXISnet',
-    ctaTo: '/contact',
+    ctaTo: '/services/tax/how-to-register-to-taxisnet',
     Icon: Building2,
   },
   {

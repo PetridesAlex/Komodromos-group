@@ -98,9 +98,38 @@ export default function ServiceDetailPage() {
               <a href="#tax-benefits" className="tax-page-subnav__link">
                 Benefits
               </a>
-              <a href="#tax-tools" className="tax-page-subnav__link">
-                Free tools
-              </a>
+              <div className="tax-page-subnav__tools">
+                <a href="#tax-tools" className="tax-page-subnav__link">
+                  Free tools
+                </a>
+                <div className="tax-page-subnav__tools-menu" role="menu" aria-label="Tax tools menu">
+                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
+                    Domicile Test
+                  </a>
+                  <Link
+                    to="/services/tax/transfer-fees-calculator"
+                    className="tax-page-subnav__tools-item"
+                    role="menuitem"
+                  >
+                    Transfer Fees Calculator
+                  </Link>
+                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
+                    Capital Gains Tax Calculator
+                  </a>
+                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
+                    Income Tax Calculator
+                  </a>
+                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
+                    20% Tax Exemption
+                  </a>
+                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
+                    50% Tax Exemption
+                  </a>
+                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
+                    Form TD59 (2026) - Short Guide
+                  </a>
+                </div>
+              </div>
               <a href="#tax-partners" className="tax-page-subnav__link">
                 Partners
               </a>

@@ -25,6 +25,9 @@ import VipTourIslandPage from './components/VipTourIslandPage.tsx'
 import YachtChartersPage from './components/yacht-charters/YachtChartersPage.tsx'
 import YachtDetailPage from './components/yacht-charters/YachtDetailPage.tsx'
 import ServicesLandingPage from './components/ServicesLandingPage.tsx'
+import TaxHowToTicPage from './components/TaxHowToTicPage.tsx'
+import TaxHowToTaxisnetPage from './components/TaxHowToTaxisnetPage.tsx'
+import TaxTransferFeesCalculatorPage from './components/TaxTransferFeesCalculatorPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
@@ -66,6 +69,9 @@ function Root() {
             <Route path="/services/vip-tour-around-island" element={<VipTourIslandPage />} />
             <Route path="/services/yacht-charters/:yachtId" element={<YachtDetailPage />} />
             <Route path="/services/yacht-charters" element={<YachtChartersPage />} />
+            <Route path="/services/tax/how-to-get-a-tic" element={<TaxHowToTicPage />} />
+            <Route path="/services/tax/how-to-register-to-taxisnet" element={<TaxHowToTaxisnetPage />} />
+            <Route path="/services/tax/transfer-fees-calculator" element={<TaxTransferFeesCalculatorPage />} />
             <Route path="/services" element={<ServicesLandingPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
           </Routes>
