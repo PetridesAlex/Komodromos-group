@@ -35,9 +35,9 @@ const repairGridItemVariants = {
   },
 }
 
-/** Primary hero — resort-style pool water (consistent with Pool Categories → Infinity) */
-const POOL_HERO_IMAGE =
-  '/images/services/swimming-pool-garden-services/pool-hero.webp'
+/** Primary hero video */
+const POOL_HERO_VIDEO =
+  '/images/services/swimming-pool-garden-services/swimming-pool-video/2021871_Hydro_Massage_Outdoor_3840x2160.mp4'
 
 /** Editorial strip — alternate pool detail so hero and insight section differ visually */
 const POOL_EDITORIAL_IMAGE =
@@ -113,15 +113,16 @@ export default function PoolGardenServicesPage() {
 
       <section className="pool-garden-hero" aria-label="Introduction" data-hero-parallax-root>
         <div className="pool-garden-hero__bg" aria-hidden data-hero-parallax>
-          <img
-            className="pool-garden-hero__bg-img"
-            src={POOL_HERO_IMAGE}
-            alt=""
-            width={1920}
-            height={1080}
-            decoding="async"
-            fetchPriority="high"
-          />
+          <video
+            className="pool-garden-hero__bg-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src={POOL_HERO_VIDEO} type="video/mp4" />
+          </video>
         </div>
         <div className="pool-garden-hero__scrim" aria-hidden />
         <div className="pool-garden-hero__grain" aria-hidden />

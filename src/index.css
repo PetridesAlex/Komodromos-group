@@ -12171,13 +12171,27 @@ article.wedding-highlight-tiles__tile {
 
 .pool-garden-hero__bg {
   position: absolute;
-  inset: 0;
+  inset: clamp(0.45rem, 1.8vw, 1rem);
   margin: 0;
   padding: 0;
   overflow: hidden;
+  border-radius: clamp(14px, 2.2vw, 24px);
+  border: 1px solid rgba(152, 194, 232, 0.36);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.32),
+    0 0 36px rgba(86, 152, 210, 0.22);
 }
 
 .pool-garden-hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.pool-garden-hero__bg-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -12300,12 +12314,12 @@ article.wedding-highlight-tiles__tile {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2.35rem;
+  padding: 1.05rem 2.55rem;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: rgba(8, 22, 48, 0.97);
   border: 2px solid transparent;
@@ -12349,6 +12363,17 @@ article.wedding-highlight-tiles__tile {
     background 0.45s ease;
 }
 
+.pool-garden-hero__services-btn::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: inherit;
+  border: 1px solid rgba(138, 194, 244, 0.42);
+  opacity: 0.75;
+  pointer-events: none;
+  animation: pool-hero-cta-ring-pulse 2.8s ease-in-out infinite;
+}
+
 .pool-garden-hero__services-btn::before {
   content: '';
   position: absolute;
@@ -12372,7 +12397,7 @@ article.wedding-highlight-tiles__tile {
 }
 
 .pool-garden-hero__services-btn:hover {
-  transform: translateY(-6px) scale(1.045);
+  transform: translateY(-6px) scale(1.055);
   color: rgba(4, 18, 42, 0.99);
   filter: brightness(1.05) saturate(1.12);
   animation-play-state: paused, paused, paused;
@@ -12410,6 +12435,10 @@ article.wedding-highlight-tiles__tile {
   animation-play-state: paused;
 }
 
+.pool-garden-hero__services-btn:hover::after {
+  animation-play-state: paused;
+}
+
 .pool-garden-hero__services-btn:focus-visible {
   outline: 2px solid rgba(200, 225, 255, 0.95);
   outline-offset: 4px;
@@ -12426,6 +12455,18 @@ article.wedding-highlight-tiles__tile {
   }
   50% {
     transform: translateY(-3px);
+  }
+}
+
+@keyframes pool-hero-cta-ring-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.95;
   }
 }
 
