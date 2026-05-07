@@ -15,7 +15,7 @@ export default function TaxPremiumHowItWorks() {
     <section className="bg-white py-14 sm:py-16">
       <div className="container">
         <motion.div
-          className="mx-auto rounded-[30px] border border-[#e3e9f3] bg-[linear-gradient(165deg,#ffffff_0%,#f7faff_100%)] p-6 shadow-[0_32px_60px_-45px_rgba(16,24,40,0.45)] sm:p-8 lg:p-10"
+          className="mx-auto rounded-[30px] border border-[#dce6f4] bg-[linear-gradient(165deg,#ffffff_0%,#f7fbff_100%)] p-6 shadow-[0_36px_72px_-46px_rgba(16,24,40,0.52)] sm:p-8 lg:p-10"
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -42,7 +42,7 @@ export default function TaxPremiumHowItWorks() {
 
             <div>
               <motion.h2
-                className="text-center text-3xl font-semibold tracking-tight text-[#1a2238] sm:text-4xl lg:text-left"
+                className="bg-gradient-to-b from-[#14253f] to-[#2e4970] bg-clip-text text-center text-3xl font-semibold tracking-tight text-transparent sm:text-4xl lg:text-left"
                 initial={reduceMotion ? false : { opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
@@ -63,7 +63,7 @@ export default function TaxPremiumHowItWorks() {
                   >
                     <div className="flex flex-col items-center">
                       <motion.span
-                        className="flex h-11 w-11 items-center justify-center rounded-full border border-[#abc0e4] bg-white text-2xl font-semibold text-[#2f5da3] shadow-[0_10px_20px_-16px_rgba(24,66,140,0.8)]"
+                        className="tax-how-step-num relative flex h-11 w-11 items-center justify-center rounded-full border border-[#abc0e4] bg-white text-2xl font-extrabold text-[#214f97] shadow-[0_10px_20px_-16px_rgba(24,66,140,0.8)]"
                         initial={reduceMotion ? false : { scale: 0.86, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
                         viewport={{ once: true }}

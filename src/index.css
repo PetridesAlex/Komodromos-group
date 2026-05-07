@@ -1148,13 +1148,15 @@ a {
   top: calc(100% + 0.4rem);
   left: 50%;
   transform: translateX(-50%);
-  min-width: 15.5rem;
-  border: 1px solid rgba(129, 162, 208, 0.48);
-  border-radius: 0.8rem;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 250, 255, 0.98) 100%);
+  min-width: 19rem;
+  border: 1px solid rgba(122, 159, 210, 0.58);
+  border-radius: 0.95rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.99) 0%, rgba(244, 250, 255, 0.99) 100%),
+    radial-gradient(circle at 20% 0%, rgba(198, 228, 255, 0.35) 0%, transparent 55%);
   box-shadow:
-    0 16px 34px rgba(19, 44, 74, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.55) inset;
+    0 24px 48px rgba(19, 44, 74, 0.24),
+    0 0 0 1px rgba(255, 255, 255, 0.62) inset;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1163,7 +1165,7 @@ a {
     transform 0.22s ease,
     visibility 0.22s ease;
   z-index: 32;
-  padding: 0.35rem;
+  padding: 0.45rem;
 }
 
 .tax-page-subnav__tools:hover .tax-page-subnav__tools-menu,
@@ -1176,25 +1178,30 @@ a {
 
 .tax-page-subnav__tools-item {
   display: block;
-  border-radius: 0.5rem;
+  border-radius: 0.65rem;
   text-decoration: none;
-  font-size: 0.73rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.045em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #2a4b77;
-  padding: 0.48rem 0.58rem;
+  color: #24456f;
+  padding: 0.62rem 0.72rem;
+  border: 1px solid transparent;
   transition:
     color 0.2s ease,
     background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
     transform 0.2s ease;
 }
 
 .tax-page-subnav__tools-item:hover,
 .tax-page-subnav__tools-item:focus-visible {
-  color: #11385d;
-  background: rgba(187, 221, 255, 0.36);
-  transform: translateX(1px);
+  color: #0f3559;
+  background: linear-gradient(140deg, rgba(192, 222, 255, 0.48) 0%, rgba(169, 208, 252, 0.42) 100%);
+  border-color: rgba(137, 176, 226, 0.56);
+  box-shadow: 0 8px 18px -14px rgba(26, 72, 138, 0.45);
+  transform: translateX(2px);
 }
 
 @media (max-width: 640px) {
@@ -12021,12 +12028,117 @@ article.wedding-highlight-tiles__tile {
   justify-content: center;
 }
 
+#service-default-content .service-default-section {
+  border-top: 1px solid rgba(160, 188, 223, 0.32);
+  background: linear-gradient(180deg, #f8fbff 0%, #f2f7ff 100%);
+}
+
+#service-default-content .service-default-section--offerings {
+  background: linear-gradient(180deg, #f4f9ff 0%, #ebf3ff 100%);
+}
+
+#service-default-content .service-default-lead-title {
+  color: #1d3355;
+}
+
+#service-default-content .service-default-lead {
+  color: rgba(50, 77, 114, 0.88);
+}
+
+#service-default-content .service-default-card {
+  border-color: rgba(143, 179, 224, 0.35);
+  background: linear-gradient(175deg, #ffffff 0%, #f5f9ff 100%);
+  box-shadow: 0 14px 30px -24px rgba(27, 63, 122, 0.28);
+}
+
+#service-default-content .service-default-card:hover {
+  border-color: rgba(96, 144, 206, 0.5);
+  box-shadow: 0 20px 40px -26px rgba(27, 63, 122, 0.35);
+}
+
+#service-default-content .service-default-card__title {
+  color: #2f5f97;
+}
+
+#service-default-content .service-default-card__desc {
+  color: rgba(56, 82, 117, 0.84);
+}
+
+#service-default-content .service-default-bullets li {
+  color: rgba(50, 77, 114, 0.88);
+}
+
+#service-default-content .service-default-bullets li::before {
+  background: rgba(66, 120, 195, 0.86);
+}
+
+#service-default-content .service-default-closing {
+  color: rgba(56, 84, 119, 0.85);
+}
+
+#service-default-content .service-default-cta {
+  position: relative;
+  overflow: hidden;
+  color: #f2f7ff;
+  border: 1px solid rgba(114, 154, 223, 0.92);
+  background: linear-gradient(135deg, #4b88dc 0%, #3a70bf 45%, #315ea3 100%);
+  box-shadow:
+    0 14px 32px -18px rgba(41, 84, 161, 0.85),
+    0 0 0 1px rgba(208, 226, 252, 0.26) inset;
+  animation: service-default-cta-float 3.9s ease-in-out infinite;
+}
+
+#service-default-content .service-default-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 26%, rgba(255, 255, 255, 0.34) 50%, transparent 74%);
+  transform: translateX(-120%);
+  animation: service-default-cta-shimmer 2.8s linear infinite;
+  pointer-events: none;
+}
+
+#service-default-content .service-default-cta:hover,
+#service-default-content .service-default-cta:focus-visible {
+  filter: none;
+  transform: translateY(-3px) scale(1.02);
+  background: linear-gradient(135deg, #649ee8 0%, #4b84d5 45%, #3d72c0 100%);
+  border-color: rgba(166, 199, 252, 0.98);
+  box-shadow:
+    0 22px 44px -22px rgba(41, 84, 161, 0.95),
+    0 0 0 1px rgba(224, 238, 255, 0.4) inset;
+}
+
+@keyframes service-default-cta-shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes service-default-cta-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .service-default-card:hover,
   .wedding-packages-section__enquire:hover,
   .service-default-cta:hover,
   .wedding-highlight-tiles__tile--link:hover {
     transform: none;
+  }
+
+  #service-default-content .service-default-cta,
+  #service-default-content .service-default-cta::before {
+    animation: none;
   }
 }
 
@@ -17768,6 +17880,159 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 @media (prefers-reduced-motion: reduce) {
   .tax-tool-card::before,
   .tax-tool-cta::before {
+    animation: none;
+  }
+}
+
+.tax-steps-cta {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(122, 158, 220, 0.92);
+  background: linear-gradient(135deg, #3f6bb7 0%, #315a9f 45%, #264a86 100%);
+  box-shadow:
+    0 14px 30px -18px rgba(26, 62, 126, 0.82),
+    0 0 0 1px rgba(185, 210, 247, 0.24) inset;
+  transition:
+    transform 250ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 250ms ease,
+    border-color 250ms ease,
+    filter 250ms ease,
+    background 250ms ease;
+}
+
+.tax-steps-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 26%, rgba(255, 255, 255, 0.36) 50%, transparent 74%);
+  transform: translateX(-120%);
+  animation: tax-steps-cta-shimmer 2.7s linear infinite;
+  pointer-events: none;
+}
+
+.tax-steps-cta:hover,
+.tax-steps-cta:focus-visible {
+  transform: translateY(-2px) scale(1.025);
+  border-color: rgba(171, 202, 255, 0.98);
+  background: linear-gradient(135deg, #5b8ce0 0%, #4578ce 45%, #355faa 100%);
+  box-shadow:
+    0 20px 40px -20px rgba(38, 83, 164, 0.95),
+    0 0 0 1px rgba(224, 236, 255, 0.38) inset;
+  filter: brightness(1.06);
+}
+
+@keyframes tax-steps-cta-shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tax-steps-cta::before {
+    animation: none;
+  }
+}
+
+.tax-how-step-num {
+  isolation: isolate;
+  letter-spacing: -0.01em;
+}
+
+.tax-how-step-num::before,
+.tax-how-step-num::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.tax-how-step-num::before {
+  border: 2px solid rgba(119, 158, 218, 0.85);
+  opacity: 0.9;
+  animation: tax-how-step-ring 2.2s ease-in-out infinite;
+}
+
+.tax-how-step-num::after {
+  inset: -6px;
+  border: 2px dashed rgba(146, 183, 236, 0.62);
+  opacity: 0.85;
+  animation: tax-how-step-spin 3.6s linear infinite;
+}
+
+@keyframes tax-how-step-ring {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.07);
+    opacity: 1;
+  }
+}
+
+@keyframes tax-how-step-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tax-how-step-num::before,
+  .tax-how-step-num::after {
+    animation: none;
+  }
+}
+
+.tax-benefit-check {
+  filter: drop-shadow(0 0 0 rgba(80, 170, 245, 0));
+  animation: tax-benefit-check-pulse 2.4s ease-in-out infinite;
+}
+
+.tax-benefit-check path {
+  stroke-dasharray: 16;
+  stroke-dashoffset: 16;
+  animation: tax-benefit-check-draw 2.2s ease-in-out infinite;
+}
+
+@keyframes tax-benefit-check-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(80, 170, 245, 0));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 10px rgba(80, 170, 245, 0.4));
+  }
+}
+
+@keyframes tax-benefit-check-draw {
+  0% {
+    stroke-dashoffset: 16;
+    opacity: 0.7;
+  }
+  35%,
+  70% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tax-benefit-check,
+  .tax-benefit-check path {
     animation: none;
   }
 }

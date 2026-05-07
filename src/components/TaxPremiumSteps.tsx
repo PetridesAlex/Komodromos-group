@@ -56,7 +56,7 @@ export default function TaxPremiumSteps() {
                 <Link
                   to={step.ctaTo}
                   state={{ serviceInterest: 'Tax & Accounting Services' }}
-                  className="inline-flex h-12 items-center justify-center rounded-lg border border-[#6f8fc5] bg-[#2d4770] px-6 text-sm font-semibold uppercase tracking-wide text-[#e8f1ff] transition hover:bg-[#385785]"
+                  className="tax-steps-cta inline-flex h-12 items-center justify-center rounded-lg px-6 text-sm font-semibold uppercase tracking-wide text-[#e8f1ff]"
                 >
                   {step.ctaLabel}
                 </Link>

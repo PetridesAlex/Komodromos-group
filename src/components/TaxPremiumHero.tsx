@@ -52,7 +52,7 @@ function HeadlineRow({
   return (
     <>
       <motion.h1
-        className={`sm:hidden text-3xl font-medium leading-[1.04] tracking-[0.01em] text-[#0d1117] uppercase ${premiumHeadlineFont}`}
+        className={`sm:hidden font-['Playfair_Display','Cormorant_Garamond',Georgia,'Times_New_Roman',serif] text-[2.05rem] font-semibold leading-[1.06] tracking-[0.015em] text-[#0d1117] uppercase`}
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, delay }}
