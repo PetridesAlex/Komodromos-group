@@ -46,6 +46,81 @@ export const airPrivateJetFleet = {
   ],
 } as const
 
+export type AirPrivateJetAircraftId = (typeof airPrivateJetFleet.aircraft)[number]['id']
+
+export const airPrivateJetFleetDetails: Record<
+  AirPrivateJetAircraftId,
+  {
+    intro: string
+    description: string
+    specs: string[]
+    gallery: { src: string; alt: string }[]
+  }
+> = {
+  'challenger-604': {
+    intro: 'Bombardier Challenger 604 / 605 - Executive space for serious missions.',
+    description:
+      'A proven super-midsize platform with stand-up cabin comfort, strong luggage capability and dependable medium-haul performance for board travel, client roadshows and multi-stop schedules.',
+    specs: [
+      'Category: Super-midsize business jet',
+      'Typical Capacity: 8-12 passengers',
+      'Cabin: Full stand-up cabin with lounge and work zones',
+      'Range Profile: Medium-to-long regional sectors',
+      'Cruise Focus: Comfortable executive cruise with stable ride',
+    ],
+    gallery: [
+      { src: `${AIR_IMG}/private-jet-bombardier/Bombardier-challenger-604-605.webp`, alt: 'Bombardier Challenger 604/605 exterior profile' },
+      { src: `${AIR_IMG}/private-jet-bombardier/Bombardier-challenger%20.webp`, alt: 'Bombardier Challenger on apron' },
+      { src: `${AIR_IMG}/private-jet-bombardier/Interior.webp`, alt: 'Bombardier Challenger interior' },
+      { src: `${AIR_IMG}/private-jet-bombardier/Cabin-layout.webp`, alt: 'Bombardier Challenger cabin layout' },
+      { src: `${AIR_IMG}/private-jet-bombardier/Cockpit.webp`, alt: 'Bombardier Challenger cockpit' },
+    ],
+  },
+  'learjet-60-xr': {
+    intro: 'Bombardier Learjet 60 XR - Speed and agility for time-critical travel.',
+    description:
+      'Known for quick climbs and efficient cruise, the Learjet 60 XR is tailored for busy principals, fast regional hops and routes where runway flexibility and pace matter most.',
+    specs: [
+      'Category: Midsize business jet',
+      'Typical Capacity: 6-8 passengers',
+      'Cabin: Compact executive cabin with premium seating',
+      'Range Profile: Regional and medium sectors',
+      'Cruise Focus: Fast mission turnarounds and efficient operations',
+    ],
+    gallery: [
+      { src: `${AIR_IMG}/private-jet-bombardier-learjet-60-xr/Bombardier-learjet-60-xr.webp`, alt: 'Bombardier Learjet 60 XR exterior' },
+      { src: `${AIR_IMG}/private-jet-bombardier-learjet-60-xr/on%20air.webp`, alt: 'Bombardier Learjet 60 XR in flight' },
+      { src: `${AIR_IMG}/private-jet-bombardier-learjet-60-xr/interior-1.webp`, alt: 'Learjet 60 XR interior seating' },
+      { src: `${AIR_IMG}/private-jet-bombardier-learjet-60-xr/Cabin%20Layout.webp`, alt: 'Learjet 60 XR cabin layout' },
+    ],
+  },
+  'global-charter': {
+    intro: 'World - Long-range flagship for global itineraries.',
+    description:
+      'Our heavy-jet class option is designed for intercontinental schedules, larger entourages and elevated onboard hospitality, delivering range, privacy and flexibility for long-duration missions.',
+    specs: [
+      'Category: Heavy jet / long-range charter',
+      'Typical Capacity: 10-16 passengers',
+      'Cabin: Multi-zone layout for dining, work and rest',
+      'Range Profile: Intercontinental operations',
+      'Cruise Focus: Endurance, discretion and premium in-flight comfort',
+    ],
+    gallery: [
+      { src: `${AIR_IMG}/private-jet-world/world-1.webp`, alt: 'Long-range private jet profile' },
+      { src: `${AIR_IMG}/private-jet-world/world-2.webp`, alt: 'Private jet prepared for departure' },
+      { src: `${AIR_IMG}/private-jet-world/world-3.webp`, alt: 'Heavy jet exterior on ramp' },
+      { src: `${AIR_IMG}/private-jet-world/world-4.webp`, alt: 'Private jet in operation' },
+      { src: `${AIR_IMG}/private-jet-world/world-5.webp`, alt: 'Long-range jet exterior detail' },
+      { src: `${AIR_IMG}/private-jet-world/world-7.webp`, alt: 'Heavy jet luxury travel mission' },
+      { src: `${AIR_IMG}/private-jet-world/world-8.webp`, alt: 'Private jet at destination airport' },
+      { src: `${AIR_IMG}/private-jet-world/world-9.webp`, alt: 'World class charter aircraft view' },
+      { src: `${AIR_IMG}/private-jet-world/world-10.webp`, alt: 'Premium private jet exterior' },
+      { src: `${AIR_IMG}/private-jet-world/world-11.webp`, alt: 'Intercontinental private jet' },
+      { src: `${AIR_IMG}/private-jet-world/world12.webp`, alt: 'Global charter fleet aircraft' },
+    ],
+  },
+}
+
 /** Light aircraft fleet showcase (three cards) — `/services/air/light-aircraft/fleet` */
 export const airLightFleetPath = '/services/air/light-aircraft/fleet' as const
 

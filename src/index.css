@@ -16782,6 +16782,73 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   margin-right: auto;
 }
 
+.air-pjf:not(.air-pjf--light) .air-pjf__masthead {
+  background:
+    radial-gradient(ellipse 120% 85% at 12% 0%, rgba(112, 198, 255, 0.18) 0%, transparent 58%),
+    radial-gradient(ellipse 95% 72% at 98% 8%, rgba(96, 166, 245, 0.14) 0%, transparent 62%),
+    linear-gradient(180deg, #0d1f36 0%, #09192d 44%, #061323 100%);
+}
+
+.air-pjf:not(.air-pjf--light) .air-pjf__masthead-inner {
+  max-width: 56rem;
+  padding: clamp(1rem, 2.4vw, 1.45rem);
+  border-radius: 6px;
+  border: 1px solid rgba(142, 214, 255, 0.34);
+  background:
+    linear-gradient(126deg, rgba(174, 230, 255, 0.09) 0%, transparent 44%),
+    linear-gradient(164deg, rgba(26, 52, 86, 0.7) 0%, rgba(8, 22, 42, 0.92) 56%, rgba(5, 14, 30, 0.96) 100%);
+  box-shadow:
+    0 24px 62px rgba(0, 0, 0, 0.45),
+    0 0 46px rgba(92, 190, 248, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.air-pjf__title--jet-premium {
+  font-size: clamp(2.2rem, 4.8vw, 3.35rem);
+  letter-spacing: 0.028em;
+  background: linear-gradient(180deg, #ffffff 0%, #eef6ff 44%, #c4ddf2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18),
+    0 12px 34px rgba(76, 172, 240, 0.2);
+  animation: air-pjf-jet-title-float 6.8s ease-in-out infinite;
+}
+
+.air-pjf__lead--jet-premium {
+  font-size: clamp(0.96rem, 1.45vw, 1.12rem);
+  line-height: 1.75;
+  color: rgba(219, 233, 248, 0.95);
+  max-width: 46rem;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.34);
+  animation: air-pjf-jet-lead-breathe 5.9s ease-in-out infinite;
+}
+
+@keyframes air-pjf-jet-title-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 0 rgba(102, 198, 255, 0));
+  }
+  50% {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 14px rgba(102, 198, 255, 0.24));
+  }
+}
+
+@keyframes air-pjf-jet-lead-breathe {
+  0%,
+  100% {
+    opacity: 0.93;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
+
 .air-pjf__fleet {
   position: relative;
   z-index: 1;
@@ -16924,6 +16991,46 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   gap: 0.75rem 1rem;
   justify-content: center;
   margin-top: clamp(2rem, 5vh, 3rem);
+}
+
+/* Private-jets fleet variant: larger cards and image area */
+.air-pjf:not(.air-pjf--light) .air-pjf__fleet > .container {
+  width: min(1540px, 97%);
+}
+
+.air-pjf:not(.air-pjf--light) .air-pjf__grid {
+  gap: clamp(1.5rem, 3.2vw, 2.2rem);
+}
+
+.air-pjf:not(.air-pjf--light) .air-pjf__card-media {
+  aspect-ratio: 16 / 11;
+}
+
+.air-pjf:not(.air-pjf--light) .air-pjf__card-body {
+  padding: clamp(1.35rem, 2.9vw, 1.8rem);
+  gap: 0.82rem;
+}
+
+.air-pjf:not(.air-pjf--light) .air-pjf__card-title {
+  font-size: clamp(1.5rem, 3.4vw, 1.95rem);
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.018em;
+  line-height: 1.2;
+  text-wrap: balance;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 18ch;
+  min-height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f7fbff;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18),
+    0 10px 26px rgba(60, 155, 228, 0.18),
+    0 0 20px rgba(130, 208, 255, 0.14);
 }
 
 /* Light-aircraft fleet variant: bigger cards + dynamic image motion */
@@ -17103,6 +17210,11 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
     animation: none;
     transform: scale(1.03);
     will-change: auto;
+  }
+
+  .air-pjf__title--jet-premium,
+  .air-pjf__lead--jet-premium {
+    animation: none;
   }
 
   .air-pjf__title--light-premium,

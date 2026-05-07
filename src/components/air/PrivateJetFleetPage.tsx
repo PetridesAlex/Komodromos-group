@@ -5,7 +5,7 @@ import Footer from '../Footer'
 import SiteLogo from '../SiteLogo'
 import TopbarSocialLinks from '../TopbarSocialLinks'
 import { useReveal } from '../../hooks/useReveal'
-import { airCategoryPath, airPrivateJetFleet } from '../../data/airServicesPage'
+import { airCategoryPath, airPrivateJetFleet, airPrivateJetFleetPath } from '../../data/airServicesPage'
 
 const BASE_TITLE = 'Komodromos'
 const EASE = [0.16, 1, 0.3, 1] as const
@@ -111,7 +111,7 @@ export default function PrivateJetFleetPage() {
             </motion.p>
             <motion.h1
               id="air-pjf-title"
-              className="air-pjf__title"
+              className="air-pjf__title air-pjf__title--jet-premium"
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: reduceMotion ? 0 : 0.58, delay: reduceMotion ? 0 : 0.06, ease: EASE }}
@@ -119,7 +119,7 @@ export default function PrivateJetFleetPage() {
               {d.title}
             </motion.h1>
             <motion.p
-              className="air-pjf__lead"
+              className="air-pjf__lead air-pjf__lead--jet-premium"
               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: reduceMotion ? 0 : 0.52, delay: reduceMotion ? 0 : 0.12, ease: EASE }}
@@ -145,42 +145,44 @@ export default function PrivateJetFleetPage() {
                     ease: EASE,
                   }}
                 >
-                  <article className="air-pjf__card">
-                    <motion.div
-                      className="air-pjf__card-media"
-                      initial={reduceMotion ? false : { scale: 1.03 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true, margin: '-80px 0px', amount: 0.2 }}
-                      transition={{
-                        duration: reduceMotion ? 0 : 0.7,
-                        delay: reduceMotion ? 0 : 0.04 + Math.min(i * 0.07, 0.18),
-                        ease: EASE,
-                      }}
-                    >
-                      <img
-                        className="air-pjf__card-img"
-                        src={ac.image}
-                        alt={ac.imageAlt}
-                        width={960}
-                        height={600}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <span className="air-pjf__card-sheen" aria-hidden />
-                    </motion.div>
-                    <div className="air-pjf__card-body">
-                      <p className="air-pjf__card-segment">{ac.segment}</p>
-                      <h2 className="air-pjf__card-title">{ac.name}</h2>
-                      <p className="air-pjf__card-desc">{ac.description}</p>
-                      <ul className="air-pjf__card-highlights">
-                        {ac.highlights.map((line) => (
-                          <li key={line} className="air-pjf__card-highlight">
-                            {line}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </article>
+                  <Link to={`${airPrivateJetFleetPath}/${ac.id}`} className="air-pjf__card-link">
+                    <article className="air-pjf__card">
+                      <motion.div
+                        className="air-pjf__card-media"
+                        initial={reduceMotion ? false : { scale: 1.03 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true, margin: '-80px 0px', amount: 0.2 }}
+                        transition={{
+                          duration: reduceMotion ? 0 : 0.7,
+                          delay: reduceMotion ? 0 : 0.04 + Math.min(i * 0.07, 0.18),
+                          ease: EASE,
+                        }}
+                      >
+                        <img
+                          className="air-pjf__card-img"
+                          src={ac.image}
+                          alt={ac.imageAlt}
+                          width={960}
+                          height={600}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span className="air-pjf__card-sheen" aria-hidden />
+                      </motion.div>
+                      <div className="air-pjf__card-body">
+                        <p className="air-pjf__card-segment">{ac.segment}</p>
+                        <h2 className="air-pjf__card-title">{ac.name}</h2>
+                        <p className="air-pjf__card-desc">{ac.description}</p>
+                        <ul className="air-pjf__card-highlights">
+                          {ac.highlights.map((line) => (
+                            <li key={line} className="air-pjf__card-highlight">
+                              {line}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </article>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
