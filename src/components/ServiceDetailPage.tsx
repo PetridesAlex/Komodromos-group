@@ -95,9 +95,9 @@ export default function ServiceDetailPage() {
               <a href="#tax-hero" className="tax-page-subnav__link">
                 Εισαγωγή
               </a>
-              <a href="#tax-services" className="tax-page-subnav__link">
+              <Link to="/services/tax/services" className="tax-page-subnav__link">
                 Υπηρεσίες
-              </a>
+              </Link>
               <a href="#tax-pricing" className="tax-page-subnav__link">
                 Πακέτα
               </a>
@@ -107,9 +107,6 @@ export default function ServiceDetailPage() {
               <a href="#tax-steps" className="tax-page-subnav__link">
                 Βήματα
               </a>
-              <Link to="/services" className="tax-page-subnav__link">
-                Services
-              </Link>
               <div className="tax-page-subnav__tools">
                 <a href="#tax-tools" className="tax-page-subnav__link">
                   Εργαλεία
@@ -120,21 +117,35 @@ export default function ServiceDetailPage() {
                     className="tax-page-subnav__tools-item"
                     role="menuitem"
                   >
-                    Φόρος εισοδήματος
+                    ΥΠΟΛΟΓΙΣΜΟΣ ΦΟΡΟΥ ΕΙΣΟΔΗΜΑΤΟΣ
                   </Link>
+                  <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
+                    ΕΛΕΓΧΟΣ ΦΟΡΟΛΟΓΙΚΗΣ ΚΑΤΟΙΚΙΑΣ
+                  </a>
                   <Link
                     to="/services/tax/transfer-fees-calculator"
                     className="tax-page-subnav__tools-item"
                     role="menuitem"
                   >
-                    Μεταβιβαστικά τέλη
+                    ΥΠΟΛΟΓΙΣΜΟΣ ΤΕΛΩΝ ΜΕΤΑΒΙΒΑΣΗΣ
+                  </Link>
+                  <Link
+                    to="/services/tax/income-tax-calculator"
+                    className="tax-page-subnav__tools-item"
+                    role="menuitem"
+                  >
+                    20% ΦΟΡΟΑΠΑΛΛΑΓΗ
+                  </Link>
+                  <Link
+                    to="/services/tax/income-tax-calculator"
+                    className="tax-page-subnav__tools-item"
+                    role="menuitem"
+                  >
+                    50% ΦΟΡΟΑΠΑΛΛΑΓΗ
                   </Link>
                   <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                    Domicile test
+                    FORM TD59
                   </a>
-                  <Link to="/contact" className="tax-page-subnav__tools-item" role="menuitem">
-                    Αίτημα συμβουλής
-                  </Link>
                 </div>
               </div>
               <Link to={`/services/tax#${TAX_NEX_FAQ_SECTION_ID}`} className="tax-page-subnav__link">

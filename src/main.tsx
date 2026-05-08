@@ -29,6 +29,7 @@ import TaxHowToTicPage from './components/TaxHowToTicPage.tsx'
 import TaxHowToTaxisnetPage from './components/TaxHowToTaxisnetPage.tsx'
 import TaxTransferFeesCalculatorPage from './components/TaxTransferFeesCalculatorPage.tsx'
 import TaxIncomeCalculatorPage from './components/TaxIncomeCalculatorPage.tsx'
+import TaxServicesOverviewPage from './components/TaxServicesOverviewPage.tsx'
 import AstrealDevelopersPage from './components/AstrealDevelopersPage.tsx'
 import AstrealProjectDetailPage from './components/AstrealProjectDetailPage.tsx'
 import Preloader from './components/Preloader.tsx'
@@ -76,6 +77,7 @@ function Root() {
             <Route path="/services/tax/how-to-register-to-taxisnet" element={<TaxHowToTaxisnetPage />} />
             <Route path="/services/tax/transfer-fees-calculator" element={<TaxTransferFeesCalculatorPage />} />
             <Route path="/services/tax/income-tax-calculator" element={<TaxIncomeCalculatorPage />} />
+            <Route path="/services/tax/services" element={<TaxServicesOverviewPage />} />
             <Route path="/services/astreal" element={<AstrealDevelopersPage />} />
             <Route path="/services/astreal/projects/:projectId" element={<AstrealProjectDetailPage />} />
             <Route path="/services" element={<ServicesLandingPage />} />
