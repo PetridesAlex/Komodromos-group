@@ -8,6 +8,12 @@ import {
 } from '../../data/airServicesPage'
 
 const EASE = [0.16, 1, 0.3, 1] as const
+const INTRO_CARD_IMAGES = [
+  '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-1.webp',
+  '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-2.webp',
+  '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-3.webp',
+  '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-4.webp',
+] as const
 
 type Props = {
   jetsPath: string
@@ -187,15 +193,34 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
               <motion.article
                 key={card.title}
                 className="air-lxp__card"
-                initial={reduceMotion ? false : { opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                initial={
+                  reduceMotion
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: 42,
+                        x: i % 2 === 0 ? -28 : 28,
+                        scale: 0.985,
+                      }
+                }
+                whileInView={
+                  reduceMotion
+                    ? { opacity: 1, y: 0, x: 0, scale: 1 }
+                    : {
+                        opacity: 1,
+                        y: 0,
+                        x: 0,
+                        scale: 1,
+                        transitionEnd: { filter: 'none' },
+                      }
+                }
+                viewport={{ once: false, amount: 0.32, margin: '-40px 0px -40px 0px' }}
                 transition={{
                   duration: reduceMotion ? 0 : 0.58,
-                  delay: reduceMotion ? 0 : Math.min(i * 0.1, 0.35),
+                  delay: reduceMotion ? 0 : Math.min(i * 0.08, 0.24),
                   ease: EASE,
                 }}
-                whileHover={reduceMotion ? undefined : { y: -8, scale: 1.02 }}
+                whileHover={reduceMotion ? undefined : { y: -4 }}
               >
                 <motion.span
                   className="air-lxp__card-index"
@@ -211,8 +236,23 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
                 >
                   {String(i + 1).padStart(2, '0')}
                 </motion.span>
-                <h3 className="air-lxp__card-title">{card.title}</h3>
-                <p className="air-lxp__card-desc">{card.description}</p>
+                <div className="air-lxp__card-content">
+                  <figure className="air-lxp__image-slot air-lxp__image-slot--card" aria-label={`Card image placeholder ${i + 1}`}>
+                    <img
+                      className="air-lxp__image-slot-img"
+                      src={INTRO_CARD_IMAGES[i]}
+                      alt={`${card.title} visual`}
+                      loading="lazy"
+                      decoding="async"
+                      width={640}
+                      height={420}
+                    />
+                  </figure>
+                  <div className="air-lxp__card-text">
+                    <h3 className="air-lxp__card-title">{card.title}</h3>
+                    <p className="air-lxp__card-desc">{card.description}</p>
+                  </div>
+                </div>
                 <span className="air-lxp__card-shine" aria-hidden />
               </motion.article>
             ))}
