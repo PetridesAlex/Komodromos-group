@@ -139,20 +139,25 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
               narrative copy with image-ready visual frames.
             </p>
             <ul className="air-pjp__story-grid">
-              {story.map((section, i) => (
-                <motion.li
-                  key={section.title}
-                  className="air-pjp__story-card"
-                  initial={reduceMotion ? false : { opacity: 0, y: 38, scale: 0.975 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.28, margin: '-10% 0px -12% 0px' }}
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.64,
-                    delay: reduceMotion ? 0 : i * 0.07,
-                    ease: EASE,
-                  }}
-                  whileHover={reduceMotion ? undefined : { y: -7, scale: 1.014 }}
-                >
+              {story.map((section, i) => {
+                const firstSegment = section.segments[0] as { image?: { src: string; alt: string } } | undefined
+                const fallbackImage = firstSegment?.image
+                const cardImage = STORY_IMAGES[i] ?? fallbackImage
+
+                return (
+                  <motion.li
+                    key={section.title}
+                    className="air-pjp__story-card"
+                    initial={reduceMotion ? false : { opacity: 0, y: 38, scale: 0.975 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: false, amount: 0.28, margin: '-10% 0px -12% 0px' }}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.64,
+                      delay: reduceMotion ? 0 : i * 0.07,
+                      ease: EASE,
+                    }}
+                    whileHover={reduceMotion ? undefined : { y: -7, scale: 1.014 }}
+                  >
                   <motion.div
                     className="air-pjp__story-content"
                     initial={reduceMotion ? false : { opacity: 0, y: 14 }}
@@ -168,11 +173,11 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
                       viewport={{ once: false, amount: 0.3 }}
                       transition={{ duration: reduceMotion ? 0 : 0.58, ease: EASE }}
                     >
-                      {STORY_IMAGES[i] || section.segments[0]?.image ? (
+                      {cardImage ? (
                         <img
                           className="air-pjp__story-img"
-                          src={STORY_IMAGES[i]?.src ?? section.segments[0].image?.src ?? ''}
-                          alt={STORY_IMAGES[i]?.alt ?? section.segments[0].image?.alt ?? ''}
+                          src={cardImage.src}
+                          alt={cardImage.alt}
                           loading="lazy"
                           decoding="async"
                           width={900}
@@ -216,8 +221,9 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
                     </motion.div>
                   </motion.div>
                   <span className="air-pjp__story-shine" aria-hidden />
-                </motion.li>
-              ))}
+                  </motion.li>
+                )
+              })}
             </ul>
           </motion.div>
         </div>
