@@ -321,12 +321,28 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
                 className="air-lxp__course-cell"
                 initial={reduceMotion ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                animate={
+                  reduceMotion
+                    ? undefined
+                    : {
+                        y: [0, -2, 0],
+                      }
+                }
                 viewport={{ once: true, margin: '-30px' }}
                 transition={{
-                  duration: reduceMotion ? 0 : 0.5,
-                  delay: reduceMotion ? 0 : i * 0.06,
-                  ease: EASE,
+                  opacity: { duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : i * 0.06, ease: EASE },
+                  y: reduceMotion
+                    ? { duration: 0 }
+                    : {
+                        duration: 3.8 + (i % 3) * 0.45,
+                        repeat: Infinity,
+                        repeatType: 'mirror',
+                        ease: 'easeInOut',
+                        delay: 0.15 + i * 0.18,
+                      },
                 }}
+                whileHover={reduceMotion ? undefined : { y: -7, scale: 1.015 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.995 }}
               >
                 <span className="air-lxp__course-icon" aria-hidden />
                 <span className="air-lxp__course-text">{item}</span>

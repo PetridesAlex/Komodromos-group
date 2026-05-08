@@ -1,11 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import {
   TAX_INCOME_CALCULATOR_PATH,
   TAX_NEX_ADDRESS_LINE,
-  TAX_NEX_HERO,
-  TAX_NEX_HERO_LEAD_SHORT,
   TAX_NEX_META_LEAD,
   TAX_NEX_MISSION,
   TAX_NEX_NEWSLETTER,
@@ -23,17 +21,40 @@ function formatEurEl(n: number) {
   return `${n.toLocaleString('el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`
 }
 
-const BRAND_LOGO = '/images/services/companie-services-cover/cards-logos-services/tax-nex.png'
+const BRAND_LOGO = '/images/services/tax-services/tax-net-logo.jpg'
+const HERO_TITLE = 'Φορολογική δήλωση 2024-25'
+const HERO_SUBTITLE = 'Η φορολογική σας δήλωση ελέγχεται από ειδικούς για σωστή και ακριβή υποβολή.'
 
 const VIEW = { once: true, amount: 0.35 } as const
 const EASE = [0.22, 1, 0.36, 1] as const
 
 export default function TaxNexCyprusPage() {
   const reduceMotion = useReducedMotion()
+  const [showCookieNotice, setShowCookieNotice] = useState(false)
   const [paymentModal, setPaymentModal] = useState<{
     plan: (typeof TAX_NEX_PRICING_PLANS)[number]
     checkoutUrl: string | null
   } | null>(null)
+
+  useEffect(() => {
+    try {
+      const consent = localStorage.getItem('taxnex-cookie-consent')
+      if (!consent) {
+        setShowCookieNotice(true)
+      }
+    } catch {
+      setShowCookieNotice(true)
+    }
+  }, [])
+
+  const acceptCookies = () => {
+    try {
+      localStorage.setItem('taxnex-cookie-consent', 'accepted')
+    } catch {
+      // Ignore storage failures and still dismiss.
+    }
+    setShowCookieNotice(false)
+  }
 
   const fadeUp = reduceMotion
     ? {}
@@ -57,114 +78,100 @@ export default function TaxNexCyprusPage() {
         <div className="taxnex-hero__bg" aria-hidden />
 
         <div className="container taxnex-hero__inner">
-          <div className="taxnex-hero__brand-row">
-            <motion.img
-              src={BRAND_LOGO}
-              alt="TaxNex"
-              width={200}
-              height={72}
-              className="taxnex-hero__logo"
-              initial={reduceMotion ? false : { opacity: 0, scale: 0.94 }}
-              animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 120, damping: 18, delay: 0.08 }}
-            />
+          <div className="taxnex-hero__main">
+            <div className="taxnex-hero__brand-row">
+              <motion.img
+                src={BRAND_LOGO}
+                alt="TaxNex"
+                width={280}
+                height={110}
+                className="taxnex-hero__logo"
+                initial={reduceMotion ? false : { opacity: 0, scale: 0.94 }}
+                animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                transition={{ type: 'spring', stiffness: 120, damping: 18, delay: 0.08 }}
+              />
+            </div>
+
+            <motion.h1
+              className="taxnex-hero__title"
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease: EASE, delay: 0.12 }}
+            >
+              {HERO_TITLE}
+            </motion.h1>
+            <motion.p
+              className="taxnex-hero__subtitle"
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: EASE, delay: 0.22 }}
+            >
+              {HERO_SUBTITLE}
+            </motion.p>
+
+            <motion.div
+              className="taxnex-hero__cta-block"
+              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+              animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: EASE, delay: 0.42 }}
+            >
+              <p className="taxnex-hero__stage">ΣΤΑΔΙΟ 1</p>
+              <div className="taxnex-hero__cta-row">
+                <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to={TAX_INCOME_CALCULATOR_PATH}>
+                  ΥΠΟΛΟΓΙΣΤΕ ΤΟΝ ΦΟΡΟ ΣΑΣ
+                </Link>
+                <Link className="taxnex-btn taxnex-btn--hero-dark taxnex-btn--lg" to="/contact">
+                  ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ
+                </Link>
+                <Link className="taxnex-btn taxnex-btn--hero-dark taxnex-btn--lg" to="/contact">
+                  ΚΛΕΙΣΤΕ ONLINE ΡΑΝΤΕΒΟΥ
+                </Link>
+              </div>
+              <p className="taxnex-hero__phones" aria-label="Τηλέφωνα επικοινωνίας">
+                <a className="taxnex-hero__phone" href="tel:+357243333305">
+                  +357 24 333 305
+                </a>
+                <span className="taxnex-hero__phones-sep" aria-hidden>
+                  ·
+                </span>
+                <a className="taxnex-hero__phone" href="tel:+35796000336">
+                  +357 96 000 336
+                </a>
+              </p>
+            </motion.div>
           </div>
 
-          <motion.h1
-            className="taxnex-hero__title"
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: EASE, delay: 0.12 }}
-          >
-            {TAX_NEX_HERO.title}
-          </motion.h1>
-          <motion.p
-            className="taxnex-hero__subtitle"
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: EASE, delay: 0.22 }}
-          >
-            {TAX_NEX_HERO.subtitle}
-          </motion.p>
-          <motion.p
-            className="taxnex-hero__lead"
-            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: EASE, delay: 0.32 }}
-          >
-            {TAX_NEX_HERO_LEAD_SHORT}
-          </motion.p>
-
           <motion.div
-            className="taxnex-hero__cta-block"
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: EASE, delay: 0.42 }}
+            className="taxnex-hero__bg-copy"
+            initial={reduceMotion ? false : { opacity: 0, x: 20 }}
+            animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: EASE, delay: 0.26 }}
+            aria-hidden
           >
-            <Link className="taxnex-btn taxnex-btn--primary" to={TAX_INCOME_CALCULATOR_PATH}>
-              ΥΠΟΛΟΓΙΣΤΕ ΤΟΝ ΦΟΡΟ ΣΑΣ
-            </Link>
-            <p className="taxnex-hero__phones" aria-label="Τηλέφωνα επικοινωνίας">
-              <a className="taxnex-hero__phone" href="tel:+357243333305">
-                +357 24 333 305
-              </a>
-              <span className="taxnex-hero__phones-sep" aria-hidden>
-                ·
-              </span>
-              <a className="taxnex-hero__phone" href="tel:+35796000336">
-                +357 96 000 336
-              </a>
+            <p className="taxnex-hero__bg-copy-top">
+              ΥΠΟΒΟΛΗ <strong>ΦΟΡΟΛΟΓΙΚΗΣ</strong>
+              <br />
+              <strong>ΔΗΛΩΣΗΣ</strong> ΜΕΣΩ
             </p>
-            <Link className="taxnex-hero__link-contact" to="/contact">
-              Αίτημα επικοινωνίας
-            </Link>
+            <p className="taxnex-hero__bg-copy-brand">TaxNex</p>
           </motion.div>
         </div>
       </header>
 
       <section id="tax-services" className="taxnex-section taxnex-section--light" aria-labelledby="tax-services-h">
         <div className="container">
-          <motion.div className="taxnex-section__head" {...fadeUp}>
+          <motion.div className="taxnex-section__head taxnex-section__head--center" {...fadeUp}>
             <p className="taxnex-eyebrow">Οι Υπηρεσίες Μας</p>
             <h2 id="tax-services-h" className="taxnex-h2">
               Τι παρέχουμε
             </h2>
+            <p className="taxnex-section__stage">ΣΤΑΔΙΟ 2</p>
             <p className="taxnex-muted taxnex-section__intro">
-              Οργανωμένη ροή από την πρώτη συμβουλή μέχρι την οριστική υποβολή — με ανθρώπινο έλεγχο σε κάθε στάδιο.
+              Επιλέξτε το πακέτο που σας ταιριάζει και προχωρήστε απευθείας σε ασφαλή πληρωμή.
             </p>
             <p className="taxnex-section__body taxnex-muted">{TAX_NEX_META_LEAD}</p>
           </motion.div>
-          <div className="taxnex-stage-grid">
-            {TAX_NEX_SERVICE_STAGES.map((item, i) => (
-              <motion.article
-                key={item.stage}
-                className="taxnex-stage-card"
-                initial={reduceMotion ? false : { opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={VIEW}
-                transition={{ duration: 0.5, ease: EASE, delay: reduceMotion ? 0 : i * 0.07 }}
-              >
-                <span className="taxnex-stage-card__badge">{item.stage}</span>
-                <h3 className="taxnex-stage-card__title">{item.title}</h3>
-                <p className="taxnex-stage-card__body">{item.body}</p>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section id="tax-pricing" className="taxnex-section taxnex-section--pricing" aria-labelledby="tax-pricing-h">
-        <div className="container">
-          <motion.div className="taxnex-section__head" {...fadeUp}>
-            <p className="taxnex-eyebrow">Πακέτα υποβολής</p>
-            <h2 id="tax-pricing-h" className="taxnex-h2">
-              Φορολογική δήλωση — επιλέξτε τρόπο
-            </h2>
-            <p className="taxnex-muted taxnex-section__intro">
-              Τρία επίπεδα υποστήριξης όπως στο TaxNex. Η πληρωμή ολοκληρώνεται online μέσω Stripe (ή εναλλακτικά JCC όταν
-              συνδεθεί)— ρυθμίστε τα URLs στο περιβάλλον της εφαρμογής.
-            </p>
-          </motion.div>
           <div className="taxnex-pricing-grid">
             {TAX_NEX_PRICING_PLANS.map((plan, i) => {
               const checkoutUrl = getTaxPlanCheckoutUrl(plan.id)
@@ -173,7 +180,7 @@ export default function TaxNexCyprusPage() {
               const featured = plan.id === 'advisor'
               return (
                 <motion.article
-                  key={plan.id}
+                  key={`services-${plan.id}`}
                   className={`taxnex-price-card${featured ? ' taxnex-price-card--featured' : ''}`}
                   initial={reduceMotion ? false : { opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -228,11 +235,23 @@ export default function TaxNexCyprusPage() {
               )
             })}
           </div>
-          <p className="taxnex-pricing-footnote">
-            Οι σύνδεσμοι ασφαλούς πληρωμής (Stripe ή JCC) ενεργοποιούνται από τους διαχειριστές — μέχρι τότε μπορείτε να
-            ζητήσετε χειροκίνητη ολοκλήρωση μέσω επικοινωνίας. Πριν από την πληρωμή συλλέγονται στοιχεία επικοινωνίας για
-            απόδειξη και υποστήριξη.
-          </p>
+
+          <div className="taxnex-stage-grid">
+            {TAX_NEX_SERVICE_STAGES.map((item, i) => (
+              <motion.article
+                key={item.stage}
+                className="taxnex-stage-card"
+                initial={reduceMotion ? false : { opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VIEW}
+                transition={{ duration: 0.5, ease: EASE, delay: reduceMotion ? 0 : i * 0.07 }}
+              >
+                <span className="taxnex-stage-card__badge">{item.stage}</span>
+                <h3 className="taxnex-stage-card__title">{item.title}</h3>
+                <p className="taxnex-stage-card__body">{item.body}</p>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -375,6 +394,20 @@ export default function TaxNexCyprusPage() {
           </Link>
         </div>
       </section>
+
+      {showCookieNotice ? (
+        <div className="taxnex-cookie" role="region" aria-label="Cookie notice">
+          <div className="taxnex-cookie__inner">
+            <span className="taxnex-cookie__text">
+              Χρησιμοποιούμε cookies για να διασφαλίσουμε ότι σας παρέχουμε την καλύτερη εμπειρία στην ιστοσελίδα μας. Εάν
+              συνεχίσετε να χρησιμοποιείτε αυτόν τον ιστότοπο, θα υποθέσουμε ότι είστε ικανοποιημένοι με αυτό.
+            </span>
+            <button type="button" className="taxnex-cookie__btn" onClick={acceptCookies} aria-label="Εντάξει">
+              Εντάξει
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }

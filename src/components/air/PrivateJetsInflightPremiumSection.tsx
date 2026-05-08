@@ -1,9 +1,19 @@
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import { airPrivateJetInflightPremium } from '../../data/airServicesPage'
+import { airJetsInFlight, airPrivateJetInflightPremium } from '../../data/airServicesPage'
 
 const EASE = [0.16, 1, 0.3, 1] as const
+const INTRO_IMG = '/images/services/vip-service/air-services/private-jet-introduction'
+const STORY_IMAGES = [
+  { src: `${INTRO_IMG}/private-jet-introduction-1.webp`, alt: 'Private jet introduction visual 1' },
+  { src: `${INTRO_IMG}/private-jet-introduction-2.webp`, alt: 'Private jet introduction visual 2' },
+  { src: `${INTRO_IMG}/private-jet-introduction-3.webp`, alt: 'Private jet introduction visual 3' },
+  { src: `${INTRO_IMG}/private-jet-introduction-4.webp`, alt: 'Private jet introduction visual 4' },
+  { src: `${INTRO_IMG}/private-jet-introduction-6.webp`, alt: 'Private jet introduction visual 6' },
+  { src: `${INTRO_IMG}/private-jet-introduction-7.webp`, alt: 'Private jet introduction visual 7' },
+  { src: `${INTRO_IMG}/private-jet-introduction-8.webp`, alt: 'Private jet introduction visual 8' },
+] as const
 
 type Props = {
   lightPath: string
@@ -34,6 +44,7 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
   const reduceMotion = useReducedMotion()
   const navigate = useNavigate()
   const d = airPrivateJetInflightPremium
+  const story = airJetsInFlight.sections
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -115,30 +126,100 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
 
       <section className="air-pjp__services" aria-label="In-flight services">
         <div className="container">
-          <div className="air-pjp__card-grid">
-            {d.services.map((item, i) => (
-              <motion.article
-                key={item.title}
-                className="air-pjp__card"
-                initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{
-                  duration: reduceMotion ? 0 : 0.55,
-                  delay: reduceMotion ? 0 : Math.min(i * 0.06, 0.36),
-                  ease: EASE,
-                }}
-                whileHover={reduceMotion ? undefined : { y: -6, scale: 1.015 }}
-              >
-                <span className="air-pjp__card-num" aria-hidden>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="air-pjp__card-title">{item.title}</h3>
-                <p className="air-pjp__card-desc">{item.description}</p>
-                <span className="air-pjp__card-shine" aria-hidden />
-              </motion.article>
-            ))}
-          </div>
+          <motion.div
+            className="air-pjp__world"
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
+          >
+            <h2 className="air-pjp__world-title">World-class fleet expression</h2>
+            <p className="air-pjp__world-lead">
+              Presented in the same editorial rhythm as the light-aircraft storytelling blocks, pairing premium
+              narrative copy with image-ready visual frames.
+            </p>
+            <ul className="air-pjp__story-grid">
+              {story.map((section, i) => (
+                <motion.li
+                  key={section.title}
+                  className="air-pjp__story-card"
+                  initial={reduceMotion ? false : { opacity: 0, y: 38, scale: 0.975 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: false, amount: 0.28, margin: '-10% 0px -12% 0px' }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.64,
+                    delay: reduceMotion ? 0 : i * 0.07,
+                    ease: EASE,
+                  }}
+                  whileHover={reduceMotion ? undefined : { y: -7, scale: 1.014 }}
+                >
+                  <motion.div
+                    className="air-pjp__story-content"
+                    initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.35, margin: '-10% 0px -10% 0px' }}
+                    transition={{ duration: reduceMotion ? 0 : 0.52, ease: EASE }}
+                  >
+                    <motion.figure
+                      className="air-pjp__story-media"
+                      aria-label={`${section.title} image placeholder`}
+                      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.3 }}
+                      transition={{ duration: reduceMotion ? 0 : 0.58, ease: EASE }}
+                    >
+                      {STORY_IMAGES[i] || section.segments[0]?.image ? (
+                        <img
+                          className="air-pjp__story-img"
+                          src={STORY_IMAGES[i]?.src ?? section.segments[0].image?.src ?? ''}
+                          alt={STORY_IMAGES[i]?.alt ?? section.segments[0].image?.alt ?? ''}
+                          loading="lazy"
+                          decoding="async"
+                          width={900}
+                          height={620}
+                        />
+                      ) : (
+                        <div className="air-pjp__story-placeholder">
+                          <span className="air-pjp__story-placeholder-label">Image will be added</span>
+                        </div>
+                      )}
+                    </motion.figure>
+                    <motion.div
+                      className="air-pjp__story-text"
+                      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.3 }}
+                      transition={{
+                        duration: reduceMotion ? 0 : 0.54,
+                        delay: reduceMotion ? 0 : 0.04,
+                        ease: EASE,
+                      }}
+                    >
+                      <span className="air-pjp__story-index">{String(i + 1).padStart(2, '0')}</span>
+                      <h3 className="air-pjp__story-title">{section.title}</h3>
+                      {section.segments.map((segment, segmentIndex) => (
+                        <motion.p
+                          key={segment.paragraph}
+                          className="air-pjp__story-paragraph"
+                          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: '-30px' }}
+                          transition={{
+                            duration: reduceMotion ? 0 : 0.48,
+                            delay: reduceMotion ? 0 : 0.08 + segmentIndex * 0.06,
+                            ease: EASE,
+                          }}
+                        >
+                          {segment.paragraph}
+                        </motion.p>
+                      ))}
+                    </motion.div>
+                  </motion.div>
+                  <span className="air-pjp__story-shine" aria-hidden />
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </section>
 
