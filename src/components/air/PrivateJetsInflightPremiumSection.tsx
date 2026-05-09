@@ -45,6 +45,11 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
   const navigate = useNavigate()
   const d = airPrivateJetInflightPremium
   const story = airJetsInFlight.sections
+  const ambientFloat = reduceMotion
+    ? undefined
+    : {
+        y: [0, -3, 0],
+      }
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -92,6 +97,8 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
             className="air-pjp__eyebrow"
             initial={reduceMotion ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
+            whileInView={ambientFloat}
+            viewport={{ once: false, amount: 0.9 }}
             transition={{ duration: reduceMotion ? 0 : 0.55, ease: EASE }}
           >
             {d.eyebrow}
@@ -101,6 +108,8 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
             className="air-pjp__title"
             initial={reduceMotion ? false : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
+            whileInView={ambientFloat}
+            viewport={{ once: false, amount: 0.75 }}
             transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.06, ease: EASE }}
           >
             {d.title}
@@ -109,6 +118,8 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
             className="air-pjp__intro"
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
+            whileInView={ambientFloat}
+            viewport={{ once: false, amount: 0.7 }}
             transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12, ease: EASE }}
           >
             {d.intro}
@@ -117,6 +128,8 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
             className="air-pjp__quote"
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
+            whileInView={ambientFloat}
+            viewport={{ once: false, amount: 0.65 }}
             transition={{ duration: reduceMotion ? 0 : 0.58, delay: reduceMotion ? 0 : 0.2, ease: EASE }}
           >
             <p className="air-pjp__quote-text">{d.quote}</p>
@@ -133,11 +146,25 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
           >
-            <h2 className="air-pjp__world-title">World-class fleet expression</h2>
-            <p className="air-pjp__world-lead">
+            <motion.h2
+              className="air-pjp__world-title"
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: reduceMotion ? 0 : 0.56, delay: reduceMotion ? 0 : 0.04, ease: EASE }}
+            >
+              World-class fleet expression
+            </motion.h2>
+            <motion.p
+              className="air-pjp__world-lead"
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: reduceMotion ? 0 : 0.54, delay: reduceMotion ? 0 : 0.12, ease: EASE }}
+            >
               Presented in the same editorial rhythm as the light-aircraft storytelling blocks, pairing premium
               narrative copy with image-ready visual frames.
-            </p>
+            </motion.p>
             <ul className="air-pjp__story-grid">
               {story.map((section, i) => {
                 const firstSegment = section.segments[0] as { image?: { src: string; alt: string } } | undefined

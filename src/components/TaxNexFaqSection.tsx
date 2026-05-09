@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { TAX_NEX_FAQ_HEADING, TAX_NEX_FAQ_ITEMS, TAX_NEX_FAQ_SECTION_ID } from '../data/taxNexFaqData'
+import { useTranslation } from 'react-i18next'
+import { TAX_NEX_FAQ_SECTION_ID, getTaxNexFaqContent } from '../data/taxNexFaqData'
 
 type Props = {
   /** Extra classes on the root section (e.g. home page spacing). */
@@ -8,23 +9,26 @@ type Props = {
 
 export default function TaxNexFaqSection({ className = '' }: Props) {
   const [faqOpen, setFaqOpen] = useState<number | null>(0)
+  const { i18n } = useTranslation()
+  const locale = i18n.resolvedLanguage === 'en' ? 'en' : 'el'
+  const faqContent = getTaxNexFaqContent(locale)
 
   return (
     <section
-      lang="el"
+      lang={locale}
       id={TAX_NEX_FAQ_SECTION_ID}
       className={`scroll-mt-28 ${className}`.trim()}
       aria-labelledby="tax-faq-title"
     >
       <div className="mb-10 text-center">
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#5b7a6e] sm:text-xs">
-          {TAX_NEX_FAQ_HEADING.eyebrow}
+          {faqContent.heading.eyebrow}
         </p>
         <h2
           id="tax-faq-title"
           className="mt-3 font-['Playfair_Display','Cormorant_Garamond',serif] text-[1.65rem] font-semibold tracking-tight text-[#064e3b] sm:text-[2rem]"
         >
-          {TAX_NEX_FAQ_HEADING.title}
+          {faqContent.heading.title}
         </h2>
         <div
           className="mx-auto mt-5 h-px max-w-[12rem] bg-gradient-to-r from-transparent via-emerald-600/45 to-transparent"
@@ -34,7 +38,7 @@ export default function TaxNexFaqSection({ className = '' }: Props) {
 
       <div className="rounded-[1.35rem] border border-emerald-200/70 bg-gradient-to-b from-white via-white to-emerald-50/[0.55] p-2 sm:p-3 shadow-[0_36px_80px_-52px_rgba(6,78,59,0.38),inset_0_1px_0_0_rgba(255,255,255,0.9)]">
         <div className="flex flex-col gap-2 sm:gap-2.5">
-          {TAX_NEX_FAQ_ITEMS.map((item, i) => {
+          {faqContent.items.map((item, i) => {
             const isOpen = faqOpen === i
             return (
               <div

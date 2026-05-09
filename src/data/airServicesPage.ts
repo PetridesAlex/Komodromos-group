@@ -341,22 +341,16 @@ export const airCategoryContent: Record<
     title: string
     tagline: string
     lead: string
-    highlights: { label: string; text: string }[]
     footnote: string
   }
 > = {
   jets: {
-    image: `${AIR_IMG}/private-jets.webp`,
-    imageAlt: 'Private jet on the apron at dusk',
+    image: `${AIR_IMG}/private-jet-world/world-5.webp`,
+    imageAlt: 'Private jet — world-class fleet atmosphere',
     title: 'Private Jets',
     tagline: 'Global range, complete cabin control, absolute discretion.',
     lead:
       'From heavy jets for intercontinental travel to super-mids for regional hops, we align aircraft to your schedule, entourage, and in-flight requirements — one brief, one point of contact, end to end.',
-    highlights: [
-      { label: 'Cabin & routing', text: 'Tailored layouts, meeting space, and sleep systems matched to the mission.' },
-      { label: 'Crew & compliance', text: 'Vetted operators, slot coordination, and documentation handled for you.' },
-      { label: 'On-ground continuity', text: 'Seamless links to ground transport, security, and hospitality teams.' },
-    ],
     footnote: 'Typical use: principal travel, board movements, and time-critical itineraries where commercial schedules do not fit.',
   },
   light: {
@@ -366,11 +360,6 @@ export const airCategoryContent: Record<
     tagline: 'Agile, efficient, and ideal for short sectors and special access.',
     lead:
       'Turboprops and light jets for regional hops, island-hops, and routes where a smaller footprint unlocks the right airfield. We coordinate crew, maintenance windows, and last-minute changes without drama.',
-    highlights: [
-      { label: 'Access & speed', text: 'Shorter runways, faster turns, and flexible timing for tight programmes.' },
-      { label: 'Cost clarity', text: 'Transparent options when a lighter platform is the smarter choice for the leg.' },
-      { label: 'Bespoke add-ons', text: 'Cargo for gear, med-evac ready configs, and specialist crew when required.' },
-    ],
     footnote: 'Well suited to island archipelagos, multi-stop day trips, and connections where a heavy jet is simply more metal than the mission needs.',
   },
 }
@@ -575,6 +564,7 @@ export const airLightPremiumPage = {
   heroSubtitle:
     'Exclusive air tours and pilot pathways across Cyprus, Greece and beyond — designed to inspire confidence, excitement and a genuine passion for flight.',
   introHeading: 'Light Aircraft Flying Experiences & Exclusive Air Tours',
+  introKicker: 'Scenic routes · Flight training · Mediterranean skies',
   introParagraphs: [
     'Have you ever dreamed of taking control of an aircraft and discovering the world from an entirely new perspective? Light aircraft offer the perfect gateway into aviation, combining precision handling, responsiveness and an immersive cockpit experience that transforms every flight into a truly unforgettable adventure.',
     'With Luxury Sky / Global Wings, you can explore a carefully curated range of Light Aircraft Flying Experiences across breathtaking destinations in Cyprus, Greece and beyond, designed to inspire confidence, excitement and a genuine passion for flight. Whether you are seeking a once-in-a-lifetime experience, a unique gift for someone special, or the first step toward earning your Private Pilot Licence, your journey begins here.',

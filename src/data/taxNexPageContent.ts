@@ -178,3 +178,156 @@ export const TAX_NEX_NEWSLETTER = {
     'Εγγραφείτε για να λαμβάνετε τις τελευταίες ενημερώσεις για χρηματοοικονομικές και επιχειρηματικές υπηρεσίες.',
   altLine: 'Alternative: επικοινωνήστε απευθείας για εξατομικευμένη συμβουλή.',
 }
+
+export type TaxNexLocale = 'en' | 'el'
+
+const TAX_NEX_ADDRESS_LINE_EN = '51 Griva Digeni, 6036, Larnaca'
+const TAX_NEX_META_LEAD_EN =
+  'We are a specialized and experienced team of professionals covering all your needs for tax advisory, accounting services, legal support, and technology innovation. Based in Cyprus and Greece, we deliver integrated solutions aligned with the highest market standards.'
+
+const TAX_NEX_SERVICE_STAGES_EN: TaxNexServiceStage[] = [
+  {
+    stage: 'STAGE 1',
+    title: 'Advisory & file preparation',
+    body:
+      'Assessment of your tax profile, document collection, and a clear guide for the next steps before submission.',
+  },
+  {
+    stage: 'STAGE 2',
+    title: 'Tax return submission (Easy & Fast)',
+    body:
+      'Answer a few simple questions and we guide you through submission, with a final review by a specialist before filing.',
+  },
+  {
+    stage: 'STAGE 3',
+    title: 'Post-submission support',
+    body: 'Available for clarifications, corrections, and ongoing compliance monitoring throughout the year.',
+  },
+]
+
+const TAX_NEX_MISSION_EN = {
+  title: 'Our mission is to help you submit your tax return correctly',
+  lines: ['Secure and reliable advice for your tax declaration.', 'CALL NOW: 24 333 305 · 96 000 336'],
+}
+
+const TAX_NEX_STEPS_EN: TaxNexStep[] = [
+  {
+    step: 'Step 1',
+    title: 'Get a TIN',
+    lead: 'Contact us for support.',
+    cta: 'READ MORE',
+    href: '/services/tax/how-to-get-a-tic',
+  },
+  {
+    step: 'Step 2',
+    title: 'Get TAXISnet',
+    lead: 'Contact us for support.',
+    cta: 'READ MORE',
+    href: '/services/tax/how-to-register-to-taxisnet',
+  },
+  {
+    step: 'Step 3',
+    title: 'Get TaxNex',
+    lead: 'Complete registration and start the simple filing flow with our team.',
+    cta: 'CONTACT',
+    href: '/contact',
+  },
+]
+
+const TAX_NEX_TOOL_CARDS_EN: TaxNexToolCard[] = [
+  {
+    title: 'INCOME TAX CALCULATOR',
+    description:
+      'Enter annual or monthly gross salary (including 13th, 14th, bonuses). Full calculator is in English for precision.',
+    cta: 'CALCULATE YOUR TAX',
+    href: TAX_INCOME_CALCULATOR_PATH,
+  },
+  {
+    title: 'TRANSFER FEES CALCULATOR',
+    description: 'Buying property in Cyprus? Estimate transfer fees before your purchase.',
+    cta: 'CALCULATE',
+    href: '/services/tax/transfer-fees-calculator',
+  },
+  {
+    title: 'DOMICILE TEST',
+    description: 'Are you a Cyprus Non-Dom tax resident? Quick check based on residency criteria.',
+    cta: 'LEARN MORE',
+    href: '/contact',
+  },
+]
+
+const TAX_NEX_PRICING_PLANS_EN: TaxNexPricingPlan[] = [
+  {
+    id: 'diy',
+    kicker: 'DO IT YOURSELF',
+    title: 'Tax return submission (Easy & Fast)',
+    description:
+      'Answer a few simple questions and we guide your filing, with final specialist review before submission.',
+    priceEur: 29,
+    image: '/images/services/tax-services/tax-thumb.webp',
+    imageAlt: 'Submit by yourself',
+  },
+  {
+    id: 'advisor',
+    kicker: 'WITH TAX ADVISOR',
+    title: 'Tax return submission with a tax advisor (By your side at every step)',
+    description:
+      'We handle the whole process for you. No hassle, no complexity — simply send us the required documents.',
+    priceEur: 65,
+    image: '/images/services/tax-services/tax-body.webp',
+    imageAlt: 'With advisor',
+  },
+  {
+    id: 'self-employed',
+    kicker: 'SELF-EMPLOYED',
+    title: 'SELF-EMPLOYED',
+    description:
+      '(Save Time and Money) A dedicated tax specialist handles your filing. 95.00 EUR + 19% VAT',
+    priceEur: 95,
+    includes: ['income tax return filing', 'provisional tax computation'],
+    image: '/images/services/tax-services/tax-hero.webp',
+    imageAlt: 'Self-employed',
+  },
+]
+
+const TAX_NEX_NEWSLETTER_EN = {
+  title: 'Our newsletter',
+  description: 'Subscribe to receive the latest updates on financial and business services.',
+  altLine: 'Alternative: contact us directly for personalized guidance.',
+}
+
+function normalizeTaxLocale(locale: string): TaxNexLocale {
+  return locale === 'en' ? 'en' : 'el'
+}
+
+export function getTaxNexAddressLine(locale: string) {
+  return normalizeTaxLocale(locale) === 'en' ? TAX_NEX_ADDRESS_LINE_EN : TAX_NEX_ADDRESS_LINE
+}
+
+export function getTaxNexMetaLead(locale: string) {
+  return normalizeTaxLocale(locale) === 'en' ? TAX_NEX_META_LEAD_EN : TAX_NEX_META_LEAD
+}
+
+export function getTaxNexServiceStages(locale: string) {
+  return normalizeTaxLocale(locale) === 'en' ? TAX_NEX_SERVICE_STAGES_EN : TAX_NEX_SERVICE_STAGES
+}
+
+export function getTaxNexMission(locale: string) {
+  return normalizeTaxLocale(locale) === 'en' ? TAX_NEX_MISSION_EN : TAX_NEX_MISSION
+}
+
+export function getTaxNexSteps(locale: string) {
+  return normalizeTaxLocale(locale) === 'en' ? TAX_NEX_STEPS_EN : TAX_NEX_STEPS
+}
+
+export function getTaxNexToolCards(locale: string) {
+  return normalizeTaxLocale(locale) === 'en' ? TAX_NEX_TOOL_CARDS_EN : TAX_NEX_TOOL_CARDS
+}
+
+export function getTaxNexPricingPlans(locale: string) {
+  return normalizeTaxLocale(locale) === 'en' ? TAX_NEX_PRICING_PLANS_EN : TAX_NEX_PRICING_PLANS
+}
+
+export function getTaxNexNewsletter(locale: string) {
+  return normalizeTaxLocale(locale) === 'en' ? TAX_NEX_NEWSLETTER_EN : TAX_NEX_NEWSLETTER
+}

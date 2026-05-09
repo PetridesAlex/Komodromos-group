@@ -8,11 +8,25 @@ import {
 } from '../../data/airServicesPage'
 
 const EASE = [0.16, 1, 0.3, 1] as const
-const INTRO_CARD_IMAGES = [
-  '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-1.webp',
-  '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-2.webp',
-  '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-3.webp',
-  '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-4.webp',
+
+/** Same editorial cards as private jets (`air-pjp__story-*`) — image per signature experience. */
+const LIGHT_SIGNATURE_IMAGES = [
+  {
+    src: '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-1.webp',
+    alt: 'Scenic light aircraft flight over Cyprus coastlines',
+  },
+  {
+    src: '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-2.webp',
+    alt: 'Light aircraft journey over the Mediterranean',
+  },
+  {
+    src: '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-3.webp',
+    alt: 'Premium light aircraft cabin and aerial perspective',
+  },
+  {
+    src: '/images/services/vip-service/air-services/light-aircrafts/light-aircraft-introduction-4.webp',
+    alt: 'Light aircraft experience — islands and open skies',
+  },
 ] as const
 
 type Props = {
@@ -144,26 +158,31 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
         transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
       >
         <div className="container air-lxp__intro-inner">
-          <motion.h2 id="air-lxp-intro-heading" className="air-lxp__section-title air-lxp__section-title--intro">
-            {d.introHeading}
-          </motion.h2>
-          <div className="air-lxp__intro-prose">
-            {d.introParagraphs.map((para, i) => (
-              <motion.p
-                key={i}
-                className="air-lxp__intro-p"
-                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{
-                  duration: reduceMotion ? 0 : 0.55,
-                  delay: reduceMotion ? 0 : i * 0.08,
-                  ease: EASE,
-                }}
-              >
-                {para}
-              </motion.p>
-            ))}
+          <div className="air-lxp__intro-layout">
+            <div className="air-lxp__intro-heading-col">
+              <motion.h2 id="air-lxp-intro-heading" className="air-lxp__section-title air-lxp__section-title--intro">
+                {d.introHeading}
+              </motion.h2>
+              <p className="air-lxp__intro-kicker">{d.introKicker}</p>
+            </div>
+            <div className="air-lxp__intro-prose">
+              {d.introParagraphs.map((para, i) => (
+                <motion.p
+                  key={i}
+                  className="air-lxp__intro-p"
+                  initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.55,
+                    delay: reduceMotion ? 0 : i * 0.08,
+                    ease: EASE,
+                  }}
+                >
+                  {para}
+                </motion.p>
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>
@@ -188,75 +207,96 @@ export default function LightAircraftPremiumSection({ jetsPath }: Props) {
             Signature experiences
           </motion.h2>
           <p className="air-lxp__section-lead">{d.signatureLead}</p>
-          <div className="air-lxp__card-grid">
-            {d.experienceCards.map((card, i) => (
-              <motion.article
-                key={card.title}
-                className="air-lxp__card"
-                initial={
-                  reduceMotion
-                    ? false
-                    : {
-                        opacity: 0,
-                        y: 42,
-                        x: i % 2 === 0 ? -28 : 28,
-                        scale: 0.985,
-                      }
-                }
-                whileInView={
-                  reduceMotion
-                    ? { opacity: 1, y: 0, x: 0, scale: 1 }
-                    : {
-                        opacity: 1,
-                        y: 0,
-                        x: 0,
-                        scale: 1,
-                        transitionEnd: { filter: 'none' },
-                      }
-                }
-                viewport={{ once: false, amount: 0.32, margin: '-40px 0px -40px 0px' }}
-                transition={{
-                  duration: reduceMotion ? 0 : 0.58,
-                  delay: reduceMotion ? 0 : Math.min(i * 0.08, 0.24),
-                  ease: EASE,
-                }}
-                whileHover={reduceMotion ? undefined : { y: -4 }}
-              >
-                <motion.span
-                  className="air-lxp__card-index"
-                  aria-hidden
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.72, y: 8 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.42,
-                    delay: reduceMotion ? 0 : 0.12 + Math.min(i * 0.12, 0.45),
-                    ease: EASE,
-                  }}
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </motion.span>
-                <div className="air-lxp__card-content">
-                  <figure className="air-lxp__image-slot air-lxp__image-slot--card" aria-label={`Card image placeholder ${i + 1}`}>
-                    <img
-                      className="air-lxp__image-slot-img"
-                      src={INTRO_CARD_IMAGES[i]}
-                      alt={`${card.title} visual`}
-                      loading="lazy"
-                      decoding="async"
-                      width={640}
-                      height={420}
-                    />
-                  </figure>
-                  <div className="air-lxp__card-text">
-                    <h3 className="air-lxp__card-title">{card.title}</h3>
-                    <p className="air-lxp__card-desc">{card.description}</p>
-                  </div>
-                </div>
-                <span className="air-lxp__card-shine" aria-hidden />
-              </motion.article>
-            ))}
-          </div>
+          <motion.div
+            className="air-pjp__world"
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
+          >
+            <ul className="air-pjp__story-grid">
+              {d.experienceCards.map((card, i) => {
+                const cardImage = LIGHT_SIGNATURE_IMAGES[i]
+
+                return (
+                  <motion.li
+                    key={card.title}
+                    className="air-pjp__story-card"
+                    initial={reduceMotion ? false : { opacity: 0, y: 38, scale: 0.975 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: false, amount: 0.28, margin: '-10% 0px -12% 0px' }}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.64,
+                      delay: reduceMotion ? 0 : i * 0.07,
+                      ease: EASE,
+                    }}
+                    whileHover={reduceMotion ? undefined : { y: -7, scale: 1.014 }}
+                  >
+                    <motion.div
+                      className="air-pjp__story-content"
+                      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.35, margin: '-10% 0px -10% 0px' }}
+                      transition={{ duration: reduceMotion ? 0 : 0.52, ease: EASE }}
+                    >
+                      <motion.figure
+                        className="air-pjp__story-media"
+                        aria-label={`${card.title} visual`}
+                        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                        transition={{ duration: reduceMotion ? 0 : 0.58, ease: EASE }}
+                      >
+                        {cardImage ? (
+                          <img
+                            className="air-pjp__story-img"
+                            src={cardImage.src}
+                            alt={cardImage.alt}
+                            loading="lazy"
+                            decoding="async"
+                            width={900}
+                            height={620}
+                          />
+                        ) : (
+                          <div className="air-pjp__story-placeholder">
+                            <span className="air-pjp__story-placeholder-label">Image will be added</span>
+                          </div>
+                        )}
+                      </motion.figure>
+                      <motion.div
+                        className="air-pjp__story-text"
+                        initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                        transition={{
+                          duration: reduceMotion ? 0 : 0.54,
+                          delay: reduceMotion ? 0 : 0.04,
+                          ease: EASE,
+                        }}
+                      >
+                        <span className="air-pjp__story-index">{String(i + 1).padStart(2, '0')}</span>
+                        <h3 className="air-pjp__story-title">{card.title}</h3>
+                        <motion.p
+                          className="air-pjp__story-paragraph"
+                          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: '-30px' }}
+                          transition={{
+                            duration: reduceMotion ? 0 : 0.48,
+                            delay: reduceMotion ? 0 : 0.08,
+                            ease: EASE,
+                          }}
+                        >
+                          {card.description}
+                        </motion.p>
+                      </motion.div>
+                    </motion.div>
+                    <span className="air-pjp__story-shine" aria-hidden />
+                  </motion.li>
+                )
+              })}
+            </ul>
+          </motion.div>
         </div>
       </motion.section>
 

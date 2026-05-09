@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { MAIN_LOGO } from '../data/mainLogo'
 import { socialLinks } from '../data/socialLinks'
 
-const footerLinks = [
-  { label: 'BOOK CONSULTATION', to: '/contact' },
-  { label: 'VIEW SERVICES', to: '/#services' },
-] as const
-
 export default function Footer() {
+  const { t } = useTranslation()
+  const footerLinks = [
+    { label: t('footer.bookConsultation'), to: '/contact' },
+    { label: t('footer.viewServices'), to: '/#services' },
+  ] as const
+
   return (
     <footer className="footer2">
       <div className="footer2-curve">
@@ -61,13 +63,13 @@ export default function Footer() {
         </div>
 
         <div className="footer2-bottom">
-          <span>&copy; 2026 Komodromos Group. All rights reserved.</span>
+          <span>{t('footer.copyright')}</span>
           <span className="footer2-tagline">
-            LIFESTYLE &amp; BUSINESS
+            {t('footer.tagline1')}
             <br />
-            PREMIUM COMPANIES
+            {t('footer.tagline2')}
             <br />
-            EST. 2020
+            {t('footer.tagline3')}
           </span>
         </div>
       </div>

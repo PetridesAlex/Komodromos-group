@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
@@ -15,12 +16,18 @@ import LightAircraftPremiumSection from './air/LightAircraftPremiumSection'
 import PrivateJetsInflightPremiumSection from './air/PrivateJetsInflightPremiumSection'
 
 const BASE_TITLE = 'Komodromos'
+const EASE = [0.16, 1, 0.3, 1] as const
 
 export default function AirCategoryPage() {
   const { categorySlug } = useParams<{ categorySlug: string }>()
   const categoryId = airSlugToCategoryId(categorySlug)
   const [menuOpen, setMenuOpen] = useState(false)
   const pageRef = useReveal()
+  const reduceMotion = useReducedMotion()
+
+  const fadeUp = reduceMotion
+    ? { initial: false, animate: {} }
+    : { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } }
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -45,7 +52,6 @@ export default function AirCategoryPage() {
 
   const content = airCategoryContent[categoryId]
   const otherId: AirCategoryId = categoryId === 'jets' ? 'light' : 'jets'
-  const other = airCategoryContent[otherId]
   const otherPath = `/services/air/${airCategoryPath[otherId]}`
 
   return (
@@ -82,12 +88,26 @@ export default function AirCategoryPage() {
 
       {categoryId === 'jets' ? (
         <>
-          <section className="air-category-hero" aria-labelledby="air-category-title" data-hero-parallax-root>
-            <div className="air-category-hero__bg" aria-hidden data-hero-parallax>
-              <div className="air-category-hero__gradient" />
+          <section
+            className="air-category-hero air-category-hero--immersive"
+            aria-labelledby="air-category-title"
+            data-hero-parallax-root
+          >
+            <div className="air-category-hero__media" aria-hidden data-hero-parallax>
+              <img
+                className="air-category-hero__media-img"
+                src={content.image}
+                alt=""
+                width={1920}
+                height={1080}
+                decoding="async"
+                fetchPriority="high"
+              />
+              <div className="air-category-hero__veil" />
+              <div className="air-category-hero__grain" />
             </div>
-            <div className="container air-category-hero__inner">
-              <nav className="air-category-breadcrumb" aria-label="Breadcrumb">
+            <div className="container air-category-hero__inner air-category-hero__inner--immersive">
+              <nav className="air-category-breadcrumb air-category-breadcrumb--immersive" aria-label="Breadcrumb">
                 <ol className="air-category-breadcrumb__list">
                   <li className="air-category-breadcrumb__item">
                     <Link to="/" className="air-category-breadcrumb__link">
@@ -111,14 +131,49 @@ export default function AirCategoryPage() {
                 </ol>
               </nav>
 
-              <div className="air-category-hero__layout">
-                <div className="air-category-hero__copy">
-                  <p className="air-category-hero__eyebrow">{content.tagline}</p>
-                  <h1 id="air-category-title" className="air-category-hero__title">
+              <div className="air-category-hero__layout air-category-hero__layout--immersive">
+                <div className="air-category-hero__copy air-category-hero__copy--immersive">
+                  <motion.p
+                    className="air-category-hero__eyebrow"
+                    {...fadeUp}
+                    transition={{ duration: reduceMotion ? 0 : 0.52, ease: EASE }}
+                  >
+                    {content.tagline}
+                  </motion.p>
+                  <motion.h1
+                    id="air-category-title"
+                    className="air-category-hero__title"
+                    {...fadeUp}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.68,
+                      delay: reduceMotion ? 0 : 0.06,
+                      ease: EASE,
+                    }}
+                  >
                     {content.title}
-                  </h1>
-                  <p className="air-category-hero__lead">{content.lead}</p>
-                  <p className="air-category-hero__footnote">{content.footnote}</p>
+                  </motion.h1>
+                  <motion.p
+                    className="air-category-hero__lead"
+                    {...fadeUp}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.58,
+                      delay: reduceMotion ? 0 : 0.14,
+                      ease: EASE,
+                    }}
+                  >
+                    {content.lead}
+                  </motion.p>
+                  <motion.p
+                    className="air-category-hero__footnote"
+                    {...fadeUp}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.54,
+                      delay: reduceMotion ? 0 : 0.2,
+                      ease: EASE,
+                    }}
+                  >
+                    {content.footnote}
+                  </motion.p>
                   <div className="air-category-hero__actions">
                     <Link to="/contact" className="air-category-hero__cta" state={{ serviceInterest: 'VIP Services' }}>
                       Enquire
@@ -134,43 +189,9 @@ export default function AirCategoryPage() {
                     </Link>
                   </div>
                 </div>
-                <figure className="air-category-hero__figure">
-                  <div className="air-category-hero__frame">
-                    <img
-                      className="air-category-hero__img"
-                      src={content.image}
-                      alt={content.imageAlt}
-                      width={960}
-                      height={600}
-                      decoding="async"
-                      fetchPriority="high"
-                    />
-                    <span className="air-category-hero__sheen" aria-hidden />
-                  </div>
-                </figure>
               </div>
-
-              <ul className="air-category-highlights" aria-label="Highlights">
-                {content.highlights.map((h) => (
-                  <li key={h.label} className="air-category-highlights__item">
-                    <span className="air-category-highlights__label">{h.label}</span>
-                    <p className="air-category-highlights__text">{h.text}</p>
-                  </li>
-                ))}
-              </ul>
             </div>
           </section>
-
-          <nav className="air-category-cross" aria-label="Related air category">
-            <div className="container air-category-cross__inner">
-              <p className="air-category-cross__label">Also explore</p>
-              <Link to={otherPath} className="air-category-cross__link">
-                <span className="air-category-cross__link-title">{other.title}</span>
-                <span className="air-category-cross__link-tag">{other.tagline}</span>
-                <span className="air-category-cross__link-arrow" aria-hidden />
-              </Link>
-            </div>
-          </nav>
         </>
       ) : null}
 

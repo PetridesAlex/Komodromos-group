@@ -194,3 +194,152 @@ export const TAX_NEX_FAQ_ITEMS: TaxNexFaqItem[] = [
     ),
   },
 ]
+
+const TAX_NEX_FAQ_HEADING_EN = {
+  eyebrow: 'Frequently asked questions',
+  title: 'If you have any questions',
+}
+
+const TAX_NEX_FAQ_ITEMS_EN: TaxNexFaqItem[] = [
+  {
+    question: 'How secure are my data and personal details?',
+    answer: (
+      <>
+        <p>We are 100% committed to keeping your personal data safe.</p>
+        <p>1. TaxNexcy.com is licensed, approved, and regulated by ICPAC.</p>
+        <p>2. We protect your data with leading technology and industry practices.</p>
+        <p>3. We comply with GDPR data protection requirements.</p>
+        <p>4. Your information remains confidential. We do not sell or rent it to third parties.</p>
+      </>
+    ),
+  },
+  {
+    question: 'I am filing for the first time. Can I use TaxNexcy.com?',
+    answer: (
+      <>
+        <p>Yes, absolutely. You only need:</p>
+        <p>
+          1. A TIN (Tax Identification Number) <br />
+          2. TAXISnet registration.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: 'What is TIC?',
+    answer: (
+      <>
+        <p>TIC means Taxpayer Identification Code. It is your personal tax number in Cyprus.</p>
+        <p>It contains 8 digits and one uppercase Latin letter at the end (e.g. 01234567X).</p>
+      </>
+    ),
+  },
+  {
+    question: 'What is TAXISnet?',
+    answer: (
+      <>
+        <p>TAXISnet is the Cyprus government portal used for online tax return submission.</p>
+        <p>
+          Tip: you need a TIC first in order to register on TAXISnet.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: 'Do I need TAXISnet registration to use TaxApp.cy?',
+    answer: <p>Yes. TAXISnet registration is required to use TaxApp.cy.</p>,
+  },
+  {
+    question: 'I am self-employed. Can I use TaxNexcy.com?',
+    answer: (
+      <>
+        <p>Cyprus has two different returns for individuals:</p>
+        <ol className="list-decimal space-y-2 pl-5">
+          <li>Employee tax return (for people employed by a company).</li>
+          <li>Self-employed tax return (for people working for themselves).</li>
+        </ol>
+        <p>These returns are different, but we can manually prepare and submit your self-employed return.</p>
+        <p>
+          <Link className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900" to="/contact">
+            Contact us
+          </Link>
+          .
+        </p>
+      </>
+    ),
+  },
+  {
+    question: 'Why should I use TaxNexcy.com if I can file by myself?',
+    answer: (
+      <>
+        <p>1. Your time is valuable — we prepare and submit quickly.</p>
+        <p>2. Your return is submitted correctly and with fewer errors.</p>
+        <p>3. We support you in every step.</p>
+        <p>4. We help identify tax reliefs and exemptions.</p>
+        <p>5. We send reminders before deadlines.</p>
+        <p>6. We are GDPR-compliant and secure.</p>
+        <p>7. One less thing for you to worry about.</p>
+      </>
+    ),
+  },
+  {
+    question: 'I do not live in Cyprus. Can I still use TaxNexcy.com?',
+    answer: (
+      <>
+        <p>Yes, you can.</p>
+        <p>Non-tax residents of Cyprus generally declare only Cyprus-source income.</p>
+      </>
+    ),
+  },
+  {
+    question: 'What is Cyprus-source income?',
+    answer: (
+      <>
+        <p>Any income generated in Cyprus, such as:</p>
+        <p>
+          1. Rental income from Cyprus property <br />
+          2. Employment income from a Cyprus employer <br />
+          3. Pension income related to work in Cyprus.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: 'I have a complex tax case. Can you help?',
+    answer: (
+      <p>
+        Yes. You can use TaxNexcy.com or{' '}
+        <Link className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900" to="/contact">
+          send us a message
+        </Link>{' '}
+        for a tailored solution.
+      </p>
+    ),
+  },
+  {
+    question: 'Why establish or transfer my business to Cyprus?',
+    answer: <p>Cyprus offers strategic location, attractive taxation, and strong business infrastructure.</p>,
+  },
+  {
+    question: 'What services does Komodromos Group offer for Cyprus company setup?',
+    answer: (
+      <p>
+        We provide end-to-end support for registration/incorporation, tax and legal compliance, and relocation support
+        services.
+      </p>
+    ),
+  },
+]
+
+export function getTaxNexFaqContent(locale: string) {
+  if (locale === 'en') {
+    return {
+      heading: TAX_NEX_FAQ_HEADING_EN,
+      items: TAX_NEX_FAQ_ITEMS_EN,
+    }
+  }
+  return {
+    heading: TAX_NEX_FAQ_HEADING,
+    items: TAX_NEX_FAQ_ITEMS,
+  }
+}

@@ -1,7 +1,9 @@
 import { useCallback, useEffect } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
+import LanguageSwitcher from './LanguageSwitcher'
 import { useReveal } from '../hooks/useReveal'
 import { getServiceBySlug } from '../data/serviceCards'
 import { getServicePageContent } from '../data/servicePageSections'
@@ -17,6 +19,7 @@ const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
 export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const location = useLocation()
+  const { t } = useTranslation()
   const card = getServiceBySlug(slug)
   const defaultContent = slug ? getServicePageContent(slug) : undefined
   const pageRef = useReveal()
@@ -41,13 +44,6 @@ export default function ServiceDetailPage() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
   }, [slug, location.hash])
 
-  if (!card) {
-    return <Navigate to="/" replace />
-  }
-
-  const isVip = slug === 'vip'
-  const heroBackgroundImage = isVip ? VIP_DETAIL_HERO_IMAGE : card.image
-
   const scrollToVipPortfolio = useCallback(() => {
     const el = document.getElementById(VIP_PORTFOLIO_SECTION_ID)
     if (!el) return
@@ -57,6 +53,13 @@ export default function ServiceDetailPage() {
       block: 'start',
     })
   }, [])
+
+  if (!card) {
+    return <Navigate to="/" replace />
+  }
+
+  const isVip = slug === 'vip'
+  const heroBackgroundImage = isVip ? VIP_DETAIL_HERO_IMAGE : card.image
 
   return (
     <div className="page" ref={pageRef}>
@@ -89,59 +92,59 @@ export default function ServiceDetailPage() {
           </div>
         </div>
       ) : slug === 'tax' ? (
-        <div className="tax-page-subnav" aria-label="Tax page navigation">
+        <div className="tax-page-subnav" aria-label={t('serviceDetail.taxNavAria')}>
           <div className="container">
             <nav className="tax-page-subnav__inner">
               <a href="#tax-hero" className="tax-page-subnav__link">
-                Εισαγωγή
+                {t('serviceDetail.intro')}
               </a>
               <Link to="/services/tax/services" className="tax-page-subnav__link">
-                Υπηρεσίες
+                {t('serviceDetail.services')}
               </Link>
               <a href="#tax-pricing" className="tax-page-subnav__link">
-                Πακέτα
+                {t('serviceDetail.packages')}
               </a>
               <a href="#tax-mission" className="tax-page-subnav__link">
-                Στόχος
+                {t('serviceDetail.mission')}
               </a>
               <a href="#tax-steps" className="tax-page-subnav__link">
-                Βήματα
+                {t('serviceDetail.steps')}
               </a>
               <div className="tax-page-subnav__tools">
                 <a href="#tax-tools" className="tax-page-subnav__link">
-                  Εργαλεία
+                  {t('serviceDetail.tools')}
                 </a>
-                <div className="tax-page-subnav__tools-menu" role="menu" aria-label="Tax tools menu">
+                <div className="tax-page-subnav__tools-menu" role="menu" aria-label={t('serviceDetail.taxToolsMenuAria')}>
                   <Link
                     to="/services/tax/income-tax-calculator"
                     className="tax-page-subnav__tools-item"
                     role="menuitem"
                   >
-                    ΥΠΟΛΟΓΙΣΜΟΣ ΦΟΡΟΥ ΕΙΣΟΔΗΜΑΤΟΣ
+                    {t('serviceDetail.incomeTaxCalc')}
                   </Link>
                   <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                    ΕΛΕΓΧΟΣ ΦΟΡΟΛΟΓΙΚΗΣ ΚΑΤΟΙΚΙΑΣ
+                    {t('serviceDetail.taxResidenceCheck')}
                   </a>
                   <Link
                     to="/services/tax/transfer-fees-calculator"
                     className="tax-page-subnav__tools-item"
                     role="menuitem"
                   >
-                    ΥΠΟΛΟΓΙΣΜΟΣ ΤΕΛΩΝ ΜΕΤΑΒΙΒΑΣΗΣ
+                    {t('serviceDetail.transferFeesCalc')}
                   </Link>
                   <Link
                     to="/services/tax/income-tax-calculator"
                     className="tax-page-subnav__tools-item"
                     role="menuitem"
                   >
-                    20% ΦΟΡΟΑΠΑΛΛΑΓΗ
+                    {t('serviceDetail.taxExemption20')}
                   </Link>
                   <Link
                     to="/services/tax/income-tax-calculator"
                     className="tax-page-subnav__tools-item"
                     role="menuitem"
                   >
-                    50% ΦΟΡΟΑΠΑΛΛΑΓΗ
+                    {t('serviceDetail.taxExemption50')}
                   </Link>
                   <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
                     FORM TD59
@@ -149,14 +152,17 @@ export default function ServiceDetailPage() {
                 </div>
               </div>
               <Link to={`/services/tax#${TAX_NEX_FAQ_SECTION_ID}`} className="tax-page-subnav__link">
-                Συχνές ερωτήσεις
+                {t('serviceDetail.faq')}
               </Link>
               <a href="#tax-newsletter" className="tax-page-subnav__link">
-                Ενημέρωση
+                {t('serviceDetail.updates')}
               </a>
               <a href="#tax-contact" className="tax-page-subnav__link tax-page-subnav__link--cta">
-                Αίτημα
+                {t('serviceDetail.request')}
               </a>
+              <div className="tax-page-subnav__lang">
+                <LanguageSwitcher />
+              </div>
             </nav>
           </div>
         </div>
