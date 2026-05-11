@@ -95,21 +95,26 @@ export default function YachtDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <nav className="yacht-detail-breadcrumb" aria-label="Breadcrumb">
-              <Link to="/services/yacht-charters">Yacht charter</Link>
-              <span aria-hidden className="yacht-detail-breadcrumb__sep">
-                /
-              </span>
-              <span className="yacht-detail-breadcrumb__current">{yacht.name}</span>
-            </nav>
+            <div className="yacht-detail-lead">
+              <nav className="yacht-detail-breadcrumb" aria-label="Breadcrumb">
+                <Link to="/services/yacht-charters">Yacht charter</Link>
+                <span aria-hidden className="yacht-detail-breadcrumb__sep">
+                  /
+                </span>
+                <span className="yacht-detail-breadcrumb__current">{yacht.name}</span>
+              </nav>
 
-            <p className="yacht-detail-kicker">{yacht.type}</p>
-            <h1 className="yacht-detail-title">{yacht.name}</h1>
-
-            <div className="yacht-detail-prose">
-              {detail.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
+              <div className="yacht-detail-lead__grid">
+                <header className="yacht-detail-lead__head">
+                  <p className="yacht-detail-kicker">{yacht.type}</p>
+                  <h1 className="yacht-detail-title">{yacht.name}</h1>
+                </header>
+                <div className="yacht-detail-prose">
+                  {detail.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {hasGalleryPhotos ? (

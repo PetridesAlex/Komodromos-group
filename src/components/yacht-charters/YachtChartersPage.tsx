@@ -205,7 +205,6 @@ export default function YachtChartersPage() {
               {yachtCharterIntro.title}
             </h2>
             <p className="yacht-intro__lead">{yachtCharterIntro.lead}</p>
-            <div className="yacht-intro__rule" aria-hidden />
             <div className="yacht-intro__prose">
               {yachtCharterIntro.paragraphs.map((block, i) => {
                 const text = typeof block === 'string' ? block : block.text
@@ -247,8 +246,8 @@ export default function YachtChartersPage() {
             {filteredFleet.length} vessel{filteredFleet.length === 1 ? '' : 's'} match your criteria
           </p>
           <div className="yacht-fleet__grid">
-            {filteredFleet.map((yacht) => (
-              <YachtCard key={yacht.id} yacht={yacht} reduceMotion={reduceMotion} />
+            {filteredFleet.map((yacht, index) => (
+              <YachtCard key={yacht.id} yacht={yacht} index={index} reduceMotion={reduceMotion} />
             ))}
           </div>
           {filteredFleet.length === 0 ? (

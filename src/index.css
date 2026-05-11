@@ -1080,15 +1080,184 @@ a {
   color: #072d4d;
 }
 
-.tax-page-subnav {
+.tax-page-nav-stack {
   position: sticky;
   top: 72px;
   z-index: 24;
+}
+
+.tax-page-subnav {
+  position: relative;
   border-bottom: 1px solid rgba(107, 142, 196, 0.28);
   background: linear-gradient(180deg, rgba(245, 250, 255, 0.96) 0%, rgba(235, 244, 255, 0.95) 100%);
   backdrop-filter: blur(12px) saturate(1.18);
   -webkit-backdrop-filter: blur(12px) saturate(1.18);
   box-shadow: 0 9px 20px rgba(15, 39, 68, 0.1);
+}
+
+.tax-page-promo-bar {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(56, 92, 148, 0.42);
+  background: linear-gradient(
+    90deg,
+    #070f1c 0%,
+    #102542 20%,
+    #0c1a30 50%,
+    #102542 80%,
+    #070f1c 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 8px 22px rgba(4, 10, 22, 0.42);
+}
+
+.tax-page-promo-bar__gloss {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 42%,
+    rgba(255, 255, 255, 0.14) 50%,
+    rgba(255, 255, 255, 0.06) 58%,
+    transparent 100%
+  );
+  background-size: 240% 100%;
+  animation: tax-page-promo-gloss 12s ease-in-out infinite;
+  mix-blend-mode: screen;
+  opacity: 0.62;
+}
+
+.tax-page-promo-bar__scanline {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.055;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.85) 0,
+    rgba(255, 255, 255, 0.85) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.tax-page-promo-bar__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.tax-page-promo-bar__link:focus-visible {
+  outline: 2px solid rgba(250, 204, 21, 0.95);
+  outline-offset: -2px;
+}
+
+.tax-page-promo-bar__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tax-page-promo-bar__viewport {
+  overflow: hidden;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+}
+
+.tax-page-promo-bar__track {
+  display: flex;
+  width: max-content;
+  animation: tax-page-promo-marquee 40s linear infinite;
+}
+
+.tax-page-promo-bar__half {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.tax-page-promo-bar__chunk {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: clamp(0.62rem, 1.1vw, 0.74rem);
+  font-weight: 800;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 250, 231, 0.96);
+  text-shadow:
+    0 0 20px rgba(250, 204, 21, 0.28),
+    0 1px 0 rgba(0, 0, 0, 0.65);
+  padding-right: 2.75rem;
+  white-space: nowrap;
+}
+
+@keyframes tax-page-promo-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes tax-page-promo-gloss {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tax-page-promo-bar__track {
+    animation: none;
+    margin: 0 auto;
+  }
+
+  .tax-page-promo-bar__half + .tax-page-promo-bar__half {
+    display: none;
+  }
+
+  .tax-page-promo-bar__gloss {
+    animation: none;
+    opacity: 0.32;
+  }
+}
+
+.page:has(.taxnex-root) .tax-page-promo-bar {
+  border-bottom-color: rgba(6, 95, 70, 0.5);
+  background: linear-gradient(
+    90deg,
+    #022c22 0%,
+    #064e3b 22%,
+    #043d2e 50%,
+    #064e3b 78%,
+    #022c22 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(167, 243, 208, 0.16),
+    0 8px 22px rgba(2, 28, 22, 0.5);
+}
+
+.page:has(.taxnex-root) .tax-page-promo-bar__chunk {
+  color: rgba(236, 253, 245, 0.97);
+  text-shadow:
+    0 0 22px rgba(52, 211, 153, 0.4),
+    0 1px 0 rgba(0, 0, 0, 0.55);
 }
 
 .tax-page-subnav__inner {
@@ -1300,8 +1469,11 @@ a {
     white-space: nowrap;
   }
 
-  .tax-page-subnav {
+  .tax-page-nav-stack {
     top: 64px;
+  }
+
+  .tax-page-subnav {
     overflow: visible;
   }
 
@@ -1355,14 +1527,17 @@ a {
   background: linear-gradient(180deg, #ffffff 0%, #f7fefb 35%, #f0fdf9 100%);
 }
 
-/* Force legacy font stack across the whole TaxNex page. */
-.taxnex-root,
-.taxnex-root * {
+/* Force legacy font stack only on non-marketing nodes (BEM `taxnex-*` keeps its own type). */
+.taxnex-root {
+  font-family: var(--taxnex-font-legacy);
+}
+
+.taxnex-root *:not([class*='taxnex-']) {
   font-family: var(--taxnex-font-legacy) !important;
 }
 
-/* Taxisnet-style paragraph typography (txt10-like) across full TaxNex page. */
-.taxnex-root p {
+/* Taxisnet-style paragraph typography (txt10-like) — skip BEM paragraphs (hero, cards, etc.). */
+.taxnex-root p:not([class*='taxnex-']) {
   font-family: Arial, Helvetica, sans-serif !important;
   font-size: 12px !important;
   font-weight: 400 !important;
@@ -1394,20 +1569,122 @@ a {
 }
 
 .taxnex-topbar__pin {
+  position: relative;
   flex-shrink: 0;
-  width: 6px;
-  height: 6px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #a7f3d0 0%, var(--txg-400) 100%);
-  box-shadow: 0 0 14px rgba(52, 211, 153, 0.55);
+  border: 1px solid rgba(236, 253, 245, 0.55);
+  background: radial-gradient(circle at 32% 26%, #ffffff 0%, #a7f3d0 22%, #34d399 58%, #059669 100%);
+  box-shadow:
+    0 0 0 1px rgba(16, 185, 129, 0.35),
+    0 0 14px rgba(52, 211, 153, 0.75),
+    0 0 0 0 rgba(52, 211, 153, 0.4);
+  animation: taxnex-topbar-pin-core 1.45s ease-in-out infinite;
+}
+
+.taxnex-topbar__pin::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(110, 231, 183, 0.65);
+  pointer-events: none;
+  animation: taxnex-topbar-pin-ripple 1.45s ease-out infinite;
+}
+
+@keyframes taxnex-topbar-pin-core {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(16, 185, 129, 0.35),
+      0 0 14px rgba(52, 211, 153, 0.65),
+      0 0 0 0 rgba(52, 211, 153, 0.35);
+    filter: brightness(1);
+  }
+
+  18% {
+    box-shadow:
+      0 0 0 1px rgba(167, 243, 208, 0.55),
+      0 0 26px rgba(52, 211, 153, 1),
+      0 0 0 9px rgba(52, 211, 153, 0.18);
+    filter: brightness(1.1);
+  }
+
+  32% {
+    box-shadow:
+      0 0 0 1px rgba(16, 185, 129, 0.35),
+      0 0 14px rgba(52, 211, 153, 0.65),
+      0 0 0 0 rgba(52, 211, 153, 0);
+    filter: brightness(1);
+  }
+
+  48% {
+    box-shadow:
+      0 0 0 1px rgba(110, 231, 183, 0.45),
+      0 0 22px rgba(110, 231, 183, 0.95),
+      0 0 0 7px rgba(52, 211, 153, 0.14);
+    filter: brightness(1.06);
+  }
+
+  62% {
+    box-shadow:
+      0 0 0 1px rgba(16, 185, 129, 0.35),
+      0 0 14px rgba(52, 211, 153, 0.65),
+      0 0 0 0 rgba(52, 211, 153, 0);
+    filter: brightness(1);
+  }
+}
+
+@keyframes taxnex-topbar-pin-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.62;
+  }
+
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-topbar__pin {
+    animation: taxnex-topbar-pin-static 2.8s ease-in-out infinite;
+  }
+
+  .taxnex-topbar__pin::after {
+    display: none;
+  }
+}
+
+@keyframes taxnex-topbar-pin-static {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow:
+      0 0 0 1px rgba(16, 185, 129, 0.35),
+      0 0 14px rgba(52, 211, 153, 0.6);
+  }
+
+  50% {
+    opacity: 0.9;
+    box-shadow:
+      0 0 0 1px rgba(167, 243, 208, 0.45),
+      0 0 20px rgba(52, 211, 153, 0.8);
+  }
 }
 
 .taxnex-hero {
   position: relative;
-  min-height: min(88vh, 900px);
+  min-height: 0;
   display: flex;
-  align-items: center;
-  padding: clamp(4.25rem, 11vw, 6.5rem) 0 clamp(2.75rem, 7vw, 4rem);
+  align-items: flex-start;
+  padding: clamp(2rem, 5vw, 3.25rem) 0 clamp(1.75rem, 4.5vw, 2.75rem);
   overflow: hidden;
 }
 
@@ -1456,52 +1733,114 @@ a {
 .taxnex-hero__inner {
   position: relative;
   z-index: 3;
+  width: 100%;
   max-width: 1220px;
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  align-items: center;
-  gap: clamp(1rem, 3vw, 2.75rem);
+  align-items: start;
+  gap: clamp(0.85rem, 2.5vw, 2rem);
 }
 
 .taxnex-hero__main {
   max-width: 680px;
   justify-self: center;
+  align-self: start;
+  width: 100%;
 }
 
-.taxnex-hero__bg-copy {
+.taxnex-hero__aside {
   position: relative;
   z-index: 2;
-  justify-self: center;
-  align-self: center;
+  justify-self: end;
+  align-self: start;
   text-align: left;
   color: rgba(12, 31, 49, 0.9);
+  padding: 0 0 clamp(0.5rem, 2vw, 1rem) clamp(1.15rem, 2.8vw, 1.85rem);
+  max-width: min(100%, 30rem);
+}
+
+.taxnex-hero__aside::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  bottom: clamp(0.35rem, 1.5vw, 0.85rem);
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    rgba(45, 212, 191, 0.15) 0%,
+    rgba(15, 118, 110, 0.55) 28%,
+    rgba(6, 78, 59, 0.88) 52%,
+    rgba(15, 118, 110, 0.45) 78%,
+    rgba(167, 243, 208, 0.2) 100%
+  );
+  box-shadow: 0 0 18px rgba(45, 212, 191, 0.22);
   pointer-events: none;
-  padding: clamp(0.5rem, 2vw, 1rem);
 }
 
-.taxnex-hero__bg-copy-top {
+.taxnex-hero__aside-tagline {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.15rem, 2.5vw, 2.6rem);
-  font-weight: 500;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1rem, 2.1vw, 1.75rem);
+  font-weight: 600;
+  font-style: normal;
   line-height: 1.22;
-  letter-spacing: 0.015em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: rgba(6, 46, 38, 0.88);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55),
+    0 12px 28px rgba(255, 255, 255, 0.35);
 }
 
-.taxnex-hero__bg-copy-top strong {
-  font-weight: 800;
+.taxnex-hero__aside-tagline strong {
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: rgba(4, 120, 87, 0.94);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.45),
+    0 0 24px rgba(52, 211, 153, 0.22);
 }
 
-.taxnex-hero__bg-copy-brand {
-  margin: clamp(0.35rem, 1vw, 0.65rem) 0 0;
+.taxnex-hero__aside-brand {
+  position: relative;
+  margin: clamp(0.5rem, 1.4vw, 0.95rem) 0 0;
+  padding-top: clamp(0.45rem, 1.2vw, 0.75rem);
   font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.5rem, 6vw, 5.1rem);
+  font-size: clamp(1.65rem, 4.2vw, 2.85rem);
   font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  color: rgba(16, 65, 83, 0.9);
-  text-shadow: 0 6px 22px rgba(255, 255, 255, 0.42);
+  line-height: 0.98;
+  letter-spacing: 0.04em;
+  background-image: linear-gradient(
+    168deg,
+    #115e59 0%,
+    #0f766e 26%,
+    #0d5c46 52%,
+    #064e3b 78%,
+    #042f2e 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 1px rgba(255, 255, 255, 0.55)) drop-shadow(0 10px 22px rgba(6, 78, 59, 0.18));
+}
+
+.taxnex-hero__aside-brand::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(3.25rem, 10vw, 5.5rem);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 118, 110, 0.75) 0%,
+    rgba(45, 212, 191, 0.45) 55%,
+    transparent 100%
+  );
+  border-radius: 999px;
 }
 
 @media (max-width: 1100px) {
@@ -1509,8 +1848,17 @@ a {
     grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
   }
 
-  .taxnex-hero__bg-copy {
-    opacity: 0.8;
+  .taxnex-hero__aside {
+    opacity: 0.92;
+  }
+
+  .taxnex-hero__aside-tagline {
+    font-size: clamp(1.05rem, 2.2vw, 1.85rem);
+    letter-spacing: 0.12em;
+  }
+
+  .taxnex-hero__aside-brand {
+    font-size: clamp(1.75rem, 4.5vw, 2.95rem);
   }
 }
 
@@ -1519,40 +1867,64 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .taxnex-hero__bg-copy {
+  .taxnex-hero__aside {
+    justify-self: center;
+    text-align: center;
+    max-width: 100%;
+    padding: clamp(1rem, 4vw, 1.75rem) 0 0;
+    opacity: 1;
+  }
+
+  .taxnex-hero__aside::before {
     display: none;
+  }
+
+  .taxnex-hero__aside-tagline {
+    font-size: clamp(1.02rem, 3.5vw, 1.72rem);
+    letter-spacing: 0.1em;
+  }
+
+  .taxnex-hero__aside-brand {
+    font-size: clamp(1.65rem, 6.5vw, 2.35rem);
+  }
+
+  .taxnex-hero__aside-brand::before {
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
 .taxnex-hero__brand-row {
-  margin-bottom: 1.35rem;
+  margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .taxnex-hero__logo {
-  height: clamp(78px, 14vw, 130px);
+  display: block;
   width: auto;
-  max-width: 420px;
+  max-width: 100%;
+  max-height: clamp(72px, 16vw, 148px);
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 8px 28px rgba(255, 255, 255, 0.85));
+  filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.75));
 }
 
 .taxnex-hero__title {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.55rem;
   font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2rem, 4.8vw, 3.25rem);
+  font-size: clamp(1.75rem, 3.8vw, 2.85rem);
   font-weight: 600;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: 0.02em;
   color: #064e3b;
   text-shadow: 0 2px 28px rgba(255, 255, 255, 0.95);
 }
 
 .taxnex-hero__subtitle {
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   max-width: 46rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  line-height: 1.65;
+  font-size: clamp(0.95rem, 1.85vw, 1.15rem);
+  line-height: 1.55;
   color: #166534;
 }
 
@@ -1569,7 +1941,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.1rem;
+  gap: 0.75rem;
 }
 
 .taxnex-hero__stage {
@@ -1585,21 +1957,21 @@ a {
 .taxnex-hero__cta-row {
   display: flex;
   flex-wrap: nowrap;
-  gap: 0.7rem;
+  gap: 0.5rem;
   align-items: center;
 }
 
 .taxnex-hero__cta-row .taxnex-btn {
   position: relative;
   overflow: hidden;
-  min-height: 62px;
-  padding: 0.92rem 1.3rem;
+  min-height: 50px;
+  padding: 0.65rem 1rem;
   border-radius: 12px;
   letter-spacing: 0.09em;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   line-height: 1;
   white-space: nowrap;
-  min-width: 220px;
+  min-width: min(200px, 100%);
   animation: taxnex-cta-breathe 7s ease-in-out infinite;
 }
 
@@ -1777,6 +2149,54 @@ a {
   }
 }
 
+@media (max-height: 820px) {
+  .taxnex-hero {
+    padding-top: clamp(1rem, 2.8vh, 2rem);
+    padding-bottom: clamp(0.85rem, 2vh, 1.35rem);
+  }
+
+  .taxnex-hero__logo {
+    max-height: min(112px, 15vh);
+  }
+
+  .taxnex-hero__brand-row {
+    margin-bottom: 0.65rem;
+  }
+
+  .taxnex-hero__title {
+    font-size: clamp(1.5rem, 3.2vw, 2.35rem);
+    margin-bottom: 0.4rem;
+  }
+
+  .taxnex-hero__subtitle {
+    font-size: clamp(0.85rem, 1.55vw, 1.05rem);
+    margin-bottom: 0.5rem;
+    line-height: 1.48;
+  }
+
+  .taxnex-hero__cta-block {
+    gap: 0.55rem;
+  }
+
+  .taxnex-hero__cta-row .taxnex-btn {
+    min-height: 46px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.62rem;
+    min-width: min(170px, 100%);
+  }
+
+  .taxnex-hero__aside-tagline {
+    font-size: clamp(0.88rem, 1.85vw, 1.45rem);
+    letter-spacing: 0.1em;
+  }
+
+  .taxnex-hero__aside-brand {
+    font-size: clamp(1.2rem, 2.8vw, 2rem);
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+  }
+}
+
 @media (max-width: 780px) {
   .taxnex-hero__cta-row {
     flex-wrap: wrap;
@@ -1850,6 +2270,299 @@ a {
   padding-bottom: clamp(4rem, 10vw, 6rem);
 }
 
+.taxnex-section--youtube {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 70% at 12% 12%, rgba(45, 212, 191, 0.14) 0%, transparent 52%),
+    radial-gradient(ellipse 65% 55% at 92% 88%, rgba(16, 185, 129, 0.1) 0%, transparent 48%),
+    linear-gradient(168deg, #022018 0%, #041910 42%, #052a1f 100%);
+  border-top: 1px solid rgba(52, 211, 153, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.taxnex-yt-gridline {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: repeating-linear-gradient(
+    -12deg,
+    transparent,
+    transparent 54px,
+    rgba(167, 243, 208, 0.35) 54px,
+    rgba(167, 243, 208, 0.35) 55px
+  );
+}
+
+.taxnex-yt-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(1.75rem, 4.5vw, 3rem);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .taxnex-yt-layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+}
+
+.taxnex-yt-copy__lede {
+  margin: 1rem 0 0;
+  max-width: 34rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.9rem, 1.35vw, 1.02rem);
+  line-height: 1.72;
+  color: rgba(220, 252, 231, 0.82);
+}
+
+.taxnex-yt-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.taxnex-yt-pills li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(236, 253, 245, 0.9);
+  border: 1px solid rgba(52, 211, 153, 0.28);
+  padding: 0.42rem 0.82rem;
+  border-radius: 999px;
+  background: linear-gradient(145deg, rgba(6, 78, 59, 0.55) 0%, rgba(4, 47, 46, 0.35) 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+.taxnex-yt-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: clamp(20px, 3vw, 28px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow:
+    0 32px 64px -28px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 1px 0 rgba(255, 255, 255, 0.1) inset;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.35s ease;
+}
+
+.taxnex-yt-card:hover {
+  transform: translateY(-8px) scale(1.008);
+  border-color: rgba(52, 211, 153, 0.35);
+  box-shadow:
+    0 40px 72px -24px rgba(0, 0, 0, 0.72),
+    0 0 0 1px rgba(52, 211, 153, 0.2) inset,
+    0 0 48px -12px rgba(45, 212, 191, 0.18);
+}
+
+.taxnex-yt-card:focus-visible {
+  outline: 2px solid rgba(110, 231, 183, 0.95);
+  outline-offset: 4px;
+}
+
+.taxnex-yt-card__visual {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 100%, rgba(6, 95, 70, 0.5) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 45% at 22% 18%, rgba(167, 243, 208, 0.12) 0%, transparent 55%),
+    linear-gradient(145deg, #0a2f24 0%, #041c16 50%, #052e22 100%);
+}
+
+.taxnex-yt-card__mesh {
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(52, 211, 153, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 78% 62%, rgba(20, 184, 166, 0.1) 0%, transparent 38%);
+  opacity: 0.9;
+}
+
+.taxnex-yt-card__scan {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0,
+    rgba(255, 255, 255, 0.9) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: overlay;
+}
+
+.taxnex-yt-card__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(4.25rem, 12vw, 5.25rem);
+  height: clamp(4.25rem, 12vw, 5.25rem);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ff1a1a 0%, #cc0000 100%);
+  color: #ffffff;
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 255, 0.1),
+    0 18px 40px rgba(204, 0, 0, 0.45);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.taxnex-yt-card:hover .taxnex-yt-card__play {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow:
+    0 0 0 8px rgba(255, 255, 255, 0.14),
+    0 22px 48px rgba(255, 26, 26, 0.5);
+}
+
+.taxnex-yt-card__play svg {
+  margin-left: 3px;
+}
+
+.taxnex-yt-card__yt-mark {
+  position: absolute;
+  left: clamp(0.85rem, 2.2vw, 1.25rem);
+  top: clamp(0.85rem, 2.2vw, 1.25rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem 0.35rem 0.5rem;
+  border-radius: 999px;
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f8fafc;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.taxnex-yt-card__yt-mark svg {
+  flex-shrink: 0;
+  color: #ff0000;
+}
+
+.taxnex-yt-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1rem, 2.5vw, 1.35rem) clamp(1.1rem, 2.5vw, 1.5rem);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(4, 24, 18, 0.55) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.taxnex-yt-card__channel {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.taxnex-yt-card__avatar {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 50%;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ecfdf5;
+  background: linear-gradient(145deg, #0f766e 0%, #064e3b 100%);
+  border: 1px solid rgba(167, 243, 208, 0.35);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.taxnex-yt-card__channel-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.taxnex-yt-card__handle {
+  font-family: 'Outfit', 'Montserrat', monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #f0fdf4;
+}
+
+.taxnex-yt-card__sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(167, 243, 208, 0.72);
+}
+
+.taxnex-yt-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(236, 253, 245, 0.95);
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: rgba(6, 78, 59, 0.45);
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.taxnex-yt-card:hover .taxnex-yt-card__cta {
+  background: rgba(16, 185, 129, 0.28);
+  border-color: rgba(110, 231, 183, 0.55);
+  color: #ffffff;
+}
+
+.taxnex-yt-card__cta-arrow {
+  font-size: 0.85rem;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .taxnex-yt-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .taxnex-yt-card__cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .taxnex-section__head {
   margin-bottom: clamp(2rem, 5vw, 3rem);
   max-width: 46rem;
@@ -1899,6 +2612,16 @@ a {
   line-height: 1.15;
   letter-spacing: 0.005em;
   color: #064e3b;
+}
+
+.taxnex-section--youtube .taxnex-eyebrow {
+  color: rgba(167, 243, 208, 0.88);
+}
+
+.taxnex-section--youtube .taxnex-h2 {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  color: #f0fdf4;
+  letter-spacing: 0.01em;
 }
 
 .taxnex-h2--on-dark {
@@ -2351,6 +3074,11 @@ a {
   border-color: rgba(6, 95, 70, 0.42);
 }
 
+.taxnex-mission-section {
+  position: relative;
+  overflow: hidden;
+}
+
 .taxnex-mission__bg {
   position: absolute;
   inset: 0;
@@ -2361,30 +3089,270 @@ a {
   pointer-events: none;
 }
 
+.taxnex-mission__bg--pulse {
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  animation: taxnex-mission-bg-pulse 14s ease-in-out infinite;
+}
+
+@keyframes taxnex-mission-bg-pulse {
+  0%,
+  100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.28;
+  }
+
+  50% {
+    transform: scale(1.04) translate(1.5%, -1%);
+    opacity: 0.42;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-mission__bg--pulse {
+    animation: none;
+    opacity: 0.32;
+  }
+}
+
 .taxnex-mission__inner {
   position: relative;
   z-index: 1;
-  max-width: 720px;
+  max-width: 760px;
+}
+
+.taxnex-mission__panel {
+  position: relative;
+  border-radius: clamp(22px, 3.5vw, 34px);
+  padding: 1px;
+  background: linear-gradient(
+    125deg,
+    rgba(110, 231, 183, 0.55) 0%,
+    rgba(6, 78, 59, 0.45) 38%,
+    rgba(45, 212, 191, 0.35) 62%,
+    rgba(16, 185, 129, 0.5) 100%
+  );
+  background-size: 220% 220%;
+  animation: taxnex-mission-border-flow 10s ease-in-out infinite;
+  box-shadow:
+    0 32px 80px -36px rgba(6, 58, 44, 0.38),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+
+@keyframes taxnex-mission-border-flow {
+  0%,
+  100% {
+    background-position: 0% 40%;
+  }
+
+  50% {
+    background-position: 100% 60%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-mission__panel {
+    animation: none;
+    background: linear-gradient(
+      145deg,
+      rgba(110, 231, 183, 0.45) 0%,
+      rgba(6, 78, 59, 0.4) 50%,
+      rgba(45, 212, 191, 0.38) 100%
+    );
+  }
+}
+
+.taxnex-mission__panel-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.07) 42%,
+    rgba(255, 255, 255, 0.16) 50%,
+    rgba(255, 255, 255, 0.07) 58%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: taxnex-mission-panel-sheen 7s ease-in-out infinite;
+  mix-blend-mode: soft-light;
+}
+
+@keyframes taxnex-mission-panel-sheen {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-mission__panel-sheen {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+.taxnex-mission__panel-inner {
+  position: relative;
+  border-radius: calc(clamp(22px, 3.5vw, 34px) - 1px);
+  overflow: hidden;
+  background: linear-gradient(
+    168deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(248, 253, 250, 0.99) 42%,
+    rgba(236, 253, 245, 0.96) 100%
+  );
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
 }
 
 .taxnex-mission__copy {
-  padding: clamp(2rem, 6vw, 3rem) 0;
+  position: relative;
+  z-index: 1;
+  padding: clamp(1.75rem, 4.5vw, 2.65rem) clamp(1.35rem, 4vw, 2.25rem);
+}
+
+.taxnex-mission__title {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  background-image: linear-gradient(120deg, #064e3b 0%, #0f766e 45%, #047857 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.01em;
 }
 
 .taxnex-mission__line {
-  margin: 0.85rem 0 0;
+  margin: 1.05rem 0 0;
+  max-width: 40rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1rem, 2.2vw, 1.18rem);
-  line-height: 1.65;
-  color: #3f6f58;
+  font-size: clamp(0.95rem, 2vw, 1.12rem);
+  line-height: 1.68;
+  color: #3d5248;
 }
 
 .taxnex-mission__phones {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: clamp(1.35rem, 3.5vw, 1.85rem);
+  padding: clamp(0.95rem, 2.5vw, 1.2rem) clamp(1rem, 2.5vw, 1.35rem);
+  border-radius: 18px;
+  border: 1px solid rgba(167, 243, 208, 0.55);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.75) 0%, rgba(236, 253, 245, 0.55) 100%);
+  box-shadow:
+    0 14px 36px -28px rgba(6, 78, 59, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+}
+
+.taxnex-mission__phones-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.taxnex-mission__phones-links {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem;
-  margin-top: 1.75rem;
+  gap: 0.45rem;
+}
+
+.taxnex-mission__phone-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.88rem, 1.8vw, 1.02rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #064e3b;
+  text-decoration: none;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 244, 0.88) 100%);
+  box-shadow: 0 6px 16px -10px rgba(6, 78, 59, 0.35);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    background 0.35s ease,
+    filter 0.35s ease;
+  animation: taxnex-mission-chip-float 2.6s ease-in-out infinite;
+}
+
+.taxnex-mission__phones-links > a.taxnex-mission__phone-chip:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.taxnex-mission__phones-links > a.taxnex-mission__phone-chip:nth-child(3) {
+  animation-delay: 0.45s;
+}
+
+@keyframes taxnex-mission-chip-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.taxnex-mission__phone-chip:hover,
+.taxnex-mission__phone-chip:focus-visible {
+  animation: none;
+  transform: translateY(-6px) scale(1.05);
+  border-color: rgba(167, 243, 208, 0.95);
+  color: #f0fdf4;
+  background: linear-gradient(
+    168deg,
+    #0d4d3d 0%,
+    #047857 38%,
+    #059669 72%,
+    #10b981 100%
+  );
+  box-shadow:
+    0 18px 36px -12px rgba(4, 47, 46, 0.55),
+    0 0 0 1px rgba(167, 243, 208, 0.35) inset,
+    0 0 28px rgba(45, 212, 191, 0.35);
+  filter: saturate(1.15);
+}
+
+.taxnex-mission__phone-chip:active {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 10px 22px -14px rgba(4, 47, 46, 0.45),
+    0 0 0 1px rgba(16, 185, 129, 0.25) inset;
+}
+
+.taxnex-mission__phone-chip:focus-visible {
+  outline: 2px solid rgba(110, 231, 183, 0.95);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-mission__phone-chip {
+    animation: none;
+  }
+
+  .taxnex-mission__phone-chip:hover,
+  .taxnex-mission__phone-chip:focus-visible {
+    transform: translateY(-2px);
+  }
 }
 
 .taxnex-phone {
@@ -2403,6 +3371,7 @@ a {
 
 .taxnex-mission__sep {
   color: rgba(16, 185, 129, 0.45);
+  font-weight: 700;
 }
 
 .taxnex-steps {
@@ -23156,124 +24125,35 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .yacht-intro__container {
   position: relative;
   z-index: 1;
-  width: min(920px, 100%);
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
 }
 
+/* Full-width copy flow — no card frame, no border/shadow “panel” */
 .yacht-intro__frame {
   position: relative;
-  margin: 0 auto;
-  max-width: min(46rem, 100%);
-  padding: clamp(1.35rem, 3.2vw, 2.15rem) clamp(1.15rem, 2.8vw, 1.85rem);
-  border-radius: clamp(18px, 3.2vw, 28px);
-  isolation: isolate;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.97) 0%,
-    rgba(248, 250, 253, 0.99) 48%,
-    rgba(241, 245, 250, 0.98) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 1) inset,
-    0 0 0 1px rgba(70, 140, 195, 0.1),
-    0 3px 0 rgba(197, 160, 89, 0.22) inset,
-    0 28px 64px rgba(15, 35, 58, 0.12),
-    0 12px 32px rgba(8, 24, 48, 0.06);
-  animation: yachtIntroCardAmbient 9s ease-in-out infinite;
+  margin: 0;
+  max-width: none;
+  width: 100%;
+  padding: clamp(0.35rem, 1.5vw, 0.75rem) 0;
+  border-radius: 0;
+  isolation: auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  animation: none;
 }
 
-.yacht-intro__frame::before {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    125deg,
-    rgba(197, 160, 89, 0.55) 0%,
-    rgba(120, 185, 225, 0.35) 42%,
-    rgba(197, 160, 89, 0.28) 78%,
-    rgba(90, 155, 205, 0.4) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.75;
-}
-
+.yacht-intro__frame::before,
 .yacht-intro__frame::after {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  top: 0.65rem;
-  left: 12%;
-  right: 12%;
-  height: 2px;
-  border-radius: 999px;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(197, 160, 89, 0.65) 22%,
-    rgba(130, 200, 235, 0.55) 52%,
-    rgba(197, 160, 89, 0.45) 78%,
-    transparent 100%
-  );
-  opacity: 0.9;
-  animation: yachtIntroTopSheen 6s ease-in-out infinite;
-}
-
-@keyframes yachtIntroCardAmbient {
-  0%,
-  100% {
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 1) inset,
-      0 0 0 1px rgba(70, 140, 195, 0.1),
-      0 3px 0 rgba(197, 160, 89, 0.22) inset,
-      0 28px 64px rgba(15, 35, 58, 0.12),
-      0 12px 32px rgba(8, 24, 48, 0.06),
-      0 0 42px rgba(100, 175, 220, 0.06);
-  }
-  50% {
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 1) inset,
-      0 0 0 1px rgba(70, 140, 195, 0.14),
-      0 3px 0 rgba(197, 160, 89, 0.32) inset,
-      0 32px 72px rgba(15, 35, 58, 0.14),
-      0 14px 36px rgba(8, 24, 48, 0.08),
-      0 0 52px rgba(197, 160, 89, 0.12);
-  }
-}
-
-@keyframes yachtIntroTopSheen {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scaleX(0.88);
-  }
-  50% {
-    opacity: 1;
-    transform: scaleX(1);
-  }
+  content: none;
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .yacht-intro__frame {
     animation: none;
-  }
-
-  .yacht-intro__frame::after {
-    animation: none;
-    opacity: 0.85;
-    transform: none;
   }
 }
 
@@ -23306,7 +24186,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .yacht-intro__lead {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.35rem;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.12rem, 2.2vw, 1.35rem);
   font-style: italic;
@@ -23314,27 +24194,15 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   line-height: 1.55;
   color: rgba(35, 48, 72, 0.9);
   text-wrap: pretty;
-  max-width: 42em;
-}
-
-.yacht-intro__rule {
-  width: min(4.25rem, 26vw);
-  height: 2px;
-  margin: 0 0 1.5rem;
-  border-radius: 2px;
-  background: linear-gradient(
-    90deg,
-    rgba(197, 160, 89, 0.85) 0%,
-    rgba(197, 160, 89, 0.45) 55%,
-    rgba(197, 160, 89, 0) 100%
-  );
-  opacity: 1;
+  max-width: none;
 }
 
 .yacht-intro__prose {
   display: flex;
   flex-direction: column;
-  gap: 1.15rem;
+  gap: 1.05rem;
+  max-width: none;
+  width: 100%;
 }
 
 .yacht-intro__p {
@@ -23342,10 +24210,11 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(0.9rem, 1.65vw, 1.02rem);
   font-weight: 300;
-  line-height: 1.78;
+  line-height: 1.72;
   letter-spacing: 0.012em;
   color: rgba(45, 55, 72, 0.92);
   text-wrap: pretty;
+  max-width: none;
 }
 
 .yacht-intro__p--emphasis {
@@ -23365,38 +24234,17 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   font-style: italic;
   font-weight: 400;
   color: rgba(35, 48, 72, 0.92);
+  text-align: left;
 }
 
 @media (min-width: 900px) {
-  .yacht-intro__frame {
-    max-width: min(52rem, 100%);
-    padding: clamp(1.85rem, 3.5vw, 2.5rem) clamp(1.65rem, 3vw, 2.35rem);
-  }
-
-  .yacht-intro__prose {
-    column-count: 2;
-    column-gap: clamp(1.75rem, 4vw, 2.5rem);
-    gap: 0;
+  .yacht-intro__title {
+    max-width: none;
   }
 
   .yacht-intro__p {
-    break-inside: avoid;
-    margin-bottom: 1rem;
-  }
-
-  .yacht-intro__p--closing {
-    column-span: all;
-    margin-top: 0.35rem;
-    margin-bottom: 0;
-    text-align: center;
-    max-width: 38rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .yacht-intro__p--emphasis {
-    column-span: all;
-    margin-bottom: 1rem;
+    font-size: clamp(0.95rem, 1.35vw, 1.06rem);
+    line-height: 1.68;
   }
 }
 
@@ -23801,8 +24649,53 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   border-radius: 0;
 }
 
-.yacht-fleet .yacht-card--minimal:hover .yacht-card__img {
-  transform: none;
+.yacht-fleet .yacht-card--minimal .yacht-card__media-gloss {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 44%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.05) 56%,
+    transparent 100%
+  );
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+  transition: opacity 0.5s ease;
+}
+
+.yacht-fleet .yacht-card--minimal:hover .yacht-card__media-gloss,
+.yacht-fleet .yacht-card--minimal:focus-visible .yacht-card__media-gloss {
+  opacity: 0.62;
+}
+
+.yacht-fleet .yacht-card--minimal .yacht-card__img {
+  will-change: transform;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.yacht-fleet .yacht-card--minimal:hover .yacht-card__img,
+.yacht-fleet .yacht-card--minimal:focus-visible .yacht-card__img {
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yacht-fleet .yacht-card--minimal .yacht-card__media-gloss {
+    opacity: 0.12;
+  }
+
+  .yacht-fleet .yacht-card--minimal:hover .yacht-card__media-gloss,
+  .yacht-fleet .yacht-card--minimal:focus-visible .yacht-card__media-gloss {
+    opacity: 0.28;
+  }
+
+  .yacht-fleet .yacht-card--minimal:hover .yacht-card__img,
+  .yacht-fleet .yacht-card--minimal:focus-visible .yacht-card__img {
+    transform: none;
+  }
 }
 
 .yacht-fleet .yacht-card--minimal .yacht-card__name {
@@ -23920,17 +24813,45 @@ a.yacht-card {
 
 .yacht-detail-article__inner {
   width: 100%;
-  max-width: 100%;
+  max-width: min(1180px, 100%);
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: clamp(1rem, 3vw, 1.5rem);
+  padding-right: clamp(1rem, 3vw, 1.5rem);
   box-sizing: border-box;
+}
+
+.yacht-detail-lead {
+  margin-bottom: 0.5rem;
+}
+
+.yacht-detail-lead__grid {
+  display: grid;
+  gap: 1.25rem 0;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .yacht-detail-lead__grid {
+    grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+    gap: 1.5rem clamp(2rem, 4vw, 3.25rem);
+  }
+
+  .yacht-detail-lead__head {
+    position: sticky;
+    top: calc(72px + 0.75rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yacht-detail-lead__head {
+    position: static;
+  }
 }
 
 .yacht-detail-breadcrumb {
   font-family: 'Outfit', system-ui, sans-serif;
   font-size: 0.82rem;
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.1rem;
   color: rgba(55, 65, 85, 0.75);
 }
 
@@ -23968,19 +24889,20 @@ a.yacht-card {
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #0f1729;
-  margin: 0 0 1.5rem;
+  margin: 0;
   line-height: 1.15;
 }
 
 .yacht-detail-prose {
   font-family: 'Outfit', system-ui, sans-serif;
-  font-size: 1.02rem;
-  line-height: 1.72;
+  font-size: clamp(0.98rem, 1.35vw, 1.06rem);
+  line-height: 1.68;
+  max-width: 52rem;
   color: rgba(30, 41, 59, 0.92);
 }
 
 .yacht-detail-prose p {
-  margin: 0 0 1.1rem;
+  margin: 0 0 0.95rem;
 }
 
 .yacht-detail-prose p:last-child {
@@ -24103,24 +25025,38 @@ a.yacht-card {
   gap: 1.5rem;
 }
 
+@media (min-width: 960px) {
+  .yacht-detail-tables {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.25rem clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .yacht-detail-table {
+    flex: 1 1 calc(50% - 1rem);
+    min-width: min(100%, 320px);
+  }
+}
+
 .yacht-detail-table {
   width: 100%;
   border-collapse: collapse;
   font-family: 'Outfit', system-ui, sans-serif;
   font-size: 0.94rem;
-  background: #fff;
-  border: 1px solid rgba(15, 28, 48, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(15, 28, 48, 0.06);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
 }
 
 .yacht-detail-table th,
 .yacht-detail-table td {
-  padding: 0.65rem 1rem;
+  padding: 0.55rem 0.35rem 0.55rem 0;
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid rgba(15, 28, 48, 0.08);
+  border-bottom: 1px solid rgba(15, 28, 48, 0.07);
 }
 
 .yacht-detail-table tr:last-child th,
@@ -24132,7 +25068,8 @@ a.yacht-card {
   width: 42%;
   font-weight: 600;
   color: rgba(45, 58, 82, 0.88);
-  background: rgba(248, 250, 252, 0.98);
+  background: transparent;
+  padding-right: 0.75rem;
 }
 
 .yacht-detail-table td {
@@ -24156,18 +25093,37 @@ a.yacht-card {
   color: rgba(30, 41, 59, 0.9);
 }
 
+@media (min-width: 720px) {
+  .yacht-detail-included__list {
+    columns: 2;
+    column-gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .yacht-detail-included__list li {
+    break-inside: avoid;
+  }
+}
+
 .yacht-detail-included__list li {
   margin-bottom: 0.35rem;
 }
 
 .yacht-detail-actions {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
   margin-top: 2.25rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(15, 28, 48, 0.08);
+  padding-top: 1.35rem;
+  border-top: none;
+}
+
+@media (max-width: 520px) {
+  .yacht-detail-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 @keyframes yachtDetailCtaSheen {

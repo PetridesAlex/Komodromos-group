@@ -23,7 +23,8 @@ function formatEur(n: number, locale: string) {
   return `${n.toLocaleString(normalized, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`
 }
 
-const BRAND_LOGO = '/images/services/tax-services/tax-net-logo.jpg'
+const BRAND_LOGO = '/images/services/tax-services/tax-net-logo.webp'
+const TAXNEX_YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@TAXNEXCY'
 const VIEW = { once: true, amount: 0.35 } as const
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -92,8 +93,8 @@ export default function TaxNexCyprusPage() {
               <motion.img
                 src={BRAND_LOGO}
                 alt={t('tax.brandAlt')}
-                width={280}
-                height={110}
+                width={320}
+                height={126}
                 className="taxnex-hero__logo"
                 initial={reduceMotion ? false : { opacity: 0, scale: 0.94 }}
                 animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
@@ -150,20 +151,20 @@ export default function TaxNexCyprusPage() {
             </motion.div>
           </div>
 
-          <motion.div
-            className="taxnex-hero__bg-copy"
+          <motion.aside
+            className="taxnex-hero__aside"
+            aria-label={t('tax.heroAsideAria')}
             initial={reduceMotion ? false : { opacity: 0, x: 20 }}
             animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: EASE, delay: 0.26 }}
-            aria-hidden
           >
-            <p className="taxnex-hero__bg-copy-top">
+            <p className="taxnex-hero__aside-tagline">
               {t('tax.bgCopyLine1')} <strong>{t('tax.bgCopyLine1Strong')}</strong>
               <br />
               <strong>{t('tax.bgCopyLine2Strong')}</strong> {t('tax.bgCopyLine2')}
             </p>
-            <p className="taxnex-hero__bg-copy-brand">TaxNex</p>
-          </motion.div>
+            <p className="taxnex-hero__aside-brand">TaxNex</p>
+          </motion.aside>
         </div>
       </header>
 
@@ -266,6 +267,72 @@ export default function TaxNexCyprusPage() {
         </div>
       </section>
 
+      <section id="tax-youtube" className="taxnex-section taxnex-section--youtube" aria-labelledby="tax-youtube-heading">
+        <div className="taxnex-yt-gridline" aria-hidden />
+        <div className="container taxnex-yt-layout">
+          <motion.div className="taxnex-yt-copy" {...fadeUp}>
+            <p className="taxnex-eyebrow">{t('tax.youtubeEyebrow')}</p>
+            <h2 id="tax-youtube-heading" className="taxnex-h2">
+              {t('tax.youtubeTitle')}
+            </h2>
+            <p className="taxnex-yt-copy__lede">{t('tax.youtubeIntro')}</p>
+            <ul className="taxnex-yt-pills" aria-label={t('tax.youtubePillsAria')}>
+              <li>{t('tax.youtubePill1')}</li>
+              <li>{t('tax.youtubePill2')}</li>
+              <li>{t('tax.youtubePill3')}</li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VIEW}
+            transition={{ duration: 0.55, ease: EASE, delay: reduceMotion ? 0 : 0.08 }}
+          >
+            <a
+              href={TAXNEX_YOUTUBE_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="taxnex-yt-card"
+              aria-label={t('tax.youtubeCardAria')}
+            >
+              <div className="taxnex-yt-card__visual">
+                <div className="taxnex-yt-card__mesh" aria-hidden />
+                <div className="taxnex-yt-card__scan" aria-hidden />
+                <div className="taxnex-yt-card__play" aria-hidden>
+                  <svg viewBox="0 0 24 24" width="34" height="34" fill="none" aria-hidden>
+                    <path fill="currentColor" d="M9.5 7.5v9L18 12l-8.5-4.5Z" />
+                  </svg>
+                </div>
+                <span className="taxnex-yt-card__yt-mark" aria-hidden>
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden>
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                  YouTube
+                </span>
+              </div>
+              <div className="taxnex-yt-card__footer">
+                <div className="taxnex-yt-card__channel">
+                  <span className="taxnex-yt-card__avatar" aria-hidden>
+                    T
+                  </span>
+                  <div className="taxnex-yt-card__channel-text">
+                    <span className="taxnex-yt-card__handle">@TAXNEXCY</span>
+                    <span className="taxnex-yt-card__sub">{t('tax.youtubeChannelHint')}</span>
+                  </div>
+                </div>
+                <span className="taxnex-yt-card__cta">
+                  {t('tax.youtubeCta')}
+                  <span className="taxnex-yt-card__cta-arrow" aria-hidden>
+                    ↗
+                  </span>
+                </span>
+              </div>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       <TaxPlanCheckoutModal
         isOpen={paymentModal != null}
         onClose={() => setPaymentModal(null)}
@@ -273,28 +340,71 @@ export default function TaxNexCyprusPage() {
         checkoutUrl={paymentModal?.checkoutUrl ?? null}
       />
 
-      <section id="tax-mission" className="taxnex-section taxnex-section--mid" aria-labelledby="tax-mission-h">
+      <section id="tax-mission" className="taxnex-section taxnex-section--mid taxnex-mission-section" aria-labelledby="tax-mission-h">
         <div className="taxnex-mission__bg" aria-hidden />
+        <div className="taxnex-mission__bg taxnex-mission__bg--pulse" aria-hidden />
         <div className="container taxnex-mission__inner">
-          <motion.div className="taxnex-mission__copy" {...fadeUp}>
-            <h2 id="tax-mission-h" className="taxnex-h2">
-              {taxMission.title}
-            </h2>
-              {taxMission.lines.map((line) => (
-              <p key={line} className="taxnex-mission__line">
-                {line}
-              </p>
-            ))}
-            <div className="taxnex-mission__phones">
-              <a className="taxnex-phone" href="tel:+357243333305">
-                +357 24 333 305
-              </a>
-              <span className="taxnex-mission__sep" aria-hidden>
-                ·
-              </span>
-              <a className="taxnex-phone" href="tel:+35796000336">
-                +357 96 000 336
-              </a>
+          <motion.div
+            className="taxnex-mission__panel"
+            initial={reduceMotion ? false : { opacity: 0, y: 32, scale: 0.985 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+            viewport={VIEW}
+            transition={{ duration: 0.72, ease: EASE }}
+          >
+            <div className="taxnex-mission__panel-sheen" aria-hidden />
+            <div className="taxnex-mission__panel-inner">
+              <div className="taxnex-mission__copy">
+                <motion.h2
+                  id="tax-mission-h"
+                  className="taxnex-h2 taxnex-mission__title"
+                  initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={VIEW}
+                  transition={{ duration: 0.58, ease: EASE, delay: reduceMotion ? 0 : 0.08 }}
+                >
+                  {taxMission.title}
+                </motion.h2>
+                {taxMission.lines.map((line, i) => (
+                  <motion.p
+                    key={line}
+                    className="taxnex-mission__line"
+                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                    whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                    viewport={VIEW}
+                    transition={{
+                      duration: 0.52,
+                      ease: EASE,
+                      delay: reduceMotion ? 0 : 0.14 + i * 0.09,
+                    }}
+                  >
+                    {line}
+                  </motion.p>
+                ))}
+                <motion.div
+                  className="taxnex-mission__phones"
+                  initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={VIEW}
+                  transition={{
+                    duration: 0.52,
+                    ease: EASE,
+                    delay: reduceMotion ? 0 : 0.14 + taxMission.lines.length * 0.09 + 0.06,
+                  }}
+                >
+                  <span className="taxnex-mission__phones-label">{t('tax.missionCallLabel')}</span>
+                  <div className="taxnex-mission__phones-links">
+                    <a className="taxnex-mission__phone-chip" href="tel:+357243333305">
+                      +357 24 333 305
+                    </a>
+                    <span className="taxnex-mission__sep" aria-hidden>
+                      ·
+                    </span>
+                    <a className="taxnex-mission__phone-chip" href="tel:+35796000336">
+                      +357 96 000 336
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
