@@ -37,7 +37,7 @@ export const TAX_NEX_SERVICE_STAGES: TaxNexServiceStage[] = [
   },
   {
     stage: 'ΣΤΑΔΙΟ 2',
-    title: 'Υποβολή φορολογικής δήλωσης (Εύκολα & Γρήγορα)',
+    title: 'Υποβολή φορολογικής δήλωσης\n(Εύκολα & Γρήγορα)',
     body:
       'Απαντήστε σε λίγες απλές ερωτήσεις και θα σας καθοδηγήσουμε στην υποβολή των φόρων σας, με τελικό έλεγχο από εξειδικευμένο συνεργάτη πριν την υποβολή.',
   },
@@ -51,10 +51,7 @@ export const TAX_NEX_SERVICE_STAGES: TaxNexServiceStage[] = [
 
 export const TAX_NEX_MISSION = {
   title: 'Στόχος μας είναι να σας βοηθήσουμε να υποβάλετε σωστά τη φορολογική σας δήλωση',
-  lines: [
-    'Ασφαλείς και αξιόπιστες συμβουλές για τη φορολογική σας δήλωση.',
-    'ΚΑΛΕΣΤΕ ΤΩΡΑ: 24 333 305 · 96 000 336',
-  ],
+  lines: ['Ασφαλείς και αξιόπιστες συμβουλές για τη φορολογική σας δήλωση.'],
 }
 
 export type TaxNexStep = {
@@ -142,7 +139,7 @@ export const TAX_NEX_PRICING_PLANS: TaxNexPricingPlan[] = [
   {
     id: 'diy',
     kicker: 'ΥΠΟΒΑΛΕΤΕ ΜΟΝΟΙ ΣΑΣ',
-    title: 'Υποβολή φορολογικής δήλωσης (Εύκολα & Γρήγορα)',
+    title: 'Υποβολή φορολογικής δήλωσης\n(Εύκολα & Γρήγορα)',
     description:
       'Απαντήστε σε λίγες απλές ερωτήσεις και θα σας καθοδηγήσουμε στην υποβολή των φόρων σας, με τελικό έλεγχο από ειδικούς πριν την αποστολή.',
     priceEur: 29,
@@ -152,7 +149,7 @@ export const TAX_NEX_PRICING_PLANS: TaxNexPricingPlan[] = [
   {
     id: 'advisor',
     kicker: 'ΜΕ ΦΟΡΟΛΟΓΙΚΟ ΣΥΜΒΟΥΛΟ',
-    title: 'Υποβολή φορολογικής δήλωσης με φορολογικό σύμβουλο. (Δίπλα σας σε κάθε βήμα)',
+    title: 'Υποβολή φορολογικής δήλωσης με φορολογικό σύμβουλο.\n(Δίπλα σας σε κάθε βήμα)',
     description:
       'Αναλαμβάνουμε όλη τη διαδικασία για εσάς. Χωρίς ταλαιπωρία, χωρίς εμπλοκή — απλώς μας στέλνετε τα απαραίτητα έγγραφα.',
     priceEur: 65,
@@ -194,7 +191,7 @@ const TAX_NEX_SERVICE_STAGES_EN: TaxNexServiceStage[] = [
   },
   {
     stage: 'STAGE 2',
-    title: 'Tax return submission (Easy & Fast)',
+    title: 'Tax return submission\n(Easy & Fast)',
     body:
       'Answer a few simple questions and we guide you through submission, with a final review by a specialist before filing.',
   },
@@ -207,7 +204,7 @@ const TAX_NEX_SERVICE_STAGES_EN: TaxNexServiceStage[] = [
 
 const TAX_NEX_MISSION_EN = {
   title: 'Our mission is to help you submit your tax return correctly',
-  lines: ['Secure and reliable advice for your tax declaration.', 'CALL NOW: 24 333 305 · 96 000 336'],
+  lines: ['Secure and reliable advice for your tax declaration.'],
 }
 
 const TAX_NEX_STEPS_EN: TaxNexStep[] = [
@@ -260,7 +257,7 @@ const TAX_NEX_PRICING_PLANS_EN: TaxNexPricingPlan[] = [
   {
     id: 'diy',
     kicker: 'DO IT YOURSELF',
-    title: 'Tax return submission (Easy & Fast)',
+    title: 'Tax return submission\n(Easy & Fast)',
     description:
       'Answer a few simple questions and we guide your filing, with final specialist review before submission.',
     priceEur: 29,
@@ -270,7 +267,7 @@ const TAX_NEX_PRICING_PLANS_EN: TaxNexPricingPlan[] = [
   {
     id: 'advisor',
     kicker: 'WITH TAX ADVISOR',
-    title: 'Tax return submission with a tax advisor (By your side at every step)',
+    title: 'Tax return submission with a tax advisor\n(By your side at every step)',
     description:
       'We handle the whole process for you. No hassle, no complexity — simply send us the required documents.',
     priceEur: 65,

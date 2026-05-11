@@ -32,6 +32,7 @@ import TaxTransferFeesCalculatorPage from './components/TaxTransferFeesCalculato
 import TaxIncomeCalculatorPage from './components/TaxIncomeCalculatorPage.tsx'
 import TaxServicesOverviewPage from './components/TaxServicesOverviewPage.tsx'
 import AstrealDevelopersPage from './components/AstrealDevelopersPage.tsx'
+import AstrealAboutPage from './components/AstrealAboutPage.tsx'
 import AstrealProjectDetailPage from './components/AstrealProjectDetailPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
@@ -79,8 +80,9 @@ function Root() {
             <Route path="/services/tax/transfer-fees-calculator" element={<TaxTransferFeesCalculatorPage />} />
             <Route path="/services/tax/income-tax-calculator" element={<TaxIncomeCalculatorPage />} />
             <Route path="/services/tax/services" element={<TaxServicesOverviewPage />} />
-            <Route path="/services/astreal" element={<AstrealDevelopersPage />} />
+            <Route path="/services/astreal/about" element={<AstrealAboutPage />} />
             <Route path="/services/astreal/projects/:projectId" element={<AstrealProjectDetailPage />} />
+            <Route path="/services/astreal" element={<AstrealDevelopersPage />} />
             <Route path="/services" element={<ServicesLandingPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
           </Routes>

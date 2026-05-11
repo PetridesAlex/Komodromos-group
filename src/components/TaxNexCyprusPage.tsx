@@ -25,8 +25,43 @@ function formatEur(n: number, locale: string) {
 
 const BRAND_LOGO = '/images/services/tax-services/tax-net-logo.webp'
 const TAXNEX_YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@TAXNEXCY'
+/** Short explainers — English vs Greek, matched to site language order in the UI */
+const TAXNEX_YOUTUBE_SHORT_EN = 'https://www.youtube.com/shorts/uvjAtz5m_Zg'
+const TAXNEX_YOUTUBE_SHORT_EL = 'https://www.youtube.com/shorts/Ib3zBefSeYI'
 const VIEW = { once: true, amount: 0.35 } as const
+const VIEW_STEPS = { once: true, amount: 0.22 } as const
 const EASE = [0.22, 1, 0.36, 1] as const
+
+const taxStepsContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.22,
+      delayChildren: 0.14,
+    },
+  },
+} as const
+
+const taxStepsItemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 44,
+    scale: 0.97,
+    filter: 'blur(12px)',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      type: 'spring' as const,
+      damping: 26,
+      stiffness: 200,
+      mass: 0.85,
+    },
+  },
+} as const
 
 export default function TaxNexCyprusPage() {
   const reduceMotion = useReducedMotion()
@@ -64,6 +99,12 @@ export default function TaxNexCyprusPage() {
       // Ignore storage failures and still dismiss.
     }
     setShowCookieNotice(false)
+  }
+
+  const scrollToTaxServices = () => {
+    const el = document.getElementById('tax-services')
+    if (!el) return
+    el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
   }
 
   const fadeUp = reduceMotion
@@ -130,10 +171,10 @@ export default function TaxNexCyprusPage() {
                 <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to={TAX_INCOME_CALCULATOR_PATH}>
                   {t('tax.calculateTax')}
                 </Link>
-                <Link className="taxnex-btn taxnex-btn--hero-dark taxnex-btn--lg" to="/contact">
+                <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact">
                   {t('tax.bookMeeting')}
                 </Link>
-                <Link className="taxnex-btn taxnex-btn--hero-dark taxnex-btn--lg" to="/contact">
+                <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact">
                   {t('tax.bookOnlineMeeting')}
                 </Link>
               </div>
@@ -165,11 +206,79 @@ export default function TaxNexCyprusPage() {
             </p>
             <p className="taxnex-hero__aside-brand">TaxNex</p>
           </motion.aside>
+
+          <motion.div
+            className="taxnex-hero__scroll-slot"
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.58, ease: EASE, delay: 0.48 }}
+          >
+            <button
+              type="button"
+              className="taxnex-hero__scroll-down"
+              onClick={scrollToTaxServices}
+              aria-label={t('tax.scrollToServicesAria')}
+            >
+              <span className="taxnex-hero__scroll-down__label">{t('tax.scrollToServices')}</span>
+              <span className="taxnex-hero__scroll-down__chevs" aria-hidden>
+                <svg className="taxnex-hero__scroll-down__chev" viewBox="0 0 24 24" width="16" height="16">
+                  <path
+                    d="M6 9l6 6 6-6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </button>
+          </motion.div>
         </div>
       </header>
 
-      <section id="tax-services" className="taxnex-section taxnex-section--light" aria-labelledby="tax-services-h">
-        <div className="container">
+      <section id="tax-services" className="taxnex-section taxnex-section--light taxnex-services-section" aria-labelledby="tax-services-h">
+        <div className="taxnex-services-scroll-rails" aria-hidden>
+          <div className="taxnex-services-scroll-rail taxnex-services-scroll-rail--left">
+            <span className="taxnex-services-scroll-rail__chevs">
+              <svg className="taxnex-services-scroll-rail__chev" viewBox="0 0 24 24" width="26" height="26" aria-hidden>
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <svg className="taxnex-services-scroll-rail__chev" viewBox="0 0 24 24" width="26" height="26" aria-hidden>
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span className="taxnex-services-scroll-rail__pillar" />
+            <span className="taxnex-services-scroll-rail__chevs taxnex-services-scroll-rail__chevs--tail">
+              <svg className="taxnex-services-scroll-rail__chev" viewBox="0 0 24 24" width="26" height="26" aria-hidden>
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <svg className="taxnex-services-scroll-rail__chev" viewBox="0 0 24 24" width="26" height="26" aria-hidden>
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </div>
+          <div className="taxnex-services-scroll-rail taxnex-services-scroll-rail--right">
+            <span className="taxnex-services-scroll-rail__chevs">
+              <svg className="taxnex-services-scroll-rail__chev" viewBox="0 0 24 24" width="26" height="26" aria-hidden>
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <svg className="taxnex-services-scroll-rail__chev" viewBox="0 0 24 24" width="26" height="26" aria-hidden>
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span className="taxnex-services-scroll-rail__pillar" />
+            <span className="taxnex-services-scroll-rail__chevs taxnex-services-scroll-rail__chevs--tail">
+              <svg className="taxnex-services-scroll-rail__chev" viewBox="0 0 24 24" width="26" height="26" aria-hidden>
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <svg className="taxnex-services-scroll-rail__chev" viewBox="0 0 24 24" width="26" height="26" aria-hidden>
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div className="container taxnex-services-section__inner">
           <motion.div className="taxnex-section__head taxnex-section__head--center" {...fadeUp}>
             <p className="taxnex-eyebrow">{t('tax.servicesEyebrow')}</p>
             <h2 id="tax-services-h" className="taxnex-h2">
@@ -210,7 +319,11 @@ export default function TaxNexCyprusPage() {
                   </div>
                   <div className="taxnex-price-card__body">
                     <p className="taxnex-price-card__kicker">{plan.kicker}</p>
-                    <h3 className="taxnex-price-card__title">{plan.title}</h3>
+                    <h3
+                      className={`taxnex-price-card__title${plan.id === 'self-employed' ? ' taxnex-price-card__title--single-line' : ''}`}
+                    >
+                      {plan.title}
+                    </h3>
                     <p className="taxnex-price-card__desc">{plan.description}</p>
                     {plan.includes && plan.includes.length > 0 ? (
                       <ul className="taxnex-price-card__includes">
@@ -289,16 +402,65 @@ export default function TaxNexCyprusPage() {
             viewport={VIEW}
             transition={{ duration: 0.55, ease: EASE, delay: reduceMotion ? 0 : 0.08 }}
           >
-            <a
-              href={TAXNEX_YOUTUBE_CHANNEL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <div
               className="taxnex-yt-card"
-              aria-label={t('tax.youtubeCardAria')}
+              role="group"
+              aria-label={t('tax.youtubeCardGroupAria')}
             >
               <div className="taxnex-yt-card__visual">
                 <div className="taxnex-yt-card__mesh" aria-hidden />
                 <div className="taxnex-yt-card__scan" aria-hidden />
+                <div className="taxnex-yt-card__shorts" role="presentation">
+                  {(i18n.language.startsWith('el')
+                    ? [
+                        {
+                          href: TAXNEX_YOUTUBE_SHORT_EL,
+                          label: t('tax.youtubeShortGreek'),
+                          aria: t('tax.youtubeShortElAria'),
+                        },
+                        {
+                          href: TAXNEX_YOUTUBE_SHORT_EN,
+                          label: t('tax.youtubeShortEnglish'),
+                          aria: t('tax.youtubeShortEnAria'),
+                        },
+                      ]
+                    : [
+                        {
+                          href: TAXNEX_YOUTUBE_SHORT_EN,
+                          label: t('tax.youtubeShortEnglish'),
+                          aria: t('tax.youtubeShortEnAria'),
+                        },
+                        {
+                          href: TAXNEX_YOUTUBE_SHORT_EL,
+                          label: t('tax.youtubeShortGreek'),
+                          aria: t('tax.youtubeShortElAria'),
+                        },
+                      ]
+                  ).map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="taxnex-yt-card__short-link"
+                      aria-label={item.aria}
+                      title={t('tax.youtubeShortHintTitle')}
+                    >
+                      <span className="taxnex-yt-card__short-link__play" aria-hidden>
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none">
+                          <path
+                            fill="currentColor"
+                            d="M9.5 7.5v9L18 12l-8.5-4.5Z"
+                          />
+                        </svg>
+                      </span>
+                      <span className="taxnex-yt-card__short-link__label">{item.label}</span>
+                      <span className="taxnex-yt-card__short-link__new-tab" aria-hidden>
+                        ↗
+                      </span>
+                    </a>
+                  ))}
+                </div>
                 <div className="taxnex-yt-card__play" aria-hidden>
                   <svg viewBox="0 0 24 24" width="34" height="34" fill="none" aria-hidden>
                     <path fill="currentColor" d="M9.5 7.5v9L18 12l-8.5-4.5Z" />
@@ -321,14 +483,20 @@ export default function TaxNexCyprusPage() {
                     <span className="taxnex-yt-card__sub">{t('tax.youtubeChannelHint')}</span>
                   </div>
                 </div>
-                <span className="taxnex-yt-card__cta">
+                <a
+                  href={TAXNEX_YOUTUBE_CHANNEL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="taxnex-yt-card__cta"
+                  aria-label={t('tax.youtubeCardAria')}
+                >
                   {t('tax.youtubeCta')}
                   <span className="taxnex-yt-card__cta-arrow" aria-hidden>
                     ↗
                   </span>
-                </span>
+                </a>
               </div>
-            </a>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -418,15 +586,19 @@ export default function TaxNexCyprusPage() {
               {t('tax.stepsHeading')}
             </h2>
           </motion.div>
-          <ol className="taxnex-steps">
-              {taxSteps.map((step, i) => (
+          <motion.ol
+            className="taxnex-steps"
+            variants={reduceMotion ? undefined : taxStepsContainerVariants}
+            initial={reduceMotion ? false : 'hidden'}
+            whileInView={reduceMotion ? undefined : 'visible'}
+            viewport={VIEW_STEPS}
+          >
+            {taxSteps.map((step) => (
               <motion.li
                 key={step.step}
                 className="taxnex-step"
-                initial={reduceMotion ? false : { opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={VIEW}
-                transition={{ duration: 0.48, ease: EASE, delay: reduceMotion ? 0 : i * 0.06 }}
+                variants={reduceMotion ? undefined : taxStepsItemVariants}
+                initial={reduceMotion ? false : undefined}
               >
                 <span className="taxnex-step__num">{step.step}</span>
                 <div className="taxnex-step__body">
@@ -438,7 +610,7 @@ export default function TaxNexCyprusPage() {
                 </div>
               </motion.li>
             ))}
-          </ol>
+          </motion.ol>
         </div>
       </section>
 

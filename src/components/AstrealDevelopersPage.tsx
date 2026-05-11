@@ -96,62 +96,6 @@ export default function AstrealDevelopersPage() {
         transition: { duration: 0.65, ease: EASE },
       }
 
-  const aboutEase = EASE
-
-  const aboutEyebrow = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 22, filter: 'blur(8px)' },
-        whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
-        viewport: VIEW,
-        transition: { duration: 0.62, ease: aboutEase, delay: 0 },
-      }
-
-  const aboutTitleMotion = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 38, filter: 'blur(12px)' },
-        whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
-        viewport: VIEW,
-        transition: { duration: 0.78, ease: aboutEase, delay: 0.07 },
-      }
-
-  const aboutLine = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, scaleX: 0 },
-        whileInView: { opacity: 1, scaleX: 1 },
-        viewport: VIEW,
-        transition: { duration: 0.85, ease: aboutEase, delay: 0.08 },
-      }
-
-  const aboutLead = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 32, filter: 'blur(10px)' },
-        whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
-        viewport: VIEW,
-        transition: { duration: 0.72, ease: aboutEase, delay: 0.14 },
-      }
-
-  const aboutPara = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 36, filter: 'blur(8px)' },
-        whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
-        viewport: VIEW,
-        transition: { duration: 0.72, ease: aboutEase, delay: 0.1 },
-      }
-
-  const aboutQuote = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 28, rotate: -0.5 },
-        whileInView: { opacity: 1, y: 0, rotate: 0 },
-        viewport: VIEW,
-        transition: { type: 'spring' as const, stiffness: 70, damping: 22, delay: 0.22 },
-      }
-
   const projectViewport = { once: true, amount: 0.42, margin: '-12% 0px' } as const
 
   const projectHeroMotion = reduceMotion
@@ -238,6 +182,21 @@ export default function AstrealDevelopersPage() {
       />
 
       <header className="astreal-hero" aria-labelledby="astreal-hero-title">
+        <nav className="astreal-hero__top-bar" aria-label="Astreal hero quick links">
+          <div className="container astreal-hero__top-bar-inner">
+            <Link to="/services/astreal/about" className="astreal-hero__top-link">
+              About us
+            </Link>
+            <Link
+              to="/services/pool"
+              className="astreal-hero__top-link astreal-hero__top-link--premium"
+              aria-label="Swimming pool and outdoor services — open Komodromos pool & garden page"
+            >
+              <span className="astreal-hero__top-link-main">Swimming pool &amp; outdoor</span>
+              <span className="astreal-hero__top-link-sub">Explore pool services →</span>
+            </Link>
+          </div>
+        </nav>
         <motion.div className="astreal-hero__bg" aria-hidden {...heroBgReveal}>
           <motion.img
             className="astreal-hero__bg-img"
@@ -324,45 +283,6 @@ export default function AstrealDevelopersPage() {
           </button>
         </div>
       </header>
-
-      <section className="astreal-about astreal-about--premium" aria-labelledby="astreal-about-heading">
-        <div className="astreal-about__ambient" aria-hidden />
-        <div className="container astreal-about__grid">
-          <div className="astreal-about__intro">
-            <motion.span className="astreal-about__eyebrow" {...aboutEyebrow}>
-              Who we are
-            </motion.span>
-            <div className="astreal-about__title-row">
-              <motion.h2
-                id="astreal-about-heading"
-                className="astreal-section-title astreal-section-title--about"
-                {...aboutTitleMotion}
-              >
-                About us
-              </motion.h2>
-              <motion.span className="astreal-about__title-accent" aria-hidden {...aboutLine} />
-            </div>
-            <motion.p className="astreal-lead astreal-lead--about" {...aboutLead}>
-              <strong>ASTREAL Developers</strong> provides integrated services in architectural design,
-              construction, development and project management.
-            </motion.p>
-          </div>
-          <motion.div className="astreal-about__body">
-            <motion.p className="astreal-about__prose" {...aboutPara}>
-              We insist on design excellence, with a primary commitment to excellent customer service.
-              Based on extensive and many years of professional experience, our office is a valuable and
-              reliable professional partner for the development of property — working to maximize its
-              performance.
-            </motion.p>
-            <motion.blockquote className="astreal-quote astreal-quote--elevated" {...aboutQuote}>
-              <p>
-                We understand that a home is not just a place. We build to ensure comfort for a lifetime
-                in our homes.
-              </p>
-            </motion.blockquote>
-          </motion.div>
-        </div>
-      </section>
 
       <section className="astreal-services-preview" aria-labelledby="astreal-services-heading">
         <div className="container">

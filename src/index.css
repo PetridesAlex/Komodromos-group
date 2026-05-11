@@ -1684,8 +1684,8 @@ a {
   min-height: 0;
   display: flex;
   align-items: flex-start;
-  padding: clamp(2rem, 5vw, 3.25rem) 0 clamp(1.75rem, 4.5vw, 2.75rem);
-  overflow: hidden;
+  padding: clamp(2rem, 5vw, 3.25rem) 0 clamp(2.25rem, 5.5vw, 3.25rem);
+  overflow: visible;
 }
 
 .taxnex-hero__bg {
@@ -1739,10 +1739,28 @@ a {
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   align-items: start;
   gap: clamp(0.85rem, 2.5vw, 2rem);
+  padding: clamp(1.2rem, 3.2vw, 2rem) clamp(1rem, 2.8vw, 1.85rem);
+  border-radius: clamp(18px, 3.5vw, 30px);
+  border: 2px solid rgba(6, 78, 59, 0.92);
+  box-shadow:
+    0 0 0 1px rgba(110, 231, 183, 0.65),
+    0 0 32px rgba(16, 185, 129, 0.32),
+    0 28px 70px rgba(4, 47, 46, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.88) inset,
+    0 1px 0 rgba(255, 255, 255, 0.65) inset;
+  background: linear-gradient(
+    168deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(248, 253, 250, 0.96) 32%,
+    rgba(220, 252, 231, 0.94) 68%,
+    rgba(204, 251, 216, 0.92) 100%
+  );
+  backdrop-filter: blur(12px) saturate(1.12);
+  -webkit-backdrop-filter: blur(12px) saturate(1.12);
 }
 
 .taxnex-hero__main {
-  max-width: 680px;
+  max-width: 760px;
   justify-self: center;
   align-self: start;
   width: 100%;
@@ -1782,7 +1800,7 @@ a {
 .taxnex-hero__aside-tagline {
   margin: 0;
   font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1rem, 2.1vw, 1.75rem);
+  font-size: clamp(1.06rem, 2.28vw, 1.9rem);
   font-weight: 600;
   font-style: normal;
   line-height: 1.22;
@@ -1809,7 +1827,7 @@ a {
   margin: clamp(0.5rem, 1.4vw, 0.95rem) 0 0;
   padding-top: clamp(0.45rem, 1.2vw, 0.75rem);
   font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.65rem, 4.2vw, 2.85rem);
+  font-size: clamp(1.75rem, 4.5vw, 3.05rem);
   font-weight: 500;
   line-height: 0.98;
   letter-spacing: 0.04em;
@@ -1853,12 +1871,12 @@ a {
   }
 
   .taxnex-hero__aside-tagline {
-    font-size: clamp(1.05rem, 2.2vw, 1.85rem);
+    font-size: clamp(1.12rem, 2.38vw, 1.98rem);
     letter-spacing: 0.12em;
   }
 
   .taxnex-hero__aside-brand {
-    font-size: clamp(1.75rem, 4.5vw, 2.95rem);
+    font-size: clamp(1.85rem, 4.75vw, 3.15rem);
   }
 }
 
@@ -1880,17 +1898,34 @@ a {
   }
 
   .taxnex-hero__aside-tagline {
-    font-size: clamp(1.02rem, 3.5vw, 1.72rem);
+    font-size: clamp(1.08rem, 3.75vw, 1.85rem);
     letter-spacing: 0.1em;
   }
 
   .taxnex-hero__aside-brand {
-    font-size: clamp(1.65rem, 6.5vw, 2.35rem);
+    font-size: clamp(1.75rem, 6.9vw, 2.5rem);
   }
 
   .taxnex-hero__aside-brand::before {
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .taxnex-hero__scroll-slot {
+    justify-content: center;
+  }
+
+  .taxnex-hero__scroll-down {
+    align-items: center;
+    text-align: center;
+  }
+
+  .taxnex-hero__scroll-down__label {
+    text-align: center;
+  }
+
+  .taxnex-hero__scroll-down__chevs {
+    align-items: center;
   }
 }
 
@@ -1902,7 +1937,7 @@ a {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: clamp(72px, 16vw, 148px);
+  max-height: clamp(104px, 22vw, 260px);
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 6px 20px rgba(255, 255, 255, 0.75));
@@ -1963,7 +1998,8 @@ a {
 
 .taxnex-hero__cta-row .taxnex-btn {
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+  overflow: visible;
   min-height: 50px;
   padding: 0.65rem 1rem;
   border-radius: 12px;
@@ -1972,7 +2008,15 @@ a {
   line-height: 1;
   white-space: nowrap;
   min-width: min(200px, 100%);
-  animation: taxnex-cta-breathe 7s ease-in-out infinite;
+  animation: taxnex-hero-cta-led-blobs 2.9s ease-in-out infinite;
+  will-change: transform, box-shadow, filter;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    background 0.28s ease,
+    border-color 0.28s ease,
+    color 0.28s ease,
+    filter 0.32s ease;
 }
 
 .taxnex-hero__cta-row .taxnex-btn:nth-child(2) {
@@ -1987,6 +2031,7 @@ a {
   content: '';
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   pointer-events: none;
   background: linear-gradient(118deg, transparent 32%, rgba(255, 255, 255, 0.24) 49%, transparent 68%);
   opacity: 0;
@@ -2000,48 +2045,343 @@ a {
   transform: translateX(55%);
 }
 
+.taxnex-hero__cta-row .taxnex-btn:hover,
+.taxnex-hero__cta-row .taxnex-btn:focus-visible {
+  animation: none;
+  transform: translateY(-4px) scale(1.02);
+  background: linear-gradient(145deg, #b7f7da 0%, #3ee1a8 38%, #0a7d5c 100%);
+  box-shadow:
+    0 24px 56px rgba(0, 52, 40, 0.58),
+    0 0 0 1px rgba(255, 255, 255, 0.55) inset,
+    0 1px 0 rgba(255, 255, 255, 0.52) inset,
+    -26px 14px 48px -8px rgba(34, 197, 94, 0.72),
+    28px -12px 52px -8px rgba(34, 211, 238, 0.62),
+    0 32px 56px -10px rgba(16, 185, 129, 0.5),
+    18px 22px 44px -12px rgba(45, 212, 191, 0.42),
+    0 0 30px 10px rgba(255, 255, 255, 0.44),
+    0 0 54px 22px rgba(255, 255, 255, 0.16);
+  border-color: rgba(167, 243, 208, 0.78);
+  filter: brightness(1.08) saturate(1.1);
+}
+
 .taxnex-hero__phones {
+  position: relative;
+  z-index: 4;
+  isolation: isolate;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  color: #055b47;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(228, 250, 240, 0.88) 100%);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #022c22;
+  background: linear-gradient(165deg, #ffffff 0%, #f0fdf4 55%, #ecfdf5 100%);
+  border: 1px solid rgba(5, 120, 85, 0.55);
   border-radius: 999px;
-  padding: 0.45rem 0.95rem;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: 0.52rem 1.05rem;
+  backdrop-filter: blur(12px) saturate(1.15);
+  -webkit-backdrop-filter: blur(12px) saturate(1.15);
   box-shadow:
-    0 12px 30px rgba(4, 120, 87, 0.18),
-    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+    0 4px 0 rgba(255, 255, 255, 0.85) inset,
+    0 16px 36px rgba(4, 60, 45, 0.22),
+    0 0 0 2px rgba(255, 255, 255, 0.75),
+    0 0 1px rgba(6, 78, 59, 0.35);
 }
 
 .taxnex-hero__phone {
-  color: #046c55;
+  color: #022018;
   text-decoration: none;
   position: relative;
+  padding: 0.15rem 0.35rem;
+  margin: -0.15rem -0.35rem;
+  border-radius: 0.5rem;
   transition:
     color 0.25s ease,
     transform 0.25s ease,
-    text-shadow 0.25s ease;
+    text-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
 .taxnex-hero__phone:hover,
 .taxnex-hero__phone:focus-visible {
   color: #0f766e;
+  background: rgba(236, 253, 245, 0.95);
   transform: translateY(-1px);
-  text-shadow: 0 0 14px rgba(20, 184, 166, 0.22);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .taxnex-hero__phones-sep {
-  color: rgba(5, 150, 105, 0.45);
-  font-weight: 700;
+  color: rgba(6, 95, 70, 0.55);
+  font-weight: 800;
+}
+
+/* Full-width row under main + aside: anchor scroll CTA to the reading edge (right). */
+.taxnex-hero__scroll-slot {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  margin-top: clamp(0.35rem, 1.2vw, 0.85rem);
+  padding-top: clamp(0.25rem, 0.8vw, 0.55rem);
+  border-top: 1px solid rgba(16, 185, 129, 0.22);
+}
+
+.taxnex-hero__scroll-down {
+  position: relative;
+  z-index: 4;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.3rem 0.68rem 0.3rem 0.82rem;
+  min-height: 0;
+  overflow: visible;
+  isolation: isolate;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.52rem, 0.95vw, 0.58rem);
+  font-weight: 800;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: #022c22;
+  text-align: right;
+  background: linear-gradient(
+    128deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(209, 250, 229, 0.97) 38%,
+    rgba(167, 243, 208, 0.88) 62%,
+    rgba(236, 253, 245, 0.98) 100%
+  );
+  background-size: 220% 220%;
+  border: 1px solid rgba(5, 122, 85, 0.55);
+  border-radius: 999px;
+  backdrop-filter: blur(12px) saturate(1.25);
+  -webkit-backdrop-filter: blur(12px) saturate(1.25);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 10px 28px rgba(4, 60, 45, 0.12),
+    0 0 0 1px rgba(110, 231, 183, 0.65),
+    0 0 28px rgba(16, 185, 129, 0.28),
+    0 0 52px rgba(52, 211, 153, 0.18);
+  transition:
+    border-color 0.26s ease,
+    box-shadow 0.26s ease,
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.22s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .taxnex-hero__scroll-down {
+    animation: taxnex-scroll-cta-bg-shift 4.5s ease-in-out infinite alternate;
+  }
+}
+
+/* Expanding emerald ring (under label + sheen) */
+.taxnex-hero__scroll-down::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+  opacity: 0.95;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .taxnex-hero__scroll-down::after {
+    animation: taxnex-scroll-cta-ring 2.35s ease-out infinite;
+  }
+}
+
+/* Moving highlight across the pill */
+.taxnex-hero__scroll-down::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -30%;
+  width: 55%;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    98deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0.12) 65%,
+    transparent 100%
+  );
+  filter: blur(0.5px);
+  opacity: 0.55;
+  transform: translateX(-40%) skewX(-10deg);
+  mix-blend-mode: soft-light;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .taxnex-hero__scroll-down::before {
+    animation: taxnex-scroll-cta-sheen 2.9s cubic-bezier(0.45, 0.05, 0.25, 1) infinite;
+  }
+}
+
+.taxnex-hero__scroll-down:hover {
+  color: #011c17;
+  border-color: rgba(4, 120, 87, 0.85);
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 14px 36px rgba(16, 185, 129, 0.22),
+    0 0 0 1px rgba(167, 243, 208, 0.85),
+    0 0 36px rgba(52, 211, 153, 0.42),
+    0 0 64px rgba(16, 185, 129, 0.28);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .taxnex-hero__scroll-down:hover {
+    animation: none;
+  }
+}
+
+.taxnex-hero__scroll-down:focus-visible {
+  outline: 2px solid rgba(16, 185, 129, 0.9);
+  outline-offset: 2px;
+  border-color: rgba(5, 150, 105, 0.75);
+}
+
+.taxnex-hero__scroll-down__label {
+  position: relative;
+  z-index: 3;
+  max-width: min(13.5rem, 58vw);
+  line-height: 1.22;
+  text-align: right;
+  text-shadow: 0 0 20px rgba(236, 253, 245, 0.55);
+}
+
+.taxnex-hero__scroll-down__chevs {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+  color: #047857;
+  filter: drop-shadow(0 0 6px rgba(52, 211, 153, 0.45));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .taxnex-hero__scroll-down__chevs {
+    animation: taxnex-hero-scroll-chev 1.15s cubic-bezier(0.45, 0.02, 0.2, 1) infinite;
+  }
+}
+
+.taxnex-hero__scroll-down__chev {
+  display: block;
+}
+
+@keyframes taxnex-scroll-cta-bg-shift {
+  0% {
+    background-position: 8% 42%;
+  }
+
+  100% {
+    background-position: 92% 58%;
+  }
+}
+
+@keyframes taxnex-scroll-cta-sheen {
+  0% {
+    transform: translateX(-55%) skewX(-10deg);
+    opacity: 0.35;
+  }
+
+  35% {
+    opacity: 0.95;
+  }
+
+  55% {
+    transform: translateX(220%) skewX(-10deg);
+    opacity: 0.75;
+  }
+
+  56% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(220%) skewX(-10deg);
+    opacity: 0;
+  }
+}
+
+@keyframes taxnex-scroll-cta-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+    opacity: 1;
+  }
+
+  55% {
+    box-shadow: 0 0 0 12px rgba(52, 211, 153, 0);
+    opacity: 0;
+  }
+
+  56%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes taxnex-hero-scroll-chev {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  45% {
+    transform: translateY(6px) scale(1.12);
+  }
+
+  55% {
+    transform: translateY(7px) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-hero__scroll-down {
+    animation: none;
+    background-size: auto;
+  }
+
+  .taxnex-hero__scroll-down::before {
+    display: none;
+  }
+
+  .taxnex-hero__scroll-down::after {
+    animation: none;
+    box-shadow: none;
+    opacity: 0;
+  }
+
+  .taxnex-hero__scroll-down__chevs {
+    animation: none;
+    filter: none;
+  }
+
+  .taxnex-hero__scroll-down__label {
+    text-shadow: none;
+  }
+
+  .taxnex-hero__scroll-down:hover {
+    transform: none;
+  }
 }
 
 .taxnex-hero__link-contact {
@@ -2134,18 +2474,86 @@ a {
   border-color: rgba(45, 212, 191, 0.58);
 }
 
-@keyframes taxnex-cta-breathe {
+@keyframes taxnex-hero-cta-led-blobs {
   0%,
   100% {
+    transform: translateY(0);
     box-shadow:
-      0 10px 26px rgba(3, 7, 18, 0.28),
-      0 0 0 1px rgba(18, 163, 152, 0.12) inset;
+      0 14px 34px rgba(0, 48, 36, 0.45),
+      0 0 0 1px rgba(236, 253, 245, 0.58) inset,
+      0 1px 0 rgba(255, 255, 255, 0.42) inset,
+      -30px 16px 42px -10px rgba(34, 197, 94, 0.78),
+      28px -12px 44px -10px rgba(34, 211, 238, 0.68),
+      0 28px 48px -10px rgba(16, 185, 129, 0.52),
+      0 -20px 44px -12px rgba(167, 243, 208, 0.62),
+      22px 22px 52px -14px rgba(45, 212, 191, 0.42),
+      0 0 24px 8px rgba(255, 255, 255, 0.36),
+      0 0 46px 18px rgba(255, 255, 255, 0.14);
+    filter: brightness(1.03) saturate(1.08);
   }
-  50% {
+
+  26% {
+    transform: translateY(-7px);
     box-shadow:
-      0 14px 30px rgba(3, 7, 18, 0.34),
-      0 0 0 1px rgba(45, 212, 191, 0.25) inset,
-      0 0 18px rgba(52, 211, 153, 0.14);
+      0 14px 34px rgba(0, 48, 36, 0.48),
+      0 0 0 1px rgba(255, 255, 255, 0.65) inset,
+      0 1px 0 rgba(255, 255, 255, 0.5) inset,
+      32px 8px 48px -6px rgba(34, 197, 94, 0.95),
+      -22px 18px 42px -8px rgba(34, 211, 238, 0.72),
+      -10px -22px 52px -10px rgba(110, 231, 183, 0.82),
+      0 32px 56px -8px rgba(16, 185, 129, 0.55),
+      16px -26px 56px -12px rgba(125, 211, 252, 0.58),
+      0 0 28px 10px rgba(255, 255, 255, 0.42),
+      0 0 52px 22px rgba(255, 255, 255, 0.16);
+    filter: brightness(1.1) saturate(1.14);
+  }
+
+  52% {
+    transform: translateY(6px);
+    box-shadow:
+      0 14px 34px rgba(0, 48, 36, 0.5),
+      0 0 0 1px rgba(167, 243, 208, 0.55) inset,
+      0 1px 0 rgba(255, 255, 255, 0.48) inset,
+      -32px -8px 46px -8px rgba(34, 211, 238, 0.88),
+      18px 24px 50px -8px rgba(34, 197, 94, 0.85),
+      0 26px 58px -6px rgba(45, 212, 191, 0.52),
+      26px -18px 54px -12px rgba(165, 243, 252, 0.62),
+      -14px 26px 48px -14px rgba(6, 182, 212, 0.38),
+      0 0 26px 9px rgba(255, 255, 255, 0.4),
+      0 0 50px 20px rgba(255, 255, 255, 0.15);
+    filter: brightness(1.14) saturate(1.18);
+  }
+
+  76% {
+    transform: translateY(-4px);
+    box-shadow:
+      0 14px 34px rgba(0, 48, 36, 0.46),
+      0 0 0 1px rgba(236, 253, 245, 0.52) inset,
+      0 1px 0 rgba(255, 255, 255, 0.44) inset,
+      12px 26px 46px -10px rgba(16, 185, 129, 0.92),
+      -30px -12px 44px -10px rgba(34, 197, 94, 0.62),
+      24px -6px 42px -12px rgba(56, 189, 248, 0.68),
+      0 22px 52px -10px rgba(52, 211, 153, 0.48),
+      -20px 18px 50px -14px rgba(125, 211, 252, 0.48),
+      0 0 24px 8px rgba(255, 255, 255, 0.38),
+      0 0 48px 19px rgba(255, 255, 255, 0.13);
+    filter: brightness(1.06) saturate(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-hero__cta-row .taxnex-btn {
+    animation: none;
+    will-change: auto;
+    transform: none;
+    box-shadow:
+      0 14px 32px rgba(0, 48, 36, 0.4),
+      0 0 0 1px rgba(167, 243, 208, 0.5) inset,
+      0 1px 0 rgba(255, 255, 255, 0.4) inset,
+      -18px 10px 32px -10px rgba(34, 197, 94, 0.55),
+      18px -8px 34px -10px rgba(34, 211, 238, 0.48),
+      0 0 22px 7px rgba(255, 255, 255, 0.32),
+      0 0 40px 16px rgba(255, 255, 255, 0.12);
   }
 }
 
@@ -2156,7 +2564,7 @@ a {
   }
 
   .taxnex-hero__logo {
-    max-height: min(112px, 15vh);
+    max-height: min(176px, 26vh);
   }
 
   .taxnex-hero__brand-row {
@@ -2186,12 +2594,12 @@ a {
   }
 
   .taxnex-hero__aside-tagline {
-    font-size: clamp(0.88rem, 1.85vw, 1.45rem);
+    font-size: clamp(0.94rem, 2vw, 1.55rem);
     letter-spacing: 0.1em;
   }
 
   .taxnex-hero__aside-brand {
-    font-size: clamp(1.2rem, 2.8vw, 2rem);
+    font-size: clamp(1.28rem, 3vw, 2.12rem);
     margin-top: 0.35rem;
     padding-top: 0.35rem;
   }
@@ -2253,12 +2661,218 @@ a {
   background: #ffffff;
 }
 
+/* #tax-services — side scroll cues (decorative; rails extend up into hero for first-screen visibility) */
+.taxnex-services-section {
+  position: relative;
+  overflow: visible;
+}
+
+.taxnex-services-section__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.taxnex-services-scroll-rails {
+  display: none;
+}
+
+.taxnex-services-scroll-rail {
+  position: absolute;
+  /* Sit as high as possible in the pulled-up layer (align with .taxnex-hero__cta-row buttons). */
+  top: clamp(-0.35rem, -0.35vh, 0rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.65rem, 1.4vw, 1.1rem);
+}
+
+.taxnex-services-scroll-rail--left {
+  left: max(0.15rem, env(safe-area-inset-left, 0px));
+}
+
+.taxnex-services-scroll-rail--right {
+  right: max(0.15rem, env(safe-area-inset-right, 0px));
+}
+
+/* Flush to viewport sides (still respects safe-area). */
+@media (min-width: 900px) {
+  .taxnex-services-scroll-rail--left {
+    left: max(0px, env(safe-area-inset-left, 0px));
+  }
+
+  .taxnex-services-scroll-rail--right {
+    right: max(0px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.taxnex-services-scroll-rail__pillar {
+  width: clamp(8px, 0.85vw, 11px);
+  height: clamp(14rem, 54vh, 34rem);
+  border-radius: 999px;
+  background: linear-gradient(
+    185deg,
+    rgba(236, 253, 245, 0.55) 0%,
+    rgba(16, 185, 129, 0.88) 20%,
+    rgba(4, 120, 87, 0.98) 46%,
+    rgba(45, 212, 191, 0.92) 70%,
+    rgba(167, 243, 208, 0.62) 100%
+  );
+  background-size: 100% 240%;
+  background-position: 0% 0%;
+  box-shadow:
+    0 0 42px rgba(16, 185, 129, 0.72),
+    0 0 22px rgba(5, 150, 105, 0.55),
+    0 0 8px rgba(255, 255, 255, 0.35),
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.72),
+    inset 0 -6px 14px rgba(4, 47, 46, 0.18);
+  animation: taxnex-services-pillar-flow 2.85s ease-in-out infinite;
+  /* After shorthand: negative delay starts the gradient motion partway in (lively from the top). */
+  animation-delay: -1.15s;
+}
+
+.taxnex-services-scroll-rail--right .taxnex-services-scroll-rail__pillar {
+  animation-delay: -0.7s;
+}
+
+.taxnex-services-scroll-rail__chevs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08rem;
+  color: #022c22;
+  filter:
+    drop-shadow(0 4px 18px rgba(16, 185, 129, 0.75))
+    drop-shadow(0 0 12px rgba(52, 211, 153, 0.45))
+    drop-shadow(0 2px 0 rgba(255, 255, 255, 0.95));
+  animation: taxnex-services-chev-bob 1.65s ease-in-out infinite;
+}
+
+.taxnex-services-scroll-rail__chev {
+  display: block;
+  width: clamp(30px, 3.2vw, 38px);
+  height: clamp(30px, 3.2vw, 38px);
+}
+
+.taxnex-services-scroll-rail--right .taxnex-services-scroll-rail__chevs {
+  animation-delay: 0.32s;
+}
+
+.taxnex-services-scroll-rail__chevs--tail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.06rem;
+  margin-top: 0.15rem;
+  opacity: 0.95;
+  filter:
+    drop-shadow(0 4px 20px rgba(16, 185, 129, 0.82))
+    drop-shadow(0 0 14px rgba(52, 211, 153, 0.5))
+    drop-shadow(0 2px 0 rgba(255, 255, 255, 0.95));
+  animation-delay: 0.58s;
+}
+
+.taxnex-services-scroll-rail--right .taxnex-services-scroll-rail__chevs--tail {
+  animation-delay: 0.95s;
+}
+
+.taxnex-services-scroll-rail__chevs--tail .taxnex-services-scroll-rail__chev {
+  width: clamp(32px, 3.5vw, 42px);
+  height: clamp(32px, 3.5vw, 42px);
+}
+
+.taxnex-services-scroll-rail__chevs--tail .taxnex-services-scroll-rail__chev:nth-child(2) {
+  opacity: 0.9;
+}
+
+.taxnex-services-scroll-rail__chev:nth-child(2) {
+  opacity: 0.94;
+}
+
+@keyframes taxnex-services-pillar-flow {
+  0%,
+  100% {
+    background-position: 0% 0%;
+    opacity: 0.94;
+    filter: brightness(1.05) saturate(1.08);
+  }
+
+  50% {
+    background-position: 0% 100%;
+    opacity: 1;
+    filter: brightness(1.32) saturate(1.35);
+  }
+}
+
+@keyframes taxnex-services-chev-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.88;
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  55% {
+    transform: translateY(22px);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 900px) {
+  .taxnex-services-scroll-rails {
+    display: block;
+    position: absolute;
+    /* Pull further into hero so scroll cues line up with .taxnex-hero__cta-row primary buttons. */
+    top: clamp(-13.25rem, -23vh, -6.75rem);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-services-scroll-rail__pillar,
+  .taxnex-services-scroll-rail__chevs {
+    animation: none;
+  }
+
+  .taxnex-services-scroll-rail__pillar {
+    animation-delay: 0s;
+  }
+
+  .taxnex-services-scroll-rail__chevs {
+    transform: none;
+    opacity: 0.92;
+  }
+
+  .taxnex-services-scroll-rail__chevs--tail {
+    animation-delay: 0s;
+    opacity: 0.88;
+  }
+}
+
 .taxnex-section--mid {
   background: linear-gradient(180deg, #ecfdf5 0%, #f0fdf4 45%, #ffffff 100%);
 }
 
 .taxnex-section--tools {
-  background: linear-gradient(180deg, #ffffff 0%, #f7fef9 55%, #ecfdf5 100%);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 100% 70% at 50% 0%, rgba(255, 255, 255, 0.55) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 55% at 100% 100%, rgba(16, 185, 129, 0.22) 0%, transparent 48%),
+    linear-gradient(180deg, #bbf7d0 0%, #6ee7b7 38%, #34d399 72%, #a7f3d0 100%);
+  border-top: 1px solid rgba(4, 120, 87, 0.22);
+  border-bottom: 1px solid rgba(5, 150, 105, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.taxnex-section--tools .taxnex-tools-note {
+  color: #2d4a3c;
 }
 
 .taxnex-section--newsletter {
@@ -2344,7 +2958,6 @@ a {
 
 .taxnex-yt-card {
   display: block;
-  text-decoration: none;
   color: inherit;
   border-radius: clamp(20px, 3vw, 28px);
   overflow: hidden;
@@ -2371,7 +2984,7 @@ a {
     0 0 48px -12px rgba(45, 212, 191, 0.18);
 }
 
-.taxnex-yt-card:focus-visible {
+.taxnex-yt-card:focus-within {
   outline: 2px solid rgba(110, 231, 183, 0.95);
   outline-offset: 4px;
 }
@@ -2407,6 +3020,110 @@ a {
     transparent 4px
   );
   mix-blend-mode: overlay;
+}
+
+.taxnex-yt-card__shorts {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(0.5rem, 1.5vw, 0.9rem);
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  pointer-events: none;
+}
+
+.taxnex-yt-card__short-link {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  padding: 0.42rem 0.65rem 0.42rem 0.55rem;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ecfdf5;
+  border-radius: 999px;
+  border: 2px solid rgba(110, 231, 183, 0.55);
+  background: linear-gradient(165deg, rgba(6, 78, 59, 0.88) 0%, rgba(4, 30, 22, 0.92) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(16, 185, 129, 0.25);
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.taxnex-yt-card__short-link__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  color: #ffffff;
+  background: linear-gradient(145deg, #ef4444 0%, #b91c1c 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.taxnex-yt-card__short-link__play svg {
+  display: block;
+  margin-left: 1px;
+}
+
+.taxnex-yt-card__short-link__label {
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(167, 243, 208, 0.65);
+}
+
+.taxnex-yt-card__short-link__new-tab {
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.88;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.taxnex-yt-card__short-link:hover {
+  color: #ffffff;
+  border-color: rgba(167, 243, 208, 0.95);
+  background: linear-gradient(165deg, rgba(5, 122, 85, 0.95) 0%, rgba(4, 47, 46, 0.98) 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 10px 28px rgba(16, 185, 129, 0.28),
+    0 0 0 2px rgba(52, 211, 153, 0.35);
+}
+
+.taxnex-yt-card__short-link:hover .taxnex-yt-card__short-link__label {
+  text-decoration-color: rgba(255, 255, 255, 0.95);
+}
+
+.taxnex-yt-card__short-link:hover .taxnex-yt-card__short-link__new-tab {
+  opacity: 1;
+}
+
+.taxnex-yt-card__short-link:focus-visible {
+  outline: 2px solid rgba(110, 231, 183, 0.95);
+  outline-offset: 3px;
 }
 
 .taxnex-yt-card__play {
@@ -2531,6 +3248,7 @@ a {
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  text-decoration: none;
   color: rgba(236, 253, 245, 0.95);
   padding: 0.55rem 0.95rem;
   border-radius: 999px;
@@ -2663,40 +3381,189 @@ a {
 
 .taxnex-stage-card {
   position: relative;
-  padding: 1.65rem 1.5rem;
-  border-radius: 20px;
-  border: 1px solid rgba(167, 243, 208, 0.45);
-  background: linear-gradient(165deg, #ffffff 0%, #f4fcfa 100%);
+  min-width: 0;
+  padding: clamp(1.5rem, 2.8vw, 1.85rem) clamp(1.35rem, 2.4vw, 1.65rem);
+  border-radius: clamp(20px, 2.4vw, 26px);
+  overflow: hidden;
+  isolation: isolate;
+  border: 2px solid rgba(6, 78, 59, 0.52);
   box-shadow:
-    0 22px 48px -40px rgba(6, 58, 44, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.85) inset;
+    0 0 0 1px rgba(167, 243, 208, 0.55),
+    0 0 36px rgba(16, 185, 129, 0.14),
+    0 24px 52px -32px rgba(6, 58, 44, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.92) inset,
+    0 1px 0 rgba(255, 255, 255, 0.75) inset;
+}
+
+.taxnex-stage-card::before {
+  content: '';
+  position: absolute;
+  inset: -5%;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+  background: conic-gradient(
+    from 210deg at 50% 50%,
+    transparent 0deg,
+    rgba(52, 211, 153, 0.14) 55deg,
+    rgba(255, 255, 255, 0.22) 110deg,
+    transparent 165deg,
+    rgba(16, 185, 129, 0.12) 240deg,
+    rgba(204, 251, 241, 0.18) 300deg,
+    transparent 360deg
+  );
+  animation: taxnex-stage-card-aurora 22s linear infinite;
+}
+
+.taxnex-stage-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    102deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 62%,
+    transparent 100%
+  );
+  background-size: 220% 100%;
+  background-position: 100% 0;
+  mix-blend-mode: soft-light;
+  animation: taxnex-stage-card-sheen 9.5s ease-in-out infinite;
+}
+
+.taxnex-stage-grid article:nth-child(1).taxnex-stage-card::after {
+  animation-delay: 0s;
+}
+
+.taxnex-stage-grid article:nth-child(2).taxnex-stage-card::after {
+  animation-delay: 1.6s;
+}
+
+.taxnex-stage-grid article:nth-child(3).taxnex-stage-card::after {
+  animation-delay: 3.2s;
+}
+
+.taxnex-stage-grid article:nth-child(2).taxnex-stage-card::before {
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+
+.taxnex-stage-grid article:nth-child(3).taxnex-stage-card::before {
+  animation-duration: 19s;
+}
+
+@keyframes taxnex-stage-card-aurora {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes taxnex-stage-card-sheen {
+  0%,
+  52% {
+    background-position: 100% 0;
+    opacity: 0;
+  }
+
+  58% {
+    opacity: 1;
+  }
+
+  70% {
+    background-position: 0% 0;
+    opacity: 0.85;
+  }
+
+  78%,
+  100% {
+    background-position: 0% 0;
+    opacity: 0;
+  }
+}
+
+.taxnex-stage-grid article:nth-child(1).taxnex-stage-card {
+  background:
+    radial-gradient(ellipse 120% 80% at 100% 0%, rgba(167, 243, 208, 0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 0% 100%, rgba(52, 211, 153, 0.18) 0%, transparent 50%),
+    linear-gradient(158deg, #ffffff 0%, #ecfdf5 38%, #d1fae5 88%, #ecfdf5 100%);
+}
+
+.taxnex-stage-grid article:nth-child(2).taxnex-stage-card {
+  background:
+    radial-gradient(ellipse 100% 85% at 0% 0%, rgba(204, 251, 241, 0.55) 0%, transparent 52%),
+    radial-gradient(ellipse 85% 65% at 100% 100%, rgba(16, 185, 129, 0.16) 0%, transparent 48%),
+    linear-gradient(168deg, #fbfffe 0%, #e6fcf2 35%, #ccfbf1 72%, #f0fdfa 100%);
+}
+
+.taxnex-stage-grid article:nth-child(3).taxnex-stage-card {
+  background:
+    radial-gradient(ellipse 110% 75% at 50% 0%, rgba(236, 253, 245, 0.9) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 90% at 100% 50%, rgba(110, 231, 183, 0.22) 0%, transparent 45%),
+    linear-gradient(172deg, #ffffff 0%, #f0fdf9 40%, #bbf7d0 78%, #ecfdf5 100%);
+}
+
+.taxnex-stage-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-stage-card::before,
+  .taxnex-stage-card::after {
+    animation: none;
+  }
+
+  .taxnex-stage-card::before {
+    opacity: 0.28;
+    transform: none;
+  }
+
+  .taxnex-stage-card::after {
+    opacity: 0;
+  }
 }
 
 .taxnex-stage-card__badge {
   display: inline-block;
   margin-bottom: 0.85rem;
+  padding: 0.38rem 0.72rem;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.22em;
-  color: #0d5c46;
+  color: #064e3b;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.92) 0%, rgba(236, 253, 245, 0.88) 100%);
+  border: 1px solid rgba(5, 150, 105, 0.38);
+  border-radius: 999px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 8px 22px rgba(6, 95, 70, 0.1);
 }
 
 .taxnex-stage-card__title {
   margin: 0 0 0.75rem;
+  max-width: 100%;
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.35rem;
+  font-size: clamp(1.12rem, 2vw, 1.35rem);
   font-weight: 600;
   line-height: 1.25;
-  color: #065f46;
+  color: #064e3b;
+  overflow-wrap: break-word;
+  white-space: pre-line;
 }
 
 .taxnex-stage-card__body {
   margin: 0;
+  max-width: 100%;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
   line-height: 1.7;
-  color: #4b5870;
+  color: #3d5266;
+  overflow-wrap: break-word;
 }
 
 .taxnex-section--pricing {
@@ -2705,7 +3572,7 @@ a {
 
 .taxnex-pricing-grid {
   display: grid;
-  gap: 1.5rem;
+  gap: clamp(1.5rem, 2.8vw, 2.35rem);
 }
 
 .taxnex-pricing-grid + .taxnex-stage-grid {
@@ -2714,52 +3581,156 @@ a {
 
 @media (min-width: 900px) {
   .taxnex-pricing-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
+  }
+}
+
+@keyframes taxnex-price-card-shake {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  12% {
+    transform: translate3d(-5px, 0, 0) rotate(-0.65deg);
+  }
+
+  24% {
+    transform: translate3d(4px, 0, 0) rotate(0.55deg);
+  }
+
+  36% {
+    transform: translate3d(-3px, 0, 0) rotate(-0.45deg);
+  }
+
+  48% {
+    transform: translate3d(3px, 0, 0) rotate(0.4deg);
+  }
+
+  60%,
+  72% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes taxnex-price-card-shake-featured {
+  0%,
+  100% {
+    transform: translate3d(0, -6px, 0) rotate(0deg);
+  }
+
+  12% {
+    transform: translate3d(-5px, -6px, 0) rotate(-0.65deg);
+  }
+
+  24% {
+    transform: translate3d(4px, -6px, 0) rotate(0.55deg);
+  }
+
+  36% {
+    transform: translate3d(-3px, -6px, 0) rotate(-0.45deg);
+  }
+
+  48% {
+    transform: translate3d(3px, -6px, 0) rotate(0.4deg);
+  }
+
+  60%,
+  72% {
+    transform: translate3d(0, -6px, 0) rotate(0deg);
   }
 }
 
 .taxnex-price-card {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border-radius: 22px;
-  border: 1px solid rgba(16, 185, 129, 0.28);
-  background: linear-gradient(165deg, #ffffff 0%, #f8fffc 100%);
+  min-width: 0;
+  overflow: visible;
+  border-radius: clamp(24px, 2.8vw, 30px);
+  border: 2px solid rgba(6, 78, 59, 0.9);
+  background: linear-gradient(165deg, #ffffff 0%, #f4fff9 52%, #f0fdf7 100%);
   box-shadow:
-    0 24px 48px -36px rgba(6, 95, 70, 0.12),
-    0 0 0 1px rgba(236, 253, 245, 0.9) inset;
+    0 0 0 1px rgba(110, 231, 183, 0.55),
+    0 0 36px rgba(16, 185, 129, 0.22),
+    0 28px 56px -28px rgba(6, 95, 70, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.88) inset,
+    0 0 0 1px rgba(209, 250, 229, 0.65) inset;
+  isolation: isolate;
+  transform-origin: center center;
+  animation: taxnex-price-card-shake 5.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.taxnex-pricing-grid article:nth-child(1).taxnex-price-card {
+  animation-delay: 0s;
+}
+
+.taxnex-pricing-grid article:nth-child(2).taxnex-price-card {
+  animation-delay: 0.42s;
+}
+
+.taxnex-pricing-grid article:nth-child(3).taxnex-price-card {
+  animation-delay: 0.84s;
 }
 
 .taxnex-price-card--featured {
-  border-color: rgba(52, 211, 153, 0.55);
+  border-width: 2px;
+  border-color: rgba(4, 120, 87, 0.95);
   box-shadow:
-    0 28px 56px -32px rgba(16, 185, 129, 0.22),
-    0 0 0 2px rgba(167, 243, 208, 0.55),
-    0 0 40px -16px rgba(52, 211, 153, 0.25);
-  transform: translateY(-4px);
+    0 0 0 1px rgba(167, 243, 208, 0.85),
+    0 0 0 2px rgba(6, 95, 70, 0.35),
+    0 0 48px rgba(52, 211, 153, 0.38),
+    0 32px 64px -26px rgba(16, 185, 129, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.92) inset,
+    0 0 28px rgba(110, 231, 183, 0.35) inset;
+}
+
+@media (min-width: 900px) {
+  .taxnex-price-card--featured {
+    animation-name: taxnex-price-card-shake-featured;
+  }
 }
 
 @media (max-width: 899px) {
   .taxnex-price-card--featured {
-    transform: none;
+    animation-name: taxnex-price-card-shake;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .taxnex-price-card {
+    animation: none;
+    will-change: auto;
+  }
+
   .taxnex-price-card--featured {
-    transform: none;
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: 899px) {
+    .taxnex-price-card--featured {
+      transform: none;
+    }
   }
 }
 
 .taxnex-price-card__media {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9.5;
   overflow: hidden;
-  border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+  /* Sharp inner frame: matches card radius minus border width for a clean corner. */
+  border-top-left-radius: calc(clamp(24px, 2.8vw, 30px) - 2px);
+  border-top-right-radius: calc(clamp(24px, 2.8vw, 30px) - 2px);
+  border: 2px solid rgba(6, 78, 59, 0.94);
+  box-shadow:
+    0 0 0 1px rgba(167, 243, 208, 0.7) inset,
+    0 1px 0 rgba(255, 255, 255, 0.58) inset,
+    0 0 24px rgba(16, 185, 129, 0.14);
 }
 
 .taxnex-price-card__img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2770,41 +3741,58 @@ a {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 1.35rem 1.35rem 1.5rem;
+  min-width: 0;
+  padding: clamp(1.45rem, 2.6vw, 1.85rem) clamp(1.4rem, 2.5vw, 1.75rem) clamp(1.55rem, 2.7vw, 1.95rem);
 }
 
 .taxnex-price-card__kicker {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.55rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.58rem;
+  font-size: clamp(0.6rem, 1.1vw, 0.66rem);
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: #059669;
+  color: #047857;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .taxnex-price-card__title {
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.72rem;
+  max-width: 100%;
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.15rem;
+  font-size: clamp(1.02rem, 1.75vw + 0.2rem, 1.38rem);
   font-weight: 600;
-  line-height: 1.28;
+  line-height: 1.22;
   color: #064e3b;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  text-wrap: balance;
+  white-space: pre-line;
+}
+
+/* Long all-caps Greek / EN label — keep on one line inside narrow columns */
+.taxnex-price-card__title--single-line {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  text-wrap: nowrap;
+  letter-spacing: 0.03em;
+  font-size: clamp(0.64rem, 1.05vw + 0.34rem, 1.05rem);
 }
 
 .taxnex-price-card__desc {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.84rem;
+  font-size: clamp(0.86rem, 1.45vw, 0.96rem);
   line-height: 1.62;
   color: #4a6b5f;
   flex: 1;
 }
 
 .taxnex-price-card__includes {
-  margin: 0.85rem 0 0;
-  padding: 0 0 0 1.1rem;
+  margin: 0.95rem 0 0;
+  padding: 0 0 0 1.15rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
+  font-size: clamp(0.82rem, 1.35vw, 0.9rem);
   line-height: 1.55;
   color: #3f6f58;
 }
@@ -2814,9 +3802,9 @@ a {
 }
 
 .taxnex-price-card__price-block {
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(16, 185, 129, 0.2);
+  margin-top: 1.35rem;
+  padding-top: 1.1rem;
+  border-top: 2px solid rgba(16, 185, 129, 0.28);
 }
 
 .taxnex-price-card__row {
@@ -2828,7 +3816,7 @@ a {
 
 .taxnex-price-card__amount {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.85rem;
+  font-size: clamp(1.92rem, 3.2vw, 2.2rem);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #047857;
@@ -2855,36 +3843,74 @@ a {
   font-weight: 600;
 }
 
-@keyframes taxnex-pay-glow {
+/* “LEDs behind glass” — colored blobs pop under the pill (no border strobing) */
+@keyframes taxnex-pay-led-blobs {
   0%,
   100% {
     box-shadow:
-      0 14px 40px rgba(0, 48, 36, 0.42),
-      0 0 0 1px rgba(52, 211, 153, 0.38),
-      0 0 18px rgba(52, 211, 153, 0.12);
-    filter: brightness(1);
+      0 12px 30px rgba(0, 48, 36, 0.4),
+      0 0 0 1px rgba(236, 253, 245, 0.55) inset,
+      -28px 12px 34px -10px rgba(34, 197, 94, 0.72),
+      26px -10px 36px -10px rgba(34, 211, 238, 0.62),
+      0 26px 42px -12px rgba(16, 185, 129, 0.42),
+      0 -18px 38px -12px rgba(167, 243, 208, 0.52),
+      20px 18px 46px -12px rgba(45, 212, 191, 0.38);
+    filter: brightness(1.02) saturate(1.06);
   }
 
-  50% {
+  28% {
     box-shadow:
-      0 18px 48px rgba(0, 52, 40, 0.48),
-      0 0 0 1px rgba(167, 243, 208, 0.55),
-      0 0 32px rgba(16, 185, 129, 0.32);
-    filter: brightness(1.07);
+      0 12px 30px rgba(0, 48, 36, 0.44),
+      0 0 0 1px rgba(255, 255, 255, 0.62) inset,
+      30px 6px 42px -6px rgba(34, 197, 94, 0.98),
+      -22px 16px 38px -8px rgba(34, 211, 238, 0.68),
+      -10px -22px 46px -10px rgba(110, 231, 183, 0.78),
+      0 30px 50px -8px rgba(16, 185, 129, 0.52),
+      14px -24px 48px -12px rgba(125, 211, 252, 0.62);
+    filter: brightness(1.1) saturate(1.14);
+  }
+
+  55% {
+    box-shadow:
+      0 12px 30px rgba(0, 48, 36, 0.46),
+      0 0 0 1px rgba(167, 243, 208, 0.55) inset,
+      -30px -8px 40px -8px rgba(34, 211, 238, 0.88),
+      16px 22px 44px -8px rgba(34, 197, 94, 0.82),
+      0 24px 54px -6px rgba(45, 212, 191, 0.48),
+      18px -22px 48px -12px rgba(165, 243, 252, 0.58),
+      -12px 24px 44px -14px rgba(6, 182, 212, 0.35);
+    filter: brightness(1.14) saturate(1.16);
+  }
+
+  78% {
+    box-shadow:
+      0 12px 30px rgba(0, 48, 36, 0.42),
+      0 0 0 1px rgba(167, 243, 208, 0.52) inset,
+      10px 24px 40px -10px rgba(16, 185, 129, 0.95),
+      -28px -12px 36px -10px rgba(34, 197, 94, 0.58),
+      22px -6px 34px -12px rgba(56, 189, 248, 0.68),
+      0 22px 46px -10px rgba(52, 211, 153, 0.52),
+      0 0 52px -8px rgba(125, 211, 252, 0.28);
+    filter: brightness(1.06) saturate(1.1);
   }
 }
 
 .taxnex-price-card__pay {
-  margin-top: 1.15rem;
+  margin-top: 1.28rem;
   width: fit-content;
-  max-width: min(100%, 16.75rem);
+  max-width: min(100%, 18.5rem);
   align-self: center;
-  padding-inline: 1.35rem;
+  padding-inline: 1.5rem;
   justify-content: center;
 }
 
 .taxnex-price-card__pay.taxnex-btn--primary {
-  animation: taxnex-pay-glow 2.75s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(167, 243, 208, 0.55);
+  animation: taxnex-pay-led-blobs 2.85s ease-in-out infinite;
   transition:
     transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
     background 0.28s ease,
@@ -2894,24 +3920,41 @@ a {
     filter 0.28s ease;
 }
 
+.taxnex-pricing-grid article:nth-child(2) .taxnex-price-card__pay.taxnex-btn--primary {
+  animation-delay: 0.38s;
+}
+
+.taxnex-pricing-grid article:nth-child(3) .taxnex-price-card__pay.taxnex-btn--primary {
+  animation-delay: 0.76s;
+}
+
 .taxnex-price-card__pay.taxnex-btn--primary:hover,
 .taxnex-price-card__pay.taxnex-btn--primary:focus-visible {
   animation: none;
   transform: translateY(-5px) scale(1.04);
   background: linear-gradient(148deg, #ecfdf5 0%, #6ee7b7 28%, #10b981 58%, #047857 100%);
-  border-color: rgba(236, 253, 245, 0.95);
+  border-color: rgba(236, 253, 245, 0.85);
   color: #031910;
   box-shadow:
-    0 26px 56px rgba(0, 56, 42, 0.58),
-    0 0 0 2px rgba(167, 243, 208, 0.75),
-    0 0 42px rgba(52, 211, 153, 0.5);
-  filter: brightness(1.12) saturate(1.08);
+    0 28px 60px rgba(0, 56, 42, 0.62),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+    -24px 14px 48px -6px rgba(34, 197, 94, 0.75),
+    26px -12px 50px -6px rgba(34, 211, 238, 0.68),
+    0 32px 58px -8px rgba(16, 185, 129, 0.52),
+    20px 20px 46px -10px rgba(45, 212, 191, 0.45);
+  filter: brightness(1.12) saturate(1.14);
   outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .taxnex-price-card__pay.taxnex-btn--primary {
     animation: none;
+    box-shadow:
+      0 14px 32px rgba(0, 48, 36, 0.38),
+      0 0 0 1px rgba(167, 243, 208, 0.5) inset,
+      -18px 10px 30px -10px rgba(34, 197, 94, 0.52),
+      18px -8px 30px -10px rgba(34, 211, 238, 0.48),
+      0 0 40px -12px rgba(45, 212, 191, 0.22);
   }
 
   .taxnex-price-card__pay.taxnex-btn--primary:hover,
@@ -3244,11 +4287,11 @@ a {
   margin-top: clamp(1.35rem, 3.5vw, 1.85rem);
   padding: clamp(0.95rem, 2.5vw, 1.2rem) clamp(1rem, 2.5vw, 1.35rem);
   border-radius: 18px;
-  border: 1px solid rgba(167, 243, 208, 0.55);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.75) 0%, rgba(236, 253, 245, 0.55) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: linear-gradient(155deg, rgba(236, 253, 245, 0.92) 0%, rgba(209, 250, 229, 0.65) 48%, rgba(167, 243, 208, 0.35) 100%);
   box-shadow:
-    0 14px 36px -28px rgba(6, 78, 59, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+    0 16px 40px -26px rgba(6, 78, 59, 0.38),
+    0 0 0 1px rgba(255, 255, 255, 0.75) inset;
 }
 
 .taxnex-mission__phones-label {
@@ -3272,25 +4315,43 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.88rem, 1.8vw, 1.02rem);
   font-weight: 700;
-  letter-spacing: 0.03em;
-  color: #064e3b;
+  letter-spacing: 0.04em;
+  color: #04261c;
   text-decoration: none;
-  padding: 0.42rem 0.72rem;
+  padding: 0.5rem 0.95rem;
   border-radius: 999px;
-  border: 1px solid rgba(45, 212, 191, 0.35);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 244, 0.88) 100%);
-  box-shadow: 0 6px 16px -10px rgba(6, 78, 59, 0.35);
+  border: 1px solid rgba(167, 243, 208, 0.65);
+  background: linear-gradient(145deg, #a7f3d0 0%, #34d399 38%, #059669 100%);
+  box-shadow:
+    0 12px 32px rgba(0, 48, 36, 0.32),
+    0 0 0 1px rgba(52, 211, 153, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
   transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s ease,
-    border-color 0.3s ease,
-    color 0.3s ease,
-    background 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    background 0.4s ease,
     filter 0.35s ease;
-  animation: taxnex-mission-chip-float 2.6s ease-in-out infinite;
+  animation: taxnex-mission-chip-premium 4.8s ease-in-out infinite;
+}
+
+.taxnex-mission__phone-chip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(118deg, transparent 30%, rgba(255, 255, 255, 0.38) 50%, transparent 70%);
+  opacity: 0;
+  transform: translateX(-65%);
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
 }
 
 .taxnex-mission__phones-links > a.taxnex-mission__phone-chip:nth-child(1) {
@@ -3298,45 +4359,55 @@ a {
 }
 
 .taxnex-mission__phones-links > a.taxnex-mission__phone-chip:nth-child(3) {
-  animation-delay: 0.45s;
+  animation-delay: 0.65s;
 }
 
-@keyframes taxnex-mission-chip-float {
+@keyframes taxnex-mission-chip-premium {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    box-shadow:
+      0 12px 32px rgba(0, 48, 36, 0.3),
+      0 0 0 1px rgba(52, 211, 153, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.42),
+      0 0 18px rgba(16, 185, 129, 0.15);
   }
 
   50% {
-    transform: translateY(-3px);
+    transform: translateY(-4px) scale(1.025);
+    box-shadow:
+      0 18px 42px rgba(0, 56, 42, 0.4),
+      0 0 0 1px rgba(167, 243, 208, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      0 0 26px rgba(52, 211, 153, 0.28);
   }
 }
 
 .taxnex-mission__phone-chip:hover,
 .taxnex-mission__phone-chip:focus-visible {
   animation: none;
-  transform: translateY(-6px) scale(1.05);
-  border-color: rgba(167, 243, 208, 0.95);
-  color: #f0fdf4;
-  background: linear-gradient(
-    168deg,
-    #0d4d3d 0%,
-    #047857 38%,
-    #059669 72%,
-    #10b981 100%
-  );
+  transform: translateY(-5px) scale(1.04);
+  border-color: rgba(236, 253, 245, 0.9);
+  color: #04261c;
+  background: linear-gradient(145deg, #b7f7da 0%, #3ee1a8 40%, #0a7d5c 100%);
   box-shadow:
-    0 18px 36px -12px rgba(4, 47, 46, 0.55),
-    0 0 0 1px rgba(167, 243, 208, 0.35) inset,
-    0 0 28px rgba(45, 212, 191, 0.35);
-  filter: saturate(1.15);
+    0 22px 48px rgba(0, 52, 40, 0.48),
+    0 0 0 1px rgba(167, 243, 208, 0.65) inset,
+    0 0 32px rgba(52, 211, 153, 0.32);
+  filter: saturate(1.12);
+}
+
+.taxnex-mission__phone-chip:hover::after,
+.taxnex-mission__phone-chip:focus-visible::after {
+  opacity: 1;
+  transform: translateX(65%);
 }
 
 .taxnex-mission__phone-chip:active {
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-2px) scale(1.01);
   box-shadow:
-    0 10px 22px -14px rgba(4, 47, 46, 0.45),
-    0 0 0 1px rgba(16, 185, 129, 0.25) inset;
+    0 12px 28px rgba(0, 48, 36, 0.38),
+    0 0 0 1px rgba(16, 185, 129, 0.35) inset;
 }
 
 .taxnex-mission__phone-chip:focus-visible {
@@ -3351,7 +4422,7 @@ a {
 
   .taxnex-mission__phone-chip:hover,
   .taxnex-mission__phone-chip:focus-visible {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
   }
 }
 
@@ -3389,15 +4460,83 @@ a {
 }
 
 .taxnex-step {
+  position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1.25rem;
   align-items: flex-start;
-  padding: 1.5rem 1.35rem;
-  border-radius: 18px;
-  border: 1px solid rgba(167, 243, 208, 0.45);
-  background: #fff;
-  box-shadow: 0 18px 44px -36px rgba(6, 58, 44, 0.32);
+  padding: clamp(1.45rem, 2.5vw, 1.75rem) clamp(1.25rem, 2.2vw, 1.55rem);
+  border-radius: clamp(18px, 2.2vw, 22px);
+  overflow: hidden;
+  isolation: isolate;
+  border: 2px solid rgba(6, 78, 59, 0.38);
+  background:
+    radial-gradient(ellipse 90% 80% at 0% 0%, rgba(167, 243, 208, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 100% 100%, rgba(52, 211, 153, 0.12) 0%, transparent 45%),
+    linear-gradient(168deg, #ffffff 0%, #f8fffc 48%, #f0fdf7 100%);
+  box-shadow:
+    0 0 0 1px rgba(167, 243, 208, 0.55),
+    0 22px 50px -32px rgba(6, 58, 44, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.88) inset;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.taxnex-step::before {
+  content: '';
+  position: absolute;
+  inset: -20% -40%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 38%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 62%,
+    transparent 100%
+  );
+  transform: translateX(-35%) skewX(-12deg);
+  animation: taxnex-step-sheen 10s ease-in-out infinite;
+}
+
+.taxnex-step:hover {
+  border-color: rgba(5, 150, 105, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(110, 231, 183, 0.65),
+    0 28px 56px -28px rgba(16, 185, 129, 0.18),
+    0 22px 50px -32px rgba(6, 58, 44, 0.26),
+    0 0 0 1px rgba(255, 255, 255, 0.92) inset;
+}
+
+@keyframes taxnex-step-sheen {
+  0%,
+  55% {
+    opacity: 0;
+    transform: translateX(-40%) skewX(-12deg);
+  }
+
+  62% {
+    opacity: 1;
+  }
+
+  72% {
+    opacity: 0.85;
+    transform: translateX(45%) skewX(-12deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(45%) skewX(-12deg);
+  }
+}
+
+.taxnex-step__num,
+.taxnex-step__body {
+  position: relative;
+  z-index: 1;
 }
 
 .taxnex-step__num {
@@ -3413,9 +4552,12 @@ a {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #065f46;
-  background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%);
-  border: 1px solid rgba(52, 211, 153, 0.45);
+  color: #064e3b;
+  background: linear-gradient(155deg, #ffffff 0%, #ecfdf5 45%, #d1fae5 100%);
+  border: 1px solid rgba(5, 150, 105, 0.42);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 10px 24px rgba(6, 95, 70, 0.1);
 }
 
 .taxnex-step__title {
@@ -3450,6 +4592,13 @@ a {
 .taxnex-step__cta:hover,
 .taxnex-step__cta:focus-visible {
   border-bottom-color: #059669;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-step::before {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 .taxnex-tools-grid {
@@ -26100,6 +27249,110 @@ a.yacht-card {
   background: linear-gradient(180deg, #060a10 0%, #0a121c 38%, #070c12 100%);
 }
 
+.astreal-about-page {
+  padding: clamp(5rem, 12vw, 6.5rem) 0 clamp(3rem, 7vw, 4.5rem);
+}
+
+.astreal-about-page .astreal-detail-breadcrumb {
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* About subpage: flat section (no panels / ambient behind copy), editorial type */
+.astreal-about-page__shell {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: clamp(1.35rem, 5.5vw, 4.5rem);
+  box-sizing: border-box;
+}
+
+.astreal-about-page .astreal-about.astreal-about--page-layout {
+  border-top: none;
+  padding: clamp(1.25rem, 3.5vw, 2rem) 0 clamp(2rem, 5vw, 3.25rem);
+  scroll-margin-top: clamp(4.5rem, 12vh, 6.5rem);
+  background: transparent;
+  overflow: visible;
+}
+
+.astreal-about-page .astreal-about.astreal-about--page-layout.astreal-about--premium {
+  background: transparent;
+}
+
+.astreal-about-page__content {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  max-width: min(40rem, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(1.35rem, 3.5vw, 2.25rem);
+}
+
+.astreal-about-page__masthead {
+  width: 100%;
+  padding-bottom: clamp(0.35rem, 1.2vw, 0.65rem);
+}
+
+.astreal-about-page__heading {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.1rem, 4.6vw, 2.95rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+  color: rgba(250, 248, 244, 0.98);
+}
+
+.astreal-about-page__eyebrow.astreal-about__eyebrow {
+  margin: 0;
+  letter-spacing: 0.22em;
+  font-size: 0.56rem;
+  font-weight: 600;
+  color: rgba(188, 178, 162, 0.82);
+}
+
+.astreal-about-page__lead.astreal-lead--about {
+  margin: 0;
+  font-size: clamp(1.06rem, 1.65vw, 1.2rem);
+  line-height: 1.68;
+  font-weight: 400;
+  color: rgba(208, 218, 232, 0.94);
+}
+
+.astreal-about-page__lead.astreal-lead--about strong {
+  font-weight: 600;
+  color: rgba(244, 248, 252, 0.98);
+}
+
+.astreal-about-page__prose.astreal-about__prose {
+  margin: 0;
+  font-size: clamp(0.98rem, 1.45vw, 1.06rem);
+  line-height: 1.82;
+  color: rgba(176, 190, 208, 0.9);
+}
+
+.astreal-about-page .astreal-quote.astreal-quote--about-page {
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 1.75rem) 0 0;
+  border: none;
+  border-left: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.astreal-about-page .astreal-quote.astreal-quote--about-page p {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.18rem, 2.05vw, 1.38rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(212, 204, 190, 0.9);
+  text-wrap: balance;
+}
+
 .astreal-hero {
   position: relative;
   min-height: min(88vh, 920px);
@@ -26107,6 +27360,279 @@ a.yacht-card {
   align-items: flex-end;
   padding: clamp(5rem, 12vw, 7rem) 0 clamp(3rem, 7vw, 4.25rem);
   overflow: hidden;
+}
+
+/* Glass strip over hero image — in-page About + route to pool services */
+.astreal-hero__top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  padding: clamp(0.55rem, 1.6vw, 0.85rem) 0;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 6, 12, 0.78) 0%,
+    rgba(6, 10, 18, 0.42) 52%,
+    rgba(6, 10, 18, 0) 100%
+  );
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  border-bottom: 1px solid rgba(197, 160, 89, 0.22);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+
+.astreal-hero__top-bar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1.25rem;
+}
+
+.astreal-hero__top-link {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.56rem, 1.05vw, 0.62rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(248, 238, 218, 0.94);
+  padding: 0.35rem 0.15rem;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    text-shadow 0.25s ease;
+}
+
+.astreal-hero__top-link:hover,
+.astreal-hero__top-link:focus-visible {
+  color: #fffdf7;
+  border-bottom-color: rgba(197, 160, 89, 0.55);
+  text-shadow: 0 0 22px rgba(197, 160, 89, 0.35);
+  outline: none;
+}
+
+.astreal-hero__top-link:focus-visible {
+  outline: 2px solid rgba(197, 160, 89, 0.65);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.astreal-hero__top-link--premium {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.18rem;
+  padding: 0.42rem 1rem 0.4rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(197, 160, 89, 0.48);
+  overflow: hidden;
+  background: linear-gradient(
+    118deg,
+    rgba(14, 22, 34, 0.94) 0%,
+    rgba(26, 38, 54, 0.88) 28%,
+    rgba(8, 13, 22, 0.96) 52%,
+    rgba(32, 44, 62, 0.82) 72%,
+    rgba(10, 16, 26, 0.95) 100%
+  );
+  background-size: 240% 240%;
+  box-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 0 0 1px rgba(197, 160, 89, 0.12);
+  letter-spacing: 0.12em;
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.25s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .astreal-hero__top-link--premium {
+    animation:
+      astreal-hero-premium-bg-drift 10s ease-in-out infinite alternate,
+      astreal-hero-premium-x-sway 2.75s ease-in-out infinite alternate;
+  }
+}
+
+.astreal-hero__top-link--premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 85% at 50% 0%,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.02) 42%,
+    transparent 68%
+  );
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .astreal-hero__top-link--premium::after {
+    animation: astreal-hero-premium-rim-pulse 2.8s ease-in-out infinite alternate;
+  }
+}
+
+.astreal-hero__top-link--premium::before {
+  content: '';
+  position: absolute;
+  top: -35%;
+  bottom: -35%;
+  left: -55%;
+  width: 48%;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    102deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 38%,
+    rgba(255, 255, 255, 0.38) 49.5%,
+    rgba(255, 255, 255, 0.06) 61%,
+    transparent 100%
+  );
+  filter: blur(0.35px);
+  transform: translateX(-8%) skewX(-14deg);
+  mix-blend-mode: screen;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .astreal-hero__top-link--premium::before {
+    animation: astreal-hero-premium-sheen 3.6s cubic-bezier(0.45, 0.05, 0.25, 1) infinite;
+  }
+}
+
+.astreal-hero__top-link--premium > .astreal-hero__top-link-main,
+.astreal-hero__top-link--premium > .astreal-hero__top-link-sub {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes astreal-hero-premium-bg-drift {
+  0% {
+    background-position: 4% 12%;
+  }
+  100% {
+    background-position: 96% 88%;
+  }
+}
+
+@keyframes astreal-hero-premium-x-sway {
+  0% {
+    transform: translateX(-5px);
+  }
+
+  100% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes astreal-hero-premium-sheen {
+  0% {
+    transform: translateX(-45%) skewX(-14deg);
+    opacity: 0.25;
+  }
+  18% {
+    opacity: 0.95;
+  }
+  55% {
+    transform: translateX(320%) skewX(-14deg);
+    opacity: 0.85;
+  }
+  56% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(320%) skewX(-14deg);
+    opacity: 0;
+  }
+}
+
+@keyframes astreal-hero-premium-rim-pulse {
+  0% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0.72;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .astreal-hero__top-link--premium {
+    animation: none;
+    background: linear-gradient(
+      155deg,
+      rgba(18, 28, 42, 0.82) 0%,
+      rgba(8, 12, 20, 0.92) 100%
+    );
+    background-size: auto;
+  }
+
+  .astreal-hero__top-link--premium::before {
+    display: none;
+  }
+
+  .astreal-hero__top-link--premium::after {
+    animation: none;
+    opacity: 0.45;
+  }
+}
+
+.astreal-hero__top-link--premium:hover,
+.astreal-hero__top-link--premium:focus-visible {
+  border-color: rgba(237, 214, 170, 0.85);
+  color: #fffdf7;
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.52),
+    0 0 28px rgba(197, 160, 89, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .astreal-hero__top-link--premium:hover,
+  .astreal-hero__top-link--premium:focus-visible {
+    animation: astreal-hero-premium-bg-drift 10s ease-in-out infinite alternate;
+  }
+}
+
+.astreal-hero__top-link-main {
+  font-size: clamp(0.58rem, 1.05vw, 0.66rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 252, 245, 0.98);
+}
+
+.astreal-hero__top-link-sub {
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(214, 190, 140, 0.88);
+}
+
+@media (max-width: 520px) {
+  .astreal-hero__top-bar-inner {
+    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .astreal-hero__top-link--premium {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 /* Compact CTA: bottom-right (desktop), centered on narrow screens — aligns with reading edge */
@@ -26602,6 +28128,7 @@ a.yacht-card {
   padding: clamp(3rem, 7vw, 5rem) 0;
   border-top: 1px solid rgba(197, 160, 89, 0.18);
   overflow: hidden;
+  scroll-margin-top: clamp(4.5rem, 12vh, 6.5rem);
 }
 
 .astreal-about--premium {
@@ -26824,6 +28351,10 @@ a.yacht-card {
   background:
     radial-gradient(ellipse 80% 60% at 50% 0%, rgba(90, 140, 195, 0.12) 0%, transparent 55%),
     linear-gradient(180deg, rgba(6, 10, 16, 0.4) 0%, transparent 100%);
+}
+
+.astreal-services-preview #astreal-services-heading {
+  margin-bottom: clamp(1.85rem, 4.5vw, 3rem);
 }
 
 .astreal-services-preview__grid {
