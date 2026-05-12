@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next'
 import { getTaxNexAddressLine } from '../data/taxNexPageContent'
 import { getTaxServiceGuideNav } from '../data/taxTaxServiceGuideNav'
 import {
-  TAX_CLEARANCES_ARTICLE_BLOCKS,
-  TAX_CLEARANCES_PAGE_TITLES,
-} from '../data/taxClearancesPageContent'
+  TAX_PAYMENT_SUPPORT_ARTICLE_BLOCKS,
+  TAX_PAYMENT_SUPPORT_PAGE_TITLES,
+} from '../data/taxTaxPaymentSupportPageContent'
 import { useReveal } from '../hooks/useReveal'
 import SiteTopbar from './SiteTopbar'
 import { TaxNexGuideArticleBody } from './TaxNexGuideArticleBody'
@@ -15,14 +15,14 @@ import { TaxNexGuideArticleBody } from './TaxNexGuideArticleBody'
 const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.28 } as const
 
-export default function TaxClearancesPage() {
+export default function TaxPaymentSupportPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
   const { i18n } = useTranslation()
   const location = useLocation()
   const locale = i18n.resolvedLanguage === 'en' ? 'en' : 'el'
   const taxAddressLine = getTaxNexAddressLine(locale)
-  const titles = TAX_CLEARANCES_PAGE_TITLES[locale]
+  const titles = TAX_PAYMENT_SUPPORT_PAGE_TITLES[locale]
   const nav = getTaxServiceGuideNav(location.pathname)
 
   useEffect(() => {
@@ -49,7 +49,7 @@ export default function TaxClearancesPage() {
           </div>
         </div>
 
-        <header className="taxnex-page-hero" aria-labelledby="tax-clear-h1">
+        <header className="taxnex-page-hero" aria-labelledby="tax-pay-h1">
           <div className="taxnex-page-hero__bg" aria-hidden />
           <div className="container taxnex-page-hero__inner">
             <nav className="taxnex-page-hero__crumbs" aria-label="Breadcrumb">
@@ -62,7 +62,7 @@ export default function TaxClearancesPage() {
               <span className="taxnex-page-hero__crumb taxnex-page-hero__crumb--current">{titles.breadcrumbCurrent}</span>
             </nav>
             <motion.h1
-              id="tax-clear-h1"
+              id="tax-pay-h1"
               className="taxnex-page-hero__title"
               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -99,10 +99,10 @@ export default function TaxClearancesPage() {
         </header>
 
         <main>
-          <section className="taxnex-section taxnex-section--light taxnex-tic-section" aria-labelledby="tax-clear-sidebar-h">
+          <section className="taxnex-section taxnex-section--light taxnex-tic-section" aria-labelledby="tax-pay-sidebar-h">
             <div className="container taxnex-guide">
               <motion.aside className="taxnex-guide__sidebar" {...fadeUp}>
-                <h2 id="tax-clear-sidebar-h" className="taxnex-guide__sidebar-title">
+                <h2 id="tax-pay-sidebar-h" className="taxnex-guide__sidebar-title">
                   {titles.sidebar}
                 </h2>
                 <nav className="taxnex-guide__nav" aria-label={titles.sidebar}>
@@ -125,9 +125,9 @@ export default function TaxClearancesPage() {
               <motion.article
                 className="taxnex-guide__article taxnex-prose taxnex-prose--premium-guide"
                 {...fadeUp}
-                aria-labelledby="tax-clear-h1"
+                aria-labelledby="tax-pay-h1"
               >
-                <TaxNexGuideArticleBody locale={locale} blocks={TAX_CLEARANCES_ARTICLE_BLOCKS} />
+                <TaxNexGuideArticleBody locale={locale} blocks={TAX_PAYMENT_SUPPORT_ARTICLE_BLOCKS} />
               </motion.article>
             </div>
           </section>
@@ -137,13 +137,13 @@ export default function TaxClearancesPage() {
               <p className="taxnex-bottom-cta__label">{titles.contactCta}</p>
               <h2 className="taxnex-h2 taxnex-h2--tight">
                 {locale === 'en'
-                  ? 'Need help with your tax clearance certificate?'
-                  : 'Χρειάζεστε βοήθεια με το πιστοποιητικό φορολογικής ενημερότητας;'}
+                  ? 'Need help scheduling and reconciling tax payments?'
+                  : 'Χρειάζεστε βοήθεια με τον προγραμματισμό και τη συμφωνία φορολογικών πληρωμών;'}
               </h2>
               <p className="taxnex-muted">
                 {locale === 'en'
-                  ? 'We can help you prepare your filings, liaise with the Tax Department, and obtain your clearance certificate.'
-                  : 'Μπορούμε να σας βοηθήσουμε στην προετοιμασία των δηλώσεών σας, στην επικοινωνία με το Τμήμα Φορολογίας και στην απόκτηση του πιστοποιητικού ενημερότητας.'}
+                  ? 'We can walk you through the Tax Portal, payment references, and timelines so nothing is missed.'
+                  : 'Μπορούμε να σας καθοδηγήσουμε στην Πύλη Φόρων, στους αριθμούς αναφοράς πληρωμής και στα χρονοδιαγράμματα ώστε να μην χαθεί καμία προθεσμία.'}
               </p>
               <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}

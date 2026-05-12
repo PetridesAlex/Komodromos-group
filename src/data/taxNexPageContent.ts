@@ -74,8 +74,8 @@ export const TAX_NEX_STEPS: TaxNexStep[] = [
     step: 'Βήμα 2',
     title: 'αποκτήστε TAXISnet',
     lead: 'Επικοινωνήστε μαζί μας για βοήθεια.',
-    cta: 'ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ',
-    href: '/services/tax/how-to-register-to-taxisnet',
+    cta: 'ΕΠΙΚΟΙΝΩΝΗΣΤΕ',
+    href: '/contact',
   },
   {
     step: 'Βήμα 3',
@@ -219,8 +219,8 @@ const TAX_NEX_STEPS_EN: TaxNexStep[] = [
     step: 'Step 2',
     title: 'Get TAXISnet',
     lead: 'Contact us for support.',
-    cta: 'READ MORE',
-    href: '/services/tax/how-to-register-to-taxisnet',
+    cta: 'CONTACT',
+    href: '/contact',
   },
   {
     step: 'Step 3',

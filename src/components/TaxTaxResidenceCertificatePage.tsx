@@ -6,7 +6,6 @@ import { getTaxNexAddressLine } from '../data/taxNexPageContent'
 import { getTaxServiceGuideNav } from '../data/taxTaxServiceGuideNav'
 import {
   TAX_RESIDENCE_ARTICLE_BLOCKS,
-  TAX_RESIDENCE_HERO_IMAGE,
   TAX_RESIDENCE_PAGE_TITLES,
 } from '../data/taxTaxResidencePageContent'
 import { useReveal } from '../hooks/useReveal'
@@ -121,17 +120,6 @@ export default function TaxTaxResidenceCertificatePage() {
                     })}
                   </ul>
                 </nav>
-                <div className="taxnex-guide__sidebar-media">
-                  <img
-                    src={TAX_RESIDENCE_HERO_IMAGE}
-                    alt=""
-                    width={1280}
-                    height={768}
-                    loading="lazy"
-                    decoding="async"
-                    className="taxnex-guide__sidebar-img"
-                  />
-                </div>
               </motion.aside>
 
               <motion.article className="taxnex-guide__article taxnex-prose" {...fadeUp} aria-labelledby="tax-res-h1">

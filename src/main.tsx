@@ -30,7 +30,7 @@ import TaxHowToTicPage from './components/TaxHowToTicPage.tsx'
 import TaxTaxResidenceCertificatePage from './components/TaxTaxResidenceCertificatePage.tsx'
 import TaxNonDomCertificatePage from './components/TaxNonDomCertificatePage.tsx'
 import TaxClearancesPage from './components/TaxClearancesPage.tsx'
-import TaxHowToTaxisnetPage from './components/TaxHowToTaxisnetPage.tsx'
+import TaxPaymentSupportPage from './components/TaxPaymentSupportPage.tsx'
 import TaxTransferFeesCalculatorPage from './components/TaxTransferFeesCalculatorPage.tsx'
 import TaxIncomeCalculatorPage from './components/TaxIncomeCalculatorPage.tsx'
 import TaxServicesOverviewPage from './components/TaxServicesOverviewPage.tsx'
@@ -82,7 +82,7 @@ function Root() {
             <Route path="/services/tax/tax-residence-certificate" element={<TaxTaxResidenceCertificatePage />} />
             <Route path="/services/tax/non-dom-certificate" element={<TaxNonDomCertificatePage />} />
             <Route path="/services/tax/tax-clearances" element={<TaxClearancesPage />} />
-            <Route path="/services/tax/how-to-register-to-taxisnet" element={<TaxHowToTaxisnetPage />} />
+            <Route path="/services/tax/tax-payment-support" element={<TaxPaymentSupportPage />} />
             <Route path="/services/tax/transfer-fees-calculator" element={<TaxTransferFeesCalculatorPage />} />
             <Route path="/services/tax/income-tax-calculator" element={<TaxIncomeCalculatorPage />} />
             <Route path="/services/tax/services" element={<TaxServicesOverviewPage />} />

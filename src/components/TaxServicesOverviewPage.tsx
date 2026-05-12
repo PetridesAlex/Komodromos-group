@@ -31,6 +31,11 @@ const EXTRA_SERVICE_CARDS = [
     body: 'Αποκτήστε Πιστοποιητικό Φορολογικής Ενημερότητας που επιβεβαιώνει ότι όλες οι φορολογικές σας υποχρεώσεις έχουν εκπληρωθεί',
     href: '/services/tax/tax-clearances',
   },
+  {
+    title: 'Βοήθεια φορολογικών πληρωμών',
+    body: 'Βοήθεια με πληρωμές Φόρου Εισοδήματος, ΓΕΣΥ και SDC μέσω τραπεζικής και Πύλης Φόρων',
+    href: '/services/tax/tax-payment-support',
+  },
 ] as const
 
 const ADVISORY_SECTIONS = [

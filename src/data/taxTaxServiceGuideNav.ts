@@ -40,6 +40,12 @@ const TAX_SERVICE_GUIDE_NAV_BASE: Omit<TaxServiceGuideNavItem, 'current'>[] = [
     labelEn: 'Tax clearances',
     href: '/services/tax/tax-clearances',
   },
+  {
+    id: 'pay',
+    labelEl: 'Βοήθεια φορολογικών πληρωμών',
+    labelEn: 'Tax payment support',
+    href: '/services/tax/tax-payment-support',
+  },
 ]
 
 export function getTaxServiceGuideNav(pathname: string): TaxServiceGuideNavItem[] {

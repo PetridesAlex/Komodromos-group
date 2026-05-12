@@ -112,6 +112,9 @@ export default function ServiceDetailPage() {
                 <a href="#tax-steps" className="tax-page-subnav__link">
                   {t('serviceDetail.steps')}
                 </a>
+                <a href="#tax-trust" className="tax-page-subnav__link">
+                  {t('serviceDetail.trust')}
+                </a>
                 <div className="tax-page-subnav__tools">
                   <a href="#tax-tools" className="tax-page-subnav__link">
                     {t('serviceDetail.tools')}
@@ -153,6 +156,9 @@ export default function ServiceDetailPage() {
                     </a>
                   </div>
                 </div>
+                <a href="#tax-changes-2026" className="tax-page-subnav__link">
+                  {t('serviceDetail.changes2026')}
+                </a>
                 <Link to={`/services/tax#${TAX_NEX_FAQ_SECTION_ID}`} className="tax-page-subnav__link">
                   {t('serviceDetail.faq')}
                 </Link>

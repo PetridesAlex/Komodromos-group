@@ -14,8 +14,10 @@ import {
   getTaxNexSteps,
   getTaxNexToolCards,
 } from '../data/taxNexPageContent'
+import { TAX_NEX_2026_CHANGES_ROWS } from '../data/taxNex2026ChangesTableContent'
 import { getTaxPlanCheckoutUrl, isValidHttpUrl } from '../lib/taxPlanCheckout'
 import TaxNexFaqSection from './TaxNexFaqSection'
+import TaxMeetingRequestModal from './TaxMeetingRequestModal'
 import TaxPlanCheckoutModal from './TaxPlanCheckoutModal'
 
 function formatEur(n: number, locale: string) {
@@ -36,31 +38,44 @@ const taxStepsContainerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.22,
-      delayChildren: 0.14,
+      staggerChildren: 0.14,
+      delayChildren: 0.06,
     },
   },
 } as const
 
+/** Scroll-in “popup” cards — spring overshoot; disabled when `reduceMotion` (see JSX). */
 const taxStepsItemVariants = {
   hidden: {
     opacity: 0,
-    y: 44,
-    scale: 0.97,
-    filter: 'blur(12px)',
+    y: 64,
+    scale: 0.86,
+    rotateZ: -3,
+    filter: 'blur(14px)',
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
+    rotateZ: 0,
     filter: 'blur(0px)',
     transition: {
       type: 'spring' as const,
-      damping: 26,
-      stiffness: 200,
-      mass: 0.85,
+      stiffness: 360,
+      damping: 15,
+      mass: 0.62,
     },
   },
+} as const
+
+const taxStepHoverTap = {
+  hover: {
+    y: -8,
+    scale: 1.02,
+    rotateZ: 0.4,
+    transition: { type: 'spring' as const, stiffness: 420, damping: 22, mass: 0.55 },
+  },
+  tap: { scale: 0.97, y: -2, transition: { type: 'spring' as const, stiffness: 500, damping: 28 } },
 } as const
 
 export default function TaxNexCyprusPage() {
@@ -76,6 +91,7 @@ export default function TaxNexCyprusPage() {
   const taxSteps = getTaxNexSteps(locale)
   const taxToolCards = getTaxNexToolCards(locale)
   const [showCookieNotice, setShowCookieNotice] = useState(false)
+  const [meetingModalOpen, setMeetingModalOpen] = useState(false)
   const [paymentModal, setPaymentModal] = useState<{
     plan: (typeof taxPricingPlans)[number]
     checkoutUrl: string | null
@@ -587,7 +603,7 @@ export default function TaxNexCyprusPage() {
             </h2>
           </motion.div>
           <motion.ol
-            className="taxnex-steps"
+            className="taxnex-steps taxnex-steps--motion-pop"
             variants={reduceMotion ? undefined : taxStepsContainerVariants}
             initial={reduceMotion ? false : 'hidden'}
             whileInView={reduceMotion ? undefined : 'visible'}
@@ -599,18 +615,106 @@ export default function TaxNexCyprusPage() {
                 className="taxnex-step"
                 variants={reduceMotion ? undefined : taxStepsItemVariants}
                 initial={reduceMotion ? false : undefined}
+                whileHover={reduceMotion ? undefined : taxStepHoverTap.hover}
+                whileTap={reduceMotion ? undefined : taxStepHoverTap.tap}
               >
                 <span className="taxnex-step__num">{step.step}</span>
                 <div className="taxnex-step__body">
                   <h3 className="taxnex-step__title">{step.title}</h3>
                   <p className="taxnex-step__lead">{step.lead}</p>
-                  <Link className="taxnex-step__cta" to={step.href}>
+                  <Link
+                    className="taxnex-step__cta"
+                    to={step.href}
+                    state={step.href === '/contact' ? { serviceInterest: 'Tax & Accounting Services' } : undefined}
+                  >
                     {step.cta}
                   </Link>
                 </div>
               </motion.li>
             ))}
           </motion.ol>
+        </div>
+      </section>
+
+      <section
+        id="tax-trust"
+        className="taxnex-section taxnex-section--trust"
+        aria-labelledby="tax-trust-h"
+      >
+        <div className="container">
+          <motion.div className="taxnex-section__head taxnex-section__head--center" {...fadeUp}>
+            <p className="taxnex-eyebrow taxnex-eyebrow--dark">{t('tax.trustEyebrow')}</p>
+            <h2 id="tax-trust-h" className="taxnex-trust__heading">
+              {t('tax.trustHeading')}
+            </h2>
+          </motion.div>
+          <div className="taxnex-trust-grid">
+            <motion.article
+              className="taxnex-trust-card"
+              initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={VIEW}
+              transition={{ duration: 0.52, ease: EASE, delay: reduceMotion ? 0 : 0.06 }}
+            >
+              <span className="taxnex-trust-card__glyph" aria-hidden>
+                🔒
+              </span>
+              <h3 className="taxnex-trust-card__title">{t('tax.trustCard1Title')}</h3>
+              <p className="taxnex-trust-card__body">{t('tax.trustCard1Body')}</p>
+            </motion.article>
+            <motion.article
+              className="taxnex-trust-card"
+              initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={VIEW}
+              transition={{ duration: 0.52, ease: EASE, delay: reduceMotion ? 0 : 0.14 }}
+            >
+              <span className="taxnex-trust-card__glyph" aria-hidden>
+                ✅
+              </span>
+              <h3 className="taxnex-trust-card__title">{t('tax.trustCard2Title')}</h3>
+              <p className="taxnex-trust-card__body">{t('tax.trustCard2Body')}</p>
+            </motion.article>
+            <motion.article
+              className="taxnex-trust-card"
+              initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={VIEW}
+              transition={{ duration: 0.52, ease: EASE, delay: reduceMotion ? 0 : 0.22 }}
+            >
+              <span className="taxnex-trust-card__glyph" aria-hidden>
+                💡
+              </span>
+              <h3 className="taxnex-trust-card__title">{t('tax.trustCard3Title')}</h3>
+              <p className="taxnex-trust-card__body">{t('tax.trustCard3Body')}</p>
+            </motion.article>
+            <motion.article
+              className="taxnex-trust-card"
+              initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={VIEW}
+              transition={{ duration: 0.52, ease: EASE, delay: reduceMotion ? 0 : 0.3 }}
+            >
+              <span className="taxnex-trust-card__glyph" aria-hidden>
+                👩‍💼
+              </span>
+              <h3 className="taxnex-trust-card__title">{t('tax.trustCard4Title')}</h3>
+              <p className="taxnex-trust-card__body">{t('tax.trustCard4Body')}</p>
+            </motion.article>
+            <motion.article
+              className="taxnex-trust-card"
+              initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={VIEW}
+              transition={{ duration: 0.52, ease: EASE, delay: reduceMotion ? 0 : 0.38 }}
+            >
+              <span className="taxnex-trust-card__glyph" aria-hidden>
+                📈
+              </span>
+              <h3 className="taxnex-trust-card__title">{t('tax.trustCard5Title')}</h3>
+              <p className="taxnex-trust-card__body">{t('tax.trustCard5Body')}</p>
+            </motion.article>
+          </div>
         </div>
       </section>
 
@@ -639,6 +743,59 @@ export default function TaxNexCyprusPage() {
             ))}
           </div>
           <p className="taxnex-tools-note">{t('tax.toolsNote')}</p>
+        </div>
+      </section>
+
+      <section
+        id="tax-changes-2026"
+        className="taxnex-section taxnex-section--changes2026"
+        aria-labelledby="tax-changes-2026-h"
+      >
+        <div className="container">
+          <motion.div className="taxnex-section__head taxnex-section__head--center" {...fadeUp}>
+            <p className="taxnex-eyebrow taxnex-eyebrow--dark">{t('tax.changes2026Eyebrow')}</p>
+            <h2 id="tax-changes-2026-h" className="taxnex-changes2026__title">
+              {t('tax.changes2026Heading')}
+            </h2>
+            <p className="taxnex-changes2026__intro">{t('tax.changes2026Intro')}</p>
+          </motion.div>
+          <motion.div
+            className="taxnex-changes2026__table-shell"
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={VIEW}
+            transition={{ duration: 0.55, ease: EASE }}
+          >
+            <div className="taxnex-changes2026__scroll" role="region" aria-label={t('tax.changes2026TableAria')}>
+              <table className="taxnex-changes2026__table">
+                <thead>
+                  <tr>
+                    <th scope="col">{t('tax.changes2026ColArea')}</th>
+                    <th scope="col">{t('tax.changes2026ColBefore')}</th>
+                    <th scope="col">{t('tax.changes2026ColAfter')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {TAX_NEX_2026_CHANGES_ROWS.map((row) => (
+                    <tr key={row.id}>
+                      <th scope="row">{locale === 'en' ? row.area.en : row.area.el}</th>
+                      <td>{locale === 'en' ? row.before.en : row.before.el}</td>
+                      <td>{locale === 'en' ? row.after.en : row.after.el}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="taxnex-changes2026__footnote">{t('tax.changes2026Footnote')}</p>
+            <div className="taxnex-changes2026__cta">
+              <Link
+                className="taxnex-btn taxnex-btn--primary taxnex-btn--lg taxnex-changes2026__cta-btn"
+                to={TAX_INCOME_CALCULATOR_PATH}
+              >
+                {t('tax.changes2026Cta')}
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -677,11 +834,17 @@ export default function TaxNexCyprusPage() {
           <p className="taxnex-bottom-cta__label">{t('tax.bottomLabel')}</p>
           <h2 className="taxnex-h2 taxnex-h2--tight">{t('tax.requestDetailsHeading')}</h2>
           <p className="taxnex-muted">{t('tax.requestDetailsBody')}</p>
-          <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact">
+          <button
+            type="button"
+            className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
+            onClick={() => setMeetingModalOpen(true)}
+          >
             {t('tax.requestDetailsCta')}
-          </Link>
+          </button>
         </div>
       </section>
+
+      <TaxMeetingRequestModal isOpen={meetingModalOpen} onClose={() => setMeetingModalOpen(false)} />
 
       {showCookieNotice ? (
         <div className="taxnex-cookie" role="region" aria-label={t('tax.cookieNoticeAria')}>
