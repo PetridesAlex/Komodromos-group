@@ -4705,6 +4705,504 @@ a {
   margin-top: 1.5rem;
 }
 
+/* —— TaxNex inner guide (e.g. Α.Φ.Μ. / TIC) — specialty layout —— */
+.taxnex-page-hero {
+  position: relative;
+  padding: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(2rem, 5vw, 3rem);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+  background: linear-gradient(180deg, #ecfdf5 0%, #f0fdf9 45%, #ffffff 100%);
+}
+
+.taxnex-page-hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  background:
+    radial-gradient(ellipse 80% 70% at 12% 20%, rgba(167, 243, 208, 0.55) 0%, transparent 52%),
+    radial-gradient(ellipse 60% 50% at 88% 0%, rgba(52, 211, 153, 0.22) 0%, transparent 45%);
+}
+
+.taxnex-page-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.taxnex-page-hero__crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0 0 0.85rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.taxnex-page-hero__crumb {
+  color: #047857;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.taxnex-page-hero__crumb:hover,
+.taxnex-page-hero__crumb:focus-visible {
+  border-bottom-color: rgba(5, 122, 85, 0.45);
+  color: #065f46;
+}
+
+.taxnex-page-hero__crumb--current {
+  color: #0f172a;
+  cursor: default;
+}
+
+.taxnex-page-hero__crumb-sep {
+  color: rgba(6, 78, 59, 0.45);
+}
+
+.taxnex-page-hero__title {
+  margin: 0 0 0.65rem;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.75rem, 4.2vw, 2.65rem);
+  font-weight: 600;
+  line-height: 1.12;
+  color: #022c22;
+}
+
+.taxnex-page-hero__intro {
+  margin: 0 0 1.25rem;
+  max-width: 40rem;
+  font-size: clamp(0.95rem, 1.65vw, 1.08rem);
+  line-height: 1.62;
+}
+
+.taxnex-page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+}
+
+@keyframes taxnex-page-hero-primary-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 14px 36px rgba(0, 48, 36, 0.42),
+      0 0 0 1px rgba(167, 243, 208, 0.45) inset,
+      0 0 0 1px rgba(5, 122, 85, 0.35);
+  }
+
+  50% {
+    box-shadow:
+      0 20px 48px rgba(0, 52, 40, 0.52),
+      0 0 0 1px rgba(255, 255, 255, 0.35) inset,
+      0 0 0 1px rgba(52, 211, 153, 0.5),
+      0 0 36px rgba(16, 185, 129, 0.28);
+  }
+}
+
+@keyframes taxnex-page-hero-outline-pulse {
+  0%,
+  100% {
+    border-color: rgba(5, 80, 55, 0.55);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.95) inset,
+      0 0 0 0 rgba(16, 185, 129, 0);
+  }
+
+  50% {
+    border-color: rgba(4, 120, 87, 0.88);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 1) inset,
+      0 0 0 5px rgba(16, 185, 129, 0.14);
+  }
+}
+
+.taxnex-page-hero__actions .taxnex-btn {
+  position: relative;
+  z-index: 0;
+  min-height: 50px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.25s ease;
+}
+
+.taxnex-page-hero__actions .taxnex-btn:focus-visible {
+  outline: 2px solid rgba(5, 150, 105, 0.65);
+  outline-offset: 3px;
+}
+
+.taxnex-page-hero__actions .taxnex-btn--lg {
+  padding: 0.95rem 1.85rem;
+  font-size: clamp(0.74rem, 1.15vw, 0.86rem);
+}
+
+.taxnex-page-hero__actions .taxnex-btn--primary {
+  z-index: 1;
+  color: #ecfdf5;
+  text-shadow: 0 1px 0 rgba(0, 48, 36, 0.35);
+  background: linear-gradient(155deg, #064e3b 0%, #047857 38%, #059669 72%, #10b981 100%);
+  border: 1px solid rgba(167, 243, 208, 0.55);
+  animation: taxnex-page-hero-primary-breathe 3.2s ease-in-out infinite;
+}
+
+.taxnex-page-hero__actions .taxnex-btn--primary:hover,
+.taxnex-page-hero__actions .taxnex-btn--primary:focus-visible {
+  animation: none;
+  transform: translateY(-4px) scale(1.02);
+  color: #ffffff;
+  background: linear-gradient(155deg, #065f46 0%, #059669 45%, #34d399 100%);
+  border-color: rgba(209, 250, 229, 0.85);
+  box-shadow:
+    0 22px 50px rgba(0, 52, 40, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.45) inset,
+    0 0 40px rgba(16, 185, 129, 0.35);
+}
+
+.taxnex-page-hero__actions .taxnex-btn--outline {
+  z-index: 1;
+  color: #022c22;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 253, 244, 0.92) 100%);
+  border: 2px solid rgba(5, 80, 55, 0.58);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 10px 28px -12px rgba(6, 78, 59, 0.2);
+  animation: taxnex-page-hero-outline-pulse 3.8s ease-in-out infinite;
+}
+
+.taxnex-page-hero__actions .taxnex-btn--outline:hover,
+.taxnex-page-hero__actions .taxnex-btn--outline:focus-visible {
+  animation: none;
+  transform: translateY(-3px) scale(1.02);
+  color: #022c22;
+  background: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%);
+  border-color: #047857;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 18px 40px -16px rgba(4, 120, 87, 0.28),
+    0 0 0 4px rgba(16, 185, 129, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-page-hero__actions .taxnex-btn--primary,
+  .taxnex-page-hero__actions .taxnex-btn--outline {
+    animation: none;
+  }
+
+  .taxnex-page-hero__actions .taxnex-btn--primary:hover,
+  .taxnex-page-hero__actions .taxnex-btn--primary:focus-visible,
+  .taxnex-page-hero__actions .taxnex-btn--outline:hover,
+  .taxnex-page-hero__actions .taxnex-btn--outline:focus-visible {
+    transform: none;
+  }
+}
+
+.taxnex-tic-section {
+  padding-top: clamp(2rem, 5vw, 3rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.taxnex-guide {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .taxnex-guide {
+    grid-template-columns: minmax(0, 0.28fr) minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 3.25rem);
+  }
+}
+
+.taxnex-guide__sidebar {
+  position: relative;
+  padding: clamp(1.25rem, 2.8vw, 1.65rem);
+  border-radius: 18px;
+  border: 1px solid rgba(167, 243, 208, 0.55);
+  background: linear-gradient(165deg, #ffffff 0%, #f4fdf8 100%);
+  box-shadow: 0 22px 50px -36px rgba(6, 58, 44, 0.35);
+}
+
+.taxnex-guide__sidebar-title {
+  margin: 0 0 1.15rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #022c22;
+}
+
+.taxnex-guide__nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.taxnex-guide__nav-link {
+  position: relative;
+  display: block;
+  padding: 0.9rem 1rem 0.9rem 1.15rem;
+  border-radius: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.9rem, 1.45vw, 1.08rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.45;
+  text-decoration: none;
+  color: #0f172a;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(236, 253, 245, 0.75) 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.75) inset;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.32s ease,
+    color 0.28s ease,
+    box-shadow 0.32s ease;
+}
+
+.taxnex-guide__nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  border-radius: 14px 0 0 14px;
+  background: linear-gradient(180deg, #6ee7b7 0%, #059669 55%, #047857 100%);
+  opacity: 0;
+  transform: scaleY(0.55);
+  transform-origin: center top;
+  transition:
+    opacity 0.28s ease,
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.taxnex-guide__nav-link:hover,
+.taxnex-guide__nav-link:focus-visible {
+  transform: translateX(5px);
+  border-color: rgba(5, 122, 85, 0.42);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(209, 250, 229, 0.95) 100%);
+  color: #022c22;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 14px 32px -22px rgba(5, 80, 55, 0.35);
+}
+
+.taxnex-guide__nav-link:focus-visible {
+  outline: 2px solid rgba(5, 150, 105, 0.55);
+  outline-offset: 3px;
+}
+
+.taxnex-guide__nav-link:hover::before,
+.taxnex-guide__nav-link:focus-visible::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.taxnex-guide__nav-link--current {
+  transform: translateX(4px);
+  border-color: rgba(4, 120, 87, 0.5);
+  background: linear-gradient(135deg, rgba(236, 253, 245, 0.98) 0%, rgba(167, 243, 208, 0.45) 50%, rgba(209, 250, 229, 0.9) 100%);
+  color: #022c22;
+  font-weight: 700;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 0 0 1px rgba(52, 211, 153, 0.4),
+    0 18px 40px -28px rgba(5, 80, 55, 0.45);
+}
+
+.taxnex-guide__nav-link--current::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-guide__nav-link,
+  .taxnex-guide__nav-link::before {
+    transition-duration: 0.01ms;
+  }
+
+  .taxnex-guide__nav-link:hover,
+  .taxnex-guide__nav-link:focus-visible,
+  .taxnex-guide__nav-link--current {
+    transform: none;
+  }
+}
+
+.taxnex-guide__sidebar-media {
+  margin-top: 1.25rem;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.taxnex-guide__sidebar-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.taxnex-guide__article {
+  position: relative;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: #ffffff;
+  box-shadow: 0 26px 56px -40px rgba(15, 23, 42, 0.18);
+}
+
+.taxnex-guide__article-inner {
+  max-width: 46rem;
+}
+
+.taxnex-prose__p {
+  margin: 0 0 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.92rem, 1.45vw, 1.02rem);
+  line-height: 1.72;
+  color: #3f4f5f;
+}
+
+.taxnex-prose__block {
+  margin-bottom: 0.25rem;
+}
+
+.taxnex-prose__link {
+  font-weight: 700;
+  color: #047857;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  word-break: break-all;
+}
+
+.taxnex-prose__link:hover,
+.taxnex-prose__link:focus-visible {
+  color: #065f46;
+}
+
+.taxnex-prose__h2 {
+  margin: 1.75rem 0 0.75rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  font-weight: 600;
+  color: #064e3b;
+}
+
+.taxnex-prose__h2:first-child {
+  margin-top: 0;
+}
+
+.taxnex-prose__h3 {
+  margin: 1.35rem 0 0.55rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  font-weight: 700;
+  color: #0f766e;
+}
+
+.taxnex-prose__h3:first-child {
+  margin-top: 0;
+}
+
+.taxnex-prose__ul {
+  margin: 0 0 1.1rem;
+  padding: 0 0 0 1.15rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  line-height: 1.65;
+  color: #3f4f5f;
+}
+
+.taxnex-prose__ul li {
+  margin-bottom: 0.45rem;
+}
+
+/* Premium editorial body for selected TaxNex guide articles (e.g. tax clearances) */
+.taxnex-guide__article.taxnex-prose--premium-guide {
+  padding: clamp(1.5rem, 3.5vw, 2.25rem);
+  border-radius: 22px;
+  border: 1px solid rgba(203, 213, 225, 0.65);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 0.98) 45%, rgba(240, 253, 244, 0.35) 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 32px 64px -44px rgba(15, 23, 42, 0.22),
+    0 12px 28px -24px rgba(5, 150, 105, 0.12);
+}
+
+.taxnex-prose--premium-guide .taxnex-guide__article-inner {
+  max-width: 40.5rem;
+}
+
+.taxnex-prose--premium-guide .taxnex-prose__h2 {
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.18);
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #022c22;
+}
+
+.taxnex-prose--premium-guide .taxnex-prose__h3 {
+  margin: 2rem 0 0.65rem;
+  padding-top: 0.15rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #047857;
+}
+
+.taxnex-prose--premium-guide .taxnex-prose__h3:first-of-type {
+  margin-top: 0.35rem;
+}
+
+.taxnex-prose--premium-guide .taxnex-prose__h2 + .taxnex-prose__h3 {
+  margin-top: 0.15rem;
+}
+
+.taxnex-prose--premium-guide .taxnex-prose__p {
+  margin: 0 0 0.15rem;
+  padding: 0.15rem 0 1.35rem;
+  font-size: clamp(0.98rem, 1.55vw, 1.08rem);
+  line-height: 1.82;
+  letter-spacing: 0.01em;
+  color: #334155;
+}
+
+.taxnex-prose--premium-guide .taxnex-prose__h3 + .taxnex-prose__block .taxnex-prose__p {
+  padding-left: 0.85rem;
+  border-left: 3px solid rgba(16, 185, 129, 0.35);
+}
+
+.taxnex-prose--premium-guide .taxnex-prose__h2 + .taxnex-prose__h3 + .taxnex-prose__block .taxnex-prose__p {
+  font-size: clamp(1.02rem, 1.65vw, 1.14rem);
+  line-height: 1.78;
+  color: #1e293b;
+}
+
+.taxnex-prose--premium-guide .taxnex-prose__block:last-child .taxnex-prose__p {
+  padding-bottom: 0.35rem;
+}
+
 .taxnex-bottom-cta {
   text-align: center;
   max-width: 520px;

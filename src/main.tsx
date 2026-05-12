@@ -27,6 +27,9 @@ import YachtChartersPage from './components/yacht-charters/YachtChartersPage.tsx
 import YachtDetailPage from './components/yacht-charters/YachtDetailPage.tsx'
 import ServicesLandingPage from './components/ServicesLandingPage.tsx'
 import TaxHowToTicPage from './components/TaxHowToTicPage.tsx'
+import TaxTaxResidenceCertificatePage from './components/TaxTaxResidenceCertificatePage.tsx'
+import TaxNonDomCertificatePage from './components/TaxNonDomCertificatePage.tsx'
+import TaxClearancesPage from './components/TaxClearancesPage.tsx'
 import TaxHowToTaxisnetPage from './components/TaxHowToTaxisnetPage.tsx'
 import TaxTransferFeesCalculatorPage from './components/TaxTransferFeesCalculatorPage.tsx'
 import TaxIncomeCalculatorPage from './components/TaxIncomeCalculatorPage.tsx'
@@ -76,6 +79,9 @@ function Root() {
             <Route path="/services/yacht-charters/:yachtId" element={<YachtDetailPage />} />
             <Route path="/services/yacht-charters" element={<YachtChartersPage />} />
             <Route path="/services/tax/how-to-get-a-tic" element={<TaxHowToTicPage />} />
+            <Route path="/services/tax/tax-residence-certificate" element={<TaxTaxResidenceCertificatePage />} />
+            <Route path="/services/tax/non-dom-certificate" element={<TaxNonDomCertificatePage />} />
+            <Route path="/services/tax/tax-clearances" element={<TaxClearancesPage />} />
             <Route path="/services/tax/how-to-register-to-taxisnet" element={<TaxHowToTaxisnetPage />} />
             <Route path="/services/tax/transfer-fees-calculator" element={<TaxTransferFeesCalculatorPage />} />
             <Route path="/services/tax/income-tax-calculator" element={<TaxIncomeCalculatorPage />} />

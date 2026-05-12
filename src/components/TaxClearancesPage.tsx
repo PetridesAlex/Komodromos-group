@@ -3,8 +3,12 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import { getTaxNexAddressLine } from '../data/taxNexPageContent'
-import { TAX_FOR_ALL_URL, TAX_TIC_ARTICLE_BLOCKS, TAX_TIC_HERO_IMAGE, TAX_TIC_PAGE_TITLES } from '../data/taxHowToTicPageContent'
 import { getTaxServiceGuideNav } from '../data/taxTaxServiceGuideNav'
+import {
+  TAX_CLEARANCES_ARTICLE_BLOCKS,
+  TAX_CLEARANCES_HERO_IMAGE,
+  TAX_CLEARANCES_PAGE_TITLES,
+} from '../data/taxClearancesPageContent'
 import { useReveal } from '../hooks/useReveal'
 import SiteTopbar from './SiteTopbar'
 import { TaxNexGuideArticleBody } from './TaxNexGuideArticleBody'
@@ -12,14 +16,14 @@ import { TaxNexGuideArticleBody } from './TaxNexGuideArticleBody'
 const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.28 } as const
 
-export default function TaxHowToTicPage() {
+export default function TaxClearancesPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
   const { i18n } = useTranslation()
   const location = useLocation()
   const locale = i18n.resolvedLanguage === 'en' ? 'en' : 'el'
   const taxAddressLine = getTaxNexAddressLine(locale)
-  const titles = TAX_TIC_PAGE_TITLES[locale]
+  const titles = TAX_CLEARANCES_PAGE_TITLES[locale]
   const nav = getTaxServiceGuideNav(location.pathname)
 
   useEffect(() => {
@@ -46,7 +50,7 @@ export default function TaxHowToTicPage() {
           </div>
         </div>
 
-        <header className="taxnex-page-hero" aria-labelledby="tax-tic-h1">
+        <header className="taxnex-page-hero" aria-labelledby="tax-clear-h1">
           <div className="taxnex-page-hero__bg" aria-hidden />
           <div className="container taxnex-page-hero__inner">
             <nav className="taxnex-page-hero__crumbs" aria-label="Breadcrumb">
@@ -59,7 +63,7 @@ export default function TaxHowToTicPage() {
               <span className="taxnex-page-hero__crumb taxnex-page-hero__crumb--current">{titles.breadcrumbCurrent}</span>
             </nav>
             <motion.h1
-              id="tax-tic-h1"
+              id="tax-clear-h1"
               className="taxnex-page-hero__title"
               initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -81,9 +85,13 @@ export default function TaxHowToTicPage() {
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.48, ease: EASE, delay: 0.12 }}
             >
-              <a className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" href={TAX_FOR_ALL_URL} target="_blank" rel="noopener noreferrer">
-                {titles.portalCta}
-              </a>
+              <Link
+                className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
+                to="/contact"
+                state={{ serviceInterest: 'Tax & Accounting Services' }}
+              >
+                {titles.primaryCta}
+              </Link>
               <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to="/services/tax">
                 {titles.backCta}
               </Link>
@@ -92,10 +100,10 @@ export default function TaxHowToTicPage() {
         </header>
 
         <main>
-          <section className="taxnex-section taxnex-section--light taxnex-tic-section" aria-labelledby="tax-tic-sidebar-h">
+          <section className="taxnex-section taxnex-section--light taxnex-tic-section" aria-labelledby="tax-clear-sidebar-h">
             <div className="container taxnex-guide">
               <motion.aside className="taxnex-guide__sidebar" {...fadeUp}>
-                <h2 id="tax-tic-sidebar-h" className="taxnex-guide__sidebar-title">
+                <h2 id="tax-clear-sidebar-h" className="taxnex-guide__sidebar-title">
                   {titles.sidebar}
                 </h2>
                 <nav className="taxnex-guide__nav" aria-label={titles.sidebar}>
@@ -115,7 +123,7 @@ export default function TaxHowToTicPage() {
                 </nav>
                 <div className="taxnex-guide__sidebar-media">
                   <img
-                    src={TAX_TIC_HERO_IMAGE}
+                    src={TAX_CLEARANCES_HERO_IMAGE}
                     alt=""
                     width={1280}
                     height={768}
@@ -126,18 +134,12 @@ export default function TaxHowToTicPage() {
                 </div>
               </motion.aside>
 
-              <motion.article className="taxnex-guide__article taxnex-prose" {...fadeUp} aria-labelledby="tax-tic-h1">
-                <TaxNexGuideArticleBody
-                  locale={locale}
-                  blocks={TAX_TIC_ARTICLE_BLOCKS}
-                  afterFirstParagraph={
-                    <p className="taxnex-prose__p">
-                      <a href={TAX_FOR_ALL_URL} className="taxnex-prose__link" target="_blank" rel="noopener noreferrer">
-                        {TAX_FOR_ALL_URL}
-                      </a>
-                    </p>
-                  }
-                />
+              <motion.article
+                className="taxnex-guide__article taxnex-prose taxnex-prose--premium-guide"
+                {...fadeUp}
+                aria-labelledby="tax-clear-h1"
+              >
+                <TaxNexGuideArticleBody locale={locale} blocks={TAX_CLEARANCES_ARTICLE_BLOCKS} />
               </motion.article>
             </div>
           </section>
@@ -145,14 +147,18 @@ export default function TaxHowToTicPage() {
           <section className="taxnex-section taxnex-section--cta-bottom" aria-label={titles.contactCta}>
             <div className="container taxnex-bottom-cta">
               <p className="taxnex-bottom-cta__label">{titles.contactCta}</p>
-              <h2 className="taxnex-h2 taxnex-h2--tight">{locale === 'en' ? 'Need help with TAXISnet or TIC?' : 'Χρειάζεστε βοήθεια με TAXISnet ή Α.Φ.Μ.;'}</h2>
+              <h2 className="taxnex-h2 taxnex-h2--tight">
+                {locale === 'en'
+                  ? 'Need help with your tax clearance certificate?'
+                  : 'Χρειάζεστε βοήθεια με το πιστοποιητικό φορολογικής ενημερότητας;'}
+              </h2>
               <p className="taxnex-muted">
                 {locale === 'en'
-                  ? 'Our team can review your draft registration and documents before you submit to the portal.'
-                  : 'Η ομάδα μας μπορεί να ελέγξει το προσχέδιο εγγραφής και τα δικαιολογητικά πριν την οριστική υποβολή στην πύλη.'}
+                  ? 'We can help you prepare your filings, liaise with the Tax Department, and obtain your clearance certificate.'
+                  : 'Μπορούμε να σας βοηθήσουμε στην προετοιμασία των δηλώσεών σας, στην επικοινωνία με το Τμήμα Φορολογίας και στην απόκτηση του πιστοποιητικού ενημερότητας.'}
               </p>
               <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact" state={{ serviceInterest: 'Tax & Accounting Services' }}>
-                {titles.contactCta}
+                {titles.primaryCta}
               </Link>
             </div>
           </section>
