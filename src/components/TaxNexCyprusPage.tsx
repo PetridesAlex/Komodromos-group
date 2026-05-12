@@ -26,6 +26,7 @@ function formatEur(n: number, locale: string) {
 }
 
 const BRAND_LOGO = '/images/services/tax-services/tax-net-logo.webp'
+const TAX_HERO_ASIDE_IMAGE = '/images/services/tax-services/taxnex-hero.webp'
 const TAXNEX_YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@TAXNEXCY'
 /** Short explainers — English vs Greek, matched to site language order in the UI */
 const TAXNEX_YOUTUBE_SHORT_EN = 'https://www.youtube.com/shorts/uvjAtz5m_Zg'
@@ -221,6 +222,25 @@ export default function TaxNexCyprusPage() {
               <strong>{t('tax.bgCopyLine2Strong')}</strong> {t('tax.bgCopyLine2')}
             </p>
             <p className="taxnex-hero__aside-brand">TaxNex</p>
+            <motion.div
+              className="taxnex-hero__aside-media"
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: EASE, delay: 0.38 }}
+            >
+              <div className="taxnex-hero__aside-media-float">
+                <img
+                  src={TAX_HERO_ASIDE_IMAGE}
+                  alt={t('tax.heroAsideImageAlt')}
+                  width={960}
+                  height={600}
+                  className="taxnex-hero__aside-img"
+                  loading="eager"
+                  decoding="async"
+                  sizes="(max-width: 900px) 100vw, 400px"
+                />
+              </div>
+            </motion.div>
           </motion.aside>
 
           <motion.div

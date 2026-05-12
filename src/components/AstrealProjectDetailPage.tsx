@@ -8,6 +8,62 @@ import { getAstrealProjectById } from '../data/astrealDevelopersPage'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
+function isAstrealDetailCopySectionLabel(para: string): boolean {
+  if (para === 'Signature features') return true
+  if (para.startsWith('Location —')) return true
+  return (
+    para === 'Each residence offers:' ||
+    para === 'Each home includes:' ||
+    para === 'Prime location' ||
+    para === 'Additional advantages:' ||
+    para === 'Price per residence' ||
+    para === 'Designed around light, air & harmony' ||
+    para === 'Luxury living experience includes:' ||
+    para === 'Prices starting from €360,000 + VAT'
+  )
+}
+
+function isAstrealDetailCopyEmojiBullet(para: string): boolean {
+  const t = para.trim()
+  return t.startsWith('▪️') || t.startsWith('✔️')
+}
+
+function isAstrealDetailCopyNote(para: string): boolean {
+  return para.trim().startsWith('Note:')
+}
+
+/** Short specification / distance lines (not emoji bullets) — editorial list rhythm */
+function isAstrealDetailCopyFactRow(para: string, isSectionLabel: boolean): boolean {
+  if (isSectionLabel) return false
+  const t = para.trim()
+  if (t.length > 92 || t.length < 8) return false
+  if (!t.endsWith('.')) return false
+  if (isAstrealDetailCopyEmojiBullet(t) || isAstrealDetailCopyNote(t)) return false
+  if (/^[✨🏡💎☀️💰]/.test(t)) return false
+  if (t.startsWith('€')) return true
+  return (
+    /^\d/.test(t) ||
+    /^(?:Private |Modern |South-facing|Spacious |Contemporary |Laundry|Large |Quiet |Adjacent |Next |Less than|Only \d)/i.test(t)
+  )
+}
+
+function astrealDetailCopyParagraphClassName(
+  para: string,
+  index: number,
+  isSectionLabel: boolean,
+): string | undefined {
+  if (index === 0) return 'astreal-detail-copy__lead'
+  if (isSectionLabel) return 'astreal-detail-copy__section-label'
+  if (isAstrealDetailCopyNote(para)) return 'astreal-detail-copy__note'
+  if (isAstrealDetailCopyEmojiBullet(para)) {
+    return para.trim().startsWith('✔️')
+      ? 'astreal-detail-copy__bullet astreal-detail-copy__bullet--check'
+      : 'astreal-detail-copy__bullet astreal-detail-copy__bullet--diamond'
+  }
+  if (isAstrealDetailCopyFactRow(para, isSectionLabel)) return 'astreal-detail-copy__fact'
+  return 'astreal-detail-copy__prose'
+}
+
 export default function AstrealProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>()
   const pageRef = useReveal()
@@ -232,7 +288,7 @@ export default function AstrealProjectDetailPage() {
         </div>
 
         <motion.section
-          className="astreal-detail-copy astreal-detail-copy--fullbleed"
+          className="astreal-detail-copy astreal-detail-copy--fullbleed astreal-detail-copy--refined"
           aria-labelledby="astreal-detail-copy-h"
           {...fadeBlock}
         >
@@ -240,11 +296,14 @@ export default function AstrealProjectDetailPage() {
             Property narrative
           </h2>
           <div className="astreal-detail-copy__body">
-            {project.detailParagraphs.map((para, i) => (
-              <p key={i} className={i === 0 ? 'astreal-detail-copy__lead' : undefined}>
-                {para}
-              </p>
-            ))}
+            {project.detailParagraphs.map((para, i) => {
+              const isSectionLabel = isAstrealDetailCopySectionLabel(para)
+              return (
+                <p key={i} className={astrealDetailCopyParagraphClassName(para, i, isSectionLabel)}>
+                  {para}
+                </p>
+              )
+            })}
           </div>
         </motion.section>
 
