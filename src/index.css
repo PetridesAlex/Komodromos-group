@@ -27622,19 +27622,6 @@ a.yacht-card {
   color: rgba(214, 190, 140, 0.88);
 }
 
-@media (max-width: 520px) {
-  .astreal-hero__top-bar-inner {
-    justify-content: center;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .astreal-hero__top-link--premium {
-    align-items: center;
-    text-align: center;
-  }
-}
-
 /* Compact CTA: bottom-right (desktop), centered on narrow screens — aligns with reading edge */
 .astreal-hero__scroll-zone {
   position: absolute;
@@ -27811,14 +27798,23 @@ a.yacht-card {
   .astreal-hero {
     align-items: flex-start;
     justify-content: flex-start;
-    padding-top: clamp(4rem, 11vw, 5rem);
+    padding-top: clamp(5.75rem, 15vw, 7rem);
     padding-bottom: calc(clamp(5.75rem, 18vw, 7rem) + env(safe-area-inset-bottom, 0px));
     min-height: min(92dvh, 900px);
   }
 
   .astreal-hero__inner {
     width: 100%;
+    max-width: 100%;
     padding-bottom: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .astreal-hero__mark {
+    margin-inline: auto;
   }
 
   .astreal-hero__mark img {
@@ -27826,13 +27822,56 @@ a.yacht-card {
     height: auto;
   }
 
+  .astreal-hero__rule {
+    margin-inline: auto;
+    margin-bottom: 1.1rem;
+    transform-origin: center center;
+  }
+
   .astreal-hero__title {
     margin-bottom: 0.75rem;
     font-size: clamp(1.65rem, 6.5vw, 2.35rem);
+    text-align: center;
   }
 
   .astreal-hero__scroll-zone {
     bottom: max(clamp(0.85rem, 3vh, 1.35rem), env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Stacked top bar + premium pill: extra top air so links never overlap hero copy */
+@media (max-width: 520px) {
+  .astreal-hero {
+    padding-top: clamp(8.75rem, 38vw, 12.5rem);
+  }
+
+  .astreal-hero__top-bar {
+    padding-bottom: clamp(0.55rem, 2.2vw, 0.9rem);
+  }
+
+  .astreal-hero__top-bar-inner {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem 1rem;
+  }
+
+  .astreal-hero__top-link:not(.astreal-hero__top-link--premium) {
+    display: inline-flex;
+    margin-inline: auto;
+    max-width: min(20rem, 94vw);
+    text-align: center;
+    justify-content: center;
+    padding-inline: 0.5rem;
+  }
+
+  .astreal-hero__top-link--premium {
+    width: 100%;
+    max-width: min(20rem, 94vw);
+    margin-inline: auto;
+    align-items: center;
+    text-align: center;
+    padding-inline: 0.85rem;
   }
 }
 
