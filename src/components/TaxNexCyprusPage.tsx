@@ -151,8 +151,8 @@ export default function TaxNexCyprusPage() {
               <motion.img
                 src={BRAND_LOGO}
                 alt={t('tax.brandAlt')}
-                width={400}
-                height={158}
+                width={480}
+                height={190}
                 className="taxnex-hero__logo"
                 initial={reduceMotion ? false : { opacity: 0, scale: 0.94 }}
                 animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
@@ -237,7 +237,7 @@ export default function TaxNexCyprusPage() {
                   className="taxnex-hero__aside-img"
                   loading="eager"
                   decoding="async"
-                  sizes="(max-width: 900px) 100vw, (max-width: 1400px) 48vw, 700px"
+                  sizes="(max-width: 900px) 100vw, 50vw, 960px"
                 />
               </div>
             </motion.div>
