@@ -2163,7 +2163,7 @@ a {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: clamp(96px, 19vw, 220px);
+  max-height: clamp(112px, 23vw, 280px);
   height: auto;
   object-fit: contain;
   filter:
@@ -2801,7 +2801,7 @@ a {
   }
 
   .taxnex-hero__logo {
-    max-height: min(176px, 26vh);
+    max-height: min(220px, 32vh);
   }
 
   .taxnex-hero__brand-row {
