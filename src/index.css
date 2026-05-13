@@ -1971,9 +1971,9 @@ a {
   margin-inline: auto;
   position: relative;
   display: block;
-  width: 100%;
+  width: fit-content;
   max-width: 100%;
-  align-self: stretch;
+  align-self: center;
   padding: 0;
   box-sizing: border-box;
   border-radius: clamp(14px, 2vw, 20px);
@@ -1991,17 +1991,19 @@ a {
 
 .taxnex-hero__aside-media-float {
   display: block;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   line-height: 0;
   animation: taxnex-hero-aside-media-float 5.5s ease-in-out infinite;
 }
 
 .taxnex-hero__aside-img {
   display: block;
-  width: 100%;
+  width: auto;
   max-width: 100%;
+  max-height: min(608px, 66vh);
   height: auto;
-  margin: 0;
+  margin-inline: 0;
   object-fit: contain;
   object-position: center;
   animation: taxnex-hero-aside-img-breathe 6.5s ease-in-out infinite;
@@ -2117,17 +2119,18 @@ a {
   .taxnex-hero__aside-media {
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: fit-content;
     max-width: 100%;
     padding: 0;
     box-sizing: border-box;
   }
 
   .taxnex-hero__aside-img {
-    width: 100%;
+    width: auto;
     max-width: 100%;
+    max-height: min(512px, 60vh);
     height: auto;
-    margin: 0;
+    margin-inline: 0;
     object-fit: contain;
     object-position: center;
   }
