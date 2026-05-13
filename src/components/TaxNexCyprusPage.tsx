@@ -237,7 +237,7 @@ export default function TaxNexCyprusPage() {
                   className="taxnex-hero__aside-img"
                   loading="eager"
                   decoding="async"
-                  sizes="(max-width: 900px) 100vw, (max-width: 1400px) 52vw, 680px"
+                  sizes="(max-width: 900px) 100vw, (max-width: 1400px) 48vw, 700px"
                 />
               </div>
             </motion.div>
