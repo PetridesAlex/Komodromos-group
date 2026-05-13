@@ -68,7 +68,7 @@ export default function ServiceDetailPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/services"
+        servicesSectionHref="/#services"
       />
       {slug === 'storage' ? (
         <div className="storage-page-subnav" aria-label="Storage page navigation">

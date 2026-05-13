@@ -1095,6 +1095,14 @@ a {
   box-shadow: 0 9px 20px rgba(15, 39, 68, 0.1);
 }
 
+.tax-page-subnav .container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: min(1260px, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(0.5rem, 3vw, 1.25rem);
+}
+
 .tax-page-promo-bar {
   position: relative;
   overflow: hidden;
@@ -1265,10 +1273,14 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.34rem, 1.15vw, 0.95rem);
+  gap: clamp(0.26rem, 1vw, 0.85rem);
   flex-wrap: wrap;
-  padding: 0.5rem 0;
-  border-radius: 999px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: clamp(0.42rem, 1.4vw, 0.62rem) clamp(0.45rem, 2vw, 1.05rem);
+  border-radius: clamp(14px, 2.6vw, 999px);
   background:
     radial-gradient(circle at 18% 0%, rgba(174, 228, 255, 0.32) 0%, transparent 42%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(245, 252, 255, 0.92) 100%);
@@ -1279,16 +1291,20 @@ a {
 }
 
 .tax-page-subnav__link {
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.22;
   font-family: Arial, Helvetica, sans-serif;
   color: #25466f;
   text-decoration: none;
-  font-size: 0.69rem;
+  font-size: clamp(0.58rem, 1.35vw, 0.69rem);
   letter-spacing: 0.01em;
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 999px;
   border: 1px solid rgba(96, 153, 214, 0.2);
-  padding: 0.4rem 0.76rem;
+  padding: clamp(0.32rem, 1.1vw, 0.42rem) clamp(0.5rem, 1.8vw, 0.76rem);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(238, 248, 255, 0.66) 100%);
   box-shadow:
     0 6px 14px rgba(25, 60, 110, 0.08),
@@ -1339,7 +1355,8 @@ a {
   top: calc(100% + 0.4rem);
   left: 50%;
   transform: translateX(-50%);
-  min-width: 19rem;
+  min-width: min(19rem, calc(100vw - 1.5rem));
+  max-width: calc(100vw - 1.5rem);
   border: 1px solid rgba(122, 159, 210, 0.58);
   border-radius: 0.95rem;
   background:
@@ -1451,6 +1468,30 @@ a {
     0 0 0 1px rgba(255, 255, 255, 0.68) inset;
 }
 
+@media (max-width: 1100px) {
+  .tax-page-subnav__tools-menu {
+    left: auto;
+    right: 0;
+    transform: translateX(0) translateY(6px);
+  }
+
+  .tax-page-subnav__tools:hover .tax-page-subnav__tools-menu,
+  .tax-page-subnav__tools:focus-within .tax-page-subnav__tools-menu {
+    transform: translateX(0) translateY(0);
+  }
+
+  .page:has(.taxnex-root) .tax-page-subnav__tools-menu {
+    left: auto;
+    right: 0;
+    transform: translateX(0) translateY(6px);
+  }
+
+  .page:has(.taxnex-root) .tax-page-subnav__tools:hover .tax-page-subnav__tools-menu,
+  .page:has(.taxnex-root) .tax-page-subnav__tools:focus-within .tax-page-subnav__tools-menu {
+    transform: translateX(0) translateY(0);
+  }
+}
+
 @media (max-width: 640px) {
   .storage-page-subnav {
     top: 64px;
@@ -1483,32 +1524,72 @@ a {
 
   .tax-page-subnav__inner {
     justify-content: center;
+    align-content: center;
     overflow-x: visible;
     flex-wrap: wrap;
     width: 100%;
-    min-width: 100%;
-    row-gap: 0.42rem;
-    padding-bottom: 0.5rem;
-    padding-top: 0.55rem;
-    padding-left: max(0.15rem, env(safe-area-inset-left));
-    padding-right: max(0.15rem, env(safe-area-inset-right));
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    row-gap: clamp(0.35rem, 2vw, 0.52rem);
+    column-gap: clamp(0.22rem, 1.5vw, 0.55rem);
+    padding-block: clamp(0.5rem, 2.4vw, 0.72rem);
+    padding-inline: max(0.35rem, env(safe-area-inset-left, 0px)) max(0.35rem, env(safe-area-inset-right, 0px));
   }
 
   .tax-page-subnav__link {
     white-space: nowrap;
-    flex: 0 0 auto;
-    font-size: 0.68rem;
-    padding: 0.34rem 0.62rem;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
+    font-size: clamp(0.58rem, 2.8vw, 0.68rem);
+    padding: clamp(0.3rem, 1.8vw, 0.38rem) clamp(0.45rem, 2.2vw, 0.62rem);
   }
 
   .tax-page-subnav__tools-menu {
     left: 0;
-    transform: translateX(0);
+    right: auto;
+    transform: translateX(0) translateY(6px);
   }
 
   .tax-page-subnav__tools:hover .tax-page-subnav__tools-menu,
   .tax-page-subnav__tools:focus-within .tax-page-subnav__tools-menu {
-    transform: translateX(0);
+    transform: translateX(0) translateY(0);
+  }
+
+  .page:has(.taxnex-root) .tax-page-subnav__link:hover,
+  .page:has(.taxnex-root) .tax-page-subnav__link:focus-visible,
+  .page:has(.taxnex-root) .tax-page-subnav__link--cta:hover,
+  .page:has(.taxnex-root) .tax-page-subnav__link--cta:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .page:has(.taxnex-root) .tax-page-subnav__tools-menu {
+    left: 0;
+    right: auto;
+    transform: translateX(0) translateY(6px);
+  }
+
+  .page:has(.taxnex-root) .tax-page-subnav__tools:hover .tax-page-subnav__tools-menu,
+  .page:has(.taxnex-root) .tax-page-subnav__tools:focus-within .tax-page-subnav__tools-menu {
+    transform: translateX(0) translateY(0);
+  }
+
+  .tax-page-subnav__lang {
+    display: flex;
+    flex: 1 1 100%;
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 0.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .tax-page-subnav__link {
+    white-space: normal;
+    max-width: min(100%, 11.5rem);
+    overflow-wrap: anywhere;
   }
 }
 
@@ -5867,7 +5948,8 @@ a {
 
 .page:has(.taxnex-root) .tax-page-subnav {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  padding-block: clamp(0.2rem, 1vw, 0.45rem);
   border-bottom: 1px solid rgba(45, 212, 191, 0.22);
   background: linear-gradient(
     180deg,
@@ -5904,6 +5986,11 @@ a {
 .page:has(.taxnex-root) .tax-page-subnav__inner {
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  gap: clamp(0.24rem, 1vw, 0.75rem);
   border: 1px solid rgba(45, 212, 191, 0.38);
   background:
     radial-gradient(ellipse 130% 90% at 12% 0%, rgba(167, 243, 208, 0.42) 0%, transparent 52%),
@@ -5919,9 +6006,13 @@ a {
 .page:has(.taxnex-root) .tax-page-subnav__link {
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.2;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
+  font-size: clamp(0.56rem, 1.35vw, 0.68rem);
+  letter-spacing: clamp(0.03em, 0.45vw, 0.08em);
   color: #0a3d2f;
   border-color: rgba(16, 185, 129, 0.28);
   background-color: transparent;
@@ -5952,7 +6043,7 @@ a {
 .page:has(.taxnex-root) .tax-page-subnav__link:focus-visible {
   border-color: rgba(52, 211, 153, 0.55);
   color: #022c22;
-  letter-spacing: 0.095em;
+  letter-spacing: clamp(0.04em, 0.55vw, 0.095em);
   background-position:
     0 0,
     120% 0;
@@ -6050,6 +6141,8 @@ a {
 
 .page:has(.taxnex-root) .tax-page-subnav__tools-menu {
   border: 1px solid rgba(45, 212, 191, 0.42);
+  min-width: min(19rem, calc(100vw - 1.5rem));
+  max-width: calc(100vw - 1.5rem);
   background:
     linear-gradient(155deg, rgba(255, 255, 255, 0.99) 0%, rgba(240, 253, 250, 0.98) 100%),
     radial-gradient(circle at 18% 0%, rgba(167, 243, 208, 0.35) 0%, transparent 55%);

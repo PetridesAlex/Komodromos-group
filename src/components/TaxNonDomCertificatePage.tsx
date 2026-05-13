@@ -40,7 +40,7 @@ export default function TaxNonDomCertificatePage() {
 
   return (
     <div className="page" ref={pageRef}>
-      <SiteTopbar logoPathname="/" logoScrollToId="home" homeHref="/" servicesSectionHref="/services" />
+      <SiteTopbar logoPathname="/" logoScrollToId="home" homeHref="/" servicesSectionHref="/#services" />
       <div className="taxnex-root" lang={locale === 'en' ? 'en' : 'el'}>
         <div className="taxnex-topbar">
           <div className="container taxnex-topbar__inner">

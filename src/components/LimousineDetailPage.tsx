@@ -32,7 +32,7 @@ export default function LimousineDetailPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/services"
+        servicesSectionHref="/#services"
       />
 
       <section className="service-detail-hero" data-hero-parallax-root>

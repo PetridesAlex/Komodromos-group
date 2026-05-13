@@ -1,6 +1,6 @@
 import { StrictMode, useState, useCallback } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './i18n'
 import './index.css'
 import './tailwind.css'
@@ -25,7 +25,6 @@ import VipSecurityProtectionPage from './components/VipSecurityProtectionPage.ts
 import VipTourIslandPage from './components/VipTourIslandPage.tsx'
 import YachtChartersPage from './components/yacht-charters/YachtChartersPage.tsx'
 import YachtDetailPage from './components/yacht-charters/YachtDetailPage.tsx'
-import ServicesLandingPage from './components/ServicesLandingPage.tsx'
 import TaxHowToTicPage from './components/TaxHowToTicPage.tsx'
 import TaxTaxResidenceCertificatePage from './components/TaxTaxResidenceCertificatePage.tsx'
 import TaxNonDomCertificatePage from './components/TaxNonDomCertificatePage.tsx'
@@ -89,7 +88,7 @@ function Root() {
             <Route path="/services/astreal/about" element={<AstrealAboutPage />} />
             <Route path="/services/astreal/projects/:projectId" element={<AstrealProjectDetailPage />} />
             <Route path="/services/astreal" element={<AstrealDevelopersPage />} />
-            <Route path="/services" element={<ServicesLandingPage />} />
+            <Route path="/services" element={<Navigate to="/#services" replace />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
           </Routes>
         </BrowserRouter>

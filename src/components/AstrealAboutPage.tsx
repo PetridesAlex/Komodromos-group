@@ -69,7 +69,7 @@ export default function AstrealAboutPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/services"
+        servicesSectionHref="/#services"
       />
 
       <main className="astreal-about-page">

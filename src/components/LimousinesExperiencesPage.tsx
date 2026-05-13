@@ -25,7 +25,7 @@ export default function LimousinesExperiencesPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/services"
+        servicesSectionHref="/#services"
       />
 
       <section className="service-detail-hero service-detail-hero--vip-full" data-hero-parallax-root>

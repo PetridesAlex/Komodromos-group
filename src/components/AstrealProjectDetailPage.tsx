@@ -19,7 +19,9 @@ function isAstrealDetailCopySectionLabel(para: string): boolean {
     para === 'Price per residence' ||
     para === 'Designed around light, air & harmony' ||
     para === 'Luxury living experience includes:' ||
-    para === 'Prices starting from €360,000 + VAT'
+    para === 'Prices starting from €360,000 + VAT' ||
+    para === 'The project features luxury residences offering:' ||
+    para === 'Designed with exceptional lifestyle amenities including:'
   )
 }
 
@@ -119,6 +121,10 @@ export default function AstrealProjectDetailPage() {
     }
   }, [lightboxIndex, closeLightbox, goPrevLightbox, goNextLightbox])
 
+  if (projectId === 'island-studios') {
+    return <Navigate to="/services/astreal/projects/coral" replace />
+  }
+
   if (!project) {
     return <Navigate to="/services/astreal" replace />
   }
@@ -197,7 +203,7 @@ export default function AstrealProjectDetailPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/services"
+        servicesSectionHref="/#services"
       />
 
       <header className="astreal-detail-hero" aria-labelledby="astreal-detail-title">
@@ -216,7 +222,7 @@ export default function AstrealProjectDetailPage() {
         </div>
         <div className="container astreal-detail-hero__inner">
           <motion.nav className="astreal-detail-breadcrumb" aria-label="Breadcrumb" {...detailHeroBreadcrumb}>
-            <Link to="/services">Services</Link>
+            <Link to="/#services">Services</Link>
             <span className="astreal-detail-breadcrumb__sep" aria-hidden>
               /
             </span>

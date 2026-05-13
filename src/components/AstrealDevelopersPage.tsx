@@ -178,7 +178,7 @@ export default function AstrealDevelopersPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/services"
+        servicesSectionHref="/#services"
       />
 
       <header className="astreal-hero" aria-labelledby="astreal-hero-title">
@@ -299,10 +299,10 @@ export default function AstrealDevelopersPage() {
               </p>
             </motion.article>
             <motion.article className="astreal-spotlight-card" {...fadeUp}>
-              <h3 className="astreal-spotlight-card__title">Island Studios</h3>
+              <h3 className="astreal-spotlight-card__title">CORAL in Kiti, Larnaca</h3>
               <p className="astreal-spotlight-card__text">
-                A contemporary studio-led concept — intelligent layouts, refined materials, and outdoor
-                connection tailored to modern Mediterranean lifestyles.
+                A distinctive luxury residential development — generous covered and land areas, private
+                pool, jacuzzi, and sauna, with south-facing spaces and contemporary architecture throughout.
               </p>
             </motion.article>
           </div>
@@ -401,7 +401,7 @@ export default function AstrealDevelopersPage() {
             >
               Get in touch now
             </Link>
-            <Link to="/services" className="astreal-cta__btn astreal-cta__btn--ghost">
+            <Link to="/#services" className="astreal-cta__btn astreal-cta__btn--ghost">
               All services
             </Link>
           </motion.div>
