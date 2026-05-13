@@ -145,7 +145,7 @@ export default function TaxNexCyprusPage() {
       <header id="tax-hero" className="taxnex-hero">
         <div className="taxnex-hero__bg" aria-hidden />
 
-        <div className="container taxnex-hero__inner">
+        <div className="taxnex-hero__inner">
           <div className="taxnex-hero__main">
             <div className="taxnex-hero__brand-row">
               <motion.img
@@ -237,7 +237,7 @@ export default function TaxNexCyprusPage() {
                   className="taxnex-hero__aside-img"
                   loading="eager"
                   decoding="async"
-                  sizes="(max-width: 900px) 100vw, 400px"
+                  sizes="(max-width: 900px) 100vw, (max-width: 1400px) 52vw, 680px"
                 />
               </div>
             </motion.div>
@@ -257,7 +257,7 @@ export default function TaxNexCyprusPage() {
             >
               <span className="taxnex-hero__scroll-down__label">{t('tax.scrollToServices')}</span>
               <span className="taxnex-hero__scroll-down__chevs" aria-hidden>
-                <svg className="taxnex-hero__scroll-down__chev" viewBox="0 0 24 24" width="16" height="16">
+                <svg className="taxnex-hero__scroll-down__chev" viewBox="0 0 24 24" width="20" height="20">
                   <path
                     d="M6 9l6 6 6-6"
                     fill="none"
