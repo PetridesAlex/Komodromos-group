@@ -2377,20 +2377,32 @@ a {
 }
 
 @media (max-width: 768px) {
-  .taxnex-hero__logo {
-    max-height: clamp(96px, 26vw, 200px);
-    max-width: min(88vw, 280px);
+  .taxnex-hero__brand-row {
+    justify-content: center;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
   }
 
+  .taxnex-hero__logo {
+    max-height: clamp(124px, 36vw, 240px);
+    max-width: min(92vw, 360px);
+    margin-inline: auto;
+    object-position: center center;
+  }
+}
+
+@media (min-width: 769px) {
   .taxnex-hero__brand-row {
-    margin-inline-start: clamp(0.5rem, 3vw, 1.25rem);
+    justify-content: flex-end;
+    margin-inline-start: 0;
+    padding-inline-end: clamp(0.25rem, 2.2vw, 2.5rem);
   }
 }
 
 @media (max-width: 480px) {
   .taxnex-hero__logo {
-    max-height: clamp(80px, 22vw, 160px);
-    max-width: min(92vw, 240px);
+    max-height: clamp(122px, 36vw, 220px);
+    max-width: min(94vw, 340px);
   }
 }
 
