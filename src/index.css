@@ -1670,6 +1670,7 @@ a {
   column-gap: 0;
   row-gap: 0;
   /* Tighter right edge so social icons sit further right than default container padding */
+  padding-left: max(0.65rem, env(safe-area-inset-left, 0px));
   padding-right: max(0.2rem, env(safe-area-inset-right, 0px));
 }
 
@@ -1679,10 +1680,11 @@ a {
   justify-self: center;
   flex: 0 1 auto;
   min-width: 0;
-  max-width: min(48rem, calc(100% - 7rem));
+  max-width: min(48rem, calc(100% - 8.25rem));
   align-items: center;
   justify-content: center;
   text-align: center;
+  text-wrap: balance;
   gap: 0.65rem;
 }
 
@@ -1695,6 +1697,76 @@ a {
   margin-right: -0.65rem;
 }
 
+/* Mid widths: slightly smaller caps so address + icons share the row cleanly */
+@media (max-width: 900px) and (min-width: 769px) {
+  .taxnex-topbar__inner.taxnex-topbar__inner--socials {
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.35rem, env(safe-area-inset-right, 0px));
+  }
+
+  .taxnex-topbar__inner--socials .taxnex-topbar__address {
+    max-width: min(40rem, calc(100% - 7.25rem));
+  }
+
+  .taxnex-topbar__inner--socials .taxnex-topbar__socials {
+    margin-right: -0.35rem;
+  }
+}
+
+/* Small screens: stack address (centered) then socials — no overlap */
+@media (max-width: 768px) {
+  .taxnex-topbar__inner.taxnex-topbar__inner--socials {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    row-gap: 0.5rem;
+    align-items: center;
+    min-height: auto;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    padding-left: max(0.65rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.65rem, env(safe-area-inset-right, 0px));
+    font-size: 0.56rem;
+    letter-spacing: 0.12em;
+  }
+
+  .taxnex-topbar__inner--socials .taxnex-topbar__address {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: stretch;
+    max-width: none;
+    width: 100%;
+    padding-inline: 0.15rem;
+  }
+
+  .taxnex-topbar__inner--socials .taxnex-topbar__socials {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: end;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .taxnex-topbar__inner.taxnex-topbar__inner--socials {
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+    row-gap: 0.4rem;
+  }
+
+  .taxnex-topbar-social__link {
+    width: 1.95rem;
+    height: 1.95rem;
+  }
+
+  .taxnex-topbar-social__svg {
+    transform: scale(0.92);
+    transform-origin: center;
+  }
+}
+
 .taxnex-topbar__address {
   display: flex;
   min-width: 0;
@@ -1702,6 +1774,12 @@ a {
   align-items: center;
   justify-content: flex-start;
   gap: 0.65rem;
+}
+
+.taxnex-topbar__text {
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .taxnex-topbar__socials {
@@ -1762,15 +1840,6 @@ a {
   .taxnex-topbar__inner:not(.taxnex-topbar__inner--socials) .taxnex-topbar__socials {
     justify-content: center;
     width: 100%;
-  }
-
-  .taxnex-topbar__inner--socials .taxnex-topbar__address {
-    max-width: calc(100% - 6rem);
-    padding-inline: 0.35rem;
-  }
-
-  .taxnex-topbar__inner--socials .taxnex-topbar__socials {
-    margin-right: -0.45rem;
   }
 }
 
@@ -2298,13 +2367,31 @@ a {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: clamp(190px, 45vw, 560px);
+  max-height: clamp(140px, min(45vw, 38vh), 560px);
   height: auto;
   object-fit: contain;
   object-position: left center;
   filter:
     drop-shadow(0 4px 14px rgba(255, 255, 255, 0.9))
     drop-shadow(0 10px 28px rgba(16, 185, 129, 0.12));
+}
+
+@media (max-width: 768px) {
+  .taxnex-hero__logo {
+    max-height: clamp(96px, 26vw, 200px);
+    max-width: min(88vw, 280px);
+  }
+
+  .taxnex-hero__brand-row {
+    margin-inline-start: clamp(0.5rem, 3vw, 1.25rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .taxnex-hero__logo {
+    max-height: clamp(80px, 22vw, 160px);
+    max-width: min(92vw, 240px);
+  }
 }
 
 .taxnex-hero__title {
@@ -2936,10 +3023,6 @@ a {
     padding-bottom: clamp(0.85rem, 2vh, 1.35rem);
   }
 
-  .taxnex-hero__logo {
-    max-height: min(420px, 54vh);
-  }
-
   .taxnex-hero__brand-row {
     margin-top: clamp(-0.85rem, -2.4vh, -0.2rem);
     margin-bottom: clamp(0.5rem, 1.45vh, 0.88rem);
@@ -2976,6 +3059,12 @@ a {
     font-size: clamp(1.28rem, 3vw, 2.12rem);
     margin-top: 0;
     padding-top: 0.3rem;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 769px) {
+  .taxnex-hero__logo {
+    max-height: min(420px, 54vh);
   }
 }
 
@@ -31283,18 +31372,22 @@ a.yacht-card {
   max-width: 62rem;
 }
 
-.astreal-detail-copy__section-label {
+.astreal-detail-copy__body .astreal-detail-copy__section-label {
   margin-top: clamp(1.35rem, 2.8vw, 2rem);
-  margin-bottom: clamp(0.45rem, 1.1vw, 0.7rem);
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.32);
+  margin-bottom: clamp(0.55rem, 1.25vw, 0.85rem);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.38);
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(0.88rem, 1.22vw, 1rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: clamp(1.08rem, 1.65vw, 1.32rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
   text-transform: none;
   font-feature-settings: 'kern' 1, 'liga' 1;
-  color: rgba(244, 232, 210, 0.96);
+  color: rgba(252, 246, 232, 0.99);
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.35),
+    0 0 28px rgba(197, 160, 89, 0.12);
   column-span: all;
 }
 
