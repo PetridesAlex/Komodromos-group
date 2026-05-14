@@ -54,6 +54,57 @@ export const TAX_CALC_UI = {
   speakAdvisor: 'Συνομιλία με σύμβουλο',
 } as const
 
+/** Modal copy — speak with a tax counsellor (income tax calculator). */
+export const TAX_CALC_COUNSELLOR_MODAL = {
+  closeAria: 'Κλείσιμο',
+  eyebrow: 'TaxNex · Φορολογικοί σύμβουλοι',
+  title: 'Συνομιλία με σύμβουλο',
+  lead: 'Συμπληρώστε τα στοιχεία σας· θα ανοίξει η σελίδα επικοινωνίας με προσυμπλήρωση ώστε να ελέγξετε και να στείλετε το αίτημα με ασφάλεια.',
+  firstName: 'Όνομα *',
+  surname: 'Επώνυμο *',
+  email: 'Email *',
+  phone: 'Τηλέφωνο επικοινωνίας *',
+  cancel: 'Ακύρωση',
+  submit: 'Συνέχεια',
+  submitting: 'Παρακαλώ περιμένετε…',
+  prefillMessage:
+    'Αίτημα συνομιλίας με φορολογικό σύμβουλο — σελίδα «Υπολογισμός Φόρου Εισοδήματος» TaxNex (Κύπρος).',
+} as const
+
+export const TAX_CALC_FILING_REG_TYPES = [
+  { value: 'employee', label: 'Μισθωτός' },
+  { value: 'self_employed', label: 'Αυτοαπασχολούμενος / ελεύθερος επάγγελμα' },
+  { value: 'other', label: 'Άλλο' },
+] as const
+
+/** Modal — αίτημα υποβολής φορολογικής δήλωσης (υπολογιστής εισοδήματος). */
+export const TAX_CALC_FILING_MODAL = {
+  closeAria: 'Κλείσιμο',
+  eyebrow: 'TaxNex · Φορολογικές δηλώσεις',
+  title: 'Αίτημα υποβολής δήλωσης εισοδήματος',
+  lead: 'Συμπληρώστε τα πεδία. Όταν ενεργοποιηθεί ο αποδέκτης email στο σύστημα, το αίτημα αποστέλλεται αυτόματα· μέχρι τότε θα μεταφερθείτε στην επικοινωνία με προσυμπλήρωση.',
+  firstName: 'Όνομα *',
+  surname: 'Επώνυμο *',
+  email: 'Email *',
+  phone: 'Τηλέφωνο επικοινωνίας *',
+  taxYear: 'Έτος δήλωσης *',
+  opt2025: '2025',
+  opt2026: '2026',
+  registrant: 'Κατηγορία φορολογουμένου *',
+  arcOrTin: 'Αρ. ταυτότητας / ΑΦΜ (προαιρετικό)',
+  arcPlaceholder: 'π.χ. Αρ. δελτίου ή ΑΦΜ',
+  notes: 'Περιγραφή περίπτωσης / τι χρειάζεστε *',
+  notesPlaceholder: 'π.χ. μισθός, τέκνα, εκπτώσεις, προθεσμίες…',
+  cancel: 'Ακύρωση',
+  submit: 'Υποβολή αιτήματος',
+  submitting: 'Αποστολή…',
+  submitError: 'Η αποστολή απέτυχε. Δοκιμάστε ξανά ή χρησιμοποιήστε την επικοινωνία.',
+  successTitle: 'Το αίτημα καταχωρήθηκε',
+  successBody:
+    'Η ομάδα μας θα επικοινωνήσει σύντομα. Αν δεν είδατε επιβεβαίωση, μπορείτε να στείλετε και μέσω της σελίδας επικοινωνίας.',
+  successClose: 'Κλείσιμο',
+} as const
+
 /** TaxNexCy 2025 tab — intros & form headings (taxnexcy.com). */
 export const TAX_CALC_2025_UI = {
   /** Αντίστοιχο με το πρώτο κείμενο στο Fluent Form fieldset. */

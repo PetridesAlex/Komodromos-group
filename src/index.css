@@ -1647,8 +1647,9 @@ a {
   display: flex;
   min-height: 2.45rem;
   align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem 0.85rem;
   padding: 0.5rem 1rem;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.61rem;
@@ -1656,6 +1657,121 @@ a {
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: #065f46;
+}
+
+/* TaxNex Cyprus: address visually centered in the bar, socials flush right */
+.taxnex-topbar__inner.taxnex-topbar__inner--socials {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto;
+  align-items: center;
+  justify-content: initial;
+  flex-wrap: nowrap;
+  column-gap: 0;
+  row-gap: 0;
+  /* Tighter right edge so social icons sit further right than default container padding */
+  padding-right: max(0.2rem, env(safe-area-inset-right, 0px));
+}
+
+.taxnex-topbar__inner--socials .taxnex-topbar__address {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: center;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: min(48rem, calc(100% - 7rem));
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.65rem;
+}
+
+.taxnex-topbar__inner--socials .taxnex-topbar__socials {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  align-self: center;
+  z-index: 1;
+  margin-right: -0.65rem;
+}
+
+.taxnex-topbar__address {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 12rem;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+}
+
+.taxnex-topbar__socials {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.42rem;
+}
+
+.taxnex-topbar-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 1px rgba(16, 185, 129, 0.12),
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 2px 8px -2px rgba(6, 78, 59, 0.12);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.taxnex-topbar-social__link:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgba(16, 185, 129, 0.22),
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 6px 16px -4px rgba(6, 78, 59, 0.18);
+}
+
+.taxnex-topbar-social__link:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 4px rgba(13, 148, 136, 0.55),
+    0 2px 8px -2px rgba(6, 78, 59, 0.15);
+}
+
+.taxnex-topbar-social__svg {
+  display: block;
+}
+
+@media (max-width: 520px) {
+  .taxnex-topbar__inner:not(.taxnex-topbar__inner--socials) {
+    justify-content: center;
+  }
+
+  .taxnex-topbar__inner:not(.taxnex-topbar__inner--socials) .taxnex-topbar__address {
+    flex: 1 1 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .taxnex-topbar__inner:not(.taxnex-topbar__inner--socials) .taxnex-topbar__socials {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .taxnex-topbar__inner--socials .taxnex-topbar__address {
+    max-width: calc(100% - 6rem);
+    padding-inline: 0.35rem;
+  }
+
+  .taxnex-topbar__inner--socials .taxnex-topbar__socials {
+    margin-right: -0.45rem;
+  }
 }
 
 .taxnex-topbar__pin {
@@ -2173,6 +2289,7 @@ a {
   display: flex;
   width: 100%;
   justify-content: flex-start;
+  margin-inline-start: clamp(1.25rem, 5vw, 4rem);
   margin-top: clamp(-1.1rem, -3.2vw, -0.35rem);
   margin-bottom: clamp(0.55rem, 1.45vw, 1.05rem);
 }
@@ -2181,7 +2298,7 @@ a {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: clamp(182px, 42vw, 512px);
+  max-height: clamp(190px, 45vw, 560px);
   height: auto;
   object-fit: contain;
   object-position: left center;
@@ -2820,7 +2937,7 @@ a {
   }
 
   .taxnex-hero__logo {
-    max-height: min(392px, 50vh);
+    max-height: min(420px, 54vh);
   }
 
   .taxnex-hero__brand-row {
@@ -4573,6 +4690,148 @@ a {
 
 .taxnex-checkout-modal__dialog--meeting {
   max-width: min(32rem, 100%);
+}
+
+/* TaxNex — newsletter / lead capture (premium dialog) */
+.taxnex-newsletter-modal__dialog {
+  max-width: min(34rem, 100%);
+  padding: clamp(1.45rem, 4.2vw, 2rem);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(45, 212, 191, 0.38);
+  background-image:
+    linear-gradient(90deg, #065f46 0%, #0d9488 42%, #5eead4 100%),
+    linear-gradient(165deg, #ffffff 0%, #f6fdf9 38%, #ecfdf5 100%);
+  background-size:
+    100% 3px,
+    100% 100%;
+  background-repeat: no-repeat;
+  background-position:
+    top,
+    0 0;
+  background-color: #f0fdf4;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.95) inset,
+    0 44px 96px -36px rgba(6, 78, 59, 0.52),
+    0 0 1px rgba(6, 95, 70, 0.12);
+}
+
+.taxnex-newsletter-modal__eyebrow {
+  letter-spacing: 0.2em;
+  color: #0f766e;
+}
+
+.taxnex-newsletter-modal__title {
+  font-size: clamp(1.2rem, 3.2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #022c22;
+  padding-right: 2.25rem;
+}
+
+.taxnex-newsletter-modal__lead {
+  font-size: 0.84rem;
+  line-height: 1.62;
+  color: #3f5a52;
+  margin-bottom: 1.25rem;
+}
+
+.taxnex-newsletter-modal__form {
+  gap: 1rem;
+}
+
+.taxnex-newsletter-modal__row {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 480px) {
+  .taxnex-newsletter-modal__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.taxnex-newsletter-modal__dialog .taxnex-checkout-modal__field input {
+  border-radius: 0.7rem;
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  background: linear-gradient(180deg, #ffffff 0%, #fafefa 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.taxnex-newsletter-modal__dialog .taxnex-checkout-modal__field input:focus {
+  border-color: #0d9488;
+  box-shadow:
+    0 0 0 3px rgba(45, 212, 191, 0.28),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+}
+
+.taxnex-newsletter-modal__dialog .taxnex-checkout-modal__field span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #115e59;
+}
+
+.taxnex-newsletter-modal__dialog--filing {
+  max-height: min(92vh, 46rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.taxnex-newsletter-modal__dialog .taxnex-checkout-modal__field select {
+  width: 100%;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  background: linear-gradient(180deg, #ffffff 0%, #fafefa 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  padding: 0.62rem 0.75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #064e3b;
+  outline: none;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.taxnex-newsletter-modal__dialog .taxnex-checkout-modal__field select:focus {
+  border-color: #0d9488;
+  box-shadow:
+    0 0 0 3px rgba(45, 212, 191, 0.28),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
+}
+
+.taxnex-filing-modal__error {
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.55rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #7f1d1d;
+  background: rgba(254, 226, 226, 0.85);
+  border: 1px solid rgba(248, 113, 113, 0.45);
+}
+
+.taxnex-filing-modal__success .taxnex-btn {
+  margin-top: 0.35rem;
+}
+
+.taxnex-newsletter-modal__dialog--filing .taxnex-checkout-modal__field textarea {
+  border-radius: 0.7rem;
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  background: linear-gradient(180deg, #ffffff 0%, #fafefa 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+.taxnex-newsletter-modal__dialog--filing .taxnex-checkout-modal__field textarea:focus {
+  border-color: #0d9488;
+  box-shadow:
+    0 0 0 3px rgba(45, 212, 191, 0.28),
+    0 1px 0 rgba(255, 255, 255, 0.95) inset;
 }
 
 .taxnex-checkout-modal__field textarea {

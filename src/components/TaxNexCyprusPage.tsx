@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import {
   TAX_INCOME_CALCULATOR_PATH,
   TAX_NEX_VAT_PCT,
+  TAXNEX_SOCIAL_URLS,
   getTaxNexAddressLine,
   getTaxNexMetaLead,
   getTaxNexMission,
@@ -17,7 +18,9 @@ import {
 import { TAX_NEX_2026_CHANGES_ROWS } from '../data/taxNex2026ChangesTableContent'
 import { getTaxPlanCheckoutUrl, isValidHttpUrl } from '../lib/taxPlanCheckout'
 import TaxNexFaqSection from './TaxNexFaqSection'
+import TaxNexTopbarSocials from './TaxNexTopbarSocials'
 import TaxMeetingRequestModal from './TaxMeetingRequestModal'
+import TaxNewsletterLeadModal from './TaxNewsletterLeadModal'
 import TaxPlanCheckoutModal from './TaxPlanCheckoutModal'
 
 function formatEur(n: number, locale: string) {
@@ -27,7 +30,6 @@ function formatEur(n: number, locale: string) {
 
 const BRAND_LOGO = '/images/services/tax-services/tax-net-logo.webp'
 const TAX_HERO_ASIDE_IMAGE = '/images/services/tax-services/taxnex-hero.webp'
-const TAXNEX_YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@TAXNEXCY'
 /** Short explainers — English vs Greek, matched to site language order in the UI */
 const TAXNEX_YOUTUBE_SHORT_EN = 'https://www.youtube.com/shorts/uvjAtz5m_Zg'
 const TAXNEX_YOUTUBE_SHORT_EL = 'https://www.youtube.com/shorts/Ib3zBefSeYI'
@@ -93,6 +95,7 @@ export default function TaxNexCyprusPage() {
   const taxToolCards = getTaxNexToolCards(locale)
   const [showCookieNotice, setShowCookieNotice] = useState(false)
   const [meetingModalOpen, setMeetingModalOpen] = useState(false)
+  const [newsletterModalOpen, setNewsletterModalOpen] = useState(false)
   const [paymentModal, setPaymentModal] = useState<{
     plan: (typeof taxPricingPlans)[number]
     checkoutUrl: string | null
@@ -136,9 +139,12 @@ export default function TaxNexCyprusPage() {
   return (
     <div className="taxnex-root" lang={i18n.resolvedLanguage === 'en' ? 'en' : 'el'}>
       <div className="taxnex-topbar">
-        <div className="container taxnex-topbar__inner">
-          <span className="taxnex-topbar__pin" aria-hidden />
-          <span className="taxnex-topbar__text">{taxAddressLine}</span>
+        <div className="container taxnex-topbar__inner taxnex-topbar__inner--socials">
+          <div className="taxnex-topbar__address">
+            <span className="taxnex-topbar__pin" aria-hidden />
+            <span className="taxnex-topbar__text">{taxAddressLine}</span>
+          </div>
+          <TaxNexTopbarSocials />
         </div>
       </div>
 
@@ -520,7 +526,7 @@ export default function TaxNexCyprusPage() {
                   </div>
                 </div>
                 <a
-                  href={TAXNEX_YOUTUBE_CHANNEL_URL}
+                  href={TAXNEX_SOCIAL_URLS.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="taxnex-yt-card__cta"
@@ -840,9 +846,13 @@ export default function TaxNexCyprusPage() {
               <p className="taxnex-newsletter__desc">{taxNewsletter.description}</p>
               <p className="taxnex-newsletter__alt">{taxNewsletter.altLine}</p>
               <div className="taxnex-newsletter__actions">
-                <Link className="taxnex-btn taxnex-btn--primary" to="/contact">
+                <button
+                  type="button"
+                  className="taxnex-btn taxnex-btn--primary"
+                  onClick={() => setNewsletterModalOpen(true)}
+                >
                   {t('tax.subscribeContact')}
-                </Link>
+                </button>
               </div>
             </motion.div>
           </div>
@@ -865,6 +875,7 @@ export default function TaxNexCyprusPage() {
       </section>
 
       <TaxMeetingRequestModal isOpen={meetingModalOpen} onClose={() => setMeetingModalOpen(false)} />
+      <TaxNewsletterLeadModal isOpen={newsletterModalOpen} onClose={() => setNewsletterModalOpen(false)} />
 
       {showCookieNotice ? (
         <div className="taxnex-cookie" role="region" aria-label={t('tax.cookieNoticeAria')}>

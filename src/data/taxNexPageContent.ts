@@ -6,6 +6,13 @@
 /** English income tax calculator (mirrors TaxNex «Υπολογισμός Φόρου Εισοδήματος» flow). */
 export const TAX_INCOME_CALCULATOR_PATH = '/services/tax/income-tax-calculator'
 
+/** Official TaxNex social profiles — update URLs if handles change. */
+export const TAXNEX_SOCIAL_URLS = {
+  instagram: 'https://www.instagram.com/taxnexcyprus/',
+  facebook: 'https://www.facebook.com/TaxNexCyprus/',
+  youtube: 'https://www.youtube.com/@TAXNEXCY',
+} as const
+
 export const TAX_NEX_ADDRESS_LINE = 'Γρίβα Διγενή 51, 6036, Λάρνακα'
 
 export const TAX_NEX_META_LEAD =

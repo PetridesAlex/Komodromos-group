@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
+import TaxIncomeCounsellorLeadModal from './TaxIncomeCounsellorLeadModal'
 import { useReveal } from '../hooks/useReveal'
 import { calculateCyprusIncomeTax, type CyprusIncomeTaxYear } from '../lib/cyprusIncomeTax'
 import { calculateIncomeTax2025TaxNex } from '../lib/cyprusIncomeTax2025TaxNex'
@@ -14,7 +15,8 @@ import {
 import { TAX_CALC_UI, TAX_CALC_2025_UI, TAX_CALC_2026_UI } from '../data/taxIncomeCalculatorPageContent'
 
 const EASE = [0.16, 1, 0.3, 1] as const
-const TAX_LOGO = '/images/services/companie-services-cover/cards-logos-services/tax-nex.png'
+const TAX_LOGO = '/images/services/tax-services/tax-nex.png'
+const TAXISNET_APPLICATION_PATH = '/services/tax/taxisnet-application'
 
 function formatEurEl(n: number) {
   return `${n.toLocaleString('el-GR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`
@@ -26,6 +28,7 @@ function parseNum(s: string) {
 
 export default function TaxIncomeCalculatorPage() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [counsellorModalOpen, setCounsellorModalOpen] = useState(false)
   const [taxYear, setTaxYear] = useState<CyprusIncomeTaxYear>('2026')
 
   /** —— 2025 TaxNex-aligned (period + 13ος όταν μηνιαίο) —— */
@@ -207,10 +210,12 @@ export default function TaxIncomeCalculatorPage() {
                   <img
                     src={TAX_LOGO}
                     alt="TaxNex"
-                    width={140}
-                    height={50}
-                    className="mb-5 h-auto w-[min(140px,42vw)] object-contain opacity-[0.97] drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+                    width={3250}
+                    height={3250}
+                    className="mb-5 h-auto w-[min(200px,52vw)] shrink-0 object-contain sm:w-[min(228px,46vw)] md:w-[min(248px,42vw)] drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
                     decoding="async"
+                    loading="eager"
+                    fetchPriority="high"
                   />
                   <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-emerald-100/95">
                     {TAX_CALC_UI.heroKicker}
@@ -741,8 +746,7 @@ export default function TaxIncomeCalculatorPage() {
                   </h3>
                   <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-[#4a6359]">{TAX_CALC_UI.ctaBody}</p>
                   <Link
-                    to="/contact"
-                    state={{ serviceInterest: 'Tax & Accounting Services', topic: 'Income tax filing' }}
+                    to={TAXISNET_APPLICATION_PATH}
                     className="mt-6 inline-flex min-h-[3rem] items-center justify-center rounded-xl bg-[linear-gradient(180deg,#059669_0%,#047857_100%)] px-8 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-[0_14px_32px_-12px_rgba(6,95,70,0.65)] ring-1 ring-white/20 transition hover:brightness-[1.03]"
                   >
                     {TAX_CALC_UI.ctaPrimary}
@@ -760,19 +764,21 @@ export default function TaxIncomeCalculatorPage() {
                   >
                     {TAX_CALC_UI.backTax}
                   </Link>
-                  <Link
-                    to="/contact"
-                    state={{ serviceInterest: 'Tax & Accounting Services' }}
+                  <button
+                    type="button"
                     className="inline-flex min-h-[2.75rem] items-center justify-center rounded-xl border border-emerald-800 bg-[#065f46] px-6 text-xs font-bold uppercase tracking-wide text-emerald-50 shadow-md transition hover:bg-[#047857]"
+                    onClick={() => setCounsellorModalOpen(true)}
                   >
                     {TAX_CALC_UI.speakAdvisor}
-                  </Link>
+                  </button>
                 </div>
               </div>
             </motion.div>
           </div>
         </section>
       </main>
+
+      <TaxIncomeCounsellorLeadModal isOpen={counsellorModalOpen} onClose={() => setCounsellorModalOpen(false)} />
 
       <Footer />
     </div>
