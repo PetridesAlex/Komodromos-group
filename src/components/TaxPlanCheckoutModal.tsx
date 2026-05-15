@@ -1,11 +1,13 @@
 import { useEffect, useId, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import type { TaxNexPricingPlan } from '../data/taxNexPageContent'
+import { TAX_NEX_VAT_PCT, type TaxNexPricingPlan } from '../data/taxNexPageContent'
+import { isJccPaymentsEnabled } from '../lib/jccPayments'
 import {
   appendPaymentLinkPrefill,
   isValidHttpUrl,
   storeTaxPlanCheckoutLead,
 } from '../lib/taxPlanCheckout'
+import { startJccPayment } from '../utils/startJccPayment'
 
 type Props = {
   isOpen: boolean
@@ -23,6 +25,7 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
   const [phone, setPhone] = useState('')
   const [company, setCompany] = useState('')
   const [busy, setBusy] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!isOpen) return
@@ -45,20 +48,26 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
       setPhone('')
       setCompany('')
       setBusy(false)
+      setSubmitError(null)
     }
   }, [isOpen])
 
   if (!isOpen || !plan) return null
 
-  const hasOnlineCheckout = checkoutUrl != null && isValidHttpUrl(checkoutUrl)
+  const hasStripeCheckout = checkoutUrl != null && isValidHttpUrl(checkoutUrl)
+  const hasJccCheckout = isJccPaymentsEnabled()
+  const hasOnlineCheckout = hasStripeCheckout || hasJccCheckout
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const activePlan = plan
     if (!activePlan) return
     setBusy(true)
+    setSubmitError(null)
 
-    const messageLine = `Αίτημα πληρωμής — ${activePlan.title} (πακέτο: ${activePlan.id}). Ποσό (πριν ΦΠΑ): ${activePlan.priceEur} €`
+    const grossEur =
+      Math.round(activePlan.priceEur * (1 + TAX_NEX_VAT_PCT / 100) * 100) / 100
+    const messageLine = `Αίτημα πληρωμής — ${activePlan.title} (πακέτο: ${activePlan.id}). Ποσό (πριν ΦΠΑ): ${activePlan.priceEur} € · Σύνολο με ΦΠΑ: ${grossEur} €`
 
     storeTaxPlanCheckoutLead({
       planId: activePlan.id,
@@ -70,9 +79,25 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
       company: company.trim(),
     })
 
-    if (hasOnlineCheckout && checkoutUrl) {
+    if (hasStripeCheckout && checkoutUrl) {
       const url = appendPaymentLinkPrefill(checkoutUrl, email)
       window.location.assign(url)
+      return
+    }
+
+    if (hasJccCheckout) {
+      try {
+        await startJccPayment({
+          amount: grossEur,
+          orderId: `TAXNEX-${activePlan.id}-${Date.now()}`,
+          customerName: name.trim(),
+          customerEmail: email.trim(),
+          description: messageLine.slice(0, 512),
+        })
+      } catch (err) {
+        setSubmitError(err instanceof Error ? err.message : 'Η πληρωμή δεν ξεκίνησε. Δοκιμάστε ξανά.')
+        setBusy(false)
+      }
       return
     }
 
@@ -167,6 +192,12 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
               onChange={(e) => setCompany(e.target.value)}
             />
           </label>
+
+          {submitError ? (
+            <p className="taxnex-checkout-modal__error" role="alert">
+              {submitError}
+            </p>
+          ) : null}
 
           <div className="taxnex-checkout-modal__actions">
             <button

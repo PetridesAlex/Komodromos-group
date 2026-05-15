@@ -5077,6 +5077,95 @@ a {
   border-color: rgba(6, 95, 70, 0.42);
 }
 
+.taxnex-checkout-modal__error {
+  margin: 0.35rem 0 0;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  background: rgba(254, 242, 242, 0.95);
+  color: #991b1b;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.jcc-pay-button__error {
+  margin: 0.65rem 0 0;
+  font-size: 0.88rem;
+  color: #991b1b;
+}
+
+.payment-result-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 4vw, 2rem);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 55%),
+    linear-gradient(168deg, #f8fffe 0%, #ecfdf5 48%, #d1fae5 100%);
+}
+
+.payment-result-page--failed {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(248, 113, 113, 0.1) 0%, transparent 55%),
+    linear-gradient(168deg, #fffbfb 0%, #fef2f2 48%, #fee2e2 100%);
+}
+
+.payment-result-page__card {
+  width: min(100%, 32rem);
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  border-radius: clamp(14px, 2vw, 20px);
+  border: 1px solid rgba(6, 95, 70, 0.18);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 24px 60px rgba(6, 78, 59, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.payment-result-page--failed .payment-result-page__card {
+  border-color: rgba(185, 28, 28, 0.2);
+}
+
+.payment-result-page__eyebrow {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #047857;
+}
+
+.payment-result-page--failed .payment-result-page__eyebrow {
+  color: #b91c1c;
+}
+
+.payment-result-page__title {
+  margin: 0 0 0.85rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.45rem, 3.5vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #022c22;
+}
+
+.payment-result-page__message {
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #134e4a;
+}
+
+.payment-result-page--failed .payment-result-page__message {
+  color: #7f1d1d;
+}
+
+.payment-result-page__cta {
+  display: inline-flex;
+  justify-content: center;
+  min-width: min(100%, 14rem);
+}
+
 .taxnex-mission-section {
   position: relative;
   overflow: hidden;
