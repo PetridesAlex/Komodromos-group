@@ -38,6 +38,8 @@ import PaymentSuccess from './pages/PaymentSuccess.tsx'
 import PaymentFailed from './pages/PaymentFailed.tsx'
 import AstrealDevelopersPage from './components/AstrealDevelopersPage.tsx'
 import AstrealAboutPage from './components/AstrealAboutPage.tsx'
+import AstrealInvestCyprusPage from './components/AstrealInvestCyprusPage.tsx'
+import AstrealOurServicesPage from './components/AstrealOurServicesPage.tsx'
 import AstrealProjectDetailPage from './components/AstrealProjectDetailPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
@@ -92,6 +94,8 @@ function Root() {
             <Route path="/services/tax/taxisnet-application" element={<TaxisNetService />} />
             <Route path="/services/tax/services" element={<TaxServicesOverviewPage />} />
             <Route path="/services/astreal/about" element={<AstrealAboutPage />} />
+            <Route path="/services/astreal/invest-in-cyprus" element={<AstrealInvestCyprusPage />} />
+            <Route path="/services/astreal/our-services" element={<AstrealOurServicesPage />} />
             <Route path="/services/astreal/projects/:projectId" element={<AstrealProjectDetailPage />} />
             <Route path="/services/astreal" element={<AstrealDevelopersPage />} />
             <Route path="/services" element={<Navigate to="/#services" replace />} />

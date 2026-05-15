@@ -187,6 +187,12 @@ export default function AstrealDevelopersPage() {
             <Link to="/services/astreal/about" className="astreal-hero__top-link">
               About us
             </Link>
+            <Link to="/services/astreal/our-services" className="astreal-hero__top-link">
+              Our services
+            </Link>
+            <Link to="/services/astreal/invest-in-cyprus" className="astreal-hero__top-link">
+              Invest in Cyprus
+            </Link>
             <Link
               to="/services/pool"
               className="astreal-hero__top-link astreal-hero__top-link--premium"
