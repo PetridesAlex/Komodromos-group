@@ -4,7 +4,7 @@ import en from './locales/en/translation.json'
 import el from './locales/el/translation.json'
 
 const STORAGE_KEY = 'komodromos-language'
-const FALLBACK_LANGUAGE = 'el'
+const FALLBACK_LANGUAGE = 'en'
 const SUPPORTED_LANGUAGES = new Set(['en', 'el'])
 
 function getInitialLanguage() {
@@ -20,7 +20,7 @@ void i18n.use(initReactI18next).init({
     el: { translation: el },
   },
   lng: getInitialLanguage(),
-  fallbackLng: FALLBACK_LANGUAGE,
+  fallbackLng: ['en', 'el'],
   interpolation: { escapeValue: false },
 })
 

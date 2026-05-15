@@ -84,7 +84,11 @@ function TimelineNode({
         style={{ scale, opacity }}
         animate={
           reached
-            ? { backgroundColor: 'rgba(197, 160, 89, 0.95)', color: 'rgba(8, 14, 24, 0.98)' }
+            ? {
+                backgroundColor: 'rgba(48, 132, 238, 0.98)',
+                color: 'rgba(236, 248, 255, 0.98)',
+                borderColor: 'rgba(164, 218, 255, 0.85)',
+              }
             : {}
         }
         transition={{ duration: 0.35 }}

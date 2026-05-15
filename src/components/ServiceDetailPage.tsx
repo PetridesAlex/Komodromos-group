@@ -245,7 +245,7 @@ export default function ServiceDetailPage() {
         </>
       )}
 
-      <Footer />
+      {slug === 'tax' ? null : <Footer />}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 const OUR_SERVICES_IMAGES = '/images/services/Astreal-Developers/our-services'
 
-export const ASTREAL_OUR_SERVICES_HERO_IMAGE = `${OUR_SERVICES_IMAGES}/our-services-1.webp`
+export const ASTREAL_OUR_SERVICES_HERO_IMAGE = `${OUR_SERVICES_IMAGES}/our-services-cover.webp`
 
 export type AstrealServiceBlock = {
   id: string
@@ -94,7 +94,7 @@ export const ASTREAL_OUR_SERVICES_PAGE = {
     {
       id: 'project-management',
       title: 'Project Management',
-      image: `${OUR_SERVICES_IMAGES}/our-services-1.webp`,
+      image: `${OUR_SERVICES_IMAGES}/project-management.webp`,
       imageAlt: 'Project management for residential and commercial developments',
       paragraphs: [
         'Our goal is to make the entire process seamless and stress free for our clients.',
