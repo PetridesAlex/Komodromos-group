@@ -4,7 +4,43 @@ import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
-import { getAstrealProjectById } from '../data/astrealDevelopersPage'
+import {
+  getAstrealProjectById,
+  type AstrealDetailCopyImageBreak,
+} from '../data/astrealDevelopersPage'
+
+type DetailCopyStreamItem =
+  | { kind: 'paragraph'; para: string; index: number }
+  | { kind: 'inline-gallery'; images: string[]; startIndex: number }
+
+function buildDetailCopyStream(
+  paragraphs: string[],
+  gallery: string[],
+  breaks?: AstrealDetailCopyImageBreak[],
+): { items: DetailCopyStreamItem[]; galleryRemainder: string[]; galleryRemainderStart: number } {
+  const items: DetailCopyStreamItem[] = []
+  let galleryCursor = 0
+
+  for (let index = 0; index < paragraphs.length; index += 1) {
+    const para = paragraphs[index]
+    const breakConfig = breaks?.find((entry) => entry.beforeLabel === para)
+    if (breakConfig) {
+      const count = breakConfig.count ?? 4
+      const images = gallery.slice(galleryCursor, galleryCursor + count)
+      if (images.length > 0) {
+        items.push({ kind: 'inline-gallery', images, startIndex: galleryCursor })
+        galleryCursor += images.length
+      }
+    }
+    items.push({ kind: 'paragraph', para, index })
+  }
+
+  return {
+    items,
+    galleryRemainder: gallery.slice(galleryCursor),
+    galleryRemainderStart: galleryCursor,
+  }
+}
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -180,6 +216,11 @@ export default function AstrealProjectDetailPage() {
       }
 
   const heroSrc = project.detailHeroSrc ?? project.gallery[0] ?? project.imageSrc
+  const { items: copyStream, galleryRemainder, galleryRemainderStart } = buildDetailCopyStream(
+    project.detailParagraphs,
+    project.gallery,
+    project.detailCopyImageBreaks,
+  )
   const fadeBlock = reduceMotion
     ? {}
     : {
@@ -302,17 +343,72 @@ export default function AstrealProjectDetailPage() {
             Property narrative
           </h2>
           <div className="astreal-detail-copy__body">
-            {project.detailParagraphs.map((para, i) => {
+            {copyStream.map((item, streamIndex) => {
+              if (item.kind === 'inline-gallery') {
+                return (
+                  <motion.div
+                    key={`gallery-${item.startIndex}`}
+                    className="astreal-detail-copy__inline-gallery"
+                    {...fadeBlock}
+                    transition={{
+                      duration: reduceMotion ? 0.01 : 0.68,
+                      ease: EASE,
+                      delay: reduceMotion ? 0 : 0.06,
+                    }}
+                  >
+                    <ul className="astreal-detail-copy__inline-grid">
+                      {item.images.map((src, imageOffset) => {
+                        const galleryIndex = item.startIndex + imageOffset
+                        return (
+                          <li key={src} className="astreal-detail-copy__inline-cell">
+                            <figure className="astreal-detail-copy__inline-figure">
+                              <button
+                                type="button"
+                                className="astreal-detail-copy__inline-trigger"
+                                onClick={() => openLightbox(galleryIndex)}
+                                aria-label={`Open image ${galleryIndex + 1} of ${project.gallery.length} fullscreen`}
+                              >
+                                <img
+                                  className="astreal-detail-copy__inline-img"
+                                  src={src}
+                                  alt={`${project.title} — image ${galleryIndex + 1}`}
+                                  width={1600}
+                                  height={1067}
+                                  loading="lazy"
+                                  decoding="async"
+                                  sizes="(max-width: 719px) 100vw, 50vw"
+                                />
+                              </button>
+                            </figure>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </motion.div>
+                )
+              }
+
+              const { para, index } = item
               const isSectionLabel = isAstrealDetailCopySectionLabel(para)
               return (
-                <p key={i} className={astrealDetailCopyParagraphClassName(para, i, isSectionLabel)}>
+                <motion.p
+                  key={`para-${index}-${streamIndex}`}
+                  className={astrealDetailCopyParagraphClassName(para, index, isSectionLabel)}
+                  {...fadeBlock}
+                  transition={{
+                    duration: reduceMotion ? 0.01 : 0.55,
+                    ease: EASE,
+                    delay: reduceMotion ? 0 : Math.min(index, 12) * 0.02,
+                  }}
+                >
                   {para}
-                </p>
+                </motion.p>
               )
             })}
           </div>
         </motion.section>
 
+        {galleryRemainder.length > 0 ? (
         <div className="astreal-detail-article__inner">
           <section className="astreal-detail-gallery" aria-labelledby="astreal-detail-gallery-h">
             <motion.div className="astreal-detail-gallery__head" {...fadeBlock}>
@@ -325,7 +421,9 @@ export default function AstrealProjectDetailPage() {
               </p>
             </motion.div>
             <ul className="astreal-detail-gallery__grid">
-              {project.gallery.map((src, i) => (
+              {galleryRemainder.map((src, i) => {
+                const galleryIndex = galleryRemainderStart + i
+                return (
                 <motion.li
                   key={src}
                   className="astreal-detail-gallery__cell"
@@ -340,13 +438,13 @@ export default function AstrealProjectDetailPage() {
                     <button
                       type="button"
                       className="astreal-detail-gallery__trigger"
-                      onClick={() => openLightbox(i)}
-                      aria-label={`Open image ${i + 1} of ${project.gallery.length} fullscreen`}
+                      onClick={() => openLightbox(galleryIndex)}
+                      aria-label={`Open image ${galleryIndex + 1} of ${project.gallery.length} fullscreen`}
                     >
                       <img
                         className="astreal-detail-gallery__img"
                         src={src}
-                        alt={`${project.title} — image ${i + 1}`}
+                        alt={`${project.title} — image ${galleryIndex + 1}`}
                         width={1600}
                         height={1067}
                         loading={i < 4 ? 'eager' : 'lazy'}
@@ -356,10 +454,12 @@ export default function AstrealProjectDetailPage() {
                     </button>
                   </figure>
                 </motion.li>
-              ))}
+                )
+              })}
             </ul>
           </section>
         </div>
+        ) : null}
       </article>
 
       {lightboxIndex !== null && (

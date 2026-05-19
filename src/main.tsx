@@ -33,6 +33,8 @@ import TaxPaymentSupportPage from './components/TaxPaymentSupportPage.tsx'
 import TaxTransferFeesCalculatorPage from './components/TaxTransferFeesCalculatorPage.tsx'
 import TaxIncomeCalculatorPage from './components/TaxIncomeCalculatorPage.tsx'
 import TaxServicesOverviewPage from './components/TaxServicesOverviewPage.tsx'
+import TaxCompanyRegistrationPage from './components/TaxCompanyRegistrationPage.tsx'
+import TaxOfficeSecretarialPage from './components/TaxOfficeSecretarialPage.tsx'
 import TaxisNetService from './pages/TaxisNetService.tsx'
 import PaymentSuccess from './pages/PaymentSuccess.tsx'
 import PaymentFailed from './pages/PaymentFailed.tsx'
@@ -93,6 +95,8 @@ function Root() {
             <Route path="/services/tax/income-tax-calculator" element={<TaxIncomeCalculatorPage />} />
             <Route path="/services/tax/taxisnet-application" element={<TaxisNetService />} />
             <Route path="/services/tax/services" element={<TaxServicesOverviewPage />} />
+            <Route path="/services/tax/company-registration-cyprus" element={<TaxCompanyRegistrationPage />} />
+            <Route path="/services/tax/office-secretarial-services" element={<TaxOfficeSecretarialPage />} />
             <Route path="/services/astreal/about" element={<AstrealAboutPage />} />
             <Route path="/services/astreal/invest-in-cyprus" element={<AstrealInvestCyprusPage />} />
             <Route path="/services/astreal/our-services" element={<AstrealOurServicesPage />} />

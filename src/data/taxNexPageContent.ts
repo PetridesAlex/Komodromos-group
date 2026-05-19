@@ -150,6 +150,13 @@ export const TAX_NEX_PRICING_PLANS: TaxNexPricingPlan[] = [
     description:
       'Απαντήστε σε λίγες απλές ερωτήσεις και θα σας καθοδηγήσουμε στην υποβολή των φόρων σας, με τελικό έλεγχο από ειδικούς πριν την αποστολή.',
     priceEur: 29,
+    includes: [
+      'διασφάλιστε σωστή υποβολή',
+      'πληρώστε λιγότερο φόρο',
+      'Δωρεάν δημιουργία λογαριασμού Taxisnet',
+      'υποβάλετε σε μόλις μερικά λεπτά',
+      '100% ασφάλεια & εμπιστευτικότητα',
+    ],
     image: '/images/services/tax-services/tax-thumb.webp',
     imageAlt: 'Υποβολή μόνοι σας',
   },
@@ -160,6 +167,13 @@ export const TAX_NEX_PRICING_PLANS: TaxNexPricingPlan[] = [
     description:
       'Αναλαμβάνουμε όλη τη διαδικασία για εσάς. Χωρίς ταλαιπωρία, χωρίς εμπλοκή — απλώς μας στέλνετε τα απαραίτητα έγγραφα.',
     priceEur: 65,
+    includes: [
+      'ετοιμάζουμε την δήλωση σας',
+      'σωστός υπολογισμός φορολογητέου εισοδήματος',
+      'υποβολή Δήλωσης Εισοδήματος',
+      'φορολογικές συμβουλές',
+      'Δίπλα σας σε κάθε βήμα',
+    ],
     image: '/images/services/tax-services/tax-body.webp',
     imageAlt: 'Με σύμβουλο',
   },
@@ -167,10 +181,15 @@ export const TAX_NEX_PRICING_PLANS: TaxNexPricingPlan[] = [
     id: 'self-employed',
     kicker: 'ΑΥΤΟΕΡΓΟΔΟΤΟΥΜΕΝΟΙ',
     title: 'ΑΥΤΟΕΡΓΟΔΟΤΟΥΜΕΝΟΙ',
-    description:
-      '(Κερδίστε Χρόνο και Χρήμα) Ένας αφοσιωμένος φοροτεχνικός φροντίζει για την υποβολή των φόρων σας 95,00 € +19% ΦΠΑ',
+    description: '(Κερδίστε χρόνο και χρήμα) Ένας αφοσιωμένος φοροτεχνικός φροντίζει για την υποβολή των φόρων σας.',
     priceEur: 95,
-    includes: ['υποβολή Δήλωσης Εισοδήματος', 'υπολογισμός προσωρινής φορολογίας'],
+    includes: [
+      'υποβολή Δήλωσης Εισοδήματος',
+      'υπολογισμός προσωρινής φορολογίας',
+      'φορολογικές συμβουλές',
+      'σωστός υπολογισμός φορολογητέου εισοδήματος',
+      '100% ασφάλεια & εμπιστευτικότητα',
+    ],
     image: '/images/services/tax-services/tax-hero.webp',
     imageAlt: 'Αυτοεργοδοτούμενοι',
   },
@@ -268,6 +287,13 @@ const TAX_NEX_PRICING_PLANS_EN: TaxNexPricingPlan[] = [
     description:
       'Answer a few simple questions and we guide your filing, with final specialist review before submission.',
     priceEur: 29,
+    includes: [
+      'Ensure correct submission',
+      'Pay less tax where eligible',
+      'Free TAXISnet account setup',
+      'File in just a few minutes',
+      '100% security & confidentiality',
+    ],
     image: '/images/services/tax-services/tax-thumb.webp',
     imageAlt: 'Submit by yourself',
   },
@@ -278,6 +304,13 @@ const TAX_NEX_PRICING_PLANS_EN: TaxNexPricingPlan[] = [
     description:
       'We handle the whole process for you. No hassle, no complexity — simply send us the required documents.',
     priceEur: 65,
+    includes: [
+      'We prepare your tax return',
+      'Accurate taxable income calculation',
+      'Income tax return filing',
+      'Tax advisory support',
+      'By your side at every step',
+    ],
     image: '/images/services/tax-services/tax-body.webp',
     imageAlt: 'With advisor',
   },
@@ -286,9 +319,15 @@ const TAX_NEX_PRICING_PLANS_EN: TaxNexPricingPlan[] = [
     kicker: 'SELF-EMPLOYED',
     title: 'SELF-EMPLOYED',
     description:
-      '(Save Time and Money) A dedicated tax specialist handles your filing. 95.00 EUR + 19% VAT',
+      '(Save time and money) A dedicated tax specialist handles your filing.',
     priceEur: 95,
-    includes: ['income tax return filing', 'provisional tax computation'],
+    includes: [
+      'Income tax return filing',
+      'Provisional tax computation',
+      'Tax advisory support',
+      'Accurate taxable income calculation',
+      '100% security & confidentiality',
+    ],
     image: '/images/services/tax-services/tax-hero.webp',
     imageAlt: 'Self-employed',
   },

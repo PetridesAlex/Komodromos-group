@@ -18,6 +18,7 @@ import {
 import { TAX_NEX_2026_CHANGES_ROWS } from '../data/taxNex2026ChangesTableContent'
 import { isJccPaymentsEnabled } from '../lib/jccPayments'
 import { getTaxPlanCheckoutUrl, isValidHttpUrl } from '../lib/taxPlanCheckout'
+import TaxNexCorporateServicesSection from './TaxNexCorporateServicesSection'
 import TaxNexFaqSection from './TaxNexFaqSection'
 import TaxNexTopbarSocials from './TaxNexTopbarSocials'
 import TaxMeetingRequestModal from './TaxMeetingRequestModal'
@@ -451,6 +452,16 @@ export default function TaxNexCyprusPage() {
               aria-label={t('tax.youtubeCardGroupAria')}
             >
               <div className="taxnex-yt-card__visual">
+                <img
+                  className="taxnex-yt-card__cover"
+                  src={TAX_HERO_ASIDE_IMAGE}
+                  alt=""
+                  width={1280}
+                  height={720}
+                  loading="lazy"
+                  decoding="async"
+                  aria-hidden
+                />
                 <div className="taxnex-yt-card__mesh" aria-hidden />
                 <div className="taxnex-yt-card__scan" aria-hidden />
                 <div className="taxnex-yt-card__shorts" role="presentation">
@@ -490,7 +501,7 @@ export default function TaxNexCyprusPage() {
                       title={t('tax.youtubeShortHintTitle')}
                     >
                       <span className="taxnex-yt-card__short-link__play" aria-hidden>
-                        <svg viewBox="0 0 24 24" width="12" height="12" fill="none">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
                           <path
                             fill="currentColor"
                             d="M9.5 7.5v9L18 12l-8.5-4.5Z"
@@ -543,6 +554,8 @@ export default function TaxNexCyprusPage() {
           </motion.div>
         </div>
       </section>
+
+      <TaxNexCorporateServicesSection />
 
       <TaxPlanCheckoutModal
         isOpen={paymentModal != null}

@@ -8,6 +8,8 @@ type Props = {
   duration?: number
   /** Delay before starting (stagger multiple counters) */
   delayMs?: number
+  /** Appended after the number (e.g. "%") */
+  suffix?: string
   className?: string
 }
 
@@ -19,6 +21,7 @@ export default function AnimatedCounter({
   value,
   duration = 1700,
   delayMs = 0,
+  suffix,
   className,
 }: Props) {
   const [display, setDisplay] = useState(0)
@@ -84,6 +87,7 @@ export default function AnimatedCounter({
   return (
     <strong ref={ref} className={className}>
       {display}
+      {suffix}
     </strong>
   )
 }

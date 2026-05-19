@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
+import { astrealAboutImage } from '../data/astrealDevelopersPage'
 import { useReveal } from '../hooks/useReveal'
 
 const VIEW = { once: true, amount: 0.35, margin: '-48px 0px' } as const
@@ -63,6 +64,15 @@ export default function AstrealAboutPage() {
         transition: { type: 'spring' as const, stiffness: 70, damping: 22, delay: 0.42 },
       }
 
+  const aboutImage = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, x: -48, scale: 1.04 },
+        whileInView: { opacity: 1, x: 0, scale: 1 },
+        viewport: VIEW,
+        transition: { duration: 0.85, ease: aboutEase, delay: 0.12 },
+      }
+
   return (
     <div className="page astreal-page" ref={pageRef}>
       <SiteTopbar
@@ -86,7 +96,20 @@ export default function AstrealAboutPage() {
             className="astreal-about astreal-about--premium astreal-about--page-layout"
             aria-labelledby="astreal-about-heading"
           >
-            <div className="astreal-about-page__content">
+            <motion.div className="astreal-about__grid astreal-about-page__grid">
+              <motion.figure className="astreal-about-page__figure" {...aboutImage}>
+                <img
+                  src={astrealAboutImage}
+                  alt="ASTREAL Developers — architecture and development in Cyprus"
+                  width={2240}
+                  height={1260}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="astreal-about-page__figure-accent" aria-hidden />
+              </motion.figure>
+
+              <motion.div className="astreal-about-page__content">
               <header className="astreal-about-page__masthead">
                 <motion.h1
                   id="astreal-about-heading"
@@ -119,7 +142,8 @@ export default function AstrealAboutPage() {
                   in our homes.
                 </p>
               </motion.blockquote>
-            </div>
+              </motion.div>
+            </motion.div>
           </section>
         </div>
       </main>

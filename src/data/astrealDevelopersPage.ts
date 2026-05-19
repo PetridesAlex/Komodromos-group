@@ -4,8 +4,14 @@ export const ASTREAL_ASSETS = '/images/services/Astreal-Developers'
 export const astrealBrandLogo =
   '/images/services/companie-services-cover/cards-logos-services/astreal-developers.png'
 
-/** Full-bleed hero — wide architectural shot (slider-style focal image) */
-export const astrealHeroImage = `${ASTREAL_ASSETS}/astron-nova-project/astron-nova-project-6.webp`
+/** Full-bleed hero — brand cover photography */
+export const astrealHeroImage = `${ASTREAL_ASSETS}/all-photos/astreal-developers-cover.webp`
+
+/** About us page — editorial photography */
+export const astrealAboutImage = `${ASTREAL_ASSETS}/all-photos/astreal-developers-about-us.webp`
+
+/** ASTRON NOVA project detail — hero cover */
+export const astronNovaDetailHeroImage = `${ASTREAL_ASSETS}/all-photos/astron-propoerty-cover.webp`
 
 /** All photography for ASTRON Villas (Kiti) — folder `astron-project` */
 const astronGalleryImages = [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
@@ -44,6 +50,12 @@ const venusProjectGalleryImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
   (n) => `${ASTREAL_ASSETS}/Venus-project/venus-project-${n}.webp`,
 )
 
+export type AstrealDetailCopyImageBreak = {
+  /** Insert a photo grid immediately before this section-label paragraph. */
+  beforeLabel: string
+  count?: number
+}
+
 export type AstrealProject = {
   id: string
   title: string
@@ -57,6 +69,8 @@ export type AstrealProject = {
   highlights: string[]
   /** Optional full-bleed image for `/services/astreal/projects/:id` hero (defaults to first gallery shot). */
   detailHeroSrc?: string
+  /** Pull gallery shots into the property narrative before matching section labels. */
+  detailCopyImageBreaks?: AstrealDetailCopyImageBreak[]
 }
 
 /** Latest developments — imagery aligned to folders under Astreal-Developers */
@@ -121,7 +135,11 @@ export const astrealProjectCards: AstrealProject[] = [
     imageSrc: `${ASTREAL_ASSETS}/astron-nova-project/astron-nova-project-1.webp`,
     imageAlt: 'ASTRON NOVA contemporary development',
     meta: ['New build', 'Premium specification'],
-    detailHeroSrc: `${ASTREAL_ASSETS}/astron-nova-project/astron-nova-project-6.webp`,
+    detailHeroSrc: astronNovaDetailHeroImage,
+    detailCopyImageBreaks: [
+      { beforeLabel: 'Designed around light, air & harmony', count: 4 },
+      { beforeLabel: 'Prices starting from €360,000 + VAT', count: 4 },
+    ],
     gallery: astronNovaGalleryImages,
     highlights: [
       'ASTRON NOVA · Kiti — Komodromos Group of Companies',
