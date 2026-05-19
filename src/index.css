@@ -1633,6 +1633,16 @@ a {
   letter-spacing: 0 !important;
 }
 
+.taxnex-chrome {
+  position: sticky;
+  top: 72px;
+  z-index: 23;
+}
+
+.page:has(.taxnex-root) .taxnex-chrome .tax-page-promo-bar {
+  border-bottom-color: rgba(45, 212, 191, 0.28);
+}
+
 .taxnex-topbar {
   position: relative;
   z-index: 4;
@@ -1641,6 +1651,322 @@ a {
   box-shadow:
     0 1px 0 rgba(236, 253, 245, 0.98),
     0 8px 24px -12px rgba(6, 78, 59, 0.06);
+}
+
+.taxnex-topbar__inner.taxnex-topbar__inner--nav {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: clamp(0.5rem, 1.5vw, 0.85rem);
+  padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
+  padding-right: max(0.35rem, env(safe-area-inset-right, 0px));
+}
+
+.taxnex-topbar__actions {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.35rem, 1vw, 0.55rem);
+  flex-wrap: nowrap;
+}
+
+.taxnex-topbar__actions .lang-switch {
+  flex-shrink: 0;
+  border-color: rgba(45, 212, 191, 0.4);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(236, 253, 245, 0.92) 100%);
+  box-shadow:
+    0 8px 18px rgba(6, 78, 59, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+}
+
+.taxnex-topbar__actions .lang-switch__btn {
+  color: #0f513d;
+}
+
+.taxnex-topbar__actions .lang-switch__btn:hover,
+.taxnex-topbar__actions .lang-switch__btn:focus-visible {
+  color: #04261c;
+  background: rgba(167, 243, 208, 0.35);
+}
+
+.taxnex-topbar__actions .lang-switch__btn--active {
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0) 40%),
+    linear-gradient(180deg, rgba(167, 243, 208, 0.95) 0%, rgba(110, 231, 183, 0.9) 100%);
+  color: #022c22;
+  box-shadow:
+    0 8px 16px rgba(6, 95, 70, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.72) inset;
+}
+
+.taxnex-topbar__inner--nav .taxnex-topbar__address {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  justify-self: center;
+  max-width: min(48rem, calc(100% - 14rem));
+}
+
+.taxnex-topbar__inner--nav .taxnex-topbar__socials {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  z-index: 2;
+}
+
+.taxnex-nav__toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.35rem;
+  padding: 0.35rem 0.7rem 0.35rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid rgba(13, 148, 136, 0.38);
+  background: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%);
+  color: #0f766e;
+  cursor: pointer;
+  box-shadow:
+    0 4px 14px rgba(6, 95, 70, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.taxnex-nav__toggle:hover,
+.taxnex-nav__toggle:focus-visible {
+  border-color: rgba(13, 148, 136, 0.55);
+  background: linear-gradient(180deg, #f0fdf9 0%, #d1fae5 100%);
+  box-shadow: 0 6px 18px rgba(6, 95, 70, 0.18);
+}
+
+.taxnex-nav__toggle-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.taxnex-nav__toggle-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 1.15rem;
+  height: 1rem;
+}
+
+.taxnex-nav__toggle-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: #0f766e;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.taxnex-nav__toggle--open .taxnex-nav__toggle-icon span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.taxnex-nav__toggle--open .taxnex-nav__toggle-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.taxnex-nav__toggle--open .taxnex-nav__toggle-icon span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.taxnex-nav__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: rgba(6, 24, 20, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.taxnex-nav__backdrop--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.taxnex-nav__panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  width: min(100vw, 22rem);
+  max-width: 100%;
+  height: 100dvh;
+  padding:
+    max(0.75rem, env(safe-area-inset-top, 0px))
+    max(0.85rem, env(safe-area-inset-right, 0px))
+    max(1rem, env(safe-area-inset-bottom, 0px))
+    max(0.85rem, env(safe-area-inset-left, 0px));
+  box-sizing: border-box;
+  border-right: 1px solid rgba(45, 212, 191, 0.35);
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdf9 48%, #ecfdf5 100%);
+  box-shadow: 12px 0 40px rgba(6, 78, 59, 0.18);
+  overflow: hidden;
+}
+
+.taxnex-nav__panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(13, 148, 136, 0.2);
+}
+
+.taxnex-nav__panel-title {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.taxnex-nav__close {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(13, 148, 136, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f766e;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.taxnex-nav__links {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.taxnex-nav__link {
+  display: flex;
+  align-items: center;
+  min-height: 2.65rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  background: rgba(255, 255, 255, 0.88);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1.25;
+  color: #0a3d2f;
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.taxnex-nav__link:hover,
+.taxnex-nav__link:focus-visible {
+  border-color: rgba(13, 148, 136, 0.45);
+  background: rgba(236, 253, 245, 0.98);
+  transform: translateX(2px);
+}
+
+.taxnex-nav__link--cta {
+  margin-top: 0.25rem;
+  border-color: rgba(6, 95, 70, 0.55);
+  background: linear-gradient(145deg, #0d9488 0%, #059669 55%, #047857 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(6, 95, 70, 0.28);
+}
+
+.taxnex-nav__link--cta:hover,
+.taxnex-nav__link--cta:focus-visible {
+  color: #ffffff;
+  background: linear-gradient(145deg, #0f766e 0%, #059669 55%, #065f46 100%);
+}
+
+.taxnex-nav__link--sub {
+  min-height: 2.35rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+.taxnex-nav__group {
+  margin-top: 0.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(13, 148, 136, 0.16);
+}
+
+.taxnex-nav__group-label {
+  margin: 0 0 0.45rem;
+  padding-inline: 0.2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.taxnex-nav__group-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.taxnex-nav__lang {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .taxnex-chrome {
+    top: 64px;
+  }
+
+  .taxnex-topbar__inner--nav .taxnex-topbar__address {
+    max-width: min(100%, calc(100% - 11.5rem));
+    font-size: 0.54rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (min-width: 1100px) {
+  .taxnex-nav__panel {
+    width: min(100vw, 24rem);
+  }
 }
 
 .taxnex-topbar__inner {
@@ -1965,7 +2291,7 @@ a {
   max-width: 100%;
   box-sizing: border-box;
   padding:
-    clamp(0.55rem, 2vw, 1.35rem)
+    clamp(0.25rem, 1vw, 0.65rem)
     max(env(safe-area-inset-right, 0px), 0px)
     clamp(1.05rem, 3.2vw, 2.1rem)
     max(env(safe-area-inset-left, 0px), 0px);
@@ -2472,14 +2798,62 @@ a {
 }
 
 .taxnex-hero__stage {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.6rem, 1.4vw, 0.8rem);
   margin: 0;
+  padding: clamp(0.45rem, 1vw, 0.6rem) clamp(0.9rem, 2vw, 1.15rem)
+    clamp(0.45rem, 1vw, 0.6rem) clamp(0.5rem, 1.1vw, 0.65rem);
+  border-radius: 999px;
+  border: 2px solid rgba(13, 148, 136, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(236, 253, 245, 0.96) 55%,
+    rgba(209, 250, 229, 0.94) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(167, 243, 208, 0.5),
+    0 8px 22px -6px rgba(6, 95, 70, 0.2);
+}
+
+.taxnex-hero__stage-num {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: clamp(2.35rem, 5vw, 2.9rem);
+  height: clamp(2.35rem, 5vw, 2.9rem);
+  border-radius: 50%;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.72rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
   font-weight: 800;
-  letter-spacing: 0.13em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  background: linear-gradient(145deg, #0d9488 0%, #059669 48%, #047857 100%);
+  box-shadow:
+    0 3px 12px rgba(6, 95, 70, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.taxnex-hero__stage-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.82rem, 1.55vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--txg-premium-accent);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+  line-height: 1.2;
+  color: #0f766e;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .taxnex-hero__stage-text {
+    white-space: normal;
+    text-wrap: balance;
+    max-width: 10.5rem;
+  }
 }
 
 .taxnex-hero__cta-row {
@@ -6292,14 +6666,19 @@ a {
   line-height: 1.65;
 }
 
-.taxnex-section__stage {
-  margin: 0.85rem 0 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #0f766e;
+.taxnex-section__stage.taxnex-hero__stage {
+  margin: clamp(0.95rem, 2.4vw, 1.35rem) auto 0;
+  justify-content: center;
+}
+
+.taxnex-section__head--center .taxnex-section__stage .taxnex-hero__stage-num {
+  width: clamp(2.75rem, 5.8vw, 3.35rem);
+  height: clamp(2.75rem, 5.8vw, 3.35rem);
+  font-size: clamp(1.4rem, 2.9vw, 1.85rem);
+}
+
+.taxnex-section__head--center .taxnex-section__stage .taxnex-hero__stage-text {
+  font-size: clamp(0.92rem, 1.75vw, 1.12rem);
 }
 
 .taxnex-eyebrow {
@@ -6362,6 +6741,7 @@ a {
 }
 
 .taxnex-stage-grid {
+  position: relative;
   display: grid;
   gap: 1.25rem;
 }
@@ -6371,12 +6751,48 @@ a {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
+
+  .taxnex-stage-grid::before {
+    content: '';
+    position: absolute;
+    top: 1.65rem;
+    left: 18%;
+    right: 18%;
+    z-index: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(13, 148, 136, 0.2) 8%,
+      rgba(45, 212, 191, 0.55) 50%,
+      rgba(13, 148, 136, 0.2) 92%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: taxnex-stage-grid-line 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes taxnex-stage-grid-line {
+  0%,
+  100% {
+    background-position: 100% 0;
+    opacity: 0.55;
+  }
+
+  50% {
+    background-position: 0% 0;
+    opacity: 1;
+  }
 }
 
 .taxnex-stage-card {
   position: relative;
+  z-index: 1;
   min-width: 0;
-  padding: clamp(1.5rem, 2.8vw, 1.85rem) clamp(1.35rem, 2.4vw, 1.65rem);
+  padding: clamp(1.65rem, 3vw, 2rem) clamp(1.4rem, 2.5vw, 1.75rem);
   border-radius: clamp(20px, 2.4vw, 26px);
   overflow: hidden;
   isolation: isolate;
@@ -6387,6 +6803,20 @@ a {
     0 24px 52px -32px rgba(6, 58, 44, 0.28),
     0 0 0 1px rgba(255, 255, 255, 0.92) inset,
     0 1px 0 rgba(255, 255, 255, 0.75) inset;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+.taxnex-stage-card:hover {
+  border-color: rgba(13, 148, 136, 0.62);
+  box-shadow:
+    0 0 0 1px rgba(167, 243, 208, 0.72),
+    0 0 48px rgba(16, 185, 129, 0.22),
+    0 32px 64px -28px rgba(6, 58, 44, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.98) inset,
+    0 1px 0 rgba(255, 255, 255, 0.85) inset;
 }
 
 .taxnex-stage-card::before {
@@ -6506,6 +6936,11 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .taxnex-stage-grid::before {
+    animation: none;
+    opacity: 0.4;
+  }
+
   .taxnex-stage-card::before,
   .taxnex-stage-card::after {
     animation: none;
@@ -6519,23 +6954,97 @@ a {
   .taxnex-stage-card::after {
     opacity: 0;
   }
+
+  .taxnex-stage-card__badge-num {
+    animation: none;
+  }
 }
 
 .taxnex-stage-card__badge {
-  display: inline-block;
-  margin-bottom: 0.85rem;
-  padding: 0.38rem 0.72rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: #064e3b;
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.92) 0%, rgba(236, 253, 245, 0.88) 100%);
-  border: 1px solid rgba(5, 150, 105, 0.38);
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1.2vw, 0.7rem);
+  margin-bottom: clamp(0.95rem, 2vw, 1.15rem);
+  padding: clamp(0.4rem, 0.9vw, 0.5rem) clamp(0.75rem, 1.6vw, 1rem)
+    clamp(0.4rem, 0.9vw, 0.5rem) clamp(0.45rem, 1vw, 0.55rem);
   border-radius: 999px;
+  border: 2px solid rgba(13, 148, 136, 0.42);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(236, 253, 245, 0.96) 55%,
+    rgba(209, 250, 229, 0.94) 100%
+  );
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.95) inset,
-    0 8px 22px rgba(6, 95, 70, 0.1);
+    0 0 0 1px rgba(167, 243, 208, 0.5),
+    0 8px 22px -6px rgba(6, 95, 70, 0.2);
+}
+
+.taxnex-stage-card__badge-num {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: clamp(2.15rem, 4.5vw, 2.65rem);
+  height: clamp(2.15rem, 4.5vw, 2.65rem);
+  border-radius: 50%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  background: linear-gradient(145deg, #0d9488 0%, #059669 48%, #047857 100%);
+  box-shadow:
+    0 3px 12px rgba(6, 95, 70, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  animation: taxnex-stage-badge-pulse 3.2s ease-in-out infinite;
+}
+
+.taxnex-stage-card--step-2 .taxnex-stage-card__badge-num {
+  animation-delay: 0.45s;
+}
+
+.taxnex-stage-card--step-3 .taxnex-stage-card__badge-num {
+  animation-delay: 0.9s;
+}
+
+@keyframes taxnex-stage-badge-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 3px 12px rgba(6, 95, 70, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.32),
+      0 0 0 0 rgba(45, 212, 191, 0);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow:
+      0 4px 16px rgba(6, 95, 70, 0.38),
+      inset 0 1px 0 rgba(255, 255, 255, 0.38),
+      0 0 0 6px rgba(45, 212, 191, 0.22);
+  }
+}
+
+.taxnex-stage-card__badge-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.72rem, 1.35vw, 0.88rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #0f766e;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+}
+
+.taxnex-stage-card--step-2 .taxnex-stage-card__badge {
+  border-color: rgba(5, 150, 105, 0.48);
+}
+
+.taxnex-stage-card--step-3 .taxnex-stage-card__badge {
+  border-color: rgba(4, 120, 87, 0.52);
 }
 
 .taxnex-stage-card__title {
@@ -31347,6 +31856,16 @@ a.yacht-card {
   padding: clamp(5rem, 12vw, 6.5rem) 0 clamp(3rem, 7vw, 4.5rem);
 }
 
+.astreal-about-page--hero {
+  --astreal-about-topbar-h: 72px;
+  position: relative;
+  padding: 0;
+  margin-top: calc(-1 * var(--astreal-about-topbar-h));
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
 /* Our Services: deeper canvas + subtle cool/warm washes over base astreal-page */
 .astreal-about-page.astreal-services-page {
   position: relative;
@@ -31385,6 +31904,137 @@ a.yacht-card {
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 
+/* Astreal subpages — compact left sidebar navigation */
+.astreal-page-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35rem;
+  margin: 0;
+  width: 100%;
+  max-width: 11.5rem;
+}
+
+.astreal-page-nav__btn {
+  display: block;
+  width: 100%;
+  padding: 0.48rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid rgba(140, 185, 230, 0.22);
+  background: rgba(10, 18, 32, 0.55);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: left;
+  line-height: 1.35;
+  color: rgba(210, 222, 238, 0.88);
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    color 0.22s ease;
+}
+
+.astreal-page-nav__btn--back {
+  border-color: rgba(197, 160, 89, 0.35);
+  color: rgba(244, 236, 220, 0.95);
+}
+
+.astreal-page-nav__btn--link:hover,
+.astreal-page-nav__btn--back:hover {
+  border-color: rgba(197, 160, 89, 0.5);
+  background: rgba(18, 30, 48, 0.85);
+  color: rgba(255, 252, 246, 0.98);
+}
+
+.astreal-page-nav__btn--current {
+  border-color: rgba(197, 160, 89, 0.55);
+  background: rgba(197, 160, 89, 0.14);
+  color: rgba(255, 252, 246, 0.98);
+  cursor: default;
+}
+
+.astreal-page-nav__btn--link:focus-visible,
+.astreal-page-nav__btn--back:focus-visible {
+  outline: 2px solid rgba(150, 195, 235, 0.75);
+  outline-offset: 2px;
+}
+
+/* Shell: compact nav top-left; main section uses full shell width below */
+.astreal-about-page__shell:has(> .astreal-page-nav + section) {
+  display: grid;
+  grid-template-columns: minmax(9.25rem, 11.5rem) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  row-gap: clamp(0.65rem, 1.5vw, 1rem);
+  column-gap: clamp(1rem, 2.5vw, 1.65rem);
+  align-items: start;
+  padding-top: 0.15rem;
+}
+
+.astreal-about-page__shell:has(> .astreal-page-nav + section) > .astreal-page-nav {
+  grid-column: 1;
+  grid-row: 1;
+  position: sticky;
+  top: clamp(4.5rem, 10vh, 5.5rem);
+  align-self: start;
+}
+
+.astreal-about-page__shell:has(> .astreal-page-nav + section) > section {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  width: 100%;
+  min-width: 0;
+}
+
+.astreal-about-page__shell:has(> .astreal-page-nav + section) .astreal-about-page__content {
+  max-width: 100%;
+  width: 100%;
+}
+
+.astreal-about-page.astreal-services-page .astreal-about-page__shell,
+.astreal-about-page.astreal-invest-page .astreal-about-page__shell {
+  padding-top: 0;
+}
+
+.astreal-about-page.astreal-services-page .astreal-about.astreal-about--page-layout,
+.astreal-about-page.astreal-invest-page .astreal-about.astreal-about--page-layout {
+  padding-top: 0;
+  padding-bottom: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.astreal-about-page.astreal-services-page .astreal-about-page__masthead,
+.astreal-about-page.astreal-invest-page .astreal-about-page__masthead {
+  padding-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .astreal-about-page__shell:has(> .astreal-page-nav + section) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.65rem;
+  }
+
+  .astreal-about-page__shell:has(> .astreal-page-nav + section) > .astreal-page-nav {
+    grid-column: 1;
+    grid-row: 1;
+    position: static;
+    max-width: none;
+    flex-flow: row wrap;
+  }
+
+  .astreal-about-page__shell:has(> .astreal-page-nav + section) > section {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .astreal-page-nav__btn {
+    width: auto;
+    flex: 0 1 auto;
+  }
+}
+
 /* About subpage: flat section (no panels / ambient behind copy), editorial type */
 .astreal-about-page__shell {
   width: 100%;
@@ -31404,6 +32054,136 @@ a.yacht-card {
 
 .astreal-about-page .astreal-about.astreal-about--page-layout.astreal-about--premium {
   background: transparent;
+}
+
+/* About us — full-screen cover hero with text overlay */
+.astreal-about-page--hero .astreal-about-page__hero.astreal-about.astreal-about--cover {
+  padding: 0;
+  border-top: none;
+  background: transparent;
+  min-height: 100svh;
+  min-height: 100dvh;
+  height: 100svh;
+  height: 100dvh;
+  max-height: 100svh;
+  max-height: 100dvh;
+}
+
+.astreal-about-page--hero .astreal-about-page__hero.astreal-about--premium {
+  background: transparent;
+}
+
+.astreal-about-page__shell--nav {
+  position: absolute;
+  top: calc(var(--astreal-about-topbar-h, 72px) + clamp(0.5rem, 1.5vh, 0.85rem));
+  left: clamp(1.35rem, 5.5vw, 4.5rem);
+  right: auto;
+  z-index: 5;
+  padding: 0;
+  pointer-events: none;
+}
+
+.astreal-about-page__shell--nav .astreal-page-nav {
+  pointer-events: auto;
+  max-width: 11.5rem;
+}
+
+.astreal-about-page__hero {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-bottom: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+}
+
+.astreal-about-page__cover {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.astreal-about-page__cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 6, 12, 0.55) 0%,
+    rgba(6, 10, 18, 0.2) 38%,
+    rgba(4, 8, 14, 0.65) 100%
+  );
+}
+
+.astreal-about-page__cover-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.astreal-about-page__cover-panel {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.5vw, 1.45rem);
+  width: min(100%, 40rem);
+  margin: clamp(5.5rem, 14vh, 7rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2rem, 5vw, 3rem);
+  padding: clamp(1.5rem, 3.5vw, 2.25rem);
+  border-radius: clamp(14px, 2vw, 20px);
+  border: 1px solid rgba(197, 160, 89, 0.38);
+  background: linear-gradient(
+    165deg,
+    rgba(10, 18, 32, 0.78) 0%,
+    rgba(6, 12, 22, 0.88) 100%
+  );
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+
+@media (min-width: 900px) {
+  .astreal-about-page__cover {
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .astreal-about-page__cover-panel {
+    width: min(42vw, 34rem);
+    margin: clamp(5rem, 10vh, 6rem) clamp(2.5rem, 6vw, 5rem) clamp(2.5rem, 6vw, 5rem) auto;
+    max-height: calc(100dvh - 8rem);
+    overflow-y: auto;
+  }
+}
+
+.astreal-about-page__cover-panel .astreal-about-page__heading {
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+}
+
+.astreal-about-page__cover-panel .astreal-quote.astreal-quote--about-page {
+  margin-top: 0.25rem;
+  padding: clamp(1rem, 2.5vw, 1.35rem) 0 0;
+  border-top: 1px solid rgba(197, 160, 89, 0.28);
+}
+
+.astreal-about-page__cover-panel .astreal-quote.astreal-quote--about-page p {
+  color: rgba(236, 228, 210, 0.95);
 }
 
 .astreal-about-page__grid.astreal-about__grid {
@@ -31517,8 +32297,9 @@ a.yacht-card {
   margin: 0;
   padding: clamp(1.25rem, 3vw, 1.75rem) 0 0;
   border: none;
-  border-left: none;
+  border-left: 3px solid rgba(197, 160, 89, 0.55);
   border-radius: 0;
+  padding-left: 1rem;
   background: transparent;
   box-shadow: none;
 }
@@ -31535,7 +32316,8 @@ a.yacht-card {
 }
 
 .astreal-invest-page__content {
-  max-width: min(72rem, 100%);
+  max-width: min(92rem, 100%);
+  width: 100%;
 }
 
 .astreal-invest-page__eyebrow {
@@ -31633,7 +32415,7 @@ a.yacht-card {
 }
 
 .astreal-invest-page__section-title {
-  margin: 0;
+  margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.35rem, 2.8vw, 1.72rem);
   font-weight: 500;
@@ -31642,35 +32424,246 @@ a.yacht-card {
   color: rgba(244, 240, 232, 0.96);
 }
 
-.astreal-invest-page__highlights {
+.astreal-invest-page__intro {
+  margin-top: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.astreal-invest-page__intro-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .astreal-invest-page__intro-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+    gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  }
+}
+
+.astreal-invest-page__intro-copy {
+  display: grid;
+  gap: clamp(0.85rem, 2vw, 1.15rem);
+}
+
+.astreal-invest-page__intro-copy .astreal-about-page__prose {
+  max-width: none;
+}
+
+.astreal-invest-page__intro-visual {
+  margin: 0;
+  border-radius: clamp(12px, 1.6vw, 18px);
+  overflow: hidden;
+  border: 1px solid rgba(197, 160, 89, 0.26);
+  background: rgba(8, 16, 28, 0.5);
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.astreal-invest-page__intro-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: clamp(280px, 52vw, 420px);
+  max-height: min(72vh, 560px);
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 900px) {
+  .astreal-invest-page__intro-img {
+    min-height: 100%;
+    max-height: none;
+    aspect-ratio: 3 / 4;
+  }
+}
+
+.astreal-invest-page__mosaic {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  gap: clamp(0.55rem, 1.2vw, 0.85rem);
+  margin: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(2rem, 4.5vw, 3rem);
+}
+
+.astreal-invest-page__mosaic-item {
+  margin: 0;
+  border-radius: clamp(10px, 1.4vw, 16px);
+  overflow: hidden;
+  border: 1px solid rgba(197, 160, 89, 0.22);
+  background: rgba(8, 16, 28, 0.45);
+  min-height: clamp(140px, 28vw, 220px);
+}
+
+.astreal-invest-page__mosaic-item--featured {
+  grid-column: 1 / -1;
+  min-height: clamp(200px, 38vw, 320px);
+}
+
+.astreal-invest-page__mosaic-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 720px) {
+  .astreal-invest-page__mosaic {
+    grid-template-columns: 1.2fr 0.8fr 0.8fr;
+    grid-template-rows: minmax(180px, 1fr) minmax(140px, 0.72fr);
+  }
+
+  .astreal-invest-page__mosaic-item--featured {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    min-height: clamp(280px, 32vw, 400px);
+  }
+
+  .astreal-invest-page__mosaic-item:not(.astreal-invest-page__mosaic-item--featured) {
+    min-height: 0;
+  }
+}
+
+.astreal-invest-page__reasons-head {
+  margin: 0 0 clamp(1.25rem, 3vw, 1.75rem);
+  max-width: min(52rem, 100%);
+}
+
+.astreal-invest-page__reasons-title {
+  margin: 0 0 0.55rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.28rem, 2.6vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: rgba(244, 240, 232, 0.96);
+}
+
+.astreal-invest-page__reasons-lead {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.45vw, 1.06rem);
+  line-height: 1.6;
+  color: rgba(198, 212, 230, 0.88);
+  text-wrap: pretty;
+}
+
+.astreal-invest-page__highlight-grid {
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.65rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: clamp(0.85rem, 1.8vw, 1.2rem);
   width: 100%;
-  max-width: min(44rem, 100%);
 }
 
-.astreal-invest-page__highlights li {
+@media (min-width: 1100px) {
+  .astreal-invest-page__highlight-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.astreal-invest-page__highlight-card {
+  margin: 0;
+  min-height: 0;
+}
+
+.astreal-invest-page__highlight-media {
   position: relative;
   margin: 0;
-  padding: 0.45rem 0 0.45rem 1.35rem;
-  font-size: clamp(0.95rem, 1.4vw, 1.04rem);
-  line-height: 1.55;
-  color: rgba(198, 212, 230, 0.94);
+  border-radius: clamp(12px, 1.5vw, 16px);
+  overflow: hidden;
+  border: 1px solid rgba(197, 160, 89, 0.24);
+  background: rgba(8, 16, 28, 0.55);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  aspect-ratio: 4 / 3;
 }
 
-.astreal-invest-page__highlights li::before {
-  content: '';
+.astreal-invest-page__highlight-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.astreal-invest-page__highlight-card:hover .astreal-invest-page__highlight-media img,
+.astreal-invest-page__highlight-card:focus-within .astreal-invest-page__highlight-media img {
+  transform: scale(1.04);
+}
+
+.astreal-invest-page__highlight-caption {
   position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: 0.42rem;
-  height: 0.42rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(197, 160, 89, 0.95) 0%, rgba(130, 175, 220, 0.75) 100%);
-  box-shadow: 0 0 12px rgba(197, 160, 89, 0.35);
+  inset: auto 0 0;
+  margin: 0;
+  padding: clamp(2.5rem, 5vw, 3.25rem) clamp(0.85rem, 2vw, 1.1rem) clamp(0.85rem, 2vw, 1.05rem);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(6, 12, 22, 0.55) 38%,
+    rgba(6, 12, 22, 0.92) 100%
+  );
+}
+
+.astreal-invest-page__highlight-caption span {
+  display: block;
+  font-size: clamp(0.9rem, 1.35vw, 1rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: rgba(244, 240, 232, 0.98);
+  text-wrap: pretty;
+}
+
+.astreal-invest-page__highlight-card--text-only {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  border-radius: clamp(12px, 1.5vw, 16px);
+  border: 1px solid rgba(197, 160, 89, 0.32);
+  background: linear-gradient(
+    145deg,
+    rgba(197, 160, 89, 0.12) 0%,
+    rgba(8, 16, 28, 0.72) 48%,
+    rgba(12, 24, 42, 0.88) 100%
+  );
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.astreal-invest-page__highlight-text {
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 1.65rem);
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(212, 196, 160, 0.96);
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .astreal-invest-page__highlight-media img {
+    transition: none;
+  }
+
+  .astreal-invest-page__highlight-card:hover .astreal-invest-page__highlight-media img,
+  .astreal-invest-page__highlight-card:focus-within .astreal-invest-page__highlight-media img {
+    transform: none;
+  }
+}
+
+.astreal-about-page__content.astreal-services-page__content {
+  max-width: 100%;
+  width: 100%;
 }
 
 .astreal-services-page__content {
@@ -31679,7 +32672,7 @@ a.yacht-card {
 
 .astreal-services-page__figure {
   position: relative;
-  margin: clamp(0.35rem, 1.2vw, 0.75rem) 0 clamp(1.25rem, 3vw, 2rem);
+  margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
   width: 100%;
   max-width: none;
   border-radius: clamp(14px, 1.8vw, 22px);
@@ -31754,14 +32747,15 @@ a.yacht-card {
 }
 
 .astreal-services-page__lead {
-  max-width: min(52rem, 100%);
+  max-width: 100%;
 }
 
 /* Our Services — premium editorial intro (lead + body under hero) */
 .astreal-about-page__content.astreal-services-page__content
   > .astreal-lead.astreal-lead--about.astreal-services-page__lead {
   position: relative;
-  max-width: min(48rem, 100%);
+  width: 100%;
+  max-width: 100%;
   margin: clamp(0.35rem, 1.2vw, 0.65rem) 0 0;
   padding: clamp(1.2rem, 2.6vw, 1.75rem) 0 clamp(1rem, 2.2vw, 1.5rem);
   padding-left: clamp(1.35rem, 2.8vw, 1.75rem);
@@ -31796,7 +32790,8 @@ a.yacht-card {
 
 .astreal-about-page__content.astreal-services-page__content
   > .astreal-about__prose.astreal-about-page__prose {
-  max-width: min(50rem, 100%);
+  width: 100%;
+  max-width: 100%;
   margin-top: clamp(0.15rem, 0.8vw, 0.35rem);
   padding: clamp(1.2rem, 2.6vw, 1.65rem) clamp(1.2rem, 2.8vw, 1.85rem);
   border-radius: clamp(12px, 1.5vw, 18px);
@@ -31823,11 +32818,10 @@ a.yacht-card {
 @media (min-width: 768px) {
   .astreal-about-page__content.astreal-services-page__content
     > .astreal-about__prose.astreal-about-page__prose {
-    align-self: flex-end;
-    width: min(44rem, 100%);
-    max-width: min(44rem, 100%);
-    margin-inline-start: auto;
-    margin-inline-end: 0;
+    align-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
     padding: clamp(1.35rem, 2.8vw, 1.85rem) clamp(1.45rem, 3.2vw, 2.1rem);
     background:
       radial-gradient(ellipse 90% 85% at 100% 0%, rgba(100, 155, 220, 0.12) 0%, transparent 55%),
@@ -31840,402 +32834,202 @@ a.yacht-card {
   }
 }
 
-@media (min-width: 1024px) {
-  .astreal-about-page__content.astreal-services-page__content
-    > .astreal-about__prose.astreal-about-page__prose {
-    width: min(46rem, 94%);
-    max-width: min(46rem, 94%);
-  }
-}
-
-/* Services timeline — scroll-linked center line + alternating cards */
-.astreal-services-timeline {
-  position: relative;
+/* Astreal Our Services — homepage-style service cards */
+.astreal-services-page .astreal-services-page__list.service-list {
   width: 100%;
   max-width: none;
-  margin-top: clamp(1rem, 3vw, 2rem);
-  padding-bottom: clamp(1rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 5vw, 3.25rem);
+  padding-bottom: clamp(0.5rem, 2vw, 1rem);
 }
 
-@media (min-width: 900px) {
-  .astreal-services-timeline {
-    /* Equal breakout on both sides so left/right screen gaps match */
-    --timeline-outdent: clamp(0.5rem, 2.8vw, 2.25rem);
-    width: calc(100% + 2 * var(--timeline-outdent));
-    margin-left: calc(-1 * var(--timeline-outdent));
-    margin-right: calc(-1 * var(--timeline-outdent));
-  }
-}
-
-.astreal-services-timeline--static {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: clamp(1.15rem, 2.8vw, 1.65rem);
-}
-
-@media (min-width: 768px) {
-  .astreal-services-timeline--static {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.astreal-services-timeline__line {
-  position: absolute;
-  left: 50%;
-  width: 2px;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-.astreal-services-timeline__line--track {
-  border-left: 1px dashed rgba(130, 175, 220, 0.35);
-  background: transparent;
-}
-
-.astreal-services-timeline__line--fill {
-  background: linear-gradient(
-    180deg,
-    rgba(197, 160, 89, 0.95) 0%,
-    rgba(130, 175, 220, 0.75) 100%
-  );
-  box-shadow: 0 0 16px rgba(197, 160, 89, 0.35);
-}
-
-.astreal-services-timeline__steps {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 6vw, 4rem);
-}
-
-.astreal-services-timeline__step {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.astreal-services-timeline__node-wrap {
-  position: relative;
-  z-index: 3;
-  flex-shrink: 0;
-}
-
-.astreal-services-timeline__node {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-.astreal-services-timeline__node-backdrop {
-  position: absolute;
-  width: 3.25rem;
-  height: 3.25rem;
-  border-radius: 50%;
-  background: rgba(6, 12, 22, 0.98);
-  box-shadow: 0 0 0 1px rgba(197, 160, 89, 0.2);
-}
-
-.astreal-services-timeline__node-ring {
-  position: absolute;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
-  box-shadow: 0 0 0 5px rgba(14, 26, 44, 0.9);
-}
-
-.astreal-services-timeline__node-pulse {
-  position: absolute;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background: rgba(90, 175, 255, 0.5);
-}
-
-.astreal-services-timeline__node-core {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background: rgba(18, 32, 52, 0.95);
-  color: rgba(244, 240, 232, 0.95);
-  border: 1px solid rgba(130, 175, 220, 0.35);
-  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
-}
-
-.astreal-services-timeline__node-core--active {
-  background: rgba(48, 132, 238, 0.98);
-  color: rgba(236, 248, 255, 0.98);
-  border-color: rgba(164, 218, 255, 0.85);
-}
-
-.astreal-services-timeline__node-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.astreal-services-timeline__card-wrap {
-  width: 100%;
-  margin-top: clamp(1rem, 2.5vw, 1.35rem);
-  display: flex;
-  justify-content: center;
-}
-
-.astreal-services-timeline__card {
-  width: 100%;
-  max-width: min(44rem, 100%);
+.astreal-services-page .service-list .service-card {
   scroll-margin-top: clamp(5rem, 12vh, 6.5rem);
-}
-
-@media (min-width: 900px) {
-  .astreal-services-timeline__step {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    grid-template-rows: auto;
-    align-items: start;
-    column-gap: clamp(1rem, 2.4vw, 1.85rem);
-  }
-
-  .astreal-services-timeline__card-slot {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    width: 100%;
-  }
-
-  .astreal-services-timeline__card-slot--left {
-    align-items: flex-end;
-    padding-right: clamp(0.25rem, 1vw, 0.5rem);
-  }
-
-  .astreal-services-timeline__card-slot--right {
-    align-items: stretch;
-    padding-left: clamp(0.25rem, 1vw, 0.5rem);
-  }
-
-  .astreal-services-timeline__node-wrap {
-    grid-column: 2;
-    grid-row: 1;
-    margin-top: clamp(2.5rem, 5vw, 3.25rem);
-  }
-
-  .astreal-services-timeline__card-wrap {
-    margin-top: 0;
-    grid-row: 1;
-    align-self: start;
-  }
-
-  .astreal-services-timeline__card--left {
-    grid-column: 1;
-    justify-self: end;
-    margin-inline-end: 0;
-  }
-
-  .astreal-services-timeline__card-wrap:has(.astreal-services-timeline__card--left) {
-    grid-column: 1;
-    justify-content: flex-end;
-  }
-
-  .astreal-services-timeline__card--right {
-    grid-column: 3;
-    justify-self: start;
-  }
-
-  .astreal-services-timeline__card-wrap:has(.astreal-services-timeline__card--right) {
-    grid-column: 3;
-    justify-content: flex-start;
-  }
-
-  .astreal-services-timeline__card {
-    max-width: 100%;
-  }
-
-  .astreal-services-timeline__card--large {
-    max-width: 100%;
-  }
-}
-
-.astreal-services-timeline__card--large {
-  width: 100%;
-  padding: clamp(1.5rem, 3.6vw, 2.1rem) clamp(1.35rem, 3.2vw, 1.85rem);
-  min-height: clamp(28rem, 52vh, 34rem);
-  display: flex;
-  flex-direction: column;
-}
-
-.astreal-services-timeline__card--large .astreal-services-page__card-title {
-  font-size: clamp(1.28rem, 2.6vw, 1.62rem);
-  margin-bottom: clamp(0.9rem, 2vw, 1.15rem);
-}
-
-.astreal-services-timeline__card--large .astreal-services-page__card-figure {
-  flex: 1 1 auto;
-  min-height: clamp(12rem, 28vw, 18rem);
-  aspect-ratio: 16 / 10;
-  margin-bottom: clamp(1rem, 2.2vw, 1.25rem);
-}
-
-.astreal-services-timeline__card--large .astreal-services-page__card-body {
-  gap: clamp(0.72rem, 1.45vw, 0.95rem);
-}
-
-.astreal-services-timeline__card--large .astreal-services-page__card-body p {
-  font-size: clamp(1.04rem, 1.52vw, 1.14rem);
-  line-height: 1.84;
-}
-
-.astreal-services-timeline__card--large .astreal-services-page__card-tagline {
-  font-size: clamp(1.14rem, 1.88vw, 1.32rem);
-  margin-top: auto;
-}
-
-.astreal-services-timeline__static-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin-bottom: 0.85rem;
-  border-radius: 50%;
-  background: rgba(197, 160, 89, 0.2);
-  border: 1px solid rgba(197, 160, 89, 0.45);
-  color: rgba(244, 232, 210, 0.95);
-}
-
-.astreal-services-page__card {
-  position: relative;
-  padding: clamp(1.25rem, 3vw, 1.65rem) clamp(1.15rem, 2.8vw, 1.5rem);
-  border-radius: clamp(12px, 1.5vw, 16px);
-  border: 1px solid rgba(130, 175, 220, 0.18);
-  background:
-    radial-gradient(ellipse 80% 60% at 0% 0%, rgba(90, 140, 200, 0.1) 0%, transparent 55%),
-    linear-gradient(155deg, rgba(14, 26, 44, 0.72) 0%, rgba(8, 14, 24, 0.55) 100%);
+  border: 2px solid rgba(150, 205, 255, 0.62);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 18px 44px rgba(0, 0, 0, 0.28);
-  scroll-margin-top: clamp(5rem, 12vh, 6.5rem);
+    0 14px 42px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(197, 160, 89, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
-.astreal-services-timeline .astreal-services-page__card {
-  border: 2px solid rgba(150, 210, 255, 0.88);
+.astreal-services-page .service-list .service-card:hover {
+  border-color: rgba(185, 225, 255, 0.88);
   box-shadow:
-    inset 0 1px 0 rgba(210, 240, 255, 0.14),
-    0 0 24px rgba(120, 195, 255, 0.22),
-    0 18px 44px rgba(0, 0, 0, 0.28);
+    0 22px 64px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(197, 160, 89, 0.45),
+    0 0 36px rgba(100, 175, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.astreal-services-page__card-title {
-  margin: 0 0 clamp(0.75rem, 1.8vw, 1rem);
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.15rem, 2.2vw, 1.42rem);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  line-height: 1.15;
-  color: rgba(244, 232, 210, 0.98);
+/* Uniform card footprint — same height for every service (homepage-style grid) */
+.astreal-services-page .service-list .service-inner {
+  --astreal-service-card-h: clamp(560px, 48vw, 620px);
+  height: var(--astreal-service-card-h);
+  min-height: var(--astreal-service-card-h);
+  max-height: var(--astreal-service-card-h);
+  align-items: stretch;
 }
 
-.astreal-services-page__card-figure {
-  margin: 0 0 clamp(0.85rem, 2vw, 1.1rem);
-  border-radius: clamp(8px, 1vw, 12px);
-  overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.22);
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  aspect-ratio: 16 / 9;
-  background: rgba(6, 12, 22, 0.6);
-}
-
-.astreal-services-page__card-img {
-  display: block;
-  width: 100%;
+.astreal-services-page .service-list .service-media {
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.astreal-services-page__card-body {
-  position: relative;
+  min-height: 0;
+  max-height: 100%;
+  padding: clamp(0.35rem, 1.2vw, 0.75rem);
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  gap: clamp(0.68rem, 1.35vw, 0.92rem);
-  padding: clamp(0.15rem, 0.5vw, 0.35rem) 0 clamp(0.08rem, 0.35vw, 0.2rem);
-  padding-left: clamp(0.95rem, 2vw, 1.25rem);
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(197, 160, 89, 0.18);
 }
 
-.astreal-services-page__card-body::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.08rem;
-  bottom: 0.12rem;
-  width: 2px;
-  border-radius: 2px;
-  background: linear-gradient(
-    180deg,
-    rgba(197, 160, 89, 0.82) 0%,
-    rgba(130, 182, 228, 0.45) 48%,
-    rgba(197, 160, 89, 0.22) 100%
-  );
-  box-shadow: 0 0 12px rgba(100, 165, 225, 0.15);
+.astreal-services-page .service-list .service-img {
+  width: auto;
+  height: auto;
+  max-width: 94%;
+  max-height: 94%;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center center;
 }
 
-.astreal-services-page__card-body p {
-  margin: 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.02rem, 1.48vw, 1.12rem);
-  font-weight: 400;
-  font-feature-settings:
-    'kern' 1,
-    'liga' 1,
-    'onum' 1;
-  letter-spacing: 0.022em;
-  line-height: 1.82;
-  color: rgba(202, 218, 236, 0.96);
-  text-wrap: pretty;
-  text-shadow: 0 1px 14px rgba(0, 8, 20, 0.28);
+.astreal-services-page .service-list .service-card:hover .service-img {
+  transform: scale(1.03);
+  filter: saturate(1.06) contrast(1.02);
 }
 
-.astreal-services-page__card-tagline {
-  position: relative;
-  margin: clamp(1rem, 2.2vw, 1.35rem) 0 0;
-  padding: clamp(1.05rem, 2vw, 1.35rem) clamp(0.5rem, 1.5vw, 0.85rem) 0;
-  padding-left: clamp(1.15rem, 2.6vw, 1.55rem);
-  border-top: 1px solid rgba(130, 185, 225, 0.22);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 -1px 0 rgba(197, 160, 89, 0.42);
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.1rem, 1.82vw, 1.26rem);
-  font-style: italic;
+.astreal-services-page .service-list .service-text {
+  justify-content: flex-start;
+  align-self: stretch;
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  padding: clamp(1.75rem, 2.8vw, 2.45rem) clamp(1.5rem, 2.6vw, 2.25rem);
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  border-left: 2px solid rgba(150, 200, 245, 0.5);
+}
+
+.astreal-services-page .service-list .service-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.astreal-services-page .service-list .service-text::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(150, 195, 235, 0.35);
+}
+
+.astreal-services-page .service-list .service-text::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 160, 89, 0.55);
+}
+
+.astreal-services-page .service-list .service-inner.img-left .service-text {
+  border-left: none;
+  border-right: 2px solid rgba(150, 200, 245, 0.5);
+}
+
+.astreal-services-page .service-text .service-eyebrow {
+  flex-shrink: 0;
+  font-size: clamp(0.68rem, 1vw, 0.76rem);
   font-weight: 600;
-  letter-spacing: 0.06em;
-  line-height: 1.5;
-  color: rgba(236, 224, 196, 0.98);
-  text-shadow: 0 1px 18px rgba(0, 10, 24, 0.32);
+  letter-spacing: 0.18em;
+  margin-bottom: 0.45rem;
+  color: rgba(200, 225, 248, 0.92);
 }
 
-.astreal-services-page__card-tagline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: clamp(1.05rem, 2vw, 1.35rem);
-  bottom: 0;
-  width: 3px;
-  border-radius: 2px;
-  background: linear-gradient(
-    180deg,
-    rgba(197, 160, 89, 0.95) 0%,
-    rgba(150, 198, 245, 0.75) 55%,
-    rgba(197, 160, 89, 0.35) 100%
-  );
-  box-shadow: 0 0 12px rgba(197, 160, 89, 0.22);
+.astreal-services-page .service-text h3 {
+  flex-shrink: 0;
+  font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+  margin: 0.25rem 0 0.85rem;
+  padding-bottom: 0.75rem;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.astreal-services-page .service-text h3::after {
+  width: 64px;
+  height: 2px;
+}
+
+.astreal-services-page .service-text > p:not(.service-eyebrow) {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.98rem, 1.35vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.74;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.astreal-services-page .service-text > p:not(.service-eyebrow) + p {
+  margin-top: 0.7rem;
+}
+
+.astreal-services-page .service-text .tags {
+  flex-shrink: 0;
+  margin-top: clamp(1rem, 2vw, 1.35rem);
+}
+
+.astreal-services-page .service-text .tags span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.72rem, 1vw, 0.8rem);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 0.85rem;
+  text-wrap: pretty;
+  color: rgba(255, 255, 255, 0.82);
+  border-color: rgba(160, 200, 235, 0.45);
+}
+
+@media (max-width: 900px) {
+  .astreal-services-page .service-list .service-inner {
+    --astreal-service-card-h: auto;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .astreal-services-page .service-list .service-media {
+    height: clamp(240px, 52vw, 280px);
+    min-height: clamp(240px, 52vw, 280px);
+    max-height: clamp(240px, 52vw, 280px);
+  }
+
+  .astreal-services-page .service-list .service-img {
+    min-height: 0;
+  }
+
+  .astreal-services-page .service-list .service-text {
+    height: auto;
+    min-height: clamp(280px, 72vw, 360px);
+    max-height: clamp(280px, 72vw, 360px);
+    padding: clamp(1.25rem, 4vw, 1.65rem) clamp(1.1rem, 4vw, 1.4rem);
+    border-left: none;
+    border-right: none;
+    border-top: 2px solid rgba(150, 200, 245, 0.5);
+  }
+
+  .astreal-services-page .service-list .service-inner.img-left .service-text {
+    border-top: 2px solid rgba(150, 200, 245, 0.5);
+  }
+
+  .astreal-services-page .service-text .service-eyebrow {
+    font-size: 0.7rem;
+  }
+
+  .astreal-services-page .service-text h3 {
+    font-size: clamp(1.55rem, 5.5vw, 2rem);
+  }
+
+  .astreal-services-page .service-text > p:not(.service-eyebrow) {
+    font-size: clamp(0.94rem, 3.8vw, 1.02rem);
+    line-height: 1.7;
+  }
+
+  .astreal-services-page .service-text .tags span {
+    font-size: 0.74rem;
+    padding: 0.48rem 0.75rem;
+  }
 }
 
 .astreal-hero {

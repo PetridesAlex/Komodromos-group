@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'motion/react'
+import { motion, useInView, useReducedMotion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import {
   TAX_INCOME_CALCULATOR_PATH,
@@ -20,7 +20,10 @@ import { isJccPaymentsEnabled } from '../lib/jccPayments'
 import { getTaxPlanCheckoutUrl, isValidHttpUrl } from '../lib/taxPlanCheckout'
 import TaxNexCorporateServicesSection from './TaxNexCorporateServicesSection'
 import TaxNexFaqSection from './TaxNexFaqSection'
+import LanguageSwitcher from './LanguageSwitcher'
+import TaxNexPageNav from './TaxNexPageNav'
 import TaxNexTopbarSocials from './TaxNexTopbarSocials'
+import TaxPagePromoBar from './TaxPagePromoBar'
 import TaxMeetingRequestModal from './TaxMeetingRequestModal'
 import TaxNewsletterLeadModal from './TaxNewsletterLeadModal'
 import TaxPlanCheckoutModal from './TaxPlanCheckoutModal'
@@ -83,6 +86,43 @@ const taxStepHoverTap = {
   tap: { scale: 0.97, y: -2, transition: { type: 'spring' as const, stiffness: 500, damping: 28 } },
 } as const
 
+const taxStageCardContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.08 },
+  },
+} as const
+
+const taxStageCardItem = {
+  hidden: {
+    opacity: 0,
+    y: 36,
+    scale: 0.92,
+    filter: 'blur(10px)',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      type: 'spring' as const,
+      stiffness: 320,
+      damping: 24,
+      mass: 0.72,
+    },
+  },
+} as const
+
+const taxStageCardHover = {
+  rest: { y: 0, scale: 1 },
+  hover: {
+    y: -10,
+    scale: 1.025,
+    transition: { type: 'spring' as const, stiffness: 400, damping: 20, mass: 0.55 },
+  },
+} as const
+
 export default function TaxNexCyprusPage() {
   const reduceMotion = useReducedMotion()
   const { t, i18n } = useTranslation()
@@ -94,6 +134,8 @@ export default function TaxNexCyprusPage() {
   const taxPricingPlans = getTaxNexPricingPlans(locale)
   const taxServiceStages = getTaxNexServiceStages(locale)
   const taxSteps = getTaxNexSteps(locale)
+  const stageGridRef = useRef<HTMLDivElement>(null)
+  const stageGridInView = useInView(stageGridRef, VIEW)
   const taxToolCards = getTaxNexToolCards(locale)
   const [showCookieNotice, setShowCookieNotice] = useState(false)
   const [meetingModalOpen, setMeetingModalOpen] = useState(false)
@@ -140,13 +182,20 @@ export default function TaxNexCyprusPage() {
 
   return (
     <div className="taxnex-root" lang={i18n.resolvedLanguage === 'en' ? 'en' : 'el'}>
-      <div className="taxnex-topbar">
-        <div className="container taxnex-topbar__inner taxnex-topbar__inner--socials">
-          <div className="taxnex-topbar__address">
-            <span className="taxnex-topbar__pin" aria-hidden />
-            <span className="taxnex-topbar__text">{taxAddressLine}</span>
+      <div className="taxnex-chrome">
+        <TaxPagePromoBar />
+        <div className="taxnex-topbar">
+          <div className="container taxnex-topbar__inner taxnex-topbar__inner--nav">
+            <div className="taxnex-topbar__actions">
+              <TaxNexPageNav />
+              <LanguageSwitcher />
+            </div>
+            <div className="taxnex-topbar__address">
+              <span className="taxnex-topbar__pin" aria-hidden />
+              <span className="taxnex-topbar__text">{taxAddressLine}</span>
+            </div>
+            <TaxNexTopbarSocials />
           </div>
-          <TaxNexTopbarSocials />
         </div>
       </div>
 
@@ -191,7 +240,12 @@ export default function TaxNexCyprusPage() {
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE, delay: 0.42 }}
             >
-              <p className="taxnex-hero__stage">{t('tax.stage1')}</p>
+              <p className="taxnex-hero__stage" role="status" aria-label={t('tax.stage1')}>
+                <span className="taxnex-hero__stage-num" aria-hidden>
+                  1
+                </span>
+                <span className="taxnex-hero__stage-text">{t('tax.stageWord')}</span>
+              </p>
               <div className="taxnex-hero__cta-row">
                 <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to={TAX_INCOME_CALCULATOR_PATH}>
                   {t('tax.calculateTax')}
@@ -328,7 +382,12 @@ export default function TaxNexCyprusPage() {
             <h2 id="tax-services-h" className="taxnex-h2">
               {t('tax.whatWeProvide')}
             </h2>
-            <p className="taxnex-section__stage">{t('tax.stage2')}</p>
+            <p className="taxnex-section__stage taxnex-hero__stage" role="status" aria-label={t('tax.stage2')}>
+              <span className="taxnex-hero__stage-num" aria-hidden>
+                2
+              </span>
+              <span className="taxnex-hero__stage-text">{t('tax.stageWord')}</span>
+            </p>
             <p className="taxnex-muted taxnex-section__intro">
               {t('tax.servicesIntro')}
             </p>
@@ -405,22 +464,56 @@ export default function TaxNexCyprusPage() {
             })}
           </div>
 
-          <div className="taxnex-stage-grid">
+          <motion.div
+            key={locale}
+            ref={stageGridRef}
+            className="taxnex-stage-grid"
+            variants={reduceMotion ? undefined : taxStageCardContainer}
+            initial={reduceMotion ? false : 'hidden'}
+            animate={reduceMotion ? undefined : stageGridInView ? 'visible' : 'hidden'}
+          >
             {taxServiceStages.map((item, i) => (
               <motion.article
-                key={item.stage}
-                className="taxnex-stage-card"
-                initial={reduceMotion ? false : { opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={VIEW}
-                transition={{ duration: 0.5, ease: EASE, delay: reduceMotion ? 0 : i * 0.07 }}
+                key={`tax-stage-card-${i + 1}`}
+                className={`taxnex-stage-card taxnex-stage-card--step-${i + 1}`}
+                variants={reduceMotion ? undefined : taxStageCardItem}
+                animate={
+                  reduceMotion
+                    ? undefined
+                    : stageGridInView
+                      ? {
+                          opacity: 1,
+                          filter: 'blur(0px)',
+                          scale: 1,
+                          y: [0, -5, 0],
+                          transition: {
+                            opacity: { duration: 0.4, ease: EASE },
+                            filter: { duration: 0.4, ease: EASE },
+                            scale: { type: 'spring', stiffness: 320, damping: 24 },
+                            y: {
+                              duration: 4.8,
+                              ease: 'easeInOut',
+                              repeat: Infinity,
+                              repeatType: 'mirror',
+                              delay: 0.6 + i * 0.45,
+                            },
+                          },
+                        }
+                      : undefined
+                }
+                whileHover={reduceMotion ? undefined : taxStageCardHover.hover}
               >
-                <span className="taxnex-stage-card__badge">{item.stage}</span>
+                <div className="taxnex-stage-card__badge" aria-label={item.stage}>
+                  <span className="taxnex-stage-card__badge-num" aria-hidden>
+                    {i + 1}
+                  </span>
+                  <span className="taxnex-stage-card__badge-text">{t('tax.stageWord')}</span>
+                </div>
                 <h3 className="taxnex-stage-card__title">{item.title}</h3>
                 <p className="taxnex-stage-card__body">{item.body}</p>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

@@ -2,6 +2,8 @@ export type ServiceCard = {
   slug: string
   eyebrow: string
   title: string
+  /** Optional label for the topbar Solutions dropdown only */
+  navTitle?: string
   description: string
   tags: string[]
   image: string
@@ -57,6 +59,7 @@ export const serviceCards: ServiceCard[] = [
     slug: 'storage',
     eyebrow: 'SECURE LOGISTICS',
     title: 'Storage2Rent',
+    navTitle: 'Self Storage Services',
     description:
       'Enterprise-grade warehousing and container capacity for businesses that need space, security, and predictable monthly terms.',
     tags: ['INVENTORY FLOW', 'SECURE STORAGE', 'DISTRIBUTION SUPPORT'],
@@ -90,6 +93,7 @@ export const serviceCards: ServiceCard[] = [
     slug: 'astreal',
     eyebrow: 'CAPITAL & DEVELOPMENT',
     title: 'Astreal Developers',
+    navTitle: 'Property Developers',
     description:
       'End-to-end real estate structuring, from opportunity analysis to development strategy and portfolio growth.',
     tags: ['PROJECT PLANNING', 'INVESTMENT ADVISORY', 'ASSET MANAGEMENT'],
@@ -123,6 +127,7 @@ export const serviceCards: ServiceCard[] = [
     slug: 'janchapelle',
     eyebrow: 'BRIDAL & COUTURE',
     title: 'Janchapelle — All About Weddings',
+    navTitle: 'Janchapelle - Luxury Bridal Collection',
     description:
       'One of the leading Wedding Dress houses. High-end fabrications and meticulous sewing techniques for brides who demand perfection.',
     tags: ['BRIDAL COUTURE', 'CUSTOM FITTINGS', 'LUXURY FABRICS'],
@@ -152,3 +157,4 @@ export function getServiceBySlug(slug: string | undefined) {
 export function getServicePagePath(slug: string): string {
   return `/services/${slug}`
 }
+

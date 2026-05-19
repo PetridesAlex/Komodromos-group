@@ -1,6 +1,8 @@
+import { astrealAboutImage } from './astrealDevelopersPage'
+
 const OUR_SERVICES_IMAGES = '/images/services/Astreal-Developers/our-services'
 
-export const ASTREAL_OUR_SERVICES_HERO_IMAGE = `${OUR_SERVICES_IMAGES}/our-services-cover.webp`
+export const ASTREAL_OUR_SERVICES_HERO_IMAGE = astrealAboutImage
 
 export type AstrealServiceBlock = {
   id: string
@@ -22,7 +24,7 @@ export const ASTREAL_OUR_SERVICES_PAGE = {
     {
       id: 'build',
       title: 'Build',
-      image: `${OUR_SERVICES_IMAGES}/build-our-services.webp`,
+      image: `${OUR_SERVICES_IMAGES}/our-services-build.webp`,
       imageAlt: 'Construction and build services by Astreal Developers',
       paragraphs: [
         'We have the knowhow and technical experience, offer constant supervision which are updated. This results in a flawless materialization the projects.',
@@ -36,7 +38,7 @@ export const ASTREAL_OUR_SERVICES_PAGE = {
     {
       id: 'design',
       title: 'Design',
-      image: `${OUR_SERVICES_IMAGES}/design-our-services.webp`,
+      image: `${OUR_SERVICES_IMAGES}/our-services-design.webp`,
       imageAlt: 'Interior and architectural design by Astreal Developers',
       paragraphs: [
         'Our work is extraordinary, imprinting in every single step of the selection, preparation, design and construction processes, our own in- depth knowledge of the idiosyncrasies of islandic life, our own experiences on numerous successful prime Cyprus projects and our own proactive, client-oriented approach.',
@@ -49,7 +51,7 @@ export const ASTREAL_OUR_SERVICES_PAGE = {
     {
       id: 'strategy',
       title: 'Strategy',
-      image: `${OUR_SERVICES_IMAGES}/strategy-our-services.webp`,
+      image: `${OUR_SERVICES_IMAGES}/our-services-strategy.webp`,
       imageAlt: 'Real estate strategy and turnkey developments in Cyprus',
       paragraphs: [
         'We deliver to our clients, turnkey-ready to live in, fully furnished estates, luxury villas, where inspiration and sophisticated design meet with idyllic landscapes, bedazzling panoramic views, daring style and high-end innovative solutions, all serving the highest standards of functionality and comfort.',
@@ -59,7 +61,7 @@ export const ASTREAL_OUR_SERVICES_PAGE = {
     {
       id: 'real-estate-advisory',
       title: 'Real Estate Advisory',
-      image: `${OUR_SERVICES_IMAGES}/real-estate-advisory.webp`,
+      image: `${OUR_SERVICES_IMAGES}/our-services-real-estate-advisory.webp`,
       imageAlt: 'Real estate advisory and investment guidance in Cyprus',
       paragraphs: [
         'Our clients can utilize the residential property market as an alternative investment strategy in their portfolios thanks to our real estate knowledge.',
@@ -70,7 +72,7 @@ export const ASTREAL_OUR_SERVICES_PAGE = {
     {
       id: 'property-valuation',
       title: 'Property Valuation and Survey',
-      image: `${OUR_SERVICES_IMAGES}/property-valuation-survey-our-services.webp`,
+      image: `${OUR_SERVICES_IMAGES}/our-services-propery-valuation.webp`,
       imageAlt: 'Property valuation and survey services in Cyprus',
       paragraphs: [
         'Our team of certified valuers provide valuation services for commercial, residential and hotel properties to banks, property companies, developers, investors and fund managers.',
@@ -82,7 +84,7 @@ export const ASTREAL_OUR_SERVICES_PAGE = {
     {
       id: 'development',
       title: 'Development',
-      image: `${OUR_SERVICES_IMAGES}/development-our-services.webp`,
+      image: `${OUR_SERVICES_IMAGES}/our-services-developement.webp`,
       imageAlt: 'Property development and redevelopment in Cyprus',
       paragraphs: [
         'Our many years of real estate knowledge help us recognize properties that have been neglected but have a lot of potentials.',

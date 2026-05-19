@@ -106,7 +106,9 @@ export default function SiteTopbar({
                       className="nav-dropdown__link"
                       onClick={close}
                     >
-                      <span className="nav-dropdown__title">{card.title}</span>
+                      <span className="nav-dropdown__title">
+                        {card.navTitle ?? card.title}
+                      </span>
                     </Link>
                   </li>
                 ))}

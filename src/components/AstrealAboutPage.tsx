@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
+import AstrealPageNav from './AstrealPageNav'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { astrealAboutImage } from '../data/astrealDevelopersPage'
@@ -64,13 +64,22 @@ export default function AstrealAboutPage() {
         transition: { type: 'spring' as const, stiffness: 70, damping: 22, delay: 0.42 },
       }
 
-  const aboutImage = reduceMotion
+  const aboutCover = reduceMotion
     ? {}
     : {
-        initial: { opacity: 0, x: -48, scale: 1.04 },
-        whileInView: { opacity: 1, x: 0, scale: 1 },
+        initial: { opacity: 0, scale: 1.03 },
+        whileInView: { opacity: 1, scale: 1 },
         viewport: VIEW,
-        transition: { duration: 0.85, ease: aboutEase, delay: 0.12 },
+        transition: { duration: 0.9, ease: aboutEase, delay: 0.05 },
+      }
+
+  const aboutPanel = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, x: 40 },
+        whileInView: { opacity: 1, x: 0 },
+        viewport: VIEW,
+        transition: { duration: 0.78, ease: aboutEase, delay: 0.18 },
       }
 
   return (
@@ -82,70 +91,62 @@ export default function AstrealAboutPage() {
         servicesSectionHref="/#services"
       />
 
-      <main className="astreal-about-page">
-        <div className="astreal-about-page__shell">
-          <nav className="astreal-detail-breadcrumb" aria-label="Breadcrumb">
-            <Link to="/services/astreal">Astreal Developers</Link>
-            <span className="astreal-detail-breadcrumb__sep" aria-hidden>
-              /
-            </span>
-            <span className="astreal-detail-breadcrumb__current">About us</span>
-          </nav>
+      <main className="astreal-about-page astreal-about-page--hero">
+        <motion.div className="astreal-about-page__shell astreal-about-page__shell--nav">
+          <AstrealPageNav currentLabel="About us" />
+        </motion.div>
 
-          <section
-            className="astreal-about astreal-about--premium astreal-about--page-layout"
-            aria-labelledby="astreal-about-heading"
-          >
-            <motion.div className="astreal-about__grid astreal-about-page__grid">
-              <motion.figure className="astreal-about-page__figure" {...aboutImage}>
-                <img
-                  src={astrealAboutImage}
-                  alt="ASTREAL Developers — architecture and development in Cyprus"
-                  width={2240}
-                  height={1260}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="astreal-about-page__figure-accent" aria-hidden />
-              </motion.figure>
+        <section
+          className="astreal-about-page__hero astreal-about astreal-about--premium astreal-about--cover"
+          aria-labelledby="astreal-about-heading"
+        >
+            <motion.div className="astreal-about-page__cover" {...aboutCover}>
+              <img
+                className="astreal-about-page__cover-img"
+                src={astrealAboutImage}
+                alt="ASTREAL Developers — architecture and development in Cyprus"
+                width={2240}
+                height={1260}
+                fetchPriority="high"
+                decoding="async"
+              />
 
-              <motion.div className="astreal-about-page__content">
-              <header className="astreal-about-page__masthead">
-                <motion.h1
-                  id="astreal-about-heading"
-                  className="astreal-about-page__heading"
-                  {...aboutTitleMotion}
-                >
-                  About us
-                </motion.h1>
-              </header>
+              <motion.div className="astreal-about-page__cover-panel" {...aboutPanel}>
+                <header className="astreal-about-page__masthead">
+                  <motion.h1
+                    id="astreal-about-heading"
+                    className="astreal-about-page__heading"
+                    {...aboutTitleMotion}
+                  >
+                    About us
+                  </motion.h1>
+                </header>
 
-              <motion.span className="astreal-about__eyebrow astreal-about-page__eyebrow" {...aboutEyebrow}>
-                Who we are
-              </motion.span>
+                <motion.span className="astreal-about__eyebrow astreal-about-page__eyebrow" {...aboutEyebrow}>
+                  Who we are
+                </motion.span>
 
-              <motion.p className="astreal-lead astreal-lead--about astreal-about-page__lead" {...aboutLead}>
-                <strong>ASTREAL Developers</strong> provides integrated services in architectural design,
-                construction, development and project management.
-              </motion.p>
+                <motion.p className="astreal-lead astreal-lead--about astreal-about-page__lead" {...aboutLead}>
+                  <strong>ASTREAL Developers</strong> provides integrated services in architectural design,
+                  construction, development and project management.
+                </motion.p>
 
-              <motion.p className="astreal-about__prose astreal-about-page__prose" {...aboutPara}>
-                We insist on design excellence, with a primary commitment to excellent customer service.
-                Based on extensive and many years of professional experience, our office is a valuable and
-                reliable professional partner for the development of property — working to maximize its
-                performance.
-              </motion.p>
+                <motion.p className="astreal-about__prose astreal-about-page__prose" {...aboutPara}>
+                  We insist on design excellence, with a primary commitment to excellent customer service.
+                  Based on extensive and many years of professional experience, our office is a valuable and
+                  reliable professional partner for the development of property — working to maximize its
+                  performance.
+                </motion.p>
 
-              <motion.blockquote className="astreal-quote astreal-quote--about-page" {...aboutQuote}>
-                <p>
-                  We understand that a home is not just a place. We build to ensure comfort for a lifetime
-                  in our homes.
-                </p>
-              </motion.blockquote>
+                <motion.blockquote className="astreal-quote astreal-quote--about-page" {...aboutQuote}>
+                  <p>
+                    We understand that a home is not just a place. We build to ensure comfort for a lifetime
+                    in our homes.
+                  </p>
+                </motion.blockquote>
               </motion.div>
             </motion.div>
-          </section>
-        </div>
+        </section>
       </main>
 
       <Footer />

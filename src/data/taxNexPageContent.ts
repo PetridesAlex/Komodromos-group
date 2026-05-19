@@ -40,7 +40,7 @@ export const TAX_NEX_SERVICE_STAGES: TaxNexServiceStage[] = [
     stage: 'ΣΤΑΔΙΟ 1',
     title: 'Συμβουλευτική & προετοιμασία φακέλου',
     body:
-      'Αξιολόγηση της φορολογικής σας κατάστασης, συλλογή δικαιολογητικών και σαφής οδηγός για τα επόμενα βήματα πριν από την υποβολή.',
+      'Αξιολόγηση της φορολογικής σας κατάστασης, με δυνατότητα να υπολογίσετε τον φόρο σας online, συλλογή δικαιολογητικών και σαφής οδηγός για τα επόμενα βήματα πριν από την υποβολή.',
   },
   {
     stage: 'ΣΤΑΔΙΟ 2',
@@ -213,7 +213,7 @@ const TAX_NEX_SERVICE_STAGES_EN: TaxNexServiceStage[] = [
     stage: 'STAGE 1',
     title: 'Advisory & file preparation',
     body:
-      'Assessment of your tax profile, document collection, and a clear guide for the next steps before submission.',
+      'Assessment of your tax profile, with the ability to calculate your tax online, document collection, and a clear guide for the next steps before submission.',
   },
   {
     stage: 'STAGE 2',

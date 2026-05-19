@@ -1,18 +1,14 @@
 import { useCallback, useEffect } from 'react'
-import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { Navigate, useLocation, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
-import LanguageSwitcher from './LanguageSwitcher'
 import { useReveal } from '../hooks/useReveal'
 import { getServiceBySlug } from '../data/serviceCards'
 import { getServicePageContent } from '../data/servicePageSections'
-import { TAX_NEX_FAQ_SECTION_ID } from '../data/taxNexFaqData'
 import VipServicesGrid from './VipServicesGrid'
 import StoragePremiumSection from './StoragePremiumSection'
 import ServiceDefaultSections from './ServiceDefaultSections'
 import TaxNexCyprusPage from './TaxNexCyprusPage'
-import TaxPagePromoBar from './TaxPagePromoBar'
 
 const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
 const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
@@ -20,7 +16,6 @@ const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
 export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const location = useLocation()
-  const { t } = useTranslation()
   const card = getServiceBySlug(slug)
   const defaultContent = slug ? getServicePageContent(slug) : undefined
   const pageRef = useReveal()
@@ -91,90 +86,6 @@ export default function ServiceDetailPage() {
               </a>
             </nav>
           </div>
-        </div>
-      ) : slug === 'tax' ? (
-        <div className="tax-page-nav-stack">
-          <div className="tax-page-subnav" aria-label={t('serviceDetail.taxNavAria')}>
-            <div className="container">
-              <nav className="tax-page-subnav__inner">
-                <a href="#tax-hero" className="tax-page-subnav__link">
-                  {t('serviceDetail.intro')}
-                </a>
-                <Link to="/services/tax/services" className="tax-page-subnav__link">
-                  {t('serviceDetail.services')}
-                </Link>
-                <a href="#tax-pricing" className="tax-page-subnav__link">
-                  {t('serviceDetail.packages')}
-                </a>
-                <a href="#tax-mission" className="tax-page-subnav__link">
-                  {t('serviceDetail.mission')}
-                </a>
-                <a href="#tax-steps" className="tax-page-subnav__link">
-                  {t('serviceDetail.steps')}
-                </a>
-                <a href="#tax-trust" className="tax-page-subnav__link">
-                  {t('serviceDetail.trust')}
-                </a>
-                <div className="tax-page-subnav__tools">
-                  <a href="#tax-tools" className="tax-page-subnav__link">
-                    {t('serviceDetail.tools')}
-                  </a>
-                  <div className="tax-page-subnav__tools-menu" role="menu" aria-label={t('serviceDetail.taxToolsMenuAria')}>
-                    <Link
-                      to="/services/tax/income-tax-calculator"
-                      className="tax-page-subnav__tools-item"
-                      role="menuitem"
-                    >
-                      {t('serviceDetail.incomeTaxCalc')}
-                    </Link>
-                    <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                      {t('serviceDetail.taxResidenceCheck')}
-                    </a>
-                    <Link
-                      to="/services/tax/transfer-fees-calculator"
-                      className="tax-page-subnav__tools-item"
-                      role="menuitem"
-                    >
-                      {t('serviceDetail.transferFeesCalc')}
-                    </Link>
-                    <Link
-                      to="/services/tax/income-tax-calculator"
-                      className="tax-page-subnav__tools-item"
-                      role="menuitem"
-                    >
-                      {t('serviceDetail.taxExemption20')}
-                    </Link>
-                    <Link
-                      to="/services/tax/income-tax-calculator"
-                      className="tax-page-subnav__tools-item"
-                      role="menuitem"
-                    >
-                      {t('serviceDetail.taxExemption50')}
-                    </Link>
-                    <a href="#tax-tools" className="tax-page-subnav__tools-item" role="menuitem">
-                      FORM TD59
-                    </a>
-                  </div>
-                </div>
-                <a href="#tax-changes-2026" className="tax-page-subnav__link">
-                  {t('serviceDetail.changes2026')}
-                </a>
-                <Link to={`/services/tax#${TAX_NEX_FAQ_SECTION_ID}`} className="tax-page-subnav__link">
-                  {t('serviceDetail.faq')}
-                </Link>
-                <a href="#tax-newsletter" className="tax-page-subnav__link">
-                  {t('serviceDetail.updates')}
-                </a>
-                <a href="#tax-contact" className="tax-page-subnav__link tax-page-subnav__link--cta">
-                  {t('serviceDetail.request')}
-                </a>
-                <div className="tax-page-subnav__lang">
-                  <LanguageSwitcher />
-                </div>
-              </nav>
-            </div>
-          </div>
-          <TaxPagePromoBar />
         </div>
       ) : null}
 

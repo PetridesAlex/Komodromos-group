@@ -85,6 +85,10 @@ export const astrealProjectCards: AstrealProject[] = [
     imageAlt: 'ASTRON Villas residential architecture',
     meta: ['Villas', 'Private pool', 'Kiti'],
     detailHeroSrc: `${ASTREAL_ASSETS}/astron-project/astron-project-2.webp`,
+    detailCopyImageBreaks: [
+      { beforeLabel: 'Each home includes:', count: 4 },
+      { beforeLabel: 'Price per residence', count: 4 },
+    ],
     gallery: astronGalleryImages,
     highlights: [
       'ASTRON 1 · Kiti Village — Komodromos Group of Companies',
@@ -195,7 +199,11 @@ export const astrealProjectCards: AstrealProject[] = [
     imageSrc: `${ASTREAL_ASSETS}/island-studios/Island-studios-1.webp`,
     imageAlt: 'CORAL luxury residential architecture in Kiti, Larnaca',
     meta: ['Residences', 'Kiti', 'Private pool'],
-    detailHeroSrc: `${ASTREAL_ASSETS}/island-studios/Island-studios-2.webp`,
+    detailHeroSrc: `${ASTREAL_ASSETS}/island-studios/island-studios-6.webp`,
+    detailCopyImageBreaks: [
+      { beforeLabel: 'Designed with exceptional lifestyle amenities including:', count: 4 },
+      { beforeLabel: 'Prime location', count: 4 },
+    ],
     gallery: coralGalleryImages,
     highlights: [
       'CORAL · Kiti, Larnaca — Komodromos Group of Companies',
@@ -236,6 +244,10 @@ export const astrealProjectCards: AstrealProject[] = [
     imageAlt: 'VENUS residential architecture and interiors',
     meta: ['Residences', 'Premium build'],
     detailHeroSrc: `${ASTREAL_ASSETS}/Venus-project/venus-project-6.webp`,
+    detailCopyImageBreaks: [
+      { beforeLabel: 'Signature features', count: 4 },
+      { beforeLabel: 'Location — 📍 Larnaca, Cyprus.', count: 4 },
+    ],
     gallery: venusProjectGalleryImages,
     highlights: [
       'VENUS RESIDENCE — Komodromos Group of Companies',

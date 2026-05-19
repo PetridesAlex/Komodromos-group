@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
+import AstrealPageNav from './AstrealPageNav'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
@@ -8,7 +8,6 @@ import {
   ASTREAL_OUR_SERVICES_HERO_IMAGE,
   ASTREAL_OUR_SERVICES_PAGE,
 } from '../data/astrealOurServicesContent'
-import AstrealServicesTimeline from './AstrealServicesTimeline'
 
 const VIEW = { once: true, amount: 0.28, margin: '-48px 0px' } as const
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -79,13 +78,7 @@ export default function AstrealOurServicesPage() {
 
       <main className="astreal-about-page astreal-services-page">
         <div className="astreal-about-page__shell">
-          <nav className="astreal-detail-breadcrumb" aria-label="Breadcrumb">
-            <Link to="/services/astreal">Astreal Developers</Link>
-            <span className="astreal-detail-breadcrumb__sep" aria-hidden>
-              /
-            </span>
-            <span className="astreal-detail-breadcrumb__current">Our Services</span>
-          </nav>
+          <AstrealPageNav currentLabel="Our Services" />
 
           <section
             className="astreal-about astreal-about--premium astreal-about--page-layout"
@@ -126,7 +119,48 @@ export default function AstrealOurServicesPage() {
                 {page.missionBody}
               </motion.p>
 
-              <AstrealServicesTimeline pillars={page.pillars} />
+              <div className="astreal-services-page__list service-list">
+                {page.pillars.map((pillar, index) => (
+                  <article
+                    key={pillar.id}
+                    id={pillar.id}
+                    className="service-card reveal-scale reveal"
+                  >
+                    <div
+                      className={`service-inner ${index % 2 !== 0 ? 'img-left' : ''}`}
+                    >
+                      <div className="service-media">
+                        <div className="service-card-badge" aria-hidden>
+                          <span className="service-card-badge__num">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <span className="service-card-badge__rule" />
+                          <span className="service-card-badge__eyebrow">{pillar.title}</span>
+                        </div>
+                        <img
+                          src={pillar.image}
+                          alt={pillar.imageAlt}
+                          className="service-img"
+                          width={800}
+                          height={450}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                      <div className="service-text">
+                        <p className="service-eyebrow">Astreal Developers</p>
+                        <h3>{pillar.title}</h3>
+                        {pillar.paragraphs.map((para) => (
+                          <p key={para.slice(0, 48)}>{para}</p>
+                        ))}
+                        <div className="tags">
+                          <span>{pillar.tagline}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </section>
         </div>
