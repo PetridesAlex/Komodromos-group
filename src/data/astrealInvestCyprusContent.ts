@@ -112,8 +112,5 @@ export const ASTREAL_INVEST_CYPRUS_INTRO = {
       image: `${INVEST_PHOTOS}/invest-cyprus-3.webp`,
       imageAlt: 'Residency and citizenship programmes in Cyprus',
     },
-    {
-      text: 'Euro currency',
-    },
   ] as AstrealInvestHighlight[],
 }

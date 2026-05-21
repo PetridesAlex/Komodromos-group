@@ -41,8 +41,6 @@ export type TaxCorporateServiceRow = {
   imageWidth: number
   imageHeight: number
   imagePosition: string
-  /** Flip image/card sides on desktop (row 2) */
-  reverse: boolean
 }
 
 export const TAX_CORPORATE_SERVICE_ROWS: TaxCorporateServiceRow[] = [
@@ -67,7 +65,6 @@ export const TAX_CORPORATE_SERVICE_ROWS: TaxCorporateServiceRow[] = [
     imageWidth: 1200,
     imageHeight: 762,
     imagePosition: 'center 42%',
-    reverse: false,
   },
   {
     card: {
@@ -90,7 +87,6 @@ export const TAX_CORPORATE_SERVICE_ROWS: TaxCorporateServiceRow[] = [
     imageWidth: 1200,
     imageHeight: 633,
     imagePosition: 'center 38%',
-    reverse: true,
   },
 ]
 

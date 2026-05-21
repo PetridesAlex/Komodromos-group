@@ -204,7 +204,7 @@ export default function AstrealDevelopersPage() {
           </div>
         </nav>
         <motion.div className="astreal-hero__bg" aria-hidden {...heroBgReveal}>
-          <motion.img
+          <img
             className="astreal-hero__bg-img"
             src={astrealHeroImage}
             alt=""
@@ -212,13 +212,7 @@ export default function AstrealDevelopersPage() {
             height={1080}
             decoding="async"
             fetchPriority="high"
-            {...(reduceMotion
-              ? {}
-              : {
-                  initial: { scale: 1.14 },
-                  animate: { scale: 1.03 },
-                  transition: { duration: 1.45, ease: EASE, delay: 0.05 },
-                })}
+            sizes="100vw"
           />
           <div className="astreal-hero__scrim" />
           <div className="astreal-hero__vignette" aria-hidden />

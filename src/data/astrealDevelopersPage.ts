@@ -11,7 +11,7 @@ export const astrealHeroImage = `${ASTREAL_ASSETS}/all-photos/astreal-developers
 export const astrealAboutImage = `${ASTREAL_ASSETS}/all-photos/astreal-developers-about-us.webp`
 
 /** ASTRON NOVA project detail — hero cover */
-export const astronNovaDetailHeroImage = `${ASTREAL_ASSETS}/all-photos/astron-propoerty-cover.webp`
+export const astronNovaDetailHeroImage = `${ASTREAL_ASSETS}/astron-nova-project/astron-nova-cover.webp`
 
 /** All photography for ASTRON Villas (Kiti) — folder `astron-project` */
 const astronGalleryImages = [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
@@ -84,7 +84,7 @@ export const astrealProjectCards: AstrealProject[] = [
     imageSrc: `${ASTREAL_ASSETS}/astron-project/astron-project-1.webp`,
     imageAlt: 'ASTRON Villas residential architecture',
     meta: ['Villas', 'Private pool', 'Kiti'],
-    detailHeroSrc: `${ASTREAL_ASSETS}/astron-project/astron-project-2.webp`,
+    detailHeroSrc: `${ASTREAL_ASSETS}/astron-project/astrong-project-cover-1.webp`,
     detailCopyImageBreaks: [
       { beforeLabel: 'Each home includes:', count: 4 },
       { beforeLabel: 'Price per residence', count: 4 },

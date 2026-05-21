@@ -46,7 +46,7 @@ export default function TaxNexCorporateServicesSection() {
             return (
               <motion.article
                 key={row.card.id}
-                className={`taxnex-corp-row${row.reverse ? ' taxnex-corp-row--reverse' : ''}`}
+                className={`taxnex-corp-block${index === 0 ? ' taxnex-corp-block--primary' : ''}`}
                 initial={reduceMotion ? false : { opacity: 0, y: 28 }}
                 whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={VIEW}
@@ -56,8 +56,8 @@ export default function TaxNexCorporateServicesSection() {
                   delay: reduceMotion ? 0 : index * 0.08,
                 }}
               >
-                <figure className="taxnex-corp-row__media">
-                  <div className="taxnex-corp-row__media-inner">
+                <figure className="taxnex-corp-block__media">
+                  <div className="taxnex-corp-block__media-inner">
                     <img
                       src={row.image}
                       alt=""
@@ -65,43 +65,39 @@ export default function TaxNexCorporateServicesSection() {
                       height={row.imageHeight}
                       loading={index === 0 ? 'eager' : 'lazy'}
                       decoding="async"
-                      sizes="(max-width: 899px) 100vw, 50vw"
+                      sizes="(max-width: 899px) 100vw, (max-width: 1199px) 50vw, 33vw"
                       style={{ objectPosition: row.imagePosition }}
                     />
                   </div>
-                  <span className="taxnex-corp-row__media-shade" aria-hidden />
-                  <span className="taxnex-corp-row__media-rim" aria-hidden />
+                  <span className="taxnex-corp-block__scrim" aria-hidden />
+                  <figcaption className="taxnex-corp-block__caption">
+                    <h3 className="taxnex-corp-block__title">
+                      <Link to={row.card.href} className="taxnex-corp-block__title-link">
+                        {copy.title}
+                      </Link>
+                    </h3>
+                    <div className="taxnex-corp-block__actions">
+                      <Link
+                        className="taxnex-btn taxnex-btn--ghost taxnex-corp-block__contact"
+                        to="/contact"
+                        state={{ serviceInterest: 'Tax & Accounting Services' }}
+                      >
+                        {copy.contactCta}
+                      </Link>
+                      <Link
+                        className="taxnex-corp-block__more"
+                        to={row.card.href}
+                        aria-label={copy.readMoreAria}
+                      >
+                        {copy.readMoreCta}
+                        <span className="taxnex-corp-block__more-arrow" aria-hidden>
+                          →
+                        </span>
+                      </Link>
+                    </div>
+                  </figcaption>
+                  <span className="taxnex-corp-block__rim" aria-hidden />
                 </figure>
-
-                <div
-                  className={`taxnex-corp-card taxnex-corp-row__card${index === 0 ? ' taxnex-corp-card--primary' : ''}`}
-                >
-                  <div className="taxnex-corp-card__glow" aria-hidden />
-                  <h3 className="taxnex-corp-card__title">
-                    <Link to={row.card.href} className="taxnex-corp-card__title-link">
-                      {copy.title}
-                    </Link>
-                  </h3>
-                  <div className="taxnex-corp-card__actions">
-                    <Link
-                      className="taxnex-btn taxnex-btn--ghost taxnex-corp-card__contact"
-                      to="/contact"
-                      state={{ serviceInterest: 'Tax & Accounting Services' }}
-                    >
-                      {copy.contactCta}
-                    </Link>
-                    <Link
-                      className="taxnex-corp-card__more"
-                      to={row.card.href}
-                      aria-label={copy.readMoreAria}
-                    >
-                      {copy.readMoreCta}
-                      <span className="taxnex-corp-card__more-arrow" aria-hidden>
-                        →
-                      </span>
-                    </Link>
-                  </div>
-                </div>
               </motion.article>
             )
           })}

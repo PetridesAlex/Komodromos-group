@@ -16,6 +16,7 @@ const POOL_REPAIR_COOLING = `${POOL_PAGE_ASSETS}/Cooling%20and%20Heating.webp`
 const POOL_REPAIR_BAR = `${POOL_PAGE_ASSETS}/Bar-stools.webp`
 const POOL_REPAIR_SWIM_SPAS = `${POOL_PAGE_ASSETS}/Swim-Spas.webp`
 const POOL_REPAIR_SERVICE = `${POOL_PAGE_ASSETS}/Service-maintenance.webp`
+const POOL_REPAIR_GARDEN = `${POOL_PAGE_ASSETS}/garden-services-swimming-pool.webp`
 
 export type PoolGardenShowcaseItem = {
   label: string
@@ -64,6 +65,10 @@ export const poolServiceRenovationRepair: PoolServiceRepairItem[] = [
   {
     label: 'Service and maintenance',
     imageSrc: POOL_REPAIR_SERVICE,
+  },
+  {
+    label: 'Garden services',
+    imageSrc: POOL_REPAIR_GARDEN,
   },
 ]
 
