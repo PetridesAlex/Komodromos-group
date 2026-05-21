@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
@@ -16,16 +16,44 @@ const EASE = [0.22, 1, 0.36, 1] as const
 export default function AstrealDevelopersPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
+  const [projectsMenuOpen, setProjectsMenuOpen] = useState(false)
+  const projectsPickerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
+  useEffect(() => {
+    if (!projectsMenuOpen) return
+
+    function onPointerDown(e: PointerEvent) {
+      if (!projectsPickerRef.current?.contains(e.target as Node)) {
+        setProjectsMenuOpen(false)
+      }
+    }
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setProjectsMenuOpen(false)
+    }
+
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [projectsMenuOpen])
+
   function scrollToProjectsSection() {
+    setProjectsMenuOpen(false)
     document.getElementById('astreal-projects')?.scrollIntoView({
       behavior: reduceMotion ? 'auto' : 'smooth',
       block: 'start',
     })
+  }
+
+  function toggleProjectsMenu() {
+    setProjectsMenuOpen((open) => !open)
   }
 
   /** Above-the-fold hero — mount-driven “live” entrance (not scroll) */
@@ -67,13 +95,15 @@ export default function AstrealDevelopersPage() {
         initial: {
           opacity: 0,
           y: 48,
-          filter: 'blur(22px)',
+          filter:
+            'blur(22px) drop-shadow(0 18px 56px rgba(0, 0, 0, 0)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0))',
           clipPath: 'inset(0 100% 0 0)',
         },
         animate: {
           opacity: 1,
           y: 0,
-          filter: 'blur(0px)',
+          filter:
+            'blur(0px) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55)) drop-shadow(0 10px 40px rgba(0, 0, 0, 0.48)) drop-shadow(0 22px 64px rgba(8, 12, 22, 0.38))',
           clipPath: 'inset(0 0% 0 0)',
         },
         transition: { duration: 1.05, ease: EASE, delay: 0.42 },
@@ -82,8 +112,20 @@ export default function AstrealDevelopersPage() {
   const heroTitleSubLive = reduceMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 36, filter: 'blur(16px)' },
-        animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        initial: {
+          opacity: 0,
+          y: 36,
+          filter: 'blur(16px)',
+          textShadow:
+            '0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(8, 12, 22, 0)',
+        },
+        animate: {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          textShadow:
+            '0 1px 3px rgba(0, 0, 0, 0.6), 0 4px 28px rgba(0, 0, 0, 0.45), 0 14px 52px rgba(8, 12, 22, 0.42)',
+        },
         transition: { duration: 0.95, ease: EASE, delay: 0.56 },
       }
 
@@ -198,6 +240,7 @@ export default function AstrealDevelopersPage() {
               className="astreal-hero__top-link astreal-hero__top-link--premium"
               aria-label="Swimming pool and outdoor services — open Komodromos pool & garden page"
             >
+              <span className="astreal-hero__top-link-promo">Featured service</span>
               <span className="astreal-hero__top-link-main">Swimming pool &amp; outdoor</span>
               <span className="astreal-hero__top-link-sub">Explore pool services →</span>
             </Link>
@@ -232,7 +275,7 @@ export default function AstrealDevelopersPage() {
           <motion.span
             className="astreal-hero__rule"
             aria-hidden
-            style={{ transformOrigin: 'left center' }}
+            style={{ transformOrigin: 'center center' }}
             {...heroRuleLive}
           />
           <h1 id="astreal-hero-title" className="astreal-hero__title">
@@ -245,46 +288,135 @@ export default function AstrealDevelopersPage() {
           </h1>
         </div>
         <div className="astreal-hero__scroll-zone">
-          <button
-            type="button"
-            className="astreal-hero__projects-jump"
-            onClick={scrollToProjectsSection}
-            aria-label="See our projects — scroll to latest projects"
+          <div
+            ref={projectsPickerRef}
+            className={`astreal-hero__projects-picker${projectsMenuOpen ? ' is-open' : ''}`}
           >
-            <span className="astreal-hero__projects-jump-ring" aria-hidden />
-            <span className="astreal-hero__projects-jump-row">
-              <span className="astreal-hero__projects-jump-label">
-                <span className="astreal-hero__projects-jump-kicker">See our</span>
-                <span className="astreal-hero__projects-jump-title">projects</span>
+            <button
+              type="button"
+              className="astreal-hero__projects-jump"
+              onClick={toggleProjectsMenu}
+              aria-expanded={projectsMenuOpen}
+              aria-controls="astreal-hero-projects-menu"
+              aria-haspopup="true"
+              aria-label={
+                projectsMenuOpen
+                  ? 'Close projects list'
+                  : 'See our projects — open project list'
+              }
+            >
+              <span className="astreal-hero__projects-jump-ring" aria-hidden />
+              <span className="astreal-hero__projects-jump-row">
+                <span className="astreal-hero__projects-jump-label">
+                  <span className="astreal-hero__projects-jump-kicker">See our</span>
+                  <span className="astreal-hero__projects-jump-title">projects</span>
+                </span>
+                <span className="astreal-hero__projects-jump-arrows" aria-hidden>
+                  <svg className="astreal-hero__projects-jump-svg" viewBox="0 0 20 40" width="18" height="32">
+                    <path
+                      className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--1"
+                      d="M5 8l5 5 5-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--2"
+                      d="M5 17l5 5 5-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--3"
+                      d="M5 26l5 5 5-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.45"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
               </span>
-              <span className="astreal-hero__projects-jump-arrows" aria-hidden>
-                <svg className="astreal-hero__projects-jump-svg" viewBox="0 0 20 34" width="17" height="28">
-                  <path
-                    className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--1"
-                    d="M5 9l5 5 5-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.75"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--2"
-                    d="M5 18l5 5 5-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.55"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </span>
-          </button>
+            </button>
+            <AnimatePresence initial={false}>
+              {projectsMenuOpen && (
+                <motion.div
+                  id="astreal-hero-projects-menu"
+                  className="astreal-hero__projects-menu"
+                  role="menu"
+                  aria-label="Astreal project portfolio"
+                  initial={
+                    reduceMotion
+                      ? { opacity: 1, height: 'auto' }
+                      : { opacity: 0, height: 0, y: -12 }
+                  }
+                  animate={{ opacity: 1, height: 'auto', y: 0 }}
+                  exit={
+                    reduceMotion
+                      ? { opacity: 0, height: 0 }
+                      : { opacity: 0, height: 0, y: -10 }
+                  }
+                  transition={{ duration: 0.38, ease: EASE }}
+                >
+                  <p className="astreal-hero__projects-menu-kicker">Latest developments</p>
+                  <ul className="astreal-hero__projects-menu-list">
+                    {astrealProjectCards.map((project, i) => (
+                      <motion.li
+                        key={project.id}
+                        className="astreal-hero__projects-menu-item"
+                        role="none"
+                        initial={reduceMotion ? false : { opacity: 0, x: -14, y: -6 }}
+                        animate={{ opacity: 1, x: 0, y: 0 }}
+                        transition={{
+                          duration: 0.42,
+                          ease: EASE,
+                          delay: reduceMotion ? 0 : 0.06 + i * 0.07,
+                        }}
+                      >
+                        <Link
+                          role="menuitem"
+                          to={`/services/astreal/projects/${project.id}`}
+                          className="astreal-hero__projects-menu-link"
+                          onClick={() => setProjectsMenuOpen(false)}
+                        >
+                          <span className="astreal-hero__projects-menu-thumb">
+                            <img src={project.imageSrc} alt="" width={56} height={40} loading="lazy" decoding="async" />
+                          </span>
+                          <span className="astreal-hero__projects-menu-copy">
+                            <span className="astreal-hero__projects-menu-name">{project.title}</span>
+                            <span className="astreal-hero__projects-menu-sub">{project.subtitle}</span>
+                          </span>
+                          <span className="astreal-hero__projects-menu-go" aria-hidden>
+                            →
+                          </span>
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </ul>
+                  <button
+                    type="button"
+                    className="astreal-hero__projects-menu-all"
+                    onClick={scrollToProjectsSection}
+                  >
+                    Browse full portfolio
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </header>
 
-      <section className="astreal-services-preview" aria-labelledby="astreal-services-heading">
+      <section
+        className="astreal-services-preview section-led"
+        aria-labelledby="astreal-services-heading"
+      >
         <div className="container">
           <motion.h2 id="astreal-services-heading" className="astreal-section-title astreal-section-title--center" {...fadeUp}>
             Our projects at a glance
@@ -388,7 +520,7 @@ export default function AstrealDevelopersPage() {
         </ul>
       </section>
 
-      <section className="astreal-cta" aria-label="Contact Astreal">
+      <section className="astreal-cta section-led" aria-label="Contact Astreal">
         <div className="container astreal-cta__inner">
           <motion.p className="astreal-cta__copy" {...fadeUp}>
             Discuss land, design intent, or investment structure — we respond with a clear next step.

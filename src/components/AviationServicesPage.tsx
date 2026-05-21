@@ -179,7 +179,10 @@ export default function AviationServicesPage() {
         </div>
       </section>
 
-      <section className="aviation-premium" aria-labelledby="aviation-premium-heading">
+      <section
+        className="aviation-premium section-led section-led--cyan"
+        aria-labelledby="aviation-premium-heading"
+      >
         <div className="container aviation-premium__inner">
           <div className="aviation-premium__copy">
             <p className="aviation-section-eyebrow reveal">{aviationPremiumSection.eyebrow}</p>
@@ -205,7 +208,10 @@ export default function AviationServicesPage() {
         </div>
       </section>
 
-      <section className="aviation-process" aria-labelledby="aviation-process-heading">
+      <section
+        className="aviation-process section-led section-led--cyan"
+        aria-labelledby="aviation-process-heading"
+      >
         <div className="container">
           <div className="aviation-process__header">
             <p className="aviation-section-eyebrow reveal">How it works</p>

@@ -291,7 +291,10 @@ export default function PoolGardenServicesPage() {
         </div>
       </section>
 
-      <section className="pool-garden-pillars" aria-labelledby="pool-garden-pillars-title">
+      <section
+        className="pool-garden-pillars section-led section-led--cyan"
+        aria-labelledby="pool-garden-pillars-title"
+      >
         <div className="container pool-garden-pillars__inner">
           <p id="pool-garden-pillars-title" className="pool-garden-section-eyebrow reveal">
             Core capabilities
@@ -316,7 +319,10 @@ export default function PoolGardenServicesPage() {
         </div>
       </section>
 
-      <section className="pool-garden-values" aria-labelledby="pool-garden-values-title">
+      <section
+        className="pool-garden-values section-led section-led--cyan"
+        aria-labelledby="pool-garden-values-title"
+      >
         <div className="container pool-garden-values__inner">
           <p id="pool-garden-values-title" className="pool-garden-section-eyebrow reveal">
             {content.offeringsTitle}

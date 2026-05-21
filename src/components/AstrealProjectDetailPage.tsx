@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
+import AstrealDetailConnect from './AstrealDetailConnect'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
@@ -106,7 +107,17 @@ export default function AstrealProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>()
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
+  const [isNarrowViewport, setIsNarrowViewport] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 899px)').matches,
+  )
   const project = projectId ? getAstrealProjectById(projectId) : undefined
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 899px)')
+    const apply = () => setIsNarrowViewport(mq.matches)
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -165,15 +176,18 @@ export default function AstrealProjectDetailPage() {
     return <Navigate to="/services/astreal" replace />
   }
 
-  const detailHeroBreadcrumb = reduceMotion
+  const skipScrollMotion = Boolean(reduceMotion || isNarrowViewport)
+  const highlightsStatic = Boolean(reduceMotion)
+
+  const detailHeroBack = skipScrollMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 14, filter: 'blur(8px)' },
-        animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        initial: { opacity: 0, y: 14 },
+        animate: { opacity: 1, y: 0 },
         transition: { duration: 0.72, ease: EASE, delay: 0 },
       }
 
-  const detailHeroEyebrow = reduceMotion
+  const detailHeroEyebrow = skipScrollMotion
     ? {}
     : {
         initial: { opacity: 0, y: 22, filter: 'blur(10px)' },
@@ -181,38 +195,12 @@ export default function AstrealProjectDetailPage() {
         transition: { duration: 0.72, ease: EASE, delay: 0.1 },
       }
 
-  const detailHeroTitle = reduceMotion
+  const detailHeroTitle = skipScrollMotion
     ? {}
     : {
-        initial: {
-          opacity: 0,
-          y: 44,
-          filter: 'blur(22px)',
-          clipPath: 'inset(0 100% 0 0)',
-        },
-        animate: {
-          opacity: 1,
-          y: 0,
-          filter: 'blur(0px)',
-          clipPath: 'inset(0 0% 0 0)',
-        },
-        transition: { duration: 1.05, ease: EASE, delay: 0.2 },
-      }
-
-  const detailHeroLede = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 30, filter: 'blur(14px)' },
-        animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
-        transition: { duration: 0.9, ease: EASE, delay: 0.36 },
-      }
-
-  const detailHeroActions = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 22 },
+        initial: { opacity: 0, y: 32 },
         animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.68, ease: EASE, delay: 0.5 },
+        transition: { duration: 0.85, ease: EASE, delay: 0.2 },
       }
 
   const heroSrc = project.detailHeroSrc ?? project.gallery[0] ?? project.imageSrc
@@ -221,23 +209,6 @@ export default function AstrealProjectDetailPage() {
     project.gallery,
     project.detailCopyImageBreaks,
   )
-  const fadeBlock = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 28 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.25 },
-        transition: { duration: 0.68, ease: EASE },
-      }
-
-  const galleryItemMotion = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 22 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.08 },
-      }
-
   return (
     <div className="page astreal-page astreal-detail-page" ref={pageRef}>
       <SiteTopbar
@@ -261,48 +232,38 @@ export default function AstrealProjectDetailPage() {
           />
           <div className="astreal-detail-hero__scrim" aria-hidden />
         </div>
+        <div className="astreal-detail-hero__back-slot">
+          <motion.div className="astreal-detail-hero__back-wrap" {...detailHeroBack}>
+            <Link
+              to="/services/astreal#astreal-projects"
+              className="astreal-detail-hero__back"
+              aria-label="Back to all Astreal projects"
+            >
+              <span className="astreal-detail-hero__back-icon" aria-hidden>
+                ‹
+              </span>
+              <span className="astreal-detail-hero__back-text">
+                <span className="astreal-detail-hero__back-main">All Astreal projects</span>
+                <span className="astreal-detail-hero__back-sub">Return to developments</span>
+              </span>
+            </Link>
+          </motion.div>
+        </div>
         <div className="container astreal-detail-hero__inner">
-          <motion.nav className="astreal-detail-breadcrumb" aria-label="Breadcrumb" {...detailHeroBreadcrumb}>
-            <Link to="/#services">Services</Link>
-            <span className="astreal-detail-breadcrumb__sep" aria-hidden>
-              /
-            </span>
-            <Link to="/services/astreal">Astreal Developers</Link>
-            <span className="astreal-detail-breadcrumb__sep" aria-hidden>
-              /
-            </span>
-            <span className="astreal-detail-breadcrumb__current">{project.title}</span>
-          </motion.nav>
           <motion.p className="astreal-detail-hero__eyebrow" {...detailHeroEyebrow}>
             {project.subtitle}
           </motion.p>
           <motion.h1 id="astreal-detail-title" className="astreal-detail-hero__title" {...detailHeroTitle}>
             {project.title}
           </motion.h1>
-          <motion.p className="astreal-detail-hero__lede" {...detailHeroLede}>
-            {project.description}
-          </motion.p>
-          <motion.div className="astreal-detail-hero__actions" {...detailHeroActions}>
-            <Link
-              to="/contact"
-              className="astreal-detail-hero__btn astreal-detail-hero__btn--primary"
-              state={{ serviceInterest: `Astreal — ${project.title}` }}
-            >
-              Request details
-            </Link>
-            <Link to="/services/astreal#astreal-projects" className="astreal-detail-hero__btn astreal-detail-hero__btn--ghost">
-              All Astreal projects
-            </Link>
-          </motion.div>
         </div>
       </header>
 
       <article className="astreal-detail-article">
         <div className="astreal-detail-article__inner">
-          <motion.section
+          <section
             className="astreal-detail-highlights"
             aria-labelledby="astreal-detail-highlights-heading"
-            {...fadeBlock}
           >
             <h2 id="astreal-detail-highlights-heading" className="visually-hidden">
               Highlights
@@ -313,14 +274,14 @@ export default function AstrealProjectDetailPage() {
               ))}
             </ul>
             <div
-              className={`astreal-detail-highlights__bar${reduceMotion ? ' astreal-detail-highlights__bar--static' : ''}`}
+              className={`astreal-detail-highlights__bar${highlightsStatic ? ' astreal-detail-highlights__bar--static' : ''}`}
               aria-hidden="true"
             >
               <div className="astreal-detail-highlights__viewport">
                 <div
-                  className={`astreal-detail-highlights__track${reduceMotion ? '' : ' astreal-detail-highlights__track--marquee'}`}
+                  className={`astreal-detail-highlights__track${highlightsStatic ? '' : ' astreal-detail-highlights__track--marquee'}`}
                 >
-                  {(reduceMotion ? project.highlights : [...project.highlights, ...project.highlights]).map(
+                  {(highlightsStatic ? project.highlights : [...project.highlights, ...project.highlights]).map(
                     (line, i) => (
                       <span key={`${line}-${i}`} className="astreal-detail-highlights__segment">
                         <span className="astreal-detail-highlights__segment-text">{line}</span>
@@ -331,13 +292,12 @@ export default function AstrealProjectDetailPage() {
                 </div>
               </div>
             </div>
-          </motion.section>
+          </section>
         </div>
 
-        <motion.section
+        <section
           className="astreal-detail-copy astreal-detail-copy--fullbleed astreal-detail-copy--refined"
           aria-labelledby="astreal-detail-copy-h"
-          {...fadeBlock}
         >
           <h2 id="astreal-detail-copy-h" className="astreal-detail-copy__heading">
             Property narrative
@@ -346,15 +306,9 @@ export default function AstrealProjectDetailPage() {
             {copyStream.map((item, streamIndex) => {
               if (item.kind === 'inline-gallery') {
                 return (
-                  <motion.div
+                  <div
                     key={`gallery-${item.startIndex}`}
                     className="astreal-detail-copy__inline-gallery"
-                    {...fadeBlock}
-                    transition={{
-                      duration: reduceMotion ? 0.01 : 0.68,
-                      ease: EASE,
-                      delay: reduceMotion ? 0 : 0.06,
-                    }}
                   >
                     <ul className="astreal-detail-copy__inline-grid">
                       {item.images.map((src, imageOffset) => {
@@ -384,34 +338,28 @@ export default function AstrealProjectDetailPage() {
                         )
                       })}
                     </ul>
-                  </motion.div>
+                  </div>
                 )
               }
 
               const { para, index } = item
               const isSectionLabel = isAstrealDetailCopySectionLabel(para)
               return (
-                <motion.p
+                <p
                   key={`para-${index}-${streamIndex}`}
                   className={astrealDetailCopyParagraphClassName(para, index, isSectionLabel)}
-                  {...fadeBlock}
-                  transition={{
-                    duration: reduceMotion ? 0.01 : 0.55,
-                    ease: EASE,
-                    delay: reduceMotion ? 0 : Math.min(index, 12) * 0.02,
-                  }}
                 >
                   {para}
-                </motion.p>
+                </p>
               )
             })}
           </div>
-        </motion.section>
+        </section>
 
         {galleryRemainder.length > 0 ? (
         <div className="astreal-detail-article__inner">
           <section className="astreal-detail-gallery" aria-labelledby="astreal-detail-gallery-h">
-            <motion.div className="astreal-detail-gallery__head" {...fadeBlock}>
+            <div className="astreal-detail-gallery__head">
               <h2 id="astreal-detail-gallery-h" className="astreal-detail-gallery__title">
                 Architecture & interiors
               </h2>
@@ -419,21 +367,12 @@ export default function AstrealProjectDetailPage() {
                 Curated photography from this development — explore finish quality, spatial rhythm, and landscape
                 integration.
               </p>
-            </motion.div>
+            </div>
             <ul className="astreal-detail-gallery__grid">
               {galleryRemainder.map((src, i) => {
                 const galleryIndex = galleryRemainderStart + i
                 return (
-                <motion.li
-                  key={src}
-                  className="astreal-detail-gallery__cell"
-                  {...galleryItemMotion}
-                  transition={{
-                    duration: reduceMotion ? 0.01 : 0.52,
-                    ease: EASE,
-                    delay: reduceMotion ? 0 : Math.min(i, 10) * 0.035,
-                  }}
-                >
+                <li key={src} className="astreal-detail-gallery__cell">
                   <figure className="astreal-detail-gallery__figure">
                     <button
                       type="button"
@@ -453,13 +392,15 @@ export default function AstrealProjectDetailPage() {
                       />
                     </button>
                   </figure>
-                </motion.li>
+                </li>
                 )
               })}
             </ul>
           </section>
         </div>
         ) : null}
+
+        <AstrealDetailConnect projectTitle={project.title} />
       </article>
 
       {lightboxIndex !== null && (
@@ -505,14 +446,18 @@ export default function AstrealProjectDetailPage() {
           >
             ›
           </button>
-          <div className="astreal-detail-lightbox__stage">
+          <div
+            className="astreal-detail-lightbox__stage"
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.stopPropagation()}
+          >
             <img
               className="astreal-detail-lightbox__img"
               src={project.gallery[lightboxIndex]}
               alt={`${project.title} — image ${lightboxIndex + 1}`}
-              width={1600}
-              height={1067}
-              sizes="96vw"
+              width={1920}
+              height={1280}
+              sizes="100vw"
               decoding="async"
             />
             <p className="astreal-detail-lightbox__counter">

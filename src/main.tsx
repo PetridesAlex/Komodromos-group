@@ -47,6 +47,7 @@ import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
 import HeroParallaxEffect from './components/HeroParallaxEffect.tsx'
+import SectionLedScroll from './components/SectionLedScroll.tsx'
 
 function Root() {
   const [loaded, setLoaded] = useState(false)
@@ -57,6 +58,7 @@ function Root() {
       {!loaded && <Preloader onDone={handleDone} />}
       <div style={loaded ? undefined : { display: 'none' }}>
         <BrowserRouter>
+          <SectionLedScroll />
           <Routes>
             <Route path="/" element={<KomodromosGroupHomePage />} />
             <Route path="/contact" element={<ContactPage />} />

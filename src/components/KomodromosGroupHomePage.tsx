@@ -123,7 +123,7 @@ export default function KomodromosGroupHomePage() {
         </div>
       </section>
 
-      <section className="section highlights">
+      <section className="section highlights section-led">
         <div className="highlights-glow highlights-glow-1" />
         <div className="highlights-glow highlights-glow-2" />
         <div className="container highlights-inner">
@@ -155,7 +155,7 @@ export default function KomodromosGroupHomePage() {
         </div>
       </section>
 
-      <section id="services" className="section services">
+      <section id="services" className="section services section-led">
         <div className="container">
           <p className="eyebrow reveal">GROUP SERVICES</p>
           <h2 className="reveal reveal-delay-1">
@@ -220,7 +220,7 @@ export default function KomodromosGroupHomePage() {
         </div>
       </section>
 
-      <section id="contact" className="section contact-section">
+      <section id="contact" className="section contact-section section-led section-led--warm">
         <div className="contact-section-glow contact-section-glow-1" />
         <div className="contact-section-glow contact-section-glow-2" />
         <div className="container contact-section-inner">

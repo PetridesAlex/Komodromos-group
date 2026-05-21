@@ -602,7 +602,7 @@ export default function BusinessConsultingPage() {
         </div>
       </section>
 
-      <section className="consulting-section consulting-judgment">
+      <section className="consulting-section consulting-judgment section-led section-led--warm">
         <div className="container consulting-judgment__grid">
           <div className="consulting-judgment__media reveal-left">
             <div className="consulting-judgment__frame">
@@ -641,7 +641,7 @@ export default function BusinessConsultingPage() {
       </section>
 
       <section
-        className="consulting-section consulting-profile"
+        className="consulting-section consulting-profile section-led section-led--warm"
         aria-labelledby="profile-card-title"
       >
         <div className="container consulting-profile__inner">
@@ -649,7 +649,7 @@ export default function BusinessConsultingPage() {
         </div>
       </section>
 
-      <section className="consulting-section consulting-clients">
+      <section className="consulting-section consulting-clients section-led section-led--warm">
         <div className="container consulting-clients__inner">
           <div className="consulting-clients__panel reveal">
             <p className="consulting-clients__label">Our clients</p>
@@ -672,7 +672,7 @@ export default function BusinessConsultingPage() {
         </div>
       </section>
 
-      <section className="consulting-section consulting-services">
+      <section className="consulting-section consulting-services section-led section-led--warm">
         <div className="container">
           <p className="consulting-section__eyebrow reveal">What we cover</p>
           <h2 className="consulting-section__title consulting-services__heading reveal reveal-delay-1">

@@ -369,14 +369,18 @@ export default function AstrealInvestCyprusPage() {
               </button>
             </>
           ) : null}
-          <div className="astreal-detail-lightbox__stage">
+          <div
+            className="astreal-detail-lightbox__stage"
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.stopPropagation()}
+          >
             <img
               className="astreal-detail-lightbox__img"
               src={highlightGallery[lightboxIndex].src}
               alt={highlightGallery[lightboxIndex].alt}
-              width={1600}
-              height={1067}
-              sizes="96vw"
+              width={1920}
+              height={1280}
+              sizes="100vw"
               decoding="async"
             />
             <p className="astreal-detail-lightbox__caption">
