@@ -31947,71 +31947,140 @@ a.yacht-card {
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 
-/* Astreal subpages — compact left sidebar navigation */
+/* Astreal subpages — premium horizontal navigation */
 .astreal-page-nav {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  flex-flow: row nowrap;
   align-items: stretch;
-  gap: 0.35rem;
-  margin: 0;
+  gap: 0;
+  margin: 0 0 clamp(0.55rem, 1.2vw, 0.75rem);
   width: 100%;
-  max-width: 11.5rem;
+  max-width: none;
+  padding: 0;
+  border: 1px solid rgba(197, 160, 89, 0.34);
+  border-top: 2px solid rgba(218, 192, 138, 0.82);
+  background: linear-gradient(
+    180deg,
+    rgba(16, 26, 40, 0.94) 0%,
+    rgba(8, 14, 24, 0.9) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(112, 168, 225, 0.1) inset,
+    0 14px 36px rgba(0, 0, 0, 0.28);
+}
+
+.astreal-page-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(218, 192, 138, 0.95) 0%,
+    rgba(197, 160, 89, 0.45) 55%,
+    rgba(112, 168, 225, 0.35) 100%
+  );
+  pointer-events: none;
+}
+
+.astreal-page-nav__divider {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 1px;
+  margin: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(218, 192, 138, 0.55) 0%,
+    rgba(197, 160, 89, 0.28) 50%,
+    rgba(112, 168, 225, 0.22) 100%
+  );
 }
 
 .astreal-page-nav__btn {
-  display: block;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: 0;
   width: 100%;
-  padding: 0.48rem 0.7rem;
-  border-radius: 6px;
-  border: 1px solid rgba(140, 185, 230, 0.22);
-  background: rgba(10, 18, 32, 0.55);
+  padding: 0.62rem 0.75rem;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid rgba(197, 160, 89, 0.2);
+  background: transparent;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.58rem;
+  font-size: clamp(0.52rem, 0.95vw, 0.62rem);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  text-align: left;
+  text-align: center;
   line-height: 1.35;
-  color: rgba(210, 222, 238, 0.88);
+  white-space: nowrap;
+  color: rgba(198, 212, 230, 0.86);
   transition:
-    border-color 0.22s ease,
-    background 0.22s ease,
-    color 0.22s ease;
+    border-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.astreal-page-nav__btn:last-child {
+  border-right: none;
 }
 
 .astreal-page-nav__btn--back {
-  border-color: rgba(197, 160, 89, 0.35);
-  color: rgba(244, 236, 220, 0.95);
+  padding-left: calc(1rem + 3px);
+  border-right-color: rgba(197, 160, 89, 0.42);
+  background: rgba(197, 160, 89, 0.07);
+  color: rgba(232, 214, 178, 0.98);
 }
 
-.astreal-page-nav__btn--link:hover,
-.astreal-page-nav__btn--back:hover {
-  border-color: rgba(197, 160, 89, 0.5);
-  background: rgba(18, 30, 48, 0.85);
-  color: rgba(255, 252, 246, 0.98);
+@media (hover: hover) {
+  .astreal-page-nav__btn--link:hover,
+  .astreal-page-nav__btn--back:hover {
+    background: rgba(112, 168, 225, 0.1);
+    color: rgba(255, 252, 246, 0.98);
+    box-shadow: inset 0 -2px 0 rgba(197, 160, 89, 0.72);
+  }
+
+  .astreal-page-nav__btn--back:hover {
+    background: rgba(197, 160, 89, 0.14);
+    box-shadow: inset 0 -2px 0 rgba(218, 192, 138, 0.9);
+  }
 }
 
 .astreal-page-nav__btn--current {
-  border-color: rgba(197, 160, 89, 0.55);
-  background: rgba(197, 160, 89, 0.14);
-  color: rgba(255, 252, 246, 0.98);
+  border-right-color: rgba(197, 160, 89, 0.32);
+  background: linear-gradient(
+    180deg,
+    rgba(197, 160, 89, 0.24) 0%,
+    rgba(197, 160, 89, 0.1) 100%
+  );
+  color: rgba(255, 252, 246, 0.99);
+  box-shadow:
+    inset 0 -2px 0 rgba(218, 192, 138, 0.92),
+    inset 0 0 0 1px rgba(197, 160, 89, 0.18);
   cursor: default;
 }
 
 .astreal-page-nav__btn--link:focus-visible,
 .astreal-page-nav__btn--back:focus-visible {
   outline: 2px solid rgba(150, 195, 235, 0.75);
-  outline-offset: 2px;
+  outline-offset: -2px;
+  z-index: 1;
 }
 
-/* Shell: compact nav top-left; main section uses full shell width below */
+/* Shell: horizontal nav bar full width; main section below */
 .astreal-about-page__shell:has(> .astreal-page-nav + section) {
   display: grid;
-  grid-template-columns: minmax(9.25rem, 11.5rem) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   grid-template-rows: auto auto;
-  row-gap: clamp(0.65rem, 1.5vw, 1rem);
-  column-gap: clamp(1rem, 2.5vw, 1.65rem);
+  row-gap: clamp(0.5rem, 1.2vw, 0.85rem);
   align-items: start;
   padding-top: 0.15rem;
 }
@@ -32021,11 +32090,15 @@ a.yacht-card {
   grid-row: 1;
   position: sticky;
   top: clamp(4.5rem, 10vh, 5.5rem);
+  z-index: 3;
   align-self: start;
+  padding-block: 0;
+  background: transparent;
+  backdrop-filter: none;
 }
 
 .astreal-about-page__shell:has(> .astreal-page-nav + section) > section {
-  grid-column: 1 / -1;
+  grid-column: 1;
   grid-row: 2;
   width: 100%;
   min-width: 0;
@@ -32067,28 +32140,22 @@ a.yacht-card {
 }
 
 @media (max-width: 768px) {
-  .astreal-about-page__shell:has(> .astreal-page-nav + section) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    gap: 0.65rem;
-  }
-
   .astreal-about-page__shell:has(> .astreal-page-nav + section) > .astreal-page-nav {
-    grid-column: 1;
-    grid-row: 1;
     position: static;
-    max-width: none;
-    flex-flow: row wrap;
   }
 
-  .astreal-about-page__shell:has(> .astreal-page-nav + section) > section {
-    grid-column: 1;
-    grid-row: 2;
+  .astreal-page-nav {
+    flex-wrap: wrap;
   }
 
   .astreal-page-nav__btn {
-    width: auto;
-    flex: 0 1 auto;
+    flex: 1 1 calc(50% - 1px);
+    padding-inline: 0.65rem;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.16);
+  }
+
+  .astreal-page-nav__divider {
+    display: none;
   }
 }
 
@@ -32142,7 +32209,7 @@ a.yacht-card {
 
 .astreal-about-page__shell--nav .astreal-page-nav {
   pointer-events: auto;
-  max-width: 11.5rem;
+  max-width: min(100%, 52rem);
 }
 
 .astreal-about-page__hero {
@@ -32563,11 +32630,31 @@ a.yacht-card {
   border: 1px solid rgba(197, 160, 89, 0.22);
   background: rgba(8, 16, 28, 0.45);
   min-height: clamp(140px, 28vw, 220px);
+  transition:
+    border-color 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .astreal-invest-page__mosaic-item:hover {
+    border-color: rgba(197, 160, 89, 0.42);
+    box-shadow:
+      0 14px 36px rgba(0, 0, 0, 0.28),
+      0 0 0 1px rgba(197, 160, 89, 0.12);
+  }
 }
 
 .astreal-invest-page__mosaic-item--featured {
   grid-column: 1 / -1;
   min-height: clamp(200px, 38vw, 320px);
+}
+
+.astreal-invest-page__mosaic-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  overflow: hidden;
 }
 
 .astreal-invest-page__mosaic-item img {
@@ -32577,12 +32664,25 @@ a.yacht-card {
   min-height: inherit;
   object-fit: cover;
   object-position: center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .astreal-invest-page__mosaic-item:not(.astreal-invest-page__mosaic-item--featured):hover img {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .astreal-invest-page__mosaic-item img {
+    transition: none;
+  }
 }
 
 @media (min-width: 720px) {
   .astreal-invest-page__mosaic {
-    grid-template-columns: 1.2fr 0.8fr 0.8fr;
-    grid-template-rows: minmax(180px, 1fr) minmax(140px, 0.72fr);
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-rows: 1fr 1fr;
   }
 
   .astreal-invest-page__mosaic-item--featured {

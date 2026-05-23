@@ -14,6 +14,24 @@ const ASTREAL_SIBLING_PAGES = [
   { label: 'Invest in Cyprus', path: '/services/astreal/invest-in-cyprus' },
 ] as const
 
+const navContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+  },
+} as const
+
+const navItem = {
+  hidden: { opacity: 0, y: -6 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.48, ease: EASE },
+  },
+} as const
+
+const MotionLink = motion.create(Link)
+
 type AstrealPageNavProps = {
   currentLabel: string
 }
@@ -24,36 +42,65 @@ export default function AstrealPageNav({ currentLabel }: AstrealPageNavProps) {
 
   const siblings = ASTREAL_SIBLING_PAGES.filter((page) => page.path !== pathname)
 
-  const enter = reduceMotion
+  const linkMotion = reduceMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 8 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.45, ease: EASE },
+        whileHover: { y: -1 },
+        whileTap: { y: 0 },
+        transition: { duration: 0.24, ease: EASE },
       }
 
-  return (
-    <motion.nav className="astreal-page-nav" aria-label="Page navigation" {...enter}>
-      <Link to={ASTREAL_HUB.path} className="astreal-page-nav__btn astreal-page-nav__btn--back">
-        ← Hub
-      </Link>
+  const motionProps = reduceMotion
+    ? {}
+    : {
+        variants: navContainer,
+        initial: 'hidden' as const,
+        animate: 'visible' as const,
+      }
 
-      <span className="astreal-page-nav__btn astreal-page-nav__btn--current" aria-current="page">
+  const itemVariants = reduceMotion ? undefined : navItem
+
+  return (
+    <motion.nav className="astreal-page-nav" aria-label="Page navigation" {...motionProps}>
+      <MotionLink
+        to={ASTREAL_HUB.path}
+        className="astreal-page-nav__btn astreal-page-nav__btn--back"
+        variants={itemVariants}
+        {...linkMotion}
+      >
+        ← Hub
+      </MotionLink>
+
+      <span className="astreal-page-nav__divider" aria-hidden />
+
+      <motion.span
+        className="astreal-page-nav__btn astreal-page-nav__btn--current"
+        aria-current="page"
+        variants={itemVariants}
+      >
         {currentLabel}
-      </span>
+      </motion.span>
 
       {siblings.map((page) => (
-        <Link key={page.path} to={page.path} className="astreal-page-nav__btn astreal-page-nav__btn--link">
+        <MotionLink
+          key={page.path}
+          to={page.path}
+          className="astreal-page-nav__btn astreal-page-nav__btn--link"
+          variants={itemVariants}
+          {...linkMotion}
+        >
           {page.label}
-        </Link>
+        </MotionLink>
       ))}
 
-      <Link
+      <MotionLink
         to={`${ASTREAL_HUB.path}#astreal-projects`}
         className="astreal-page-nav__btn astreal-page-nav__btn--link"
+        variants={itemVariants}
+        {...linkMotion}
       >
         Projects
-      </Link>
+      </MotionLink>
     </motion.nav>
   )
 }

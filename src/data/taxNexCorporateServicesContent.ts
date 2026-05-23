@@ -61,10 +61,10 @@ export const TAX_CORPORATE_SERVICE_ROWS: TaxCorporateServiceRow[] = [
         readMoreAria: 'Go to company registration in Cyprus',
       },
     },
-    image: TAX_CORPORATE_CONFERENCE_IMAGE,
+    image: TAX_CORPORATE_CYPRUS_EU_IMAGE,
     imageWidth: 1200,
-    imageHeight: 762,
-    imagePosition: 'center 42%',
+    imageHeight: 633,
+    imagePosition: 'center 38%',
   },
   {
     card: {
@@ -83,10 +83,10 @@ export const TAX_CORPORATE_SERVICE_ROWS: TaxCorporateServiceRow[] = [
         readMoreAria: 'Go to office and secretarial services',
       },
     },
-    image: TAX_CORPORATE_CYPRUS_EU_IMAGE,
+    image: TAX_CORPORATE_CONFERENCE_IMAGE,
     imageWidth: 1200,
-    imageHeight: 633,
-    imagePosition: 'center 38%',
+    imageHeight: 762,
+    imagePosition: 'center 42%',
   },
 ]
 
@@ -118,7 +118,7 @@ export const TAX_CORPORATE_SERVICE_PAGES: Record<
   }
 > = {
   'company-registration-cyprus': {
-    heroImage: TAX_CORPORATE_CONFERENCE_IMAGE,
+    heroImage: TAX_CORPORATE_CYPRUS_EU_IMAGE,
     el: {
       h1: 'Εγγραφή Εταιρείας στην Κύπρο',
       intro:
@@ -143,7 +143,7 @@ export const TAX_CORPORATE_SERVICE_PAGES: Record<
     },
   },
   'office-secretarial-services': {
-    heroImage: TAX_CORPORATE_CYPRUS_EU_IMAGE,
+    heroImage: TAX_CORPORATE_CONFERENCE_IMAGE,
     el: {
       h1: 'Γραφειακές & Γραμματειακές Υπηρεσίες',
       intro:

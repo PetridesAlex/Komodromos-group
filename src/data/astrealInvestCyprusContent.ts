@@ -68,11 +68,6 @@ export const ASTREAL_INVEST_CYPRUS_INTRO = {
       imageAlt: 'Cyprus strategic location in the Mediterranean',
     },
     {
-      text: 'Excellent year-round climate',
-      image: `${INVEST_PHOTOS}/invest-in-cyprus-15.webp`,
-      imageAlt: 'Sunny Mediterranean climate in Cyprus',
-    },
-    {
       text: 'Advanced infrastructure',
       image: `${INVEST_PHOTOS}/invest-in-cyprus-16.webp`,
       imageAlt: 'Modern infrastructure in Cyprus',

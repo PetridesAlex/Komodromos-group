@@ -29,6 +29,41 @@ const cardItem = {
   },
 } as const
 
+const mosaicContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.04 },
+  },
+} as const
+
+const mosaicFeaturedItem = {
+  hidden: { opacity: 0, x: -36, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.78, ease: EASE },
+  },
+} as const
+
+const mosaicSideItem = {
+  hidden: { opacity: 0, x: 32, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.68, ease: EASE },
+  },
+} as const
+
+const mosaicImgReveal = {
+  hidden: { scale: 1.14 },
+  visible: {
+    scale: 1,
+    transition: { duration: 1.05, ease: EASE, delay: 0.06 },
+  },
+} as const
+
 export default function AstrealInvestCyprusPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
@@ -161,6 +196,18 @@ export default function AstrealInvestCyprusPage() {
         },
       }
 
+  const mosaicImgDrift = reduceMotion
+    ? {}
+    : {
+        animate: { scale: [1, 1.035, 1] },
+        transition: {
+          duration: 16,
+          ease: 'easeInOut' as const,
+          repeat: Infinity,
+          repeatType: 'mirror' as const,
+        },
+      }
+
   return (
     <div className="page astreal-page" ref={pageRef}>
       <SiteTopbar
@@ -244,22 +291,46 @@ export default function AstrealInvestCyprusPage() {
                 aria-hidden={false}
                 role="group"
                 aria-label="Cyprus lifestyle and investment imagery"
-                {...fadeUp(0.12)}
+                variants={reduceMotion ? undefined : mosaicContainer}
+                initial={reduceMotion ? undefined : 'hidden'}
+                whileInView={reduceMotion ? undefined : 'visible'}
+                viewport={VIEW}
               >
                 {content.mosaic.map((item) => (
-                  <figure
+                  <motion.figure
                     key={item.src}
                     className={`astreal-invest-page__mosaic-item${item.featured ? ' astreal-invest-page__mosaic-item--featured' : ''}`}
+                    variants={
+                      reduceMotion ? undefined : item.featured ? mosaicFeaturedItem : mosaicSideItem
+                    }
                   >
-                    <img
-                      src={item.src}
-                      alt={item.alt}
-                      width={1200}
-                      height={800}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </figure>
+                    {item.featured ? (
+                      <motion.div
+                        className="astreal-invest-page__mosaic-media"
+                        variants={reduceMotion ? undefined : mosaicImgReveal}
+                      >
+                        <motion.img
+                          src={item.src}
+                          alt={item.alt}
+                          width={1200}
+                          height={800}
+                          loading="lazy"
+                          decoding="async"
+                          {...mosaicImgDrift}
+                        />
+                      </motion.div>
+                    ) : (
+                      <motion.img
+                        src={item.src}
+                        alt={item.alt}
+                        width={1200}
+                        height={800}
+                        loading="lazy"
+                        decoding="async"
+                        variants={reduceMotion ? undefined : mosaicImgReveal}
+                      />
+                    )}
+                  </motion.figure>
                 ))}
               </motion.div>
 
