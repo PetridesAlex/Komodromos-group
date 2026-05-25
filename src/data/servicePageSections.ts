@@ -7,11 +7,25 @@ export type ServiceOffering = {
   description: string
 }
 
+export type ServiceVideo = {
+  label: string
+  youtubeId: string
+  caption?: string
+}
+
+export type ServiceVideosSection = {
+  eyebrow: string
+  title: string
+  intro?: string
+  videos: ServiceVideo[]
+}
+
 export type ServicePageContent = {
   leadTitle: string
   lead: string
   offeringsTitle: string
   offerings: ServiceOffering[]
+  videosSection?: ServiceVideosSection
   bullets?: string[]
   closing?: string
 }
@@ -79,6 +93,37 @@ export const SERVICE_PAGE_CONTENT: Partial<Record<string, ServicePageContent>> =
     leadTitle: 'People strategy that matches commercial reality',
     lead:
       'Human Resources Management helps leadership teams align talent, culture, and governance — with programmes that are practical, measurable, and respectful.',
+    videosSection: {
+      eyebrow: 'The Circle Theory',
+      title: 'The Circle 1 & 2 — video library',
+      intro:
+        'Leadership and organisation insights from Giannos Komodromos — the same sessions featured on our established Circle programme.',
+      videos: [
+        {
+          label: 'The Circle 1',
+          youtubeId: 'gMCVGkQyYV0',
+          caption: 'Giannos Komodromos',
+        },
+        {
+          label: 'The Circle 2',
+          youtubeId: 'nDc-hWUs5XI',
+          caption:
+            'Self-Development, Business Management & Organisation Factors',
+        },
+        {
+          label: 'The Circle — Part 2',
+          youtubeId: 'K2fa_qXjIDQ',
+          caption:
+            'Self-Development, Business Management & Organisation Factors — continued',
+        },
+        {
+          label: 'The Circle — Part 3',
+          youtubeId: 'G_m5CRbOxpo',
+          caption:
+            'Self-Development, Business Management & Organisation Factors — session three',
+        },
+      ],
+    },
     offeringsTitle: 'Service lines',
     offerings: [
       {

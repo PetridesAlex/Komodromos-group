@@ -20094,6 +20094,169 @@ article.wedding-highlight-tiles__tile {
   );
 }
 
+/* Service detail — embedded video grid (HR / The Circle) */
+.service-videos-section {
+  padding: clamp(2.75rem, 5.5vw, 4rem) 0;
+  border-top: 1px solid rgba(197, 160, 89, 0.22);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 14, 24, 0.75) 0%,
+    rgba(4, 8, 14, 0.95) 100%
+  );
+}
+
+.service-videos-inner {
+  max-width: min(1080px, 100%);
+  margin: 0 auto;
+}
+
+.service-videos-head {
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  text-align: center;
+}
+
+.service-videos-eyebrow {
+  margin-bottom: 0.65rem;
+  color: rgba(218, 192, 138, 0.92);
+}
+
+.service-videos-title {
+  margin: 0 0 0.85rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: rgba(255, 252, 246, 0.98);
+}
+
+.service-videos-intro {
+  margin: 0 auto;
+  max-width: 42rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.88rem, 1.4vw, 0.98rem);
+  line-height: 1.7;
+  color: rgba(198, 212, 230, 0.82);
+}
+
+.service-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.15rem, 2.2vw, 1.65rem);
+}
+
+.service-video-card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 1px solid rgba(197, 160, 89, 0.32);
+  border-top: 2px solid rgba(218, 192, 138, 0.78);
+  background: linear-gradient(
+    180deg,
+    rgba(14, 22, 34, 0.92) 0%,
+    rgba(8, 12, 20, 0.96) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(112, 168, 225, 0.08) inset,
+    0 16px 40px rgba(0, 0, 0, 0.32);
+  transition:
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .service-video-card:hover {
+    border-color: rgba(197, 160, 89, 0.48);
+    box-shadow:
+      0 0 0 1px rgba(197, 160, 89, 0.12) inset,
+      0 20px 48px rgba(0, 0, 0, 0.38);
+  }
+}
+
+.service-video-card__label {
+  margin: 0;
+  padding: clamp(0.7rem, 1.5vw, 0.9rem) clamp(0.85rem, 2vw, 1.1rem);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.68rem, 1.2vw, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(232, 214, 178, 0.98);
+  border-bottom: 1px solid rgba(197, 160, 89, 0.22);
+}
+
+.service-video-card__frame {
+  padding: clamp(0.55rem, 1.2vw, 0.75rem);
+}
+
+.service-video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  background: #000;
+  border: 1px solid rgba(140, 185, 230, 0.18);
+}
+
+.service-video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.service-video-card__caption {
+  margin: 0;
+  padding: 0 clamp(0.85rem, 2vw, 1.1rem) clamp(0.75rem, 1.5vw, 0.95rem);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.72rem, 1.1vw, 0.8rem);
+  line-height: 1.55;
+  text-align: center;
+  color: rgba(198, 212, 230, 0.72);
+}
+
+@media (max-width: 768px) {
+  .service-videos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+#service-default-content .service-videos-section {
+  border-top-color: rgba(143, 179, 224, 0.35);
+  background: linear-gradient(180deg, #f4f9ff 0%, #ebf3ff 100%);
+}
+
+#service-default-content .service-videos-title {
+  color: #1d3355;
+}
+
+#service-default-content .service-videos-intro {
+  color: rgba(50, 77, 114, 0.88);
+}
+
+#service-default-content .service-videos-eyebrow {
+  color: #2f5f97;
+}
+
+#service-default-content .service-video-card {
+  border-color: rgba(143, 179, 224, 0.35);
+  border-top-color: rgba(66, 120, 195, 0.65);
+  background: linear-gradient(175deg, #ffffff 0%, #f5f9ff 100%);
+  box-shadow: 0 14px 30px -24px rgba(27, 63, 122, 0.28);
+}
+
+#service-default-content .service-video-card__label {
+  color: #2f5f97;
+  border-bottom-color: rgba(143, 179, 224, 0.3);
+}
+
+#service-default-content .service-video-card__caption {
+  color: rgba(56, 82, 117, 0.84);
+}
+
 .service-default-inner {
   max-width: 900px;
   margin: 0 auto;

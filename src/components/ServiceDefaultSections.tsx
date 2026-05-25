@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { ServicePageContent } from '../data/servicePageSections'
+import ServiceVideosSection from './ServiceVideosSection'
 
 type Props = {
   content: ServicePageContent
@@ -17,6 +18,10 @@ export default function ServiceDefaultSections({ content, serviceInterest }: Pro
           <p className="service-default-lead reveal reveal-delay-1">{content.lead}</p>
         </div>
       </section>
+
+      {content.videosSection ? (
+        <ServiceVideosSection section={content.videosSection} />
+      ) : null}
 
       <section className="service-default-section service-default-section--offerings">
         <div className="container service-default-inner">
