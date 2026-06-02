@@ -1,19 +1,6 @@
 import { useCallback, useRef, useSyncExternalStore } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'motion/react'
-
-const STORAGE_IMG = '/images/services/storage-services'
-
-const STORAGE_PARALLAX_SLIDES: { title: string; image: string }[] = [
-  { title: 'FLEXIBLE STORAGE', image: `${STORAGE_IMG}/storage-flexible.webp` },
-  { title: 'YOUR OWN SPACE', image: `${STORAGE_IMG}/your-own-space.webp` },
-  { title: 'LOCAL & EASY TO FIND', image: `${STORAGE_IMG}/local-easy-to-find.webp` },
-  {
-    title: 'PERSONAL, FRIENDLY & PROFESSIONAL',
-    image: `${STORAGE_IMG}/personal-friendly-proffesional.webp`,
-  },
-  { title: '24 HR ACCESS', image: `${STORAGE_IMG}/hr-access.webp` },
-  { title: 'BUSINESS STORAGE', image: `${STORAGE_IMG}/business-strorage.webp` },
-]
+import { STORAGE_PARALLAX_SLIDES } from '../data/storagePageImages'
 
 /** Horizontal strip: parallax depth + subtle tilt (no overlapping cards) */
 type ParallaxLayout = {
@@ -91,7 +78,7 @@ function ParallaxCard({
       initial={{ opacity: 0, scale: 0.94 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.55, delay: Math.min(index * 0.04, 0.48), ease: [0.16, 1, 0.3, 1] }}
       aria-label={title}
     >
       <div className="storage-parallax__card-inner">
@@ -99,7 +86,7 @@ function ParallaxCard({
           src={image}
           alt=""
           className="storage-parallax__card-img"
-          loading={index < 2 ? 'eager' : 'lazy'}
+          loading={index < 3 ? 'eager' : 'lazy'}
           decoding="async"
         />
         <div className="storage-parallax__card-scrim" aria-hidden />
@@ -144,16 +131,16 @@ export default function StorageParallaxCards() {
           className="storage-parallax__stage"
           onPointerMove={onMove}
           onPointerLeave={onLeave}
-          aria-label="Storage2Rent service highlights. Scroll horizontally for all cards; move the pointer for parallax."
+          aria-label="Storage2Rent facility gallery. Scroll horizontally for all photos; move the pointer for parallax."
         >
           <div className="storage-parallax__fog" aria-hidden />
           <div className="storage-parallax__track">
             {STORAGE_PARALLAX_SLIDES.map((slide, i) => (
               <ParallaxCard
-                key={slide.title}
+                key={slide.image}
                 title={slide.title}
                 image={slide.image}
-                layout={PARALLAX_LAYOUT[i]!}
+                layout={PARALLAX_LAYOUT[i % PARALLAX_LAYOUT.length]!}
                 mx={smoothMx}
                 my={smoothMy}
                 reducedMotion={reducedMotion}

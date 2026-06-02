@@ -81,6 +81,9 @@ export default function ServiceDetailPage() {
               <a href="#storage-rates" className="storage-page-subnav__link">
                 Monthly Rates
               </a>
+              <a href="#storage-tips" className="storage-page-subnav__link">
+                Useful Tips
+              </a>
               <a href="#storage-contact" className="storage-page-subnav__link storage-page-subnav__link--cta">
                 Contact
               </a>

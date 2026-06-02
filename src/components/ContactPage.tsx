@@ -24,6 +24,7 @@ export default function ContactPage() {
   useEffect(() => {
     const s = location.state as {
       serviceInterest?: string
+      storageTip?: string
       vipSubService?: string
       consultingTopic?: string
       weddingPackage?: string
@@ -78,9 +79,17 @@ export default function ContactPage() {
             if (typeof consultingTopic === 'string' && consultingTopic) {
               next = { ...next, message: `Topic: ${consultingTopic}` }
             } else {
-              const weddingPackage = s.weddingPackage
-              if (typeof weddingPackage === 'string' && weddingPackage) {
-                next = { ...next, message: `Wedding package interest: ${weddingPackage}` }
+              const storageTip = s.storageTip
+              if (typeof storageTip === 'string' && storageTip) {
+                next = {
+                  ...next,
+                  message: `I would like more information about: ${storageTip}`,
+                }
+              } else {
+                const weddingPackage = s.weddingPackage
+                if (typeof weddingPackage === 'string' && weddingPackage) {
+                  next = { ...next, message: `Wedding package interest: ${weddingPackage}` }
+                }
               }
             }
           }

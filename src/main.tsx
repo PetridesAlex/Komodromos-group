@@ -43,6 +43,7 @@ import AstrealAboutPage from './components/AstrealAboutPage.tsx'
 import AstrealInvestCyprusPage from './components/AstrealInvestCyprusPage.tsx'
 import AstrealOurServicesPage from './components/AstrealOurServicesPage.tsx'
 import AstrealProjectDetailPage from './components/AstrealProjectDetailPage.tsx'
+import StorageTipDetailPage from './components/StorageTipDetailPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
@@ -104,6 +105,7 @@ function Root() {
             <Route path="/services/astreal/our-services" element={<AstrealOurServicesPage />} />
             <Route path="/services/astreal/projects/:projectId" element={<AstrealProjectDetailPage />} />
             <Route path="/services/astreal" element={<AstrealDevelopersPage />} />
+            <Route path="/services/storage/tips/:tipId" element={<StorageTipDetailPage />} />
             <Route path="/services" element={<Navigate to="/#services" replace />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
           </Routes>

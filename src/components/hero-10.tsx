@@ -1,33 +1,13 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
+import { STORAGE_HERO_FAN } from '../data/storagePageImages'
 
 /**
  * React Bits “hero-10” layout: centered copy, pill CTA, three images on a
  * fanned base with a large circular “horizon” disc behind the row.
  * (Structure matches the published block: relative row + % top + huge rounded-full)
  */
-const cards = [
-  {
-    rotate: -12,
-    translateY: 40,
-    src: '/images/services/storage-services/local-easy-to-find.webp',
-    alt: 'Storage facility—easy to find, convenient access',
-  },
-  {
-    rotate: 0,
-    translateY: 0,
-    src: '/images/services/storage-services/storage-flexible.webp',
-    alt: 'Flexible, clean self storage units',
-  },
-  {
-    rotate: 12,
-    translateY: 40,
-    src: '/images/services/storage-services/personal-friendly-proffesional.webp',
-    alt: 'Personal storage—professional, friendly service',
-  },
-] as const
-
 type Hero10Props = {
   brandPrimary: string
   brandRegion: string
@@ -96,7 +76,7 @@ export function Hero10({ brandPrimary, brandRegion, contactState }: Hero10Props)
           />
 
           <div className="relative z-20 flex flex-row flex-nowrap items-end justify-center gap-0 -space-x-6 sm:-space-x-12 lg:-space-x-16">
-            {cards.map((card, index) => (
+            {STORAGE_HERO_FAN.map((card, index) => (
               <motion.div
                 key={card.src}
                 className="hero10-fan-card relative h-28 w-28 shrink-0 grow-0 origin-bottom overflow-hidden rounded-xl sm:h-64 sm:w-72 sm:rounded-3xl lg:h-72 lg:w-80"

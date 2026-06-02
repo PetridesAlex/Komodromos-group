@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { ArrowRight, Sparkles } from 'lucide-react'
+import {
+  STORAGE_EXTRA_SERVICE_IMAGES,
+  STORAGE_HERO_FAN,
+  STORAGE_OFFER_IMAGES,
+} from '../data/storagePageImages'
 import StorageParallaxCards from './StorageParallaxCards'
+import StorageSpotlightGallery from './StorageSpotlightGallery'
+import StorageUsefulTipsSection from './StorageUsefulTipsSection'
 
 const STORAGE_PLANS: { title: string; price: number }[] = [
   { title: '10 ft Container', price: 60 },
@@ -11,42 +18,21 @@ const STORAGE_PLANS: { title: string; price: number }[] = [
   { title: '40 ft Container', price: 190 },
 ]
 
-const HERO_CARDS = [
-  {
-    rotate: -12,
-    translateY: 40,
-    src: '/images/services/storage-services/hero-storage-two.webp',
-    alt: 'Storage facility and access',
-  },
-  {
-    rotate: 0,
-    translateY: 0,
-    src: '/images/services/storage-services/hero-storage.webp',
-    alt: 'Flexible storage unit',
-  },
-  {
-    rotate: 12,
-    translateY: 40,
-    src: '/images/services/storage-services/hero-storage-one.webp',
-    alt: 'Professional storage workspace',
-  },
-] as const
-
 const STORAGE_OFFER_CARDS = [
   {
     title: 'Personal Storage Units',
     desc: 'Flexible storage space for boxes, furniture, and personal belongings with simple monthly options.',
-    image: '/images/services/storage-services/hero-storage-two.webp',
+    image: STORAGE_OFFER_IMAGES.personal,
   },
   {
     title: 'Business Storage Units',
     desc: 'Secure business storage for operational materials, equipment, and seasonal stock overflow.',
-    image: '/images/services/storage-services/hero-storage.webp',
+    image: STORAGE_OFFER_IMAGES.business,
   },
   {
     title: 'Pallet Storage Space',
     desc: 'Practical pallet-ready storage designed for organized access and efficient logistics handling.',
-    image: '/images/services/storage-services/hero-storage-one.webp',
+    image: STORAGE_OFFER_IMAGES.pallet,
   },
 ] as const
 
@@ -56,11 +42,10 @@ const STORAGE_SIZE_OPTIONS = [
   'BKS3 (4.10 sq.m) - W:2.05m x D:2.00m x H:2.50m',
 ] as const
 
-const STORAGE_EXTRA_SERVICES = [
-  { title: 'Removal Storage', image: '/images/services/storage-services/hero-storage-two.webp' },
-  { title: 'Man with Van for Hire', image: '/images/services/storage-services/hero-storage.webp' },
-  { title: 'Pallet Storage', image: '/images/services/storage-services/hero-storage-one.webp' },
-  { title: 'Documents Storage', image: '/images/services/storage-services/hero-storage-two.webp' },
+const STORAGE_HERO_PILLS = [
+  '24-hour access',
+  'Secure monitored yard',
+  'Personal & business units',
 ] as const
 
 export default function StoragePremiumSection() {
@@ -68,36 +53,61 @@ export default function StoragePremiumSection() {
     <section className="storage-premium-section" aria-labelledby="storage-premium-heading" id="storage-parallax">
       <div className="storage-premium-section__glow storage-premium-section__glow--1" aria-hidden />
       <div className="storage-premium-section__glow storage-premium-section__glow--2" aria-hidden />
-      <div className="container">
-        <header className="storage-premium-header">
-          <section className="storage-premium-hero-shell relative w-full overflow-hidden bg-transparent py-2 sm:py-4">
-            <div className="storage-premium-hero-frame relative z-10 mx-auto w-full max-w-[1400px]">
+      <header className="storage-premium-header storage-premium-header--full">
+        <section className="storage-premium-hero-shell relative w-full overflow-hidden bg-transparent py-2 sm:py-4">
+          <div className="storage-premium-hero-frame relative z-10 w-full">
               <div className="storage-premium-hero-copy mb-12 flex flex-col items-center text-center sm:mb-20 lg:mb-24">
+                <motion.p
+                  className="storage-premium-hero-eyebrow"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: 0.05 }}
+                >
+                  <span className="storage-premium-hero-eyebrow__line" aria-hidden />
+                  <span>Storage2Rent · Komodromos Group</span>
+                  <span className="storage-premium-hero-eyebrow__line" aria-hidden />
+                </motion.p>
+
                 <motion.h1
                   id="storage-premium-heading"
-                  className="max-w-2xl text-3xl font-medium tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+                  className="storage-premium-hero-heading"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
+                  transition={{ duration: 0.65, delay: 0.12 }}
                 >
-                  Build something extraordinary today
+                  <span className="storage-premium-hero-heading__main">Secure storage.</span>
+                  <span className="storage-premium-hero-heading__accent">Ready when you are.</span>
                 </motion.h1>
 
                 <motion.p
-                  className="max-w-xl text-base text-neutral-400 sm:text-xl"
+                  className="storage-premium-hero-lead"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
+                  transition={{ duration: 0.55, delay: 0.22 }}
                 >
-                  Transform your ideas into reality with powerful tools designed for
-                  creators, founders, and dreamers.
+                  Premium self-storage and container space in Cyprus — clean units, professional
+                  on-site standards, and flexible terms for homes, businesses, and logistics.
                 </motion.p>
+
+                <motion.ul
+                  className="storage-premium-hero-pills"
+                  aria-label="Storage2Rent highlights"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  {STORAGE_HERO_PILLS.map((pill) => (
+                    <li key={pill} className="storage-premium-hero-pill">
+                      {pill}
+                    </li>
+                  ))}
+                </motion.ul>
 
                 <motion.div
                   className="storage-premium-hero-cta-wrap"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
+                  transition={{ duration: 0.5, delay: 0.38 }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -122,10 +132,10 @@ export default function StoragePremiumSection() {
                   aria-hidden
                 />
 
-                <div className="storage-premium-hero-fan relative mx-auto flex w-full max-w-[1120px] flex-row items-end justify-center -space-x-6 sm:-space-x-12 lg:-space-x-16">
-                  {HERO_CARDS.map((card, index) => (
+                <div className="storage-premium-hero-fan relative mx-auto flex w-full flex-row items-end justify-center">
+                  {STORAGE_HERO_FAN.map((card, index) => (
                     <motion.div
-                      key={index}
+                      key={card.src}
                       className="storage-premium-hero-card relative origin-bottom overflow-hidden rounded-xl sm:rounded-3xl"
                       initial={{ opacity: 0, y: 80, rotate: 0 }}
                       animate={{ opacity: 1, y: card.translateY, rotate: card.rotate }}
@@ -137,10 +147,11 @@ export default function StoragePremiumSection() {
                   ))}
                 </div>
               </div>
-            </div>
-          </section>
-        </header>
+          </div>
+        </section>
+      </header>
 
+      <div className="container">
         <section className="mx-auto mt-8 w-full max-w-6xl" id="storage-offers">
           <div className="mb-6 text-center sm:mb-8">
             <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
@@ -151,52 +162,52 @@ export default function StoragePremiumSection() {
             </p>
           </div>
 
-          <div className="mb-8 grid items-center gap-6 overflow-hidden rounded-3xl border border-[rgba(134,185,222,0.3)] bg-[linear-gradient(145deg,rgba(13,31,56,0.92)_0%,rgba(9,24,44,0.96)_52%,rgba(8,19,34,0.98)_100%)] p-5 shadow-[0_24px_48px_-28px_rgba(0,0,0,0.48)] sm:p-7 lg:mb-10 lg:grid-cols-2 lg:p-9">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9dd8ff]">Estimate your cost</p>
-              <h3 className="mt-3 max-w-md text-3xl font-extrabold leading-[1.05] text-white sm:text-5xl">
-                Calculate the cost by your needs
-              </h3>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-white/90 sm:text-base">
+          <div className="storage-calculator">
+            <div className="storage-calculator__copy">
+              <p className="storage-calculator__eyebrow">Estimate your cost</p>
+              <h3 className="storage-calculator__title">Calculate the cost by your needs</h3>
+              <p className="storage-calculator__lead">
                 Select your preferred storage setup and continue to request a tailored quote from our team.
               </p>
             </div>
 
-            <form className="space-y-3 rounded-2xl border border-[rgba(12,28,49,0.25)] bg-[rgba(255,255,255,0.2)] p-4 backdrop-blur-sm sm:p-5">
-              <label className="block">
-                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-[#cfe9ff]">Sq. meters</span>
-                <select className="h-11 w-full rounded-xl border border-[rgba(6,19,35,0.45)] bg-white px-3 text-sm text-[#1a2a3e] outline-none transition focus:border-[#2c7cb0]">
-                  <option>Sq. Meters</option>
-                  <option>Sq. Feet</option>
+            <form className="storage-calculator__form storage-form" aria-label="Storage quote estimator">
+              <label className="storage-form__field">
+                <span className="storage-form__label">Unit of measure</span>
+                <select className="storage-form__control" name="unit" defaultValue="sq-meters">
+                  <option value="sq-meters">Sq. meters</option>
+                  <option value="sq-feet">Sq. feet</option>
                 </select>
               </label>
 
-              <label className="block">
-                <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-[#cfe9ff]">Step 1: Select size</span>
-                <select className="h-11 w-full rounded-xl border border-[rgba(6,19,35,0.45)] bg-white px-3 text-sm text-[#1a2a3e] outline-none transition focus:border-[#2c7cb0]">
+              <label className="storage-form__field">
+                <span className="storage-form__label">Step 1 — Select size</span>
+                <select className="storage-form__control" name="size" defaultValue={STORAGE_SIZE_OPTIONS[0]}>
                   {STORAGE_SIZE_OPTIONS.map((option) => (
-                    <option key={option}>{option}</option>
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
                   ))}
                 </select>
               </label>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                <label className="block">
-                  <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-[#cfe9ff]">Step 2: Duration</span>
-                  <select className="h-11 w-full rounded-xl border border-[rgba(6,19,35,0.45)] bg-white px-3 text-sm text-[#1a2a3e] outline-none transition focus:border-[#2c7cb0]">
-                    <option>Up to 3 months</option>
-                    <option>Up to 6 months</option>
-                    <option>Up to 12 months</option>
+              <div className="storage-form__row storage-form__row--split">
+                <label className="storage-form__field">
+                  <span className="storage-form__label">Step 2 — Duration</span>
+                  <select className="storage-form__control" name="duration" defaultValue="3-months">
+                    <option value="3-months">Up to 3 months</option>
+                    <option value="6-months">Up to 6 months</option>
+                    <option value="12-months">Up to 12 months</option>
                   </select>
                 </label>
 
-                <label className="block">
-                  <span className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.08em] text-[#cfe9ff]">Step 3: Start date</span>
-                  <select className="h-11 w-full rounded-xl border border-[rgba(6,19,35,0.45)] bg-white px-3 text-sm text-[#1a2a3e] outline-none transition focus:border-[#2c7cb0]">
-                    <option>Within the next 6 months</option>
-                    <option>Within the next 3 months</option>
-                    <option>Within the next month</option>
-                    <option>Immediate</option>
+                <label className="storage-form__field">
+                  <span className="storage-form__label">Step 3 — Start date</span>
+                  <select className="storage-form__control" name="start" defaultValue="6-months">
+                    <option value="6-months">Within the next 6 months</option>
+                    <option value="3-months">Within the next 3 months</option>
+                    <option value="1-month">Within the next month</option>
+                    <option value="immediate">Immediate</option>
                   </select>
                 </label>
               </div>
@@ -204,9 +215,10 @@ export default function StoragePremiumSection() {
               <Link
                 to="/contact"
                 state={{ serviceInterest: 'Storage2Rent', storageInquiry: true }}
-                className="inline-flex h-11 w-full items-center justify-center rounded-xl bg-[#081524] text-sm font-semibold text-white transition hover:bg-[#102b44]"
+                className="storage-form__submit"
               >
-                Get a quote...
+                Get a quote
+                <ArrowRight size={14} strokeWidth={2.25} aria-hidden />
               </Link>
             </form>
           </div>
@@ -232,7 +244,7 @@ export default function StoragePremiumSection() {
               </div>
 
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                {STORAGE_EXTRA_SERVICES.map((service, idx) => (
+                {STORAGE_EXTRA_SERVICE_IMAGES.map((service, idx) => (
                   <motion.article
                     key={service.title}
                     initial={{ opacity: 0, y: 14, scale: 0.96 }}
@@ -256,7 +268,7 @@ export default function StoragePremiumSection() {
             {STORAGE_OFFER_CARDS.map((card, i) => (
               <motion.article
                 key={card.title}
-                className="group relative mx-auto w-full max-w-sm overflow-hidden rounded-2xl border border-[rgba(15,39,68,0.1)] bg-transparent p-4 shadow-[0_14px_36px_-16px_rgba(15,39,68,0.36)] ring-1 ring-[rgba(255,255,255,0.9)] transition duration-300 hover:-translate-y-1 hover:border-[rgba(74,142,184,0.45)] hover:shadow-[0_24px_54px_-18px_rgba(15,39,68,0.5)]"
+                className="group relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-[rgba(15,39,68,0.1)] bg-transparent p-4 shadow-[0_14px_36px_-16px_rgba(15,39,68,0.36)] ring-1 ring-[rgba(255,255,255,0.9)] transition duration-300 hover:-translate-y-1 hover:border-[rgba(74,142,184,0.45)] hover:shadow-[0_24px_54px_-18px_rgba(15,39,68,0.5)]"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
@@ -266,12 +278,15 @@ export default function StoragePremiumSection() {
                   className="pointer-events-none absolute inset-x-5 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#c5a059] to-transparent opacity-75"
                   aria-hidden
                 />
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="h-32 w-full rounded-xl object-cover ring-1 ring-[rgba(15,39,68,0.08)] sm:h-36"
-                  loading="lazy"
-                />
+                <div className="overflow-hidden rounded-xl ring-1 ring-[rgba(15,39,68,0.08)]">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="aspect-[4/3] w-full min-h-[200px] object-cover object-center sm:min-h-[220px] lg:min-h-[240px]"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
                 <h3 className="mt-3 text-lg font-extrabold tracking-tight text-white drop-shadow-[0_2px_10px_rgba(15,39,68,0.45)] sm:text-xl">
                   {card.title}
                 </h3>
@@ -333,61 +348,83 @@ export default function StoragePremiumSection() {
             </article>
           ))}
         </div>
+      </div>
 
+      <div className="storage-tips-bleed">
+        <StorageUsefulTipsSection />
+      </div>
+
+      <div className="storage-spotlight-bleed">
+        <StorageSpotlightGallery />
+      </div>
+
+      <div className="container">
         <section id="storage-contact" className="mx-auto mt-10 w-full max-w-3xl px-1 sm:mt-12">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.35 }}
-            className="relative overflow-hidden rounded-3xl border border-[rgba(148,184,220,0.34)] bg-[linear-gradient(180deg,rgba(11,33,61,0.72)_0%,rgba(6,22,44,0.78)_100%)] p-8 text-center shadow-[0_24px_60px_-34px_rgba(0,0,0,0.7)] backdrop-blur-xl transition duration-300 hover:border-[rgba(166,208,247,0.62)] hover:bg-[linear-gradient(180deg,rgba(13,38,70,0.76)_0%,rgba(8,27,52,0.82)_100%)] active:border-[rgba(188,223,255,0.78)] active:bg-[linear-gradient(180deg,rgba(15,44,78,0.8)_0%,rgba(10,31,58,0.86)_100%)] sm:p-10"
+            className="storage-contact-panel"
           >
-            <div
-              className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(197,160,89,0.7)] to-transparent"
-              aria-hidden
-            />
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[rgba(255,255,255,0.18)] bg-[rgba(6,12,20,0.88)] shadow-[0_12px_28px_-20px_rgba(0,0,0,0.85)]">
-              <Sparkles className="h-6 w-6 text-[#f2d18d]" strokeWidth={1.8} />
+            <div className="storage-contact-panel__accent" aria-hidden />
+            <div className="storage-contact-panel__icon" aria-hidden>
+              <Sparkles className="h-6 w-6" strokeWidth={1.8} />
             </div>
 
-            <h3 className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Still wondering about something?
-            </h3>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              Send us your storage request and a real person from our team will contact you within one business day.
+            <h3 className="storage-contact-panel__title">Still wondering about something?</h3>
+            <p className="storage-contact-panel__lead">
+              Send us your storage request and a real person from our team will contact you within one
+              business day.
             </p>
 
-            <form className="mx-auto mt-8 grid w-full max-w-xl grid-cols-1 gap-3 text-left sm:grid-cols-2">
-              <input
-                type="text"
-                name="fullName"
-                placeholder="Full name"
-                className="h-11 rounded-xl border border-[rgba(149,187,220,0.24)] bg-[rgba(7,16,29,0.76)] px-3.5 text-sm text-white placeholder:text-slate-400 outline-none transition focus:border-[#86b9de]"
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone number"
-                className="h-11 rounded-xl border border-[rgba(149,187,220,0.24)] bg-[rgba(7,16,29,0.76)] px-3.5 text-sm text-white placeholder:text-slate-400 outline-none transition focus:border-[#86b9de]"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email address"
-                className="h-11 rounded-xl border border-[rgba(149,187,220,0.24)] bg-[rgba(7,16,29,0.76)] px-3.5 text-sm text-white placeholder:text-slate-400 outline-none transition focus:border-[#86b9de] sm:col-span-2"
-              />
-              <textarea
-                name="message"
-                placeholder="Tell us what storage space you need..."
-                rows={4}
-                className="rounded-xl border border-[rgba(149,187,220,0.24)] bg-[rgba(7,16,29,0.76)] px-3.5 py-3 text-sm text-white placeholder:text-slate-400 outline-none transition focus:border-[#86b9de] sm:col-span-2"
-              />
+            <form className="storage-contact-panel__form storage-form" aria-label="Storage inquiry">
+              <label className="storage-form__field">
+                <span className="storage-form__label">Full name</span>
+                <input
+                  type="text"
+                  name="fullName"
+                  className="storage-form__control"
+                  placeholder="Your name"
+                  autoComplete="name"
+                />
+              </label>
+              <label className="storage-form__field">
+                <span className="storage-form__label">Phone</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  className="storage-form__control"
+                  placeholder="+357 …"
+                  autoComplete="tel"
+                />
+              </label>
+              <label className="storage-form__field storage-form__field--full">
+                <span className="storage-form__label">Email</span>
+                <input
+                  type="email"
+                  name="email"
+                  className="storage-form__control"
+                  placeholder="you@company.com"
+                  autoComplete="email"
+                />
+              </label>
+              <label className="storage-form__field storage-form__field--full">
+                <span className="storage-form__label">Storage requirements</span>
+                <textarea
+                  name="message"
+                  className="storage-form__control"
+                  placeholder="Unit size, duration, containers vs. warehouse space…"
+                  rows={4}
+                />
+              </label>
               <Link
                 to="/contact"
                 state={{ serviceInterest: 'Storage2Rent', storageInquiry: true }}
-                className="mt-1 inline-flex h-11 items-center justify-center rounded-xl bg-white px-5 text-sm font-semibold text-[#0f2744] transition hover:bg-neutral-100 sm:col-span-2"
+                className="storage-form__submit storage-form__submit--secondary storage-form__field--full"
               >
                 Continue to full contact form
+                <ArrowRight size={14} strokeWidth={2.25} aria-hidden />
               </Link>
             </form>
           </motion.div>
