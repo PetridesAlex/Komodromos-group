@@ -56,7 +56,7 @@ export default function StorageTipDetailPage() {
                   </Link>
                 </li>
                 <li className="storage-tip-detail__breadcrumb-sep" aria-hidden>
-                  <ChevronRight size={14} strokeWidth={2.25} />
+                  <ChevronRight size={13} strokeWidth={2.25} />
                 </li>
                 <li className="storage-tip-detail__breadcrumb-item">
                   <Link
@@ -67,7 +67,7 @@ export default function StorageTipDetailPage() {
                   </Link>
                 </li>
                 <li className="storage-tip-detail__breadcrumb-sep" aria-hidden>
-                  <ChevronRight size={14} strokeWidth={2.25} />
+                  <ChevronRight size={13} strokeWidth={2.25} />
                 </li>
                 <li className="storage-tip-detail__breadcrumb-item storage-tip-detail__breadcrumb-item--current">
                   <span className="storage-tip-detail__crumb storage-tip-detail__crumb--current" aria-current="page">
@@ -76,27 +76,31 @@ export default function StorageTipDetailPage() {
                 </li>
               </ol>
             </nav>
-            <div className="storage-tip-detail__title-block">
-              <motion.h1
-                className="storage-tip-detail__title"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, ease: EASE }}
-              >
-                {tip.title}
-              </motion.h1>
-            </div>
           </div>
         </div>
 
         <div className="container storage-tip-detail__content-wrap">
+          <motion.div
+            className="storage-tip-detail__title-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: EASE }}
+          >
+            <h1 className="storage-tip-detail__title">{tip.title}</h1>
+          </motion.div>
+
           <motion.div
             className="storage-tip-detail__content"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
           >
-            <p className="storage-tip-detail__intro">{tip.excerpt}</p>
+            <div className="storage-tip-detail__intro-block">
+              <span className="storage-tip-detail__intro-mark" aria-hidden>
+                "
+              </span>
+              <p className="storage-tip-detail__intro">{tip.excerpt}</p>
+            </div>
             <div className="storage-tip-detail__body">
               {tip.body.map((paragraph) => (
                 <p key={paragraph.slice(0, 48)}>{paragraph}</p>
@@ -123,36 +127,56 @@ export default function StorageTipDetailPage() {
           </motion.div>
 
           <nav className="storage-tip-detail__nav" aria-label="More useful tips">
-            {prevTip ? (
-              <Link to={storageTipDetailPath(prevTip.id)} className="storage-tip-detail__nav-link">
-                <ArrowLeft size={16} strokeWidth={2.25} aria-hidden />
-                <span>
-                  <span className="storage-tip-detail__nav-label">Previous</span>
-                  {prevTip.title}
-                </span>
+            <div className="storage-tip-detail__nav-head">
+              <p className="storage-tip-detail__nav-eyebrow">Continue reading</p>
+              <Link to="/services/storage#storage-tips" className="storage-tip-detail__nav-all">
+                View all tips
+                <ArrowRight size={14} strokeWidth={2.25} aria-hidden />
               </Link>
-            ) : (
-              <span />
-            )}
-            <Link
-              to="/services/storage#storage-tips"
-              className="storage-tip-detail__nav-all"
-            >
-              All tips
-            </Link>
-            {nextTip ? (
-              <Link
-                to={storageTipDetailPath(nextTip.id)}
-                className="storage-tip-detail__nav-link storage-tip-detail__nav-link--next"
+            </div>
+
+            {(prevTip || nextTip) && (
+              <div
+                className={`storage-tip-detail__nav-cards${
+                  prevTip && nextTip ? '' : ' storage-tip-detail__nav-cards--single'
+                }`}
               >
-                <span>
-                  <span className="storage-tip-detail__nav-label">Next</span>
-                  {nextTip.title}
-                </span>
-                <ArrowRight size={16} strokeWidth={2.25} aria-hidden />
-              </Link>
-            ) : (
-              <span />
+                {prevTip ? (
+                  <Link
+                    to={storageTipDetailPath(prevTip.id)}
+                    className="storage-tip-detail__nav-card storage-tip-detail__nav-card--prev"
+                  >
+                    <div className="storage-tip-detail__nav-card-media">
+                      <img src={prevTip.image} alt="" loading="lazy" decoding="async" />
+                    </div>
+                    <div className="storage-tip-detail__nav-card-body">
+                      <span className="storage-tip-detail__nav-label">
+                        <ArrowLeft size={13} strokeWidth={2.25} aria-hidden />
+                        Previous tip
+                      </span>
+                      <span className="storage-tip-detail__nav-card-title">{prevTip.title}</span>
+                    </div>
+                  </Link>
+                ) : null}
+
+                {nextTip ? (
+                  <Link
+                    to={storageTipDetailPath(nextTip.id)}
+                    className="storage-tip-detail__nav-card storage-tip-detail__nav-card--next"
+                  >
+                    <div className="storage-tip-detail__nav-card-body">
+                      <span className="storage-tip-detail__nav-label">
+                        Next tip
+                        <ArrowRight size={13} strokeWidth={2.25} aria-hidden />
+                      </span>
+                      <span className="storage-tip-detail__nav-card-title">{nextTip.title}</span>
+                    </div>
+                    <div className="storage-tip-detail__nav-card-media">
+                      <img src={nextTip.image} alt="" loading="lazy" decoding="async" />
+                    </div>
+                  </Link>
+                ) : null}
+              </div>
             )}
           </nav>
         </div>

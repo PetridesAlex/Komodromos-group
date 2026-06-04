@@ -1,6 +1,7 @@
+import { type MouseEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, Clock, ShieldCheck, Sparkles, Warehouse } from 'lucide-react'
 import {
   STORAGE_EXTRA_SERVICE_IMAGES,
   STORAGE_HERO_FAN,
@@ -43,20 +44,31 @@ const STORAGE_SIZE_OPTIONS = [
 ] as const
 
 const STORAGE_HERO_PILLS = [
-  '24-hour access',
-  'Secure monitored yard',
-  'Personal & business units',
+  { label: '24-hour access', icon: Clock },
+  { label: 'Secure monitored yard', icon: ShieldCheck },
+  { label: 'Personal & business units', icon: Warehouse },
 ] as const
+
+const STORAGE_HERO_CTA_TARGET = 'storage-offers'
+
+function scrollToStorageSection(sectionId: string, event?: MouseEvent<HTMLAnchorElement>) {
+  event?.preventDefault()
+  const el = document.getElementById(sectionId)
+  if (!el) return
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+  window.history.replaceState(null, '', `#${sectionId}`)
+}
 
 export default function StoragePremiumSection() {
   return (
-    <section className="storage-premium-section" aria-labelledby="storage-premium-heading" id="storage-parallax">
+    <section className="storage-premium-section" aria-labelledby="storage-premium-heading">
       <div className="storage-premium-section__glow storage-premium-section__glow--1" aria-hidden />
       <div className="storage-premium-section__glow storage-premium-section__glow--2" aria-hidden />
-      <header className="storage-premium-header storage-premium-header--full">
+      <header className="storage-premium-header storage-premium-header--full" id="storage-parallax">
         <section className="storage-premium-hero-shell relative w-full overflow-hidden bg-transparent py-2 sm:py-4">
           <div className="storage-premium-hero-frame relative z-10 w-full">
-              <div className="storage-premium-hero-copy mb-12 flex flex-col items-center text-center sm:mb-20 lg:mb-24">
+              <div className="storage-premium-hero-copy">
                 <motion.p
                   className="storage-premium-hero-eyebrow"
                   initial={{ opacity: 0, y: 16 }}
@@ -92,15 +104,39 @@ export default function StoragePremiumSection() {
                 <motion.ul
                   className="storage-premium-hero-pills"
                   aria-label="Storage2Rent highlights"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+                  }}
                 >
-                  {STORAGE_HERO_PILLS.map((pill) => (
-                    <li key={pill} className="storage-premium-hero-pill">
-                      {pill}
-                    </li>
-                  ))}
+                  {STORAGE_HERO_PILLS.map((pill) => {
+                    const Icon = pill.icon
+                    return (
+                      <motion.li
+                        key={pill.label}
+                        className="storage-premium-hero-pill"
+                        variants={{
+                          hidden: { opacity: 0, y: 14, scale: 0.94 },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+                          },
+                        }}
+                        whileHover={{ y: -4, scale: 1.03 }}
+                        transition={{ type: 'spring', stiffness: 420, damping: 24 }}
+                      >
+                        <span className="storage-premium-hero-pill__icon" aria-hidden>
+                          <Icon size={13} strokeWidth={2.25} />
+                        </span>
+                        <span className="storage-premium-hero-pill__text">{pill.label}</span>
+                        <span className="storage-premium-hero-pill__sheen" aria-hidden />
+                      </motion.li>
+                    )
+                  })}
                 </motion.ul>
 
                 <motion.div
@@ -108,25 +144,25 @@ export default function StoragePremiumSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.38 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
                 >
-                  <Link
-                    to="/contact"
-                    state={{ serviceInterest: 'Storage2Rent', storageInquiry: true }}
-                    className="storage-premium-hero-cta group inline-flex min-w-[176px] cursor-pointer items-center justify-center whitespace-nowrap rounded-full bg-white text-sm font-medium leading-none text-neutral-900 transition-colors hover:bg-neutral-100 sm:min-w-[196px] sm:text-base"
+                  <a
+                    href={`#${STORAGE_HERO_CTA_TARGET}`}
+                    className="storage-premium-hero-cta group"
+                    onClick={(event) => scrollToStorageSection(STORAGE_HERO_CTA_TARGET, event)}
                   >
+                    <span className="storage-premium-hero-cta__sheen" aria-hidden />
                     <span className="storage-premium-hero-cta__text">Get started now</span>
                     <ArrowRight
-                      size={12}
-                      strokeWidth={2.25}
+                      size={14}
+                      strokeWidth={2.5}
                       className="storage-premium-hero-cta__icon shrink-0"
+                      aria-hidden
                     />
-                  </Link>
+                  </a>
                 </motion.div>
               </div>
 
-              <div className="storage-premium-hero-fan-wrap relative">
+              <div className="storage-premium-hero-fan-wrap relative z-0">
                 <div
                   className="pointer-events-none absolute left-1/2 top-[80%] z-10 aspect-square w-[250%] -translate-x-1/2 rounded-full bg-[#05070a] shadow-2xl shadow-purple-500/30 sm:top-[40%] sm:w-[200%]"
                   aria-hidden
@@ -152,15 +188,15 @@ export default function StoragePremiumSection() {
       </header>
 
       <div className="container">
-        <section className="mx-auto mt-8 w-full max-w-6xl" id="storage-offers">
-          <div className="mb-6 text-center sm:mb-8">
-            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
-              Storage Solutions for Every Need
-            </h2>
-            <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              Choose from personal, business, and pallet storage options designed for security, flexibility, and easy access.
+        <section className="storage-offers-section" id="storage-offers">
+          <header className="storage-offers__head">
+            <p className="storage-offers__eyebrow">Storage options</p>
+            <h2 className="storage-offers__title">Storage Solutions for Every Need</h2>
+            <p className="storage-offers__lead">
+              Choose from personal, business, and pallet storage options designed for security,
+              flexibility, and easy access.
             </p>
-          </div>
+          </header>
 
           <div className="storage-calculator">
             <div className="storage-calculator__copy">
@@ -228,22 +264,19 @@ export default function StoragePremiumSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.4 }}
-            className="mb-8 overflow-hidden rounded-3xl border border-[rgba(146,195,231,0.3)] bg-[linear-gradient(145deg,rgba(11,28,49,0.72)_0%,rgba(7,20,35,0.84)_58%,rgba(6,16,28,0.9)_100%)] p-5 shadow-[0_24px_56px_-34px_rgba(0,0,0,0.64)] backdrop-blur-lg sm:p-6 lg:mb-10 lg:p-8"
+            className="storage-extra-services"
           >
-            <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.8fr)] lg:items-center">
-              <div>
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#8ed0ff]">
-                  Extra Services
-                </p>
-                <h3 className="mt-2 text-2xl font-extrabold tracking-tight text-white drop-shadow-[0_6px_20px_rgba(15,39,68,0.5)] sm:text-3xl">
-                  Do you need more?
-                </h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-200 sm:text-base">
-                  Whether you need home, business, or long-term support, we provide complementary services for flexible storage operations.
+            <div className="storage-extra-services__grid">
+              <div className="storage-extra-services__copy">
+                <p className="storage-extra-services__eyebrow">Extra Services</p>
+                <h3 className="storage-extra-services__title">Do you need more?</h3>
+                <p className="storage-extra-services__lead">
+                  Whether you need home, business, or long-term support, we provide complementary
+                  services for flexible storage operations.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="storage-extra-services__items">
                 {STORAGE_EXTRA_SERVICE_IMAGES.map((service, idx) => (
                   <motion.article
                     key={service.title}
@@ -252,75 +285,71 @@ export default function StoragePremiumSection() {
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.35, delay: idx * 0.06 }}
                     whileHover={{ y: -5, scale: 1.02 }}
-                    className="rounded-2xl border border-[rgba(157,216,255,0.22)] bg-[rgba(7,18,32,0.54)] p-3 text-center transition-colors duration-300 hover:border-[rgba(157,216,255,0.52)] hover:bg-[rgba(10,27,46,0.74)]"
+                    className="storage-extra-services__item"
                   >
-                    <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-2 border-[#9dd8ff] p-1 shadow-[0_16px_26px_-16px_rgba(0,0,0,0.72)] sm:h-24 sm:w-24">
-                      <img src={service.image} alt={service.title} className="h-full w-full rounded-full object-cover" loading="lazy" />
+                    <div className="storage-extra-services__item-media">
+                      <img src={service.image} alt={service.title} loading="lazy" />
                     </div>
-                    <p className="mt-2 text-xs font-semibold text-[#d7ecff] sm:text-sm">{service.title}</p>
+                    <p className="storage-extra-services__item-title">{service.title}</p>
                   </motion.article>
                 ))}
               </div>
             </div>
           </motion.section>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+          <div className="storage-offers__cards">
             {STORAGE_OFFER_CARDS.map((card, i) => (
               <motion.article
                 key={card.title}
-                className="group relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-[rgba(15,39,68,0.1)] bg-transparent p-4 shadow-[0_14px_36px_-16px_rgba(15,39,68,0.36)] ring-1 ring-[rgba(255,255,255,0.9)] transition duration-300 hover:-translate-y-1 hover:border-[rgba(74,142,184,0.45)] hover:shadow-[0_24px_54px_-18px_rgba(15,39,68,0.5)]"
+                className="storage-offer-card group"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.45, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div
-                  className="pointer-events-none absolute inset-x-5 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#c5a059] to-transparent opacity-75"
-                  aria-hidden
-                />
-                <div className="overflow-hidden rounded-xl ring-1 ring-[rgba(15,39,68,0.08)]">
+                <div className="storage-offer-card__accent" aria-hidden />
+                <div className="storage-offer-card__media">
                   <img
                     src={card.image}
                     alt={card.title}
-                    className="aspect-[4/3] w-full min-h-[200px] object-cover object-center sm:min-h-[220px] lg:min-h-[240px]"
                     loading="lazy"
                     decoding="async"
                   />
                 </div>
-                <h3 className="mt-3 text-lg font-extrabold tracking-tight text-white drop-shadow-[0_2px_10px_rgba(15,39,68,0.45)] sm:text-xl">
-                  {card.title}
-                </h3>
-                <p className="mt-2 min-h-[4.25rem] text-sm leading-relaxed text-slate-500">{card.desc}</p>
+                <h3 className="storage-offer-card__title">{card.title}</h3>
+                <p className="storage-offer-card__desc">{card.desc}</p>
                 <Link
                   to="/contact"
                   state={{ serviceInterest: `Storage2Rent - ${card.title}` }}
-                  className="group mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[rgba(15,39,68,0.14)] bg-[#f8fbff] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-[#0f2744] transition hover:border-[#4a8eb8] hover:bg-[#dff1ff] hover:text-[#114e77] active:border-[#2d79aa] active:bg-[#cce9ff] active:text-[#0a3b5f]"
+                  className="storage-offer-card__link group"
                 >
                   <span>Learn More</span>
                   <ArrowRight
                     size={13}
                     strokeWidth={2.25}
                     className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                    aria-hidden
                   />
                 </Link>
               </motion.article>
             ))}
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[rgba(134,185,222,0.26)] bg-[rgba(8,21,37,0.62)] px-5 py-4 sm:px-6">
-            <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-              See our offers for <span className="text-[#c5a059]">business storage</span>
+          <div className="storage-offers-cta">
+            <h3 className="storage-offers-cta__title">
+              See our offers for <span>business storage</span>
             </h3>
             <Link
               to="/contact"
               state={{ serviceInterest: 'Storage2Rent', storageInquiry: true }}
-              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#0f2744] to-[#173a61] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_-14px_rgba(15,39,68,0.55)] transition hover:from-[#133357] hover:to-[#1f4974] hover:shadow-[0_18px_36px_-16px_rgba(15,39,68,0.62)]"
+              className="storage-offers-cta__btn group"
             >
               <span>More Services</span>
               <ArrowRight
                 size={16}
                 strokeWidth={2.25}
                 className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                aria-hidden
               />
             </Link>
           </div>
@@ -358,8 +387,8 @@ export default function StoragePremiumSection() {
         <StorageSpotlightGallery />
       </div>
 
-      <div className="container">
-        <section id="storage-contact" className="mx-auto mt-10 w-full max-w-3xl px-1 sm:mt-12">
+      <div className="container storage-page-closing">
+        <section id="storage-contact" className="storage-contact-section">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}

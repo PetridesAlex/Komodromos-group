@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Navigate, useLocation, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
@@ -13,12 +13,84 @@ import TaxNexCyprusPage from './TaxNexCyprusPage'
 const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
 const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
 
+const STORAGE_SUBNAV_LINKS: ReadonlyArray<{
+  id: string
+  label: string
+  cta?: boolean
+}> = [
+  { id: 'storage-parallax', label: 'Overview' },
+  { id: 'storage-offers', label: 'Storage Options' },
+  { id: 'storage-features', label: 'Features' },
+  { id: 'storage-rates', label: 'Monthly Rates' },
+  { id: 'storage-tips', label: 'Useful Tips' },
+  { id: 'storage-contact', label: 'Contact', cta: true },
+]
+
 export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const location = useLocation()
   const card = getServiceBySlug(slug)
   const defaultContent = slug ? getServicePageContent(slug) : undefined
   const pageRef = useReveal()
+  const [activeStorageSection, setActiveStorageSection] = useState('storage-parallax')
+
+  useEffect(() => {
+    if (slug !== 'storage') return
+
+    const sectionIds = STORAGE_SUBNAV_LINKS.map((link) => link.id)
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el))
+
+    if (!sections.length) return
+
+    const ratios = new Map<HTMLElement, number>()
+    let active: HTMLElement | null = null
+
+    const pickActive = () => {
+      let best: HTMLElement | null = null
+      let bestRatio = 0
+      for (const [el, ratio] of ratios) {
+        if (ratio > bestRatio) {
+          bestRatio = ratio
+          best = el
+        }
+      }
+      const next = bestRatio >= 0.12 ? best : null
+      if (next === active) return
+      active = next
+      setActiveStorageSection(active?.id ?? 'storage-parallax')
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          ratios.set(
+            entry.target as HTMLElement,
+            entry.isIntersecting ? entry.intersectionRatio : 0,
+          )
+        }
+        pickActive()
+      },
+      {
+        threshold: [0, 0.08, 0.16, 0.28, 0.4, 0.55, 0.7, 0.85, 1],
+        rootMargin: '-20% 0px -55% 0px',
+      },
+    )
+
+    for (const section of sections) {
+      ratios.set(section, 0)
+      observer.observe(section)
+    }
+
+    window.addEventListener('scroll', pickActive, { passive: true })
+    pickActive()
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', pickActive)
+    }
+  }, [slug])
 
   useEffect(() => {
     const id = location.hash.replace(/^#/, '')
@@ -69,24 +141,24 @@ export default function ServiceDetailPage() {
         <div className="storage-page-subnav" aria-label="Storage page navigation">
           <div className="container">
             <nav className="storage-page-subnav__inner">
-              <a href="#storage-parallax" className="storage-page-subnav__link">
-                Overview
-              </a>
-              <a href="#storage-offers" className="storage-page-subnav__link">
-                Storage Options
-              </a>
-              <a href="#storage-features" className="storage-page-subnav__link">
-                Features
-              </a>
-              <a href="#storage-rates" className="storage-page-subnav__link">
-                Monthly Rates
-              </a>
-              <a href="#storage-tips" className="storage-page-subnav__link">
-                Useful Tips
-              </a>
-              <a href="#storage-contact" className="storage-page-subnav__link storage-page-subnav__link--cta">
-                Contact
-              </a>
+              {STORAGE_SUBNAV_LINKS.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  className={[
+                    'storage-page-subnav__link',
+                    link.cta ? 'storage-page-subnav__link--cta' : '',
+                    !link.cta && activeStorageSection === link.id
+                      ? 'storage-page-subnav__link--active'
+                      : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  aria-current={!link.cta && activeStorageSection === link.id ? 'true' : undefined}
+                >
+                  {link.label}
+                </a>
+              ))}
             </nav>
           </div>
         </div>

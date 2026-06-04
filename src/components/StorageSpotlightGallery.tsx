@@ -1,4 +1,6 @@
-import { motion, useReducedMotion } from 'motion/react'
+import { useCallback, useEffect, useState } from 'react'
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'motion/react'
+import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react'
 import { STORAGE_SPOTLIGHT_GALLERY } from '../data/storagePageImages'
 
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -22,6 +24,39 @@ const tileVariants = {
 
 export default function StorageSpotlightGallery() {
   const reduceMotion = useReducedMotion()
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+  const activeItem = activeIndex !== null ? STORAGE_SPOTLIGHT_GALLERY[activeIndex] : null
+
+  const closePreview = useCallback(() => setActiveIndex(null), [])
+
+  const showPrev = useCallback(() => {
+    setActiveIndex((i) => (i === null || i <= 0 ? i : i - 1))
+  }, [])
+
+  const showNext = useCallback(() => {
+    setActiveIndex((i) =>
+      i === null || i >= STORAGE_SPOTLIGHT_GALLERY.length - 1 ? i : i + 1,
+    )
+  }, [])
+
+  useEffect(() => {
+    if (activeIndex === null) return
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closePreview()
+      if (e.key === 'ArrowLeft') showPrev()
+      if (e.key === 'ArrowRight') showNext()
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [activeIndex, closePreview, showNext, showPrev])
 
   const headerMotion = reduceMotion
     ? {}
@@ -42,6 +77,7 @@ export default function StorageSpotlightGallery() {
       }
 
   return (
+    <LayoutGroup id="storage-spotlight-gallery">
     <section
       className="storage-spotlight"
       aria-labelledby="storage-spotlight-heading"
@@ -64,42 +100,135 @@ export default function StorageSpotlightGallery() {
         </p>
       </motion.header>
 
-      <motion.ul
-        className="storage-spotlight__grid"
-        role="list"
-        {...gridMotion}
-      >
+      <motion.ul className="storage-spotlight__grid" role="list" {...gridMotion}>
         {STORAGE_SPOTLIGHT_GALLERY.map((item, index) => (
           <motion.li
             key={item.file}
             role="listitem"
             className="storage-spotlight__tile"
             variants={reduceMotion ? undefined : tileVariants}
-            whileHover={
-              reduceMotion
-                ? undefined
-                : { y: -6, transition: { type: 'spring', stiffness: 400, damping: 24 } }
-            }
           >
-            <div className="storage-spotlight__frame">
-              <motion.img
-                src={item.src}
-                alt={item.alt}
-                className="storage-spotlight__img"
-                loading="lazy"
-                decoding="async"
-                whileHover={reduceMotion ? undefined : { scale: 1.08 }}
-                transition={{ duration: 0.5, ease: EASE }}
-              />
+            <button
+              type="button"
+              className="storage-spotlight__frame"
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Preview ${item.caption}`}
+            >
+              <div className="storage-spotlight__img-wrap">
+                <motion.img
+                  layoutId={reduceMotion ? undefined : `spotlight-img-${item.file}`}
+                  src={item.src}
+                  alt={item.alt}
+                  className="storage-spotlight__img"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="storage-spotlight__shine" aria-hidden />
               <div className="storage-spotlight__scrim" aria-hidden />
+              <span className="storage-spotlight__preview-hint" aria-hidden>
+                <ZoomIn size={18} strokeWidth={2} />
+              </span>
               <span className="storage-spotlight__index" aria-hidden>
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <figcaption className="storage-spotlight__caption">{item.caption}</figcaption>
-            </div>
+              <span className="storage-spotlight__caption">{item.caption}</span>
+            </button>
           </motion.li>
         ))}
       </motion.ul>
+
+      <AnimatePresence>
+        {activeItem && activeIndex !== null ? (
+          <motion.div
+            className="storage-spotlight-lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Preview: ${activeItem.caption}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.35, ease: EASE }}
+          >
+            <motion.button
+              type="button"
+              className="storage-spotlight-lightbox__backdrop"
+              aria-label="Close preview"
+              onClick={closePreview}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
+
+            <div className="storage-spotlight-lightbox__chrome">
+              <button
+                type="button"
+                className="storage-spotlight-lightbox__close"
+                onClick={closePreview}
+                aria-label="Close preview"
+              >
+                <X size={20} strokeWidth={2} />
+              </button>
+              <p className="storage-spotlight-lightbox__counter" aria-live="polite">
+                {String(activeIndex + 1).padStart(2, '0')}
+                <span aria-hidden> / </span>
+                {String(STORAGE_SPOTLIGHT_GALLERY.length).padStart(2, '0')}
+              </p>
+            </div>
+
+            <motion.div
+              className="storage-spotlight-lightbox__stage"
+              initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96, y: 10 }}
+              transition={{ duration: 0.45, ease: EASE }}
+            >
+              <motion.img
+                key={activeItem.file}
+                layoutId={reduceMotion ? undefined : `spotlight-img-${activeItem.file}`}
+                src={activeItem.src}
+                alt={activeItem.alt}
+                className="storage-spotlight-lightbox__img"
+                initial={reduceMotion ? false : { opacity: 0.6 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, ease: EASE }}
+              />
+              <motion.p
+                key={`${activeItem.file}-caption`}
+                className="storage-spotlight-lightbox__caption"
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.06, ease: EASE }}
+              >
+                {activeItem.caption}
+              </motion.p>
+            </motion.div>
+
+            {activeIndex > 0 ? (
+              <button
+                type="button"
+                className="storage-spotlight-lightbox__nav storage-spotlight-lightbox__nav--prev"
+                onClick={showPrev}
+                aria-label="Previous photo"
+              >
+                <ChevronLeft size={22} strokeWidth={2} />
+              </button>
+            ) : null}
+
+            {activeIndex < STORAGE_SPOTLIGHT_GALLERY.length - 1 ? (
+              <button
+                type="button"
+                className="storage-spotlight-lightbox__nav storage-spotlight-lightbox__nav--next"
+                onClick={showNext}
+                aria-label="Next photo"
+              >
+                <ChevronRight size={22} strokeWidth={2} />
+              </button>
+            ) : null}
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </section>
+    </LayoutGroup>
   )
 }

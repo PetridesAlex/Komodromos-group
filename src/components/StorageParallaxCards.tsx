@@ -1,5 +1,6 @@
-import { useCallback, useRef, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'motion/react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { STORAGE_PARALLAX_SLIDES } from '../data/storagePageImages'
 
 /** Horizontal strip: parallax depth + subtle tilt (no overlapping cards) */
@@ -98,11 +99,65 @@ function ParallaxCard({
 
 export default function StorageParallaxCards() {
   const stageRef = useRef<HTMLDivElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
   const reducedMotion = usePrefersReducedMotion()
   const mx = useMotionValue(0)
   const my = useMotionValue(0)
   const smoothMx = useSpring(mx, reducedMotion ? { stiffness: 500, damping: 100 } : SPRING)
   const smoothMy = useSpring(my, reducedMotion ? { stiffness: 500, damping: 100 } : SPRING)
+  const [scrollState, setScrollState] = useState({ atStart: true, atEnd: false, progress: 0 })
+  const [hasScrolled, setHasScrolled] = useState(false)
+
+  const updateScrollState = useCallback(() => {
+    const el = trackRef.current
+    if (!el) return
+    const { scrollLeft, scrollWidth, clientWidth } = el
+    const max = Math.max(0, scrollWidth - clientWidth)
+    if (scrollLeft > 12) setHasScrolled(true)
+    setScrollState({
+      atStart: scrollLeft < 8,
+      atEnd: scrollLeft >= max - 8,
+      progress: max > 0 ? scrollLeft / max : 0,
+    })
+  }, [])
+
+  useEffect(() => {
+    const el = trackRef.current
+    if (!el) return
+    updateScrollState()
+    el.addEventListener('scroll', updateScrollState, { passive: true })
+    window.addEventListener('resize', updateScrollState)
+    return () => {
+      el.removeEventListener('scroll', updateScrollState)
+      window.removeEventListener('resize', updateScrollState)
+    }
+  }, [updateScrollState])
+
+  const scrollTrack = useCallback((direction: 'prev' | 'next') => {
+    const el = trackRef.current
+    if (!el) return
+    const card = el.querySelector<HTMLElement>('.storage-parallax__card')
+    const gap = parseFloat(getComputedStyle(el).gap || '0')
+    const step = card ? (card.offsetWidth + gap) * 1.35 : el.clientWidth * 0.92
+    el.scrollBy({
+      left: direction === 'next' ? step : -step,
+      behavior: 'auto',
+    })
+  }, [])
+
+  useEffect(() => {
+    const el = trackRef.current
+    if (!el) return
+
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return
+      e.preventDefault()
+      el.scrollLeft += e.deltaY * 2.75
+    }
+
+    el.addEventListener('wheel', onWheel, { passive: false })
+    return () => el.removeEventListener('wheel', onWheel)
+  }, [])
 
   const onMove = useCallback(
     (e: React.PointerEvent) => {
@@ -128,13 +183,35 @@ export default function StorageParallaxCards() {
         <div className="storage-parallax__accent" aria-hidden />
         <div
           ref={stageRef}
-          className="storage-parallax__stage"
+          className={[
+            'storage-parallax__stage',
+            scrollState.atStart ? 'is-at-start' : '',
+            scrollState.atEnd ? 'is-at-end' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
           onPointerMove={onMove}
           onPointerLeave={onLeave}
           aria-label="Storage2Rent facility gallery. Scroll horizontally for all photos; move the pointer for parallax."
         >
+          <div className="storage-parallax__edge storage-parallax__edge--left" aria-hidden />
+          <div className="storage-parallax__edge storage-parallax__edge--right" aria-hidden />
           <div className="storage-parallax__fog" aria-hidden />
-          <div className="storage-parallax__track">
+
+          {!hasScrolled && !scrollState.atEnd ? (
+            <div className="storage-parallax__scroll-hint" aria-hidden>
+              <span className="storage-parallax__scroll-hint-text">Scroll to explore</span>
+              <ChevronRight className="storage-parallax__scroll-hint-icon" size={16} strokeWidth={2.25} />
+            </div>
+          ) : null}
+
+          <div
+            ref={trackRef}
+            className="storage-parallax__track"
+            role="region"
+            aria-label="Facility photo gallery"
+            tabIndex={0}
+          >
             {STORAGE_PARALLAX_SLIDES.map((slide, i) => (
               <ParallaxCard
                 key={slide.image}
@@ -147,6 +224,38 @@ export default function StorageParallaxCards() {
                 index={i}
               />
             ))}
+          </div>
+
+          <div
+            className="storage-parallax__controls"
+            aria-label="Gallery navigation"
+            hidden={scrollState.atStart && scrollState.atEnd}
+          >
+            <button
+              type="button"
+              className="storage-parallax__nav storage-parallax__nav--prev"
+              onClick={() => scrollTrack('prev')}
+              disabled={scrollState.atStart}
+              aria-label="Previous photos"
+            >
+              <ChevronLeft size={18} strokeWidth={2.25} />
+            </button>
+            <button
+              type="button"
+              className="storage-parallax__nav storage-parallax__nav--next"
+              onClick={() => scrollTrack('next')}
+              disabled={scrollState.atEnd}
+              aria-label="Next photos"
+            >
+              <ChevronRight size={18} strokeWidth={2.25} />
+            </button>
+          </div>
+
+          <div className="storage-parallax__progress" aria-hidden>
+            <div
+              className="storage-parallax__progress-fill"
+              style={{ transform: `scaleX(${scrollState.progress})` }}
+            />
           </div>
         </div>
       </div>
