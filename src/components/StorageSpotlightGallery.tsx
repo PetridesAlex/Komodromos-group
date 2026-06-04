@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { createPortal } from 'react-dom'
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'motion/react'
 import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react'
 import { STORAGE_SPOTLIGHT_GALLERY } from '../data/storagePageImages'
@@ -22,13 +23,107 @@ const tileVariants = {
   },
 } as const
 
+const EXIT_MS = 380
+
+function subscribeMobileSpotlight(cb: () => void) {
+  const mq = window.matchMedia('(max-width: 640px)')
+  mq.addEventListener('change', cb)
+  return () => mq.removeEventListener('change', cb)
+}
+
+function getMobileSpotlightSnapshot() {
+  return window.matchMedia('(max-width: 640px)').matches
+}
+
+function getMobileSpotlightServerSnapshot() {
+  return false
+}
+
+function useMobileSpotlight() {
+  return useSyncExternalStore(
+    subscribeMobileSpotlight,
+    getMobileSpotlightSnapshot,
+    getMobileSpotlightServerSnapshot,
+  )
+}
+
+function lockPageScroll(scrollY: number) {
+  const { style: bodyStyle } = document.body
+  const { style: htmlStyle } = document.documentElement
+
+  bodyStyle.overflow = 'hidden'
+  bodyStyle.position = 'fixed'
+  bodyStyle.top = `-${scrollY}px`
+  bodyStyle.left = '0'
+  bodyStyle.right = '0'
+  bodyStyle.width = '100%'
+  htmlStyle.overflow = 'hidden'
+}
+
+function readLockedScrollY(fallback: number) {
+  const top = document.body.style.top
+  if (top) {
+    const parsed = Math.abs(parseInt(top, 10))
+    if (!Number.isNaN(parsed)) return parsed
+  }
+  return fallback
+}
+
+function unlockPageScroll(scrollY: number) {
+  const { style: bodyStyle } = document.body
+  const { style: htmlStyle } = document.documentElement
+  const targetY = readLockedScrollY(scrollY)
+  const prevScrollBehavior = htmlStyle.scrollBehavior
+
+  bodyStyle.overflow = ''
+  bodyStyle.position = ''
+  bodyStyle.top = ''
+  bodyStyle.left = ''
+  bodyStyle.right = ''
+  bodyStyle.width = ''
+  htmlStyle.overflow = ''
+  htmlStyle.scrollBehavior = 'auto'
+
+  requestAnimationFrame(() => {
+    window.scrollTo(0, targetY)
+    requestAnimationFrame(() => {
+      htmlStyle.scrollBehavior = prevScrollBehavior
+    })
+  })
+}
+
 export default function StorageSpotlightGallery() {
   const reduceMotion = useReducedMotion()
+  const isMobile = useMobileSpotlight()
+  const useSharedLayout = !reduceMotion && !isMobile
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const [scrollLocked, setScrollLocked] = useState(false)
+  const savedScrollY = useRef(0)
+  const scrollLockedRef = useRef(false)
 
   const activeItem = activeIndex !== null ? STORAGE_SPOTLIGHT_GALLERY[activeIndex] : null
 
-  const closePreview = useCallback(() => setActiveIndex(null), [])
+  const openPreview = useCallback((index: number) => {
+    savedScrollY.current = window.scrollY
+    scrollLockedRef.current = true
+    setScrollLocked(true)
+    setActiveIndex(index)
+  }, [])
+
+  const closePreview = useCallback(() => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur()
+    }
+    setActiveIndex(null)
+  }, [])
+
+  const handleExitComplete = useCallback(() => {
+    if (scrollLockedRef.current) {
+      unlockPageScroll(savedScrollY.current)
+      scrollLockedRef.current = false
+    }
+    setScrollLocked(false)
+  }, [])
 
   const showPrev = useCallback(() => {
     setActiveIndex((i) => (i === null || i <= 0 ? i : i - 1))
@@ -41,7 +136,9 @@ export default function StorageSpotlightGallery() {
   }, [])
 
   useEffect(() => {
-    if (activeIndex === null) return
+    if (!scrollLocked) return
+
+    lockPageScroll(savedScrollY.current)
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closePreview()
@@ -49,14 +146,21 @@ export default function StorageSpotlightGallery() {
       if (e.key === 'ArrowRight') showNext()
     }
 
-    document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', onKeyDown)
 
     return () => {
-      document.body.style.overflow = ''
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [activeIndex, closePreview, showNext, showPrev])
+  }, [scrollLocked, closePreview, showNext, showPrev])
+
+  useEffect(() => {
+    return () => {
+      if (scrollLockedRef.current) {
+        unlockPageScroll(savedScrollY.current)
+        scrollLockedRef.current = false
+      }
+    }
+  }, [])
 
   const headerMotion = reduceMotion
     ? {}
@@ -111,12 +215,15 @@ export default function StorageSpotlightGallery() {
             <button
               type="button"
               className="storage-spotlight__frame"
-              onClick={() => setActiveIndex(index)}
+              onPointerDown={() => {
+                savedScrollY.current = window.scrollY
+              }}
+              onClick={() => openPreview(index)}
               aria-label={`Preview ${item.caption}`}
             >
               <div className="storage-spotlight__img-wrap">
                 <motion.img
-                  layoutId={reduceMotion ? undefined : `spotlight-img-${item.file}`}
+                  layoutId={useSharedLayout ? `spotlight-img-${item.file}` : undefined}
                   src={item.src}
                   alt={item.alt}
                   className="storage-spotlight__img"
@@ -138,96 +245,111 @@ export default function StorageSpotlightGallery() {
         ))}
       </motion.ul>
 
-      <AnimatePresence>
-        {activeItem && activeIndex !== null ? (
-          <motion.div
-            className="storage-spotlight-lightbox"
-            role="dialog"
-            aria-modal="true"
-            aria-label={`Preview: ${activeItem.caption}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.35, ease: EASE }}
-          >
-            <motion.button
-              type="button"
-              className="storage-spotlight-lightbox__backdrop"
-              aria-label="Close preview"
-              onClick={closePreview}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            />
+      {typeof document !== 'undefined'
+        ? createPortal(
+            <AnimatePresence onExitComplete={handleExitComplete}>
+              {activeItem && activeIndex !== null ? (
+                <motion.div
+                  className="storage-spotlight-lightbox"
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label={`Preview: ${activeItem.caption}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: reduceMotion ? 0.01 : EXIT_MS / 1000, ease: EASE }}
+                >
+                  <motion.button
+                    type="button"
+                    className="storage-spotlight-lightbox__backdrop"
+                    aria-label="Close preview"
+                    onClick={closePreview}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  />
 
-            <div className="storage-spotlight-lightbox__chrome">
-              <button
-                type="button"
-                className="storage-spotlight-lightbox__close"
-                onClick={closePreview}
-                aria-label="Close preview"
-              >
-                <X size={20} strokeWidth={2} />
-              </button>
-              <p className="storage-spotlight-lightbox__counter" aria-live="polite">
-                {String(activeIndex + 1).padStart(2, '0')}
-                <span aria-hidden> / </span>
-                {String(STORAGE_SPOTLIGHT_GALLERY.length).padStart(2, '0')}
-              </p>
-            </div>
+                  <div className="storage-spotlight-lightbox__chrome">
+                    <button
+                      type="button"
+                      className="storage-spotlight-lightbox__close"
+                      onClick={closePreview}
+                      aria-label="Close preview"
+                    >
+                      <X size={20} strokeWidth={2} />
+                    </button>
+                    <p className="storage-spotlight-lightbox__counter" aria-live="polite">
+                      {String(activeIndex + 1).padStart(2, '0')}
+                      <span aria-hidden> / </span>
+                      {String(STORAGE_SPOTLIGHT_GALLERY.length).padStart(2, '0')}
+                    </p>
+                  </div>
 
-            <motion.div
-              className="storage-spotlight-lightbox__stage"
-              initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={reduceMotion ? undefined : { opacity: 0, scale: 0.96, y: 10 }}
-              transition={{ duration: 0.45, ease: EASE }}
-            >
-              <motion.img
-                key={activeItem.file}
-                layoutId={reduceMotion ? undefined : `spotlight-img-${activeItem.file}`}
-                src={activeItem.src}
-                alt={activeItem.alt}
-                className="storage-spotlight-lightbox__img"
-                initial={reduceMotion ? false : { opacity: 0.6 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, ease: EASE }}
-              />
-              <motion.p
-                key={`${activeItem.file}-caption`}
-                className="storage-spotlight-lightbox__caption"
-                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.06, ease: EASE }}
-              >
-                {activeItem.caption}
-              </motion.p>
-            </motion.div>
+                  <motion.div
+                    className="storage-spotlight-lightbox__stage"
+                    initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 12 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={reduceMotion ? undefined : { opacity: 0, scale: 0.97, y: 8 }}
+                    transition={{ duration: reduceMotion ? 0.01 : 0.4, ease: EASE }}
+                  >
+                    <motion.img
+                      key={activeItem.file}
+                      layoutId={useSharedLayout ? `spotlight-img-${activeItem.file}` : undefined}
+                      src={activeItem.src}
+                      alt={activeItem.alt}
+                      className="storage-spotlight-lightbox__img"
+                      initial={
+                        reduceMotion || !useSharedLayout
+                          ? { opacity: 0, scale: 0.96 }
+                          : { opacity: 0.6 }
+                      }
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={
+                        reduceMotion || !useSharedLayout
+                          ? { opacity: 0, scale: 0.96 }
+                          : undefined
+                      }
+                      transition={{ duration: reduceMotion ? 0.01 : 0.38, ease: EASE }}
+                    />
+                    <motion.p
+                      key={`${activeItem.file}-caption`}
+                      className="storage-spotlight-lightbox__caption"
+                      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={reduceMotion ? undefined : { opacity: 0, y: 6 }}
+                      transition={{ duration: 0.35, delay: reduceMotion ? 0 : 0.05, ease: EASE }}
+                    >
+                      {activeItem.caption}
+                    </motion.p>
+                  </motion.div>
 
-            {activeIndex > 0 ? (
-              <button
-                type="button"
-                className="storage-spotlight-lightbox__nav storage-spotlight-lightbox__nav--prev"
-                onClick={showPrev}
-                aria-label="Previous photo"
-              >
-                <ChevronLeft size={22} strokeWidth={2} />
-              </button>
-            ) : null}
+                  {activeIndex > 0 ? (
+                    <button
+                      type="button"
+                      className="storage-spotlight-lightbox__nav storage-spotlight-lightbox__nav--prev"
+                      onClick={showPrev}
+                      aria-label="Previous photo"
+                    >
+                      <ChevronLeft size={22} strokeWidth={2} />
+                    </button>
+                  ) : null}
 
-            {activeIndex < STORAGE_SPOTLIGHT_GALLERY.length - 1 ? (
-              <button
-                type="button"
-                className="storage-spotlight-lightbox__nav storage-spotlight-lightbox__nav--next"
-                onClick={showNext}
-                aria-label="Next photo"
-              >
-                <ChevronRight size={22} strokeWidth={2} />
-              </button>
-            ) : null}
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+                  {activeIndex < STORAGE_SPOTLIGHT_GALLERY.length - 1 ? (
+                    <button
+                      type="button"
+                      className="storage-spotlight-lightbox__nav storage-spotlight-lightbox__nav--next"
+                      onClick={showNext}
+                      aria-label="Next photo"
+                    >
+                      <ChevronRight size={22} strokeWidth={2} />
+                    </button>
+                  ) : null}
+                </motion.div>
+              ) : null}
+            </AnimatePresence>,
+            document.body,
+          )
+        : null}
     </section>
     </LayoutGroup>
   )

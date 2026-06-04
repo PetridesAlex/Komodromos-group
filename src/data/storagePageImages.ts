@@ -6,6 +6,8 @@ export function storageImage(file: string) {
   return `${STORAGE_IMG}/${file}`
 }
 
+export const STORAGE_BRAND_ICON = storageImage('storage-icon.png')
+
 /** Full set of new facility photos (ordered for gallery) */
 export const STORAGE_GALLERY_FILES = [
   'storage-1.png',

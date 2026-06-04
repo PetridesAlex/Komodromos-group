@@ -44,6 +44,28 @@ function usePrefersReducedMotion() {
   )
 }
 
+function subscribeMobileParallax(cb: () => void) {
+  const mq = window.matchMedia('(max-width: 640px)')
+  mq.addEventListener('change', cb)
+  return () => mq.removeEventListener('change', cb)
+}
+
+function getMobileParallaxSnapshot() {
+  return window.matchMedia('(max-width: 640px)').matches
+}
+
+function getMobileParallaxServerSnapshot() {
+  return false
+}
+
+function useMobileParallax() {
+  return useSyncExternalStore(
+    subscribeMobileParallax,
+    getMobileParallaxSnapshot,
+    getMobileParallaxServerSnapshot,
+  )
+}
+
 function ParallaxCard({
   title,
   image,
@@ -51,6 +73,7 @@ function ParallaxCard({
   mx,
   my,
   reducedMotion,
+  isMobile,
   index,
 }: {
   title: string
@@ -59,13 +82,15 @@ function ParallaxCard({
   mx: MotionValue<number>
   my: MotionValue<number>
   reducedMotion: boolean
+  isMobile: boolean
   index: number
 }) {
   const depth = layout.depth
-  const tx = useTransform(mx, (v) => (reducedMotion ? 0 : v * PARALLAX_PX * depth))
-  const ty = useTransform(my, (v) => (reducedMotion ? 0 : v * PARALLAX_PX * depth))
+  const disableMotion = reducedMotion || isMobile
+  const tx = useTransform(mx, (v) => (disableMotion ? 0 : v * PARALLAX_PX * depth))
+  const ty = useTransform(my, (v) => (disableMotion ? 0 : v * PARALLAX_PX * depth))
   const rz = useTransform(mx, (v) =>
-    reducedMotion ? layout.rotate : layout.rotate + v * ROTATE_MOUSE * depth,
+    disableMotion ? 0 : layout.rotate + v * ROTATE_MOUSE * depth,
   )
 
   return (
@@ -101,6 +126,7 @@ export default function StorageParallaxCards() {
   const stageRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const reducedMotion = usePrefersReducedMotion()
+  const isMobile = useMobileParallax()
   const mx = useMotionValue(0)
   const my = useMotionValue(0)
   const smoothMx = useSpring(mx, reducedMotion ? { stiffness: 500, damping: 100 } : SPRING)
@@ -138,12 +164,14 @@ export default function StorageParallaxCards() {
     if (!el) return
     const card = el.querySelector<HTMLElement>('.storage-parallax__card')
     const gap = parseFloat(getComputedStyle(el).gap || '0')
-    const step = card ? (card.offsetWidth + gap) * 1.35 : el.clientWidth * 0.92
+    const step = card
+      ? card.offsetWidth + gap
+      : el.clientWidth * (isMobile ? 1 : 0.92)
     el.scrollBy({
       left: direction === 'next' ? step : -step,
       behavior: 'auto',
     })
-  }, [])
+  }, [isMobile])
 
   useEffect(() => {
     const el = trackRef.current
@@ -161,7 +189,7 @@ export default function StorageParallaxCards() {
 
   const onMove = useCallback(
     (e: React.PointerEvent) => {
-      if (reducedMotion) return
+      if (reducedMotion || isMobile) return
       const el = stageRef.current
       if (!el) return
       const r = el.getBoundingClientRect()
@@ -169,7 +197,7 @@ export default function StorageParallaxCards() {
       mx.set((e.clientX - r.left) / r.width - 0.5)
       my.set((e.clientY - r.top) / r.height - 0.5)
     },
-    [mx, my, reducedMotion],
+    [mx, my, reducedMotion, isMobile],
   )
 
   const onLeave = useCallback(() => {
@@ -185,6 +213,7 @@ export default function StorageParallaxCards() {
           ref={stageRef}
           className={[
             'storage-parallax__stage',
+            isMobile ? 'storage-parallax__stage--mobile' : '',
             scrollState.atStart ? 'is-at-start' : '',
             scrollState.atEnd ? 'is-at-end' : '',
           ]
@@ -221,6 +250,7 @@ export default function StorageParallaxCards() {
                 mx={smoothMx}
                 my={smoothMy}
                 reducedMotion={reducedMotion}
+                isMobile={isMobile}
                 index={i}
               />
             ))}

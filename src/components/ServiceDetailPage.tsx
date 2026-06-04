@@ -105,7 +105,7 @@ export default function ServiceDetailPage() {
             window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
           }
         },
-        id === 'tax-faq' ? 100 : 0,
+        id === 'tax-faq' ? 100 : slug === 'storage' ? 50 : 0,
       )
       return () => window.clearTimeout(t)
     }
@@ -130,7 +130,7 @@ export default function ServiceDetailPage() {
   const heroBackgroundImage = isVip ? VIP_DETAIL_HERO_IMAGE : card.image
 
   return (
-    <div className="page" ref={pageRef}>
+    <div className={`page${slug === 'storage' ? ' storage-detail-page' : ''}`} ref={pageRef}>
       <SiteTopbar
         logoPathname="/"
         logoScrollToId="home"

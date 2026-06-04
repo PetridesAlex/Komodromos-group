@@ -1,8 +1,9 @@
-import { type MouseEvent } from 'react'
+import { type MouseEvent, useSyncExternalStore } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
-import { ArrowRight, Clock, ShieldCheck, Sparkles, Warehouse } from 'lucide-react'
+import { ArrowRight, Clock, ShieldCheck, Warehouse } from 'lucide-react'
 import {
+  STORAGE_BRAND_ICON,
   STORAGE_EXTRA_SERVICE_IMAGES,
   STORAGE_HERO_FAN,
   STORAGE_OFFER_IMAGES,
@@ -60,7 +61,31 @@ function scrollToStorageSection(sectionId: string, event?: MouseEvent<HTMLAnchor
   window.history.replaceState(null, '', `#${sectionId}`)
 }
 
+function subscribeMobileHeroFan(onStoreChange: () => void) {
+  const mq = window.matchMedia('(max-width: 639px)')
+  mq.addEventListener('change', onStoreChange)
+  return () => mq.removeEventListener('change', onStoreChange)
+}
+
+function getMobileHeroFanSnapshot() {
+  return window.matchMedia('(max-width: 639px)').matches
+}
+
+function getMobileHeroFanServerSnapshot() {
+  return false
+}
+
+function useMobileHeroFan() {
+  return useSyncExternalStore(
+    subscribeMobileHeroFan,
+    getMobileHeroFanSnapshot,
+    getMobileHeroFanServerSnapshot,
+  )
+}
+
 export default function StoragePremiumSection() {
+  const isMobileHeroFan = useMobileHeroFan()
+
   return (
     <section className="storage-premium-section" aria-labelledby="storage-premium-heading">
       <div className="storage-premium-section__glow storage-premium-section__glow--1" aria-hidden />
@@ -76,7 +101,14 @@ export default function StoragePremiumSection() {
                   transition={{ duration: 0.55, delay: 0.05 }}
                 >
                   <span className="storage-premium-hero-eyebrow__line" aria-hidden />
-                  <span>Storage2Rent · Komodromos Group</span>
+                  <span className="storage-premium-hero-eyebrow__text">
+                    Storage2Rent
+                    <span className="storage-premium-hero-eyebrow__sep" aria-hidden>
+                      {' '}
+                      ·{' '}
+                    </span>
+                    Komodromos Group
+                  </span>
                   <span className="storage-premium-hero-eyebrow__line" aria-hidden />
                 </motion.p>
 
@@ -126,9 +158,14 @@ export default function StoragePremiumSection() {
                             transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
                           },
                         }}
-                        whileHover={{ y: -4, scale: 1.03 }}
+                        whileHover={
+                          isMobileHeroFan
+                            ? undefined
+                            : { y: -4, scale: 1.03 }
+                        }
                         transition={{ type: 'spring', stiffness: 420, damping: 24 }}
                       >
+                        <span className="storage-premium-hero-pill__fill" aria-hidden />
                         <span className="storage-premium-hero-pill__icon" aria-hidden>
                           <Icon size={13} strokeWidth={2.25} />
                         </span>
@@ -163,25 +200,50 @@ export default function StoragePremiumSection() {
               </div>
 
               <div className="storage-premium-hero-fan-wrap relative z-0">
-                <div
-                  className="pointer-events-none absolute left-1/2 top-[80%] z-10 aspect-square w-[250%] -translate-x-1/2 rounded-full bg-[#05070a] shadow-2xl shadow-purple-500/30 sm:top-[40%] sm:w-[200%]"
-                  aria-hidden
-                />
+                {!isMobileHeroFan ? (
+                  <div
+                    className="storage-premium-hero-fan-wrap__shadow pointer-events-none absolute left-1/2 top-[80%] z-10 aspect-square w-[250%] -translate-x-1/2 rounded-full bg-[#05070a] shadow-2xl shadow-purple-500/30 sm:top-[40%] sm:w-[200%]"
+                    aria-hidden
+                  />
+                ) : null}
 
-                <div className="storage-premium-hero-fan relative mx-auto flex w-full flex-row items-end justify-center">
-                  {STORAGE_HERO_FAN.map((card, index) => (
-                    <motion.div
-                      key={card.src}
-                      className="storage-premium-hero-card relative origin-bottom overflow-hidden rounded-xl sm:rounded-3xl"
-                      initial={{ opacity: 0, y: 80, rotate: 0 }}
-                      animate={{ opacity: 1, y: card.translateY, rotate: card.rotate }}
-                      whileHover={{ y: card.translateY - 12, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
-                      transition={{ duration: 0.7, delay: 0.4 + index * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    >
-                      <img src={card.src} alt={card.alt} className="h-full w-full object-cover" />
-                    </motion.div>
-                  ))}
-                </div>
+                {isMobileHeroFan ? (
+                  <div className="storage-premium-hero-stack">
+                    {STORAGE_HERO_FAN.map((card) => (
+                      <figure key={card.src} className="storage-premium-hero-stack__card">
+                        <img
+                          src={card.src}
+                          alt={card.alt}
+                          className="storage-premium-hero-stack__img"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </figure>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="storage-premium-hero-fan relative mx-auto flex w-full flex-row items-end justify-center">
+                    {STORAGE_HERO_FAN.map((card, index) => (
+                      <motion.div
+                        key={card.src}
+                        className="storage-premium-hero-card relative origin-bottom overflow-hidden rounded-xl sm:rounded-3xl"
+                        initial={{ opacity: 0, y: 80, rotate: 0 }}
+                        animate={{ opacity: 1, y: card.translateY, rotate: card.rotate }}
+                        whileHover={{
+                          y: card.translateY - 12,
+                          transition: { type: 'spring', stiffness: 400, damping: 25 },
+                        }}
+                        transition={{
+                          duration: 0.7,
+                          delay: 0.4 + index * 0.12,
+                          ease: [0.25, 0.46, 0.45, 0.94],
+                        }}
+                      >
+                        <img src={card.src} alt={card.alt} className="h-full w-full object-cover" />
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
               </div>
           </div>
         </section>
@@ -398,13 +460,24 @@ export default function StoragePremiumSection() {
           >
             <div className="storage-contact-panel__accent" aria-hidden />
             <div className="storage-contact-panel__icon" aria-hidden>
-              <Sparkles className="h-6 w-6" strokeWidth={1.8} />
+              <img
+                src={STORAGE_BRAND_ICON}
+                alt=""
+                className="storage-contact-panel__icon-img"
+                width={56}
+                height={56}
+                decoding="async"
+              />
             </div>
 
-            <h3 className="storage-contact-panel__title">Still wondering about something?</h3>
+            <p className="storage-contact-panel__eyebrow">Get in touch</p>
+            <h3 className="storage-contact-panel__title">
+              <span className="storage-contact-panel__title-main">Still wondering</span>
+              <span className="storage-contact-panel__title-accent">about something?</span>
+            </h3>
             <p className="storage-contact-panel__lead">
-              Send us your storage request and a real person from our team will contact you within one
-              business day.
+              Send us your storage request and a real person from our team will contact you within{' '}
+              <span className="storage-contact-panel__lead-highlight">one business day</span>.
             </p>
 
             <form className="storage-contact-panel__form storage-form" aria-label="Storage inquiry">
@@ -447,14 +520,16 @@ export default function StoragePremiumSection() {
                   rows={4}
                 />
               </label>
-              <Link
-                to="/contact"
-                state={{ serviceInterest: 'Storage2Rent', storageInquiry: true }}
-                className="storage-form__submit storage-form__submit--secondary storage-form__field--full"
-              >
-                Continue to full contact form
-                <ArrowRight size={14} strokeWidth={2.25} aria-hidden />
-              </Link>
+              <div className="storage-form__submit-wrap storage-form__field--full">
+                <Link
+                  to="/contact"
+                  state={{ serviceInterest: 'Storage2Rent', storageInquiry: true }}
+                  className="storage-form__submit storage-form__submit--premium"
+                >
+                  <span className="storage-form__submit-sheen" aria-hidden />
+                  <span className="storage-form__submit-text">Submit</span>
+                </Link>
+              </div>
             </form>
           </motion.div>
         </section>
