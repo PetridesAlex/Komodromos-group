@@ -1,4 +1,4 @@
-import { StrictMode, useState, useCallback } from 'react'
+import { StrictMode, useState, useCallback, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './i18n'
@@ -53,6 +53,17 @@ import SectionLedScroll from './components/SectionLedScroll.tsx'
 function Root() {
   const [loaded, setLoaded] = useState(false)
   const handleDone = useCallback(() => setLoaded(true), [])
+
+  useEffect(() => {
+    document.documentElement.style.overflow = ''
+    document.body.style.overflow = ''
+    document.body.style.position = ''
+    document.body.style.top = ''
+    document.body.style.left = ''
+    document.body.style.right = ''
+    document.body.style.width = ''
+    document.body.removeAttribute('data-kg-scroll-lock-y')
+  }, [])
 
   return (
     <>

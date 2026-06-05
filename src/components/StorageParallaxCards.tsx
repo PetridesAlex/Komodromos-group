@@ -179,6 +179,17 @@ export default function StorageParallaxCards() {
 
     const onWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return
+
+      const max = Math.max(0, el.scrollWidth - el.clientWidth)
+      if (max <= 0) return
+
+      const atStart = el.scrollLeft <= 0
+      const atEnd = el.scrollLeft >= max - 1
+      const scrollingDown = e.deltaY > 0
+      const scrollingUp = e.deltaY < 0
+
+      if ((scrollingDown && atEnd) || (scrollingUp && atStart)) return
+
       e.preventDefault()
       el.scrollLeft += e.deltaY * 2.75
     }
@@ -221,16 +232,37 @@ export default function StorageParallaxCards() {
             .join(' ')}
           onPointerMove={onMove}
           onPointerLeave={onLeave}
-          aria-label="Storage2Rent facility gallery. Scroll horizontally for all photos; move the pointer for parallax."
+          aria-label={
+            isMobile
+              ? 'Storage2Rent facility gallery. Swipe horizontally for all photos.'
+              : 'Storage2Rent facility gallery. Scroll horizontally for all photos; move the pointer for parallax.'
+          }
         >
           <div className="storage-parallax__edge storage-parallax__edge--left" aria-hidden />
           <div className="storage-parallax__edge storage-parallax__edge--right" aria-hidden />
           <div className="storage-parallax__fog" aria-hidden />
 
           {!hasScrolled && !scrollState.atEnd ? (
-            <div className="storage-parallax__scroll-hint" aria-hidden>
-              <span className="storage-parallax__scroll-hint-text">Scroll to explore</span>
-              <ChevronRight className="storage-parallax__scroll-hint-icon" size={16} strokeWidth={2.25} />
+            <div
+              className={[
+                'storage-parallax__scroll-hint',
+                isMobile ? 'storage-parallax__scroll-hint--swipe' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-hidden
+            >
+              <span className="storage-parallax__scroll-hint-text">
+                {isMobile ? 'Swipe' : 'Scroll to explore'}
+              </span>
+              {isMobile ? (
+                <span className="storage-parallax__scroll-hint-swipe" aria-hidden>
+                  <ChevronLeft size={14} strokeWidth={2.25} />
+                  <ChevronRight size={14} strokeWidth={2.25} />
+                </span>
+              ) : (
+                <ChevronRight className="storage-parallax__scroll-hint-icon" size={16} strokeWidth={2.25} />
+              )}
             </div>
           ) : null}
 

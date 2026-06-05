@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useLocation } from 'react-router-dom'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'motion/react'
 import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react'
@@ -47,52 +48,35 @@ function useMobileSpotlight() {
   )
 }
 
+const SCROLL_LOCK_ATTR = 'data-kg-scroll-lock-y'
+
 function lockPageScroll(scrollY: number) {
-  const { style: bodyStyle } = document.body
-  const { style: htmlStyle } = document.documentElement
-
-  bodyStyle.overflow = 'hidden'
-  bodyStyle.position = 'fixed'
-  bodyStyle.top = `-${scrollY}px`
-  bodyStyle.left = '0'
-  bodyStyle.right = '0'
-  bodyStyle.width = '100%'
-  htmlStyle.overflow = 'hidden'
-}
-
-function readLockedScrollY(fallback: number) {
-  const top = document.body.style.top
-  if (top) {
-    const parsed = Math.abs(parseInt(top, 10))
-    if (!Number.isNaN(parsed)) return parsed
-  }
-  return fallback
+  document.documentElement.style.overflow = 'hidden'
+  document.body.style.overflow = 'hidden'
+  document.body.setAttribute(SCROLL_LOCK_ATTR, String(scrollY))
 }
 
 function unlockPageScroll(scrollY: number) {
-  const { style: bodyStyle } = document.body
-  const { style: htmlStyle } = document.documentElement
-  const targetY = readLockedScrollY(scrollY)
-  const prevScrollBehavior = htmlStyle.scrollBehavior
+  const stored = document.body.getAttribute(SCROLL_LOCK_ATTR)
+  const parsed = stored ? parseInt(stored, 10) : scrollY
+  const targetY = Number.isNaN(parsed) ? scrollY : parsed
 
-  bodyStyle.overflow = ''
-  bodyStyle.position = ''
-  bodyStyle.top = ''
-  bodyStyle.left = ''
-  bodyStyle.right = ''
-  bodyStyle.width = ''
-  htmlStyle.overflow = ''
-  htmlStyle.scrollBehavior = 'auto'
+  document.documentElement.style.overflow = ''
+  document.body.style.overflow = ''
+  document.body.removeAttribute(SCROLL_LOCK_ATTR)
 
-  requestAnimationFrame(() => {
-    window.scrollTo(0, targetY)
-    requestAnimationFrame(() => {
-      htmlStyle.scrollBehavior = prevScrollBehavior
-    })
-  })
+  // Clear legacy fixed-body lock if a prior build left it behind
+  document.body.style.position = ''
+  document.body.style.top = ''
+  document.body.style.left = ''
+  document.body.style.right = ''
+  document.body.style.width = ''
+
+  window.scrollTo(0, targetY)
 }
 
 export default function StorageSpotlightGallery() {
+  const location = useLocation()
   const reduceMotion = useReducedMotion()
   const isMobile = useMobileSpotlight()
   const useSharedLayout = !reduceMotion && !isMobile
@@ -110,20 +94,24 @@ export default function StorageSpotlightGallery() {
     setActiveIndex(index)
   }, [])
 
+  const releaseScrollLock = useCallback(() => {
+    if (!scrollLockedRef.current) return
+    unlockPageScroll(savedScrollY.current)
+    scrollLockedRef.current = false
+    setScrollLocked(false)
+  }, [])
+
   const closePreview = useCallback(() => {
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur()
     }
+    releaseScrollLock()
     setActiveIndex(null)
-  }, [])
+  }, [releaseScrollLock])
 
   const handleExitComplete = useCallback(() => {
-    if (scrollLockedRef.current) {
-      unlockPageScroll(savedScrollY.current)
-      scrollLockedRef.current = false
-    }
-    setScrollLocked(false)
-  }, [])
+    releaseScrollLock()
+  }, [releaseScrollLock])
 
   const showPrev = useCallback(() => {
     setActiveIndex((i) => (i === null || i <= 0 ? i : i - 1))
@@ -155,12 +143,14 @@ export default function StorageSpotlightGallery() {
 
   useEffect(() => {
     return () => {
-      if (scrollLockedRef.current) {
-        unlockPageScroll(savedScrollY.current)
-        scrollLockedRef.current = false
-      }
+      releaseScrollLock()
     }
-  }, [])
+  }, [releaseScrollLock])
+
+  useEffect(() => {
+    releaseScrollLock()
+    setActiveIndex(null)
+  }, [location.pathname, releaseScrollLock])
 
   const headerMotion = reduceMotion
     ? {}

@@ -26,6 +26,25 @@ const STORAGE_SUBNAV_LINKS: ReadonlyArray<{
   { id: 'storage-contact', label: 'Contact', cta: true },
 ]
 
+function clearDocumentScrollLock() {
+  const bodyStyle = document.body.style
+  const htmlStyle = document.documentElement.style
+  const lockedTop = bodyStyle.top
+  const restoreY = lockedTop ? Math.abs(parseInt(lockedTop, 10)) : null
+
+  bodyStyle.overflow = ''
+  bodyStyle.position = ''
+  bodyStyle.top = ''
+  bodyStyle.left = ''
+  bodyStyle.right = ''
+  bodyStyle.width = ''
+  htmlStyle.overflow = ''
+
+  if (restoreY !== null && !Number.isNaN(restoreY)) {
+    requestAnimationFrame(() => window.scrollTo(0, restoreY))
+  }
+}
+
 export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const location = useLocation()
@@ -33,6 +52,11 @@ export default function ServiceDetailPage() {
   const defaultContent = slug ? getServicePageContent(slug) : undefined
   const pageRef = useReveal()
   const [activeStorageSection, setActiveStorageSection] = useState('storage-parallax')
+
+  useEffect(() => {
+    clearDocumentScrollLock()
+    return () => clearDocumentScrollLock()
+  }, [slug])
 
   useEffect(() => {
     if (slug !== 'storage') return
