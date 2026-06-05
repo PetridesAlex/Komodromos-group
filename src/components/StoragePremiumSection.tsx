@@ -15,7 +15,7 @@ import StorageUsefulTipsSection from './StorageUsefulTipsSection'
 const STORAGE_PLANS: { title: string; price: number }[] = [
   { title: '10 ft Container', price: 60 },
   { title: '20 ft Container', price: 100 },
-  { title: '20 ft Insulated warehouse', price: 100 },
+  { title: '20 ft Insulated warehouse', price: 110 },
   { title: '30 ft Insulated warehouse', price: 135 },
   { title: '40 ft Container', price: 190 },
 ]
