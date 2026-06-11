@@ -78,6 +78,8 @@ export type AstrealDetailCopyImageBreak = {
 export type AstrealProject = {
   id: string
   title: string
+  /** Optional two-line stack for fullscreen project card overlay titles. */
+  cardTitleLines?: readonly [string, string]
   subtitle: string
   description: string
   imageSrc: string
@@ -97,6 +99,7 @@ export const astrealProjectCards: AstrealProject[] = [
   {
     id: 'astron',
     title: 'ASTRON Villas',
+    cardTitleLines: ['ASTRON', 'VILLAS'],
     subtitle: 'Kiti Village',
     description:
       'ASTRON 1 — two detached 3-bedroom villas in Kiti, Larnaca: 150 sqm internal, 351 sqm plots, private pools, south-facing design, minutes from the airport and beaches. From €369,000 + VAT.',
@@ -152,6 +155,7 @@ export const astrealProjectCards: AstrealProject[] = [
   {
     id: 'astron-nova',
     title: 'ASTRON NOVA',
+    cardTitleLines: ['ASTRON', 'NOVA'],
     subtitle: 'Contemporary living',
     description:
       'Three ultra-luxurious contemporary residences in Kiti, Larnaca — 143 m² internal, 200 m² plots, south-facing design, optional pool & pergola. From €360,000 + VAT.',
@@ -212,6 +216,7 @@ export const astrealProjectCards: AstrealProject[] = [
   {
     id: 'coral',
     title: 'CORAL',
+    cardTitleLines: ['CORAL', 'RESIDENCES'],
     subtitle: 'Kiti, Larnaca',
     description:
       'Luxury residential development in Kiti — 300 sqm covered, 530 sqm land, private pool, jacuzzi, sauna, and south-facing architecture. By ASTREAL Developers, operated by Komodromos Group of Companies.',
@@ -256,6 +261,7 @@ export const astrealProjectCards: AstrealProject[] = [
   {
     id: 'venus',
     title: 'VENUS',
+    cardTitleLines: ['VENUS', 'RESIDENCE'],
     subtitle: 'Signature development',
     description:
       'A distinguished private residence in Larnaca — refined European-inspired architecture, resort-style indoor and outdoor pools, generous ensuite bedrooms, and Mediterranean indoor–outdoor living.',
@@ -301,10 +307,11 @@ export const astrealProjectCards: AstrealProject[] = [
   {
     id: 'athenian-heritage-luxury-residence',
     title: 'ATHENIAN HERITAGE LUXURY RESIDENCE',
+    cardTitleLines: ['THE ATHENIAN HERITAGE', 'LUXURY RESIDENCE'],
     subtitle: 'Athens, Greece',
     description:
       'An exclusive ultra-luxury residential renovation in historic Athens — contemporary elegance with timeless Athenian character, premium finishes, and a completed transformation by Astreal Developers.',
-    imageSrc: `${ATHENIAN_HERITAGE_FOLDER}/athenian-heritage-rennovation-project-3.webp`,
+    imageSrc: `${ATHENIAN_HERITAGE_FOLDER}/athenian-heritage-luxury-residence-3.webp`,
     imageAlt: 'Athénian Heritage Luxury Residence — renovated luxury interior in Athens',
     meta: ['Renovation', 'Ultra-luxury', 'Athens'],
     detailHeroSrc: `${ATHENIAN_HERITAGE_FOLDER}/athenian-heritage-rennovation-project-3.webp`,

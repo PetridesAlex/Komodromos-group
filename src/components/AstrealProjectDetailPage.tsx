@@ -259,8 +259,26 @@ export default function AstrealProjectDetailPage() {
           <motion.p className="astreal-detail-hero__eyebrow" {...detailHeroEyebrow}>
             {project.subtitle}
           </motion.p>
-          <motion.h1 id="astreal-detail-title" className="astreal-detail-hero__title" {...detailHeroTitle}>
-            {project.title}
+          <motion.h1
+            id="astreal-detail-title"
+            className="astreal-detail-hero__title astreal-detail-hero__title--split"
+            {...detailHeroTitle}
+          >
+            {(project.cardTitleLines ?? [project.title, '']).map((line, lineIndex) =>
+              line ? (
+                <span
+                  key={`${project.id}-${line}`}
+                  className={[
+                    'astreal-detail-hero__title-line',
+                    lineIndex === 1 ? 'astreal-detail-hero__title-line--accent' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                >
+                  {line}
+                </span>
+              ) : null,
+            )}
           </motion.h1>
         </div>
       </header>

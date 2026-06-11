@@ -21,6 +21,7 @@ const PARALLAX_LAYOUT: ParallaxLayout[] = [
 const SPRING = { stiffness: 220, damping: 28, mass: 0.6 }
 const PARALLAX_PX = 64
 const ROTATE_MOUSE = 6
+const TOTAL_SLIDES = STORAGE_PARALLAX_SLIDES.length
 
 function subscribeReducedMotion(cb: () => void) {
   const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -64,6 +65,10 @@ function useMobileParallax() {
     getMobileParallaxSnapshot,
     getMobileParallaxServerSnapshot,
   )
+}
+
+function formatSlideIndex(index: number) {
+  return String(index + 1).padStart(2, '0')
 }
 
 function ParallaxCard({
@@ -132,6 +137,7 @@ export default function StorageParallaxCards() {
   const smoothMx = useSpring(mx, reducedMotion ? { stiffness: 500, damping: 100 } : SPRING)
   const smoothMy = useSpring(my, reducedMotion ? { stiffness: 500, damping: 100 } : SPRING)
   const [scrollState, setScrollState] = useState({ atStart: true, atEnd: false, progress: 0 })
+  const [activeIndex, setActiveIndex] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
 
   const updateScrollState = useCallback(() => {
@@ -140,6 +146,13 @@ export default function StorageParallaxCards() {
     const { scrollLeft, scrollWidth, clientWidth } = el
     const max = Math.max(0, scrollWidth - clientWidth)
     if (scrollLeft > 12) setHasScrolled(true)
+
+    const card = el.querySelector<HTMLElement>('.storage-parallax__card')
+    const gap = parseFloat(getComputedStyle(el).gap || '0')
+    const step = card ? card.offsetWidth + gap : 1
+    const nextIndex = step > 0 ? Math.min(TOTAL_SLIDES - 1, Math.round(scrollLeft / step)) : 0
+
+    setActiveIndex(nextIndex)
     setScrollState({
       atStart: scrollLeft < 8,
       atEnd: scrollLeft >= max - 8,
@@ -159,19 +172,22 @@ export default function StorageParallaxCards() {
     }
   }, [updateScrollState])
 
-  const scrollTrack = useCallback((direction: 'prev' | 'next') => {
-    const el = trackRef.current
-    if (!el) return
-    const card = el.querySelector<HTMLElement>('.storage-parallax__card')
-    const gap = parseFloat(getComputedStyle(el).gap || '0')
-    const step = card
-      ? card.offsetWidth + gap
-      : el.clientWidth * (isMobile ? 1 : 0.92)
-    el.scrollBy({
-      left: direction === 'next' ? step : -step,
-      behavior: 'auto',
-    })
-  }, [isMobile])
+  const scrollTrack = useCallback(
+    (direction: 'prev' | 'next') => {
+      const el = trackRef.current
+      if (!el) return
+      const card = el.querySelector<HTMLElement>('.storage-parallax__card')
+      const gap = parseFloat(getComputedStyle(el).gap || '0')
+      const step = card
+        ? card.offsetWidth + gap
+        : el.clientWidth * (isMobile ? 1 : 0.92)
+      el.scrollBy({
+        left: direction === 'next' ? step : -step,
+        behavior: reducedMotion ? 'auto' : 'smooth',
+      })
+    },
+    [isMobile, reducedMotion],
+  )
 
   useEffect(() => {
     const el = trackRef.current
@@ -216,10 +232,13 @@ export default function StorageParallaxCards() {
     my.set(0)
   }, [mx, my])
 
+  const canScroll = !(scrollState.atStart && scrollState.atEnd)
+
   return (
     <div className="storage-parallax">
       <div className="storage-parallax__frame">
         <div className="storage-parallax__accent" aria-hidden />
+        <div className="storage-parallax__ambient" aria-hidden />
         <div
           ref={stageRef}
           className={[
@@ -288,36 +307,59 @@ export default function StorageParallaxCards() {
             ))}
           </div>
 
-          <div
-            className="storage-parallax__controls"
-            aria-label="Gallery navigation"
-            hidden={scrollState.atStart && scrollState.atEnd}
-          >
-            <button
-              type="button"
-              className="storage-parallax__nav storage-parallax__nav--prev"
-              onClick={() => scrollTrack('prev')}
-              disabled={scrollState.atStart}
-              aria-label="Previous photos"
-            >
-              <ChevronLeft size={18} strokeWidth={2.25} />
-            </button>
-            <button
-              type="button"
-              className="storage-parallax__nav storage-parallax__nav--next"
-              onClick={() => scrollTrack('next')}
-              disabled={scrollState.atEnd}
-              aria-label="Next photos"
-            >
-              <ChevronRight size={18} strokeWidth={2.25} />
-            </button>
-          </div>
+          {canScroll ? (
+            <>
+              <div className="storage-parallax__rail storage-parallax__rail--prev">
+                <button
+                  type="button"
+                  className={[
+                    'storage-parallax__nav',
+                    'storage-parallax__nav--prev',
+                    scrollState.atStart ? 'is-disabled' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  onClick={() => scrollTrack('prev')}
+                  disabled={scrollState.atStart}
+                  aria-label="Previous photos"
+                >
+                  <span className="storage-parallax__nav-mark" aria-hidden />
+                  <ChevronLeft size={22} strokeWidth={1.75} aria-hidden />
+                </button>
+              </div>
+              <div className="storage-parallax__rail storage-parallax__rail--next">
+                <button
+                  type="button"
+                  className={[
+                    'storage-parallax__nav',
+                    'storage-parallax__nav--next',
+                    scrollState.atEnd ? 'is-disabled' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  onClick={() => scrollTrack('next')}
+                  disabled={scrollState.atEnd}
+                  aria-label="Next photos"
+                >
+                  <span className="storage-parallax__nav-mark" aria-hidden />
+                  <ChevronRight size={22} strokeWidth={1.75} aria-hidden />
+                </button>
+              </div>
+            </>
+          ) : null}
 
-          <div className="storage-parallax__progress" aria-hidden>
-            <div
-              className="storage-parallax__progress-fill"
-              style={{ transform: `scaleX(${scrollState.progress})` }}
-            />
+          <div className="storage-parallax__footer" aria-hidden={!canScroll}>
+            <p className="storage-parallax__counter">
+              <span className="storage-parallax__counter-current">{formatSlideIndex(activeIndex)}</span>
+              <span className="storage-parallax__counter-sep">/</span>
+              <span className="storage-parallax__counter-total">{String(TOTAL_SLIDES).padStart(2, '0')}</span>
+            </p>
+            <div className="storage-parallax__progress">
+              <div
+                className="storage-parallax__progress-fill"
+                style={{ transform: `scaleX(${scrollState.progress})` }}
+              />
+            </div>
           </div>
         </div>
       </div>

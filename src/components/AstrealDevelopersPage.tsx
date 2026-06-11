@@ -501,7 +501,23 @@ export default function AstrealDevelopersPage() {
                 <motion.figcaption className="astreal-project-card__cap astreal-project-card__cap--overlay" {...projectCaptionMotion}>
                   <div className="astreal-project-card__cap-inner">
                     <span className="astreal-project-card__kicker">{project.subtitle}</span>
-                    <span className="astreal-project-card__name">{project.title}</span>
+                    <span className="astreal-project-card__name astreal-project-card__name--split">
+                      {(project.cardTitleLines ?? [project.title, '']).map((line, lineIndex) =>
+                        line ? (
+                          <span
+                            key={`${project.id}-${line}`}
+                            className={[
+                              'astreal-project-card__name-line',
+                              lineIndex === 1 ? 'astreal-project-card__name-line--accent' : '',
+                            ]
+                              .filter(Boolean)
+                              .join(' ')}
+                          >
+                            {line}
+                          </span>
+                        ) : null,
+                      )}
+                    </span>
                     <Link
                       to={`/services/astreal/projects/${project.id}`}
                       className="astreal-project-card__cta"

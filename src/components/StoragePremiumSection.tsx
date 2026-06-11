@@ -1,12 +1,13 @@
 import { type MouseEvent, useSyncExternalStore } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import { ArrowRight, Clock, ShieldCheck, Warehouse } from 'lucide-react'
 import {
   STORAGE_BRAND_ICON,
   STORAGE_EXTRA_SERVICE_IMAGES,
   STORAGE_HERO_FAN,
   STORAGE_OFFER_IMAGES,
+  storageImage,
 } from '../data/storagePageImages'
 import StorageParallaxCards from './StorageParallaxCards'
 import StorageSpotlightGallery from './StorageSpotlightGallery'
@@ -16,13 +17,94 @@ const STORAGE_PLANS: { title: string; price: number }[] = [
   { title: '10 ft Container', price: 60 },
   { title: '20 ft Container', price: 100 },
   { title: '20 ft Insulated warehouse', price: 110 },
-  { title: '30 ft Insulated warehouse', price: 135 },
+  { title: '30 ft Insulated warehouse', price: 150 },
   { title: '40 ft Container', price: 190 },
 ]
 
+const PRICING_EASE = [0.16, 1, 0.3, 1] as const
+
+const PRICING_CARD_STEP = 0.52
+
+const pricingGridVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0,
+      delayChildren: 0,
+    },
+  },
+} as const
+
+const pricingCardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 36,
+    scale: 0.88,
+    rotateX: 8,
+    filter: 'blur(10px)',
+  },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.32,
+      delay: index * PRICING_CARD_STEP,
+      ease: PRICING_EASE,
+      when: 'beforeChildren',
+      staggerChildren: 0.07,
+      delayChildren: 0.04,
+    },
+  }),
+} as const
+
+const pricingCardVariantsReduced = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.18 },
+  },
+} as const
+
+const pricingAccentVariants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: { duration: 0.24, ease: PRICING_EASE },
+  },
+} as const
+
+const pricingTextVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.22, ease: PRICING_EASE },
+  },
+} as const
+
+const pricingAmountVariants = {
+  hidden: { opacity: 0, scale: 0.78, y: 8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 640,
+      damping: 30,
+      mass: 0.68,
+      delay: 0.02,
+    },
+  },
+} as const
+
 const STORAGE_OFFER_CARDS = [
   {
-    title: 'Personal Storage Units',
+    title: 'Self Storage Units',
     desc: 'Flexible storage space for boxes, furniture, and personal belongings with simple monthly options.',
     image: STORAGE_OFFER_IMAGES.personal,
   },
@@ -32,7 +114,7 @@ const STORAGE_OFFER_CARDS = [
     image: STORAGE_OFFER_IMAGES.business,
   },
   {
-    title: 'Pallet Storage Space',
+    title: 'Safety & Security Systems',
     desc: 'Practical pallet-ready storage designed for organized access and efficient logistics handling.',
     image: STORAGE_OFFER_IMAGES.pallet,
   },
@@ -85,6 +167,7 @@ function useMobileHeroFan() {
 
 export default function StoragePremiumSection() {
   const isMobileHeroFan = useMobileHeroFan()
+  const reduceMotion = useReducedMotion()
 
   return (
     <section className="storage-premium-section" aria-labelledby="storage-premium-heading">
@@ -94,6 +177,15 @@ export default function StoragePremiumSection() {
         <section className="storage-premium-hero-shell relative w-full overflow-hidden bg-transparent py-2 sm:py-4">
           <div className="storage-premium-hero-frame relative z-10 w-full">
               <div className="storage-premium-hero-copy">
+                <div className="storage-premium-hero-copy__watermark" aria-hidden>
+                  <img
+                    src={storageImage('Storage2Rent-hero-cover.webp')}
+                    alt=""
+                    className="storage-premium-hero-copy__watermark-img"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
+                </div>
                 <motion.p
                   className="storage-premium-hero-eyebrow"
                   initial={{ opacity: 0, y: 16 }}
@@ -420,25 +512,65 @@ export default function StoragePremiumSection() {
         <div className="storage-features-wrap" id="storage-features">
           <h3 className="storage-features-heading">The Storage2Rent standard</h3>
         </div>
-        <div className="storage-parallax-bleed">
-          <StorageParallaxCards />
-        </div>
+      </div>
 
-        <h3 className="storage-pricing-heading" id="storage-rates">
+      <div className="storage-parallax-bleed">
+        <StorageParallaxCards />
+      </div>
+
+      <div className="container">
+        <motion.h3
+          className="storage-pricing-heading"
+          id="storage-rates"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.35, ease: PRICING_EASE }}
+        >
           Monthly rates
-        </h3>
-        <div className="storage-pricing-grid" role="list">
-          {STORAGE_PLANS.map((plan) => (
-            <article key={plan.title} className="storage-price-card" role="listitem">
-              <div className="storage-price-card__accent" aria-hidden />
-              <h3 className="storage-price-card__title">{plan.title}</h3>
-              <p className="storage-price-card__price">
-                <span className="storage-price-card__amount">{plan.price}€</span>
+        </motion.h3>
+        <motion.div
+          className="storage-pricing-grid"
+          role="list"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-70px', amount: 0.15 }}
+          variants={pricingGridVariants}
+        >
+          {STORAGE_PLANS.map((plan, index) => (
+            <motion.article
+              key={plan.title}
+              className="storage-price-card"
+              role="listitem"
+              custom={index}
+              variants={reduceMotion ? pricingCardVariantsReduced : pricingCardVariants}
+            >
+              <motion.div
+                className="storage-price-card__accent"
+                aria-hidden
+                variants={reduceMotion ? undefined : pricingAccentVariants}
+              />
+              <motion.h3
+                className="storage-price-card__title"
+                variants={reduceMotion ? undefined : pricingTextVariants}
+              >
+                {plan.title}
+              </motion.h3>
+              <motion.p
+                className="storage-price-card__price"
+                variants={reduceMotion ? undefined : pricingTextVariants}
+              >
+                <motion.span
+                  className="storage-price-card__amount"
+                  variants={reduceMotion ? undefined : pricingAmountVariants}
+                >
+                  {plan.price}€
+                </motion.span>
                 <span className="storage-price-card__period">per month</span>
-              </p>
-            </article>
+              </motion.p>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       <div className="storage-tips-bleed">
