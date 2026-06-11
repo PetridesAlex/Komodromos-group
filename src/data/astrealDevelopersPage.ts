@@ -50,6 +50,25 @@ const venusProjectGalleryImages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
   (n) => `${ASTREAL_ASSETS}/Venus-project/venus-project-${n}.webp`,
 )
 
+/** Athénian Heritage Luxury Residence — Athens renovation photography */
+const ATHENIAN_HERITAGE_FOLDER = `${ASTREAL_ASSETS}/athenian-heritage-rennoavation-project`
+
+const athenianHeritageLuxuryResidenceGallery = Array.from({ length: 23 }, (_, i) =>
+  `${ATHENIAN_HERITAGE_FOLDER}/athenian-heritage-luxury-residence-${i + 1}.webp`,
+)
+
+const athenianHeritageRenovationNums = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+  29, 30, 32,
+] as const
+
+const athenianHeritageGalleryImages = [
+  ...athenianHeritageLuxuryResidenceGallery,
+  ...athenianHeritageRenovationNums.map(
+    (n) => `${ATHENIAN_HERITAGE_FOLDER}/athenian-heritage-rennovation-project-${n}.webp`,
+  ),
+]
+
 export type AstrealDetailCopyImageBreak = {
   /** Insert a photo grid immediately before this section-label paragraph. */
   beforeLabel: string
@@ -277,6 +296,48 @@ export const astrealProjectCards: AstrealProject[] = [
       'The result is not simply a home — but a complete lifestyle destination.',
       'Location — 📍 Larnaca, Cyprus.',
       'Ideally positioned in a prestigious area of Larnaca, the residence offers privacy, serenity, and convenient access to the city centre, beaches, and all essential amenities. Browse the complete Venus-project photography set below: façade, interior, and amenity moments.',
+    ],
+  },
+  {
+    id: 'athenian-heritage-luxury-residence',
+    title: 'ATHENIAN HERITAGE LUXURY RESIDENCE',
+    subtitle: 'Athens, Greece',
+    description:
+      'An exclusive ultra-luxury residential renovation in historic Athens — contemporary elegance with timeless Athenian character, premium finishes, and a completed transformation by Astreal Developers.',
+    imageSrc: `${ATHENIAN_HERITAGE_FOLDER}/athenian-heritage-rennovation-project-3.webp`,
+    imageAlt: 'Athénian Heritage Luxury Residence — renovated luxury interior in Athens',
+    meta: ['Renovation', 'Ultra-luxury', 'Athens'],
+    detailHeroSrc: `${ATHENIAN_HERITAGE_FOLDER}/athenian-heritage-rennovation-project-3.webp`,
+    detailCopyImageBreaks: [
+      {
+        beforeLabel:
+          'Every detail of this remarkable renovation has been carefully curated to the highest standards, featuring premium materials, bespoke finishes, designer lighting, and refined architectural elements that create an atmosphere of understated luxury and exclusivity.',
+        count: 4,
+      },
+      { beforeLabel: 'Project details', count: 4 },
+    ],
+    gallery: athenianHeritageGalleryImages,
+    highlights: [
+      'ATHENIAN HERITAGE LUXURY RESIDENCE — Astreal Developers',
+      'Historic Athens · ultra-luxury residential renovation',
+      'Premium materials · bespoke finishes · designer lighting',
+      'Contemporary elegance with timeless Athenian character',
+      'Completed luxury transformation · Athens, Greece',
+    ],
+    detailParagraphs: [
+      'An Exclusive Renovation by Astreal Developers',
+      'Nestled in the heart of historic Athens, this exceptional luxury residence has been meticulously transformed by Astreal Developers into a sophisticated urban masterpiece, seamlessly blending timeless Athenian character with contemporary elegance.',
+      'Every detail of this remarkable renovation has been carefully curated to the highest standards, featuring premium materials, bespoke finishes, designer lighting, and refined architectural elements that create an atmosphere of understated luxury and exclusivity.',
+      'The residence offers beautifully designed living spaces flooded with natural light, elegant interiors, and a seamless flow between comfort and style. Contemporary textures, high-end craftsmanship, and carefully selected materials combine to deliver an exceptional living experience in one of Europe\'s most iconic capitals.',
+      'Located just moments from Athens\' most prestigious landmarks, fine dining venues, luxury boutiques, cultural attractions, and vibrant city life, this property offers the perfect balance between cosmopolitan living and timeless sophistication.',
+      'More than a renovation, this is a complete reimagining of luxury living—crafted for those who appreciate excellence, prestige, and the unique charm of Athens.',
+      'Developed and Renovated by:',
+      'Astreal Developers',
+      'Project details',
+      'Location: Athens, Greece',
+      'Category: Ultra-Luxury Residential Renovation',
+      'Style: Contemporary Elegance with Timeless Athenian Character',
+      'Status: Completed Luxury Transformation',
     ],
   },
 ]

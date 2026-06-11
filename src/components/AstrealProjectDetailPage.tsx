@@ -58,7 +58,13 @@ function isAstrealDetailCopySectionLabel(para: string): boolean {
     para === 'Luxury living experience includes:' ||
     para === 'Prices starting from €360,000 + VAT' ||
     para === 'The project features luxury residences offering:' ||
-    para === 'Designed with exceptional lifestyle amenities including:'
+    para === 'Designed with exceptional lifestyle amenities including:' ||
+    para === 'Developed and Renovated by:' ||
+    para === 'Project details' ||
+    para.startsWith('Location:') ||
+    para.startsWith('Category:') ||
+    para.startsWith('Style:') ||
+    para.startsWith('Status:')
   )
 }
 
