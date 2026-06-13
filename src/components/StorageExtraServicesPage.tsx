@@ -51,51 +51,57 @@ export default function StorageExtraServicesPage() {
 
       <article className="storage-extra-detail">
         <header className="storage-extra-detail__hero">
-          <img
-            src={STORAGE_EXTRA_SERVICE_HERO_IMAGE}
-            alt={service.title}
-            className="storage-extra-detail__hero-img"
-            loading="eager"
-            decoding="async"
-          />
-          <div className="storage-extra-detail__hero-scrim" aria-hidden />
-          <div className="storage-extra-detail__hero-glow storage-extra-detail__hero-glow--1" aria-hidden />
-          <div className="storage-extra-detail__hero-glow storage-extra-detail__hero-glow--2" aria-hidden />
+          <div className="storage-extra-detail__hero-media">
+            <img
+              src={STORAGE_EXTRA_SERVICE_HERO_IMAGE}
+              alt={service.title}
+              className="storage-extra-detail__hero-img"
+              loading="eager"
+              decoding="async"
+            />
+            <div className="storage-extra-detail__hero-scrim" aria-hidden />
+            <div className="storage-extra-detail__hero-glow storage-extra-detail__hero-glow--1" aria-hidden />
+            <div className="storage-extra-detail__hero-glow storage-extra-detail__hero-glow--2" aria-hidden />
+          </div>
 
-          <motion.nav
-            className="storage-extra-detail__breadcrumb"
-            aria-label="Breadcrumb"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
-          >
-            <ol className="storage-extra-detail__breadcrumb-list">
-              <li className="storage-extra-detail__breadcrumb-item">
-                <Link to="/services/storage" className="storage-extra-detail__crumb storage-extra-detail__crumb--link">
-                  Storage2Rent
-                </Link>
-              </li>
-              <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
-                <ChevronRight size={12} strokeWidth={2.25} />
-              </li>
-              <li className="storage-extra-detail__breadcrumb-item">
-                <Link
-                  to="/services/storage#storage-extra-services"
-                  className="storage-extra-detail__crumb storage-extra-detail__crumb--link"
-                >
-                  {STORAGE_EXTRA_SERVICES_INTRO.eyebrow}
-                </Link>
-              </li>
-              <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
-                <ChevronRight size={12} strokeWidth={2.25} />
-              </li>
-              <li className="storage-extra-detail__breadcrumb-item storage-extra-detail__breadcrumb-item--current">
-                <span className="storage-extra-detail__crumb storage-extra-detail__crumb--current" aria-current="page">
-                  {service.title}
-                </span>
-              </li>
-            </ol>
-          </motion.nav>
+          <div className="storage-extra-detail__hero-bar">
+            <div className="container storage-extra-detail__hero-bar-inner">
+              <motion.nav
+                className="storage-extra-detail__breadcrumb"
+                aria-label="Breadcrumb"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
+              >
+                <ol className="storage-extra-detail__breadcrumb-list">
+                  <li className="storage-extra-detail__breadcrumb-item">
+                    <Link to="/services/storage" className="storage-extra-detail__crumb storage-extra-detail__crumb--link">
+                      Storage2Rent
+                    </Link>
+                  </li>
+                  <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
+                    <ChevronRight size={12} strokeWidth={2.25} />
+                  </li>
+                  <li className="storage-extra-detail__breadcrumb-item">
+                    <Link
+                      to="/services/storage#storage-extra-services"
+                      className="storage-extra-detail__crumb storage-extra-detail__crumb--link"
+                    >
+                      {STORAGE_EXTRA_SERVICES_INTRO.eyebrow}
+                    </Link>
+                  </li>
+                  <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
+                    <ChevronRight size={12} strokeWidth={2.25} />
+                  </li>
+                  <li className="storage-extra-detail__breadcrumb-item storage-extra-detail__breadcrumb-item--current">
+                    <span className="storage-extra-detail__crumb storage-extra-detail__crumb--current" aria-current="page">
+                      {service.title}
+                    </span>
+                  </li>
+                </ol>
+              </motion.nav>
+            </div>
+          </div>
 
           <div className="storage-extra-detail__hero-stage container">
             <motion.div

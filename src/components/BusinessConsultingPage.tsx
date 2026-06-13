@@ -11,8 +11,7 @@ import {
   X,
 } from 'lucide-react'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import ConsultingServiceCardsCarousel from './ConsultingServiceCardsCarousel'
 import Profile3 from './profile-3'
 import { useReveal } from '../hooks/useReveal'
@@ -513,7 +512,6 @@ function PlaceholderModalContent({ title }: { title: string }) {
 }
 
 export default function BusinessConsultingPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [openServiceId, setOpenServiceId] = useState<string | null>(null)
   const modalTitleId = useId()
   const pageRef = useReveal()
@@ -542,39 +540,12 @@ export default function BusinessConsultingPage() {
 
   return (
     <div className="page consulting-page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link
-              to="/#services"
-              className="nav-active"
-              onClick={() => setMenuOpen(false)}
-            >
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <section className="consulting-hero" aria-labelledby="consulting-hero-title" data-hero-parallax-root>
         <div

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
@@ -11,6 +11,8 @@ export type SiteTopbarProps = {
   homeHref: string
   /** `#services` / `#storage-options` / `/#storage-options` for dropdown trigger */
   servicesSectionHref: string
+  /** Optional extra classes on `<header class="topbar">` (e.g. wedding scroll state) */
+  className?: string
 }
 
 function NavHome({
@@ -74,12 +76,34 @@ export default function SiteTopbar({
   logoScrollToId = 'home',
   homeHref,
   servicesSectionHref,
+  className,
 }: SiteTopbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const close = () => setMenuOpen(false)
+  const close = useCallback(() => setMenuOpen(false), [])
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = prev
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [menuOpen, close])
 
   return (
-    <header className="topbar">
+    <header className={['topbar', className].filter(Boolean).join(' ')}>
+      <button
+        type="button"
+        className={`nav-backdrop${menuOpen ? ' nav-backdrop--open' : ''}`}
+        aria-label="Close menu"
+        tabIndex={menuOpen ? 0 : -1}
+        onClick={close}
+      />
       <div className="container topbar-inner">
         <SiteLogo pathname={logoPathname} scrollToId={logoScrollToId} />
         <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
@@ -121,7 +145,6 @@ export default function SiteTopbar({
           </Link>
           <TopbarSocialLinks variant="mobile" />
         </nav>
-        <TopbarSocialLinks variant="desktop" />
         <button
           type="button"
           className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}

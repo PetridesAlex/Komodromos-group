@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
-import SiteLogo from '../SiteLogo'
-import TopbarSocialLinks from '../TopbarSocialLinks'
+import SiteTopbar from '../SiteTopbar'
 import { useReveal } from '../../hooks/useReveal'
 import {
   findYachtCharterById,
@@ -13,7 +12,6 @@ import {
 export default function YachtDetailPage() {
   const { yachtId } = useParams<{ yachtId: string }>()
   const navigate = useNavigate()
-  const [menuOpen, setMenuOpen] = useState(false)
   const reduceMotion = useReducedMotion()
   const pageRef = useReveal()
 
@@ -34,35 +32,12 @@ export default function YachtDetailPage() {
 
   return (
     <div className="page yacht-detail-page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link to="/#services" className="nav-active" onClick={() => setMenuOpen(false)}>
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <section className="yacht-detail-hero" aria-label="Yacht photography" data-hero-parallax-root>
         <div className="yacht-detail-hero__media" data-hero-parallax>

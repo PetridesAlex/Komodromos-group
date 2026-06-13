@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { TAX_NEX_PRICING_PLANS, TAX_NEX_VAT_PCT } from '../data/taxNexPageContent'
 
@@ -64,7 +63,6 @@ function formatEurEl(n: number) {
 }
 
 export default function TaxServicesOverviewPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const reduceMotion = useReducedMotion()
   const pageRef = useReveal()
 
@@ -74,35 +72,12 @@ export default function TaxServicesOverviewPage() {
 
   return (
     <div className="page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link to="/services/tax" className="nav-active" onClick={() => setMenuOpen(false)}>
-              TAX SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <main className="bg-[linear-gradient(175deg,#f7fffc_0%,#eefcf7_45%,#f6fffb_100%)] pt-24 pb-14 sm:pb-20">
         <section className="container">

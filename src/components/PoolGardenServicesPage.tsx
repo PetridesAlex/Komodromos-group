@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { Building2, Home, Layers } from 'lucide-react'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { getServiceBySlug } from '../data/serviceCards'
 import { getServicePageContent } from '../data/servicePageSections'
@@ -44,7 +43,6 @@ const POOL_EDITORIAL_IMAGE =
   '/images/services/swimming-pool-garden-services/over-flow-1.webp'
 
 export default function PoolGardenServicesPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const reduceMotion = useReducedMotion()
   const pageRef = useReveal()
   const card = getServiceBySlug('pool')
@@ -77,39 +75,12 @@ export default function PoolGardenServicesPage() {
 
   return (
     <div className="page pool-garden-page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link
-              to="/#services"
-              className="nav-active"
-              onClick={() => setMenuOpen(false)}
-            >
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <section className="pool-garden-hero" aria-label="Introduction" data-hero-parallax-root>
         <div className="pool-garden-hero__bg" aria-hidden data-hero-parallax>

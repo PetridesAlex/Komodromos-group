@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import type { LucideIcon } from 'lucide-react'
 import {
@@ -12,8 +12,7 @@ import {
   Users,
 } from 'lucide-react'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { getServiceBySlug } from '../data/serviceCards'
 import {
@@ -42,7 +41,6 @@ const PROCESS_ICONS: Record<AviationProcessIconId, LucideIcon> = {
 }
 
 export default function AviationServicesPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const pageRef = useReveal()
   const card = getServiceBySlug('aviation')
 
@@ -66,39 +64,12 @@ export default function AviationServicesPage() {
 
   return (
     <div className="page aviation-services-page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link
-              to="/#services"
-              className="nav-active"
-              onClick={() => setMenuOpen(false)}
-            >
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <section className="aviation-hero" aria-label="Aviation agency introduction" data-hero-parallax-root>
         <div className="aviation-hero__bg" aria-hidden data-hero-parallax>

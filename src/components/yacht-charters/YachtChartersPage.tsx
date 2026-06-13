@@ -2,8 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
-import SiteLogo from '../SiteLogo'
-import TopbarSocialLinks from '../TopbarSocialLinks'
+import SiteTopbar from '../SiteTopbar'
 import { useReveal } from '../../hooks/useReveal'
 import {
   charteringCyprus,
@@ -36,7 +35,6 @@ const defaultFilter: YachtFilterState = {
 }
 
 export default function YachtChartersPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [termsOpen, setTermsOpen] = useState(false)
   const [filter, setFilter] = useState<YachtFilterState>(defaultFilter)
   const pageRef = useReveal()
@@ -61,35 +59,12 @@ export default function YachtChartersPage() {
 
   return (
     <div className="page yacht-charters-page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link to="/#services" className="nav-active" onClick={() => setMenuOpen(false)}>
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <section className="yacht-hero" aria-labelledby="yacht-hero-title" data-hero-parallax-root>
         <div className="yacht-hero__bg" aria-hidden data-hero-parallax>

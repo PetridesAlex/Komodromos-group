@@ -19,7 +19,7 @@ export default function HeroParallaxEffect() {
     const smooth = smoothRef.current
 
     const tick = () => {
-      if (mq.matches) {
+      if (mq.matches || window.innerWidth < 768) {
         document.querySelectorAll<HTMLElement>('[data-hero-parallax]').forEach((el) => {
           el.style.transform = ''
         })

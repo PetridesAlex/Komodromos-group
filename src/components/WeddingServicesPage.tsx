@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { UserCircle2 } from 'lucide-react'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import WeddingIntroSocial from './WeddingIntroSocial'
 import WeddingHighlightTiles from './WeddingHighlightTiles'
 import WeddingPackagesSection from './WeddingPackagesSection'
@@ -103,7 +102,6 @@ const WEDDING_FAQ_ITEMS = [
 const NAV_SCROLL_THRESHOLD_PX = 28
 
 export default function WeddingServicesPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [navScrolled, setNavScrolled] = useState(false)
   const [faqOpen, setFaqOpen] = useState(false)
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0)
@@ -151,39 +149,13 @@ export default function WeddingServicesPage() {
 
   return (
     <div className="page wedding-page" ref={pageRef}>
-      <header className={`topbar${navScrolled ? ' topbar--scrolled' : ''}`}>
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link
-              to="/#services"
-              className="nav-active"
-              onClick={() => setMenuOpen(false)}
-            >
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+        className={navScrolled ? 'topbar--scrolled' : undefined}
+      />
 
       <a
         href={WEDDING_YOUTUBE_CHANNEL}

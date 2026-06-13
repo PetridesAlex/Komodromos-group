@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
-import SiteLogo from '../SiteLogo'
-import TopbarSocialLinks from '../TopbarSocialLinks'
+import SiteTopbar from '../SiteTopbar'
 import { useReveal } from '../../hooks/useReveal'
 import { airCategoryPath, airPrivateJetFleet, airPrivateJetFleetPath } from '../../data/airServicesPage'
 
@@ -11,7 +10,6 @@ const BASE_TITLE = 'Komodromos'
 const EASE = [0.16, 1, 0.3, 1] as const
 
 export default function PrivateJetFleetPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
   const d = airPrivateJetFleet
@@ -31,35 +29,12 @@ export default function PrivateJetFleetPage() {
 
   return (
     <div className="page air-services-page air-pjf-page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link to="/#services" className="nav-active" onClick={() => setMenuOpen(false)}>
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <main className="air-pjf">
         <div className="air-pjf__ambient" aria-hidden>

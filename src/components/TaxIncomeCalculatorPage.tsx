@@ -2,8 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import TaxIncomeCounsellorLeadModal from './TaxIncomeCounsellorLeadModal'
 import { useReveal } from '../hooks/useReveal'
 import { calculateCyprusIncomeTax, type CyprusIncomeTaxYear } from '../lib/cyprusIncomeTax'
@@ -27,7 +26,6 @@ function parseNum(s: string) {
 }
 
 export default function TaxIncomeCalculatorPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [counsellorModalOpen, setCounsellorModalOpen] = useState(false)
   const [taxYear, setTaxYear] = useState<CyprusIncomeTaxYear>('2026')
 
@@ -135,35 +133,12 @@ export default function TaxIncomeCalculatorPage() {
 
   return (
     <div className="page" ref={pageRef} lang="el">
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link to="/#services" onClick={() => setMenuOpen(false)}>
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <main className="relative isolate overflow-hidden bg-[linear-gradient(165deg,#fafdfb_0%,#ecfdf5_38%,#e6fffa_72%,#f0fdf4_100%)] pt-24 pb-16 sm:pb-24">
         <div

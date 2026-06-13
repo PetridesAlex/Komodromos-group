@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
-import SiteLogo from './SiteLogo'
-import TopbarSocialLinks from './TopbarSocialLinks'
+import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { airCategoryContent, airCategoryPath, airServicesHero } from '../data/airServicesPage'
 
 const BASE_TITLE = 'Komodromos'
 
 export default function AirServicesPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const pageRef = useReveal()
 
   useEffect(() => {
@@ -26,35 +24,12 @@ export default function AirServicesPage() {
 
   return (
     <div className="page air-services-page" ref={pageRef}>
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <SiteLogo />
-          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              HOME
-            </Link>
-            <Link to="/#services" className="nav-active" onClick={() => setMenuOpen(false)}>
-              SERVICES
-            </Link>
-            <Link to="/contact" onClick={() => setMenuOpen(false)}>
-              CONTACT
-            </Link>
-            <TopbarSocialLinks variant="mobile" />
-          </nav>
-          <TopbarSocialLinks variant="desktop" />
-          <button
-            type="button"
-            className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteTopbar
+        logoPathname="/"
+        logoScrollToId="home"
+        homeHref="/"
+        servicesSectionHref="/#services"
+      />
 
       <section className="air-hero" aria-labelledby="air-hero-title" data-hero-parallax-root>
         <div className="air-hero__bg" aria-hidden data-hero-parallax>
