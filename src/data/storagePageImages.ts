@@ -129,7 +129,7 @@ export const STORAGE_OFFER_IMAGES = {
 
 export const STORAGE_MOVING_IMAGES = [
   storageImage('Moving-services-1.webp'),
-  storageImage('do-we-need-more-5.webp'),
+  storageImage('do-you-need-more-storage.webp'),
   storageImage('Moving-services-3.webp'),
 ] as const
 
@@ -168,9 +168,9 @@ export const STORAGE_MOVING_STORY_BLOCKS = [
 
 export const STORAGE_EXTRA_SERVICES_PATH = '/services/storage/extra-services/man-with-van' as const
 
-export const STORAGE_EXTRA_SERVICE_HERO_IMAGE = storageImage('van-storage-hero.webp')
+export const STORAGE_EXTRA_SERVICE_HERO_IMAGE = storageImage('do-we-need-more-6.webp')
 
-export const STORAGE_EXTRA_SERVICE_SHOWCASE_IMAGE = storageImage('do-we-need-more-6.webp')
+export const STORAGE_EXTRA_SERVICE_SHOWCASE_IMAGE = storageImage('van-storage-hero.webp')
 
 export const STORAGE_EXTRA_SERVICES_INTRO = {
   eyebrow: 'Extra Services',

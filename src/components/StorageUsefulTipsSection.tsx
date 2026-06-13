@@ -35,21 +35,24 @@ export default function StorageUsefulTipsSection() {
                 tabIndex={-1}
                 aria-hidden
               >
-                <img
-                  src={tip.image}
-                  alt=""
-                  className="storage-tips__img"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="storage-tips__media-scrim" />
+                <div className="storage-tips__media-frame">
+                  <img
+                    src={tip.image}
+                    alt=""
+                    className="storage-tips__img"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </Link>
 
               <div className="storage-tips__body">
+                <span className="storage-tips__card-index" aria-hidden>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <Link to={storageTipDetailPath(tip.id)} className="storage-tips__title-link">
                   <h4 className="storage-tips__card-title">{tip.title}</h4>
                 </Link>
-                <p className="storage-tips__excerpt">{tip.excerpt}</p>
                 <Link to={storageTipDetailPath(tip.id)} className="storage-tips__read-more group">
                   <span>Read more</span>
                   <ArrowRight

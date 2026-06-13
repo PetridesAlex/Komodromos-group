@@ -39,43 +39,48 @@ export default function StorageTipDetailPage() {
 
       <article className="storage-tip-detail">
         <div className="storage-tip-detail__hero">
-          <img
-            src={tip.image}
-            alt={tip.imageAlt}
-            className="storage-tip-detail__hero-img"
-            loading="eager"
-            decoding="async"
-          />
-          <div className="storage-tip-detail__hero-scrim" aria-hidden />
-          <div className="storage-tip-detail__hero-inner container">
-            <nav className="storage-tip-detail__breadcrumb" aria-label="Breadcrumb">
-              <ol className="storage-tip-detail__breadcrumb-list">
-                <li className="storage-tip-detail__breadcrumb-item">
-                  <Link to="/services/storage" className="storage-tip-detail__crumb storage-tip-detail__crumb--link">
-                    Storage2Rent
-                  </Link>
-                </li>
-                <li className="storage-tip-detail__breadcrumb-sep" aria-hidden>
-                  <ChevronRight size={13} strokeWidth={2.25} />
-                </li>
-                <li className="storage-tip-detail__breadcrumb-item">
-                  <Link
-                    to="/services/storage#storage-tips"
-                    className="storage-tip-detail__crumb storage-tip-detail__crumb--link"
-                  >
-                    Useful tips
-                  </Link>
-                </li>
-                <li className="storage-tip-detail__breadcrumb-sep" aria-hidden>
-                  <ChevronRight size={13} strokeWidth={2.25} />
-                </li>
-                <li className="storage-tip-detail__breadcrumb-item storage-tip-detail__breadcrumb-item--current">
-                  <span className="storage-tip-detail__crumb storage-tip-detail__crumb--current" aria-current="page">
-                    {tip.title}
-                  </span>
-                </li>
-              </ol>
-            </nav>
+          <div className="storage-tip-detail__hero-media">
+            <img
+              src={tip.image}
+              alt={tip.imageAlt}
+              className="storage-tip-detail__hero-img"
+              loading="eager"
+              decoding="async"
+            />
+            <div className="storage-tip-detail__hero-scrim" aria-hidden />
+          </div>
+
+          <div className="storage-tip-detail__hero-bar">
+            <div className="container storage-tip-detail__hero-bar-inner">
+              <nav className="storage-tip-detail__breadcrumb" aria-label="Breadcrumb">
+                <ol className="storage-tip-detail__breadcrumb-list">
+                  <li className="storage-tip-detail__breadcrumb-item">
+                    <Link to="/services/storage" className="storage-tip-detail__crumb storage-tip-detail__crumb--link">
+                      Storage2Rent
+                    </Link>
+                  </li>
+                  <li className="storage-tip-detail__breadcrumb-sep" aria-hidden>
+                    <ChevronRight size={13} strokeWidth={2.25} />
+                  </li>
+                  <li className="storage-tip-detail__breadcrumb-item">
+                    <Link
+                      to="/services/storage#storage-tips"
+                      className="storage-tip-detail__crumb storage-tip-detail__crumb--link"
+                    >
+                      Useful tips
+                    </Link>
+                  </li>
+                  <li className="storage-tip-detail__breadcrumb-sep" aria-hidden>
+                    <ChevronRight size={13} strokeWidth={2.25} />
+                  </li>
+                  <li className="storage-tip-detail__breadcrumb-item storage-tip-detail__breadcrumb-item--current">
+                    <span className="storage-tip-detail__crumb storage-tip-detail__crumb--current" aria-current="page">
+                      {tip.title}
+                    </span>
+                  </li>
+                </ol>
+              </nav>
+            </div>
           </div>
         </div>
 
@@ -102,9 +107,31 @@ export default function StorageTipDetailPage() {
               <p className="storage-tip-detail__intro">{tip.excerpt}</p>
             </div>
             <div className="storage-tip-detail__body">
-              {tip.body.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-              ))}
+              {tip.sections?.length
+                ? tip.sections.map((section, index) => {
+                    if (section.kind === 'h2') {
+                      return (
+                        <h2 key={`${section.text}-${index}`} className="storage-tip-detail__section-title">
+                          {section.text}
+                        </h2>
+                      )
+                    }
+
+                    if (section.kind === 'ul') {
+                      return (
+                        <ul key={`list-${index}`} className="storage-tip-detail__list">
+                          {section.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )
+                    }
+
+                    return <p key={`${section.text.slice(0, 32)}-${index}`}>{section.text}</p>
+                  })
+                : tip.body.map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                  ))}
             </div>
 
             <div className="storage-tip-detail__cta">

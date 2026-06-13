@@ -1,10 +1,35 @@
 import { storageImage } from './storagePageImages'
 
+const SMART_STORAGE_TIP_FILES = [
+  'smart-storage/smarter-storage-1.webp',
+  'smart-storage/smarter-storage-2.webp',
+  'smart-storage/smarter-storage-3.webp',
+  'smart-storage/smarter-storage-4.webp',
+  'smart-storage/smarter-storage-6.webp',
+  'smart-storage/smarter-storage-7.webp',
+  'smart-storage/smarter-storage-8.webp',
+  'smart-storage/smarter-storage-9.webp',
+  'smart-storage/smarter-storage-10.webp',
+  'smart-storage/smarter-storage-11.webp',
+  'smart-storage/smarter-storage-12.webp',
+  'smart-storage/smarter-storage-13.webp',
+] as const
+
+function smartStorageTipImage(index: number) {
+  return storageImage(SMART_STORAGE_TIP_FILES[index] ?? SMART_STORAGE_TIP_FILES[0]!)
+}
+
+export type StorageUsefulTipSection =
+  | { kind: 'p'; text: string }
+  | { kind: 'h2'; text: string }
+  | { kind: 'ul'; items: string[] }
+
 export type StorageUsefulTip = {
   id: string
   title: string
   excerpt: string
   body: string[]
+  sections?: StorageUsefulTipSection[]
   image: string
   imageAlt: string
 }
@@ -22,161 +47,926 @@ export function getStorageTipById(tipId: string | undefined) {
 export const STORAGE_USEFUL_TIPS: StorageUsefulTip[] = [
   {
     id: 'business-items',
-    title: 'What can businesses keep in self-storage?',
+    title: 'Moving Away for University: Practical Tips for a Smooth Transition',
     excerpt:
-      'More industries use off-site units than you might expect — archived paperwork, promotional stock, tools, spare parts, and seasonal inventory all belong here when office or shop floor space gets tight.',
-    body: [
-      'Self-storage is no longer only for house moves. Trades, retailers, e-commerce sellers, and professional offices routinely rent units to hold stock, equipment, and archives that do not need to sit in premium workspace every day.',
-      'Typical business items include marketing materials, spare furniture, IT hardware awaiting deployment, seasonal product lines, and compliance records you must retain but rarely open. Containers and warehouse bays at Storage2Rent are especially useful when deliveries arrive on pallets or when you need drive-up access for vans.',
-      'The key is matching unit size and access hours to how your team works. If staff visit weekly, choose a layout that keeps aisles clear; if you mainly add inventory month by month, prioritise height and depth over a wide frontage.',
-      'Talk to us about short-term overflow during refits or longer stays while you scale — we help you avoid paying for square metres you will never use.',
+      'Starting university marks an exciting new chapter in life, bringing with it a sense of independence, opportunity, and new experiences. However, it also requires careful planning and organisation. With the right preparation, moving into student accommodation can be a much smoother and less stressful experience.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: 'Create a Plan',
+      },
+      {
+        kind: 'p',
+        text: 'Before you begin packing, divide your belongings into three categories:',
+      },
+      {
+        kind: 'ul',
+        items: [
+          'Items you will take to your new accommodation.',
+          'Items that will remain at the family home.',
+          'Items that will be stored for future use.',
+        ],
+      },
+      {
+        kind: 'p',
+        text: 'A well-organised approach will save time, reduce stress, and make the moving process far more manageable.',
+      },
+      {
+        kind: 'h2',
+        text: 'Organise Your Packing',
+      },
+      {
+        kind: 'p',
+        text: 'Use sturdy packing boxes and clearly label their contents. Keeping a simple checklist will help you monitor each stage of the move and ensure that nothing is overlooked.',
+      },
+      {
+        kind: 'h2',
+        text: 'Take Only What You Need',
+      },
+      {
+        kind: 'p',
+        text: 'Most student accommodation offers limited storage space. Focus on bringing items that you will genuinely use and avoid transporting unnecessary belongings.',
+      },
+      {
+        kind: 'h2',
+        text: 'Declutter Before You Move',
+      },
+      {
+        kind: 'p',
+        text: 'Moving provides the perfect opportunity to sort through your possessions and remove anything you no longer need. Clothing, books, furniture, and equipment can be donated, recycled, or stored for future use.',
+      },
+      {
+        kind: 'h2',
+        text: 'Store Valuable Belongings Safely',
+      },
+      {
+        kind: 'p',
+        text: 'Personal belongings, furniture, keepsakes, family heirlooms, and other valuable items that cannot be accommodated in your new residence can be safely stored in a Storage2Rent storage unit.',
+      },
+      {
+        kind: 'p',
+        text: 'Our modern facilities provide secure and flexible storage solutions for personal belongings, seasonal equipment, business inventory, and important records, ensuring they remain in excellent condition for as long as required.',
+      },
+      {
+        kind: 'p',
+        text: 'For added peace of mind, you can also determine who has access to your storage unit, giving you complete control over your possessions at all times.',
+      },
+      {
+        kind: 'h2',
+        text: 'Begin Your New Journey with Confidence',
+      },
+      {
+        kind: 'p',
+        text: 'With careful planning and the right storage solution, the transition to university life becomes significantly easier and more enjoyable. You can focus on settling into your new routine, knowing that your belongings are safe, secure, and readily available whenever you need them.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — Secure and flexible storage solutions for students, families, and every new beginning.',
+      },
     ],
-    image: storageImage('storage-22.png'),
-    imageAlt: 'Business and logistics storage at Storage2Rent',
+    image: smartStorageTipImage(0),
+    imageAlt: 'Student storage and university move preparation at Storage2Rent',
   },
   {
     id: 'flexible-storage',
-    title: 'Secure space that adapts with you',
+    title: 'Create a More Sustainable and Organised Living Space',
     excerpt:
-      'From household clear-outs to growing company stock, Storage2Rent offers monitored units and yards sized for everyday use — short stays, rolling contracts, or longer partnerships as your needs evolve.',
-    body: [
-      'Storage requirements rarely stay the same for years. A family might need a small unit during a renovation, then downsize once furniture returns home. A business might expand into a larger bay after a strong season, or switch from boxes to pallet racking as logistics mature.',
-      'Flexible terms matter as much as flexible space. Look for providers who allow reasonable access, clear security standards, and straightforward changes when you outgrow a room or want to consolidate.',
-      'At Storage2Rent, units and containers are positioned for practical loading — not just catalogue photos. Monitored yards, defined access routes, and on-site professionalism reduce the friction of using storage as an extension of your home or operation.',
-      'Whether you are between properties, staging a move, or building buffer stock, choose a partner that treats storage as an ongoing service, not a one-off locker rental.',
+      'At Storage2Rent, we believe that a well-organised home can also contribute to a more sustainable way of life. Small changes to our daily habits can significantly reduce our environmental impact while creating a healthier and more comfortable living environment.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: 'Choose Environmentally Friendly Products',
+      },
+      {
+        kind: 'p',
+        text: 'Opt for natural personal care products, eco-friendly cleaning solutions, and biodegradable detergents whenever possible. These choices help reduce environmental pollution while creating a healthier home for you and your family.',
+      },
+      {
+        kind: 'h2',
+        text: 'Reduce Energy Consumption',
+      },
+      {
+        kind: 'p',
+        text: 'Using energy-efficient appliances and avoiding unnecessary energy usage can significantly lower household energy consumption. Even simple habits, such as setting your refrigerator to the correct temperature and limiting the use of electrical devices when not needed, can make a meaningful difference.',
+      },
+      {
+        kind: 'h2',
+        text: 'Make the Most of Natural Light',
+      },
+      {
+        kind: 'p',
+        text: 'Open curtains and blinds during the day to maximise natural daylight and reduce reliance on artificial lighting. Proper shading and insulation can also help maintain a comfortable indoor temperature throughout the year, reducing heating and cooling demands.',
+      },
+      {
+        kind: 'h2',
+        text: 'Minimise Water Waste',
+      },
+      {
+        kind: 'p',
+        text: 'Installing water-saving devices and adopting more responsible water-use habits can play a vital role in conserving one of our planet’s most valuable natural resources.',
+      },
+      {
+        kind: 'h2',
+        text: 'Keep Your Space Organised',
+      },
+      {
+        kind: 'p',
+        text: 'Seasonal items and belongings that are only used occasionally do not need to occupy valuable space in your home. Storage2Rent’s secure storage units provide a practical and reliable solution for storing furniture, equipment, business inventory, and personal possessions, helping you maintain a more organised and functional living environment.',
+      },
+      {
+        kind: 'h2',
+        text: 'Small Changes, Lasting Benefits',
+      },
+      {
+        kind: 'p',
+        text: 'The choices we make every day can have a significant positive impact on the environment. By managing resources responsibly and keeping our living spaces organised, we contribute to a more sustainable, efficient, and enjoyable future for everyone.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — Smart storage solutions for a more organised, functional, and sustainable lifestyle.',
+      },
     ],
-    image: storageImage('storage50.png'),
-    imageAlt: 'Modern storage units and container yard',
+    image: smartStorageTipImage(1),
+    imageAlt: 'Sustainable and organised living with Storage2Rent',
   },
   {
     id: 'tailored-plans',
-    title: 'Storage matched to how you live and work',
+    title: 'Flexible Storage Solutions for Students',
     excerpt:
-      'Access hours, unit dimensions, and contract length should fit your routine. We help you choose container or warehouse space based on what you store and how often you need to reach it.',
-    body: [
-      'The right plan starts with an honest list of what you are storing, how fragile it is, and how frequently you will visit. Weekly access to seasonal sports gear suggests a different setup than quarterly visits to archived files.',
-      'Container storage suits robust goods, vehicles, and palletised stock. Indoor units favour furniture, electronics, and anything sensitive to dust or weather during loading. Insulated warehouse space bridges both when temperature stability matters.',
-      'Contract length should reflect your project timeline — a three-month renovation, a six-month office transition, or an open-ended business buffer each deserve a different conversation about cost and notice periods.',
-      'Our team maps your items to realistic square metres so you are not pushed into oversized units. Personal visits are welcome if you want to walk the site before you commit.',
+      'Student life brings exciting new experiences, but it often comes with limited living space. Whether you are moving away for university or temporarily returning to your family home, having the right storage solution can make everyday life far more convenient. At Storage2Rent, we provide secure and affordable storage solutions tailored to the needs of students and young professionals.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: 'Store What You Don’t Need Every Day',
+      },
+      {
+        kind: 'p',
+        text: 'Clothing, books, furniture, sports equipment, and personal belongings can quickly take up valuable space. Storage2Rent’s storage units allow you to keep your possessions safe, organised, and easily accessible whenever you need them.',
+      },
+      {
+        kind: 'h2',
+        text: 'Flexible Space to Suit Your Needs',
+      },
+      {
+        kind: 'p',
+        text: 'As your requirements change, you can choose the storage unit size that best suits you, ensuring that you only pay for the space you genuinely need.',
+      },
+      {
+        kind: 'h2',
+        text: 'Ideal for Projects and Equipment',
+      },
+      {
+        kind: 'p',
+        text: 'From architectural models and creative projects to study materials and specialist equipment, our units provide a secure and organised environment for storing valuable items.',
+      },
+      {
+        kind: 'h2',
+        text: 'Transparent Pricing',
+      },
+      {
+        kind: 'p',
+        text: 'We offer clear and straightforward pricing with no hidden charges, allowing you to know exactly what you are paying for from the outset.',
+      },
+      {
+        kind: 'h2',
+        text: 'Security and Protection',
+      },
+      {
+        kind: 'p',
+        text: 'Our facilities are equipped with advanced CCTV surveillance, controlled access systems, and modern security measures to ensure maximum protection for your personal belongings.',
+      },
+      {
+        kind: 'h2',
+        text: 'Packing Materials Available',
+      },
+      {
+        kind: 'p',
+        text: 'We supply cardboard boxes, bubble wrap, protective covers, stretch film, and all the essential packing materials required for safe transportation and storage.',
+      },
+      {
+        kind: 'h2',
+        text: 'More Space, Less Stress',
+      },
+      {
+        kind: 'p',
+        text: 'With Storage2Rent’s flexible storage solutions, you can enjoy student life without worrying about space limitations or the safety of your belongings.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — Secure and flexible storage solutions for students, young professionals, and every new beginning.',
+      },
     ],
-    image: storageImage('storage-42.png'),
-    imageAlt: 'Personal storage corridors at the facility',
+    image: smartStorageTipImage(2),
+    imageAlt: 'Flexible student storage solutions at Storage2Rent',
   },
   {
     id: 'clothes-long-term',
-    title: 'Looking after clothing over many months',
+    title: 'How to Organise Your Wardrobe Effectively',
     excerpt:
-      'Fabrics last longer in clean, stable conditions with sensible packing. Store seasonal wardrobes so they stay reachable whenever the weather turns — without crowding cupboards at home.',
-    body: [
-      'Clothing storage fails when items are crushed, damp, or left in direct plastic without airflow. Clean garments thoroughly before packing, ensure they are fully dry, and use breathable covers rather than sealed bags for long durations.',
-      'Structured boxes or wardrobe cartons keep shapes intact. Heavier knitwear belongs at the bottom; delicate pieces should be folded with tissue rather than hung on weak rails for months on end.',
-      'Seasonal rotation works best when your unit is organised like a small wardrobe aisle — labelled containers, a clear path, and a habit of swapping summer and winter bundles twice a year.',
-      'A dry, accessible facility makes the difference between “out of sight” and “forgotten and damaged.” Storage2Rent units are suited to frequent visits so your wardrobe stays a practical extension of home, not a last resort.',
+      'Many people assume they need more storage space when, in reality, they simply need better organisation. With a few practical steps, you can maximise your wardrobe space and keep your clothing and accessories neatly arranged at all times.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: 'Start with a Clear-Out',
+      },
+      {
+        kind: 'p',
+        text: 'Empty your wardrobe completely and give it a thorough clean. This is the perfect opportunity to remove clothing and items you no longer use, creating valuable additional space.',
+      },
+      {
+        kind: 'h2',
+        text: 'Organise Your Clothing',
+      },
+      {
+        kind: 'p',
+        text: 'Sort your clothes by season, purpose, or colour. This will make it easier to find what you need while helping you maintain a more organised daily routine.',
+      },
+      {
+        kind: 'h2',
+        text: 'Choose the Right Hangers',
+      },
+      {
+        kind: 'p',
+        text: 'Quality hangers help maintain the shape of your clothing while creating a cleaner and more uniform appearance. Consider using matching hangers for a more organised and visually appealing wardrobe.',
+      },
+      {
+        kind: 'h2',
+        text: 'Make Use of Every Available Space',
+      },
+      {
+        kind: 'p',
+        text: 'Keep everyday clothing within easy reach and move seasonal items to higher shelves or storage boxes. Additional organisers, shelf dividers, and hanging accessories can significantly increase your wardrobe’s storage capacity.',
+      },
+      {
+        kind: 'h2',
+        text: 'Organise Your Accessories',
+      },
+      {
+        kind: 'p',
+        text: 'Belts, ties, handbags, jewellery, and other accessories can be neatly arranged using dedicated organisers, hooks, and drawer dividers, helping you save both time and space.',
+      },
+      {
+        kind: 'h2',
+        text: 'When You Need Extra Space',
+      },
+      {
+        kind: 'p',
+        text: 'Seasonal clothing, suitcases, and items that are only used occasionally can be safely stored in a Storage2Rent unit, allowing you to keep your home organised without parting with belongings that matter to you.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — More space, better organisation, and secure storage solutions for every requirement.',
+      },
     ],
-    image: storageImage('storage-41.png'),
-    imageAlt: 'Indoor storage units suitable for personal belongings',
+    image: smartStorageTipImage(3),
+    imageAlt: 'Wardrobe organisation and secure clothing storage at Storage2Rent',
   },
   {
     id: 'office-move',
-    title: 'Organising an office or business move',
+    title: 'Smart Ways to Store Your Sports Equipment Properly',
     excerpt:
-      'Relocating premises takes planning before the upside appears. Phased storage keeps desks, files, and kit safe while fit-out, handover dates, and transport schedules fall into place.',
-    body: [
-      'Office moves go wrong when everything travels on the same day with nowhere to land. Staged storage lets you decant meeting rooms first, hold furniture while floors are refurbished, and keep client files accessible in labelled bays.',
-      'Start with a floor plan of the new space and mark what must arrive in week one versus what can wait. IT kit, signage, and kitchen areas often have different timelines — your storage layout should mirror those phases.',
-      'Use colour-coded labels by department and photograph cable setups before desks are broken down. The small admin cost upfront saves days of confusion when you reopen.',
-      'Storage2Rent can hold desks, chairs, archiving boxes, and palletised supplies until your fit-out completes. Combine container space for bulky items with indoor units for documents that must stay dry and secure.',
+      'Sports equipment often represents a significant investment, both financially and personally. Whether you own bicycles, gym equipment, water sports gear, racquets, or valuable sports memorabilia, proper storage is essential for preserving their condition and keeping your space organised. Here are three practical ways to protect your equipment while making the most of your available space.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: '1. Keep Only the Equipment You Actually Use',
+      },
+      {
+        kind: 'p',
+        text: 'Before organising your equipment, take some time to assess what you genuinely need. Many people accumulate sporting equipment that is no longer used, either because their interests have changed or because the equipment has been replaced with newer alternatives.',
+      },
+      {
+        kind: 'p',
+        text: 'Separate the items you still use from those you no longer need. Consider donating, selling, or recycling unused equipment. This simple step can significantly reduce the amount of storage space required while helping you maintain a more organised environment.',
+      },
+      {
+        kind: 'h2',
+        text: '2. Organise Your Equipment Properly',
+      },
+      {
+        kind: 'p',
+        text: 'A well-organised storage system makes everyday life easier and allows you to find what you need quickly and efficiently. Store frequently used items in easily accessible locations, while seasonal equipment can be placed in less accessible areas.',
+      },
+      {
+        kind: 'p',
+        text: 'For even better organisation:',
+      },
+      {
+        kind: 'ul',
+        items: [
+          'Label boxes and storage containers clearly.',
+          'Store balls and smaller accessories in dedicated bags or containers.',
+          'Keep racquets, clubs, and similar equipment stored upright where possible.',
+          'Avoid placing heavy items on top of delicate equipment.',
+          'Organise equipment by sport or season.',
+        ],
+      },
+      {
+        kind: 'p',
+        text: 'Proper organisation not only protects your equipment but also saves valuable time whenever you need it.',
+      },
+      {
+        kind: 'h2',
+        text: '3. Protect Your Memorabilia and Collectibles',
+      },
+      {
+        kind: 'p',
+        text: 'For many sports enthusiasts, memorabilia can be just as valuable as the equipment itself. Medals, trophies, signed shirts, autographed balls, trading cards, and other collectibles require special care during storage.',
+      },
+      {
+        kind: 'p',
+        text: 'To ensure their protection:',
+      },
+      {
+        kind: 'ul',
+        items: [
+          'Use durable storage boxes.',
+          'Add protective materials such as bubble wrap or foam padding.',
+          'Store delicate items in waterproof containers.',
+          'Clearly label boxes containing fragile contents.',
+        ],
+      },
+      {
+        kind: 'p',
+        text: 'These simple precautions will help preserve your treasured memories and collectibles in excellent condition for many years to come.',
+      },
+      {
+        kind: 'h2',
+        text: 'Secure Storage for Equipment and Memories',
+      },
+      {
+        kind: 'p',
+        text: 'Effective storage is not simply about saving space—it is also about protecting your investment. Moisture, dust, and unsuitable storage conditions can cause significant damage to sports equipment and valuable collectibles.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent’s modern storage facilities provide a secure, clean, and professionally managed environment for storing sports equipment, seasonal items, personal collections, and valuable belongings, with convenient access whenever required.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — The ideal solution for the secure storage of sports equipment, collectibles, and personal belongings throughout the year.',
+      },
     ],
-    image: storageImage('storage-30.png'),
-    imageAlt: 'Industrial and pallet-ready warehouse space',
+    image: smartStorageTipImage(4),
+    imageAlt: 'Secure sports equipment storage at Storage2Rent',
   },
   {
     id: 'home-space',
-    title: 'Smart ways to free up room at home',
+    title: 'Smart Tips for Safe and Efficient Storage',
     excerpt:
-      'Homes fill quickly regardless of square metres. Rotating seldom-used furniture, sports gear, and boxes into secure storage can unlock living areas without committing to a bigger property.',
-    body: [
-      "Most households own items used only part of the year — holiday decorations, camping gear, children's outgrown sizes, or furniture kept \"just in case.\" Those pieces consume closets and spare rooms until space feels permanently tight.",
-      'Decluttering without discarding is valid. If you are likely to need items again, off-site storage is often cheaper than moving to a larger home solely for extra cupboards.',
-      'Create a simple rule: anything not used in twelve months moves to a labelled box in storage unless it is genuinely sentimental or high value. Review twice a year so units do not become unmanaged dumping grounds.',
-      'A nearby, secure facility turns storage into active space management — visit when seasons change, swap sports equipment, and keep daily living areas calm without ruthless throwing away.',
+      'Proper storage does more than simply save space. It helps protect your belongings, keeps your home organised, and makes it easier to find what you need when you need it. Here are ten practical tips to help you store your items more safely and efficiently.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: '1. Choose Quality Packing Materials',
+      },
+      {
+        kind: 'p',
+        text: 'Use sturdy boxes, protective wrapping materials, and strong packing tape to ensure maximum protection for your belongings.',
+      },
+      {
+        kind: 'h2',
+        text: '2. Use the Right Box Size',
+      },
+      {
+        kind: 'p',
+        text: 'Heavy items should be packed in smaller boxes, while lighter items can be placed in larger boxes for easier handling and transportation.',
+      },
+      {
+        kind: 'h2',
+        text: '3. Protect Fragile Items',
+      },
+      {
+        kind: 'p',
+        text: 'Glassware, ceramics, collectibles, and other delicate belongings should be individually wrapped and clearly labelled as fragile.',
+      },
+      {
+        kind: 'h2',
+        text: '4. Store Items Strategically',
+      },
+      {
+        kind: 'p',
+        text: 'Items used less frequently can be stored towards the back of your unit, while everyday essentials should remain easily accessible.',
+      },
+      {
+        kind: 'h2',
+        text: '5. Create an Organised Labelling System',
+      },
+      {
+        kind: 'p',
+        text: 'Label all boxes clearly and organise them by room, category, or purpose to make locating items quick and effortless.',
+      },
+      {
+        kind: 'h2',
+        text: '6. Keep Similar Items Together',
+      },
+      {
+        kind: 'p',
+        text: 'Grouping related items simplifies organisation and significantly reduces the time spent searching for specific belongings.',
+      },
+      {
+        kind: 'h2',
+        text: '7. Avoid Overloading Boxes',
+      },
+      {
+        kind: 'p',
+        text: 'Excessively heavy boxes are more difficult to move and increase the risk of damage to both the contents and the packaging.',
+      },
+      {
+        kind: 'h2',
+        text: '8. Make Use of Vertical Space',
+      },
+      {
+        kind: 'p',
+        text: 'Proper stacking techniques and the use of shelving can greatly increase the capacity of your storage space.',
+      },
+      {
+        kind: 'h2',
+        text: '9. Clean Items Before Storage',
+      },
+      {
+        kind: 'p',
+        text: 'Clothing, furniture, and appliances should always be cleaned before storage to help preserve their condition and prevent unpleasant odours or damage.',
+      },
+      {
+        kind: 'h2',
+        text: '10. Choose a Secure Storage Facility',
+      },
+      {
+        kind: 'p',
+        text: 'The quality of your storage environment is just as important as proper packing. Select a facility with modern security systems and suitable storage conditions to ensure the best protection for your belongings.',
+      },
+      {
+        kind: 'h2',
+        text: 'Store with Confidence',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent’s modern storage units provide secure, clean, and flexible storage solutions for personal belongings, furniture, seasonal items, business equipment, and much more.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — The smart way to create more space while keeping your belongings safe, organised, and easily accessible.',
+      },
     ],
-    image: storageImage('storage-13.png'),
-    imageAlt: 'Secure Storage2Rent facility standards',
+    image: smartStorageTipImage(5),
+    imageAlt: 'Safe and efficient storage solutions at Storage2Rent',
   },
   {
     id: 'packing-furniture',
-    title: 'Protecting furniture during storage',
+    title: 'Changing Seasons? How to Store Your Clothes Properly',
     excerpt:
-      'Sofas, tables, and beds need more than a quick cover. Proper wrapping, elevation, and aisle space prevent scratches, warping, and compression damage while units stay closed for months.',
-    body: [
-      'Furniture is vulnerable when legs sit directly on concrete, edges rub against walls, and heavy items stack on upholstery. Disassemble where sensible, bag hardware in labelled pouches, and keep fixings taped to the frame they belong to.',
-      'Breathable furniture covers beat sealed plastic for long stays — they reduce condensation while still keeping dust off. Place pallets or boards under sofas and mattresses so air can circulate underneath.',
-      'Store tables vertically only when stable; otherwise lay protective blankets between surfaces and avoid placing cartons on glass or veneer. Mirror and artwork belong upright, clearly marked, and away from high-traffic paths through the unit.',
-      'A well-packed unit costs less in replacements than a rushed one. Visit once after the first week to confirm nothing has shifted during loading — small adjustments early prevent expensive damage later.',
+      'A change of season is the perfect opportunity to organise your wardrobe and free up valuable space in your home. With the right storage methods, your clothing can remain protected and in excellent condition until it is needed again.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: '1. Store Clothes Clean',
+      },
+      {
+        kind: 'p',
+        text: 'Before putting seasonal clothing into storage, ensure that all garments are clean and completely dry. Stains, moisture, and residue can cause damage, mould, or unpleasant odours during storage.',
+      },
+      {
+        kind: 'h2',
+        text: '2. Avoid Excessive Compression',
+      },
+      {
+        kind: 'p',
+        text: 'Vacuum storage bags can save space, but they are not always ideal for long-term storage. Delicate fabrics maintain their quality better when they are not compressed excessively.',
+      },
+      {
+        kind: 'h2',
+        text: '3. Use Suitable Storage Containers',
+      },
+      {
+        kind: 'p',
+        text: 'Choose durable storage boxes or containers with secure lids to protect your clothing from dust and moisture. Organising garments by season or category will make them easier to locate later.',
+      },
+      {
+        kind: 'h2',
+        text: '4. Protect Fabrics Naturally',
+      },
+      {
+        kind: 'p',
+        text: 'Cedar blocks and scented sachets can help protect clothing from insects while keeping fabrics fresh and pleasant-smelling for extended periods.',
+      },
+      {
+        kind: 'h2',
+        text: '5. Consider Professional Storage',
+      },
+      {
+        kind: 'p',
+        text: 'When space at home is limited, Storage2Rent’s storage units provide a safe and practical solution for clothing, linens, and seasonal belongings, offering high levels of security and convenient access.',
+      },
+      {
+        kind: 'h2',
+        text: 'More Space, Better Organisation',
+      },
+      {
+        kind: 'p',
+        text: 'With a little preparation and the right storage solution, you can keep your clothing in excellent condition while enjoying a more organised and clutter-free home throughout the year.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — Secure and flexible storage solutions for every season and every storage requirement.',
+      },
     ],
-    image: storageImage('storage-53.png'),
-    imageAlt: 'Drive-up access for loading furniture at Storage2Rent',
+    image: smartStorageTipImage(6),
+    imageAlt: 'Seasonal clothing storage at Storage2Rent',
   },
   {
     id: 'container-vs-warehouse',
-    title: 'Containers or warehouse bays — which fits?',
+    title: 'Moving Home? Temporary Storage Is the Perfect Solution',
     excerpt:
-      'Drive-up containers and indoor warehouse space solve different problems. Match your goods, access pattern, and sensitivity to weather when you choose between yard units and insulated bays.',
-    body: [
-      'Containers suit robust goods, pallet loads, trade tools, and situations where you want your own lockable volume with direct vehicle access. They work well for construction materials, spare equipment, and overflow that tolerates outdoor loading in normal weather.',
-      'Indoor warehouse bays favour furniture, archives, electronics, and anything you prefer to handle under cover. Insulated options add value when temperature swings could affect adhesives, fabrics, or stored liquids.',
-      'Frequency of visits matters: daily or weekly access to mixed items often suits an organised indoor bay; monthly bulk deliveries may lean container-side with careful stacking and weather-aware scheduling.',
-      'We walk through what you store, how you load, and how long you stay before recommending a size — many clients combine both formats as projects evolve rather than forcing everything into one type of space.',
+      'Moving can be a demanding and stressful process, particularly when your new home or office is not yet ready. In such situations, temporary storage provides the flexibility and peace of mind you need.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: 'When You Need Extra Space',
+      },
+      {
+        kind: 'p',
+        text: 'Temporary storage is the ideal solution when:',
+      },
+      {
+        kind: 'ul',
+        items: [
+          'Your new property has not yet been completed or handed over.',
+          'You are carrying out renovation or refurbishment works.',
+          'You are relocating to another city or country.',
+          'You need additional time to organise your new space.',
+          'Your new property offers limited storage capacity.',
+        ],
+      },
+      {
+        kind: 'h2',
+        text: 'Secure Storage for Every Requirement',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent provides modern storage solutions for:',
+      },
+      {
+        kind: 'ul',
+        items: [
+          'Furniture and household contents',
+          'Electrical appliances',
+          'Clothing and personal belongings',
+          'Books and archives',
+          'Sports and business equipment',
+          'Seasonal and valuable items',
+        ],
+      },
+      {
+        kind: 'p',
+        text: 'Whether you need space for a few boxes or the entire contents of a property, we have a storage solution to suit your needs.',
+      },
+      {
+        kind: 'h2',
+        text: 'Protection and Flexibility',
+      },
+      {
+        kind: 'p',
+        text: 'Our facilities are equipped with advanced security systems, 24-hour CCTV monitoring, controlled access, and modern alarm systems, ensuring maximum protection for your belongings.',
+      },
+      {
+        kind: 'p',
+        text: 'At the same time, you can choose the unit size and rental duration that best suits your requirements, with convenient access to your possessions whenever needed.',
+      },
+      {
+        kind: 'h2',
+        text: 'Move Without the Stress',
+      },
+      {
+        kind: 'p',
+        text: 'With Storage2Rent’s secure and flexible storage solutions, you can focus on your new beginning with complete confidence, knowing that your belongings are safe, protected, and professionally cared for.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — Secure and flexible storage solutions for every stage of your move.',
+      },
     ],
-    image: storageImage('storage-44.png'),
-    imageAlt: 'Colour-coded container rows at the facility',
+    image: smartStorageTipImage(7),
+    imageAlt: 'Temporary storage solutions for home moves at Storage2Rent',
   },
   {
     id: 'document-archives',
-    title: 'Storing documents and records safely',
+    title: 'Storage2Rent – Modern and Reliable Storage Solutions',
     excerpt:
-      'Compliance files, contracts, and operational archives must stay dry, findable, and secure. Simple shelving habits and indoor units protect paper far better than spare rooms or unsecured outbuildings.',
-    body: [
-      'Paper storage fails in damp garages and overheated lofts. Choose dry indoor space, keep boxes off the floor on shelving or pallets, and use archive cartons designed for uniform stacking rather than mixed shopping bags.',
-      'Label by year, department, or retention category — not only by room name from an old office move. A single index sheet at the front of each bay saves hours when auditors or solicitors ask for a specific file.',
-      'Sensitive material deserves locked units and minimal sharing of access codes. Rotate who holds keys or PINs when staff change, and avoid writing full client details on external box labels visible from the aisle.',
-      'Retention policies differ by sector; storage is not a substitute for lawful destruction dates. Use off-site space as part of a clear records plan — hold what you must, retrieve what you need, and dispose on schedule elsewhere.',
+      'At Storage2Rent, we provide secure, flexible, and professional storage solutions for both private individuals and businesses throughout Cyprus. Our mission is to offer high-quality storage facilities where customers can store their belongings with complete confidence and peace of mind.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: 'Storage, as It Should Be',
+      },
+      {
+        kind: 'p',
+        text: 'At Storage2Rent, we provide secure, flexible, and professional storage solutions for both private individuals and businesses throughout Cyprus. Our mission is to offer high-quality storage facilities where customers can store their belongings with complete confidence and peace of mind.',
+      },
+      {
+        kind: 'h2',
+        text: 'Solutions for Every Requirement',
+      },
+      {
+        kind: 'p',
+        text: 'Whether you are moving home, renovating a property, dealing with limited space, or seeking storage for business equipment, we have the right solution to meet your needs.',
+      },
+      {
+        kind: 'p',
+        text: 'Our facilities are ideal for storing:',
+      },
+      {
+        kind: 'ul',
+        items: [
+          'Furniture and household contents',
+          'Clothing and personal belongings',
+          'Electrical appliances',
+          'Documents and archives',
+          'Sports equipment',
+          'Professional tools and machinery',
+          'Business inventory and stock',
+        ],
+      },
+      {
+        kind: 'h2',
+        text: 'Security Without Compromise',
+      },
+      {
+        kind: 'p',
+        text: 'Protecting your belongings is our highest priority. Our facilities are equipped with:',
+      },
+      {
+        kind: 'ul',
+        items: [
+          '24-hour high-definition CCTV surveillance',
+          'Thermal cameras and motion detection sensors',
+          'Intelligent alarm systems',
+          'Controlled electronic access',
+          'Extensive security lighting',
+          'Backup operational systems',
+        ],
+      },
+      {
+        kind: 'p',
+        text: 'These measures allow us to provide one of the highest levels of security within the self-storage industry.',
+      },
+      {
+        kind: 'h2',
+        text: 'Our Core Values',
+      },
+      {
+        kind: 'p',
+        text: 'The Storage2Rent philosophy is built upon six fundamental principles:',
+      },
+      {
+        kind: 'ul',
+        items: [
+          'Security',
+          'Reliability',
+          'Professionalism',
+          'Cleanliness',
+          'Flexibility',
+          'Personalised customer service',
+        ],
+      },
+      {
+        kind: 'h2',
+        text: 'More Than Just Storage',
+      },
+      {
+        kind: 'p',
+        text: 'At Storage2Rent, we do more than simply provide storage space. We offer the reassurance and confidence that your personal and business belongings are being cared for in a safe and secure environment.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — Security, reliability, and complete peace of mind for the things that matter most.',
+      },
     ],
-    image: storageImage('storage-57.png'),
-    imageAlt: 'On-site operations and secure indoor storage',
+    image: smartStorageTipImage(8),
+    imageAlt: 'Modern and reliable Storage2Rent storage solutions',
   },
   {
     id: 'renovation-storage',
-    title: 'Storage during home renovations',
+    title: 'Reasons to Choose a Storage Unit',
     excerpt:
-      'Refits move faster when rooms are cleared properly. Temporary storage keeps furniture safe from dust and trades while you stay in the property or move out for a few weeks.',
-    body: [
-      'Renovations damage furniture through plaster dust, accidental knocks, and humidity from wet trades. Move bulky pieces out early rather than shuffling them room to room as work progresses — it reduces labour and protects finishes.',
-      'Pack room by room and label for the return journey. Kitchen boxes, bedroom textiles, and living-area electronics should not share fragile items without clear markers for which contractor phase they belong to.',
-      'Timeline your unit to the build schedule: a three-month kitchen refit may need only eight weeks of storage if delivery dates are firm. Build in a buffer week for snagging before items return home.',
-      'Drive-up access helps when sofas and appliances must go back in quickly. Coordinate delivery windows with your builder so the unit is loaded in reverse order of how rooms will be reinstated.',
+      'As storage requirements continue to grow, more individuals and businesses are turning to professional storage solutions to create additional space and protect their valuable belongings. If you are considering whether a storage unit is the right choice for you, here are ten compelling reasons why it may be the perfect solution.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: '1. Create More Space at Home',
+      },
+      {
+        kind: 'p',
+        text: 'Remove items that are not needed on a daily basis and enjoy a more comfortable, organised, and functional living environment.',
+      },
+      {
+        kind: 'h2',
+        text: '2. The Ideal Solution During a Move',
+      },
+      {
+        kind: 'p',
+        text: 'A storage unit provides valuable flexibility while relocating, allowing you to store your belongings safely until you are fully settled into your new property.',
+      },
+      {
+        kind: 'h2',
+        text: '3. Protection During Renovations',
+      },
+      {
+        kind: 'p',
+        text: 'Keep furniture, appliances, and personal possessions protected from dust, damage, and disruption while renovation works are underway.',
+      },
+      {
+        kind: 'h2',
+        text: '4. Safe Storage for Seasonal Items',
+      },
+      {
+        kind: 'p',
+        text: 'Christmas decorations, winter equipment, summer accessories, and other seasonal belongings can be stored safely without taking up valuable space at home.',
+      },
+      {
+        kind: 'h2',
+        text: '5. Perfect for Students',
+      },
+      {
+        kind: 'p',
+        text: 'Students can safely store furniture, books, and personal belongings during holidays, relocations, or periods of study abroad.',
+      },
+      {
+        kind: 'h2',
+        text: '6. Better Organisation for Businesses',
+      },
+      {
+        kind: 'p',
+        text: 'Documents, archives, inventory, office equipment, and merchandise can be stored securely, freeing up valuable space within business premises.',
+      },
+      {
+        kind: 'h2',
+        text: '7. Protection for Valuable Belongings',
+      },
+      {
+        kind: 'p',
+        text: 'Collections, family heirlooms, sports equipment, and other valuable possessions remain secure and well protected.',
+      },
+      {
+        kind: 'h2',
+        text: '8. Ideal for Hobbies and Leisure Equipment',
+      },
+      {
+        kind: 'p',
+        text: 'Bicycles, water sports equipment, tools, musical instruments, and other bulky items can be stored safely and conveniently.',
+      },
+      {
+        kind: 'h2',
+        text: '9. Flexible Rental Terms',
+      },
+      {
+        kind: 'p',
+        text: 'Choose the storage space and rental duration that best suits your needs, whether for a few weeks or long-term storage.',
+      },
+      {
+        kind: 'h2',
+        text: '10. Complete Security and Peace of Mind',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent’s modern facilities feature advanced security systems, 24-hour CCTV monitoring, controlled access, and comprehensive protection measures, ensuring your belongings remain secure at all times.',
+      },
+      {
+        kind: 'h2',
+        text: 'The Smart Choice for Every Storage Requirement',
+      },
+      {
+        kind: 'p',
+        text: 'Whether you need additional space at home or a secure storage solution for your business, Storage2Rent offers flexible, secure, and cost-effective storage options tailored to your specific requirements.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — More space, better organisation, and complete security for the things that matter most to you.',
+      },
     ],
-    image: storageImage('storage-54.png'),
-    imageAlt: 'Storage units suitable for renovation clear-outs',
+    image: smartStorageTipImage(9),
+    imageAlt: 'Reasons to choose a Storage2Rent storage unit',
   },
   {
     id: 'pallet-logistics',
-    title: 'Pallet storage for stock and logistics',
+    title: 'Things You Can Store in a Storage Unit',
     excerpt:
-      'Palletised goods need level ground, clear lanes, and realistic height limits. Yard and warehouse options at Storage2Rent support inbound deliveries and staged outbound dispatch.',
-    body: [
-      'Pallet storage is not only about square metres — aisle width for forklifts or pallet trucks, turning space, and safe stacking limits define whether a bay actually works for your operation.',
-      'Standardise on one or two pallet types where possible so stacks stay stable. Wrap mixed cartons securely, keep heavy loads low, and never block sprinklers or structural paths marked on site plans.',
-      'Inbound and outbound rhythm should drive location choice: high-turnover lines benefit from positions near main access routes; slow-moving archive stock can sit deeper in the layout with clear floor maps.',
-      'Combine storage with realistic dispatch planning — we discuss access hours, peak seasonal volumes, and whether you need occasional repalletising space rather than treating the unit as a static warehouse photo.',
+      'Many people assume that storage units are only useful for storing furniture during a house move. In reality, modern storage solutions can accommodate almost any type of personal or business item, helping you create more space, improve organisation, and enjoy a more comfortable lifestyle. Here are ten of the most common items that Storage2Rent customers choose to store.',
+    body: [],
+    sections: [
+      {
+        kind: 'h2',
+        text: '1. Seasonal Decorations and Holiday Items',
+      },
+      {
+        kind: 'p',
+        text: 'Christmas trees, ornaments, festive lighting, and seasonal decorations are only used for a few weeks each year. Instead of taking up valuable space at home, they can be safely stored until the next festive season.',
+      },
+      {
+        kind: 'h2',
+        text: '2. Archives and Important Documents',
+      },
+      {
+        kind: 'p',
+        text: 'Contracts, tax records, business files, and personal documents often need to be retained for many years. A storage unit provides a secure and organised solution without overcrowding your office or home storage areas.',
+      },
+      {
+        kind: 'h2',
+        text: '3. Furniture',
+      },
+      {
+        kind: 'p',
+        text: 'From dining tables and sofas to bedroom furniture and office desks, furniture is among the most commonly stored items during relocations, renovations, or temporary changes in living arrangements.',
+      },
+      {
+        kind: 'h2',
+        text: '4. Electrical and Electronic Equipment',
+      },
+      {
+        kind: 'p',
+        text: 'Appliances and electronic devices that are not used regularly but still retain value can be safely stored until they are needed again.',
+      },
+      {
+        kind: 'h2',
+        text: '5. Antiques and Collectibles',
+      },
+      {
+        kind: 'p',
+        text: 'Items with sentimental or financial value require additional care and protection. Storage2Rent’s secure facilities provide the ideal environment for preserving valuable antiques and collectibles.',
+      },
+      {
+        kind: 'h2',
+        text: '6. Clothing and Seasonal Wardrobes',
+      },
+      {
+        kind: 'p',
+        text: 'Winter clothing, summer wardrobes, special occasion outfits, and other garments that are not required year-round can be stored conveniently, freeing up valuable wardrobe space.',
+      },
+      {
+        kind: 'h2',
+        text: '7. Toys and Children’s Equipment',
+      },
+      {
+        kind: 'p',
+        text: 'Toys, children’s furniture, bicycles, and equipment that are no longer in daily use can be safely stored for future use or passed on to younger family members.',
+      },
+      {
+        kind: 'h2',
+        text: '8. Baby Equipment',
+      },
+      {
+        kind: 'p',
+        text: 'Pushchairs, cots, car seats, changing tables, and baby accessories often occupy significant space within a home. Secure storage provides the perfect solution until they are required again.',
+      },
+      {
+        kind: 'h2',
+        text: '9. Sports and Leisure Equipment',
+      },
+      {
+        kind: 'p',
+        text: 'Bicycles, diving equipment, water sports gear, camping equipment, fishing equipment, and other hobby-related items can require considerable storage space. Keeping them in a storage unit helps maintain a more organised and functional home.',
+      },
+      {
+        kind: 'h2',
+        text: '10. Business Equipment and Inventory',
+      },
+      {
+        kind: 'p',
+        text: 'Many businesses utilise storage units to store tools, machinery, stock, exhibition equipment, and seasonal inventory without incurring the expense of larger commercial premises.',
+      },
+      {
+        kind: 'h2',
+        text: 'More Space for the Things That Matter',
+      },
+      {
+        kind: 'p',
+        text: 'Effective storage does not mean parting with your belongings. It means keeping them safe, organised, and readily available whenever you need them.',
+      },
+      {
+        kind: 'p',
+        text: 'At Storage2Rent, we provide secure, insulated storage units equipped with advanced security systems and flexible storage options, helping you find the perfect solution for your needs.',
+      },
+      {
+        kind: 'p',
+        text: 'Storage2Rent — The smart solution for more space, better organisation, and complete peace of mind.',
+      },
     ],
-    image: storageImage('storage-28.png'),
-    imageAlt: 'Pallet-ready industrial storage space',
+    image: smartStorageTipImage(10),
+    imageAlt: 'Items you can store in a Storage2Rent unit',
   },
   {
     id: 'seasonal-inventory',
-    title: 'Managing seasonal stock cycles',
+    title: 'Does Your New Apartment Lack Storage Space? Discover the Best Solutions',
     excerpt:
       'Retailers and hospitality businesses rotate summer and winter lines, event stock, and promotional materials. Off-site storage turns seasonal peaks into manageable cycles instead of cramped back rooms.',
     body: [
@@ -185,21 +975,7 @@ export const STORAGE_USEFUL_TIPS: StorageUsefulTip[] = [
       'Inspect goods when they return to storage — damp display items, damaged packaging, or expired promotional material should be sorted before restacking rather than buried until next year.',
       'Flexible terms help when a season runs long or finishes early. Treat storage as part of merchandising strategy: what stays on-site for daily touchpoints versus what waits securely off-site until demand returns.',
     ],
-    image: storageImage('storage-55.png'),
+    image: smartStorageTipImage(11),
     imageAlt: 'Secure units at golden hour — seasonal stock storage',
-  },
-  {
-    id: 'access-security',
-    title: 'Making the most of secure site access',
-    excerpt:
-      'Monitored yards and controlled entry protect your goods — but good habits on your side matter too. Keys, visit logs, and tidy units turn security features into everyday peace of mind.',
-    body: [
-      'Secure facilities work best when customers treat access seriously: do not share codes broadly, report damaged locks promptly, and close doors fully even during quick visits. Your diligence complements CCTV, lighting, and on-site procedures.',
-      'Keep aisles clear inside the unit so nothing blocks visibility during inspections or your own checks. Valuable items belong away from the door line and out of sight from casual pass-through angles.',
-      'Maintain a simple visit log for business units — who entered, when, and why — especially when multiple staff or contractors hold access. It resolves discrepancies faster than reconstructing movements from memory.',
-      'Insurance and inventory lists should reflect what is actually stored. Update coverage when stock value rises, photograph high-value equipment on intake, and store copies of policies elsewhere — not only inside the same unit they describe.',
-    ],
-    image: storageImage('storage-52.png'),
-    imageAlt: 'Secure monitored Storage2Rent yard and access routes',
   },
 ]

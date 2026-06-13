@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowRight, Camera, Clock, Lock, ShieldCheck, ThermometerSnowflake, Warehouse } from 'lucide-react'
 import {
+  STORAGE_UNIT_SPECS_PATH,
+} from '../data/storageUnitSpecifications'
+import {
   STORAGE_BRAND_ICON,
   STORAGE_EXTRA_SERVICE_IMAGES,
   STORAGE_EXTRA_SERVICES_INTRO,
@@ -140,12 +143,6 @@ const STORAGE_OFFER_CARDS = [
     learnMoreClosing:
       'With multiple layers of protection operating around the clock, Storage2Rent offers one of the most secure storage environments available, ensuring your belongings remain protected at all times.',
   },
-] as const
-
-const STORAGE_SIZE_OPTIONS = [
-  'BKS1 (1.19 sq.m) - W:0.95m x D:1.25m x H:2.50m',
-  'BKS2 (2.30 sq.m) - W:1.45m x D:1.60m x H:2.50m',
-  'BKS3 (4.10 sq.m) - W:2.05m x D:2.00m x H:2.50m',
 ] as const
 
 const STORAGE_HERO_PILLS = [
@@ -537,58 +534,62 @@ export default function StoragePremiumSection() {
         </div>
       </section>
 
-      <div className="container storage-offers__cards-wrap">
-        <div className="storage-offers__cards">
-          {STORAGE_OFFER_CARDS.map((card, i) => (
-            <motion.article
-              key={card.title}
-              className="storage-offer-card group"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.45, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="storage-offer-card__accent" aria-hidden />
-              <div className="storage-offer-card__media">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <h3 className="storage-offer-card__title">{card.title}</h3>
-              <p className="storage-offer-card__desc">{card.desc}</p>
-              <button
-                type="button"
-                className="storage-offer-card__link group"
-                onClick={() =>
-                  setActiveOfferDetail({
-                    title: card.title,
-                    image: card.image,
-                    body: card.learnMore,
-                    ...('learnMoreBullets' in card && card.learnMoreBullets
-                      ? { bullets: card.learnMoreBullets }
-                      : {}),
-                    ...('learnMoreClosing' in card && card.learnMoreClosing
-                      ? { closing: card.learnMoreClosing }
-                      : {}),
-                  })
-                }
-                aria-haspopup="dialog"
+      <section className="storage-offers__cards-bleed" aria-label="Storage offer highlights">
+        <div className="storage-offers__cards-wrap">
+          <div className="storage-offers__cards">
+            {STORAGE_OFFER_CARDS.map((card, i) => (
+              <motion.article
+                key={card.title}
+                className="storage-offer-card group"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span>Learn More</span>
-                <ArrowRight
-                  size={13}
-                  strokeWidth={2.25}
-                  className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              </button>
-            </motion.article>
-          ))}
+                <div className="storage-offer-card__accent" aria-hidden />
+                <div className="storage-offer-card__glow" aria-hidden />
+                <div className="storage-offer-card__media">
+                  <div className="storage-offer-card__media-accent" aria-hidden />
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <h3 className="storage-offer-card__title">{card.title}</h3>
+                <p className="storage-offer-card__desc">{card.desc}</p>
+                <button
+                  type="button"
+                  className="storage-offer-card__link group"
+                  onClick={() =>
+                    setActiveOfferDetail({
+                      title: card.title,
+                      image: card.image,
+                      body: card.learnMore,
+                      ...('learnMoreBullets' in card && card.learnMoreBullets
+                        ? { bullets: card.learnMoreBullets }
+                        : {}),
+                      ...('learnMoreClosing' in card && card.learnMoreClosing
+                        ? { closing: card.learnMoreClosing }
+                        : {}),
+                    })
+                  }
+                  aria-haspopup="dialog"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight
+                    size={13}
+                    strokeWidth={2.25}
+                    className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </button>
+              </motion.article>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
       <div className="container">
         <motion.h3
@@ -656,66 +657,40 @@ export default function StoragePremiumSection() {
             </p>
           </header>
 
-          <div className="storage-calculator">
-            <div className="storage-calculator__copy">
-              <p className="storage-calculator__eyebrow">Estimate your cost</p>
-              <h3 className="storage-calculator__title">Explore Our Storage Unit Sizes & Specifications</h3>
-              <p className="storage-calculator__lead">
-                Select your preferred storage setup and continue to request a tailored quote from our team.
-              </p>
-            </div>
-
-            <form className="storage-calculator__form storage-form" aria-label="Storage quote estimator">
-              <label className="storage-form__field">
-                <span className="storage-form__label">Unit of measure</span>
-                <select className="storage-form__control" name="unit" defaultValue="sq-meters">
-                  <option value="sq-meters">Sq. meters</option>
-                  <option value="sq-feet">Sq. feet</option>
-                </select>
-              </label>
-
-              <label className="storage-form__field">
-                <span className="storage-form__label">Step 1 — Select size</span>
-                <select className="storage-form__control" name="size" defaultValue={STORAGE_SIZE_OPTIONS[0]}>
-                  {STORAGE_SIZE_OPTIONS.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <div className="storage-form__row storage-form__row--split">
-                <label className="storage-form__field">
-                  <span className="storage-form__label">Step 2 — Duration</span>
-                  <select className="storage-form__control" name="duration" defaultValue="3-months">
-                    <option value="3-months">Up to 3 months</option>
-                    <option value="6-months">Up to 6 months</option>
-                    <option value="12-months">Up to 12 months</option>
-                  </select>
-                </label>
-
-                <label className="storage-form__field">
-                  <span className="storage-form__label">Step 3 — Start date</span>
-                  <select className="storage-form__control" name="start" defaultValue="6-months">
-                    <option value="6-months">Within the next 6 months</option>
-                    <option value="3-months">Within the next 3 months</option>
-                    <option value="1-month">Within the next month</option>
-                    <option value="immediate">Immediate</option>
-                  </select>
-                </label>
+          <motion.div
+            className="storage-specs-entry"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5, ease: PRICING_EASE }}
+          >
+            <div className="storage-specs-entry__accent" aria-hidden />
+            <div className="storage-specs-entry__inner">
+              <div className="storage-specs-entry__copy">
+                <p className="storage-specs-entry__eyebrow">Unit specifications</p>
+                <h3 className="storage-specs-entry__title">Explore Our Storage Unit Sizes &amp; Specifications</h3>
+                <p className="storage-specs-entry__lead">
+                  View precise external and internal dimensions, door openings, and capacity for every
+                  container and insulated warehouse unit at Storage2Rent.
+                </p>
+                <ul className="storage-specs-entry__list">
+                  <li>20ft &amp; 40ft standard containers</li>
+                  <li>20ft insulated warehouse units</li>
+                  <li>30ft thermal insulated warehouse</li>
+                </ul>
               </div>
-
-              <Link
-                to="/contact"
-                state={{ serviceInterest: 'Storage2Rent', storageInquiry: true }}
-                className="storage-form__submit"
-              >
-                Get a quote
-                <ArrowRight size={14} strokeWidth={2.25} aria-hidden />
+              <Link to={STORAGE_UNIT_SPECS_PATH} className="storage-specs-entry__cta group">
+                <span className="storage-specs-entry__cta-sheen" aria-hidden />
+                <span className="storage-specs-entry__cta-text">View full specifications</span>
+                <ArrowRight
+                  size={16}
+                  strokeWidth={2.25}
+                  className="storage-specs-entry__cta-icon shrink-0"
+                  aria-hidden
+                />
               </Link>
-            </form>
-          </div>
+            </div>
+          </motion.div>
 
           <motion.section
             id="storage-extra-services"
