@@ -127,10 +127,28 @@ export const STORAGE_OFFER_IMAGES = {
   pallet: storageImage('untitled folder/Safety-Security-Systems.webp'),
 } as const
 
+export const STORAGE_MOVING_IMAGES = [
+  storageImage('Moving-services-1.webp'),
+  storageImage('Moving-services-2.webp'),
+  storageImage('Moving-services-3.webp'),
+] as const
+
+export const STORAGE_MOVING_PARAGRAPHS = [
+  'At STORAGE2RENT Moving Services, we bring years of professional relocation and logistics experience, delivering reliable, efficient, and stress-free moving solutions across Cyprus. Our commitment to excellence, attention to detail, and customer-focused approach have made us a trusted choice for both residential and commercial relocations.',
+  'Whether you are moving a single valuable item, an entire household, or a complete business operation, our experienced team is equipped to handle every aspect of your move with professionalism and care. We proudly serve every city, town, and village across Cyprus, ensuring that every relocation is completed smoothly, safely, and on schedule.',
+  'Our dedicated and highly trained staff understand that your belongings are more than just possessions—they are valuable assets and cherished memories. For this reason, we utilise modern equipment, proven moving techniques, and meticulous handling procedures to ensure maximum protection throughout the entire relocation process.',
+  'From the initial planning stages to the final delivery, we manage every detail with precision and efficiency. Our tailored relocation solutions are designed to meet the unique requirements of each client, providing a seamless and worry-free experience from start to finish.',
+  'At STORAGE2RENT, customer satisfaction is at the heart of everything we do. Our reputation has been built on reliability, professionalism, and exceptional service, making us a preferred relocation partner throughout Cyprus.',
+  'Experience a better way to move. Choose STORAGE2RENT Moving Services and let our team make your next relocation simple, secure, and completely stress-free.',
+] as const
+
+export const STORAGE_EXTRA_SERVICES_PATH = '/services/storage/extra-services/man-with-van' as const
+
 export const STORAGE_EXTRA_SERVICE_IMAGES = [
   {
     title: 'Man with Van for Hire',
     image: storageImage('do-you-need-more-storage.webp'),
+    href: STORAGE_EXTRA_SERVICES_PATH,
   },
 ] as const
 
