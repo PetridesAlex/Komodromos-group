@@ -646,8 +646,8 @@ export default function StoragePremiumSection() {
         </motion.div>
       </div>
 
-      <div className="container">
-        <section className="storage-offers-section" id="storage-offers">
+      <section className="storage-offers-section" id="storage-offers">
+        <div className="container">
           <header className="storage-offers__head">
             <p className="storage-offers__eyebrow">Storage options</p>
             <h2 className="storage-offers__title">Storage Solutions for Every Need</h2>
@@ -656,103 +656,133 @@ export default function StoragePremiumSection() {
               flexibility, and easy access.
             </p>
           </header>
+        </div>
 
-          <motion.div
-            className="storage-specs-entry"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5, ease: PRICING_EASE }}
-          >
-            <div className="storage-specs-entry__accent" aria-hidden />
-            <div className="storage-specs-entry__inner">
-              <div className="storage-specs-entry__copy">
-                <p className="storage-specs-entry__eyebrow">Unit specifications</p>
-                <h3 className="storage-specs-entry__title">Explore Our Storage Unit Sizes &amp; Specifications</h3>
-                <p className="storage-specs-entry__lead">
-                  View precise external and internal dimensions, door openings, and capacity for every
-                  container and insulated warehouse unit at Storage2Rent.
-                </p>
-                <ul className="storage-specs-entry__list">
-                  <li>20ft &amp; 40ft standard containers</li>
-                  <li>20ft insulated warehouse units</li>
-                  <li>30ft thermal insulated warehouse</li>
-                </ul>
+        <div className="storage-offers-bleed">
+          <div className="storage-offers-bleed__inner">
+            <motion.div
+              className="storage-specs-entry"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, ease: PRICING_EASE }}
+            >
+              <div className="storage-specs-entry__accent" aria-hidden />
+              <div className="storage-specs-entry__inner">
+                <div className="storage-specs-entry__copy">
+                  <p className="storage-specs-entry__eyebrow">
+                    <span className="storage-specs-entry__eyebrow-line" aria-hidden />
+                    <span>Unit specifications</span>
+                    <span className="storage-specs-entry__eyebrow-line" aria-hidden />
+                  </p>
+
+                  <div className="storage-specs-entry__title-block">
+                    <span className="storage-specs-entry__title-rule" aria-hidden />
+                    <h3 className="storage-specs-entry__title">
+                      <span className="storage-specs-entry__title-main">Storage Unit Sizes</span>
+                      <span className="storage-specs-entry__title-accent">&amp; Specifications</span>
+                    </h3>
+                  </div>
+
+                  <div className="storage-specs-entry__lead-panel">
+                    <p className="storage-specs-entry__lead">
+                      Precise external and internal dimensions, door openings, and capacity for every
+                      container and insulated warehouse unit at Storage2Rent.
+                    </p>
+                  </div>
+
+                  <ul className="storage-specs-entry__list" aria-label="Available unit types">
+                    <li className="storage-specs-entry__list-item">
+                      <span className="storage-specs-entry__list-index" aria-hidden>01</span>
+                      <span className="storage-specs-entry__list-text">20ft &amp; 40ft standard containers</span>
+                    </li>
+                    <li className="storage-specs-entry__list-item">
+                      <span className="storage-specs-entry__list-index" aria-hidden>02</span>
+                      <span className="storage-specs-entry__list-text">20ft insulated warehouse units</span>
+                    </li>
+                    <li className="storage-specs-entry__list-item">
+                      <span className="storage-specs-entry__list-index" aria-hidden>03</span>
+                      <span className="storage-specs-entry__list-text">30ft thermal insulated warehouse</span>
+                    </li>
+                  </ul>
+                </div>
+                <Link to={STORAGE_UNIT_SPECS_PATH} className="storage-specs-entry__cta group">
+                  <span className="storage-specs-entry__cta-sheen" aria-hidden />
+                  <span className="storage-specs-entry__cta-text">View full specifications</span>
+                  <ArrowRight
+                    size={16}
+                    strokeWidth={2.25}
+                    className="storage-specs-entry__cta-icon shrink-0"
+                    aria-hidden
+                  />
+                </Link>
               </div>
-              <Link to={STORAGE_UNIT_SPECS_PATH} className="storage-specs-entry__cta group">
-                <span className="storage-specs-entry__cta-sheen" aria-hidden />
-                <span className="storage-specs-entry__cta-text">View full specifications</span>
-                <ArrowRight
-                  size={16}
-                  strokeWidth={2.25}
-                  className="storage-specs-entry__cta-icon shrink-0"
-                  aria-hidden
-                />
-              </Link>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.section
-            id="storage-extra-services"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.4 }}
-            className="storage-extra-services"
-          >
-            <div className="storage-extra-services__accent" aria-hidden />
-            <div className="storage-extra-services__grid">
-              <div className="storage-extra-services__copy">
-                <p className="storage-extra-services__eyebrow">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</p>
-                <h3 className="storage-extra-services__title">{STORAGE_EXTRA_SERVICES_INTRO.title}</h3>
-                <p className="storage-extra-services__lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
-              </div>
+            <motion.section
+              id="storage-extra-services"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.4 }}
+              className="storage-extra-services"
+            >
+              <div className="storage-extra-services__accent" aria-hidden />
+              <div className="storage-extra-services__grid">
+                <div className="storage-extra-services__copy">
+                  <p className="storage-extra-services__eyebrow">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</p>
+                  <h3 className="storage-extra-services__title">{STORAGE_EXTRA_SERVICES_INTRO.title}</h3>
+                  <p className="storage-extra-services__lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
+                </div>
 
-              <div className="storage-extra-services__items">
-                {STORAGE_EXTRA_SERVICE_IMAGES.map((service, idx) => (
-                  <motion.div
-                    key={service.title}
-                    initial={{ opacity: 0, y: 20, scale: 0.97 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true, margin: '-40px' }}
-                    transition={{ duration: 0.45, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                    className="storage-extra-services__feature-wrap"
-                  >
-                    <Link
-                      to={service.href}
-                      className="storage-extra-services__feature-link group"
-                      aria-label={`${service.title} — swipe for more`}
+                <div className="storage-extra-services__items">
+                  {STORAGE_EXTRA_SERVICE_IMAGES.map((service, idx) => (
+                    <motion.div
+                      key={service.title}
+                      initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ duration: 0.45, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                      className="storage-extra-services__feature-wrap"
                     >
-                      <article className="storage-extra-services__feature">
-                        <div className="storage-extra-services__feature-media">
-                          <div className="storage-extra-services__feature-accent" aria-hidden />
-                          <img
-                            src={service.image}
-                            alt={service.title}
-                            className="storage-extra-services__feature-img"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                          <div className="storage-extra-services__feature-scrim" aria-hidden />
-                          <p className="storage-extra-services__feature-title">{service.title}</p>
-                          <span className="storage-extra-services__swipe" aria-hidden>
-                            <span className="storage-extra-services__swipe-text">Swipe for more</span>
-                            <span className="storage-extra-services__swipe-arrows">
-                              <ArrowRight size={13} strokeWidth={2.5} />
-                              <ArrowRight size={13} strokeWidth={2.5} />
-                              <ArrowRight size={13} strokeWidth={2.5} />
+                      <Link
+                        to={service.href}
+                        className="storage-extra-services__feature-link group"
+                        aria-label={`${service.title} — swipe for more`}
+                      >
+                        <article className="storage-extra-services__feature">
+                          <div className="storage-extra-services__feature-media">
+                            <div className="storage-extra-services__feature-accent" aria-hidden />
+                            <img
+                              src={service.image}
+                              alt={service.title}
+                              className="storage-extra-services__feature-img"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <div className="storage-extra-services__feature-scrim" aria-hidden />
+                            <p className="storage-extra-services__feature-title">{service.title}</p>
+                            <span className="storage-extra-services__swipe" aria-hidden>
+                              <span className="storage-extra-services__swipe-text">Swipe for more</span>
+                              <span className="storage-extra-services__swipe-arrows">
+                                <ArrowRight size={13} strokeWidth={2.5} />
+                                <ArrowRight size={13} strokeWidth={2.5} />
+                                <ArrowRight size={13} strokeWidth={2.5} />
+                              </span>
                             </span>
-                          </span>
-                        </div>
-                      </article>
-                    </Link>
-                  </motion.div>
-                ))}
+                          </div>
+                        </article>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </motion.section>
-        </section>
+            </motion.section>
+          </div>
+        </div>
+      </section>
 
+      <div className="container">
         <div className="storage-features-wrap" id="storage-features">
           <h3 className="storage-features-heading">The Storage2Rent standard</h3>
         </div>

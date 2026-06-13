@@ -127,8 +127,12 @@ export const STORAGE_OFFER_IMAGES = {
   pallet: storageImage('untitled folder/Safety-Security-Systems.webp'),
 } as const
 
+/** One image per story row — order matches STORAGE_MOVING_STORY_BLOCKS */
 export const STORAGE_MOVING_IMAGES = [
   storageImage('Moving-services-1.webp'),
+  storageImage('do-we-need-more-5.webp'),
+  storageImage('Moving-services-3.webp'),
+  storageImage('Moving-services-2.webp'),
   storageImage('do-you-need-more-storage.webp'),
   storageImage('Moving-services-3.webp'),
 ] as const

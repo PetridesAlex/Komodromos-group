@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
-import { ArrowLeft, ArrowRight, ChevronRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ChevronRight, MapPin, Package, ShieldCheck } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
@@ -18,9 +18,18 @@ import {
 const EASE = [0.22, 1, 0.36, 1] as const
 
 const SERVICE_HIGHLIGHTS = [
-  'Flexible loading for homes and offices',
-  'Careful handling with modern equipment',
-  'Available across every city in Cyprus',
+  {
+    text: 'Flexible loading for homes and offices',
+    icon: Package,
+  },
+  {
+    text: 'Careful handling with modern equipment',
+    icon: ShieldCheck,
+  },
+  {
+    text: 'Available across every city in Cyprus',
+    icon: MapPin,
+  },
 ] as const
 
 const service = STORAGE_EXTRA_SERVICE_IMAGES[0]
@@ -130,9 +139,10 @@ export default function StorageExtraServicesPage() {
           transition={{ duration: 0.5, ease: EASE }}
           aria-labelledby="storage-extra-showcase-heading"
         >
-          <div className="container storage-extra-detail__showcase-inner">
-            <div className="storage-extra-detail__showcase-accent" aria-hidden />
-            <div className="storage-extra-detail__showcase-grid">
+          <div className="storage-extra-detail__showcase-bleed">
+            <div className="storage-extra-detail__showcase-inner">
+              <div className="storage-extra-detail__showcase-accent" aria-hidden />
+              <div className="storage-extra-detail__showcase-grid">
               <div className="storage-extra-detail__showcase-copy">
                 <p className="storage-extra-detail__showcase-eyebrow">Featured service</p>
                 <h2 id="storage-extra-showcase-heading" className="storage-extra-detail__showcase-title">
@@ -142,11 +152,29 @@ export default function StorageExtraServicesPage() {
                   Professional van and crew support for moves of every size—paired seamlessly with your storage plan.
                 </p>
                 <ul className="storage-extra-detail__showcase-highlights">
-                  {SERVICE_HIGHLIGHTS.map((item) => (
-                    <li key={item} className="storage-extra-detail__showcase-highlight">
-                      {item}
-                    </li>
-                  ))}
+                  {SERVICE_HIGHLIGHTS.map((item, index) => {
+                    const Icon = item.icon
+
+                    return (
+                      <motion.li
+                        key={item.text}
+                        className="storage-extra-detail__showcase-highlight"
+                        initial={{ opacity: 0, x: -18 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: '-30px' }}
+                        transition={{ duration: 0.48, delay: index * 0.09, ease: EASE }}
+                      >
+                        <span className="storage-extra-detail__showcase-highlight-index" aria-hidden>
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <span className="storage-extra-detail__showcase-highlight-icon" aria-hidden>
+                          <Icon size={17} strokeWidth={2.25} />
+                        </span>
+                        <span className="storage-extra-detail__showcase-highlight-text">{item.text}</span>
+                        <span className="storage-extra-detail__showcase-highlight-sheen" aria-hidden />
+                      </motion.li>
+                    )
+                  })}
                 </ul>
               </div>
 
@@ -161,13 +189,14 @@ export default function StorageExtraServicesPage() {
                 />
               </figure>
             </div>
+            </div>
           </div>
         </motion.section>
 
         <div className="storage-extra-detail__story">
           <div className="storage-extra-detail__story-inner">
             {STORAGE_MOVING_STORY_BLOCKS.map((block, index) => {
-              const image = STORAGE_MOVING_IMAGES[index % STORAGE_MOVING_IMAGES.length]!
+              const image = STORAGE_MOVING_IMAGES[index]!
               const imageFirst = index % 2 === 1
 
               return (
