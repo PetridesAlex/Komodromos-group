@@ -144,6 +144,13 @@ export const STORAGE_MOVING_PARAGRAPHS = [
 
 export const STORAGE_EXTRA_SERVICES_PATH = '/services/storage/extra-services/man-with-van' as const
 
+export const STORAGE_EXTRA_SERVICES_INTRO = {
+  eyebrow: 'Extra Services',
+  title: 'Do you need more?',
+  lead:
+    'Whether you need home, business, or long-term support, we provide complementary services for flexible storage operations.',
+} as const
+
 export const STORAGE_EXTRA_SERVICE_IMAGES = [
   {
     title: 'Man with Van for Hire',

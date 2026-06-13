@@ -104,4 +104,102 @@ export const STORAGE_USEFUL_TIPS: StorageUsefulTip[] = [
     image: storageImage('storage-13.png'),
     imageAlt: 'Secure Storage2Rent facility standards',
   },
+  {
+    id: 'packing-furniture',
+    title: 'Protecting furniture during storage',
+    excerpt:
+      'Sofas, tables, and beds need more than a quick cover. Proper wrapping, elevation, and aisle space prevent scratches, warping, and compression damage while units stay closed for months.',
+    body: [
+      'Furniture is vulnerable when legs sit directly on concrete, edges rub against walls, and heavy items stack on upholstery. Disassemble where sensible, bag hardware in labelled pouches, and keep fixings taped to the frame they belong to.',
+      'Breathable furniture covers beat sealed plastic for long stays — they reduce condensation while still keeping dust off. Place pallets or boards under sofas and mattresses so air can circulate underneath.',
+      'Store tables vertically only when stable; otherwise lay protective blankets between surfaces and avoid placing cartons on glass or veneer. Mirror and artwork belong upright, clearly marked, and away from high-traffic paths through the unit.',
+      'A well-packed unit costs less in replacements than a rushed one. Visit once after the first week to confirm nothing has shifted during loading — small adjustments early prevent expensive damage later.',
+    ],
+    image: storageImage('storage-53.png'),
+    imageAlt: 'Drive-up access for loading furniture at Storage2Rent',
+  },
+  {
+    id: 'container-vs-warehouse',
+    title: 'Containers or warehouse bays — which fits?',
+    excerpt:
+      'Drive-up containers and indoor warehouse space solve different problems. Match your goods, access pattern, and sensitivity to weather when you choose between yard units and insulated bays.',
+    body: [
+      'Containers suit robust goods, pallet loads, trade tools, and situations where you want your own lockable volume with direct vehicle access. They work well for construction materials, spare equipment, and overflow that tolerates outdoor loading in normal weather.',
+      'Indoor warehouse bays favour furniture, archives, electronics, and anything you prefer to handle under cover. Insulated options add value when temperature swings could affect adhesives, fabrics, or stored liquids.',
+      'Frequency of visits matters: daily or weekly access to mixed items often suits an organised indoor bay; monthly bulk deliveries may lean container-side with careful stacking and weather-aware scheduling.',
+      'We walk through what you store, how you load, and how long you stay before recommending a size — many clients combine both formats as projects evolve rather than forcing everything into one type of space.',
+    ],
+    image: storageImage('storage-44.png'),
+    imageAlt: 'Colour-coded container rows at the facility',
+  },
+  {
+    id: 'document-archives',
+    title: 'Storing documents and records safely',
+    excerpt:
+      'Compliance files, contracts, and operational archives must stay dry, findable, and secure. Simple shelving habits and indoor units protect paper far better than spare rooms or unsecured outbuildings.',
+    body: [
+      'Paper storage fails in damp garages and overheated lofts. Choose dry indoor space, keep boxes off the floor on shelving or pallets, and use archive cartons designed for uniform stacking rather than mixed shopping bags.',
+      'Label by year, department, or retention category — not only by room name from an old office move. A single index sheet at the front of each bay saves hours when auditors or solicitors ask for a specific file.',
+      'Sensitive material deserves locked units and minimal sharing of access codes. Rotate who holds keys or PINs when staff change, and avoid writing full client details on external box labels visible from the aisle.',
+      'Retention policies differ by sector; storage is not a substitute for lawful destruction dates. Use off-site space as part of a clear records plan — hold what you must, retrieve what you need, and dispose on schedule elsewhere.',
+    ],
+    image: storageImage('storage-57.png'),
+    imageAlt: 'On-site operations and secure indoor storage',
+  },
+  {
+    id: 'renovation-storage',
+    title: 'Storage during home renovations',
+    excerpt:
+      'Refits move faster when rooms are cleared properly. Temporary storage keeps furniture safe from dust and trades while you stay in the property or move out for a few weeks.',
+    body: [
+      'Renovations damage furniture through plaster dust, accidental knocks, and humidity from wet trades. Move bulky pieces out early rather than shuffling them room to room as work progresses — it reduces labour and protects finishes.',
+      'Pack room by room and label for the return journey. Kitchen boxes, bedroom textiles, and living-area electronics should not share fragile items without clear markers for which contractor phase they belong to.',
+      'Timeline your unit to the build schedule: a three-month kitchen refit may need only eight weeks of storage if delivery dates are firm. Build in a buffer week for snagging before items return home.',
+      'Drive-up access helps when sofas and appliances must go back in quickly. Coordinate delivery windows with your builder so the unit is loaded in reverse order of how rooms will be reinstated.',
+    ],
+    image: storageImage('storage-54.png'),
+    imageAlt: 'Storage units suitable for renovation clear-outs',
+  },
+  {
+    id: 'pallet-logistics',
+    title: 'Pallet storage for stock and logistics',
+    excerpt:
+      'Palletised goods need level ground, clear lanes, and realistic height limits. Yard and warehouse options at Storage2Rent support inbound deliveries and staged outbound dispatch.',
+    body: [
+      'Pallet storage is not only about square metres — aisle width for forklifts or pallet trucks, turning space, and safe stacking limits define whether a bay actually works for your operation.',
+      'Standardise on one or two pallet types where possible so stacks stay stable. Wrap mixed cartons securely, keep heavy loads low, and never block sprinklers or structural paths marked on site plans.',
+      'Inbound and outbound rhythm should drive location choice: high-turnover lines benefit from positions near main access routes; slow-moving archive stock can sit deeper in the layout with clear floor maps.',
+      'Combine storage with realistic dispatch planning — we discuss access hours, peak seasonal volumes, and whether you need occasional repalletising space rather than treating the unit as a static warehouse photo.',
+    ],
+    image: storageImage('storage-28.png'),
+    imageAlt: 'Pallet-ready industrial storage space',
+  },
+  {
+    id: 'seasonal-inventory',
+    title: 'Managing seasonal stock cycles',
+    excerpt:
+      'Retailers and hospitality businesses rotate summer and winter lines, event stock, and promotional materials. Off-site storage turns seasonal peaks into manageable cycles instead of cramped back rooms.',
+    body: [
+      'Seasonal inventory punishes businesses that only think about floor space during the busy month. Planning storage in the quiet season secures better unit sizes and avoids premium rush decisions when everyone else is moving stock too.',
+      'Group by campaign or season, not only by SKU count. Colour-coded wraps, bay diagrams, and a simple spreadsheet of pallet positions reduce pick errors when the first warm weekend or holiday rush arrives.',
+      'Inspect goods when they return to storage — damp display items, damaged packaging, or expired promotional material should be sorted before restacking rather than buried until next year.',
+      'Flexible terms help when a season runs long or finishes early. Treat storage as part of merchandising strategy: what stays on-site for daily touchpoints versus what waits securely off-site until demand returns.',
+    ],
+    image: storageImage('storage-55.png'),
+    imageAlt: 'Secure units at golden hour — seasonal stock storage',
+  },
+  {
+    id: 'access-security',
+    title: 'Making the most of secure site access',
+    excerpt:
+      'Monitored yards and controlled entry protect your goods — but good habits on your side matter too. Keys, visit logs, and tidy units turn security features into everyday peace of mind.',
+    body: [
+      'Secure facilities work best when customers treat access seriously: do not share codes broadly, report damaged locks promptly, and close doors fully even during quick visits. Your diligence complements CCTV, lighting, and on-site procedures.',
+      'Keep aisles clear inside the unit so nothing blocks visibility during inspections or your own checks. Valuable items belong away from the door line and out of sight from casual pass-through angles.',
+      'Maintain a simple visit log for business units — who entered, when, and why — especially when multiple staff or contractors hold access. It resolves discrepancies faster than reconstructing movements from memory.',
+      'Insurance and inventory lists should reflect what is actually stored. Update coverage when stock value rises, photograph high-value equipment on intake, and store copies of policies elsewhere — not only inside the same unit they describe.',
+    ],
+    image: storageImage('storage-52.png'),
+    imageAlt: 'Secure monitored Storage2Rent yard and access routes',
+  },
 ]

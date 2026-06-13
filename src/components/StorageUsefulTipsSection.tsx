@@ -15,10 +15,6 @@ export default function StorageUsefulTipsSection() {
         <h3 id="storage-tips-heading" className="storage-tips__title">
           Practical advice for smarter storage
         </h3>
-        <p className="storage-tips__lead">
-          Guides for homes and businesses — how to choose space, protect belongings, and stay
-          organised while you rent with Storage2Rent.
-        </p>
       </header>
 
       <ul className="storage-tips__grid" role="list">

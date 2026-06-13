@@ -7,6 +7,7 @@ import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import {
   STORAGE_EXTRA_SERVICE_IMAGES,
+  STORAGE_EXTRA_SERVICES_INTRO,
   STORAGE_EXTRA_SERVICES_PATH,
   STORAGE_MOVING_IMAGES,
   STORAGE_MOVING_PARAGRAPHS,
@@ -32,7 +33,7 @@ export default function StorageExtraServicesPage() {
       <SiteTopbar logoPathname="/" logoScrollToId="home" homeHref="/" servicesSectionHref="/#services" />
 
       <article className="storage-extra-detail">
-        <div className="storage-extra-detail__hero">
+        <header className="storage-extra-detail__hero">
           <img
             src={service.image}
             alt={service.title}
@@ -41,42 +42,107 @@ export default function StorageExtraServicesPage() {
             decoding="async"
           />
           <div className="storage-extra-detail__hero-scrim" aria-hidden />
-          <div className="storage-extra-detail__hero-inner container">
-            <nav className="storage-extra-detail__breadcrumb" aria-label="Breadcrumb">
+          <div className="storage-extra-detail__hero-glow storage-extra-detail__hero-glow--1" aria-hidden />
+          <div className="storage-extra-detail__hero-glow storage-extra-detail__hero-glow--2" aria-hidden />
+
+          <div className="storage-extra-detail__hero-stage container">
+            <motion.nav
+              className="storage-extra-detail__breadcrumb"
+              aria-label="Breadcrumb"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
+            >
               <ol className="storage-extra-detail__breadcrumb-list">
-                <li>
+                <li className="storage-extra-detail__breadcrumb-item">
                   <Link to="/services/storage" className="storage-extra-detail__crumb storage-extra-detail__crumb--link">
                     Storage2Rent
                   </Link>
                 </li>
-                <li aria-hidden>
-                  <ChevronRight size={13} strokeWidth={2.25} />
+                <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
+                  <ChevronRight size={12} strokeWidth={2.25} />
                 </li>
-                <li>
+                <li className="storage-extra-detail__breadcrumb-item">
+                  <span className="storage-extra-detail__crumb">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</span>
+                </li>
+                <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
+                  <ChevronRight size={12} strokeWidth={2.25} />
+                </li>
+                <li className="storage-extra-detail__breadcrumb-item storage-extra-detail__breadcrumb-item--current">
                   <span className="storage-extra-detail__crumb storage-extra-detail__crumb--current" aria-current="page">
                     {service.title}
                   </span>
                 </li>
               </ol>
-            </nav>
-          </div>
-        </div>
+            </motion.nav>
 
-        <div className="container storage-extra-detail__intro">
+            <motion.div
+              className="storage-extra-detail__hero-copy"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.12, ease: EASE }}
+            >
+              <p className="storage-extra-detail__hero-eyebrow">
+                <span className="storage-extra-detail__hero-eyebrow-line" aria-hidden />
+                <span>{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</span>
+                <span className="storage-extra-detail__hero-eyebrow-line" aria-hidden />
+              </p>
+              <h1 className="storage-extra-detail__hero-title">
+                <span className="storage-extra-detail__hero-title-main">STORAGE2RENT</span>
+                <span className="storage-extra-detail__hero-title-accent">Moving Services</span>
+              </h1>
+              <p className="storage-extra-detail__hero-lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
+            </motion.div>
+          </div>
+        </header>
+
+        <div className="container storage-extra-detail__toolbar">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: EASE }}
+            transition={{ duration: 0.45, delay: 0.18, ease: EASE }}
           >
             <Link to="/services/storage#storage-offers" className="storage-extra-detail__back">
               <ArrowLeft size={15} strokeWidth={2.25} aria-hidden />
               Back to storage options
             </Link>
-
-            <p className="storage-extra-detail__eyebrow">Moving Services</p>
-            <h1 className="storage-extra-detail__title">STORAGE2RENT Moving Services</h1>
           </motion.div>
         </div>
+
+        <motion.section
+          className="storage-extra-detail__showcase"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.5, ease: EASE }}
+          aria-labelledby="storage-extra-showcase-heading"
+        >
+          <div className="container storage-extra-detail__showcase-inner">
+            <div className="storage-extra-detail__showcase-accent" aria-hidden />
+            <div className="storage-extra-detail__showcase-grid">
+              <div className="storage-extra-detail__showcase-copy">
+                <p className="storage-extra-detail__showcase-eyebrow">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</p>
+                <h2 id="storage-extra-showcase-heading" className="storage-extra-detail__showcase-title">
+                  {STORAGE_EXTRA_SERVICES_INTRO.title}
+                </h2>
+                <p className="storage-extra-detail__showcase-lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
+                <p className="storage-extra-detail__showcase-service">{service.title}</p>
+              </div>
+
+              <figure className="storage-extra-detail__showcase-media">
+                <div className="storage-extra-detail__showcase-media-accent" aria-hidden />
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="storage-extra-detail__showcase-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption className="storage-extra-detail__showcase-caption">{service.title}</figcaption>
+              </figure>
+            </div>
+          </div>
+        </motion.section>
 
         <div className="storage-extra-detail__story">
           <div className="container storage-extra-detail__story-inner">
