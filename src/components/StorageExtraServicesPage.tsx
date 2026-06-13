@@ -7,6 +7,8 @@ import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import {
   STORAGE_EXTRA_SERVICE_IMAGES,
+  STORAGE_EXTRA_SERVICE_HERO_IMAGE,
+  STORAGE_EXTRA_SERVICE_SHOWCASE_IMAGE,
   STORAGE_EXTRA_SERVICES_INTRO,
   STORAGE_EXTRA_SERVICES_PATH,
   STORAGE_MOVING_IMAGES,
@@ -41,7 +43,7 @@ export default function StorageExtraServicesPage() {
       <article className="storage-extra-detail">
         <header className="storage-extra-detail__hero">
           <img
-            src={service.image}
+            src={STORAGE_EXTRA_SERVICE_HERO_IMAGE}
             alt={service.title}
             className="storage-extra-detail__hero-img"
             loading="eager"
@@ -151,7 +153,7 @@ export default function StorageExtraServicesPage() {
               <figure className="storage-extra-detail__showcase-media">
                 <div className="storage-extra-detail__showcase-media-accent" aria-hidden />
                 <img
-                  src={service.image}
+                  src={STORAGE_EXTRA_SERVICE_SHOWCASE_IMAGE}
                   alt={service.title}
                   className="storage-extra-detail__showcase-img"
                   loading="lazy"
