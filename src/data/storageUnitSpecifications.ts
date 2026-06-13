@@ -12,6 +12,8 @@ export type StorageUnitSpecification = {
   id: string
   eyebrow: string
   title: string
+  titleMain: string
+  titleAccent: string
   lead: string
   sections: StorageSpecSection[]
   summary?: string[]
@@ -25,6 +27,8 @@ export const STORAGE_UNIT_SPECIFICATIONS: StorageUnitSpecification[] = [
     id: 'container-20ft',
     eyebrow: 'Standard container',
     title: '20ft Container',
+    titleMain: '20ft',
+    titleAccent: 'Container',
     lead: 'Standard external and internal dimensions for a 20-foot shipping container unit.',
     sections: [
       {
@@ -60,6 +64,8 @@ export const STORAGE_UNIT_SPECIFICATIONS: StorageUnitSpecification[] = [
     id: 'container-40ft',
     eyebrow: 'Standard container',
     title: '40ft Container',
+    titleMain: '40ft',
+    titleAccent: 'Container',
     lead: 'Double the length of a 20ft unit — ideal for larger storage requirements and business inventory.',
     sections: [
       {
@@ -95,6 +101,8 @@ export const STORAGE_UNIT_SPECIFICATIONS: StorageUnitSpecification[] = [
     id: 'warehouse-20ft-insulated',
     eyebrow: 'Insulated warehouse',
     title: '20ft Insulated Warehouse Unit',
+    titleMain: '20ft Insulated',
+    titleAccent: 'Warehouse Unit',
     lead: 'Thermally insulated warehouse space with the footprint of a standard 20ft container.',
     sections: [
       {
@@ -130,6 +138,8 @@ export const STORAGE_UNIT_SPECIFICATIONS: StorageUnitSpecification[] = [
     id: 'warehouse-30ft-insulated',
     eyebrow: 'Thermal insulated warehouse',
     title: '30ft Thermal Insulated Warehouse Unit',
+    titleMain: '30ft Thermal Insulated',
+    titleAccent: 'Warehouse Unit',
     lead: 'Extended insulated warehouse unit with increased height and usable internal volume.',
     note: 'Approximate internal dimensions use normal container wall, floor, and roof deductions.',
     sections: [

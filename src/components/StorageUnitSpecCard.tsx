@@ -101,10 +101,19 @@ export default function StorageUnitSpecCard({ unit, index }: StorageUnitSpecCard
           />
 
           <motion.header className="storage-unit-specs__card-head" variants={reduceMotion ? undefined : cardPartVariants}>
-            <p className="storage-unit-specs__card-eyebrow">{unit.eyebrow}</p>
-            <h2 id={`storage-unit-spec-${unit.id}`} className="storage-unit-specs__card-title">
-              {unit.title}
-            </h2>
+            <div className="storage-unit-specs__card-head-top">
+              <p className="storage-unit-specs__card-eyebrow">{unit.eyebrow}</p>
+              <span className="storage-unit-specs__card-index" aria-hidden>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+            </div>
+            <div className="storage-unit-specs__card-title-wrap">
+              <span className="storage-unit-specs__card-title-rule" aria-hidden />
+              <h2 id={`storage-unit-spec-${unit.id}`} className="storage-unit-specs__card-title">
+                <span className="storage-unit-specs__card-title-main">{unit.titleMain}</span>
+                <span className="storage-unit-specs__card-title-accent">{unit.titleAccent}</span>
+              </h2>
+            </div>
             <p className="storage-unit-specs__card-lead">{unit.lead}</p>
             {unit.note ? <p className="storage-unit-specs__card-note">{unit.note}</p> : null}
           </motion.header>

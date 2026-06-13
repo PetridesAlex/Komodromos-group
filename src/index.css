@@ -21680,6 +21680,28 @@ textarea.storage-form__control {
   pointer-events: none;
 }
 
+.storage-unit-specs__card-head {
+  position: relative;
+  padding-left: clamp(0.95rem, 1.8vw, 1.2rem);
+  border-left: 2px solid rgba(197, 160, 89, 0.55);
+}
+
+.storage-unit-specs__card-head-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.storage-unit-specs__card-index {
+  flex-shrink: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.68rem, 1vw, 0.76rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(157, 216, 255, 0.55);
+}
+
 .storage-unit-specs__card-eyebrow {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -21690,13 +21712,52 @@ textarea.storage-form__control {
   color: rgba(157, 216, 255, 0.88);
 }
 
+.storage-unit-specs__card-title-wrap {
+  margin-top: clamp(0.65rem, 1.3vw, 0.85rem);
+}
+
+.storage-unit-specs__card-title-rule {
+  display: block;
+  width: clamp(2rem, 5vw, 2.75rem);
+  height: 2px;
+  margin-bottom: clamp(0.65rem, 1.2vw, 0.8rem);
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(218, 192, 138, 0.98) 0%,
+    rgba(109, 188, 244, 0.75) 100%
+  );
+  box-shadow: 0 0 18px rgba(197, 160, 89, 0.28);
+}
+
 .storage-unit-specs__card-title {
-  margin: clamp(0.55rem, 1.2vw, 0.75rem) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.08rem, 0.35vw, 0.18rem);
+  margin: 0;
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.45rem, 2.5vw, 1.85rem);
+  font-size: clamp(1.55rem, 2.65vw, 2rem);
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.storage-unit-specs__card-title-main {
   color: rgba(255, 252, 246, 0.99);
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.storage-unit-specs__card-title-accent {
+  background: linear-gradient(
+    105deg,
+    rgba(255, 252, 246, 0.98) 0%,
+    rgba(197, 160, 89, 0.94) 48%,
+    rgba(157, 216, 255, 0.88) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .storage-unit-specs__card-lead {
