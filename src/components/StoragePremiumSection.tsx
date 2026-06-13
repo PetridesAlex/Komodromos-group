@@ -1,7 +1,7 @@
-import { type MouseEvent, useSyncExternalStore } from 'react'
+import { type MouseEvent, useCallback, useState, useSyncExternalStore } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import { ArrowRight, Clock, ShieldCheck, Warehouse } from 'lucide-react'
+import { ArrowRight, Camera, Clock, Lock, ShieldCheck, ThermometerSnowflake, Warehouse } from 'lucide-react'
 import {
   STORAGE_BRAND_ICON,
   STORAGE_EXTRA_SERVICE_IMAGES,
@@ -9,6 +9,7 @@ import {
   STORAGE_OFFER_IMAGES,
   storageImage,
 } from '../data/storagePageImages'
+import StorageOfferDetailModal from './StorageOfferDetailModal'
 import StorageParallaxCards from './StorageParallaxCards'
 import StorageSpotlightGallery from './StorageSpotlightGallery'
 import StorageUsefulTipsSection from './StorageUsefulTipsSection'
@@ -107,16 +108,37 @@ const STORAGE_OFFER_CARDS = [
     title: 'Self Storage Units',
     desc: 'Flexible storage space for boxes, furniture, and personal belongings with simple monthly options.',
     image: STORAGE_OFFER_IMAGES.personal,
+    learnMore:
+      'Our Personal Storage Units provide a secure, convenient and flexible solution for storing household belongings, furniture, seasonal items, personal collections, archives and valuable possessions. With 24/7 monitored security, thermally insulated units and easy access, you can enjoy complete peace of mind knowing that your belongings are protected in a safe and professionally managed environment.',
   },
   {
     title: 'Business Storage Units',
     desc: 'Secure business storage for operational materials, equipment, and seasonal stock overflow.',
     image: STORAGE_OFFER_IMAGES.business,
+    learnMore:
+      "Our Business Storage Units offer a secure and cost-effective solution for companies requiring additional space for inventory, equipment, documents, tools and business assets. We understand that every business has different storage requirements, which is why we can customise and adjust the size of our thermally insulated warehouse spaces according to each client's specific needs. With advanced security systems, 24/7 CCTV monitoring, controlled access and convenient accessibility, businesses can confidently store their valuable assets in a safe, professional and highly secure environment.",
   },
   {
     title: 'Safety & Security Systems',
     desc: 'Practical pallet-ready storage designed for organized access and efficient logistics handling.',
     image: STORAGE_OFFER_IMAGES.pallet,
+    learnMore:
+      'At Storage2Rent, the safety and security of your belongings are our highest priorities. Our facility is protected by multiple layers of advanced security technology and continuous monitoring systems, providing complete peace of mind for our customers.',
+    learnMoreBullets: [
+      'AI-powered 8MP CCTV surveillance cameras throughout the entire facility',
+      'Thermal perimeter cameras for enhanced night-time detection',
+      'ANPR (Automatic Number Plate Recognition) entrance camera',
+      'Motion detection sensors surrounding storage units and containers',
+      'Advanced smart alarm system with instant alerts',
+      '24/7 professional monitoring centre',
+      'High-performance floodlighting across the entire site',
+      'UPS and generator backup systems to ensure uninterrupted operation',
+      'Dual recording protection with cloud storage and local NVR recording',
+      'Controlled electronic access systems',
+      'On-site security personnel during night-time hours',
+    ],
+    learnMoreClosing:
+      'With multiple layers of protection operating around the clock, Storage2Rent offers one of the most secure storage environments available, ensuring your belongings remain protected at all times.',
   },
 ] as const
 
@@ -133,6 +155,30 @@ const STORAGE_HERO_PILLS = [
 ] as const
 
 const STORAGE_HERO_CTA_TARGET = 'storage-offers'
+
+const STORAGE_ABOUT_SECURITY = [
+  { label: '24-hour CCTV across the entire site', icon: Camera },
+  { label: 'Advanced laser motion detection', icon: ShieldCheck },
+  { label: 'Automated access control systems', icon: Lock },
+  { label: 'Extensive night-time security lighting', icon: Clock },
+  { label: 'Dedicated on-site security personnel (evenings)', icon: ShieldCheck },
+] as const
+
+const STORAGE_ABOUT_VALUES = [
+  'Security',
+  'Reliability',
+  'Professionalism',
+  'Cleanliness',
+  'Flexibility',
+  'Personal attention',
+] as const
+
+const STORAGE_ABOUT_PARAGRAPHS = [
+  'Since 2015, Storage2Rent has been providing modern, reliable and secure storage solutions for both private individuals and businesses throughout Cyprus. With a strong commitment to security, quality and exceptional customer service, we have created a facility where our customers can store their belongings with complete confidence and peace of mind.',
+  'Our facilities have been designed with one primary objective: the protection of your possessions. We operate a comprehensive 24-hour CCTV surveillance system with cameras covering the entire site, advanced laser motion detection technology, automated access control systems, extensive night-time security lighting and dedicated on-site security personnel during evening hours. These multiple layers of protection ensure that your belongings remain safe and secure at all times.',
+  'In addition, our thermally insulated storage units and containers help maintain lower and more stable temperatures throughout the year, providing an ideal environment for the storage of personal belongings, furniture, business equipment, inventory, archives and important documents.',
+  'The Storage2Rent team consists of experienced professionals who are committed to delivering exceptional customer service and tailored storage solutions to meet the unique needs of every client. Our core values — security, reliability, professionalism, cleanliness, flexibility and personal attention — form the foundation of everything we do.',
+] as const
 
 function scrollToStorageSection(sectionId: string, event?: MouseEvent<HTMLAnchorElement>) {
   event?.preventDefault()
@@ -168,6 +214,17 @@ function useMobileHeroFan() {
 export default function StoragePremiumSection() {
   const isMobileHeroFan = useMobileHeroFan()
   const reduceMotion = useReducedMotion()
+  const [activeOfferDetail, setActiveOfferDetail] = useState<{
+    title: string
+    image: string
+    body: string
+    bullets?: readonly string[]
+    closing?: string
+  } | null>(null)
+
+  const closeOfferDetail = useCallback(() => {
+    setActiveOfferDetail(null)
+  }, [])
 
   return (
     <section className="storage-premium-section" aria-labelledby="storage-premium-heading">
@@ -341,6 +398,145 @@ export default function StoragePremiumSection() {
         </section>
       </header>
 
+      <section className="storage-about" id="storage-about" aria-labelledby="storage-about-heading">
+        <div className="container storage-about__inner">
+          <motion.header
+            className="storage-about__head"
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="storage-about__eyebrow">Who we are</p>
+            <h2 id="storage-about-heading" className="storage-about__title">
+              <span className="storage-about__title-line">Security, Reliability and Complete Protection</span>
+              <span className="storage-about__title-line storage-about__title-line--accent">
+                for Your Belongings
+              </span>
+            </h2>
+          </motion.header>
+
+          <div className="storage-about__grid">
+            <motion.aside
+              className="storage-about__visual"
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="storage-about__visual-frame">
+                <div className="storage-about__visual-accent" aria-hidden />
+                <img
+                  src={STORAGE_OFFER_IMAGES.pallet}
+                  alt="Storage2Rent secure facility with professional protection systems"
+                  className="storage-about__visual-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="storage-about__since-badge">
+                  <span className="storage-about__since-year">Since 2015</span>
+                  <span className="storage-about__since-label">Trusted in Cyprus</span>
+                </div>
+              </div>
+
+              <ul className="storage-about__security-list" aria-label="Security features">
+                {STORAGE_ABOUT_SECURITY.map((item, index) => {
+                  const Icon = item.icon
+                  return (
+                    <motion.li
+                      key={item.label}
+                      className="storage-about__security-item"
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-30px' }}
+                      transition={{ duration: 0.35, delay: 0.08 + index * 0.05 }}
+                    >
+                      <span className="storage-about__security-icon" aria-hidden>
+                        <Icon size={14} strokeWidth={2.25} />
+                      </span>
+                      <span>{item.label}</span>
+                    </motion.li>
+                  )
+                })}
+              </ul>
+
+              <div className="storage-about__insulated">
+                <span className="storage-about__insulated-icon" aria-hidden>
+                  <ThermometerSnowflake size={15} strokeWidth={2.25} />
+                </span>
+                <p className="storage-about__insulated-text">
+                  Thermally insulated units for stable year-round temperature control
+                </p>
+              </div>
+            </motion.aside>
+
+            <motion.div
+              className="storage-about__prose"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.45, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {STORAGE_ABOUT_PARAGRAPHS.map((paragraph) => (
+                <p key={paragraph.slice(0, 48)} className="storage-about__paragraph">
+                  {paragraph}
+                </p>
+              ))}
+            </motion.div>
+          </div>
+
+          <motion.ul
+            className="storage-about__values"
+            aria-label="Storage2Rent core values"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
+            }}
+          >
+            {STORAGE_ABOUT_VALUES.map((value) => (
+              <motion.li
+                key={value}
+                className="storage-about__value"
+                variants={{
+                  hidden: { opacity: 0, y: 10, scale: 0.96 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+                  },
+                }}
+              >
+                {value}
+              </motion.li>
+            ))}
+          </motion.ul>
+
+          <motion.div
+            className="storage-about__closing"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.45, delay: 0.08 }}
+          >
+            <div className="storage-about__closing-accent" aria-hidden />
+            <p className="storage-about__closing-lead">
+              At Storage2Rent, we do not simply provide storage space. We provide confidence, security
+              and complete peace of mind, knowing that your belongings are stored within a professionally
+              managed facility designed and operated to the highest standards of safety, protection and
+              service.
+            </p>
+            <p className="storage-about__closing-note">
+              Whether you require short-term or long-term storage, you can trust Storage2Rent to
+              safeguard what matters most to you.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       <div className="container">
         <section className="storage-offers-section" id="storage-offers">
           <header className="storage-offers__head">
@@ -420,6 +616,7 @@ export default function StoragePremiumSection() {
             transition={{ duration: 0.4 }}
             className="storage-extra-services"
           >
+            <div className="storage-extra-services__accent" aria-hidden />
             <div className="storage-extra-services__grid">
               <div className="storage-extra-services__copy">
                 <p className="storage-extra-services__eyebrow">Extra Services</p>
@@ -434,17 +631,25 @@ export default function StoragePremiumSection() {
                 {STORAGE_EXTRA_SERVICE_IMAGES.map((service, idx) => (
                   <motion.article
                     key={service.title}
-                    initial={{ opacity: 0, y: 14, scale: 0.96 }}
+                    initial={{ opacity: 0, y: 20, scale: 0.97 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true, margin: '-40px' }}
-                    transition={{ duration: 0.35, delay: idx * 0.06 }}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                    className="storage-extra-services__item"
+                    transition={{ duration: 0.45, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -6 }}
+                    className="storage-extra-services__feature"
                   >
-                    <div className="storage-extra-services__item-media">
-                      <img src={service.image} alt={service.title} loading="lazy" />
+                    <div className="storage-extra-services__feature-media">
+                      <div className="storage-extra-services__feature-accent" aria-hidden />
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="storage-extra-services__feature-img"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="storage-extra-services__feature-scrim" aria-hidden />
+                      <p className="storage-extra-services__feature-title">{service.title}</p>
                     </div>
-                    <p className="storage-extra-services__item-title">{service.title}</p>
                   </motion.article>
                 ))}
               </div>
@@ -472,10 +677,23 @@ export default function StoragePremiumSection() {
                 </div>
                 <h3 className="storage-offer-card__title">{card.title}</h3>
                 <p className="storage-offer-card__desc">{card.desc}</p>
-                <Link
-                  to="/contact"
-                  state={{ serviceInterest: `Storage2Rent - ${card.title}` }}
+                <button
+                  type="button"
                   className="storage-offer-card__link group"
+                  onClick={() =>
+                    setActiveOfferDetail({
+                      title: card.title,
+                      image: card.image,
+                      body: card.learnMore,
+                      ...('learnMoreBullets' in card && card.learnMoreBullets
+                        ? { bullets: card.learnMoreBullets }
+                        : {}),
+                      ...('learnMoreClosing' in card && card.learnMoreClosing
+                        ? { closing: card.learnMoreClosing }
+                        : {}),
+                    })
+                  }
+                  aria-haspopup="dialog"
                 >
                   <span>Learn More</span>
                   <ArrowRight
@@ -484,7 +702,7 @@ export default function StoragePremiumSection() {
                     className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
                     aria-hidden
                   />
-                </Link>
+                </button>
               </motion.article>
             ))}
           </div>
@@ -678,6 +896,16 @@ export default function StoragePremiumSection() {
           to reserve capacity or arrange a viewing.
         </p>
       </div>
+
+      <StorageOfferDetailModal
+        open={activeOfferDetail !== null}
+        title={activeOfferDetail?.title ?? ''}
+        image={activeOfferDetail?.image ?? ''}
+        body={activeOfferDetail?.body ?? ''}
+        bullets={activeOfferDetail?.bullets}
+        closing={activeOfferDetail?.closing}
+        onClose={closeOfferDetail}
+      />
     </section>
   )
 }

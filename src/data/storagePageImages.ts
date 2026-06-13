@@ -3,7 +3,8 @@
 export const STORAGE_IMG = '/images/services/storage-services' as const
 
 export function storageImage(file: string) {
-  return `${STORAGE_IMG}/${file}`
+  const path = file.split('/').map(encodeURIComponent).join('/')
+  return `${STORAGE_IMG}/${path}`
 }
 
 export const STORAGE_BRAND_ICON = storageImage('storage-icon.png')
@@ -103,34 +104,34 @@ export const STORAGE_HERO_FAN = [
   {
     rotate: -12,
     translateY: 40,
-    src: storageImage('storage-55.png'),
+    src: storageImage('storage-1-hero.webp'),
     alt: 'Storage2Rent units at sunset — secure outdoor facility',
   },
   {
     rotate: 0,
     translateY: 0,
-    src: storageImage('storage-44.png'),
+    src: storageImage('storage-2-hero.webp'),
     alt: 'Colour-coded container storage row at Komodromos facility',
   },
   {
     rotate: 12,
     translateY: 40,
-    src: storageImage('storage50.png'),
+    src: storageImage('storage-3-hero.webp'),
     alt: 'Modern white storage units with container yard',
   },
 ] as const
 
 export const STORAGE_OFFER_IMAGES = {
-  personal: storageImage('storage-42.png'),
-  business: storageImage('storage-22.png'),
-  pallet: storageImage('storage-30.png'),
+  personal: storageImage('untitled folder/Self-Storage-Units.webp'),
+  business: storageImage('untitled folder/Business-Storage-Units.webp'),
+  pallet: storageImage('untitled folder/Safety-Security-Systems.webp'),
 } as const
 
 export const STORAGE_EXTRA_SERVICE_IMAGES = [
-  { title: 'Removal Storage', image: storageImage('storage-53.png') },
-  { title: 'Man with Van for Hire', image: storageImage('storage-57.png') },
-  { title: 'Pallet Storage', image: storageImage('storage-28.png') },
-  { title: 'Documents Storage', image: storageImage('storage-13.png') },
+  {
+    title: 'Man with Van for Hire',
+    image: storageImage('do-you-need-more-storage.webp'),
+  },
 ] as const
 
 export const STORAGE_PARALLAX_SLIDES = STORAGE_GALLERY_FILES.filter(
