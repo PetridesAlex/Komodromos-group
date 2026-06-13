@@ -10,10 +10,16 @@ import {
   STORAGE_EXTRA_SERVICES_INTRO,
   STORAGE_EXTRA_SERVICES_PATH,
   STORAGE_MOVING_IMAGES,
-  STORAGE_MOVING_PARAGRAPHS,
+  STORAGE_MOVING_STORY_BLOCKS,
 } from '../data/storagePageImages'
 
 const EASE = [0.22, 1, 0.36, 1] as const
+
+const SERVICE_HIGHLIGHTS = [
+  'Flexible loading for homes and offices',
+  'Careful handling with modern equipment',
+  'Available across every city in Cyprus',
+] as const
 
 const service = STORAGE_EXTRA_SERVICE_IMAGES[0]
 
@@ -45,37 +51,42 @@ export default function StorageExtraServicesPage() {
           <div className="storage-extra-detail__hero-glow storage-extra-detail__hero-glow--1" aria-hidden />
           <div className="storage-extra-detail__hero-glow storage-extra-detail__hero-glow--2" aria-hidden />
 
-          <div className="storage-extra-detail__hero-stage container">
-            <motion.nav
-              className="storage-extra-detail__breadcrumb"
-              aria-label="Breadcrumb"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
-            >
-              <ol className="storage-extra-detail__breadcrumb-list">
-                <li className="storage-extra-detail__breadcrumb-item">
-                  <Link to="/services/storage" className="storage-extra-detail__crumb storage-extra-detail__crumb--link">
-                    Storage2Rent
-                  </Link>
-                </li>
-                <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
-                  <ChevronRight size={12} strokeWidth={2.25} />
-                </li>
-                <li className="storage-extra-detail__breadcrumb-item">
-                  <span className="storage-extra-detail__crumb">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</span>
-                </li>
-                <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
-                  <ChevronRight size={12} strokeWidth={2.25} />
-                </li>
-                <li className="storage-extra-detail__breadcrumb-item storage-extra-detail__breadcrumb-item--current">
-                  <span className="storage-extra-detail__crumb storage-extra-detail__crumb--current" aria-current="page">
-                    {service.title}
-                  </span>
-                </li>
-              </ol>
-            </motion.nav>
+          <motion.nav
+            className="storage-extra-detail__breadcrumb"
+            aria-label="Breadcrumb"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
+          >
+            <ol className="storage-extra-detail__breadcrumb-list">
+              <li className="storage-extra-detail__breadcrumb-item">
+                <Link to="/services/storage" className="storage-extra-detail__crumb storage-extra-detail__crumb--link">
+                  Storage2Rent
+                </Link>
+              </li>
+              <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
+                <ChevronRight size={12} strokeWidth={2.25} />
+              </li>
+              <li className="storage-extra-detail__breadcrumb-item">
+                <Link
+                  to="/services/storage#storage-extra-services"
+                  className="storage-extra-detail__crumb storage-extra-detail__crumb--link"
+                >
+                  {STORAGE_EXTRA_SERVICES_INTRO.eyebrow}
+                </Link>
+              </li>
+              <li className="storage-extra-detail__breadcrumb-sep" aria-hidden>
+                <ChevronRight size={12} strokeWidth={2.25} />
+              </li>
+              <li className="storage-extra-detail__breadcrumb-item storage-extra-detail__breadcrumb-item--current">
+                <span className="storage-extra-detail__crumb storage-extra-detail__crumb--current" aria-current="page">
+                  {service.title}
+                </span>
+              </li>
+            </ol>
+          </motion.nav>
 
+          <div className="storage-extra-detail__hero-stage container">
             <motion.div
               className="storage-extra-detail__hero-copy"
               initial={{ opacity: 0, y: 24 }}
@@ -102,7 +113,7 @@ export default function StorageExtraServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.18, ease: EASE }}
           >
-            <Link to="/services/storage#storage-offers" className="storage-extra-detail__back">
+            <Link to="/services/storage#storage-extra-services" className="storage-extra-detail__back">
               <ArrowLeft size={15} strokeWidth={2.25} aria-hidden />
               Back to storage options
             </Link>
@@ -121,12 +132,20 @@ export default function StorageExtraServicesPage() {
             <div className="storage-extra-detail__showcase-accent" aria-hidden />
             <div className="storage-extra-detail__showcase-grid">
               <div className="storage-extra-detail__showcase-copy">
-                <p className="storage-extra-detail__showcase-eyebrow">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</p>
+                <p className="storage-extra-detail__showcase-eyebrow">Featured service</p>
                 <h2 id="storage-extra-showcase-heading" className="storage-extra-detail__showcase-title">
-                  {STORAGE_EXTRA_SERVICES_INTRO.title}
+                  {service.title}
                 </h2>
-                <p className="storage-extra-detail__showcase-lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
-                <p className="storage-extra-detail__showcase-service">{service.title}</p>
+                <p className="storage-extra-detail__showcase-lead">
+                  Professional van and crew support for moves of every size—paired seamlessly with your storage plan.
+                </p>
+                <ul className="storage-extra-detail__showcase-highlights">
+                  {SERVICE_HIGHLIGHTS.map((item) => (
+                    <li key={item} className="storage-extra-detail__showcase-highlight">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <figure className="storage-extra-detail__showcase-media">
@@ -138,21 +157,20 @@ export default function StorageExtraServicesPage() {
                   loading="lazy"
                   decoding="async"
                 />
-                <figcaption className="storage-extra-detail__showcase-caption">{service.title}</figcaption>
               </figure>
             </div>
           </div>
         </motion.section>
 
         <div className="storage-extra-detail__story">
-          <div className="container storage-extra-detail__story-inner">
-            {STORAGE_MOVING_PARAGRAPHS.map((paragraph, index) => {
+          <div className="storage-extra-detail__story-inner">
+            {STORAGE_MOVING_STORY_BLOCKS.map((block, index) => {
               const image = STORAGE_MOVING_IMAGES[index % STORAGE_MOVING_IMAGES.length]!
               const imageFirst = index % 2 === 1
 
               return (
                 <motion.section
-                  key={paragraph.slice(0, 48)}
+                  key={block.title}
                   className={`storage-extra-detail__row${imageFirst ? ' storage-extra-detail__row--reverse' : ''}`}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -160,10 +178,15 @@ export default function StorageExtraServicesPage() {
                   transition={{ duration: 0.5, delay: 0.04, ease: EASE }}
                 >
                   <div className="storage-extra-detail__row-copy">
-                    <span className="storage-extra-detail__row-index" aria-hidden>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <p className="storage-extra-detail__row-text">{paragraph}</p>
+                    <div className="storage-extra-detail__row-copy-accent" aria-hidden />
+                    <div className="storage-extra-detail__row-head">
+                      <span className="storage-extra-detail__row-index" aria-hidden>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="storage-extra-detail__row-label">{block.label}</span>
+                    </div>
+                    <h3 className="storage-extra-detail__row-title">{block.title}</h3>
+                    <p className="storage-extra-detail__row-text">{block.body}</p>
                   </div>
 
                   <figure className="storage-extra-detail__row-media">

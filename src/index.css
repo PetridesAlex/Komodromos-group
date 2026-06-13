@@ -15700,6 +15700,7 @@ article[data-service-slug='consulting'] .service-brand-logo {
 
 #storage-parallax,
 #storage-offers,
+#storage-extra-services,
 #storage-features,
 #storage-rates,
 #storage-tips,
@@ -15710,6 +15711,7 @@ article[data-service-slug='consulting'] .service-brand-logo {
 @media (max-width: 640px) {
   #storage-parallax,
   #storage-offers,
+  #storage-extra-services,
   #storage-features,
   #storage-rates,
   #storage-tips,
@@ -19027,8 +19029,9 @@ article[data-service-slug='consulting'] .service-brand-logo {
   background:
     linear-gradient(
       180deg,
-      rgba(3, 8, 16, 0.1) 0%,
-      transparent 30%,
+      rgba(3, 8, 16, 0.55) 0%,
+      rgba(3, 8, 16, 0.2) 18%,
+      transparent 38%,
       transparent 48%,
       rgba(3, 8, 16, 0.5) 78%,
       rgba(3, 8, 16, 0.92) 100%
@@ -19071,6 +19074,10 @@ article[data-service-slug='consulting'] .service-brand-logo {
 }
 
 .storage-extra-detail__breadcrumb {
+  position: absolute;
+  top: clamp(1rem, 2.5vw, 1.75rem);
+  left: clamp(1rem, 3vw, 2.5rem);
+  z-index: 3;
   margin: 0;
   pointer-events: auto;
 }
@@ -19311,23 +19318,50 @@ article[data-service-slug='consulting'] .service-brand-logo {
   color: rgba(205, 218, 236, 0.88);
 }
 
-.storage-extra-detail__showcase-service {
-  margin: clamp(1rem, 2.2vw, 1.25rem) 0 0;
-  padding-top: clamp(0.85rem, 1.8vw, 1rem);
-  border-top: 1px solid rgba(157, 216, 255, 0.14);
+.storage-extra-detail__showcase-highlights {
+  display: grid;
+  gap: clamp(0.55rem, 1.2vw, 0.7rem);
+  margin: clamp(1.15rem, 2.4vw, 1.45rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.storage-extra-detail__showcase-highlight {
+  position: relative;
+  margin: 0;
+  padding: clamp(0.65rem, 1.4vw, 0.8rem) clamp(0.85rem, 1.8vw, 1rem) clamp(0.65rem, 1.4vw, 0.8rem)
+    clamp(2rem, 3.5vw, 2.35rem);
+  border-radius: clamp(10px, 1.2vw, 12px);
+  border: 1px solid rgba(157, 216, 255, 0.16);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(157, 216, 255, 0.04) 100%
+  );
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.72rem, 1vw, 0.78rem);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(157, 216, 255, 0.92);
+  font-size: clamp(0.82rem, 1.1vw, 0.9rem);
+  line-height: 1.45;
+  color: rgba(220, 230, 244, 0.94);
+}
+
+.storage-extra-detail__showcase-highlight::before {
+  content: '';
+  position: absolute;
+  left: clamp(0.85rem, 1.8vw, 1rem);
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(197, 160, 89, 0.95);
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.55);
+  transform: translateY(-50%);
 }
 
 .storage-extra-detail__showcase-media {
   position: relative;
   margin: 0;
   overflow: hidden;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   border-radius: clamp(16px, 1.8vw, 22px);
   border: 1px solid rgba(157, 216, 255, 0.24);
   background: #0a0f18;
@@ -19360,26 +19394,6 @@ article[data-service-slug='consulting'] .service-brand-logo {
   object-position: center;
 }
 
-.storage-extra-detail__showcase-caption {
-  position: absolute;
-  left: clamp(0.85rem, 2vw, 1.15rem);
-  right: clamp(0.85rem, 2vw, 1.15rem);
-  bottom: clamp(0.85rem, 2vw, 1.15rem);
-  z-index: 2;
-  margin: 0;
-  padding: 0.55rem 0.75rem;
-  border-radius: clamp(10px, 1.2vw, 12px);
-  border: 1px solid rgba(197, 160, 89, 0.42);
-  background: rgba(8, 18, 34, 0.82);
-  backdrop-filter: blur(8px);
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.68rem, 0.95vw, 0.74rem);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-  color: rgba(255, 252, 246, 0.98);
-}
 
 /* Compact extra services entry on main storage page */
 .storage-extra-entry {
@@ -19531,6 +19545,10 @@ article[data-service-slug='consulting'] .service-brand-logo {
 
 .storage-extra-detail__story {
   position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   padding: clamp(0.5rem, 2vw, 1rem) 0 clamp(2rem, 5vw, 3.5rem);
 }
 
@@ -19549,24 +19567,31 @@ article[data-service-slug='consulting'] .service-brand-logo {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 5vw, 3.25rem);
-  max-width: min(72rem, 100%);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .storage-extra-detail__row {
   display: grid;
   gap: clamp(1.25rem, 3vw, 2rem);
-  align-items: center;
+  align-items: stretch;
+  width: 100%;
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
 }
 
 @media (min-width: 900px) {
   .storage-extra-detail__row {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: clamp(2rem, 4vw, 3rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 4.5vw, 4rem);
+    padding-inline: clamp(1.5rem, 4vw, 3.5rem);
+    min-height: clamp(360px, 42vw, 520px);
   }
 
   .storage-extra-detail__row--reverse {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .storage-extra-detail__row--reverse .storage-extra-detail__row-copy {
@@ -19576,39 +19601,172 @@ article[data-service-slug='consulting'] .service-brand-logo {
   .storage-extra-detail__row--reverse .storage-extra-detail__row-media {
     order: 1;
   }
+
+  .storage-extra-detail__row-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+  }
+
+  .storage-extra-detail__row-media {
+    min-height: 100%;
+    aspect-ratio: auto;
+    height: 100%;
+  }
 }
 
 .storage-extra-detail__row-copy {
   position: relative;
-  padding: clamp(1.15rem, 2.5vw, 1.65rem);
+  padding: clamp(1.35rem, 2.8vw, 1.85rem) clamp(1.25rem, 2.6vw, 1.75rem);
+  padding-left: clamp(1.45rem, 3vw, 2rem);
   border-radius: clamp(14px, 1.6vw, 18px);
-  border: 1px solid rgba(157, 216, 255, 0.14);
+  border: 2px solid rgba(109, 188, 244, 0.32);
   background: linear-gradient(
-    155deg,
-    rgba(14, 30, 52, 0.72) 0%,
-    rgba(8, 18, 34, 0.88) 100%
+    148deg,
+    rgba(16, 36, 62, 0.92) 0%,
+    rgba(10, 22, 40, 0.96) 48%,
+    rgba(7, 14, 28, 0.98) 100%
   );
   box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 20px 48px rgba(0, 0, 0, 0.34),
+    0 0 28px rgba(74, 166, 227, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition:
+    border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.storage-extra-detail__row-copy-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+  background: linear-gradient(
+    180deg,
+    rgba(157, 216, 255, 0.15) 0%,
+    rgba(109, 188, 244, 0.95) 35%,
+    rgba(157, 216, 255, 1) 50%,
+    rgba(109, 188, 244, 0.95) 65%,
+    rgba(157, 216, 255, 0.15) 100%
+  );
+  box-shadow:
+    0 0 18px rgba(109, 188, 244, 0.55),
+    0 0 6px rgba(157, 216, 255, 0.45);
+  pointer-events: none;
+}
+
+.storage-extra-detail__row-copy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(109, 188, 244, 0.55) 35%,
+    rgba(197, 160, 89, 0.65) 50%,
+    rgba(109, 188, 244, 0.55) 65%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.storage-extra-detail__row-copy::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 80% at 100% 0%, rgba(109, 188, 244, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 65% at 0% 100%, rgba(197, 160, 89, 0.07) 0%, transparent 52%);
+}
+
+.storage-extra-detail__row-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.6vw, 1rem);
+  margin-bottom: clamp(0.75rem, 1.6vw, 0.95rem);
 }
 
 .storage-extra-detail__row-index {
-  display: block;
-  margin-bottom: clamp(0.65rem, 1.4vw, 0.85rem);
+  flex-shrink: 0;
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-size: clamp(1.75rem, 3vw, 2.15rem);
   font-weight: 500;
   line-height: 1;
-  color: rgba(197, 160, 89, 0.42);
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 89, 0.95) 0%,
+    rgba(157, 216, 255, 0.98) 55%,
+    rgba(255, 252, 246, 0.92) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 8px rgba(109, 188, 244, 0.25));
+}
+
+.storage-extra-detail__row-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(157, 216, 255, 0.38);
+  background: linear-gradient(
+    135deg,
+    rgba(109, 188, 244, 0.14) 0%,
+    rgba(157, 216, 255, 0.06) 100%
+  );
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.62rem, 0.9vw, 0.68rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(157, 216, 255, 0.96);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.storage-extra-detail__row-title {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 clamp(0.75rem, 1.6vw, 0.95rem);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  color: rgba(255, 252, 246, 0.98);
 }
 
 .storage-extra-detail__row-text {
+  position: relative;
+  z-index: 1;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.9rem, 1.2vw, 0.98rem);
-  line-height: 1.78;
+  font-size: clamp(0.88rem, 1.15vw, 0.96rem);
+  line-height: 1.82;
   color: rgba(205, 218, 236, 0.9);
+}
+
+.storage-extra-detail__row:hover .storage-extra-detail__row-copy {
+  border-color: rgba(109, 188, 244, 0.62);
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.38),
+    0 0 36px rgba(74, 166, 227, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .storage-extra-detail__row-media {
@@ -19617,28 +19775,35 @@ article[data-service-slug='consulting'] .service-brand-logo {
   overflow: hidden;
   aspect-ratio: 4 / 3;
   border-radius: clamp(16px, 1.8vw, 22px);
-  border: 1px solid rgba(157, 216, 255, 0.22);
+  border: 2px solid rgba(109, 188, 244, 0.78);
   background: #0a0f18;
   box-shadow:
     0 24px 56px rgba(0, 0, 0, 0.42),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 0 0 1px rgba(157, 216, 255, 0.22),
+    0 0 32px rgba(74, 166, 227, 0.28),
+    inset 0 0 0 1px rgba(157, 216, 255, 0.14);
+  transition:
+    border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .storage-extra-detail__row-media-accent {
   position: absolute;
   top: 0;
-  left: 8%;
-  right: 8%;
-  height: 2px;
+  left: 6%;
+  right: 6%;
+  height: 3px;
   z-index: 2;
   border-radius: 2px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(197, 160, 89, 0.85) 40%,
-    rgba(157, 216, 255, 0.9) 60%,
+    rgba(109, 188, 244, 0.95) 35%,
+    rgba(157, 216, 255, 1) 50%,
+    rgba(109, 188, 244, 0.95) 65%,
     transparent
   );
+  box-shadow: 0 0 14px rgba(109, 188, 244, 0.55);
   pointer-events: none;
 }
 
@@ -19653,6 +19818,15 @@ article[data-service-slug='consulting'] .service-brand-logo {
 
 .storage-extra-detail__row:hover .storage-extra-detail__row-img {
   transform: scale(1.03);
+}
+
+.storage-extra-detail__row:hover .storage-extra-detail__row-media {
+  border-color: rgba(157, 216, 255, 0.98);
+  box-shadow:
+    0 28px 64px rgba(0, 0, 0, 0.46),
+    0 0 0 1px rgba(157, 216, 255, 0.38),
+    0 0 42px rgba(74, 166, 227, 0.42),
+    inset 0 0 0 1px rgba(157, 216, 255, 0.22);
 }
 
 .storage-extra-detail__footer {
@@ -19704,6 +19878,10 @@ article[data-service-slug='consulting'] .service-brand-logo {
 
 @media (prefers-reduced-motion: reduce) {
   .storage-extra-detail__row:hover .storage-extra-detail__row-img {
+    transform: none;
+  }
+
+  .storage-extra-detail__row:hover .storage-extra-detail__row-copy {
     transform: none;
   }
 }
@@ -19789,24 +19967,43 @@ article[data-service-slug='consulting'] .service-brand-logo {
   pointer-events: none;
 }
 
+.storage-offers__cards-wrap {
+  display: flex;
+  justify-content: center;
+}
+
 .storage-offers__cards {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(1rem, 2vw, 1.25rem);
-  margin-block: clamp(1.25rem, 3vw, 2rem);
-  width: 100%;
-  max-width: min(72rem, 100%);
+  width: min(100%, 1100px);
+  max-width: 1100px;
+  margin: clamp(1.25rem, 3vw, 2rem) auto;
+  padding-inline: clamp(0.5rem, 2vw, 1rem);
+  justify-items: stretch;
 }
 
 @media (min-width: 640px) {
   .storage-offers__cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .storage-offers__cards > *:nth-child(3):last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, calc(50% - 0.625rem));
+  }
 }
 
 @media (min-width: 1024px) {
   .storage-offers__cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .storage-offers__cards > *:nth-child(3):last-child {
+    grid-column: auto;
+    justify-self: stretch;
+    width: auto;
   }
 }
 

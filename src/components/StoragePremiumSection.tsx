@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import { ArrowRight, Camera, Clock, Lock, ShieldCheck, ThermometerSnowflake, Warehouse } from 'lucide-react'
 import {
   STORAGE_BRAND_ICON,
-  STORAGE_EXTRA_SERVICES_PATH,
+  STORAGE_EXTRA_SERVICE_IMAGES,
   STORAGE_EXTRA_SERVICES_INTRO,
   STORAGE_HERO_FAN,
   STORAGE_OFFER_IMAGES,
@@ -537,7 +537,7 @@ export default function StoragePremiumSection() {
         </div>
       </section>
 
-      <div className="container">
+      <div className="container storage-offers__cards-wrap">
         <div className="storage-offers__cards">
           {STORAGE_OFFER_CARDS.map((card, i) => (
             <motion.article
@@ -717,32 +717,65 @@ export default function StoragePremiumSection() {
             </form>
           </div>
 
-          <motion.div
+          <motion.section
+            id="storage-extra-services"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.4 }}
-            className="storage-extra-entry"
+            className="storage-extra-services"
           >
-            <div className="storage-extra-entry__accent" aria-hidden />
-            <div className="storage-extra-entry__grid">
-              <div className="storage-extra-entry__copy">
-                <p className="storage-extra-entry__eyebrow">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</p>
-                <h3 className="storage-extra-entry__title">{STORAGE_EXTRA_SERVICES_INTRO.title}</h3>
-                <p className="storage-extra-entry__lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
+            <div className="storage-extra-services__accent" aria-hidden />
+            <div className="storage-extra-services__grid">
+              <div className="storage-extra-services__copy">
+                <p className="storage-extra-services__eyebrow">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</p>
+                <h3 className="storage-extra-services__title">{STORAGE_EXTRA_SERVICES_INTRO.title}</h3>
+                <p className="storage-extra-services__lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
               </div>
-              <Link to={STORAGE_EXTRA_SERVICES_PATH} className="storage-extra-entry__cta group">
-                <span className="storage-extra-entry__cta-sheen" aria-hidden />
-                <span className="storage-extra-entry__cta-text">Man with Van for Hire</span>
-                <ArrowRight
-                  size={15}
-                  strokeWidth={2.5}
-                  className="storage-extra-entry__cta-icon shrink-0"
-                  aria-hidden
-                />
-              </Link>
+
+              <div className="storage-extra-services__items">
+                {STORAGE_EXTRA_SERVICE_IMAGES.map((service, idx) => (
+                  <motion.div
+                    key={service.title}
+                    initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.45, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                    className="storage-extra-services__feature-wrap"
+                  >
+                    <Link
+                      to={service.href}
+                      className="storage-extra-services__feature-link group"
+                      aria-label={`${service.title} — swipe for more`}
+                    >
+                      <article className="storage-extra-services__feature">
+                        <div className="storage-extra-services__feature-media">
+                          <div className="storage-extra-services__feature-accent" aria-hidden />
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="storage-extra-services__feature-img"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <div className="storage-extra-services__feature-scrim" aria-hidden />
+                          <p className="storage-extra-services__feature-title">{service.title}</p>
+                          <span className="storage-extra-services__swipe" aria-hidden>
+                            <span className="storage-extra-services__swipe-text">Swipe for more</span>
+                            <span className="storage-extra-services__swipe-arrows">
+                              <ArrowRight size={13} strokeWidth={2.5} />
+                              <ArrowRight size={13} strokeWidth={2.5} />
+                              <ArrowRight size={13} strokeWidth={2.5} />
+                            </span>
+                          </span>
+                        </div>
+                      </article>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </motion.div>
+          </motion.section>
         </section>
 
         <div className="storage-features-wrap" id="storage-features">
