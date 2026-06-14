@@ -95,6 +95,15 @@ export default function SiteTopbar({
     }
   }, [menuOpen, close])
 
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 981px)')
+    const onChange = () => {
+      if (mq.matches) close()
+    }
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [close])
+
   return (
     <header className={['topbar', className].filter(Boolean).join(' ')}>
       <button
@@ -145,6 +154,7 @@ export default function SiteTopbar({
           </Link>
           <TopbarSocialLinks variant="mobile" />
         </nav>
+        <TopbarSocialLinks variant="desktop" />
         <button
           type="button"
           className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
