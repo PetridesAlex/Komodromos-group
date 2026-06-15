@@ -1,10 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Navigate, useLocation, useParams } from 'react-router-dom'
+import { Phone } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { getServiceBySlug } from '../data/serviceCards'
 import { getServicePageContent } from '../data/servicePageSections'
+import {
+  getStorageWhatsAppUrl,
+  STORAGE_PAGE_CONTACTS,
+} from '../data/storagePageContacts'
+import { socialLinks } from '../data/socialLinks'
 import VipServicesGrid from './VipServicesGrid'
 import StoragePremiumSection from './StoragePremiumSection'
 import ServiceDefaultSections from './ServiceDefaultSections'
@@ -25,6 +31,8 @@ const STORAGE_SUBNAV_LINKS: ReadonlyArray<{
   { id: 'storage-tips', label: 'Useful Tips' },
   { id: 'storage-contact', label: 'Contact', cta: true },
 ]
+
+const STORAGE_WHATSAPP_ICON = socialLinks.find((link) => link.label === 'WhatsApp')?.svg
 
 function clearDocumentScrollLock() {
   const bodyStyle = document.body.style
@@ -165,24 +173,53 @@ export default function ServiceDetailPage() {
         <div className="storage-page-subnav" aria-label="Storage page navigation">
           <div className="container">
             <nav className="storage-page-subnav__inner">
-              {STORAGE_SUBNAV_LINKS.map((link) => (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  className={[
-                    'storage-page-subnav__link',
-                    link.cta ? 'storage-page-subnav__link--cta' : '',
-                    !link.cta && activeStorageSection === link.id
-                      ? 'storage-page-subnav__link--active'
-                      : '',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
-                  aria-current={!link.cta && activeStorageSection === link.id ? 'true' : undefined}
-                >
-                  {link.label}
-                </a>
-              ))}
+              <div className="storage-page-subnav__links" role="list">
+                {STORAGE_SUBNAV_LINKS.map((link) => (
+                  <a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    role="listitem"
+                    className={[
+                      'storage-page-subnav__link',
+                      link.cta ? 'storage-page-subnav__link--cta' : '',
+                      !link.cta && activeStorageSection === link.id
+                        ? 'storage-page-subnav__link--active'
+                        : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
+                    aria-current={!link.cta && activeStorageSection === link.id ? 'true' : undefined}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+
+              <div className="storage-page-subnav__contacts" aria-label="Storage2Rent direct contact">
+                {STORAGE_PAGE_CONTACTS.map((contact) => (
+                  <div key={contact.id} className="storage-page-subnav__contact-card">
+                    <div className="storage-page-subnav__contact-actions">
+                      <a
+                        href={`tel:${contact.tel}`}
+                        className="storage-page-subnav__contact-btn storage-page-subnav__contact-btn--phone"
+                        aria-label={`Call Storage2Rent ${contact.label}: ${contact.display}`}
+                      >
+                        <Phone size={14} strokeWidth={2.25} aria-hidden />
+                      </a>
+                      <a
+                        href={getStorageWhatsAppUrl(contact.whatsapp)}
+                        className="storage-page-subnav__contact-btn storage-page-subnav__contact-btn--wa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`WhatsApp Storage2Rent ${contact.label}: ${contact.display}`}
+                      >
+                        {STORAGE_WHATSAPP_ICON}
+                      </a>
+                    </div>
+                    <span className="storage-page-subnav__contact-number">{contact.display}</span>
+                  </div>
+                ))}
+              </div>
             </nav>
           </div>
         </div>

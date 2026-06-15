@@ -61,7 +61,7 @@ export const serviceCards: ServiceCard[] = [
     title: 'Storage2Rent',
     navTitle: 'Self Storage Services',
     description:
-      'Enterprise-grade warehousing and container capacity for businesses that need space, security, and predictable monthly terms.',
+      'Enterprise-grade warehousing and container capacity for businesses and individuals that need space, security, and predictable monthly terms.',
     tags: ['INVENTORY FLOW', 'SECURE STORAGE', 'DISTRIBUTION SUPPORT'],
     image: `${SVC_COVER}/Storage-rent.webp`,
     brandLogo: `${SVC_CARD_LOGO}/storage-to-rent.png`,

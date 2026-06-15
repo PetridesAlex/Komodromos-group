@@ -1102,10 +1102,122 @@ a {
   min-height: 52px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(0.35rem, 1.1vw, 0.75rem);
+  justify-content: space-between;
+  gap: clamp(0.5rem, 1.4vw, 1rem);
   flex-wrap: wrap;
   padding: 0.55rem clamp(0.25rem, 1vw, 0.5rem);
+}
+
+.storage-page-subnav__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: clamp(0.35rem, 1.1vw, 0.75rem);
+  min-width: 0;
+}
+
+.storage-page-subnav__contacts {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: clamp(0.45rem, 1vw, 0.65rem);
+  padding: 0.2rem 0.15rem 0.2rem clamp(0.55rem, 1.2vw, 0.85rem);
+  border-left: 1px solid rgba(157, 216, 255, 0.18);
+}
+
+.storage-page-subnav__contact-card {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.55rem 0.28rem 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(157, 216, 255, 0.2);
+  background: linear-gradient(
+    165deg,
+    rgba(14, 30, 52, 0.82) 0%,
+    rgba(8, 18, 34, 0.94) 100%
+  );
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.storage-page-subnav__contact-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.storage-page-subnav__contact-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: rgba(225, 236, 248, 0.95);
+  text-decoration: none;
+  transition:
+    color 0.28s ease,
+    background 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.storage-page-subnav__contact-btn svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.storage-page-subnav__contact-btn--phone {
+  background: linear-gradient(
+    145deg,
+    rgba(157, 216, 255, 0.22) 0%,
+    rgba(109, 188, 244, 0.12) 100%
+  );
+  border-color: rgba(157, 216, 255, 0.28);
+}
+
+.storage-page-subnav__contact-btn--wa {
+  background: linear-gradient(145deg, rgba(37, 211, 102, 0.28) 0%, rgba(18, 140, 72, 0.22) 100%);
+  border-color: rgba(37, 211, 102, 0.38);
+  color: #eafff2;
+}
+
+.storage-page-subnav__contact-btn:hover,
+.storage-page-subnav__contact-btn:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.storage-page-subnav__contact-btn--phone:hover,
+.storage-page-subnav__contact-btn--phone:focus-visible {
+  border-color: rgba(197, 160, 89, 0.5);
+  background: linear-gradient(
+    145deg,
+    rgba(157, 216, 255, 0.34) 0%,
+    rgba(109, 188, 244, 0.2) 100%
+  );
+  box-shadow: 0 0 18px rgba(109, 188, 244, 0.22);
+}
+
+.storage-page-subnav__contact-btn--wa:hover,
+.storage-page-subnav__contact-btn--wa:focus-visible {
+  border-color: rgba(72, 230, 140, 0.62);
+  background: linear-gradient(145deg, rgba(37, 211, 102, 0.42) 0%, rgba(18, 140, 72, 0.32) 100%);
+  box-shadow: 0 0 18px rgba(37, 211, 102, 0.24);
+}
+
+.storage-page-subnav__contact-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.62rem, 0.9vw, 0.72rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: rgba(230, 238, 248, 0.94);
 }
 
 .storage-page-subnav .container {
@@ -1149,27 +1261,27 @@ a {
     background-position 0.55s ease;
 }
 
-.storage-page-subnav__inner > .storage-page-subnav__link:nth-child(1) {
+.storage-page-subnav__links > .storage-page-subnav__link:nth-child(1) {
   color: rgba(186, 224, 255, 0.95);
   border-color: rgba(157, 216, 255, 0.28);
 }
 
-.storage-page-subnav__inner > .storage-page-subnav__link:nth-child(2) {
+.storage-page-subnav__links > .storage-page-subnav__link:nth-child(2) {
   color: rgba(218, 192, 138, 0.96);
   border-color: rgba(197, 160, 89, 0.28);
 }
 
-.storage-page-subnav__inner > .storage-page-subnav__link:nth-child(3) {
+.storage-page-subnav__links > .storage-page-subnav__link:nth-child(3) {
   color: rgba(167, 220, 255, 0.94);
   border-color: rgba(126, 191, 232, 0.3);
 }
 
-.storage-page-subnav__inner > .storage-page-subnav__link:nth-child(4) {
+.storage-page-subnav__links > .storage-page-subnav__link:nth-child(4) {
   color: rgba(230, 210, 160, 0.95);
   border-color: rgba(197, 160, 89, 0.24);
 }
 
-.storage-page-subnav__inner > .storage-page-subnav__link:nth-child(5) {
+.storage-page-subnav__links > .storage-page-subnav__link:nth-child(5) {
   color: rgba(200, 230, 255, 0.92);
   border-color: rgba(157, 216, 255, 0.22);
 }
@@ -1653,8 +1765,22 @@ a {
 @media (max-width: 900px) {
   .storage-page-subnav__inner {
     justify-content: center;
-    gap: clamp(0.3rem, 1.2vw, 0.5rem);
+    gap: clamp(0.45rem, 1.2vw, 0.65rem);
     padding-block: 0.65rem;
+  }
+
+  .storage-page-subnav__links {
+    justify-content: center;
+    gap: clamp(0.3rem, 1.2vw, 0.5rem);
+  }
+
+  .storage-page-subnav__contacts {
+    width: 100%;
+    justify-content: center;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(157, 216, 255, 0.14);
+    padding-top: 0.55rem;
   }
 
   .storage-page-subnav__link {
@@ -1812,6 +1938,24 @@ a {
     gap: clamp(0.28rem, 1.5vw, 0.42rem);
     min-height: auto;
     padding-block: 0.7rem;
+  }
+
+  .storage-page-subnav__contacts {
+    gap: 0.4rem;
+    padding-top: 0.45rem;
+  }
+
+  .storage-page-subnav__contact-card {
+    padding: 0.22rem 0.45rem 0.22rem 0.28rem;
+  }
+
+  .storage-page-subnav__contact-number {
+    font-size: clamp(0.56rem, 2.6vw, 0.64rem);
+  }
+
+  .storage-page-subnav__contact-btn {
+    width: 1.7rem;
+    height: 1.7rem;
   }
 
   .storage-page-subnav__link {
@@ -16595,6 +16739,18 @@ article[data-service-slug='consulting'] .service-brand-logo {
   }
 }
 
+.storage-rates-panel {
+  margin-bottom: 0;
+}
+
+.storage-rates-panel + .storage-offers__cards-bleed {
+  padding-top: clamp(0.85rem, 2.2vw, 1.35rem);
+}
+
+.storage-rates-panel .storage-pricing-heading {
+  margin-top: clamp(0.35rem, 1.5vw, 1rem);
+}
+
 .storage-pricing-heading {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
@@ -18502,6 +18658,14 @@ article[data-service-slug='consulting'] .service-brand-logo {
   }
 }
 
+.storage-offers__cards-bleed + .storage-offers-section {
+  margin-top: 0;
+}
+
+.storage-offers-section + .storage-about {
+  margin-top: clamp(1.5rem, 4vw, 2.75rem);
+}
+
 /* Storage — Who we are */
 .storage-about {
   position: relative;
@@ -19038,7 +19202,7 @@ article[data-service-slug='consulting'] .service-brand-logo {
   }
 
   .storage-specs-entry__inner {
-    gap: clamp(2rem, 4vw, 3.5rem);
+    gap: clamp(1.25rem, 2.5vw, 2rem);
   }
 
   .storage-specs-entry,
@@ -21605,7 +21769,7 @@ textarea.storage-form__control {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: clamp(1.35rem, 3vw, 2.25rem) clamp(1.15rem, 2.8vw, 2rem);
+  padding: clamp(1.1rem, 2.4vw, 1.65rem) clamp(1.15rem, 2.8vw, 2rem);
   border-radius: clamp(18px, 2vw, 24px);
   border: 2px solid rgba(109, 188, 244, 0.32);
   background: linear-gradient(
@@ -21643,14 +21807,14 @@ textarea.storage-form__control {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: clamp(1.25rem, 2.5vw, 1.75rem);
-  align-items: end;
+  gap: clamp(1rem, 2vw, 1.35rem);
+  align-items: center;
 }
 
 @media (min-width: 900px) {
   .storage-specs-entry__inner {
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(2rem, 4vw, 3.5rem);
+    gap: clamp(1.5rem, 3vw, 2.25rem);
     align-items: center;
   }
 
@@ -21750,8 +21914,8 @@ textarea.storage-form__control {
 }
 
 .storage-specs-entry__lead-panel {
-  margin-top: clamp(0.95rem, 2vw, 1.2rem);
-  padding: clamp(0.85rem, 1.8vw, 1.05rem) clamp(0.95rem, 2vw, 1.15rem);
+  margin-top: clamp(0.75rem, 1.6vw, 0.95rem);
+  padding: clamp(0.75rem, 1.6vw, 0.95rem) clamp(0.9rem, 1.8vw, 1.05rem);
   border-radius: clamp(12px, 1.4vw, 14px);
   border: 1px solid rgba(157, 216, 255, 0.18);
   border-left: 3px solid rgba(109, 188, 244, 0.75);
@@ -21772,75 +21936,6 @@ textarea.storage-form__control {
   line-height: 1.78;
   letter-spacing: 0.01em;
   color: rgba(215, 228, 244, 0.92);
-}
-
-.storage-specs-entry__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(0.55rem, 1.2vw, 0.75rem);
-  margin: clamp(1.05rem, 2.2vw, 1.35rem) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.storage-specs-entry__list-item {
-  display: inline-flex;
-  align-items: center;
-  gap: clamp(0.55rem, 1.1vw, 0.7rem);
-  min-height: 2.35rem;
-  margin: 0;
-  padding: 0.35rem 0.85rem 0.35rem 0.45rem;
-  border-radius: 999px;
-  border: 1px solid rgba(157, 216, 255, 0.22);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(157, 216, 255, 0.06) 48%,
-    rgba(8, 18, 34, 0.35) 100%
-  );
-  box-shadow:
-    0 8px 22px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transition:
-    border-color 0.35s ease,
-    box-shadow 0.35s ease,
-    transform 0.35s ease;
-}
-
-@media (hover: hover) {
-  .storage-specs-entry__list-item:hover {
-    border-color: rgba(197, 160, 89, 0.42);
-    box-shadow:
-      0 12px 28px rgba(0, 0, 0, 0.24),
-      0 0 18px rgba(109, 188, 244, 0.1);
-    transform: translateY(-1px);
-  }
-}
-
-.storage-specs-entry__list-index {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  min-width: 1.65rem;
-  height: 1.65rem;
-  border-radius: 999px;
-  border: 1px solid rgba(197, 160, 89, 0.35);
-  background: rgba(197, 160, 89, 0.12);
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.58rem, 0.85vw, 0.64rem);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: rgba(218, 192, 138, 0.96);
-}
-
-.storage-specs-entry__list-text {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.78rem, 1vw, 0.86rem);
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: 0.02em;
-  color: rgba(228, 236, 248, 0.96);
 }
 
 .storage-specs-entry__cta {

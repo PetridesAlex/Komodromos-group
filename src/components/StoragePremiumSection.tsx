@@ -395,6 +395,239 @@ export default function StoragePremiumSection() {
         </section>
       </header>
 
+      <div className="container storage-rates-panel">
+        <motion.h3
+          className="storage-pricing-heading"
+          id="storage-rates"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.35, ease: PRICING_EASE }}
+        >
+          Monthly rates
+        </motion.h3>
+        <motion.div
+          className="storage-pricing-grid"
+          role="list"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-70px', amount: 0.15 }}
+          variants={pricingGridVariants}
+        >
+          {STORAGE_PLANS.map((plan, index) => (
+            <motion.article
+              key={plan.title}
+              className="storage-price-card"
+              role="listitem"
+              custom={index}
+              variants={reduceMotion ? pricingCardVariantsReduced : pricingCardVariants}
+            >
+              <motion.div
+                className="storage-price-card__accent"
+                aria-hidden
+                variants={reduceMotion ? undefined : pricingAccentVariants}
+              />
+              <motion.h3
+                className="storage-price-card__title"
+                variants={reduceMotion ? undefined : pricingTextVariants}
+              >
+                {plan.title}
+              </motion.h3>
+              <motion.p
+                className="storage-price-card__price"
+                variants={reduceMotion ? undefined : pricingTextVariants}
+              >
+                <motion.span
+                  className="storage-price-card__amount"
+                  variants={reduceMotion ? undefined : pricingAmountVariants}
+                >
+                  {plan.price}€
+                </motion.span>
+                <span className="storage-price-card__period">per month</span>
+              </motion.p>
+            </motion.article>
+          ))}
+        </motion.div>
+      </div>
+
+      <section className="storage-offers__cards-bleed" aria-label="Storage offer highlights">
+        <div className="storage-offers__cards-wrap">
+          <div className="storage-offers__cards">
+            {STORAGE_OFFER_CARDS.map((card, i) => (
+              <motion.article
+                key={card.title}
+                className="storage-offer-card group"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="storage-offer-card__accent" aria-hidden />
+                <div className="storage-offer-card__glow" aria-hidden />
+                <div className="storage-offer-card__media">
+                  <div className="storage-offer-card__media-accent" aria-hidden />
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <h3 className="storage-offer-card__title">{card.title}</h3>
+                <p className="storage-offer-card__desc">{card.desc}</p>
+                <button
+                  type="button"
+                  className="storage-offer-card__link group"
+                  onClick={() =>
+                    setActiveOfferDetail({
+                      title: card.title,
+                      image: card.image,
+                      body: card.learnMore,
+                      ...('learnMoreBullets' in card && card.learnMoreBullets
+                        ? { bullets: card.learnMoreBullets }
+                        : {}),
+                      ...('learnMoreClosing' in card && card.learnMoreClosing
+                        ? { closing: card.learnMoreClosing }
+                        : {}),
+                    })
+                  }
+                  aria-haspopup="dialog"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight
+                    size={13}
+                    strokeWidth={2.25}
+                    className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </button>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="storage-offers-section" id="storage-offers">
+        <div className="container">
+          <header className="storage-offers__head">
+            <p className="storage-offers__eyebrow">Storage options</p>
+            <h2 className="storage-offers__title">Storage Solutions for Every Need</h2>
+            <p className="storage-offers__lead">
+              Choose from personal, business, and pallet storage options designed for security,
+              flexibility, and easy access.
+            </p>
+          </header>
+        </div>
+
+        <div className="storage-offers-bleed">
+          <div className="storage-offers-bleed__inner">
+            <motion.div
+              className="storage-specs-entry"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, ease: PRICING_EASE }}
+            >
+              <div className="storage-specs-entry__accent" aria-hidden />
+              <div className="storage-specs-entry__inner">
+                <div className="storage-specs-entry__copy">
+                  <p className="storage-specs-entry__eyebrow">
+                    <span className="storage-specs-entry__eyebrow-line" aria-hidden />
+                    <span>Unit specifications</span>
+                    <span className="storage-specs-entry__eyebrow-line" aria-hidden />
+                  </p>
+
+                  <div className="storage-specs-entry__title-block">
+                    <span className="storage-specs-entry__title-rule" aria-hidden />
+                    <h3 className="storage-specs-entry__title">
+                      <span className="storage-specs-entry__title-main">Storage Unit Sizes</span>
+                      <span className="storage-specs-entry__title-accent">&amp; Specifications</span>
+                    </h3>
+                  </div>
+
+                  <div className="storage-specs-entry__lead-panel">
+                    <p className="storage-specs-entry__lead">
+                      Precise external and internal dimensions, door openings, and capacity for every
+                      container and insulated warehouse unit at Storage2Rent.
+                    </p>
+                  </div>
+                </div>
+                <Link to={STORAGE_UNIT_SPECS_PATH} className="storage-specs-entry__cta group">
+                  <span className="storage-specs-entry__cta-sheen" aria-hidden />
+                  <span className="storage-specs-entry__cta-text">View full specifications</span>
+                  <ArrowRight
+                    size={16}
+                    strokeWidth={2.25}
+                    className="storage-specs-entry__cta-icon shrink-0"
+                    aria-hidden
+                  />
+                </Link>
+              </div>
+            </motion.div>
+
+            <motion.section
+              id="storage-extra-services"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.4 }}
+              className="storage-extra-services"
+            >
+              <div className="storage-extra-services__accent" aria-hidden />
+              <div className="storage-extra-services__grid">
+                <div className="storage-extra-services__copy">
+                  <p className="storage-extra-services__eyebrow">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</p>
+                  <h3 className="storage-extra-services__title">{STORAGE_EXTRA_SERVICES_INTRO.title}</h3>
+                  <p className="storage-extra-services__lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
+                </div>
+
+                <div className="storage-extra-services__items">
+                  {STORAGE_EXTRA_SERVICE_IMAGES.map((service, idx) => (
+                    <motion.div
+                      key={service.title}
+                      initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ duration: 0.45, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                      className="storage-extra-services__feature-wrap"
+                    >
+                      <Link
+                        to={service.href}
+                        className="storage-extra-services__feature-link group"
+                        aria-label={`${service.title} — swipe for more`}
+                      >
+                        <article className="storage-extra-services__feature">
+                          <div className="storage-extra-services__feature-media">
+                            <div className="storage-extra-services__feature-accent" aria-hidden />
+                            <img
+                              src={service.image}
+                              alt={service.title}
+                              className="storage-extra-services__feature-img"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <div className="storage-extra-services__feature-scrim" aria-hidden />
+                            <p className="storage-extra-services__feature-title">{service.title}</p>
+                            <span className="storage-extra-services__swipe" aria-hidden>
+                              <span className="storage-extra-services__swipe-text">Swipe for more</span>
+                              <span className="storage-extra-services__swipe-arrows">
+                                <ArrowRight size={13} strokeWidth={2.5} />
+                                <ArrowRight size={13} strokeWidth={2.5} />
+                                <ArrowRight size={13} strokeWidth={2.5} />
+                              </span>
+                            </span>
+                          </div>
+                        </article>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.section>
+          </div>
+        </div>
+      </section>
+
       <section className="storage-about" id="storage-about" aria-labelledby="storage-about-heading">
         <div className="container storage-about__inner">
           <motion.header
@@ -531,254 +764,6 @@ export default function StoragePremiumSection() {
               safeguard what matters most to you.
             </p>
           </motion.div>
-        </div>
-      </section>
-
-      <section className="storage-offers__cards-bleed" aria-label="Storage offer highlights">
-        <div className="storage-offers__cards-wrap">
-          <div className="storage-offers__cards">
-            {STORAGE_OFFER_CARDS.map((card, i) => (
-              <motion.article
-                key={card.title}
-                className="storage-offer-card group"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="storage-offer-card__accent" aria-hidden />
-                <div className="storage-offer-card__glow" aria-hidden />
-                <div className="storage-offer-card__media">
-                  <div className="storage-offer-card__media-accent" aria-hidden />
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <h3 className="storage-offer-card__title">{card.title}</h3>
-                <p className="storage-offer-card__desc">{card.desc}</p>
-                <button
-                  type="button"
-                  className="storage-offer-card__link group"
-                  onClick={() =>
-                    setActiveOfferDetail({
-                      title: card.title,
-                      image: card.image,
-                      body: card.learnMore,
-                      ...('learnMoreBullets' in card && card.learnMoreBullets
-                        ? { bullets: card.learnMoreBullets }
-                        : {}),
-                      ...('learnMoreClosing' in card && card.learnMoreClosing
-                        ? { closing: card.learnMoreClosing }
-                        : {}),
-                    })
-                  }
-                  aria-haspopup="dialog"
-                >
-                  <span>Learn More</span>
-                  <ArrowRight
-                    size={13}
-                    strokeWidth={2.25}
-                    className="shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
-                    aria-hidden
-                  />
-                </button>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="container">
-        <motion.h3
-          className="storage-pricing-heading"
-          id="storage-rates"
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.35, ease: PRICING_EASE }}
-        >
-          Monthly rates
-        </motion.h3>
-        <motion.div
-          className="storage-pricing-grid"
-          role="list"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-70px', amount: 0.15 }}
-          variants={pricingGridVariants}
-        >
-          {STORAGE_PLANS.map((plan, index) => (
-            <motion.article
-              key={plan.title}
-              className="storage-price-card"
-              role="listitem"
-              custom={index}
-              variants={reduceMotion ? pricingCardVariantsReduced : pricingCardVariants}
-            >
-              <motion.div
-                className="storage-price-card__accent"
-                aria-hidden
-                variants={reduceMotion ? undefined : pricingAccentVariants}
-              />
-              <motion.h3
-                className="storage-price-card__title"
-                variants={reduceMotion ? undefined : pricingTextVariants}
-              >
-                {plan.title}
-              </motion.h3>
-              <motion.p
-                className="storage-price-card__price"
-                variants={reduceMotion ? undefined : pricingTextVariants}
-              >
-                <motion.span
-                  className="storage-price-card__amount"
-                  variants={reduceMotion ? undefined : pricingAmountVariants}
-                >
-                  {plan.price}€
-                </motion.span>
-                <span className="storage-price-card__period">per month</span>
-              </motion.p>
-            </motion.article>
-          ))}
-        </motion.div>
-      </div>
-
-      <section className="storage-offers-section" id="storage-offers">
-        <div className="container">
-          <header className="storage-offers__head">
-            <p className="storage-offers__eyebrow">Storage options</p>
-            <h2 className="storage-offers__title">Storage Solutions for Every Need</h2>
-            <p className="storage-offers__lead">
-              Choose from personal, business, and pallet storage options designed for security,
-              flexibility, and easy access.
-            </p>
-          </header>
-        </div>
-
-        <div className="storage-offers-bleed">
-          <div className="storage-offers-bleed__inner">
-            <motion.div
-              className="storage-specs-entry"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, ease: PRICING_EASE }}
-            >
-              <div className="storage-specs-entry__accent" aria-hidden />
-              <div className="storage-specs-entry__inner">
-                <div className="storage-specs-entry__copy">
-                  <p className="storage-specs-entry__eyebrow">
-                    <span className="storage-specs-entry__eyebrow-line" aria-hidden />
-                    <span>Unit specifications</span>
-                    <span className="storage-specs-entry__eyebrow-line" aria-hidden />
-                  </p>
-
-                  <div className="storage-specs-entry__title-block">
-                    <span className="storage-specs-entry__title-rule" aria-hidden />
-                    <h3 className="storage-specs-entry__title">
-                      <span className="storage-specs-entry__title-main">Storage Unit Sizes</span>
-                      <span className="storage-specs-entry__title-accent">&amp; Specifications</span>
-                    </h3>
-                  </div>
-
-                  <div className="storage-specs-entry__lead-panel">
-                    <p className="storage-specs-entry__lead">
-                      Precise external and internal dimensions, door openings, and capacity for every
-                      container and insulated warehouse unit at Storage2Rent.
-                    </p>
-                  </div>
-
-                  <ul className="storage-specs-entry__list" aria-label="Available unit types">
-                    <li className="storage-specs-entry__list-item">
-                      <span className="storage-specs-entry__list-index" aria-hidden>01</span>
-                      <span className="storage-specs-entry__list-text">20ft &amp; 40ft standard containers</span>
-                    </li>
-                    <li className="storage-specs-entry__list-item">
-                      <span className="storage-specs-entry__list-index" aria-hidden>02</span>
-                      <span className="storage-specs-entry__list-text">20ft insulated warehouse units</span>
-                    </li>
-                    <li className="storage-specs-entry__list-item">
-                      <span className="storage-specs-entry__list-index" aria-hidden>03</span>
-                      <span className="storage-specs-entry__list-text">30ft thermal insulated warehouse</span>
-                    </li>
-                  </ul>
-                </div>
-                <Link to={STORAGE_UNIT_SPECS_PATH} className="storage-specs-entry__cta group">
-                  <span className="storage-specs-entry__cta-sheen" aria-hidden />
-                  <span className="storage-specs-entry__cta-text">View full specifications</span>
-                  <ArrowRight
-                    size={16}
-                    strokeWidth={2.25}
-                    className="storage-specs-entry__cta-icon shrink-0"
-                    aria-hidden
-                  />
-                </Link>
-              </div>
-            </motion.div>
-
-            <motion.section
-              id="storage-extra-services"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.4 }}
-              className="storage-extra-services"
-            >
-              <div className="storage-extra-services__accent" aria-hidden />
-              <div className="storage-extra-services__grid">
-                <div className="storage-extra-services__copy">
-                  <p className="storage-extra-services__eyebrow">{STORAGE_EXTRA_SERVICES_INTRO.eyebrow}</p>
-                  <h3 className="storage-extra-services__title">{STORAGE_EXTRA_SERVICES_INTRO.title}</h3>
-                  <p className="storage-extra-services__lead">{STORAGE_EXTRA_SERVICES_INTRO.lead}</p>
-                </div>
-
-                <div className="storage-extra-services__items">
-                  {STORAGE_EXTRA_SERVICE_IMAGES.map((service, idx) => (
-                    <motion.div
-                      key={service.title}
-                      initial={{ opacity: 0, y: 20, scale: 0.97 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      viewport={{ once: true, margin: '-40px' }}
-                      transition={{ duration: 0.45, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                      className="storage-extra-services__feature-wrap"
-                    >
-                      <Link
-                        to={service.href}
-                        className="storage-extra-services__feature-link group"
-                        aria-label={`${service.title} — swipe for more`}
-                      >
-                        <article className="storage-extra-services__feature">
-                          <div className="storage-extra-services__feature-media">
-                            <div className="storage-extra-services__feature-accent" aria-hidden />
-                            <img
-                              src={service.image}
-                              alt={service.title}
-                              className="storage-extra-services__feature-img"
-                              loading="lazy"
-                              decoding="async"
-                            />
-                            <div className="storage-extra-services__feature-scrim" aria-hidden />
-                            <p className="storage-extra-services__feature-title">{service.title}</p>
-                            <span className="storage-extra-services__swipe" aria-hidden>
-                              <span className="storage-extra-services__swipe-text">Swipe for more</span>
-                              <span className="storage-extra-services__swipe-arrows">
-                                <ArrowRight size={13} strokeWidth={2.5} />
-                                <ArrowRight size={13} strokeWidth={2.5} />
-                                <ArrowRight size={13} strokeWidth={2.5} />
-                              </span>
-                            </span>
-                          </div>
-                        </article>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.section>
-          </div>
         </div>
       </section>
 
