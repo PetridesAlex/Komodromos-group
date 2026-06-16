@@ -11,6 +11,7 @@ import WeddingServicesPage from './components/WeddingServicesPage.tsx'
 import WeddingPackageDetailPage from './components/WeddingPackageDetailPage.tsx'
 import BusinessConsultingPage from './components/BusinessConsultingPage.tsx'
 import PoolGardenServicesPage from './components/PoolGardenServicesPage.tsx'
+import PoolCategoryDetailPage from './components/PoolCategoryDetailPage.tsx'
 import AviationServicesPage from './components/AviationServicesPage.tsx'
 import AirServicesPage from './components/AirServicesPage.tsx'
 import AirCategoryPage from './components/AirCategoryPage.tsx'
@@ -82,6 +83,9 @@ function Root() {
             <Route path="/services/wedding/packages/:packageId" element={<WeddingPackageDetailPage />} />
             <Route path="/services/consulting" element={<BusinessConsultingPage />} />
             <Route path="/services/pool" element={<PoolGardenServicesPage />} />
+            <Route path="/services/pool/categories/:categoryId" element={<PoolCategoryDetailPage />} />
+            <Route path="/services/pool/services/:serviceId" element={<PoolCategoryDetailPage />} />
+            <Route path="/services/pool/linings/:liningId" element={<PoolCategoryDetailPage />} />
             <Route path="/services/aviation" element={<AviationServicesPage />} />
             <Route path="/services/air" element={<AirServicesPage />} />
             <Route path="/services/air/private-jets/fleet" element={<PrivateJetFleetPage />} />
