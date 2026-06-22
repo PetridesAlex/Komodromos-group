@@ -19,23 +19,6 @@ const fadeUpView = {
   margin: '-50px 0px',
 } as const
 
-const galleryGridVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.05 },
-  },
-}
-
-const galleryItemVariants = {
-  hidden: { opacity: 0, y: 28, scale: 0.98 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.52, ease: POOL_EASE },
-  },
-}
-
 const contentGridVariants = {
   hidden: {},
   visible: {
@@ -299,25 +282,22 @@ export default function PoolCategoryDetailPage() {
                 Click any image to preview
               </p>
 
-              <motion.div
+              <div
                 className="pool-category-detail__gallery-grid pool-category-detail__gallery-grid--compact"
                 role="list"
-                variants={reduceMotion ? undefined : galleryGridVariants}
-                initial={reduceMotion ? false : 'hidden'}
-                whileInView={reduceMotion ? undefined : 'visible'}
-                viewport={fadeUpView}
               >
                 {gallery.map((image, index) => (
-                  <motion.button
+                  <button
                     key={`${image.src}-${index}`}
                     type="button"
                     role="listitem"
                     className="pool-category-detail__gallery-item pool-category-detail__gallery-item--compact"
-                    variants={reduceMotion ? undefined : galleryItemVariants}
                     onClick={() => setLightboxIndex(index)}
                     aria-label={`Preview image ${index + 1}: ${image.caption ?? image.alt}`}
                   >
-                    <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                    <span className="pool-category-detail__gallery-item-frame">
+                      <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                    </span>
                     <span className="pool-category-detail__gallery-item-overlay" aria-hidden>
                       <ZoomIn size={18} strokeWidth={2} />
                     </span>
@@ -326,9 +306,9 @@ export default function PoolCategoryDetailPage() {
                         {image.caption}
                       </span>
                     ) : null}
-                  </motion.button>
+                  </button>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </section>
         ) : null}

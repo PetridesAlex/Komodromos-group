@@ -437,8 +437,8 @@ export const POOL_CATEGORY_DETAILS: Partial<Record<string, PoolCategoryDetail>> 
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_CATEGORY_OVERFLOW,
-            alt: 'Overflow swimming pool with seamless deck-level water line',
+            src: poolOverflowImage('IMG_7336.JPG'),
+            alt: 'Overflow swimming pool with deck-level perimeter channel',
             caption: 'Seamless deck-level water line',
           },
           {
@@ -548,7 +548,7 @@ export const POOL_CATEGORY_DETAILS: Partial<Record<string, PoolCategoryDetail>> 
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_CATEGORY_SKIMMER,
+            src: poolSkimmerImage('IMG_7358.JPG'),
             alt: 'Skimmer swimming pool with efficient surface water circulation',
             caption: 'Efficient surface circulation',
           },
@@ -674,8 +674,8 @@ export const POOL_CATEGORY_DETAILS: Partial<Record<string, PoolCategoryDetail>> 
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_CATEGORY_INFINITY,
-            alt: 'Infinity swimming pool with vanishing edge overlooking the landscape',
+            src: poolInfinityImage('hq720.jpg'),
+            alt: 'Architectural infinity pool with seamless vanishing edge',
             caption: 'Endless horizon effect',
           },
           {
@@ -866,14 +866,14 @@ export const POOL_LINING_DETAILS: Partial<Record<string, PoolCategoryDetail>> = 
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_LINING_LINER,
+            src: poolLinerImage('IMG_7440.JPG'),
             alt: 'Professionally installed reinforced swimming pool liner',
             caption: 'Reinforced waterproof finish',
           },
           {
-            src: poolLinerImage('IMG_7445.JPG'),
-            alt: 'Swimming pool with professionally installed liner finish',
-            caption: 'Elegant liner installation',
+            src: poolLinerImage('IMG_7475.JPG'),
+            alt: 'Finished pool with solid blue liner, built-in steps, and sun shelf filled with clear water',
+            caption: 'Smooth blue liner with integrated steps',
           },
         ],
         paragraphs: [
@@ -886,8 +886,8 @@ export const POOL_LINING_DETAILS: Partial<Record<string, PoolCategoryDetail>> = 
         media: [
           {
             src: poolLinerImage('IMG_7460.JPG'),
-            alt: 'Premium pool liner in custom colour and pattern finish',
-            caption: 'Custom colour & pattern options',
+            alt: 'Empty pool lined with blue marble-pattern vinyl liner fitted over built-in steps',
+            caption: 'Custom blue patterned liner finish',
           },
         ],
         paragraphs: [
@@ -899,14 +899,14 @@ export const POOL_LINING_DETAILS: Partial<Record<string, PoolCategoryDetail>> = 
         mediaLayout: 'duo',
         media: [
           {
-            src: poolLinerImage('IMG_7475.JPG'),
-            alt: 'Smooth reinforced pool liner surface for comfortable swimming',
-            caption: 'Smooth, durable liner surface',
+            src: poolLinerImage('IMG_7480.JPG'),
+            alt: 'Technician heat-welding a pool liner seam with a heat gun and hand roller',
+            caption: 'Heat-welded liner seam detail',
           },
           {
-            src: poolLinerImage('IMG_7480.JPG'),
-            alt: 'UV-resistant pool liner with pristine water clarity',
-            caption: 'Long-lasting sealed performance',
+            src: poolLinerImage('IMG_7500.JPG'),
+            alt: 'Blue patterned liner with a return jet opening cut and aligned ready for sealing',
+            caption: 'Fixture opening prepared in liner',
           },
         ],
         paragraphs: [
@@ -918,9 +918,9 @@ export const POOL_LINING_DETAILS: Partial<Record<string, PoolCategoryDetail>> = 
         mediaLayout: 'split',
         media: [
           {
-            src: poolLinerImage('IMG_7490.JPG'),
-            alt: 'Renovated swimming pool with new reinforced liner installation',
-            caption: 'Pool renovation with new liner',
+            src: poolLinerImage('IMG_7495.JPG'),
+            alt: 'Empty pool shell cleared of the old finish and prepared for a new liner installation',
+            caption: 'Pool shell prepared for relining',
           },
         ],
         paragraphs: [
@@ -932,24 +932,24 @@ export const POOL_LINING_DETAILS: Partial<Record<string, PoolCategoryDetail>> = 
         mediaLayout: 'quad',
         media: [
           {
-            src: poolLinerImage('IMG_7495.JPG'),
-            alt: 'Precise pool liner installation with meticulous preparation',
-            caption: 'Meticulous liner preparation',
+            src: poolLinerImage('IMG_7490.JPG'),
+            alt: 'Blue patterned vinyl liner being fitted over corner steps during installation',
+            caption: 'Liner formed over corner steps',
           },
           {
-            src: poolLinerImage('IMG_7500.JPG'),
-            alt: 'Flawless reinforced liner finish on completed pool',
-            caption: 'Flawless installation finish',
+            src: poolLinerImage('IMG_7445.JPG'),
+            alt: 'Rectangular pool interior finished with blue mosaic tiles at sunset',
+            caption: 'Blue mosaic tile pool interior',
           },
           {
             src: poolLinerImage('IMG_7502.JPG'),
-            alt: 'Commercial pool liner installation by BlueSky Pools',
-            caption: 'Commercial liner project',
+            alt: 'Blue mosaic tiles being applied inside a rooftop pool under construction',
+            caption: 'Mosaic tile installation in progress',
           },
           {
             src: poolLinerImage('IMG_7504.JPG'),
-            alt: 'Completed swimming pool liner project with premium materials',
-            caption: 'Premium materials & craftsmanship',
+            alt: 'Completed empty pool with dark blue mosaic tile interior and bench ledge',
+            caption: 'Dark mosaic tile finish complete',
           },
         ],
         paragraphs: [
@@ -1137,8 +1137,8 @@ export const POOL_LINING_DETAILS: Partial<Record<string, PoolCategoryDetail>> = 
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_LINING_MOSAIC,
-            alt: 'Premium mosaic swimming pool finish with intricate tile detail',
+            src: poolCeramicMosaicImage('7776350.jpg'),
+            alt: 'Resort-style pool with ceramic mosaic finish',
             caption: 'Timeless mosaic elegance',
           },
           {
@@ -1175,8 +1175,8 @@ export const POOL_LINING_DETAILS: Partial<Record<string, PoolCategoryDetail>> = 
             caption: 'Luminous glass mosaic',
           },
           {
-            src: POOL_LINING_CERAMIC,
-            alt: 'Elegant ceramic swimming pool finish with refined surface',
+            src: poolCeramicMosaicImage('21.jpg'),
+            alt: 'Elegant ceramic pool finish with crystal-clear water effect',
             caption: 'Refined ceramic finish',
           },
         ],
@@ -1265,7 +1265,7 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_REPAIR_FOUNTAIN,
+            src: poolWaterfallImage('IMG_7419.JPG'),
             alt: 'Decorative swimming pool fountain with elegant water display',
             caption: 'Elegant fountain display',
           },
@@ -1457,8 +1457,8 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_REPAIR_COOLING,
-            alt: 'Swimming pool heating and cooling system installation',
+            src: poolCoolingHeatingImage('cooling-heating-2.png'),
+            alt: 'Pool climate control system equipment installation',
             caption: 'Year-round pool comfort',
           },
           {
@@ -1583,7 +1583,7 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_REPAIR_SWIM_SPAS,
+            src: poolSwimSpaImage('IMG_7416.JPG'),
             alt: 'Premium swim spa with counter-current technology',
             caption: 'Counter-current swim technology',
           },
@@ -1748,8 +1748,8 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_REPAIR_BAR,
-            alt: 'Custom pool bar with underwater stools and swim-up seating',
+            src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-1.jpg`,
+            alt: 'Luxury swimming pool with integrated swim-up bar and submerged stools',
             caption: 'Resort-style pool entertaining',
           },
           {
@@ -1768,7 +1768,7 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'split',
         media: [
           {
-            src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-1.jpg`,
+            src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-3.JPG`,
             alt: 'Luxury swimming pool with integrated swim-up bar and submerged stools',
             caption: 'Comfortable in-water seating with bar access',
           },
@@ -1782,7 +1782,7 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'duo',
         media: [
           {
-            src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-3.JPG`,
+            src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-4.jpg`,
             alt: 'Swim-up pool bar with premium finish and social seating',
             caption: 'Mediterranean-inspired bar styling',
           },
@@ -1801,7 +1801,7 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'split',
         media: [
           {
-            src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-4.jpg`,
+            src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-6.jpg`,
             alt: 'Custom pool bar built into the pool shell with refined stonework',
             caption: 'Precision shell integration & finishing',
           },
@@ -1813,13 +1813,8 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
       },
       {
         title: 'Durability & exclusivity',
-        mediaLayout: 'quad',
+        mediaLayout: 'trio',
         media: [
-          {
-            src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-6.jpg`,
-            alt: 'Swimming pool bar area with architectural waterline detailing',
-            caption: 'Premium waterline detailing',
-          },
           {
             src: `${POOL_BAR_STOOLS_GALLERY}/Bar-Stools-7.JPG`,
             alt: 'Premium pool bar installation with submerged lounge seating',
@@ -1874,8 +1869,8 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_REPAIR_SERVICE,
-            alt: 'Professional swimming pool service and maintenance',
+            src: poolServiceMaintenanceImage('IMG_7539.JPG'),
+            alt: 'BlueSky Pools technician maintaining a swimming pool',
             caption: 'Year-round professional pool care',
           },
           {
@@ -2031,7 +2026,7 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         mediaLayout: 'duo',
         media: [
           {
-            src: POOL_REPAIR_GARDEN,
+            src: poolGardenImage('IMG_7509.JPG'),
             alt: 'Professionally landscaped garden alongside a swimming pool',
             caption: 'Harmonious pool & garden design',
           },
@@ -2234,8 +2229,22 @@ export function getPoolGardenGallery(
   label: string,
   detail: PoolCategoryDetail,
 ): readonly PoolCategoryGalleryImage[] {
-  if (detail.galleryImages?.length) return detail.galleryImages
-  return [{ src: imageSrc, alt: detail.imageAlt || label }]
+  const gallery =
+    detail.galleryImages?.length ?
+      [...detail.galleryImages]
+    : [{ src: imageSrc, alt: detail.imageAlt || label, caption: undefined }]
+
+  const sectionSrcs = new Set(
+    detail.sections.flatMap((section) => section.media?.map((image) => image.src) ?? []),
+  )
+
+  const seen = new Set<string>()
+
+  return gallery.filter((image) => {
+    if (sectionSrcs.has(image.src) || seen.has(image.src)) return false
+    seen.add(image.src)
+    return true
+  })
 }
 
 export const poolGardenPillars = [

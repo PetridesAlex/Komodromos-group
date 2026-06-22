@@ -30217,8 +30217,10 @@ a.pool-garden-showcase-card {
 }
 
 .pool-category-detail__gallery-inner--compact {
-  max-width: min(920px, 100%);
+  width: 100%;
+  max-width: min(1100px, 100%);
   margin: 0 auto;
+  min-width: 0;
 }
 
 .pool-category-detail__section-head--gallery-centered {
@@ -30325,6 +30327,8 @@ a.pool-garden-showcase-card {
 
 .pool-category-detail__gallery-grid {
   display: grid;
+  width: 100%;
+  min-width: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(0.75rem, 1.8vw, 1.1rem);
 }
@@ -30354,6 +30358,11 @@ a.pool-garden-showcase-card {
 
 .pool-category-detail__gallery-item {
   position: relative;
+  display: grid;
+  grid-template: 1fr / 1fr;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -30361,6 +30370,10 @@ a.pool-garden-showcase-card {
   border-radius: clamp(12px, 1.4vw, 16px);
   background: #050a14;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 1;
   aspect-ratio: 4 / 3;
   transition:
     border-color 0.32s ease,
@@ -30376,8 +30389,30 @@ a.pool-garden-showcase-card {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pool-category-detail__gallery-item-frame {
+  grid-area: 1 / 1;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #050a14;
+}
+
+.pool-category-detail__gallery-item-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  opacity: 1;
 }
 
 .pool-category-detail__gallery-item:hover,
@@ -30415,13 +30450,23 @@ a.pool-garden-showcase-card {
 }
 
 .pool-category-detail__gallery-grid--compact {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.55rem, 1.2vw, 0.72rem);
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.45rem, 2vw, 0.65rem);
+}
+
+@media (min-width: 480px) {
+  .pool-category-detail__gallery-grid--compact {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.5rem, 1.4vw, 0.68rem);
+  }
 }
 
 @media (min-width: 640px) {
   .pool-category-detail__gallery-grid--compact {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.55rem, 1.2vw, 0.72rem);
   }
 }
 
@@ -30449,14 +30494,16 @@ a.pool-garden-showcase-card {
 }
 
 .pool-category-detail__gallery-item-overlay {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgba(255, 252, 246, 0.95);
   background: rgba(3, 8, 18, 0.42);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.32s ease;
 }
 
@@ -30466,11 +30513,16 @@ a.pool-garden-showcase-card {
 }
 
 .pool-category-detail__gallery-caption--compact {
+  grid-area: 1 / 1;
+  align-self: end;
+  position: relative;
+  z-index: 2;
   padding: 0.45rem 0.5rem;
   font-size: 0.48rem;
   letter-spacing: 0.08em;
   opacity: 0;
   transform: translateY(4px);
+  pointer-events: none;
   transition:
     opacity 0.32s ease,
     transform 0.32s ease;
@@ -30480,6 +30532,34 @@ a.pool-garden-showcase-card {
 .pool-category-detail__gallery-item--compact:focus-visible .pool-category-detail__gallery-caption--compact {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (hover: none) {
+  .pool-category-detail__gallery-item--compact:active .pool-category-detail__gallery-item-overlay {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 639px) {
+  .pool-category-detail__gallery-band--compact {
+    padding-inline: clamp(0.75rem, 3.5vw, 1.25rem);
+    overflow-x: clip;
+  }
+
+  .pool-category-detail__gallery-hint {
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+    padding-inline: 0.25rem;
+  }
+
+  .pool-category-detail__section-head--gallery-centered {
+    padding-inline: 0.15rem;
+  }
+
+  .pool-category-detail__section-lead--gallery {
+    font-size: clamp(0.86rem, 3.6vw, 0.96rem);
+    line-height: 1.65;
+  }
 }
 
 /* Pool detail — full-screen gallery lightbox */
@@ -30610,12 +30690,32 @@ a.pool-garden-showcase-card {
 }
 
 @media (max-width: 640px) {
+  .pool-gallery-lightbox {
+    padding: 0.75rem;
+  }
+
   .pool-gallery-lightbox__nav {
     display: none;
   }
 
   .pool-gallery-lightbox__stage {
     width: 100%;
+  }
+
+  .pool-gallery-lightbox__frame {
+    border-radius: 10px;
+  }
+
+  .pool-gallery-lightbox__frame img {
+    max-height: min(68vh, 100%);
+    width: 100%;
+    height: auto;
+  }
+
+  .pool-gallery-lightbox__caption {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    padding-inline: 0.5rem;
   }
 }
 
@@ -30923,6 +31023,13 @@ a.pool-garden-showcase-card {
   .pool-garden-showcase-card__detail-hint {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+  }
+
+  .pool-category-detail__gallery-item,
+  .pool-category-detail__gallery-item img,
+  .pool-category-detail__gallery-item-frame img {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .pool-category-detail__gallery-item,
