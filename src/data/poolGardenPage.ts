@@ -1870,13 +1870,13 @@ export const POOL_SERVICE_DETAILS: Partial<Record<string, PoolCategoryDetail>> =
         media: [
           {
             src: poolServiceMaintenanceImage('IMG_7539.JPG'),
-            alt: 'BlueSky Pools technician maintaining a swimming pool',
-            caption: 'Year-round professional pool care',
+            alt: 'Damaged pool plumbing pipe identified during a maintenance visit',
+            caption: 'Early detection of plumbing issues',
           },
           {
-            src: poolServiceMaintenanceImage('IMG_7539.JPG'),
-            alt: 'BlueSky Pools technician maintaining a swimming pool',
-            caption: 'Dedicated ongoing maintenance',
+            src: poolServiceMaintenanceImage('IMG_7540.JPG'),
+            alt: 'Pool deck excavation exposing underground pipes for repair',
+            caption: 'On-site pipe repair and replacement',
           },
         ],
         paragraphs: [
