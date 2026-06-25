@@ -1,542 +1,286 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import type { LucideIcon } from 'lucide-react'
-import {
-  Building2,
-  Calculator,
-  FileCheck,
-  Compass,
-  Search,
-  HardHat,
-  X,
-} from 'lucide-react'
+import { motion, useReducedMotion } from 'motion/react'
+import { ArrowRight, Phone } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
-import ConsultingServiceCardsCarousel from './ConsultingServiceCardsCarousel'
-import Profile3 from './profile-3'
 import { useReveal } from '../hooks/useReveal'
 
-const SVC_COVER = '/images/services/companie-services-cover'
+const BC_IMG_BASE = '/images/services/business-coosultant'
+const SERVICE_INTEREST = "Business Consultant's"
+const EASE = [0.22, 1, 0.36, 1] as const
+const HERO_STAGGER = 0.11
 
-const HERO_BG = `${SVC_COVER}/10%20Business-consulting.webp`
-/** Judgment column: dedicated advisory / consulting imagery (distinct from hero) */
-const JUDGMENT_MEDIA = `${SVC_COVER}/business-consulting-judgment.png`
+const bcHeroActionsVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.14,
+      delayChildren: 1.05,
+    },
+  },
+} as const
 
-type ConsultingServiceItem = {
-  id: string
-  title: string
-  icon: LucideIcon
+const bcHeroActionVariants = {
+  hidden: { opacity: 0, y: 22, filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.58, ease: EASE },
+  },
+} as const
+
+const MotionLink = motion.create(Link)
+
+function bcImage(filename: string) {
+  // Encode spaces only — full encodeURIComponent breaks filenames with "&"
+  return `${BC_IMG_BASE}/${filename.replace(/ /g, '%20')}`
 }
 
-const SERVICE_CATEGORIES: ConsultingServiceItem[] = [
+const IMAGES = {
+  strategic: bcImage('Strategic Business Consulting.webp'),
+  management: bcImage('Management Consulting .webp'),
+  financial: bcImage('Financial Services Consulting.webp'),
+  accountants: bcImage('Accountant & Auditors.webp'),
+  hr: bcImage('Human Resources Consulting.webp'),
+  digital: bcImage('Digital Consulting.webp'),
+} as const
+
+const CONSULTING_SERVICES = [
   {
-    id: 'company-account',
-    title: 'Company account',
-    icon: Building2,
+    index: '01',
+    title: 'Strategic Business Consulting',
+    text:
+      'Long-range vision, growth roadmaps, and commercial strategy aligned to your ambitions and market reality.',
+    image: IMAGES.strategic,
+    imageAlt: 'Strategic business consulting session',
   },
   {
-    id: 'business-accounting',
-    title: 'Business & Accounting Services',
-    icon: Calculator,
+    index: '02',
+    title: 'Management Consulting',
+    text:
+      'Organisation design, leadership capability, and operational transformation that scales with your business.',
+    image: IMAGES.management,
+    imageAlt: 'Management consulting and leadership advisory',
   },
   {
-    id: 'tax-returns',
-    title: 'Tax Returns',
-    icon: FileCheck,
+    index: '03',
+    title: 'Financial Services Consulting',
+    text:
+      'Financial planning, capital structure, and investment guidance to strengthen commercial decision-making.',
+    image: IMAGES.financial,
+    imageAlt: 'Financial services consulting',
   },
-  { id: 'tax-advice', title: 'Tax Advice & Planning', icon: Compass },
-  { id: 'tax-investigation', title: 'Tax Investigation', icon: Search },
-  { id: 'contractors-advice', title: 'Contractors Advice', icon: HardHat },
-]
+  {
+    index: '04',
+    title: 'Accountant & Auditors',
+    text:
+      'Statutory accounts, audit readiness, and compliance support delivered with precision and clarity.',
+    image: IMAGES.accountants,
+    imageAlt: 'Accounting and audit advisory',
+  },
+  {
+    index: '05',
+    title: 'Human Resources Consulting',
+    text:
+      'People strategy, culture, and performance programmes that align talent with business outcomes.',
+    image: IMAGES.hr,
+    imageAlt: 'Human resources consulting',
+    href: '/services/hr',
+  },
+  {
+    index: '06',
+    title: 'Digital Consulting',
+    text:
+      'Technology enablement and digital transformation to modernise operations and unlock efficiency.',
+    image: IMAGES.digital,
+    imageAlt: 'Digital consulting and transformation',
+  },
+] as const
 
-function CompanyAccountModalContent() {
+const ABOUT_BLOCKS = [
+  {
+    index: '01',
+    theme: 'Our commitment',
+    variant: 'lead',
+    text:
+      'At Komodromos Group of Companies, we are committed to helping entrepreneurs, business owners, investors, and organisations achieve sustainable growth through strategic expertise, innovation, and practical business solutions. Our mission is to empower ambitious leaders with the knowledge, guidance, and confidence required to build stronger businesses and create lasting value.',
+  },
+  {
+    index: '02',
+    theme: 'Strategy in action',
+    variant: 'body',
+    text:
+      'Our approach combines strategic planning with hands-on execution, ensuring that every recommendation is aligned with your commercial objectives and long-term vision. We work closely with our clients to identify opportunities, overcome challenges, optimise operations, and implement effective strategies that deliver measurable business results.',
+  },
+  {
+    index: '03',
+    theme: 'Tailored engagement',
+    variant: 'body',
+    text:
+      'Every engagement is tailored to the unique needs of each client. By combining commercial insight, industry expertise, and data-driven decision-making, we provide practical solutions that enhance operational efficiency, improve profitability, strengthen market positioning, and support sustainable business expansion. Our experienced consultants work alongside you throughout the journey, providing the guidance, accountability, and expertise needed to transform ambitious goals into tangible achievements.',
+  },
+  {
+    index: '04',
+    theme: 'Trusted partnership',
+    variant: 'highlight',
+    text:
+      'Built on a foundation of professionalism, integrity, and excellence, Komodromos Group of Companies has established itself as a trusted strategic partner for businesses seeking long-term success. We believe that every successful organisation begins with a clear vision, decisive leadership, and a well-defined strategy. Our commitment is to help our clients navigate today\'s competitive business environment with confidence, make informed decisions, and unlock new opportunities for growth.',
+  },
+  {
+    index: '05',
+    theme: 'Your next chapter',
+    variant: 'close',
+    text:
+      'Whether you are launching a new venture, expanding internationally, restructuring your organisation, or accelerating the growth of an established business, Komodromos Group of Companies delivers bespoke consulting solutions designed to support your ambitions and create lasting commercial value.',
+  },
+] as const
+
+function scrollToId(id: string) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  document.getElementById(id)?.scrollIntoView({
+    behavior: reduce ? 'auto' : 'smooth',
+    block: 'start',
+  })
+}
+
+type HeroBlurLineProps = {
+  text: string
+  baseDelay: number
+  reducedMotion: boolean
+  className?: string
+}
+
+function HeroBlurLine({ text, baseDelay, reducedMotion, className = '' }: HeroBlurLineProps) {
+  const words = text.split(' ')
+
+  if (reducedMotion) {
+    return <span className={className}>{text}</span>
+  }
+
   return (
-    <div className="consulting-modal__article">
-      <p className="consulting-modal__kicker">Limited Company Accounts …and so much more</p>
-      <p className="consulting-modal__p">
-        Whether you just want help preparing your statutory accounts or you go the
-        whole hog and get us to audit your year-end accounts, you&apos;ll wind up
-        with a far better understanding of your business.
-      </p>
-
-      <h4 className="consulting-modal__h">Accounts</h4>
-      <p className="consulting-modal__p">
-        We can do a great job preparing your accounts, but getting the books together
-        at year-end isn&apos;t the end of the story. Using them to make informed
-        business and personal decisions is the most important bit.
-      </p>
-      <p className="consulting-modal__p consulting-modal__p--strong">
-        With our help you&apos;ll be able to:
-      </p>
-      <ul className="consulting-modal__list">
-        <li>See from your accounts exactly how profitable and stable your business is.</li>
-        <li>Make good, solid plans for the year ahead.</li>
-        <li>Use the information for making the right business decisions.</li>
-      </ul>
-
-      <h4 className="consulting-modal__h">More than accounts – it all adds up!</h4>
-      <p className="consulting-modal__p">
-        We won&apos;t just hand over your accounts and leave you to figure out what
-        it all means. We&apos;ll review the financial performance of the business
-        with you, and we&apos;ll answer your questions and advise you in plain
-        English.
-      </p>
-      <p className="consulting-modal__p">
-        We are professional and affordable Limited company accountants. It really
-        helps that we are business owners themselves. We feel your pain and speak
-        your language!
-      </p>
-
-      <h4 className="consulting-modal__h">
-        Why Komodromos Group is better than traditional accounting
-      </h4>
-      <ul className="consulting-modal__list consulting-modal__list--spaced">
-        <li>
-          <strong>No more paperwork:</strong> raise invoices that link seamlessly to
-          your accounts and upload information directly from your online bank
-          statements. No need for re-keying, spreadsheets, paperwork or
-          &quot;traditional&quot; bookkeeping – saves time whilst being totally
-          organised.
-        </li>
-        <li>
-          <strong>Instant access to real-time figures:</strong> an up to date view of
-          your financial and tax position is available 24/7. No waiting and no extra
-          cost.
-        </li>
-        <li>
-          <strong>Unlimited Support:</strong> your own experienced accountant
-          contactable directly via phone or email, for unlimited advice. No trekking
-          to the office, no appointments, no delays, no stuffy meetings. And no extra
-          cost!
-        </li>
-        <li>
-          <strong>Fairness and transparency:</strong> all-inclusive, fixed fees with
-          no exit fee.
-        </li>
-      </ul>
-
-      <div className="consulting-modal__contact">
-        <p className="consulting-modal__p">
-          To manage company account and for a face to face meeting with a client
-          services team member, contact us on{' '}
-          <a href="tel:+35770003008">+357 7000 3008</a>
-          {' / '}
-          <a href="tel:+35770002009">+357 7000 2009</a>
-          {' or email: '}
-          <a href="mailto:info@komodromosgroup.com">info@komodromosgroup.com</a>
-        </p>
-      </div>
-    </div>
+    <span className={className}>
+      {words.map((word, wordIndex) => (
+        <motion.span
+          key={`${word}-${wordIndex}`}
+          className="bc-hero__title-word"
+          initial={{ opacity: 0, filter: 'blur(12px)', y: -18 }}
+          animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+          transition={{
+            duration: 0.62,
+            delay: baseDelay + wordIndex * HERO_STAGGER,
+            ease: EASE,
+          }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </span>
   )
 }
 
-function BusinessAccountingModalContent() {
+function HeroTitle({ reducedMotion }: { reducedMotion: boolean }) {
+  if (reducedMotion) {
+    return (
+      <>
+        <span className="bc-hero__title-line bc-hero__title-line--primary">
+          Unlock Sustainable
+        </span>
+        <span className="bc-hero__title-line bc-hero__title-line--accent">Business Growth</span>
+      </>
+    )
+  }
+
   return (
-    <div className="consulting-modal__article">
-      <p className="consulting-modal__kicker">Business &amp; Accounting Services</p>
-      <p className="consulting-modal__p">
-        Komodromos Group can provide you with more than just a set of books at
-        year-end. We&apos;ve developed a range of services for businesses to cover
-        many of the other challenges you&apos;ll meet, from business planning and
-        company secretarial to payroll. Of course, having everything under one roof
-        will save you time and money.
-      </p>
-
-      <h4 className="consulting-modal__h">Business owner support</h4>
-      <p className="consulting-modal__p">
-        Being a business owner is often a lonely place to be. Having advisers that
-        can act as a sounding board to discuss your worries, plans, or business
-        challenges can be a huge help. All of our partners are business owners
-        themselves, so can not only offer you their financial experience but also
-        their commercial experience as well.
-      </p>
-
-      <h4 className="consulting-modal__h">Payroll Services</h4>
-      <p className="consulting-modal__p">
-        Payroll management involves a lot of complex calculations and rules, so our
-        payroll outsourcing service can save you a major headache. Whether you have
-        one employee or a hundred, you&apos;ll find our payroll service flexible,
-        accurate &amp; affordable.
-      </p>
-
-      <h4 className="consulting-modal__h">Business planning</h4>
-      <p className="consulting-modal__p">
-        Good business planning is key if you want your business to thrive and grow.
-        We can help you map out the business plan you need to raise funds, improve
-        management information, plan resources or evaluate projects.
-      </p>
-
-      <h4 className="consulting-modal__h">Company formation</h4>
-      <p className="consulting-modal__p">
-        Before you make a decision to incorporate your business, we provide you with
-        complete guidance on the pros and cons of incorporation. We will profile
-        your tax bill as both an incorporated business and an unincorporated
-        business, and compare the results. We organise registrations for VAT,
-        Corporation Tax.
-      </p>
-      <p className="consulting-modal__p">
-        We also set up an online relationship with Companies House, which then
-        allows us to make modifications to directors&apos; details, shareholdings and
-        other registration matters, online. The company formation service is provided
-        with same day registration of new limited companies.
-      </p>
-
-      <p className="consulting-modal__p">
-        Take the pressure off your business – by letting Komodromos Group lend a hand
-        when you need it. Contact us now and find out about the huge range of
-        business &amp; accounting services we provide.
-      </p>
-
-      <div className="consulting-modal__contact">
-        <p className="consulting-modal__p">
-          To discuss business &amp; accounting services and for a face to face
-          meeting with a client services team member, contact us on{' '}
-          <a href="tel:+35770003008">+357 7000 3008</a>
-          {' / '}
-          <a href="tel:+35770002009">+357 7000 2009</a>
-          {' or email: '}
-          <a href="mailto:info@komodromosgroup.com">info@komodromosgroup.com</a>
-        </p>
-      </div>
-    </div>
+    <>
+      <span className="bc-hero__title-line bc-hero__title-line--primary">
+        <HeroBlurLine text="Unlock Sustainable" baseDelay={0.22} reducedMotion={reducedMotion} />
+      </span>
+      <span className="bc-hero__title-line bc-hero__title-line--accent">
+        <HeroBlurLine
+          text="Business Growth"
+          baseDelay={0.22 + 2 * HERO_STAGGER + 0.12}
+          reducedMotion={reducedMotion}
+        />
+      </span>
+    </>
   )
 }
 
-function TaxReturnsModalContent() {
-  return (
-    <div className="consulting-modal__article">
-      <p className="consulting-modal__kicker">Tax Return Services In London</p>
+function heroRevealProps(reducedMotion: boolean, delay: number) {
+  if (reducedMotion) {
+    return {}
+  }
 
-      <h4 className="consulting-modal__h consulting-modal__h--prominent">
-        Want to pay less tax?
-      </h4>
-      <p className="consulting-modal__p">
-        Finding the tax allowances and reliefs available isn&apos;t always easy,
-        given the complexity of tax laws. This is where our growing experience of
-        tax comes in. We&apos;ve got the right mix of experience and knowledge to
-        make sure you&apos;re not only compliant but you and your company save
-        tax.
-      </p>
-
-      <h4 className="consulting-modal__h">What areas can you help me save tax?</h4>
-      <p className="consulting-modal__p consulting-modal__p--strong">All of them!</p>
-      <p className="consulting-modal__p">
-        You can bet that whatever tax issue or question you have, we&apos;ve got the
-        answer. Here&apos;s just a taster of the areas we deal with:
-      </p>
-
-      <h4 className="consulting-modal__h">Tax compliance</h4>
-      <p className="consulting-modal__p">
-        Getting your tax right has never been more important. Penalties are growing
-        and HMRC is cracking down more and more. We&apos;ll make sure your tax
-        affairs are legal and accurate, right down to the last detail.
-      </p>
-      <p className="consulting-modal__p">
-        Under self-assessment, individuals, businesses and companies are responsible
-        for correctly calculating, returning and paying their own tax liabilities.
-        Getting it wrong means that penalties can be levied even for the most
-        innocent of mistakes.
-      </p>
-      <p className="consulting-modal__p">
-        Our aim is to help you minimise the time you spend on this process.
-      </p>
-      <p className="consulting-modal__p">
-        The Komodromos Group&apos;s experienced, highly qualified team will ensure
-        that your tax affairs are handled in an efficient, timely manner, reducing
-        your involvement in the compliance process, leaving you free to concentrate
-        on your business or personal affairs.
-      </p>
-
-      <h4 className="consulting-modal__h">Tax planning</h4>
-      <p className="consulting-modal__p">
-        How you structure your personal and company affairs can have a massive
-        impact on the tax you pay. We&apos;ll come up with an individual tax
-        planning strategy that makes sure you pay the least amount of tax.
-      </p>
-      <p className="consulting-modal__p">
-        Our business tax planning service helps you to plan for, manage and mitigate
-        your business tax exposures, providing regular opportunities to structure
-        the business and its transactions in tax effective ways and minimizing,
-        where possible, the impact of unexpected tax liabilities on you and your
-        business.
-      </p>
-      <p className="consulting-modal__p">
-        Our personal tax planning service helps you to plan for, manage and mitigate
-        your personal and family tax exposures, providing a framework to manage
-        assets and income in tax effective ways in order to minimize the overall tax
-        burden.
-      </p>
-      <p className="consulting-modal__p">
-        Our business structure review service helps you review and consider the
-        appropriateness of your current or intended business structure, taking into
-        account taxation and other relevant considerations, so that you can be
-        confident the structure you decide to adopt is the most tax efficient and
-        appropriate for you and your business.
-      </p>
-
-      <h4 className="consulting-modal__h">Corporation tax</h4>
-      <p className="consulting-modal__p">
-        Whether you run a single company or a whole group we&apos;ll make sure you
-        can retain more profit or extract more value from your business.
-      </p>
-      <ul className="consulting-modal__list">
-        <li>Tax returns and corporation tax computations</li>
-        <li>Quarterly instalment payment advice</li>
-      </ul>
-      <p className="consulting-modal__p">
-        We also aim to provide you with information on changes in legislation
-        throughout the tax year and help you plan the completion of your tax return
-        information.
-      </p>
-      <p className="consulting-modal__p">
-        We have a dedicated team of professional tax return accountants. Our service
-        can include, if required, pre-year-end tax planning to assist you with
-        planning your cash flow, identifying large capital expenditure for capital
-        allowances purposes.
-      </p>
-      <p className="consulting-modal__p">
-        Thinking of selling your business? Advice before the sale can make a
-        massive difference to the Corporation Tax you&apos;ll pay.
-      </p>
-
-      <div className="consulting-modal__contact">
-        <p className="consulting-modal__p">
-          To discuss tax returns and for a face to face meeting with a client
-          services team member, contact us on{' '}
-          <a href="tel:+35770003008">+357 7000 3008</a>
-          {' / '}
-          <a href="tel:+35770002009">+357 7000 2009</a>
-          {' or email: '}
-          <a href="mailto:info@komodromosgroup.com">info@komodromosgroup.com</a>
-        </p>
-      </div>
-    </div>
-  )
+  return {
+    initial: { opacity: 0, y: -20, filter: 'blur(8px)' },
+    animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+    transition: { duration: 0.62, delay, ease: EASE },
+  }
 }
 
-function TaxAdvicePlanningModalContent() {
-  return (
-    <div className="consulting-modal__article">
-      <p className="consulting-modal__kicker">Tax Advice &amp; Planning Services</p>
-      <p className="consulting-modal__p">
-        You are entitled to arrange your affairs to pay the absolute legal minimum
-        amount of tax. Whilst completion of tax returns and statutory tax obligations
-        are important jobs, all accountants should be capable of completing them and
-        advising you of your tax position and liabilities.
-      </p>
-      <p className="consulting-modal__p">
-        We try to do more than just this and are interested in maximizing your tax
-        planning opportunities.
-      </p>
-      <p className="consulting-modal__p">
-        We all have to pay our taxes but within the legal framework, there are
-        numerous ways of saving tax and making sure you do not pay a penny more than
-        is absolutely necessary. Komodromos Group has extensive experience in this
-        area of work and always fight as hard as we can for our clients. We have a
-        dedicated team of tax accountants in London.
-      </p>
-
-      <p className="consulting-modal__p consulting-modal__p--strong">
-        We can help with tax planning in relation to:
-      </p>
-      <ul className="consulting-modal__list">
-        <li>Personal taxes</li>
-        <li>Business taxes</li>
-        <li>Tax efficient employee remuneration strategies</li>
-        <li>VAT planning</li>
-        <li>Inheritance Tax strategies</li>
-        <li>Capital Gains</li>
-        <li>Profit extraction strategies</li>
-        <li>Exit strategies</li>
-        <li>International Tax</li>
-        <li>Employment status</li>
-        <li>IR35 advice</li>
-      </ul>
-
-      <p className="consulting-modal__p">
-        Apart from extensive experience in this arena, we have invested heavily in
-        reference materials and specialist software and have access to the Tax
-        Legislation, Tax Cases, to the internal manuals of HMRC and to detailed
-        commentary on all taxes, direct and indirect. This allows us to research any
-        tax topic at all and provide many ways of helping you legally save tax.
-      </p>
-      <p className="consulting-modal__p">
-        New clients are often surprised at how much can be done to help with their tax
-        position. We are always willing to go that extra mile to offer advice on the
-        areas where tax can be saved. We enjoy this work!
-      </p>
-      <p className="consulting-modal__p">
-        It is important that this work is done in advance and you should contact us
-        as soon as possible.
-      </p>
-      <p className="consulting-modal__p">
-        All of our Tax Planning makes legitimate use of the Tax Legislation and Case
-        Law so that you are not put at additional risk from a full HMRC Enquiry, or
-        where there are risks, these are pointed out to you.
-      </p>
-
-      <div className="consulting-modal__contact">
-        <p className="consulting-modal__p">
-          To discuss tax advice &amp; planning and for a face to face meeting with a
-          client services team member, contact us on{' '}
-          <a href="tel:+35770003008">+357 7000 3008</a>
-          {' / '}
-          <a href="tel:+35770002009">+357 7000 2009</a>
-          {' or email: '}
-          <a href="mailto:info@komodromosgroup.com">info@komodromosgroup.com</a>
-        </p>
-      </div>
-    </div>
-  )
+type ServiceCardProps = {
+  service: (typeof CONSULTING_SERVICES)[number]
+  index: number
 }
 
-function TaxInvestigationModalContent() {
-  return (
-    <div className="consulting-modal__article">
-      <p className="consulting-modal__kicker">
-        HMRC Disputes &amp; HMRC Tax Investigation Advice in London
-      </p>
-      <p className="consulting-modal__p">
-        Komodromos Group recognizes that tax investigations can be very stressful and
-        time-consuming.
-      </p>
-      <p className="consulting-modal__p">
-        Our Tax Investigations Team aims to provide you with specialist advice to
-        diminish the stress and anxiety that an HMRC investigation may cause. We
-        attempt to resolve the tax investigation in the most efficient and
-        cost-effective manner whilst reducing your tax contact wherever possible. We
-        provide tax investigation and tax dispute services to our clients at
-        competitive fees.
-      </p>
-      <p className="consulting-modal__p">
-        Komodromos Group specializes in tax investigation services. We are therefore
-        able to keep up to date with the latest alterations in the inquiry
-        legislation and the current strategies adopted by tax inspectors to address
-        tax evasion and tax fraud.
-      </p>
-      <p className="consulting-modal__p">
-        Our expertise exists in the whole range of tax investigations from voluntary
-        disclosures and those conducted at local compliance level right through to
-        cases of serious tax fraud and tax evasion under HMRC&apos;s Code of Practice
-        9 (COP9) – Contractual Disclosure Facility conducted by HMRC&apos;s specialist
-        investigations team. We also offer VAT inspection advice and specialist support
-        in VAT fraud cases.
-      </p>
-      <p className="consulting-modal__p">
-        If you are subject to a tax investigation by HMRC, we function on the basis
-        that all clients receive the highest levels of professional representation,
-        service, courtesy and value for money.
-      </p>
+function ServiceCard({ service, index }: ServiceCardProps) {
+  const isLinked = 'href' in service && service.href
 
-      <div className="consulting-modal__contact">
-        <p className="consulting-modal__p">
-          To discuss tax investigations and HMRC disputes and for a face to face
-          meeting with a client services team member, contact us on{' '}
-          <a href="tel:+35770003008">+357 7000 3008</a>
-          {' / '}
-          <a href="tel:+35770002009">+357 7000 2009</a>
-          {' or email: '}
-          <a href="mailto:info@komodromosgroup.com">info@komodromosgroup.com</a>
-        </p>
+  const body = (
+    <>
+      <div className="bc-service-card__media">
+        <img
+          src={service.image}
+          alt={service.imageAlt}
+          className="bc-service-card__img"
+          loading="lazy"
+          decoding="async"
+        />
+        <span className="bc-service-card__shade" aria-hidden />
+        <span className="bc-service-card__index" aria-hidden>
+          {service.index}
+        </span>
       </div>
-    </div>
-  )
-}
-
-function ContractorsAdviceModalContent() {
-  return (
-    <div className="consulting-modal__article">
-      <p className="consulting-modal__kicker">Contractors &amp; freelance advisory</p>
-      <p className="consulting-modal__p">
-        Working as a contractor or freelancer means your tax position, expenses,
-        and trading structure need to stay aligned with the rules — and with how you
-        actually work day to day. Komodromos Group helps you cut through the noise
-        with clear, practical advice tailored to your sector and arrangements.
-      </p>
-      <p className="consulting-modal__p">
-        We support clients who operate through limited companies, umbrella
-        arrangements, or self-employment, including guidance on record-keeping,
-        dividends and remuneration, VAT where relevant, and staying compliant with
-        filing deadlines.
-      </p>
-      <p className="consulting-modal__p">
-        Where employment status or off-payroll rules are in play, we can review your
-        contracts and working practices alongside your accountants&apos; view of risk,
-        so you understand your exposure and your options — before HMRC or an agency
-        raises questions.
-      </p>
-      <p className="consulting-modal__p">
-        Whether you are taking on a new contract, changing how you invoice, or
-        planning an exit from contracting, we aim to give you a calm, senior-led
-        perspective and documentation you can rely on.
-      </p>
-
-      <div className="consulting-modal__contact">
-        <p className="consulting-modal__p">
-          To discuss contractors advice and for a face to face meeting with a client
-          services team member, contact us on{' '}
-          <a href="tel:+35770003008">+357 7000 3008</a>
-          {' / '}
-          <a href="tel:+35770002009">+357 7000 2009</a>
-          {' or email: '}
-          <a href="mailto:info@komodromosgroup.com">info@komodromosgroup.com</a>
-        </p>
+      <div className="bc-service-card__body">
+        <header className="bc-service-card__body-head">
+          <span className="bc-service-card__body-rule" aria-hidden />
+          <h3 className="bc-service-card__body-title">{service.title}</h3>
+        </header>
+        <p className="bc-service-card__text">{service.text}</p>
+        {isLinked ? (
+          <footer className="bc-service-card__body-foot">
+            <span className="bc-service-card__cta bc-service-card__cta--link">
+              Explore programme
+              <ArrowRight className="bc-service-card__cta-icon" aria-hidden />
+            </span>
+          </footer>
+        ) : null}
       </div>
-    </div>
+    </>
   )
-}
 
-function PlaceholderModalContent({ title }: { title: string }) {
-  return (
-    <div className="consulting-modal__article">
-      <p className="consulting-modal__p">
-        Full details for <strong>{title}</strong> will be available here soon. Our
-        team can walk you through scope, timelines, and pricing on a short call.
-      </p>
-      <p className="consulting-modal__p">
-        Reach us on{' '}
-        <a href="tel:+35770003008">+357 7000 3008</a> /{' '}
-        <a href="tel:+35770002009">+357 7000 2009</a>
-        {' or '}
-        <a href="mailto:info@komodromosgroup.com">info@komodromosgroup.com</a>
-      </p>
-      <Link
-        to="/contact"
-        state={{ serviceInterest: "Business Consultant's", consultingTopic: title }}
-        className="consulting-modal__inline-cta"
-      >
-        Request details
+  const className = `bc-service-card reveal reveal-delay-${Math.min(index + 1, 4)}`
+
+  if (isLinked) {
+    return (
+      <Link to={service.href} className={`${className} bc-service-card--linked`}>
+        {body}
       </Link>
-    </div>
-  )
+    )
+  }
+
+  return <article className={className}>{body}</article>
 }
 
 export default function BusinessConsultingPage() {
-  const [openServiceId, setOpenServiceId] = useState<string | null>(null)
-  const modalTitleId = useId()
   const pageRef = useReveal()
+  const reducedMotion = useReducedMotion()
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-
-  useEffect(() => {
-    if (!openServiceId) return
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = prev
-    }
-  }, [openServiceId])
-
-  useEffect(() => {
-    if (!openServiceId) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpenServiceId(null)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [openServiceId])
 
   return (
     <div className="page consulting-page" ref={pageRef}>
@@ -547,173 +291,297 @@ export default function BusinessConsultingPage() {
         servicesSectionHref="/#services"
       />
 
-      <section className="consulting-hero" aria-labelledby="consulting-hero-title" data-hero-parallax-root>
-        <div
-          className="consulting-hero__bg"
-          style={{ backgroundImage: `url(${HERO_BG})` }}
+      <section className="bc-hero" aria-labelledby="bc-hero-title" data-hero-parallax-root>
+        <motion.div
+          className="bc-hero__bg"
+          style={{ backgroundImage: `url(${IMAGES.strategic})` }}
           aria-hidden
           data-hero-parallax
+          initial={reducedMotion ? false : { scale: 1.08 }}
+          animate={reducedMotion ? undefined : { scale: [1.08, 1.02, 1.08] }}
+          transition={
+            reducedMotion ? undefined : { duration: 20, repeat: Infinity, ease: 'easeInOut' }
+          }
         />
-        <div className="consulting-hero__grain" aria-hidden />
-        <div className="consulting-hero__scrim" aria-hidden />
-        <div className="consulting-hero__accent consulting-hero__accent--1" aria-hidden />
-        <div className="consulting-hero__accent consulting-hero__accent--2" aria-hidden />
-        <div className="container consulting-hero__inner">
-          <p className="consulting-hero__kicker reveal">
-            Giannos Komodromos — Business Consultant&apos;s
-          </p>
-          <h1 id="consulting-hero-title" className="consulting-hero__title reveal reveal-delay-1">
-            The new way of success…
-          </h1>
-          <p className="consulting-hero__rule reveal reveal-delay-2" aria-hidden />
-          <p className="consulting-hero__lead reveal reveal-delay-2">
-            Strategic clarity for companies that expect precision in numbers,
-            structure, and long-term outcomes.
-          </p>
+        <div className="bc-hero__scrim" aria-hidden />
+        <div className="bc-hero__glow bc-hero__glow--gold" aria-hidden />
+        <div className="bc-hero__glow bc-hero__glow--blue" aria-hidden />
+
+        <div className="bc-hero__shell">
+          <div className="bc-hero__inner">
+            <motion.p className="bc-hero__eyebrow" {...heroRevealProps(!!reducedMotion, 0.08)}>
+              Komodromos Group — Business Consulting
+            </motion.p>
+
+            <h1 id="bc-hero-title" className="bc-hero__title">
+              <HeroTitle reducedMotion={!!reducedMotion} />
+            </h1>
+
+            <motion.p
+              className="bc-hero__subtitle"
+              {...heroRevealProps(!!reducedMotion, 0.22 + 4 * HERO_STAGGER + 0.2)}
+            >
+              Helping Ambitious Businesses Scale with Confidence
+            </motion.p>
+
+            <motion.span
+              className="bc-hero__rule"
+              aria-hidden
+              initial={reducedMotion ? false : { scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{
+                duration: 0.72,
+                delay: 0.22 + 4 * HERO_STAGGER + 0.34,
+                ease: EASE,
+              }}
+            />
+
+            <motion.p
+              className="bc-hero__lead"
+              {...heroRevealProps(!!reducedMotion, 0.22 + 4 * HERO_STAGGER + 0.48)}
+            >
+              We partner with entrepreneurs and business owners to transform growing companies
+              into efficient, scalable, and highly profitable organisations. Through strategic
+              guidance, proven methodologies, and tailored solutions, we help you overcome growth
+              barriers, optimise performance, and build a business designed for long-term success.
+            </motion.p>
+
+            <motion.div
+              className="bc-hero__actions"
+              variants={bcHeroActionsVariants}
+              initial={reducedMotion ? false : 'hidden'}
+              animate={reducedMotion ? undefined : 'visible'}
+            >
+              <MotionLink
+                to="/contact"
+                state={{ serviceInterest: SERVICE_INTEREST }}
+                className="bc-btn bc-btn--primary"
+                variants={bcHeroActionVariants}
+              >
+                <span className="bc-btn__label">Schedule consultation</span>
+                <span className="bc-btn__title">Complimentary strategy session</span>
+              </MotionLink>
+              <motion.button
+                type="button"
+                className="bc-btn bc-btn--secondary"
+                variants={bcHeroActionVariants}
+                onClick={() => scrollToId('bc-services')}
+              >
+                <span className="bc-btn__label">Explore</span>
+                <span className="bc-btn__title">Discover our services</span>
+                <ArrowRight className="bc-btn__icon" aria-hidden />
+              </motion.button>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      <section className="consulting-section consulting-judgment section-led section-led--warm">
-        <div className="container consulting-judgment__grid">
-          <div className="consulting-judgment__media reveal-left">
-            <div className="consulting-judgment__frame">
+      <section className="bc-section bc-mission" aria-labelledby="bc-mission-title">
+        <div className="container bc-mission__grid">
+          <div className="bc-mission__copy">
+            <p className="bc-section__eyebrow reveal">Our mission</p>
+            <h2 id="bc-mission-title" className="bc-section__title reveal reveal-delay-1">
+              Empowering sustainable growth
+            </h2>
+            <p className="bc-section__lead reveal reveal-delay-2">
+              At Komodromos Group of Companies, our mission is to empower businesses,
+              entrepreneurs, and investors with strategic solutions that drive sustainable
+              growth, innovation, and long-term success.
+            </p>
+            <div className="bc-mission__body">
+              <p className="bc-section__text reveal reveal-delay-2">
+                We work alongside our clients to overcome challenges, identify new
+                opportunities, and create lasting value through expert guidance, practical
+                expertise, and a commitment to excellence.
+              </p>
+              <p className="bc-section__text bc-section__text--emphasis reveal reveal-delay-3">
+                Built on integrity, professionalism, and results, we are dedicated to
+                delivering trusted business solutions while creating a positive impact for
+                our clients, partners, and the communities we serve.
+              </p>
+            </div>
+          </div>
+          <div className="bc-mission__visual reveal-right">
+            <div className="bc-mission__frame">
               <img
-                src={JUDGMENT_MEDIA}
-                alt="Advisory and professional services imagery"
-                className="consulting-judgment__img"
+                src={IMAGES.management}
+                alt="Management consulting and organisational leadership"
+                className="bc-mission__img"
                 loading="lazy"
                 decoding="async"
               />
             </div>
-            <div className="consulting-judgment__badge" aria-hidden>
-              <span className="consulting-judgment__badge-line" />
-              <span>Advisory</span>
-            </div>
-          </div>
-          <div className="consulting-judgment__copy">
-            <p className="consulting-section__eyebrow reveal">Judgment that scales</p>
-            <h2 className="consulting-section__title reveal reveal-delay-1">
-              Why client judgment matters
-            </h2>
-            <p className="consulting-section__body reveal reveal-delay-2">
-              In complex accounting and tax environments, the strongest signal of
-              quality is not a slogan—it is the discernment of the people you serve.
-              We treat every engagement as a partnership where your standards shape
-              our priorities: accuracy you can defend, advice you can act on, and
-              outcomes measured in trust as much as in compliance.
-            </p>
-            <p className="consulting-section__body consulting-section__body--emphasis reveal reveal-delay-3">
-              When clients exercise sharp judgment, they choose partners who respect
-              both the letter of the law and the reality of their business—that is
-              the bar we hold ourselves to.
-            </p>
+            <span className="bc-mission__badge" aria-hidden>
+              Management consulting
+            </span>
           </div>
         </div>
       </section>
 
       <section
-        className="consulting-section consulting-profile section-led section-led--warm"
-        aria-labelledby="profile-card-title"
+        id="bc-services"
+        className="bc-section bc-services scroll-mt-28"
+        aria-labelledby="bc-services-title"
       >
-        <div className="container consulting-profile__inner">
-          <Profile3 />
-        </div>
-      </section>
-
-      <section className="consulting-section consulting-clients section-led section-led--warm">
-        <div className="container consulting-clients__inner">
-          <div className="consulting-clients__panel reveal">
-            <p className="consulting-clients__label">Our clients</p>
-            <h2 className="consulting-clients__title">
-              We believe that our clients are the best judges of our service
-            </h2>
-            <p className="consulting-clients__text">
-              We&apos;re proud of the strong relationships we have — read what our
-              clients say to find out more. If you want to know more, then contact us
-              and we&apos;ll happily let you speak to our clients personally.
-            </p>
-            <Link
-              to="/contact"
-              state={{ serviceInterest: "Business Consultant's" }}
-              className="consulting-clients__cta"
-            >
-              Get in touch
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="consulting-section consulting-services section-led section-led--warm">
         <div className="container">
-          <p className="consulting-section__eyebrow reveal">What we cover</p>
-          <h2 className="consulting-section__title consulting-services__heading reveal reveal-delay-1">
-            Services &amp; focus areas
-          </h2>
-          <p className="consulting-section__intro reveal reveal-delay-2">
-            A structured suite of support for companies and individuals who need
-            dependable financial and tax guidance.
-          </p>
+          <header className="bc-services__head">
+            <p className="bc-section__eyebrow reveal">Discover our services</p>
+            <h2 id="bc-services-title" className="bc-section__title reveal reveal-delay-1">
+              Integrated consulting across your business
+            </h2>
+            <p className="bc-section__intro reveal reveal-delay-2">
+              From strategy and finance to people and digital — specialist advisory
+              designed to work together as your organisation grows.
+            </p>
+          </header>
         </div>
-        <div className="consulting-services__carousel-bleed">
-          <ConsultingServiceCardsCarousel
-            items={SERVICE_CATEGORIES}
-            onOpenDetails={(id) => setOpenServiceId(id)}
-          />
+        <div className="bc-services__grid-wrap">
+          <div className="bc-services__grid" role="list">
+            {CONSULTING_SERVICES.map((service, index) => (
+              <ServiceCard key={service.title} service={service} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 
-      {openServiceId ? (
-        <div
-          className="consulting-modal-root"
-          role="presentation"
-          onClick={() => setOpenServiceId(null)}
-        >
-          <div
-            className="consulting-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={modalTitleId}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="consulting-modal__chrome">
-              <div className="consulting-modal__accent-bar" aria-hidden />
-              <button
-                type="button"
-                className="consulting-modal__close"
-                onClick={() => setOpenServiceId(null)}
-                aria-label="Close"
-              >
-                <X size={22} strokeWidth={1.75} />
-              </button>
-            </div>
-            <div className="consulting-modal__scroll">
-              <h2 id={modalTitleId} className="consulting-modal__title">
-                {SERVICE_CATEGORIES.find((s) => s.id === openServiceId)?.title}
-              </h2>
-              {openServiceId === 'company-account' ? (
-                <CompanyAccountModalContent />
-              ) : openServiceId === 'business-accounting' ? (
-                <BusinessAccountingModalContent />
-              ) : openServiceId === 'tax-returns' ? (
-                <TaxReturnsModalContent />
-              ) : openServiceId === 'tax-advice' ? (
-                <TaxAdvicePlanningModalContent />
-              ) : openServiceId === 'tax-investigation' ? (
-                <TaxInvestigationModalContent />
-              ) : openServiceId === 'contractors-advice' ? (
-                <ContractorsAdviceModalContent />
-              ) : (
-                <PlaceholderModalContent
-                  title={
-                    SERVICE_CATEGORIES.find((s) => s.id === openServiceId)?.title ??
-                    ''
-                  }
+      <section
+        id="bc-about"
+        className="bc-section bc-about scroll-mt-28"
+        aria-labelledby="bc-about-title"
+      >
+        <div className="container bc-about__inner">
+          <header className="bc-about__head reveal">
+            <p className="bc-section__eyebrow">About us</p>
+            <h2 id="bc-about-title" className="bc-section__title">
+              About Komodromos Group of Companies
+            </h2>
+          </header>
+          <div className="bc-about__grid">
+            <div className="bc-about__media reveal-left">
+              <div className="bc-about__frame">
+                <img
+                  src={IMAGES.financial}
+                  alt="Financial services consulting and strategic advisory"
+                  className="bc-about__img"
+                  loading="lazy"
+                  decoding="async"
                 />
-              )}
+              </div>
+              <span className="bc-about__caption" aria-hidden>
+                Financial services consulting
+              </span>
+            </div>
+            <div className="bc-about__copy bc-about__prose">
+              {ABOUT_BLOCKS.map((block, index) => (
+                <article
+                  key={block.index}
+                  className={`bc-about__block bc-about__block--${block.variant} reveal reveal-delay-${Math.min(index + 1, 4)}`}
+                >
+                  <header className="bc-about__block-head">
+                    <span className="bc-about__block-index" aria-hidden>
+                      {block.index}
+                    </span>
+                    <span className="bc-about__block-rule" aria-hidden />
+                    <span className="bc-about__block-theme">{block.theme}</span>
+                  </header>
+                  <p className="bc-about__block-text">{block.text}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
-      ) : null}
+      </section>
+
+      <section className="bc-section bc-callback" aria-labelledby="bc-callback-title">
+        <div className="container">
+          <div className="bc-split-panel reveal">
+            <div className="bc-split-panel__media">
+              <img
+                src={IMAGES.digital}
+                alt="Digital consulting and business transformation"
+                className="bc-split-panel__img"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="bc-split-panel__media-label" aria-hidden>
+                Digital consulting
+              </span>
+            </div>
+            <div className="bc-split-panel__copy">
+              <div className="bc-callback__icon-wrap" aria-hidden>
+                <Phone strokeWidth={1.75} />
+              </div>
+              <p className="bc-callback__eyebrow">Not ready for a strategy consultation?</p>
+              <h2 id="bc-callback-title" className="bc-callback__title">
+                Request a complimentary call back
+              </h2>
+              <p className="bc-callback__text">
+                Have questions or want to learn more? Speak with one of our experienced
+                consultants to discuss your business goals and discover how Komodromos Group
+                of Companies can help you achieve sustainable growth and long-term success.
+              </p>
+              <Link
+                to="/contact"
+                state={{ serviceInterest: SERVICE_INTEREST, enquiryType: 'callback' }}
+                className="bc-btn bc-btn--primary bc-btn--inline"
+              >
+                <span className="bc-btn__label">Get started</span>
+                <span className="bc-btn__title">Request your complimentary call back</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="bc-contact"
+        className="bc-section bc-contact scroll-mt-28"
+        aria-labelledby="bc-contact-title"
+      >
+        <div className="container bc-contact__inner">
+          <div className="bc-split-panel bc-split-panel--reverse reveal">
+            <div className="bc-split-panel__media">
+              <img
+                src={IMAGES.accountants}
+                alt="Accountant and auditors — professional advisory"
+                className="bc-split-panel__img"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="bc-split-panel__media-label" aria-hidden>
+                Accountant &amp; auditors
+              </span>
+            </div>
+            <div className="bc-split-panel__copy bc-contact__panel">
+              <p className="bc-section__eyebrow">Contact us</p>
+              <h2 id="bc-contact-title" className="bc-section__title">
+                General enquiries
+              </h2>
+              <p className="bc-section__lead">
+                Whether you&apos;re looking to grow your business, explore new opportunities, or
+                discuss your next strategic move, Komodromos Group of Companies is here to help.
+              </p>
+              <p className="bc-section__text">
+                Our experienced team is ready to provide expert guidance and tailored business
+                solutions to support your goals. Get in touch today for more information.
+              </p>
+              <div className="bc-contact__actions">
+                <Link
+                  to="/contact"
+                  state={{ serviceInterest: SERVICE_INTEREST }}
+                  className="bc-btn bc-btn--primary bc-btn--inline"
+                >
+                  <span className="bc-btn__label">Contact</span>
+                  <span className="bc-btn__title">Get in touch today</span>
+                </Link>
+                <a href="tel:+35770003008" className="bc-contact__phone">
+                  +357 7000 3008
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
