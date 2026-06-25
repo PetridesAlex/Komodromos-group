@@ -1,239 +1,186 @@
-import { useEffect } from 'react'
-import { Link, Navigate } from 'react-router-dom'
-import type { LucideIcon } from 'lucide-react'
-import {
-  Building2,
-  ClipboardList,
-  Compass,
-  Handshake,
-  Headphones,
-  Plane,
-  Search,
-  Users,
-} from 'lucide-react'
-import Footer from './Footer'
-import SiteTopbar from './SiteTopbar'
+import { useEffect, useRef, useState } from 'react'
+import GwBlogSection from './aviation/GwBlogSection'
+import GwHeroCarousel from './aviation/GwHeroCarousel'
+import GwImagePlaceholder from './aviation/GwImagePlaceholder'
+import GwServicesSection from './aviation/GwServicesSection'
+import GwTeamSection from './aviation/GwTeamSection'
 import { useReveal } from '../hooks/useReveal'
-import { getServiceBySlug } from '../data/serviceCards'
 import {
-  aviationHeroSubtitle,
-  aviationPremiumSection,
-  aviationProcessSteps,
-  aviationServiceCards,
-  AVIATION_HERO_IMAGE,
-  type AviationProcessIconId,
-  type AviationServiceIconId,
-} from '../data/aviationServicesPage'
+  AVIATION_SECTIONS,
+  AVIATION_YOUTUBE_EMBED,
+  gwClosingCta,
+  gwClientCount,
+  gwLeaderSection,
+  gwStats,
+} from '../data/globalWingsPage'
 
-const SERVICE_ICONS: Record<AviationServiceIconId, LucideIcon> = {
-  plane: Plane,
-  building: Building2,
-  compass: Compass,
-  users: Users,
-  handshake: Handshake,
-}
+function GwStatItem({
+  value,
+  label,
+  animate,
+  suffix = '',
+}: {
+  value: string
+  label: string
+  animate?: boolean
+  suffix?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [display, setDisplay] = useState(animate ? '0' : value)
 
-const PROCESS_ICONS: Record<AviationProcessIconId, LucideIcon> = {
-  search: Search,
-  layout: ClipboardList,
-  plane: Plane,
-  headset: Headphones,
+  useEffect(() => {
+    if (!animate) return
+    const el = ref.current
+    if (!el) return
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) {
+      setDisplay(value)
+      return
+    }
+
+    const target = parseInt(value, 10)
+    let started = false
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || started) return
+        started = true
+        const duration = 1800
+        const start = performance.now()
+
+        const tick = (now: number) => {
+          const progress = Math.min((now - start) / duration, 1)
+          const eased = 1 - Math.pow(1 - progress, 3)
+          setDisplay(String(Math.round(target * eased)))
+          if (progress < 1) requestAnimationFrame(tick)
+        }
+
+        requestAnimationFrame(tick)
+      },
+      { threshold: 0.35 },
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [animate, value])
+
+  return (
+    <div className="gw-stat reveal" ref={ref}>
+      <GwImagePlaceholder variant="icon" className="gw-stat__icon" label="Insert image here" />
+      <p className="gw-stat__value">
+        {display}
+        {suffix}
+      </p>
+      <p className="gw-stat__label">{label}</p>
+    </div>
+  )
 }
 
 export default function AviationServicesPage() {
   const pageRef = useReveal()
-  const card = getServiceBySlug('aviation')
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
-  if (!card) {
-    return <Navigate to="/" replace />
-  }
-
-  const scrollToServices = () => {
-    const el = document.getElementById('aviation-services-grid')
-    if (!el) return
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    el.scrollIntoView({
-      behavior: reduce ? 'auto' : 'smooth',
-      block: 'start',
-    })
-  }
 
   return (
-    <div className="page aviation-services-page" ref={pageRef}>
-      <SiteTopbar
-        logoPathname="/"
-        logoScrollToId="home"
-        homeHref="/"
-        servicesSectionHref="/#services"
-      />
+    <div className="gw-aviation-page gw-aviation-page--home" ref={pageRef}>
+      <GwHeroCarousel />
 
-      <section className="aviation-hero" aria-label="Aviation agency introduction" data-hero-parallax-root>
-        <div className="aviation-hero__bg" aria-hidden data-hero-parallax>
-          <img
-            className="aviation-hero__bg-img"
-            src={AVIATION_HERO_IMAGE}
-            alt=""
-            width={1920}
-            height={1080}
-            decoding="async"
-            fetchPriority="high"
-          />
-        </div>
-        <div className="aviation-hero__scrim" aria-hidden />
-        <div className="aviation-hero__vignette" aria-hidden />
-        <div className="aviation-hero__grain" aria-hidden />
-        <div className="container aviation-hero__inner">
-          <p className="aviation-hero__eyebrow aviation-hero__fade aviation-hero__fade--1">
-            {card.eyebrow}
-          </p>
-          <h1 className="aviation-hero__title aviation-hero__fade aviation-hero__fade--2">
-            Aviation Agency Services
-          </h1>
-          <p className="aviation-hero__sub aviation-hero__fade aviation-hero__fade--3">
-            {aviationHeroSubtitle}
-          </p>
-          <div className="aviation-hero__cta aviation-hero__fade aviation-hero__fade--4">
-            <button type="button" className="aviation-hero__btn-primary" onClick={scrollToServices}>
-              Request consultation
-            </button>
-            <Link to="/contact" className="aviation-hero__btn-ghost">
-              Contact us
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="aviation-services"
-        id="aviation-services-grid"
-        aria-labelledby="aviation-services-heading"
-      >
-        <div className="container aviation-services__header">
-          <p className="aviation-section-eyebrow reveal">Capabilities</p>
-          <h2 id="aviation-services-heading" className="aviation-services__title reveal reveal-delay-1">
-            Services overview
-          </h2>
-          <p className="aviation-services__lead reveal reveal-delay-2">
-            A focused portfolio for owners, executives, and operators who require clarity, velocity, and
-            discretion.
-          </p>
-        </div>
-        <div className="container aviation-services__grid">
-          {aviationServiceCards.map((item, i) => {
-            const Icon = SERVICE_ICONS[item.icon]
-            const delayClass = `reveal-delay-${Math.min(i + 1, 4)}`
-            return (
-              <article
-                key={item.title}
-                className={`aviation-service-card reveal reveal-scale ${delayClass}`}
-              >
-                <div
-                  className="aviation-service-card__bg"
-                  style={{ backgroundImage: `url("${item.image}")` }}
-                  aria-hidden
+      <main className="gw-main" aria-label="Aviation Agency Services">
+        <section id={AVIATION_SECTIONS.about} className="gw-section gw-section--about">
+          <div className="container">
+            <header className="gw-section__header reveal">
+              <h2 className="gw-section__title">About Global Wings</h2>
+            </header>
+            <div className="gw-video reveal reveal-delay-1">
+              <div className="gw-video__frame">
+                <iframe
+                  src={AVIATION_YOUTUBE_EMBED}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
                 />
-                <div className="aviation-service-card__veil" aria-hidden />
-                <div className="aviation-service-card__body">
-                  <div className="aviation-service-card__icon-wrap">
-                    <Icon className="aviation-service-card__icon" strokeWidth={1.5} aria-hidden />
-                  </div>
-                  <h3 className="aviation-service-card__title">{item.title}</h3>
-                  <p className="aviation-service-card__desc">{item.description}</p>
-                </div>
-              </article>
-            )
-          })}
-        </div>
-      </section>
-
-      <section
-        className="aviation-premium section-led section-led--cyan"
-        aria-labelledby="aviation-premium-heading"
-      >
-        <div className="container aviation-premium__inner">
-          <div className="aviation-premium__copy">
-            <p className="aviation-section-eyebrow reveal">{aviationPremiumSection.eyebrow}</p>
-            <h2 id="aviation-premium-heading" className="aviation-premium__title reveal reveal-delay-1">
-              {aviationPremiumSection.title}
-            </h2>
-            <p className="aviation-premium__body reveal reveal-delay-2">{aviationPremiumSection.body}</p>
-          </div>
-          <div className="aviation-premium__media reveal reveal-right reveal-delay-2">
-            <div className="aviation-premium__frame">
-              <img
-                src={aviationPremiumSection.image}
-                alt={aviationPremiumSection.imageAlt}
-                width={900}
-                height={1100}
-                loading="lazy"
-                decoding="async"
-                className="aviation-premium__img"
-              />
-              <span className="aviation-premium__frame-glow" aria-hidden />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section
-        className="aviation-process section-led section-led--cyan"
-        aria-labelledby="aviation-process-heading"
-      >
-        <div className="container">
-          <div className="aviation-process__header">
-            <p className="aviation-section-eyebrow reveal">How it works</p>
-            <h2 id="aviation-process-heading" className="aviation-process__title reveal reveal-delay-1">
-              From first call to wheels-down
-            </h2>
+        <GwServicesSection sectionId={AVIATION_SECTIONS.services} />
+
+        <section id={AVIATION_SECTIONS.clients} className="gw-section gw-section--clients">
+          <div className="container">
+            <header className="gw-section__header reveal">
+              <h2 className="gw-section__title">Our Clients</h2>
+            </header>
           </div>
-          <ol className="aviation-process__timeline">
-            {aviationProcessSteps.map((step, i) => {
-              const Icon = PROCESS_ICONS[step.icon]
-              const delayClass = `reveal-delay-${Math.min((i % 4) + 1, 4)}`
-              return (
-                <li key={step.title} className={`aviation-process__step reveal ${delayClass}`}>
-                  <div className="aviation-process__step-index" aria-hidden>
-                    {String(i + 1).padStart(2, '0')}
-                  </div>
-                  <div className="aviation-process__step-icon" aria-hidden>
-                    <Icon strokeWidth={1.5} />
-                  </div>
-                  <div className="aviation-process__step-body">
-                    <h3 className="aviation-process__step-title">{step.title}</h3>
-                    <p className="aviation-process__step-desc">{step.description}</p>
-                  </div>
-                </li>
-              )
-            })}
-          </ol>
-        </div>
-      </section>
+          <div className="gw-section__bleed gw-clients-grid">
+            {Array.from({ length: gwClientCount }, (_, i) => (
+              <a
+                key={i}
+                href="#"
+                className={`gw-client-cell reveal reveal-delay-${Math.min((i % 4) + 1, 4)}`}
+              >
+                <GwImagePlaceholder aspectRatio="570 / 270" variant="logo" label="Insert image here" />
+              </a>
+            ))}
+          </div>
+        </section>
 
-      <section className="aviation-cta" aria-labelledby="aviation-cta-heading">
-        <div className="aviation-cta__blobs" aria-hidden>
-          <span className="aviation-cta__blob aviation-cta__blob--1" />
-          <span className="aviation-cta__blob aviation-cta__blob--2" />
-        </div>
-        <div className="aviation-cta__scrim" aria-hidden />
-        <div className="container aviation-cta__inner">
-          <h2 id="aviation-cta-heading" className="aviation-cta__title reveal">
-            Elevate your aviation experience
-          </h2>
-          <p className="aviation-cta__sub reveal reveal-delay-1">
-            Share your itinerary, ownership goals, or operational brief — we respond with a clear, discreet
-            next step.
-          </p>
-          <Link to="/contact" className="aviation-cta__btn reveal reveal-delay-2">
-            Contact us
-          </Link>
-        </div>
-      </section>
+        <section id={AVIATION_SECTIONS.leader} className="gw-section gw-section--leader">
+          <div className="container gw-leader">
+            <div className="gw-leader__copy reveal">
+              <h2 className="gw-leader__title">{gwLeaderSection.title}</h2>
+              {gwLeaderSection.paragraphs.map((para, pi) => (
+                <p
+                  key={pi}
+                  className={`gw-leader__para${pi === gwLeaderSection.paragraphs.length - 1 ? ' gw-leader__para--last' : ''}`}
+                >
+                  {para.split('\n\n').map((block, bi, arr) => (
+                    <span key={bi}>
+                      {block}
+                      {bi < arr.length - 1 ? (
+                        <>
+                          <br />
+                          <br />
+                        </>
+                      ) : null}
+                    </span>
+                  ))}
+                </p>
+              ))}
+              <a href={gwLeaderSection.moreHref} className="gw-btn-more">
+                More
+              </a>
+            </div>
+            <div className="gw-leader__media reveal reveal-delay-1">
+              <GwImagePlaceholder aspectRatio="1 / 1" className="gw-leader__logo" label="Insert image here" />
+            </div>
+          </div>
+        </section>
 
-      <Footer />
+        <GwTeamSection sectionId={AVIATION_SECTIONS.team} />
+
+        <section className="gw-section gw-section--stats" aria-label="Company statistics">
+          <div className="gw-section__bleed gw-stats-grid">
+            {gwStats.map((stat) => (
+              <GwStatItem
+                key={stat.label}
+                value={stat.value.replace('%', '')}
+                label={stat.label}
+                animate={stat.animate}
+                suffix={stat.value.includes('%') ? '%' : ''}
+              />
+            ))}
+          </div>
+        </section>
+
+        <GwBlogSection sectionId={AVIATION_SECTIONS.blog} />
+
+        <section className="gw-section gw-section--closing" aria-label="Contact call to action">
+          <div className="container gw-closing">
+            <h3 className="gw-closing__lead reveal">{gwClosingCta.lead}</h3>
+            <h2 className="gw-closing__title reveal reveal-delay-1">{gwClosingCta.title}</h2>
+          </div>
+        </section>
+      </main>
     </div>
   )
 }

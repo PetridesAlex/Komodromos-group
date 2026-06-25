@@ -1,5 +1,13 @@
 import type { ServiceProgrammeIntro as ServiceProgrammeIntroContent } from '../data/servicePageSections'
 
+const PROGRAMME_PARAGRAPH_BLOCKS = [
+  { index: '01', theme: 'The foundation', variant: 'lead' },
+  { index: '02', theme: 'The programme', variant: 'body' },
+  { index: '03', theme: 'Immersive learning', variant: 'body' },
+  { index: '04', theme: 'Wellbeing & resilience', variant: 'body' },
+  { index: '05', theme: 'Practical impact', variant: 'close' },
+] as const
+
 type Props = {
   intro: ServiceProgrammeIntroContent
 }
@@ -20,33 +28,59 @@ export default function ServiceProgrammeIntro({ intro }: Props) {
         </header>
 
         <div className="service-programme-intro__body">
-          {intro.paragraphs.map((paragraph, index) => (
-            <p
-              key={paragraph.slice(0, 48)}
-              className={`service-programme-intro__paragraph reveal reveal-delay-${Math.min(index + 1, 4)}`}
-            >
-              {paragraph}
-            </p>
-          ))}
-        </div>
+          {intro.paragraphs.map((paragraph, index) => {
+            const block = PROGRAMME_PARAGRAPH_BLOCKS[index] ?? {
+              index: String(index + 1).padStart(2, '0'),
+              theme: 'Overview',
+              variant: 'body' as const,
+            }
 
-        <div className="service-programme-intro__block service-programme-intro__block--learn reveal">
-          <div className="service-programme-intro__block-head">
-            <h3 className="service-programme-intro__block-title">{intro.learnTitle}</h3>
-            <span className="service-programme-intro__block-rule" aria-hidden />
-          </div>
-          <ul className="service-programme-intro__learn-grid">
+            return (
+              <article
+                key={paragraph.slice(0, 48)}
+                className={`service-programme-intro__copy-block service-programme-intro__copy-block--${block.variant} reveal reveal-delay-${Math.min(index + 1, 4)}`}
+              >
+                <header className="service-programme-intro__copy-head">
+                  <span className="service-programme-intro__copy-index" aria-hidden>
+                    {block.index}
+                  </span>
+                  <span className="service-programme-intro__copy-rule" aria-hidden />
+                  <span className="service-programme-intro__copy-theme">{block.theme}</span>
+                </header>
+                <p className="service-programme-intro__paragraph">{paragraph}</p>
+              </article>
+            )
+          })}
+        </div>
+      </div>
+
+      <div className="service-programme-intro__learn-bleed reveal">
+        <div className="service-programme-intro__learn-shell">
+          <header className="service-programme-intro__learn-head">
+            <p className="service-programme-intro__learn-eyebrow">Programme curriculum</p>
+            <h3 className="service-programme-intro__learn-title">{intro.learnTitle}</h3>
+            <span className="service-programme-intro__learn-rule" aria-hidden />
+          </header>
+          <ul className="service-programme-intro__learn-grid" role="list">
             {intro.learnItems.map((item, index) => (
-              <li key={item} className="service-programme-intro__learn-item">
-                <span className="service-programme-intro__learn-index" aria-hidden>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
+              <li
+                key={item}
+                className={`service-programme-intro__learn-item reveal reveal-delay-${Math.min((index % 4) + 1, 4)}`}
+              >
+                <div className="service-programme-intro__learn-item-top">
+                  <span className="service-programme-intro__learn-index" aria-hidden>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="service-programme-intro__learn-accent" aria-hidden />
+                </div>
                 <span className="service-programme-intro__learn-text">{item}</span>
               </li>
             ))}
           </ul>
         </div>
+      </div>
 
+      <div className="container service-programme-intro">
         <div className="service-programme-intro__panels">
           <article className="service-programme-intro__panel service-programme-intro__panel--audience reveal reveal-delay-1">
             <span className="service-programme-intro__panel-index" aria-hidden>

@@ -25,75 +25,31 @@ function youtubeWatchUrl(id: string) {
   return `https://www.youtube.com/watch?v=${id}`
 }
 
-const YOUTUBE_THUMB_QUALITIES = [
-  'maxresdefault',
-  'sddefault',
-  'hqdefault',
-] as const
+function VideoPoster({ coverImage }: { coverImage?: string }) {
+  const [failed, setFailed] = useState(false)
 
-function youtubeThumbSrc(id: string, quality: (typeof YOUTUBE_THUMB_QUALITIES)[number]) {
-  return `https://i.ytimg.com/vi/${id}/${quality}.jpg`
-}
-
-function VideoPoster({
-  youtubeId,
-  coverImage,
-}: {
-  youtubeId: string
-  coverImage?: string
-}) {
-  const [useYoutubeFallback, setUseYoutubeFallback] = useState(!coverImage)
-
-  if (coverImage && !useYoutubeFallback) {
+  if (coverImage && !failed) {
     return (
       <span className="service-video-play__thumb-media" aria-hidden>
         <img
-          className="service-video-play__thumb service-video-play__thumb--cover"
+          className="service-video-play__thumb"
           src={coverImage}
           alt=""
           width={1280}
           height={720}
           loading="lazy"
           decoding="async"
-          onError={() => setUseYoutubeFallback(true)}
+          onError={() => setFailed(true)}
         />
       </span>
     )
   }
 
-  return <YouTubeThumbnail youtubeId={youtubeId} />
-}
-
-function YouTubeThumbnail({ youtubeId }: { youtubeId: string }) {
-  const [qualityIndex, setQualityIndex] = useState(0)
-  const quality = YOUTUBE_THUMB_QUALITIES[qualityIndex]
-  const src = youtubeThumbSrc(youtubeId, quality)
-
-  function advanceQuality() {
-    setQualityIndex((current) =>
-      current < YOUTUBE_THUMB_QUALITIES.length - 1 ? current + 1 : current,
-    )
-  }
-
   return (
-    <span className="service-video-play__thumb-media" aria-hidden>
-      <img
-        className="service-video-play__thumb service-video-play__thumb--youtube"
-        src={src}
-        alt=""
-        width={1280}
-        height={720}
-        loading="lazy"
-        decoding="async"
-        onLoad={(event) => {
-          const image = event.currentTarget
-          if (qualityIndex === 0 && image.naturalWidth < 300) {
-            advanceQuality()
-          }
-        }}
-        onError={advanceQuality}
-      />
-    </span>
+    <span
+      className="service-video-play__thumb-media service-video-play__thumb-media--fallback"
+      aria-hidden
+    />
   )
 }
 
@@ -138,10 +94,7 @@ function ServiceVideoCard({ video, index }: { video: ServiceVideo; index: number
               onClick={() => setPlaying(true)}
               aria-label={`Play ${video.label}`}
             >
-              <VideoPoster
-                youtubeId={video.youtubeId}
-                coverImage={video.coverImage}
-              />
+              <VideoPoster coverImage={video.coverImage} />
               <span className="service-video-play__shade" aria-hidden />
               <span className="service-video-play__vignette" aria-hidden />
               <span className="service-video-play__icon" aria-hidden>
@@ -212,7 +165,9 @@ export default function ServiceVideosSection({ section }: Props) {
             <p className="service-videos-intro">{section.intro}</p>
           ) : null}
         </header>
+      </div>
 
+      <div className="service-videos-bleed">
         <div
           className="service-videos-grid"
           role="list"

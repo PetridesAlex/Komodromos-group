@@ -13,6 +13,14 @@ import BusinessConsultingPage from './components/BusinessConsultingPage.tsx'
 import PoolGardenServicesPage from './components/PoolGardenServicesPage.tsx'
 import PoolCategoryDetailPage from './components/PoolCategoryDetailPage.tsx'
 import AviationServicesPage from './components/AviationServicesPage.tsx'
+import GwCadetPage from './components/aviation/GwCadetPage.tsx'
+import GwContactPage from './components/aviation/GwContactPage.tsx'
+import GwAviationLayout from './components/aviation/GwAviationLayout.tsx'
+import GwAviationSectionPage from './components/aviation/GwAviationSectionPage.tsx'
+import GwPilotsPage from './components/aviation/GwPilotsPage.tsx'
+import GwAirlineServicesPage from './components/aviation/GwAirlineServicesPage.tsx'
+import GwAviationJobsPage from './components/aviation/GwAviationJobsPage.tsx'
+import GwTrainingsPage from './components/aviation/GwTrainingsPage.tsx'
 import AirServicesPage from './components/AirServicesPage.tsx'
 import AirCategoryPage from './components/AirCategoryPage.tsx'
 import PrivateJetFleetPage from './components/air/PrivateJetFleetPage.tsx'
@@ -86,7 +94,16 @@ function Root() {
             <Route path="/services/pool/categories/:categoryId" element={<PoolCategoryDetailPage />} />
             <Route path="/services/pool/services/:serviceId" element={<PoolCategoryDetailPage />} />
             <Route path="/services/pool/linings/:liningId" element={<PoolCategoryDetailPage />} />
-            <Route path="/services/aviation" element={<AviationServicesPage />} />
+            <Route path="/services/aviation" element={<GwAviationLayout />}>
+              <Route index element={<AviationServicesPage />} />
+              <Route path="pilots" element={<GwPilotsPage />} />
+              <Route path="airlines" element={<GwAirlineServicesPage />} />
+              <Route path="jobs" element={<GwAviationJobsPage />} />
+              <Route path="trainings" element={<GwTrainingsPage />} />
+              <Route path="contact" element={<GwContactPage />} />
+              <Route path="cadet-programme" element={<GwCadetPage />} />
+              <Route path=":sectionSlug" element={<GwAviationSectionPage />} />
+            </Route>
             <Route path="/services/air" element={<AirServicesPage />} />
             <Route path="/services/air/private-jets/fleet" element={<PrivateJetFleetPage />} />
             <Route path="/services/air/private-jets/fleet/:aircraftId" element={<PrivateJetFleetDetailPage />} />

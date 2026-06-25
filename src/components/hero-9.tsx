@@ -33,6 +33,7 @@ type BlurLineProps = {
   reducedMotion: boolean
   className?: string
   singleLine?: boolean
+  wordClassName?: string
 }
 
 function BlurLine({
@@ -41,6 +42,7 @@ function BlurLine({
   reducedMotion,
   className = '',
   singleLine = false,
+  wordClassName = '',
 }: BlurLineProps) {
   const words = text.split(' ')
 
@@ -58,9 +60,10 @@ function BlurLine({
         <motion.span
           key={`${word}-${wordIndex}`}
           className={
-            singleLine
+            wordClassName ||
+            (singleLine
               ? 'hr-hero-9__title-word'
-              : 'mr-[0.28em] inline-block last:mr-0'
+              : 'mr-[0.28em] inline-block last:mr-0')
           }
           initial={{ opacity: 0, filter: 'blur(10px)', y: 14 }}
           animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
@@ -96,6 +99,7 @@ export type Hero9Props = {
   line2: string
   tagline: string
   serviceInterest: string
+  titleLayout?: 'stacked' | 'inline'
 }
 
 export function Hero9({
@@ -105,6 +109,7 @@ export function Hero9({
   line2,
   tagline,
   serviceInterest,
+  titleLayout = 'stacked',
 }: Hero9Props) {
   const reducedMotion = useReducedMotion()
 
@@ -148,19 +153,43 @@ export function Hero9({
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
             <div className="flex w-full max-w-4xl flex-col items-start">
               <h1 id="hr-hero-9-title" className="hr-hero-9__title" aria-label="Human Resources Management">
-                <span className="hr-hero-9__title-line hr-hero-9__title-line--primary">
-                  <BlurLine
-                    text={line1}
-                    delay={0.12}
-                    reducedMotion={!!reducedMotion}
-                    singleLine
-                  />
-                </span>
-                {line2.trim() ? (
-                  <span className="hr-hero-9__title-line hr-hero-9__title-line--accent">
-                    <BlurLine text={line2} delay={0.38} reducedMotion={!!reducedMotion} />
+                {titleLayout === 'inline' && line2.trim() ? (
+                  <span className="hr-hero-9__title-inline">
+                    <span className="hr-hero-9__title-line hr-hero-9__title-line--primary hr-hero-9__title-line--inline-primary">
+                      <BlurLine
+                        text={line1}
+                        delay={0.12}
+                        reducedMotion={!!reducedMotion}
+                        singleLine
+                        wordClassName="hr-hero-9__title-word hr-hero-9__title-word--primary"
+                      />
+                    </span>
+                    <span className="hr-hero-9__title-line hr-hero-9__title-line--accent hr-hero-9__title-line--inline-accent">
+                      <BlurLine
+                        text={line2}
+                        delay={0.34}
+                        reducedMotion={!!reducedMotion}
+                        wordClassName="hr-hero-9__title-word hr-hero-9__title-word--accent"
+                      />
+                    </span>
                   </span>
-                ) : null}
+                ) : (
+                  <>
+                    <span className="hr-hero-9__title-line hr-hero-9__title-line--primary">
+                      <BlurLine
+                        text={line1}
+                        delay={0.12}
+                        reducedMotion={!!reducedMotion}
+                        singleLine={!!line2.trim()}
+                      />
+                    </span>
+                    {line2.trim() ? (
+                      <span className="hr-hero-9__title-line hr-hero-9__title-line--accent">
+                        <BlurLine text={line2} delay={0.38} reducedMotion={!!reducedMotion} />
+                      </span>
+                    ) : null}
+                  </>
+                )}
               </h1>
 
               <motion.button

@@ -238,6 +238,7 @@ export default function ServiceDetailPage() {
               imageSrc="/images/services/human-resources-management/Cover%20(1).webp"
               line1="Human Resources"
               line2="Management"
+              titleLayout="inline"
               tagline={card.description}
               serviceInterest={card.title}
             />
