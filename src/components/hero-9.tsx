@@ -156,9 +156,11 @@ export function Hero9({
                     singleLine
                   />
                 </span>
-                <span className="hr-hero-9__title-line hr-hero-9__title-line--accent">
-                  <BlurLine text={line2} delay={0.38} reducedMotion={!!reducedMotion} />
-                </span>
+                {line2.trim() ? (
+                  <span className="hr-hero-9__title-line hr-hero-9__title-line--accent">
+                    <BlurLine text={line2} delay={0.38} reducedMotion={!!reducedMotion} />
+                  </span>
+                ) : null}
               </h1>
 
               <motion.button

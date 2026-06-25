@@ -235,7 +235,7 @@ export default function ServiceDetailPage() {
           {slug === 'hr' ? (
             <Hero9
               eyebrow={card.eyebrow}
-              imageSrc={card.image}
+              imageSrc="/images/services/human-resources-management/Cover%20(1).webp"
               line1="Human Resources"
               line2="Management"
               tagline={card.description}
