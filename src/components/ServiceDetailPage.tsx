@@ -15,6 +15,7 @@ import VipServicesGrid from './VipServicesGrid'
 import StoragePremiumSection from './StoragePremiumSection'
 import ServiceDefaultSections from './ServiceDefaultSections'
 import TaxNexCyprusPage from './TaxNexCyprusPage'
+import { Hero9 } from './hero-9'
 
 const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
 const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
@@ -231,58 +232,69 @@ export default function ServiceDetailPage() {
         <TaxNexCyprusPage />
       ) : (
         <>
-          <section
-            className={`service-detail-hero${isVip ? ' service-detail-hero--vip-full' : ''}`}
-            data-hero-parallax-root
-          >
-            {isVip ? (
-              <div
-                className="service-detail-hero-bg service-detail-hero-bg--vip-img"
-                aria-hidden
-                data-hero-parallax
-              >
-                <img
-                  className="service-detail-hero-bg__img"
-                  src={VIP_DETAIL_HERO_IMAGE}
-                  alt=""
-                  width={1920}
-                  height={1080}
-                  decoding="async"
-                  fetchPriority="high"
-                  sizes="100vw"
-                />
-              </div>
-            ) : (
-              <div
-                className="service-detail-hero-bg"
-                aria-hidden
-                data-hero-parallax
-                style={{ backgroundImage: `url("${heroBackgroundImage}")` }}
-              />
-            )}
-            <div
-              className={`service-detail-hero-scrim${isVip ? ' service-detail-hero-scrim--vip' : ''}`}
+          {slug === 'hr' ? (
+            <Hero9
+              eyebrow={card.eyebrow}
+              imageSrc={card.image}
+              line1="Human Resources"
+              line2="Management"
+              tagline={card.description}
+              serviceInterest={card.title}
             />
-            <div className="service-detail-hero-glow service-detail-hero-glow-1" />
-            <div className="service-detail-hero-glow service-detail-hero-glow-2" />
-            <div className="container service-detail-hero-inner">
-              <p className="eyebrow reveal">{card.eyebrow}</p>
-              <h1 className="reveal reveal-delay-1">{card.title}</h1>
-              <p className="service-detail-hero-sub reveal reveal-delay-2">{card.description}</p>
+          ) : (
+            <section
+              className={`service-detail-hero${isVip ? ' service-detail-hero--vip-full' : ''}`}
+              data-hero-parallax-root
+            >
               {isVip ? (
-                <div className="service-detail-hero-cta reveal reveal-delay-3">
-                  <button
-                    type="button"
-                    className="service-detail-hero-cta__btn"
-                    onClick={scrollToVipPortfolio}
-                    aria-label="Scroll to concierge portfolio and services"
-                  >
-                    Explore portfolio
-                  </button>
+                <div
+                  className="service-detail-hero-bg service-detail-hero-bg--vip-img"
+                  aria-hidden
+                  data-hero-parallax
+                >
+                  <img
+                    className="service-detail-hero-bg__img"
+                    src={VIP_DETAIL_HERO_IMAGE}
+                    alt=""
+                    width={1920}
+                    height={1080}
+                    decoding="async"
+                    fetchPriority="high"
+                    sizes="100vw"
+                  />
                 </div>
-              ) : null}
-            </div>
-          </section>
+              ) : (
+                <div
+                  className="service-detail-hero-bg"
+                  aria-hidden
+                  data-hero-parallax
+                  style={{ backgroundImage: `url("${heroBackgroundImage}")` }}
+                />
+              )}
+              <div
+                className={`service-detail-hero-scrim${isVip ? ' service-detail-hero-scrim--vip' : ''}`}
+              />
+              <div className="service-detail-hero-glow service-detail-hero-glow-1" />
+              <div className="service-detail-hero-glow service-detail-hero-glow-2" />
+              <div className="container service-detail-hero-inner">
+                <p className="eyebrow reveal">{card.eyebrow}</p>
+                <h1 className="reveal reveal-delay-1">{card.title}</h1>
+                <p className="service-detail-hero-sub reveal reveal-delay-2">{card.description}</p>
+                {isVip ? (
+                  <div className="service-detail-hero-cta reveal reveal-delay-3">
+                    <button
+                      type="button"
+                      className="service-detail-hero-cta__btn"
+                      onClick={scrollToVipPortfolio}
+                      aria-label="Scroll to concierge portfolio and services"
+                    >
+                      Explore portfolio
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+            </section>
+          )}
 
           {slug === 'vip' && <VipServicesGrid />}
 

@@ -1,17 +1,205 @@
-import type { ServiceVideosSection as ServiceVideosSectionData } from '../data/servicePageSections'
+import { useRef, useState } from 'react'
+import { motion, useInView, useReducedMotion } from 'motion/react'
+import type {
+  ServiceVideo,
+  ServiceVideosSection as ServiceVideosSectionData,
+} from '../data/servicePageSections'
+
+const EASE = [0.22, 1, 0.36, 1] as const
+const CARD_VIEW = { once: true, margin: '-40px 0px -80px 0px' } as const
 
 type Props = {
   section: ServiceVideosSectionData
 }
 
-function youtubeEmbedSrc(id: string) {
-  return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`
+function youtubeEmbedSrc(id: string, autoplay = false) {
+  const params = new URLSearchParams({
+    rel: '0',
+    modestbranding: '1',
+  })
+  if (autoplay) params.set('autoplay', '1')
+  return `https://www.youtube-nocookie.com/embed/${id}?${params}`
+}
+
+function youtubeWatchUrl(id: string) {
+  return `https://www.youtube.com/watch?v=${id}`
+}
+
+const YOUTUBE_THUMB_QUALITIES = [
+  'maxresdefault',
+  'sddefault',
+  'hqdefault',
+] as const
+
+function youtubeThumbSrc(id: string, quality: (typeof YOUTUBE_THUMB_QUALITIES)[number]) {
+  return `https://i.ytimg.com/vi/${id}/${quality}.jpg`
+}
+
+function VideoPoster({
+  youtubeId,
+  coverImage,
+}: {
+  youtubeId: string
+  coverImage?: string
+}) {
+  const [useYoutubeFallback, setUseYoutubeFallback] = useState(!coverImage)
+
+  if (coverImage && !useYoutubeFallback) {
+    return (
+      <span className="service-video-play__thumb-media" aria-hidden>
+        <img
+          className="service-video-play__thumb service-video-play__thumb--cover"
+          src={coverImage}
+          alt=""
+          width={1280}
+          height={720}
+          loading="lazy"
+          decoding="async"
+          onError={() => setUseYoutubeFallback(true)}
+        />
+      </span>
+    )
+  }
+
+  return <YouTubeThumbnail youtubeId={youtubeId} />
+}
+
+function YouTubeThumbnail({ youtubeId }: { youtubeId: string }) {
+  const [qualityIndex, setQualityIndex] = useState(0)
+  const quality = YOUTUBE_THUMB_QUALITIES[qualityIndex]
+  const src = youtubeThumbSrc(youtubeId, quality)
+
+  function advanceQuality() {
+    setQualityIndex((current) =>
+      current < YOUTUBE_THUMB_QUALITIES.length - 1 ? current + 1 : current,
+    )
+  }
+
+  return (
+    <span className="service-video-play__thumb-media" aria-hidden>
+      <img
+        className="service-video-play__thumb service-video-play__thumb--youtube"
+        src={src}
+        alt=""
+        width={1280}
+        height={720}
+        loading="lazy"
+        decoding="async"
+        onLoad={(event) => {
+          const image = event.currentTarget
+          if (qualityIndex === 0 && image.naturalWidth < 300) {
+            advanceQuality()
+          }
+        }}
+        onError={advanceQuality}
+      />
+    </span>
+  )
+}
+
+function ServiceVideoCard({ video, index }: { video: ServiceVideo; index: number }) {
+  const [playing, setPlaying] = useState(false)
+  const cardRef = useRef<HTMLElement>(null)
+  const inView = useInView(cardRef, CARD_VIEW)
+  const reducedMotion = useReducedMotion()
+
+  return (
+    <motion.article
+      ref={cardRef}
+      className="service-video-card service-video-card--premium"
+      role="listitem"
+      initial={reducedMotion ? false : { opacity: 0, y: 32, scale: 0.98 }}
+      animate={
+        reducedMotion || inView
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 0, y: 32, scale: 0.98 }
+      }
+      transition={{
+        duration: reducedMotion ? 0.2 : 0.58,
+        delay: reducedMotion ? 0 : index * 0.1,
+        ease: EASE,
+      }}
+      whileHover={reducedMotion ? undefined : { y: -6 }}
+    >
+      <div className="service-video-card__frame">
+        <div className="service-video-embed">
+          {playing ? (
+            <iframe
+              title={`${video.label} — YouTube video`}
+              src={youtubeEmbedSrc(video.youtubeId, true)}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          ) : (
+            <button
+              type="button"
+              className="service-video-play"
+              onClick={() => setPlaying(true)}
+              aria-label={`Play ${video.label}`}
+            >
+              <VideoPoster
+                youtubeId={video.youtubeId}
+                coverImage={video.coverImage}
+              />
+              <span className="service-video-play__shade" aria-hidden />
+              <span className="service-video-play__vignette" aria-hidden />
+              <span className="service-video-play__icon" aria-hidden>
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none">
+                  <path fill="currentColor" d="M9.5 7.5v9L18 12l-8.5-4.5Z" />
+                </svg>
+              </span>
+              <span className="service-video-play__hint">Play session</span>
+            </button>
+          )}
+
+          <motion.h3
+            className="service-video-card__label"
+            initial={reducedMotion ? false : { opacity: 0, y: 12 }}
+            animate={reducedMotion || inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{
+              duration: 0.5,
+              delay: reducedMotion ? 0 : 0.12 + index * 0.1,
+              ease: EASE,
+            }}
+          >
+            {video.label}
+          </motion.h3>
+        </div>
+      </div>
+
+      {video.caption ? (
+        <motion.div
+          className="service-video-card__footer"
+          initial={reducedMotion ? false : { opacity: 0, y: 10 }}
+          animate={reducedMotion || inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{
+            duration: 0.45,
+            delay: reducedMotion ? 0 : 0.22 + index * 0.1,
+            ease: EASE,
+          }}
+        >
+          <p className="service-video-card__caption">{video.caption}</p>
+          {!playing ? (
+            <a
+              href={youtubeWatchUrl(video.youtubeId)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="service-video-card__watch-link"
+            >
+              Watch on YouTube
+            </a>
+          ) : null}
+        </motion.div>
+      ) : null}
+    </motion.article>
+  )
 }
 
 export default function ServiceVideosSection({ section }: Props) {
   return (
     <section
-      className="service-videos-section"
+      className="service-videos-section service-videos-section--premium"
       aria-labelledby="service-videos-heading"
     >
       <div className="container service-videos-inner">
@@ -31,32 +219,7 @@ export default function ServiceVideosSection({ section }: Props) {
           aria-label={`${section.eyebrow} videos`}
         >
           {section.videos.map((video, index) => (
-            <article
-              key={video.youtubeId}
-              className={`service-video-card reveal ${
-                ['reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-4'][
-                  Math.min(index, 3)
-                ]
-              }`}
-              role="listitem"
-            >
-              <h3 className="service-video-card__label">{video.label}</h3>
-              <div className="service-video-card__frame">
-                <div className="service-video-embed">
-                  <iframe
-                    title={`${video.label} — YouTube video`}
-                    src={youtubeEmbedSrc(video.youtubeId)}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                  />
-                </div>
-              </div>
-              {video.caption ? (
-                <p className="service-video-card__caption">{video.caption}</p>
-              ) : null}
-            </article>
+            <ServiceVideoCard key={video.youtubeId} video={video} index={index} />
           ))}
         </div>
       </div>

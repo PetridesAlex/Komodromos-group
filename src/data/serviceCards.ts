@@ -108,7 +108,7 @@ export const serviceCards: ServiceCard[] = [
     description:
       'Human capital services that align talent strategy, leadership development, and organizational outcomes.',
     tags: ['EXECUTIVE SEARCH', 'HR FRAMEWORKS', 'TALENT DEVELOPMENT'],
-    image: `${SVC_COVER}/11%20The-circle.webp`,
+    image: '/images/services/human-resources-management/Cover%20(1).webp',
     brandLogo: `${SVC_CARD_LOGO}/the-circle-theory.png`,
     brandLogoBlend: 'lighten',
   },
