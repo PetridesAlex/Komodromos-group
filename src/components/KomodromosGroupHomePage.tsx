@@ -189,8 +189,8 @@ export default function KomodromosGroupHomePage() {
                     {card.comingSoon ? (
                       <div className="service-media__coming-soon" aria-hidden>
                         <div className="service-media__coming-soon-plaque">
-                          <span className="service-media__coming-soon-kicker">Launching shortly</span>
-                          <span className="service-media__coming-soon-label">Coming Soon</span>
+                          <span className="service-media__coming-soon-kicker">Currently unavailable</span>
+                          <span className="service-media__coming-soon-label">Under Maintenance</span>
                         </div>
                       </div>
                     ) : null}

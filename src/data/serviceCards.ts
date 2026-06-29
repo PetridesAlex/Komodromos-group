@@ -14,7 +14,7 @@ export type ServiceCard = {
    * light (e.g. white) mattes so the mark is not washed out.
    */
   brandLogoBlend?: 'lighten' | 'normal'
-  /** Homepage cover badge — service detail not yet live */
+  /** Homepage cover badge — service detail temporarily offline */
   comingSoon?: boolean
 }
 
@@ -46,6 +46,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/wedding-sky.webp`,
     brandLogo: `${SVC_CARD_LOGO}/wedding-sky.png`,
     brandLogoBlend: 'lighten',
+    comingSoon: true,
   },
   {
     slug: 'pool',
