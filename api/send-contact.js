@@ -292,7 +292,7 @@ export default async function handler(req, res) {
   const apiKey = readEnv('RESEND_API_KEY')
   const toEmail = readEnv('CONTACT_TO_EMAIL') || 'info@komodromosgroup.com'
   const fromEmail =
-    readEnv('RESEND_FROM') || 'Komodromos Group <onboarding@resend.dev>'
+    readEnv('RESEND_FROM') || 'Komodromos Group <notifications@komodromosgroup.com>'
 
   if (!apiKey) {
     return json(res, 500, {
