@@ -46,8 +46,6 @@ import TaxServicesOverviewPage from './components/TaxServicesOverviewPage.tsx'
 import TaxCompanyRegistrationPage from './components/TaxCompanyRegistrationPage.tsx'
 import TaxOfficeSecretarialPage from './components/TaxOfficeSecretarialPage.tsx'
 import TaxisNetService from './pages/TaxisNetService.tsx'
-import PaymentSuccess from './pages/PaymentSuccess.tsx'
-import PaymentFailed from './pages/PaymentFailed.tsx'
 import AstrealDevelopersPage from './components/AstrealDevelopersPage.tsx'
 import AstrealAboutPage from './components/AstrealAboutPage.tsx'
 import AstrealInvestCyprusPage from './components/AstrealInvestCyprusPage.tsx'
@@ -90,8 +88,6 @@ function Root() {
             <Routes>
             <Route path="/" element={<KomodromosGroupHomePage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/payment-success" element={<PaymentSuccess />} />
-            <Route path="/payment-failed" element={<PaymentFailed />} />
             <Route path="/services/wedding" element={<WeddingServicesPage />} />
             <Route path="/services/wedding/packages/:packageId" element={<WeddingPackageDetailPage />} />
             <Route path="/services/consulting" element={<BusinessConsultingPage />} />

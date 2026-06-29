@@ -16,7 +16,6 @@ import {
   getTaxNexToolCards,
 } from '../data/taxNexPageContent'
 import { TAX_NEX_2026_CHANGES_ROWS } from '../data/taxNex2026ChangesTableContent'
-import { isJccPaymentsEnabled } from '../lib/jccPayments'
 import { getTaxPlanCheckoutUrl, isValidHttpUrl } from '../lib/taxPlanCheckout'
 import TaxNexCorporateServicesSection from './TaxNexCorporateServicesSection'
 import TaxNexFaqSection from './TaxNexFaqSection'
@@ -397,7 +396,7 @@ export default function TaxNexCyprusPage() {
           <div className="taxnex-pricing-grid">
             {taxPricingPlans.map((plan, i) => {
               const checkoutUrl = getTaxPlanCheckoutUrl(plan.id)
-              const hasCheckout = isValidHttpUrl(checkoutUrl) || isJccPaymentsEnabled()
+              const hasCheckout = isValidHttpUrl(checkoutUrl)
               const gross = plan.priceEur * (1 + TAX_NEX_VAT_PCT / 100)
               const featured = plan.id === 'advisor'
               return (

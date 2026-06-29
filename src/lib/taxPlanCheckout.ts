@@ -1,5 +1,5 @@
 /**
- * Stripe Payment Links (or JCC / other hosted checkout URLs).
+ * Stripe Payment Links for hosted checkout URLs.
  * Set in `.env`: VITE_TAX_CHECKOUT_DIY, VITE_TAX_CHECKOUT_ADVISOR, VITE_TAX_CHECKOUT_SELF_EMPLOYED
  */
 export type TaxPlanCheckoutId = 'diy' | 'advisor' | 'self-employed'

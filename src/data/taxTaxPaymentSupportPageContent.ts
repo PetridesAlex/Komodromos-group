@@ -64,12 +64,12 @@ export const TAX_PAYMENT_SUPPORT_ARTICLE_BLOCKS: TaxGuideArticleBlock[] = [
     el: [
       'Προσωπικό internet banking: χρειάζεστε τον αριθμό αναφοράς πληρωμής που εμφανίζεται στις Καταστάσεις Οφειλόμενων Ποσών στην Πύλη Φόρων.',
       'Σε ορισμένες περιπτώσεις πρέπει να δημιουργήσετε την «εκτίμηση» στην Πύλη Φόρων μόνοι σας — το οφειλόμενο ποσό ενδέχεται να μην εμφανίζεται αυτόματα.',
-      'Πύλη JCC Smart web (όπου εφαρμόζεται για εμπρόθεσμες πληρωμές).',
+      'Ηλεκτρονική πύλη πληρωμών (όπου εφαρμόζεται για εμπρόθεσμες πληρωμές).',
     ],
     en: [
       'Personal internet banking: you need the payment reference number shown on the Amounts Due statements in the Tax Portal.',
       'In some cases you must create the “estimate” in the Tax Portal yourself — the amount due may not appear automatically.',
-      'JCC Smart web portal (where applicable for on-time payments).',
+      'Online payment portal (where applicable for on-time payments).',
     ],
   },
   {

@@ -140,7 +140,7 @@ export type TaxNexPricingPlan = {
 }
 
 /**
- * Πακέτα υποβολής φορολογικής δήλωσης — στοχεύουν σε Stripe (ή JCC) checkout URL ανά πακέτο.
+ * Πακέτα υποβολής φορολογικής δήλωσης — optional Stripe checkout URL ανά πακέτο.
  */
 export const TAX_NEX_PRICING_PLANS: TaxNexPricingPlan[] = [
   {

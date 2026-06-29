@@ -62,18 +62,6 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       priority: 0.9,
     }),
     route({
-      path: '/payment-success',
-      title: 'Payment Successful',
-      description: 'Your payment to Komodromos Group was processed successfully.',
-      index: false,
-    }),
-    route({
-      path: '/payment-failed',
-      title: 'Payment Failed',
-      description: 'Your payment to Komodromos Group could not be completed.',
-      index: false,
-    }),
-    route({
       path: '/services/wedding',
       title: 'Wedding Sky',
       description:

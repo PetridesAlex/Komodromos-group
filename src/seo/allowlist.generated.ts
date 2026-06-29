@@ -2,8 +2,6 @@
 export const SEO_ALLOWLIST = new Set<string>([
   "/",
   "/contact",
-  "/payment-success",
-  "/payment-failed",
   "/services/wedding",
   "/services/consulting",
   "/services/pool",

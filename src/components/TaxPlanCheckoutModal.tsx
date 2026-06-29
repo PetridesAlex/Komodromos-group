@@ -1,19 +1,17 @@
 import { useEffect, useId, useState } from 'react'
 import { TAX_NEX_VAT_PCT, type TaxNexPricingPlan } from '../data/taxNexPageContent'
-import { isJccPaymentsEnabled } from '../lib/jccPayments'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
 import {
   appendPaymentLinkPrefill,
   isValidHttpUrl,
   storeTaxPlanCheckoutLead,
 } from '../lib/taxPlanCheckout'
-import { startJccPayment } from '../utils/startJccPayment'
 
 type Props = {
   isOpen: boolean
   onClose: () => void
   plan: TaxNexPricingPlan | null
-  /** Stripe/JCC URL — if null, navigates to contact after capturing details */
+  /** Optional Stripe Payment Link URL — if null, sends enquiry by email */
   checkoutUrl: string | null
 }
 
@@ -56,8 +54,6 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
   if (!isOpen || !plan) return null
 
   const hasStripeCheckout = checkoutUrl != null && isValidHttpUrl(checkoutUrl)
-  const hasJccCheckout = isJccPaymentsEnabled()
-  const hasOnlineCheckout = hasStripeCheckout || hasJccCheckout
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -106,22 +102,6 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
       return
     }
 
-    if (hasJccCheckout) {
-      try {
-        await startJccPayment({
-          amount: grossEur,
-          orderId: `TAXNEX-${activePlan.id}-${Date.now()}`,
-          customerName: name.trim(),
-          customerEmail: email.trim(),
-          description: messageLine.slice(0, 512),
-        })
-      } catch (err) {
-        setSubmitError(err instanceof Error ? err.message : 'Η πληρωμή δεν ξεκίνησε. Δοκιμάστε ξανά.')
-        setBusy(false)
-      }
-      return
-    }
-
     setSuccess(true)
     setBusy(false)
   }
@@ -160,86 +140,86 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
           </div>
         ) : (
           <>
-        <p className="taxnex-checkout-modal__eyebrow">Πακέτο υποβολής</p>
-        <h2 id={titleId} className="taxnex-checkout-modal__title">
-          {plan.title}
-        </h2>
-        <p className="taxnex-checkout-modal__lead">
-          Συμπληρώστε τα στοιχεία σας —{' '}
-          {hasOnlineCheckout
-            ? 'θα μεταφερθείτε στην ασφαλή σελίδα πληρωμής.'
-            : 'θα ανοίξει η φόρμα επικοινωνίας με τα δεδομένα σας για να ολοκληρώσουμε την πληρωμή χειροκίνητα.'}
-        </p>
-
-        <form className="taxnex-checkout-modal__form" onSubmit={handleSubmit}>
-          <label className="taxnex-checkout-modal__field">
-            <span>Ονοματεπώνυμο *</span>
-            <input
-              type="text"
-              name="name"
-              autoComplete="name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <label className="taxnex-checkout-modal__field">
-            <span>Email *</span>
-            <input
-              type="email"
-              name="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-          <label className="taxnex-checkout-modal__field">
-            <span>Τηλέφωνο *</span>
-            <input
-              type="tel"
-              name="phone"
-              autoComplete="tel"
-              required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </label>
-          <label className="taxnex-checkout-modal__field">
-            <span>Εταιρεία (προαιρετικό)</span>
-            <input
-              type="text"
-              name="company"
-              autoComplete="organization"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-            />
-          </label>
-
-          {submitError ? (
-            <p className="taxnex-checkout-modal__error" role="alert">
-              {submitError}
+            <p className="taxnex-checkout-modal__eyebrow">Πακέτο υποβολής</p>
+            <h2 id={titleId} className="taxnex-checkout-modal__title">
+              {plan.title}
+            </h2>
+            <p className="taxnex-checkout-modal__lead">
+              Συμπληρώστε τα στοιχεία σας —{' '}
+              {hasStripeCheckout
+                ? 'θα μεταφερθείτε στην ασφαλή σελίδα πληρωμής.'
+                : 'η ομάδα μας θα επικοινωνήσει μαζί σας για να ολοκληρώσετε την πληρωμή.'}
             </p>
-          ) : null}
 
-          <div className="taxnex-checkout-modal__actions">
-            <button
-              type="button"
-              className="taxnex-btn taxnex-btn--outline taxnex-checkout-modal__cancel"
-              onClick={onClose}
-              disabled={busy}
-            >
-              Ακύρωση
-            </button>
-            <button type="submit" className="taxnex-btn taxnex-btn--primary" disabled={busy}>
-              {busy
-                ? 'Παρακαλώ περιμένετε…'
-                : hasOnlineCheckout
-                  ? 'Συνέχεια στην πληρωμή'
-                  : 'Συνέχεια στην επικοινωνία'}
-            </button>
-          </div>
-        </form>
+            <form className="taxnex-checkout-modal__form" onSubmit={handleSubmit}>
+              <label className="taxnex-checkout-modal__field">
+                <span>Ονοματεπώνυμο *</span>
+                <input
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+              <label className="taxnex-checkout-modal__field">
+                <span>Email *</span>
+                <input
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
+              <label className="taxnex-checkout-modal__field">
+                <span>Τηλέφωνο *</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </label>
+              <label className="taxnex-checkout-modal__field">
+                <span>Εταιρεία (προαιρετικό)</span>
+                <input
+                  type="text"
+                  name="company"
+                  autoComplete="organization"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                />
+              </label>
+
+              {submitError ? (
+                <p className="taxnex-checkout-modal__error" role="alert">
+                  {submitError}
+                </p>
+              ) : null}
+
+              <div className="taxnex-checkout-modal__actions">
+                <button
+                  type="button"
+                  className="taxnex-btn taxnex-btn--outline taxnex-checkout-modal__cancel"
+                  onClick={onClose}
+                  disabled={busy}
+                >
+                  Ακύρωση
+                </button>
+                <button type="submit" className="taxnex-btn taxnex-btn--primary" disabled={busy}>
+                  {busy
+                    ? 'Παρακαλώ περιμένετε…'
+                    : hasStripeCheckout
+                      ? 'Συνέχεια στην πληρωμή'
+                      : 'Αποστολή αιτήματος'}
+                </button>
+              </div>
+            </form>
           </>
         )}
       </div>

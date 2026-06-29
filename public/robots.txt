@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /payment-success
-Disallow: /payment-failed
 Disallow: /api/
 
 Sitemap: https://www.komodromosgroup.com/sitemap.xml

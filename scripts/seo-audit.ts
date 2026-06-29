@@ -57,7 +57,7 @@ const staticRoutePaths = routePathMatches.filter(
 for (const path of staticRoutePaths) {
   const normalized = path.replace(/\/+$/, '') || '/'
   const inRegistry = routes.some((entry) => entry.path === normalized)
-  if (!inRegistry && path !== '/payment-success' && path !== '/payment-failed') {
+  if (!inRegistry) {
     if (path.startsWith('/services/aviation')) {
       const aviationBase = routes.some((entry) => entry.path.startsWith('/services/aviation'))
       if (!aviationBase) warnings.push(`Aviation route may be missing registry coverage: ${path}`)
