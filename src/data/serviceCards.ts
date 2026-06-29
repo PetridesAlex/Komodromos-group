@@ -14,6 +14,8 @@ export type ServiceCard = {
    * light (e.g. white) mattes so the mark is not washed out.
    */
   brandLogoBlend?: 'lighten' | 'normal'
+  /** Homepage cover badge — service detail not yet live */
+  comingSoon?: boolean
 }
 
 /** Homepage / service list covers in `public/images/services/companie-services-cover/` */
@@ -32,6 +34,7 @@ export const serviceCards: ServiceCard[] = [
     image: '/images/services/vip-service/luxury-travel.webp',
     brandLogo: `${SVC_CARD_LOGO}/luxury-sky.png`,
     brandLogoBlend: 'lighten',
+    comingSoon: true,
   },
   {
     slug: 'wedding',
@@ -88,6 +91,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/Global-wings.webp`,
     brandLogo: `${SVC_CARD_LOGO}/global-wings.png`,
     brandLogoBlend: 'normal',
+    comingSoon: true,
   },
   {
     slug: 'astreal',
@@ -122,6 +126,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/tax.webp`,
     brandLogo: `${SVC_CARD_LOGO}/tax-nex.png`,
     brandLogoBlend: 'lighten',
+    comingSoon: true,
   },
   {
     slug: 'janchapelle',
@@ -134,6 +139,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/Bridal.webp`,
     brandLogo: `${SVC_CARD_LOGO}/jan-chapelle.png`,
     brandLogoBlend: 'lighten',
+    comingSoon: true,
   },
   {
     slug: 'adr-mediation',
@@ -145,6 +151,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/justice-law.webp`,
     brandLogo: `${SVC_CARD_LOGO}/law-logo.png`,
     brandLogoBlend: 'lighten',
+    comingSoon: true,
   },
 ]
 

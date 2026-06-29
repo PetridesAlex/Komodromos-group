@@ -12017,6 +12017,106 @@ button {
   overflow: hidden;
 }
 
+#services .service-list .service-media__coming-soon {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 85% 70% at 50% 50%,
+      rgba(3, 8, 18, 0.72) 0%,
+      rgba(3, 8, 18, 0.45) 55%,
+      rgba(3, 8, 18, 0.62) 100%
+    );
+}
+
+#services .service-list .service-media__coming-soon-plaque {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: min(82%, 17.5rem);
+  padding: 1.15rem 1.65rem 1.25rem;
+  text-align: center;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10, 18, 36, 0.94) 0%,
+      rgba(6, 12, 24, 0.9) 52%,
+      rgba(12, 20, 38, 0.92) 100%
+    );
+  border: 1px solid rgba(200, 169, 106, 0.58);
+  border-radius: 4px;
+  box-shadow:
+    0 20px 52px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(200, 169, 106, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#services .service-list .service-media__coming-soon-kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.48rem, 1.4vw, 0.56rem);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(200, 169, 106, 0.92);
+}
+
+#services .service-list .service-media__coming-soon-label {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 3.8vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(165deg, #ffffff 0%, #f0e4c8 38%, #d4b06a 72%, #c8a96a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+}
+
+#services .service-list .service-media__coming-soon-plaque::before,
+#services .service-list .service-media__coming-soon-plaque::after {
+  content: '';
+  display: block;
+  width: min(4.5rem, 28%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(200, 169, 106, 0.75) 50%, transparent 100%);
+}
+
+#services .service-list .service-media__coming-soon-plaque::before {
+  margin-bottom: 0.15rem;
+}
+
+#services .service-list .service-media__coming-soon-plaque::after {
+  margin-top: 0.15rem;
+}
+
+#services .service-list .service-card:hover .service-media__coming-soon-plaque {
+  border-color: rgba(232, 212, 160, 0.72);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.52),
+    0 0 32px rgba(200, 169, 106, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
 .service-img {
   width: 100%;
   height: 100%;
@@ -12713,6 +12813,27 @@ article[data-service-slug='consulting'] .service-brand-logo {
 .form-submit:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 24px rgba(197,160,89,0.3);
+}
+
+.form-submit:disabled,
+.vip-form-submit:disabled,
+.gw-contact-form__submit:disabled {
+  opacity: 0.72;
+  cursor: wait;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact-form-error {
+  margin: 0.85rem 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #b91c1c;
+}
+
+.contact-form-error--light {
+  color: #fecaca;
 }
 
 .contact-success {

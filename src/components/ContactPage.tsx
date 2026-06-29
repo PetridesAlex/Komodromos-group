@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
+import { sendContactInquiry } from '../lib/sendContactInquiry'
 import { serviceCards } from '../data/serviceCards'
 
 export default function ContactPage() {
@@ -20,6 +21,8 @@ export default function ContactPage() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   useEffect(() => {
     const s = location.state as {
@@ -108,9 +111,31 @@ export default function ContactPage() {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setSubmitError(null)
+
+    try {
+      await sendContactInquiry({
+        source: 'Komodromos Contact Page',
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        company: form.company.trim(),
+        service: form.service.trim(),
+        message: form.message.trim(),
+      })
+      setSubmitted(true)
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : 'Could not send your message. Please try again or email info@komodromosgroup.com directly.',
+      )
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -259,9 +284,14 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button type="submit" className="form-submit">
-                  SEND MESSAGE
+                <button type="submit" className="form-submit" disabled={submitting}>
+                  {submitting ? 'SENDING…' : 'SEND MESSAGE'}
                 </button>
+                {submitError ? (
+                  <p className="contact-form-error" role="alert">
+                    {submitError}
+                  </p>
+                ) : null}
               </form>
             )}
           </div>

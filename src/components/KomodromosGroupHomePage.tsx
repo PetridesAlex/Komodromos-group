@@ -186,6 +186,14 @@ export default function KomodromosGroupHomePage() {
                       </span>
                     </div>
                     <img src={card.image} alt={card.title} className="service-img" />
+                    {card.comingSoon ? (
+                      <div className="service-media__coming-soon" aria-hidden>
+                        <div className="service-media__coming-soon-plaque">
+                          <span className="service-media__coming-soon-kicker">Launching shortly</span>
+                          <span className="service-media__coming-soon-label">Coming Soon</span>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                   <div
                     className={`service-text${card.brandLogo ? ' service-text--with-brand' : ''}`}

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { vipSubServices } from '../data/vipSubServices'
+import { sendContactInquiry } from '../lib/sendContactInquiry'
 
 export default function VipConciergeContactForm() {
   const [form, setForm] = useState({
@@ -10,6 +11,8 @@ export default function VipConciergeContactForm() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   function handleChange(
     e: React.ChangeEvent<
@@ -19,9 +22,30 @@ export default function VipConciergeContactForm() {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setSubmitError(null)
+
+    try {
+      await sendContactInquiry({
+        source: 'VIP Concierge Inquiry',
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        service: form.vipService.trim(),
+        message: form.message.trim(),
+      })
+      setSubmitted(true)
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : 'Could not send your inquiry. Please try again or email info@komodromosgroup.com directly.',
+      )
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -128,9 +152,14 @@ export default function VipConciergeContactForm() {
                 />
               </div>
 
-              <button type="submit" className="vip-form-submit">
-                Submit inquiry
+              <button type="submit" className="vip-form-submit" disabled={submitting}>
+                {submitting ? 'Sending…' : 'Submit inquiry'}
               </button>
+              {submitError ? (
+                <p className="contact-form-error" role="alert">
+                  {submitError}
+                </p>
+              ) : null}
             </form>
           )}
         </div>

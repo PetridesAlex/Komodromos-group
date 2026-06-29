@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Building2, Mail, MapPin, Phone, Send, Smartphone } from 'lucide-react'
 import GwImagePlaceholder from './GwImagePlaceholder'
 import { useReveal } from '../../hooks/useReveal'
+import { sendContactInquiry } from '../../lib/sendContactInquiry'
 import {
   contactForm,
   contactHero,
@@ -33,6 +34,8 @@ export default function GwContactPage() {
   const location = useLocation()
   const [form, setForm] = useState<FormState>(initialForm)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   useEffect(() => {
     const state = location.state as {
@@ -69,9 +72,31 @@ export default function GwContactPage() {
     setForm((current) => ({ ...current, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setSubmitError(null)
+
+    try {
+      await sendContactInquiry({
+        source: 'Global Wings Aviation Contact',
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        company: form.company.trim(),
+        service: form.service.trim(),
+        message: form.message.trim(),
+      })
+      setSubmitted(true)
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : 'Could not send your message. Please try again or email info@komodromosgroup.com directly.',
+      )
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -279,10 +304,15 @@ export default function GwContactPage() {
                     />
                   </div>
 
-                  <button type="submit" className="gw-contact-form__submit">
-                    Send Message
+                  <button type="submit" className="gw-contact-form__submit" disabled={submitting}>
+                    {submitting ? 'Sending…' : 'Send Message'}
                     <Send aria-hidden size={16} strokeWidth={2} />
                   </button>
+                  {submitError ? (
+                    <p className="contact-form-error contact-form-error--light" role="alert">
+                      {submitError}
+                    </p>
+                  ) : null}
                 </form>
               )}
             </div>
