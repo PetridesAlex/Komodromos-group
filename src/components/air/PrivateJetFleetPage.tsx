@@ -6,7 +6,6 @@ import SiteTopbar from '../SiteTopbar'
 import { useReveal } from '../../hooks/useReveal'
 import { airCategoryPath, airPrivateJetFleet, airPrivateJetFleetPath } from '../../data/airServicesPage'
 
-const BASE_TITLE = 'Komodromos'
 const EASE = [0.16, 1, 0.3, 1] as const
 
 export default function PrivateJetFleetPage() {
@@ -17,14 +16,6 @@ export default function PrivateJetFleetPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
-    const prev = document.title
-    document.title = `Private Jet Fleet · Air Services · ${BASE_TITLE}`
-    return () => {
-      document.title = prev
-    }
   }, [])
 
   return (

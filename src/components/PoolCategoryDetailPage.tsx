@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowLeft, ArrowRight, ChevronRight, ZoomIn } from 'lucide-react'
 import Footer from './Footer'
@@ -10,6 +10,7 @@ import {
   getPoolGardenGallery,
   resolvePoolGardenDetailPage,
 } from '../data/poolGardenPage'
+import NotFoundPage from './NotFoundPage'
 
 const POOL_EASE = [0.22, 1, 0.36, 1] as const
 
@@ -61,12 +62,7 @@ export default function PoolCategoryDetailPage() {
   }, [categoryId, serviceId, liningId])
 
   if (!page) {
-    const fallback = categoryId
-      ? '/services/pool#pool-categories'
-      : liningId
-        ? '/services/pool#pool-internal-linings'
-        : '/services/pool#service-renovation-repair'
-    return <Navigate to={fallback} replace />
+    return <NotFoundPage />
   }
 
   const { detail } = page

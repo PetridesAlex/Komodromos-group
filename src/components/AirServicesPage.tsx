@@ -5,21 +5,11 @@ import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { airCategoryContent, airCategoryPath, airServicesHero } from '../data/airServicesPage'
 
-const BASE_TITLE = 'Komodromos'
-
 export default function AirServicesPage() {
   const pageRef = useReveal()
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
-
-  useEffect(() => {
-    const prev = document.title
-    document.title = `Air Services · ${BASE_TITLE}`
-    return () => {
-      document.title = prev
-    }
   }, [])
 
   return (

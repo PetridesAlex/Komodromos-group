@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Navigate, useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
@@ -16,6 +16,7 @@ import StoragePremiumSection from './StoragePremiumSection'
 import ServiceDefaultSections from './ServiceDefaultSections'
 import TaxNexCyprusPage from './TaxNexCyprusPage'
 import { Hero9 } from './hero-9'
+import NotFoundPage from './NotFoundPage'
 
 const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
 const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
@@ -156,7 +157,7 @@ export default function ServiceDetailPage() {
   }, [])
 
   if (!card) {
-    return <Navigate to="/" replace />
+    return <NotFoundPage />
   }
 
   const isVip = slug === 'vip'

@@ -1,0 +1,75 @@
+import { Helmet } from 'react-helmet-async'
+import {
+  DEFAULT_DESCRIPTION,
+  SITE_NAME,
+  absoluteImageUrl,
+  absoluteUrl,
+  formatPageTitle,
+} from './siteConfig'
+import type { JsonLd } from './schema'
+import { combineSchemas, organizationSchema, websiteSchema } from './schema'
+
+export type PageSeoProps = {
+  title: string
+  description?: string
+  path: string
+  image?: string
+  noindex?: boolean
+  jsonLd?: JsonLd
+  includeGlobalSchema?: boolean
+}
+
+function serializeJsonLd(jsonLd: JsonLd): string {
+  return JSON.stringify(jsonLd)
+}
+
+export default function PageSeo({
+  title,
+  description = DEFAULT_DESCRIPTION,
+  path,
+  image,
+  noindex = false,
+  jsonLd,
+  includeGlobalSchema = true,
+}: PageSeoProps) {
+  const pageTitle = formatPageTitle(title)
+  const canonical = absoluteUrl(path)
+  const ogImage = absoluteImageUrl(image)
+  const robots = noindex ? 'noindex, nofollow' : 'index, follow'
+
+  const globalSchema = includeGlobalSchema
+    ? combineSchemas(organizationSchema(), websiteSchema())
+    : null
+
+  const schemaPayload =
+    jsonLd && globalSchema
+      ? combineSchemas(...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]), ...(Array.isArray(globalSchema) ? globalSchema : [globalSchema]))
+      : jsonLd ?? globalSchema
+
+  return (
+    <Helmet>
+      <html lang="en" />
+      <title>{pageTitle}</title>
+      <meta name="description" content={description} />
+      <meta name="robots" content={robots} />
+      <link rel="canonical" href={canonical} />
+
+      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:locale" content="en_GB" />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
+
+      {schemaPayload ? (
+        <script type="application/ld+json">{serializeJsonLd(schemaPayload)}</script>
+      ) : null}
+    </Helmet>
+  )
+}

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
 import SiteTopbar from '../SiteTopbar'
@@ -8,6 +8,7 @@ import {
   findYachtCharterById,
   getYachtDetailContent,
 } from '../../data/yachtChartersData'
+import NotFoundPage from '../NotFoundPage'
 
 export default function YachtDetailPage() {
   const { yachtId } = useParams<{ yachtId: string }>()
@@ -22,7 +23,7 @@ export default function YachtDetailPage() {
   const yacht = yachtId ? findYachtCharterById(yachtId) : undefined
 
   if (!yacht) {
-    return <Navigate to="/services/yacht-charters" replace />
+    return <NotFoundPage />
   }
 
   const detail = getYachtDetailContent(yacht)

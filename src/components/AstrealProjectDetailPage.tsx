@@ -9,6 +9,7 @@ import {
   getAstrealProjectById,
   type AstrealDetailCopyImageBreak,
 } from '../data/astrealDevelopersPage'
+import NotFoundPage from './NotFoundPage'
 
 type DetailCopyStreamItem =
   | { kind: 'paragraph'; para: string; index: number }
@@ -179,7 +180,7 @@ export default function AstrealProjectDetailPage() {
   }
 
   if (!project) {
-    return <Navigate to="/services/astreal" replace />
+    return <NotFoundPage />
   }
 
   const skipScrollMotion = Boolean(reduceMotion || isNarrowViewport)

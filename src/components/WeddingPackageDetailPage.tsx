@@ -1,11 +1,12 @@
 import { useEffect, useMemo } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { weddingPackages } from '../data/weddingPackages'
 import { weddingPackageDetails } from '../data/weddingPackageDetails'
 import { weddingPackageLongContentById } from '../data/weddingBasicPackageContent'
+import NotFoundPage from './NotFoundPage'
 
 export default function WeddingPackageDetailPage() {
   const pageRef = useReveal()
@@ -17,7 +18,7 @@ export default function WeddingPackageDetailPage() {
   )
 
   if (!packageTier) {
-    return <Navigate to="/services/wedding#wedding-packages-heading" replace />
+    return <NotFoundPage />
   }
 
   const detail = weddingPackageDetails[packageTier.id]

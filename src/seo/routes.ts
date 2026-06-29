@@ -1,0 +1,560 @@
+import { astrealProjectCards } from '../data/astrealDevelopersPage'
+import {
+  airCategoryPath,
+  airLightFleet,
+  airPrivateJetFleet,
+} from '../data/airServicesPage'
+import { aviationSections } from '../data/globalWingsPage'
+import {
+  poolCategories,
+  poolInternalLinings,
+  poolServiceRenovationRepair,
+} from '../data/poolGardenPage'
+import { serviceCards } from '../data/serviceCards'
+import { STORAGE_USEFUL_TIPS } from '../data/storageUsefulTipsContent'
+import { weddingPackages } from '../data/weddingPackages'
+import { yachtFleet } from '../data/yachtChartersData'
+import { SITE_NAME_FULL } from './siteConfig'
+
+export type SeoRouteEntry = {
+  path: string
+  title: string
+  description: string
+  index: boolean
+  priority?: number
+  changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'
+  ogImage?: string
+}
+
+type RouteInput = Omit<SeoRouteEntry, 'path'> & { path: string }
+
+function route(input: RouteInput): SeoRouteEntry {
+  return {
+    priority: input.index ? 0.6 : undefined,
+    changefreq: input.index ? 'monthly' : undefined,
+    ...input,
+  }
+}
+
+function detailDescription(name: string, context: string): string {
+  return `${name} — ${context}. Part of Komodromos Group premium services in Cyprus.`
+}
+
+const SERVICE_DETAIL_SLUGS = new Set(['vip', 'storage', 'hr', 'tax', 'janchapelle', 'adr-mediation'])
+
+function buildStaticRoutes(): SeoRouteEntry[] {
+  const routes: SeoRouteEntry[] = [
+    route({
+      path: '/',
+      title: SITE_NAME_FULL,
+      description:
+        'Komodromos Group of Companies — aviation, VIP concierge, tax & accounting, property development, storage, weddings, and business consulting across Cyprus and internationally.',
+      index: true,
+      priority: 1,
+      changefreq: 'weekly',
+    }),
+    route({
+      path: '/contact',
+      title: 'Contact Us',
+      description:
+        'Get in touch with Komodromos Group in Limassol, Cyprus. Phone, email, and enquiry form for aviation, VIP, tax, property, storage, and wedding services.',
+      index: true,
+      priority: 0.9,
+    }),
+    route({
+      path: '/payment-success',
+      title: 'Payment Successful',
+      description: 'Your payment to Komodromos Group was processed successfully.',
+      index: false,
+    }),
+    route({
+      path: '/payment-failed',
+      title: 'Payment Failed',
+      description: 'Your payment to Komodromos Group could not be completed.',
+      index: false,
+    }),
+    route({
+      path: '/services/wedding',
+      title: 'Wedding Sky',
+      description:
+        'Luxury wedding planning and coordination in Cyprus — curated packages from intimate celebrations to signature premium events by Wedding Sky.',
+      index: true,
+      priority: 0.8,
+    }),
+    route({
+      path: '/services/consulting',
+      title: 'Business Consulting',
+      description:
+        'Strategic business consulting and corporate advisory from Komodromos Group — growth, operations, and tailored solutions for organisations in Cyprus.',
+      index: true,
+      priority: 0.8,
+    }),
+    route({
+      path: '/services/pool',
+      title: 'Pool & Garden Services',
+      description:
+        'Premium pool construction, renovation, linings, and garden services in Cyprus — design, maintenance, and bespoke outdoor living solutions.',
+      index: true,
+      priority: 0.8,
+    }),
+    route({
+      path: '/services/aviation',
+      title: 'Global Wings Aviation',
+      description:
+        'Global Wings Ltd — pilot recruitment, airline crew resourcing, aviation training, and cadet programmes. Part of Komodromos Group.',
+      index: true,
+      priority: 0.8,
+    }),
+    route({
+      path: '/services/aviation/pilots',
+      title: 'Global Wings Pilots',
+      description:
+        'Experienced pilot recruitment and placement services for commercial and private aviation operators worldwide.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/aviation/airlines',
+      title: 'Airline Services',
+      description:
+        'Flight and cabin crew resourcing for airlines — flexible staffing solutions from Global Wings Ltd, Komodromos Group.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/aviation/jobs',
+      title: 'Aviation Jobs',
+      description:
+        'Aviation career opportunities — pilot, cabin crew, and engineering roles sourced through Global Wings recruitment.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/aviation/trainings',
+      title: 'Aviation Trainings',
+      description:
+        'Professional aviation training programmes, certifications, and career development from Global Wings Ltd.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/aviation/cadet-programme',
+      title: 'Globalcadet Programme',
+      description:
+        'Globalcadet pilot training pathway — structured cadet programme for aspiring commercial pilots through Global Wings.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/aviation/contact',
+      title: 'Global Wings Contact',
+      description:
+        'Contact Global Wings Ltd for pilot recruitment, airline crew solutions, and aviation training enquiries.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/aviation/privacy',
+      title: aviationSections.privacy.title,
+      description:
+        'Privacy policy for Global Wings Ltd — how we collect, use, and protect your personal information.',
+      index: true,
+      priority: 0.3,
+    }),
+    route({
+      path: '/services/air',
+      title: 'Air Services',
+      description:
+        'Luxury Sky air services — private jet charter, light aircraft, scenic flights, and bespoke aviation experiences in Cyprus and beyond.',
+      index: true,
+      priority: 0.8,
+    }),
+    route({
+      path: `/services/air/${airCategoryPath.jets}`,
+      title: 'Private Jets',
+      description:
+        'Private jet charter and in-flight services — super-midsize to heavy jets for executive travel, board moves, and intercontinental missions.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: `/services/air/${airCategoryPath.light}`,
+      title: 'Light Aircraft',
+      description:
+        'Light aircraft charter, scenic tours, and discovery flights across Cyprus and the Mediterranean — flexible regional aviation.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/air/private-jets/fleet',
+      title: 'Private Jet Fleet',
+      description:
+        'Explore our private jet fleet — Challenger, Learjet, and long-range aircraft for charter missions across Cyprus and internationally.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/air/light-aircraft/fleet',
+      title: 'Light Aircraft Fleet',
+      description:
+        'Light aircraft fleet for scenic routes, regional access, and pilot training — C-172 and DA42 platforms in Cyprus.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/limousines-experiences',
+      title: 'Limousines & Experiences',
+      description:
+        'Premium limousine hire and VIP ground transport in Cyprus — stretch limousines for events, transfers, and special occasions.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/limousines-experiences/chrysler-300-super-stretch',
+      title: 'Chrysler 300 Super Stretch',
+      description:
+        'Chrysler 300 super stretch limousine — premium VIP ground transport for weddings, events, and corporate travel in Cyprus.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/limousines-experiences/lincoln-30ft-stretched',
+      title: 'Lincoln 30ft Stretched Limousine',
+      description:
+        'Lincoln 30ft stretched limousine — flagship VIP limousine experience for celebrations and executive transport in Cyprus.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/vip-security-protection',
+      title: 'VIP Security & Protection',
+      description:
+        'Discreet VIP security and close protection services in Cyprus — professional teams for principals, events, and high-profile travel.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/vip-tour-around-island',
+      title: 'VIP Tour Around the Island',
+      description:
+        'Curated VIP island tours across Cyprus — private itineraries, luxury transport, and bespoke experiences with Komodromos Group.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/yacht-charters',
+      title: 'Yacht Charters',
+      description:
+        'Luxury yacht charters in Cyprus — motor yachts from Limassol Marina for day trips, celebrations, and Mediterranean cruising.',
+      index: true,
+      priority: 0.8,
+    }),
+    route({
+      path: '/services/tax/how-to-get-a-tic',
+      title: 'How to Get a TIC',
+      description:
+        'Guide to obtaining a Tax Identification Code (TIC) in Cyprus — requirements, process, and support from Komodromos tax advisors.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/tax-residence-certificate',
+      title: 'Tax Residence Certificate',
+      description:
+        'Cyprus tax residence certificate application support — documentation, eligibility, and advisory from Komodromos tax team.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/non-dom-certificate',
+      title: 'Non-Dom Certificate',
+      description:
+        'Non-domiciled status certificate guidance for Cyprus — tax planning and application support from experienced advisors.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/tax-clearances',
+      title: 'Tax Clearances',
+      description:
+        'Tax clearance certificates and compliance support in Cyprus — streamlined processing with Komodromos tax specialists.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/tax-payment-support',
+      title: 'Tax Payment Support',
+      description:
+        'Assistance with tax payments and settlements in Cyprus — guidance on deadlines, methods, and compliance.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/transfer-fees-calculator',
+      title: 'Transfer Fees Calculator',
+      description:
+        'Cyprus property transfer fee calculator — estimate stamp duties and transfer costs with Komodromos tax tools.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/income-tax-calculator',
+      title: 'Income Tax Calculator',
+      description:
+        'Cyprus income tax calculator — estimate personal tax liability with guidance from Komodromos tax advisors.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/taxisnet-application',
+      title: 'TAXISnet Application',
+      description:
+        'TAXISnet registration and application support for Cyprus tax portal access — setup assistance from Komodromos Group.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/services',
+      title: 'Tax Advisory Services',
+      description:
+        'Full tax and accounting services in Cyprus — compliance, advisory, payroll, and corporate tax support from Nex Cyprus.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/tax/company-registration-cyprus',
+      title: 'Company Registration Cyprus',
+      description:
+        'Cyprus company formation and registration — incorporation, structuring, and ongoing compliance with Komodromos tax team.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/tax/office-secretarial-services',
+      title: 'Office & Secretarial Services',
+      description:
+        'Corporate secretarial and office administration services in Cyprus — filings, registers, and governance support.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/astreal',
+      title: 'Astreal Developers',
+      description:
+        'Astreal Developers by Komodromos Group — premium residential property development and investment opportunities in Cyprus.',
+      index: true,
+      priority: 0.8,
+    }),
+    route({
+      path: '/services/astreal/about',
+      title: 'About Astreal Developers',
+      description:
+        'About Astreal Developers — vision, craftsmanship, and Mediterranean luxury living projects across Cyprus.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/astreal/invest-in-cyprus',
+      title: 'Invest in Cyprus',
+      description:
+        'Property investment in Cyprus with Astreal Developers — residency, yields, and premium developments guided by Komodromos Group.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/astreal/our-services',
+      title: 'Astreal Our Services',
+      description:
+        'Astreal Developers services — design, construction, sales, and aftercare for luxury residential projects in Cyprus.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/storage/unit-specifications',
+      title: 'Storage Unit Specifications',
+      description:
+        'Self-storage unit sizes and specifications in Cyprus — secure, climate-aware units from Storage2Rent, Komodromos Group.',
+      index: true,
+      priority: 0.65,
+    }),
+    route({
+      path: '/services/storage/extra-services/man-with-van',
+      title: 'Man with Van',
+      description:
+        'Man-with-van moving and delivery service for storage customers in Cyprus — flexible help with loading and transport.',
+      index: true,
+      priority: 0.6,
+    }),
+  ]
+
+  for (const card of serviceCards) {
+    if (!SERVICE_DETAIL_SLUGS.has(card.slug)) continue
+    const title =
+      card.slug === 'tax'
+        ? 'Tax & Accounting — Nex Cyprus'
+        : card.slug === 'storage'
+          ? 'Storage2Rent — Self Storage Cyprus'
+          : card.title
+    routes.push(
+      route({
+        path: `/services/${card.slug}`,
+        title,
+        description: card.description,
+        index: true,
+        priority: 0.75,
+        ogImage: card.image,
+      }),
+    )
+  }
+
+  return routes
+}
+
+function buildDynamicRoutes(): SeoRouteEntry[] {
+  const routes: SeoRouteEntry[] = []
+
+  for (const pkg of weddingPackages) {
+    routes.push(
+      route({
+        path: `/services/wedding/packages/${pkg.id}`,
+        title: `${pkg.name} Wedding Package`,
+        description: detailDescription(pkg.name, pkg.tagline),
+        index: true,
+        priority: 0.55,
+        ogImage: pkg.image,
+      }),
+    )
+  }
+
+  for (const category of poolCategories) {
+    routes.push(
+      route({
+        path: `/services/pool/categories/${category.id}`,
+        title: category.label,
+        description: detailDescription(category.label, 'pool design and construction'),
+        index: true,
+        priority: 0.55,
+      }),
+    )
+  }
+
+  for (const service of poolServiceRenovationRepair) {
+    routes.push(
+      route({
+        path: `/services/pool/services/${service.id}`,
+        title: service.label,
+        description: detailDescription(service.label, 'pool renovation and garden services'),
+        index: true,
+        priority: 0.55,
+      }),
+    )
+  }
+
+  for (const lining of poolInternalLinings) {
+    routes.push(
+      route({
+        path: `/services/pool/linings/${lining.id}`,
+        title: lining.label,
+        description: detailDescription(lining.label, 'pool internal linings and finishes'),
+        index: true,
+        priority: 0.55,
+      }),
+    )
+  }
+
+  for (const aircraft of airPrivateJetFleet.aircraft) {
+    routes.push(
+      route({
+        path: `/services/air/private-jets/fleet/${aircraft.id}`,
+        title: aircraft.name,
+        description: detailDescription(aircraft.name, 'private jet charter'),
+        index: true,
+        priority: 0.5,
+        ogImage: aircraft.image,
+      }),
+    )
+  }
+
+  for (const aircraft of airLightFleet.aircraft) {
+    routes.push(
+      route({
+        path: `/services/air/light-aircraft/fleet/${aircraft.id}`,
+        title: aircraft.name,
+        description: detailDescription(aircraft.name, 'light aircraft charter'),
+        index: true,
+        priority: 0.5,
+        ogImage: aircraft.image,
+      }),
+    )
+  }
+
+  for (const yacht of yachtFleet) {
+    routes.push(
+      route({
+        path: `/services/yacht-charters/${yacht.id}`,
+        title: `${yacht.name} Yacht Charter`,
+        description: yacht.description.slice(0, 155) || detailDescription(yacht.name, 'yacht charter Cyprus'),
+        index: true,
+        priority: 0.5,
+        ogImage: yacht.image,
+      }),
+    )
+  }
+
+  for (const tip of STORAGE_USEFUL_TIPS) {
+    routes.push(
+      route({
+        path: `/services/storage/tips/${tip.id}`,
+        title: tip.title,
+        description: tip.excerpt.slice(0, 155),
+        index: true,
+        priority: 0.5,
+      }),
+    )
+  }
+
+  for (const project of astrealProjectCards) {
+    routes.push(
+      route({
+        path: `/services/astreal/projects/${project.id}`,
+        title: project.title,
+        description: project.description.slice(0, 155),
+        index: true,
+        priority: 0.55,
+        ogImage: project.imageSrc,
+      }),
+    )
+  }
+
+  return routes
+}
+
+export function buildSeoRoutes(): SeoRouteEntry[] {
+  return [...buildStaticRoutes(), ...buildDynamicRoutes()]
+}
+
+export const seoRoutes: SeoRouteEntry[] = buildSeoRoutes()
+
+const seoRouteMap = new Map(seoRoutes.map((entry) => [entry.path, entry]))
+
+export function normalizePathname(pathname: string): string {
+  if (!pathname || pathname === '/') return '/'
+  const withoutTrailing = pathname.replace(/\/+$/, '')
+  return withoutTrailing || '/'
+}
+
+export function getSeoForPath(pathname: string): SeoRouteEntry | undefined {
+  return seoRouteMap.get(normalizePathname(pathname))
+}
+
+export function getIndexableSeoRoutes(): SeoRouteEntry[] {
+  return seoRoutes.filter((entry) => entry.index)
+}
+
+export function getSeoAllowlistPaths(): string[] {
+  return seoRoutes.map((entry) => entry.path)
+}
+
+export function isKnownSeoPath(pathname: string): boolean {
+  return seoRouteMap.has(normalizePathname(pathname))
+}

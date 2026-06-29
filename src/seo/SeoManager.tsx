@@ -1,0 +1,93 @@
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useLocation } from 'react-router-dom'
+import PageSeo, { type PageSeoProps } from './PageSeo'
+import { getSeoForPath } from './routes'
+import { breadcrumbSchema, combineSchemas, contactPageSchema, webPageSchema } from './schema'
+
+export type SeoOverride = Partial<PageSeoProps>
+
+const SeoOverrideContext = createContext<{
+  override: SeoOverride | null
+  setOverride: (value: SeoOverride | null) => void
+} | null>(null)
+
+export function SeoOverrideProvider({ children }: { children: ReactNode }) {
+  const [override, setOverride] = useState<SeoOverride | null>(null)
+  const value = useMemo(() => ({ override, setOverride }), [override])
+  return <SeoOverrideContext.Provider value={value}>{children}</SeoOverrideContext.Provider>
+}
+
+export function usePageSeo(override: SeoOverride) {
+  const ctx = useContext(SeoOverrideContext)
+  const location = useLocation()
+  const { title, description, path, image, noindex, jsonLd } = override
+
+  useEffect(() => {
+    if (!ctx) return
+    ctx.setOverride({
+      title,
+      description,
+      path: path ?? location.pathname,
+      image,
+      noindex,
+      jsonLd,
+    })
+    return () => ctx.setOverride(null)
+  }, [ctx, location.pathname, title, description, path, image, noindex, jsonLd])
+}
+
+function buildPageSchema(path: string, title: string, description: string) {
+  if (path === '/contact') {
+    return combineSchemas(contactPageSchema(), webPageSchema({ title, description, path }))
+  }
+
+  if (path.startsWith('/services/')) {
+    const crumbs = [{ name: 'Home', path: '/' }]
+    if (path.startsWith('/services/')) {
+      crumbs.push({ name: 'Services', path: '/' })
+    }
+    const segments = path.split('/').filter(Boolean)
+    if (segments.length > 1) {
+      let acc = ''
+      for (let i = 0; i < segments.length; i += 1) {
+        acc += `/${segments[i]}`
+        if (i > 0) {
+          crumbs.push({
+            name: segments[i].replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+            path: acc,
+          })
+        }
+      }
+    }
+    return combineSchemas(
+      webPageSchema({ title, description, path }),
+      breadcrumbSchema(crumbs.slice(0, 4)),
+    )
+  }
+
+  return webPageSchema({ title, description, path })
+}
+
+export default function SeoManager() {
+  const location = useLocation()
+  const ctx = useContext(SeoOverrideContext)
+  const registry = getSeoForPath(location.pathname)
+  const merged = { ...registry, ...ctx?.override }
+
+  if (!merged?.title) return null
+
+  const path = merged.path ?? location.pathname
+  const description = merged.description ?? registry?.description ?? ''
+  const jsonLd = merged.jsonLd ?? buildPageSchema(path, merged.title, description)
+
+  return (
+    <PageSeo
+      title={merged.title}
+      description={description}
+      path={path}
+      image={merged.image ?? registry?.ogImage}
+      noindex={merged.noindex ?? (registry ? !registry.index : true)}
+      jsonLd={jsonLd}
+    />
+  )
+}

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
@@ -13,8 +13,8 @@ import {
 } from '../data/airServicesPage'
 import LightAircraftPremiumSection from './air/LightAircraftPremiumSection'
 import PrivateJetsInflightPremiumSection from './air/PrivateJetsInflightPremiumSection'
+import NotFoundPage from './NotFoundPage'
 
-const BASE_TITLE = 'Komodromos'
 const EASE = [0.16, 1, 0.3, 1] as const
 
 export default function AirCategoryPage() {
@@ -31,21 +31,8 @@ export default function AirCategoryPage() {
     window.scrollTo(0, 0)
   }, [categorySlug])
 
-  useEffect(() => {
-    if (!categoryId) return
-    const prev = document.title
-    const titles: Record<AirCategoryId, string> = {
-      light: `Light Aircraft Experiences · Air Services · ${BASE_TITLE}`,
-      jets: `Private Jet In-Flight Services · Air Services · ${BASE_TITLE}`,
-    }
-    document.title = titles[categoryId]
-    return () => {
-      document.title = prev
-    }
-  }, [categoryId])
-
   if (!categoryId) {
-    return <Navigate to="/services/air" replace />
+    return <NotFoundPage />
   }
 
   const content = airCategoryContent[categoryId]

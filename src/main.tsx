@@ -1,5 +1,6 @@
 import { StrictMode, useState, useCallback, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './i18n'
 import './index.css'
@@ -60,6 +61,8 @@ import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
 import HeroParallaxEffect from './components/HeroParallaxEffect.tsx'
 import SectionLedScroll from './components/SectionLedScroll.tsx'
+import NotFoundPage from './components/NotFoundPage.tsx'
+import SeoManager, { SeoOverrideProvider } from './seo/SeoManager.tsx'
 
 function Root() {
   const [loaded, setLoaded] = useState(false)
@@ -81,8 +84,10 @@ function Root() {
       {!loaded && <Preloader onDone={handleDone} />}
       <div style={loaded ? undefined : { display: 'none' }}>
         <BrowserRouter>
-          <SectionLedScroll />
-          <Routes>
+          <SeoOverrideProvider>
+            <SeoManager />
+            <SectionLedScroll />
+            <Routes>
             <Route path="/" element={<KomodromosGroupHomePage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
@@ -144,7 +149,9 @@ function Root() {
             <Route path="/services/storage/extra-services/man-with-van" element={<StorageExtraServicesPage />} />
             <Route path="/services" element={<Navigate to="/#services" replace />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
+          </SeoOverrideProvider>
         </BrowserRouter>
         <HeroParallaxEffect />
         <CookieBanner />
@@ -156,6 +163,8 @@ function Root() {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Root />
+    <HelmetProvider>
+      <Root />
+    </HelmetProvider>
   </StrictMode>,
 )

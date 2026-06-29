@@ -1,0 +1,1 @@
+export { usePageSeo } from './SeoManager'

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
 import SiteTopbar from '../SiteTopbar'
@@ -10,8 +10,8 @@ import {
   airPrivateJetFleetDetails,
   airPrivateJetFleetPath,
 } from '../../data/airServicesPage'
+import NotFoundPage from '../NotFoundPage'
 
-const BASE_TITLE = 'Komodromos'
 const EASE = [0.16, 1, 0.3, 1] as const
 
 export default function PrivateJetFleetDetailPage() {
@@ -20,7 +20,7 @@ export default function PrivateJetFleetDetailPage() {
   const { aircraftId } = useParams<{ aircraftId: string }>()
 
   const aircraft = airPrivateJetFleet.aircraft.find((item) => item.id === aircraftId)
-  if (!aircraft) return <Navigate to={airPrivateJetFleetPath} replace />
+  if (!aircraft) return <NotFoundPage />
 
   const detail = airPrivateJetFleetDetails[aircraft.id]
   const jetsCategoryPath = `/services/air/${airCategoryPath.jets}`
@@ -28,14 +28,6 @@ export default function PrivateJetFleetDetailPage() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [aircraft.id])
-
-  useEffect(() => {
-    const prev = document.title
-    document.title = `${aircraft.name} · Private Jets · ${BASE_TITLE}`
-    return () => {
-      document.title = prev
-    }
-  }, [aircraft.name])
 
   return (
     <div className="page air-services-page air-pjf-page" ref={pageRef}>

@@ -6,6 +6,8 @@ import { useReveal } from '../hooks/useReveal'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
 import { serviceCards } from '../data/serviceCards'
 
+const CONTACT_PHONES = ['24333305', '96000336', '99243100', '24333306'] as const
+
 export default function ContactPage() {
   const location = useLocation()
   const pageRef = useReveal()
@@ -175,7 +177,11 @@ export default function ContactPage() {
             </div>
             <div className="contact-detail">
               <span className="contact-detail-label">PHONE</span>
-              <span>+357 00 000 000</span>
+              {CONTACT_PHONES.map((phone) => (
+                <a key={phone} href={`tel:+357${phone}`} className="contact-detail-phone">
+                  +357 {phone}
+                </a>
+              ))}
             </div>
             <div className="contact-detail">
               <span className="contact-detail-label">OFFICE</span>
