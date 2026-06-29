@@ -1,7 +1,12 @@
 /**
- * Vercel serverless — forward contact form inquiries to info@komodromosgroup.com via Resend.
- * RESEND_API_KEY must be set in Vercel Environment Variables (never in client code).
+ * Vercel serverless — forward website form inquiries to info@komodromosgroup.com via Resend.
+ * RESEND_API_KEY, CONTACT_TO_EMAIL, RESEND_FROM must be set in Vercel Environment Variables.
  */
+
+const SITE_URL = 'https://www.komodromosgroup.com'
+const LOGO_URL = `${SITE_URL}/images/services/companie-services-cover/cards-logos-services/main-logo.png`
+const COMPANY_NAME = 'Komodromos Group of Companies'
+const INBOX_EMAIL = 'info@komodromosgroup.com'
 
 function readEnv(name) {
   const value = process.env[name]
@@ -55,20 +60,26 @@ function displayValue(value) {
   return trimmed || 'Not provided'
 }
 
+function buildReferenceId(submittedAt) {
+  const stamp = submittedAt.replace(/[^0-9]/g, '').slice(0, 12)
+  return `KG-${stamp || Date.now()}`
+}
+
 function buildDetailRow(label, value, options = {}) {
   const { href, highlight = false } = options
   const display = displayValue(value)
-  const valueHtml = href && display !== 'Not provided'
-    ? `<a href="${escapeHtml(href)}" style="color:#c8a96a;text-decoration:none;font-weight:600;">${escapeHtml(display)}</a>`
-    : `<span style="color:${highlight ? '#f4efe4' : '#e8edf5'};font-size:15px;line-height:1.55;font-weight:${highlight ? '600' : '500'};">${escapeHtml(display)}</span>`
+  const valueHtml =
+    href && display !== 'Not provided'
+      ? `<a href="${escapeHtml(href)}" style="color:#d4b978;text-decoration:none;font-weight:600;">${escapeHtml(display)}</a>`
+      : `<span style="color:${highlight ? '#faf6ee' : '#e8edf5'};font-size:15px;line-height:1.55;font-weight:${highlight ? '600' : '500'};">${escapeHtml(display)}</span>`
 
   return `
     <tr>
-      <td style="padding:0 0 14px 0;">
+      <td style="padding:0 0 12px 0;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
           <tr>
-            <td style="padding:14px 16px;background:#0b1220;border:1px solid #1f2a3d;border-radius:10px;">
-              <p style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.4;letter-spacing:0.16em;text-transform:uppercase;color:#8fa0b8;font-weight:700;">
+            <td style="padding:16px 18px;background:linear-gradient(180deg,#0c1424 0%,#0a101c 100%);border:1px solid #24314a;border-radius:12px;">
+              <p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:1.4;letter-spacing:0.18em;text-transform:uppercase;color:#8fa0b8;font-weight:700;">
                 ${escapeHtml(label)}
               </p>
               <p style="margin:0;font-family:Georgia,'Times New Roman',serif;">
@@ -82,7 +93,20 @@ function buildDetailRow(label, value, options = {}) {
   `.trim()
 }
 
-function buildEmailHtml({ source, name, email, phone, company, service, message, submittedAt }) {
+function buildActionButton(label, href, primary = false) {
+  const bg = primary
+    ? 'background:linear-gradient(135deg,#c8a96a 0%,#a8894a 100%);color:#0a0a0a;'
+    : 'background:transparent;border:1px solid rgba(200,169,106,0.45);color:#e8d4a0;'
+  return `
+    <td style="padding:0 8px 0 0;">
+      <a href="${escapeHtml(href)}" style="display:inline-block;padding:12px 20px;border-radius:999px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;${bg}">
+        ${escapeHtml(label)}
+      </a>
+    </td>
+  `.trim()
+}
+
+function buildEmailHtml({ source, name, email, phone, company, service, message, submittedAt, referenceId }) {
   const detailRows = [
     buildDetailRow('Full name', name, { highlight: true }),
     buildDetailRow('Email address', email, { href: `mailto:${email}`, highlight: true }),
@@ -90,8 +114,16 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
       href: phone ? `tel:${phone.replace(/\s+/g, '')}` : undefined,
     }),
     buildDetailRow('Company / organisation', company),
-    buildDetailRow('Service of interest', service),
+    buildDetailRow('Service of interest', service, { highlight: true }),
   ].join('')
+
+  const telHref = phone ? `tel:${phone.replace(/\s+/g, '')}` : `mailto:${email}`
+  const actionButtons = [
+    buildActionButton('Reply to client', `mailto:${email}?subject=${encodeURIComponent(`Re: Your inquiry — ${COMPANY_NAME}`)}`, true),
+    phone ? buildActionButton('Call client', telHref) : '',
+  ]
+    .filter(Boolean)
+    .join('')
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -100,40 +132,59 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
   <meta name="supported-color-schemes" content="dark" />
-  <title>New inquiry — Komodromos Group</title>
+  <title>New inquiry — ${escapeHtml(COMPANY_NAME)}</title>
 </head>
-<body style="margin:0;padding:0;background:#060a12;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:#060a12;">
+<body style="margin:0;padding:0;background:#05080f;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+    New website inquiry from ${escapeHtml(name)} — ${escapeHtml(service || source)}
+  </div>
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:#05080f;">
     <tr>
-      <td align="center" style="padding:32px 16px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;max-width:640px;">
+      <td align="center" style="padding:36px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;max-width:660px;">
+          <tr>
+            <td style="padding:0 0 20px 0;text-align:center;">
+              <a href="${SITE_URL}" style="text-decoration:none;">
+                <img src="${LOGO_URL}" alt="${escapeHtml(COMPANY_NAME)}" width="220" style="display:block;margin:0 auto;max-width:220px;height:auto;border:0;" />
+              </a>
+            </td>
+          </tr>
+
           <tr>
             <td style="padding:0 0 18px 0;">
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:linear-gradient(135deg,#0d1528 0%,#111c34 100%);border:1px solid #24314a;border-radius:16px 16px 0 0;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:linear-gradient(145deg,#10192c 0%,#0d1528 55%,#111c34 100%);border:1px solid #2a3852;border-radius:18px 18px 0 0;overflow:hidden;">
                 <tr>
-                  <td style="padding:28px 28px 24px 28px;">
-                    <p style="margin:0 0 10px;font-size:11px;line-height:1.4;letter-spacing:0.24em;text-transform:uppercase;color:#c8a96a;font-weight:700;">
-                      Komodromos Group
-                    </p>
-                    <h1 style="margin:0 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:28px;line-height:1.2;font-weight:500;color:#ffffff;">
-                      New client inquiry
-                    </h1>
-                    <p style="margin:0;font-size:14px;line-height:1.6;color:#b7c4d8;">
-                      A new message was submitted through the website contact form and is ready for review.
-                    </p>
-                  </td>
+                  <td style="height:4px;background:linear-gradient(90deg,#8f7138 0%,#d4b978 50%,#8f7138 100%);font-size:0;line-height:0;">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td style="padding:0 28px 24px 28px;">
-                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                  <td style="padding:28px 28px 18px 28px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
                       <tr>
-                        <td style="padding:8px 14px;background:rgba(200,169,106,0.12);border:1px solid rgba(200,169,106,0.35);border-radius:999px;">
-                          <span style="font-size:11px;line-height:1.4;letter-spacing:0.14em;text-transform:uppercase;color:#e8d4a0;font-weight:700;">
-                            ${escapeHtml(source)}
+                        <td>
+                          <p style="margin:0 0 8px;font-size:10px;line-height:1.4;letter-spacing:0.28em;text-transform:uppercase;color:#c8a96a;font-weight:700;">
+                            Website inquiry
+                          </p>
+                          <h1 style="margin:0 0 12px;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.15;font-weight:500;color:#ffffff;">
+                            New client message
+                          </h1>
+                          <p style="margin:0;font-size:14px;line-height:1.65;color:#b7c4d8;">
+                            A visitor submitted a form on <a href="${SITE_URL}" style="color:#d4b978;text-decoration:none;">komodromosgroup.com</a>. Review the details below and respond promptly.
+                          </p>
+                        </td>
+                        <td align="right" valign="top" style="padding-left:16px;white-space:nowrap;">
+                          <span style="display:inline-block;padding:8px 12px;background:rgba(200,169,106,0.1);border:1px solid rgba(200,169,106,0.35);border-radius:8px;font-size:10px;line-height:1.3;letter-spacing:0.12em;text-transform:uppercase;color:#e8d4a0;font-weight:700;">
+                            ${escapeHtml(referenceId)}
                           </span>
                         </td>
                       </tr>
                     </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:0 28px 24px 28px;">
+                    <span style="display:inline-block;padding:9px 16px;background:rgba(200,169,106,0.12);border:1px solid rgba(200,169,106,0.35);border-radius:999px;font-size:10px;line-height:1.4;letter-spacing:0.16em;text-transform:uppercase;color:#e8d4a0;font-weight:700;">
+                      ${escapeHtml(source)}
+                    </span>
                   </td>
                 </tr>
               </table>
@@ -145,7 +196,7 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:#0a101c;border-left:1px solid #24314a;border-right:1px solid #24314a;">
                 <tr>
                   <td style="padding:24px 28px 8px 28px;">
-                    <p style="margin:0 0 16px;font-size:11px;line-height:1.4;letter-spacing:0.18em;text-transform:uppercase;color:#8fa0b8;font-weight:700;">
+                    <p style="margin:0 0 16px;font-size:10px;line-height:1.4;letter-spacing:0.2em;text-transform:uppercase;color:#8fa0b8;font-weight:700;">
                       Contact details
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
@@ -162,13 +213,13 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:#0a101c;border-left:1px solid #24314a;border-right:1px solid #24314a;">
                 <tr>
                   <td style="padding:8px 28px 28px 28px;">
-                    <p style="margin:0 0 12px;font-size:11px;line-height:1.4;letter-spacing:0.18em;text-transform:uppercase;color:#8fa0b8;font-weight:700;">
+                    <p style="margin:0 0 12px;font-size:10px;line-height:1.4;letter-spacing:0.2em;text-transform:uppercase;color:#8fa0b8;font-weight:700;">
                       Message
                     </p>
                     <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
                       <tr>
-                        <td style="padding:18px 20px;background:#0f1728;border:1px solid #2a3852;border-left:4px solid #c8a96a;border-radius:10px;">
-                          <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.75;color:#edf2f8;white-space:pre-wrap;">${escapeHtml(message)}</p>
+                        <td style="padding:20px 22px;background:linear-gradient(180deg,#0f1728 0%,#0c1320 100%);border:1px solid #2a3852;border-left:4px solid #c8a96a;border-radius:12px;">
+                          <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.8;color:#edf2f8;white-space:pre-wrap;">${escapeHtml(message)}</p>
                         </td>
                       </tr>
                     </table>
@@ -180,14 +231,21 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
 
           <tr>
             <td>
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:#080d18;border:1px solid #24314a;border-top:none;border-radius:0 0 16px 16px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:#080d18;border:1px solid #24314a;border-top:none;border-radius:0 0 18px 18px;">
                 <tr>
-                  <td style="padding:22px 28px;">
-                    <p style="margin:0 0 10px;font-size:13px;line-height:1.6;color:#d7e0ee;">
+                  <td style="padding:24px 28px 10px 28px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                      <tr>${actionButtons}</tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 28px 24px 28px;">
+                    <p style="margin:0 0 10px;font-size:13px;line-height:1.65;color:#d7e0ee;">
                       Reply directly to this email to respond to <strong style="color:#ffffff;">${escapeHtml(name)}</strong>.
                     </p>
                     <p style="margin:0;font-size:12px;line-height:1.6;color:#7f90a8;">
-                      Received ${escapeHtml(submittedAt)} (Cyprus time)
+                      Received ${escapeHtml(submittedAt)} · Cyprus time
                     </p>
                   </td>
                 </tr>
@@ -196,9 +254,12 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
           </tr>
 
           <tr>
-            <td style="padding:18px 8px 0 8px;text-align:center;">
-              <p style="margin:0;font-size:11px;line-height:1.6;letter-spacing:0.08em;text-transform:uppercase;color:#5f6f86;">
-                Komodromos Group of Companies · Website inquiry notification
+            <td style="padding:20px 8px 0 8px;text-align:center;">
+              <p style="margin:0 0 6px;font-size:11px;line-height:1.6;letter-spacing:0.1em;text-transform:uppercase;color:#5f6f86;">
+                ${escapeHtml(COMPANY_NAME)}
+              </p>
+              <p style="margin:0;font-size:12px;line-height:1.6;color:#6b7a90;">
+                Limassol, Cyprus · <a href="mailto:${INBOX_EMAIL}" style="color:#8fa0b8;text-decoration:none;">${INBOX_EMAIL}</a> · <a href="${SITE_URL}" style="color:#8fa0b8;text-decoration:none;">komodromosgroup.com</a>
               </p>
             </td>
           </tr>
@@ -210,26 +271,15 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
 </html>`.trim()
 }
 
-function userFacingEmailError(resendMessage) {
-  const message = typeof resendMessage === 'string' ? resendMessage : ''
-  if (
-    message.includes('only send testing emails') ||
-    message.includes('verify a domain at resend.com/domains')
-  ) {
-    return 'Our email service is still being configured. Please email info@komodromosgroup.com directly or call us — we apologise for the inconvenience.'
-  }
-  if (message.includes('domain is not verified') || message.includes('not authorized to send')) {
-    return 'Our email service is still being configured. Please email info@komodromosgroup.com directly — we apologise for the inconvenience.'
-  }
-  return 'Could not send your message right now. Please try again or email info@komodromosgroup.com directly.'
-}
+function buildEmailText({ source, name, email, phone, company, service, message, submittedAt, referenceId }) {
   const divider = '────────────────────────────────────────'
 
   return [
-    'KOMODROMOS GROUP',
+    COMPANY_NAME.toUpperCase(),
     'NEW CLIENT INQUIRY',
     divider,
     '',
+    `Reference: ${referenceId}`,
     `Form: ${source}`,
     `Received: ${submittedAt} (Cyprus time)`,
     '',
@@ -248,8 +298,22 @@ function userFacingEmailError(resendMessage) {
     divider,
     `Reply to this email to respond directly to ${name}.`,
     '',
-    'Komodromos Group of Companies — Website inquiry notification',
+    `${COMPANY_NAME} · Limassol, Cyprus · ${INBOX_EMAIL}`,
   ].join('\n')
+}
+
+function userFacingEmailError(resendMessage) {
+  const message = typeof resendMessage === 'string' ? resendMessage : ''
+  if (
+    message.includes('only send testing emails') ||
+    message.includes('verify a domain at resend.com/domains')
+  ) {
+    return 'Our email service is still being configured. Please email info@komodromosgroup.com directly or call us — we apologise for the inconvenience.'
+  }
+  if (message.includes('domain is not verified') || message.includes('not authorized to send')) {
+    return 'Our email service is still being configured. Please email info@komodromosgroup.com directly — we apologise for the inconvenience.'
+  }
+  return 'Could not send your message right now. Please try again or email info@komodromosgroup.com directly.'
 }
 
 export default async function handler(req, res) {
@@ -290,7 +354,7 @@ export default async function handler(req, res) {
   }
 
   const apiKey = readEnv('RESEND_API_KEY')
-  const toEmail = readEnv('CONTACT_TO_EMAIL') || 'info@komodromosgroup.com'
+  const toEmail = readEnv('CONTACT_TO_EMAIL') || INBOX_EMAIL
   const fromEmail =
     readEnv('RESEND_FROM') || 'Komodromos Group <notifications@komodromosgroup.com>'
 
@@ -302,9 +366,20 @@ export default async function handler(req, res) {
     })
   }
 
-  const subject = `[Komodromos Group] New inquiry — ${name}`
   const submittedAt = formatSubmittedAt(new Date())
-  const emailPayload = { source, name, email, phone, company, service, message, submittedAt }
+  const referenceId = buildReferenceId(submittedAt)
+  const subject = `[${referenceId}] New inquiry — ${name}${service ? ` · ${service}` : ''}`
+  const emailPayload = {
+    source,
+    name,
+    email,
+    phone,
+    company,
+    service,
+    message,
+    submittedAt,
+    referenceId,
+  }
   const html = buildEmailHtml(emailPayload)
   const text = buildEmailText(emailPayload)
 
@@ -323,6 +398,7 @@ export default async function handler(req, res) {
         subject: subject.slice(0, 200),
         html,
         text,
+        tags: [{ name: 'source', value: source.slice(0, 50).replace(/[^a-zA-Z0-9_-]/g, '-') || 'website' }],
       }),
     })
   } catch (err) {
@@ -350,8 +426,11 @@ export default async function handler(req, res) {
     })
   }
 
+  console.info('[send-contact] Delivered inquiry', { referenceId, to: toEmail, resendId: resendData?.id })
+
   return json(res, 200, {
     success: true,
     id: resendData?.id ?? null,
+    referenceId,
   })
 }
