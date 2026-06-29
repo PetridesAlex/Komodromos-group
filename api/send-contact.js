@@ -497,7 +497,6 @@ export default async function handler(req, res) {
       success: false,
       error: userFacingEmailError(resendMessage),
       resendStatus: resendResponse.status,
-      resendDetail: resendMessage,
     })
   }
 
