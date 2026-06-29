@@ -4,6 +4,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
+import { CONTACT_FIELD_LIMITS } from '../lib/contactFormValidation'
 import { serviceCards } from '../data/serviceCards'
 
 const CONTACT_PHONES = ['24333305', '96000336', '99243100', '24333306'] as const
@@ -215,6 +216,7 @@ export default function ContactPage() {
                       name="name"
                       type="text"
                       required
+                      maxLength={CONTACT_FIELD_LIMITS.name}
                       placeholder="John Smith"
                       value={form.name}
                       onChange={handleChange}
@@ -227,6 +229,7 @@ export default function ContactPage() {
                       name="email"
                       type="email"
                       required
+                      maxLength={CONTACT_FIELD_LIMITS.email}
                       placeholder="john@example.com"
                       value={form.email}
                       onChange={handleChange}
@@ -241,6 +244,7 @@ export default function ContactPage() {
                       id="phone"
                       name="phone"
                       type="tel"
+                      maxLength={CONTACT_FIELD_LIMITS.phone}
                       placeholder="+357 00 000 000"
                       value={form.phone}
                       onChange={handleChange}
@@ -252,6 +256,7 @@ export default function ContactPage() {
                       id="company"
                       name="company"
                       type="text"
+                      maxLength={CONTACT_FIELD_LIMITS.company}
                       placeholder="Your company"
                       value={form.company}
                       onChange={handleChange}
@@ -284,6 +289,7 @@ export default function ContactPage() {
                     name="message"
                     rows={5}
                     required
+                    maxLength={CONTACT_FIELD_LIMITS.message}
                     placeholder="Tell us how we can help..."
                     value={form.message}
                     onChange={handleChange}

@@ -239,8 +239,8 @@ export default function TaxisNetService() {
             <p className="taxisnet-form-page__eyebrow">TaxNex · TaxisNet Desk</p>
             <h1 className="taxisnet-form-page__title">Φόρμα Αίτησης TaxisNet</h1>
             <p className="taxisnet-form-page__subtitle">
-              Συμπληρώστε τα στοιχεία σας για να προχωρήσουμε με την αίτησή σας. Όταν ενεργοποιηθεί ο αποδέκτης email
-              στο σύστημα, το αίτημα μπορεί να αποστέλλεται αυτόματα· μέχρι τότε θα μεταφέρεται μέσω της επαφής μας.
+              Συμπληρώστε τα στοιχεία σας για να προχωρήσουμε με την αίτησή σας. Η ομάδα TaxNex θα
+              λάβει την αίτησή σας στο info@komodromosgroup.com και θα επικοινωνήσει μαζί σας σύντομα.
             </p>
           </header>
 

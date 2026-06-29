@@ -1,3 +1,8 @@
+import {
+  sanitizeContactPayload,
+  validateContactPayload,
+} from './contactFormValidation'
+
 export type ContactInquiryPayload = {
   source: string
   name: string
@@ -14,10 +19,16 @@ type ContactInquiryResponse = {
 }
 
 export async function sendContactInquiry(payload: ContactInquiryPayload): Promise<void> {
+  const sanitized = sanitizeContactPayload(payload)
+  const validationError = validateContactPayload(sanitized)
+  if (validationError) {
+    throw new Error(validationError)
+  }
+
   const response = await fetch('/api/send-contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(sanitized),
   })
 
   let data: ContactInquiryResponse | null = null
