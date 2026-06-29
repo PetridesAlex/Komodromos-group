@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { sendContactInquiry } from '../lib/sendContactInquiry'
 
 type Props = {
   isOpen: boolean
@@ -9,13 +9,14 @@ type Props = {
 
 export default function TaxMeetingRequestModal({ isOpen, onClose }: Props) {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const titleId = useId()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState(false)
 
   useEffect(() => {
     if (!isOpen) return
@@ -38,32 +39,41 @@ export default function TaxMeetingRequestModal({ isOpen, onClose }: Props) {
       setPhone('')
       setMessage('')
       setBusy(false)
+      setError(null)
+      setSuccess(false)
     }
   }, [isOpen])
 
   if (!isOpen) return null
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setBusy(true)
+    setError(null)
     const trimmed = message.trim()
-    const prefillMessage = trimmed
+    const body = trimmed
       ? `${t('tax.meetingRequestPrefillMessage')}\n\n${trimmed}`
       : t('tax.meetingRequestPrefillMessage')
 
-    navigate('/contact', {
-      state: {
-        serviceInterest: 'Tax & Accounting Services',
-        contactPrefill: {
-          name: name.trim(),
-          email: email.trim(),
-          phone: phone.trim(),
-          service: 'Tax & Accounting Services',
-          message: prefillMessage,
-        },
-      },
-    })
-    onClose()
+    try {
+      await sendContactInquiry({
+        source: 'TaxNex — Meeting Request',
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        service: 'Tax & Accounting Services',
+        message: body,
+      })
+      setSuccess(true)
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'Could not send your request. Please try again or email info@komodromosgroup.com directly.',
+      )
+    } finally {
+      setBusy(false)
+    }
   }
 
   return (
@@ -88,72 +98,96 @@ export default function TaxMeetingRequestModal({ isOpen, onClose }: Props) {
         >
           ×
         </button>
-        <p className="taxnex-checkout-modal__eyebrow">{t('tax.meetingModalEyebrow')}</p>
-        <h2 id={titleId} className="taxnex-checkout-modal__title">
-          {t('tax.meetingModalTitle')}
-        </h2>
-        <p className="taxnex-checkout-modal__lead">{t('tax.meetingModalLead')}</p>
 
-        <form className="taxnex-checkout-modal__form" onSubmit={handleSubmit}>
-          <label className="taxnex-checkout-modal__field">
-            <span>{t('tax.meetingModalName')}</span>
-            <input
-              type="text"
-              name="name"
-              autoComplete="name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <label className="taxnex-checkout-modal__field">
-            <span>{t('tax.meetingModalEmail')}</span>
-            <input
-              type="email"
-              name="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-          <label className="taxnex-checkout-modal__field">
-            <span>{t('tax.meetingModalPhone')}</span>
-            <input
-              type="tel"
-              name="phone"
-              autoComplete="tel"
-              required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </label>
-          <label className="taxnex-checkout-modal__field">
-            <span>{t('tax.meetingModalMessage')}</span>
-            <textarea
-              name="message"
-              rows={4}
-              required
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder={t('tax.meetingModalMessagePlaceholder')}
-            />
-          </label>
-
-          <div className="taxnex-checkout-modal__actions">
-            <button
-              type="button"
-              className="taxnex-btn taxnex-btn--outline taxnex-checkout-modal__cancel"
-              onClick={onClose}
-              disabled={busy}
-            >
-              {t('tax.meetingModalCancel')}
-            </button>
-            <button type="submit" className="taxnex-btn taxnex-btn--primary" disabled={busy}>
-              {busy ? t('tax.meetingModalSubmitting') : t('tax.meetingModalSubmit')}
+        {success ? (
+          <div className="taxnex-filing-modal__success">
+            <p className="taxnex-checkout-modal__eyebrow">{t('tax.meetingModalEyebrow')}</p>
+            <h2 id={titleId} className="taxnex-checkout-modal__title">
+              {t('tax.meetingModalTitle')}
+            </h2>
+            <p className="taxnex-checkout-modal__lead">
+              Thank you — your meeting request was sent to our team. We will contact you shortly.
+            </p>
+            <button type="button" className="taxnex-btn taxnex-btn--primary" onClick={onClose}>
+              Close
             </button>
           </div>
-        </form>
+        ) : (
+          <>
+            <p className="taxnex-checkout-modal__eyebrow">{t('tax.meetingModalEyebrow')}</p>
+            <h2 id={titleId} className="taxnex-checkout-modal__title">
+              {t('tax.meetingModalTitle')}
+            </h2>
+            <p className="taxnex-checkout-modal__lead">{t('tax.meetingModalLead')}</p>
+
+            <form className="taxnex-checkout-modal__form" onSubmit={handleSubmit}>
+              <label className="taxnex-checkout-modal__field">
+                <span>{t('tax.meetingModalName')}</span>
+                <input
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+              <label className="taxnex-checkout-modal__field">
+                <span>{t('tax.meetingModalEmail')}</span>
+                <input
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
+              <label className="taxnex-checkout-modal__field">
+                <span>{t('tax.meetingModalPhone')}</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </label>
+              <label className="taxnex-checkout-modal__field">
+                <span>{t('tax.meetingModalMessage')}</span>
+                <textarea
+                  name="message"
+                  rows={4}
+                  required
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder={t('tax.meetingModalMessagePlaceholder')}
+                />
+              </label>
+
+              {error ? (
+                <p className="taxnex-checkout-modal__error" role="alert">
+                  {error}
+                </p>
+              ) : null}
+
+              <div className="taxnex-checkout-modal__actions">
+                <button
+                  type="button"
+                  className="taxnex-btn taxnex-btn--outline taxnex-checkout-modal__cancel"
+                  onClick={onClose}
+                  disabled={busy}
+                >
+                  {t('tax.meetingModalCancel')}
+                </button>
+                <button type="submit" className="taxnex-btn taxnex-btn--primary" disabled={busy}>
+                  {busy ? t('tax.meetingModalSubmitting') : t('tax.meetingModalSubmit')}
+                </button>
+              </div>
+            </form>
+          </>
+        )}
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import { useEffect, useId, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { TAX_NEX_VAT_PCT, type TaxNexPricingPlan } from '../data/taxNexPageContent'
 import { isJccPaymentsEnabled } from '../lib/jccPayments'
+import { sendContactInquiry } from '../lib/sendContactInquiry'
 import {
   appendPaymentLinkPrefill,
   isValidHttpUrl,
@@ -18,7 +18,6 @@ type Props = {
 }
 
 export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUrl }: Props) {
-  const navigate = useNavigate()
   const titleId = useId()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -26,6 +25,7 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
   const [company, setCompany] = useState('')
   const [busy, setBusy] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [success, setSuccess] = useState(false)
 
   useEffect(() => {
     if (!isOpen) return
@@ -49,6 +49,7 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
       setCompany('')
       setBusy(false)
       setSubmitError(null)
+      setSuccess(false)
     }
   }, [isOpen])
 
@@ -79,6 +80,26 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
       company: company.trim(),
     })
 
+    try {
+      await sendContactInquiry({
+        source: 'TaxNex — Plan Checkout',
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        company: company.trim(),
+        service: 'Tax & Accounting Services',
+        message: messageLine,
+      })
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : 'Could not send your request. Please try again or email info@komodromosgroup.com directly.',
+      )
+      setBusy(false)
+      return
+    }
+
     if (hasStripeCheckout && checkoutUrl) {
       const url = appendPaymentLinkPrefill(checkoutUrl, email)
       window.location.assign(url)
@@ -101,22 +122,8 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
       return
     }
 
-    navigate('/contact', {
-      state: {
-        serviceInterest: 'Tax & Accounting Services',
-        taxFilingPackage: activePlan.id,
-        taxFilingTitle: activePlan.title,
-        contactPrefill: {
-          name: name.trim(),
-          email: email.trim(),
-          phone: phone.trim(),
-          company: company.trim(),
-          service: 'Tax & Accounting Services',
-          message: messageLine,
-        },
-      },
-    })
-    onClose()
+    setSuccess(true)
+    setBusy(false)
   }
 
   return (
@@ -137,6 +144,22 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
         <button type="button" className="taxnex-checkout-modal__close" onClick={onClose} aria-label="Κλείσιμο">
           ×
         </button>
+
+        {success ? (
+          <div className="taxnex-filing-modal__success">
+            <p className="taxnex-checkout-modal__eyebrow">Πακέτο υποβολής</p>
+            <h2 id={titleId} className="taxnex-checkout-modal__title">
+              Αίτημα εστάλη
+            </h2>
+            <p className="taxnex-checkout-modal__lead">
+              Λάβαμε τα στοιχεία σας για το πακέτο «{plan.title}». Η ομάδα TaxNex θα επικοινωνήσει σύντομα.
+            </p>
+            <button type="button" className="taxnex-btn taxnex-btn--primary" onClick={onClose}>
+              Κλείσιμο
+            </button>
+          </div>
+        ) : (
+          <>
         <p className="taxnex-checkout-modal__eyebrow">Πακέτο υποβολής</p>
         <h2 id={titleId} className="taxnex-checkout-modal__title">
           {plan.title}
@@ -217,6 +240,8 @@ export default function TaxPlanCheckoutModal({ isOpen, onClose, plan, checkoutUr
             </button>
           </div>
         </form>
+          </>
+        )}
       </div>
     </div>
   )

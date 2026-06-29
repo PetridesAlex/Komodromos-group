@@ -1,8 +1,6 @@
-/**
- * TaxisNet application form → backend / email receiver.
- * When `VITE_TAXISNET_APPLICATION_URL` is set (e.g. serverless function, Formspree, or your API),
- * the payload is POSTed as JSON. Until then the UI still completes submission locally and shows success.
- */
+import { formatTaxisNetMessage } from './formSubmissionFormatters'
+import { sendContactInquiry } from './sendContactInquiry'
+
 export type TaxisNetApplicationPayload = {
   source: 'taxisnet-application-form'
   taxYear: string
@@ -46,19 +44,22 @@ export type TaxisNetApplicationPayload = {
   submittedAt: string
 }
 
-/** POST JSON when `VITE_TAXISNET_APPLICATION_URL` is set. Throws on network or non-2xx. */
-export async function postTaxisNetApplicationIfConfigured(payload: TaxisNetApplicationPayload): Promise<boolean> {
-  const raw = import.meta.env.VITE_TAXISNET_APPLICATION_URL
-  const url = typeof raw === 'string' ? raw.trim() : ''
-  if (!url) return false
-
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+export async function submitTaxisNetApplication(payload: TaxisNetApplicationPayload): Promise<void> {
+  const { personal } = payload
+  const fullName = [personal.firstName, personal.lastName].filter(Boolean).join(' ')
+  await sendContactInquiry({
+    source: 'TaxisNet Application Form',
+    name: fullName,
+    email: personal.email,
+    phone: personal.phone,
+    company: personal.afm ? `AFM: ${personal.afm}` : '',
+    service: 'Tax & Accounting Services',
+    message: formatTaxisNetMessage(payload),
   })
-  if (!res.ok) {
-    throw new Error(`HTTP ${res.status}`)
-  }
+}
+
+/** @deprecated Use submitTaxisNetApplication */
+export async function postTaxisNetApplicationIfConfigured(payload: TaxisNetApplicationPayload): Promise<boolean> {
+  await submitTaxisNetApplication(payload)
   return true
 }

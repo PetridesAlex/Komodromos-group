@@ -1,13 +1,11 @@
 import { useEffect, useId, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import {
   TAX_CALC_FILING_MODAL,
   TAX_CALC_FILING_REG_TYPES,
 } from '../data/taxIncomeCalculatorPageContent'
 import type { CyprusIncomeTaxYear } from '../lib/cyprusIncomeTax'
 import {
-  buildTaxFilingContactPrefillMessage,
-  postTaxFilingLeadIfConfigured,
+  submitTaxFilingLead,
   type TaxFilingLeadPayload,
 } from '../lib/taxFilingLeadSubmit'
 
@@ -20,7 +18,6 @@ type Props = {
 }
 
 export default function TaxIncomeFilingRequestModal({ isOpen, onClose, calculatorTaxYear }: Props) {
-  const navigate = useNavigate()
   const titleId = useId()
   const [firstName, setFirstName] = useState('')
   const [surname, setSurname] = useState('')
@@ -94,27 +91,10 @@ export default function TaxIncomeFilingRequestModal({ isOpen, onClose, calculato
     setError(null)
     setBusy(true)
     const payload = buildPayload()
-    const fullName = [payload.firstName, payload.surname].filter(Boolean).join(' ')
 
     try {
-      const posted = await postTaxFilingLeadIfConfigured(payload)
-      if (posted) {
-        setSuccess(true)
-        return
-      }
-      navigate('/contact', {
-        state: {
-          serviceInterest: 'Tax & Accounting Services',
-          contactPrefill: {
-            name: fullName,
-            email: payload.email,
-            phone: payload.phone,
-            service: 'Tax & Accounting Services',
-            message: buildTaxFilingContactPrefillMessage(payload),
-          },
-        },
-      })
-      onClose()
+      await submitTaxFilingLead(payload)
+      setSuccess(true)
     } catch {
       setError(F.submitError)
     } finally {

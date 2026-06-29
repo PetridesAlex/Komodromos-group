@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { airJetsInFlight, airPrivateJetInflightPremium } from '../../data/airServicesPage'
+import { sendContactInquiry } from '../../lib/sendContactInquiry'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 const INTRO_IMG = '/images/services/vip-service/air-services/private-jet-introduction'
@@ -42,7 +42,6 @@ function buildContactMessage(values: {
 
 export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) {
   const reduceMotion = useReducedMotion()
-  const navigate = useNavigate()
   const d = airPrivateJetInflightPremium
   const story = airJetsInFlight.sections
   const ambientFloat = reduceMotion
@@ -59,6 +58,9 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
   const [destination, setDestination] = useState('')
   const [passengers, setPassengers] = useState('')
   const [message, setMessage] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const scrollToEnquiry = useCallback(() => {
     const el = document.getElementById('air-pj-enquiry')
@@ -66,22 +68,31 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
     el?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
   }, [])
 
-  const handleEnquirySubmit = (e: React.FormEvent) => {
+  const handleEnquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setSubmitting(true)
+    setSubmitError(null)
     const body = buildContactMessage({ travelDate, departure, destination, passengers, message })
-    navigate('/contact', {
-      state: {
-        serviceInterest: 'VIP Services',
-        vipSubService: 'Private Jet In-Flight Services',
-        contactPrefill: {
-          name: fullName,
-          email,
-          phone,
-          service: 'VIP Services',
-          message: body,
-        },
-      },
-    })
+
+    try {
+      await sendContactInquiry({
+        source: 'Private Jet In-Flight Services Enquiry',
+        name: fullName.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        service: 'VIP Services — Private Jet In-Flight Services',
+        message: body,
+      })
+      setSubmitted(true)
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : 'Could not send your enquiry. Please try again or email info@komodromosgroup.com directly.',
+      )
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -300,6 +311,14 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
                 Explore light aircraft
               </a>
             </header>
+            {submitted ? (
+              <div className="air-pjp__form-success">
+                <h3 className="air-pjp__form-success-title">Enquiry received</h3>
+                <p className="air-pjp__form-success-text">
+                  Thank you — your private jet enquiry was sent to our team. We will contact you shortly.
+                </p>
+              </div>
+            ) : (
             <form className="air-pjp__form" onSubmit={handleEnquirySubmit}>
               <div className="air-pjp__form-row">
                 <label className="air-pjp__field">
@@ -393,13 +412,19 @@ export default function PrivateJetsInflightPremiumSection({ lightPath }: Props) 
                   onChange={(e) => setMessage(e.target.value)}
                 />
               </label>
-              <button type="submit" className="air-pjp__btn air-pjp__btn--gold air-pjp__btn--wide">
-                Submit Enquiry
+              <button type="submit" className="air-pjp__btn air-pjp__btn--gold air-pjp__btn--wide" disabled={submitting}>
+                {submitting ? 'Sending…' : 'Submit Enquiry'}
               </button>
+              {submitError ? (
+                <p className="air-pjp__form-error" role="alert">
+                  {submitError}
+                </p>
+              ) : null}
               <p className="air-pjp__form-note">
-                You will be taken to our contact page with your details filled in to send securely.
+                Your enquiry is sent securely to our team at info@komodromosgroup.com.
               </p>
             </form>
+            )}
           </motion.div>
         </div>
       </section>

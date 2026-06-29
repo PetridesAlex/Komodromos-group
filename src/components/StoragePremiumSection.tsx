@@ -16,6 +16,7 @@ import {
 import StorageOfferDetailModal from './StorageOfferDetailModal'
 import StorageParallaxCards from './StorageParallaxCards'
 import StorageUsefulTipsSection from './StorageUsefulTipsSection'
+import { sendContactInquiry } from '../lib/sendContactInquiry'
 
 const STORAGE_PLANS: { title: string; price: number }[] = [
   { title: '10 ft Container', price: 60 },
@@ -218,6 +219,40 @@ export default function StoragePremiumSection() {
     bullets?: readonly string[]
     closing?: string
   } | null>(null)
+  const [storageForm, setStorageForm] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    message: '',
+  })
+  const [storageSubmitting, setStorageSubmitting] = useState(false)
+  const [storageSubmitted, setStorageSubmitted] = useState(false)
+  const [storageSubmitError, setStorageSubmitError] = useState<string | null>(null)
+
+  async function handleStorageSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStorageSubmitting(true)
+    setStorageSubmitError(null)
+    try {
+      await sendContactInquiry({
+        source: 'Storage2Rent Inquiry',
+        name: storageForm.fullName.trim(),
+        email: storageForm.email.trim(),
+        phone: storageForm.phone.trim(),
+        service: 'Storage2Rent',
+        message: storageForm.message.trim(),
+      })
+      setStorageSubmitted(true)
+    } catch (err) {
+      setStorageSubmitError(
+        err instanceof Error
+          ? err.message
+          : 'Could not send your inquiry. Please try again or email info@komodromosgroup.com directly.',
+      )
+    } finally {
+      setStorageSubmitting(false)
+    }
+  }
 
   const closeOfferDetail = useCallback(() => {
     setActiveOfferDetail(null)
@@ -812,7 +847,15 @@ export default function StoragePremiumSection() {
               <span className="storage-contact-panel__lead-highlight">one business day</span>.
             </p>
 
-            <form className="storage-contact-panel__form storage-form" aria-label="Storage inquiry">
+            {storageSubmitted ? (
+              <div className="storage-contact-panel__success">
+                <h4 className="storage-contact-panel__success-title">Inquiry received</h4>
+                <p className="storage-contact-panel__success-text">
+                  Thank you — our storage team will contact you within one business day.
+                </p>
+              </div>
+            ) : (
+            <form className="storage-contact-panel__form storage-form" aria-label="Storage inquiry" onSubmit={handleStorageSubmit}>
               <label className="storage-form__field">
                 <span className="storage-form__label">Full name</span>
                 <input
@@ -821,6 +864,9 @@ export default function StoragePremiumSection() {
                   className="storage-form__control"
                   placeholder="Your name"
                   autoComplete="name"
+                  required
+                  value={storageForm.fullName}
+                  onChange={(e) => setStorageForm((f) => ({ ...f, fullName: e.target.value }))}
                 />
               </label>
               <label className="storage-form__field">
@@ -831,6 +877,8 @@ export default function StoragePremiumSection() {
                   className="storage-form__control"
                   placeholder="+357 …"
                   autoComplete="tel"
+                  value={storageForm.phone}
+                  onChange={(e) => setStorageForm((f) => ({ ...f, phone: e.target.value }))}
                 />
               </label>
               <label className="storage-form__field storage-form__field--full">
@@ -841,6 +889,9 @@ export default function StoragePremiumSection() {
                   className="storage-form__control"
                   placeholder="you@company.com"
                   autoComplete="email"
+                  required
+                  value={storageForm.email}
+                  onChange={(e) => setStorageForm((f) => ({ ...f, email: e.target.value }))}
                 />
               </label>
               <label className="storage-form__field storage-form__field--full">
@@ -850,19 +901,28 @@ export default function StoragePremiumSection() {
                   className="storage-form__control"
                   placeholder="Unit size, duration, containers vs. warehouse space…"
                   rows={4}
+                  required
+                  value={storageForm.message}
+                  onChange={(e) => setStorageForm((f) => ({ ...f, message: e.target.value }))}
                 />
               </label>
               <div className="storage-form__submit-wrap storage-form__field--full">
-                <Link
-                  to="/contact"
-                  state={{ serviceInterest: 'Storage2Rent', storageInquiry: true }}
+                <button
+                  type="submit"
                   className="storage-form__submit storage-form__submit--premium"
+                  disabled={storageSubmitting}
                 >
                   <span className="storage-form__submit-sheen" aria-hidden />
-                  <span className="storage-form__submit-text">Submit</span>
-                </Link>
+                  <span className="storage-form__submit-text">{storageSubmitting ? 'Sending…' : 'Submit'}</span>
+                </button>
               </div>
+              {storageSubmitError ? (
+                <p className="storage-form__error" role="alert">
+                  {storageSubmitError}
+                </p>
+              ) : null}
             </form>
+            )}
           </motion.div>
         </section>
 

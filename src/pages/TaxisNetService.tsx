@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import SiteTopbar from '../components/SiteTopbar'
 import {
-  postTaxisNetApplicationIfConfigured,
+  submitTaxisNetApplication,
   type TaxisNetApplicationPayload,
 } from '../lib/taxisnetApplicationSubmit'
 import './TaxisNetService.css'
@@ -83,7 +83,6 @@ export default function TaxisNetService() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
-  const [sentToServer, setSentToServer] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -203,8 +202,7 @@ export default function TaxisNetService() {
     const data = buildPayload()
     setSubmitting(true)
     try {
-      const posted = await postTaxisNetApplicationIfConfigured(data)
-      setSentToServer(posted)
+      await submitTaxisNetApplication(data)
       setSubmitted(true)
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch {
@@ -252,18 +250,10 @@ export default function TaxisNetService() {
                 <div className="taxisnet-success">
                   <p className="taxisnet-success__eyebrow">TaxNex · TaxisNet</p>
                   <h2 className="taxisnet-success__title">Η αίτησή σας ολοκληρώθηκε</h2>
-                  {sentToServer ? (
-                    <p className="taxisnet-success__body">
-                      Λάβαμε την αίτησή σας στο σύστημά μας. Θα επικοινωνήσουμε σύντομα στο email που δηλώσατε (
-                      <strong>{email.trim()}</strong>).
-                    </p>
-                  ) : (
-                    <p className="taxisnet-success__body">
-                      Η φόρμα καταχωρήθηκε επιτυχώς. Όταν προστεθεί ο αποδέκτης email στο σύστημα, οι αιτήσεις θα
-                      αποστέλλονται αυτόματα· μέχρι τότε μπορείτε να μας στείλετε μήνυμα από την επικοινωνία, αναφέροντας
-                      ότι ολοκληρώσατε την αίτηση TaxisNet.
-                    </p>
-                  )}
+                  <p className="taxisnet-success__body">
+                    Λάβαμε την αίτησή σας. Θα επικοινωνήσουμε σύντομα στο email που δηλώσατε (
+                    <strong>{email.trim()}</strong>).
+                  </p>
                   <div className="taxisnet-success__actions">
                     <Link
                       to="/services/tax/taxisnet-application"
