@@ -210,7 +210,19 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
 </html>`.trim()
 }
 
-function buildEmailText({ source, name, email, phone, company, service, message, submittedAt }) {
+function userFacingEmailError(resendMessage) {
+  const message = typeof resendMessage === 'string' ? resendMessage : ''
+  if (
+    message.includes('only send testing emails') ||
+    message.includes('verify a domain at resend.com/domains')
+  ) {
+    return 'Our email service is still being configured. Please email info@komodromosgroup.com directly or call us — we apologise for the inconvenience.'
+  }
+  if (message.includes('domain is not verified') || message.includes('not authorized to send')) {
+    return 'Our email service is still being configured. Please email info@komodromosgroup.com directly — we apologise for the inconvenience.'
+  }
+  return 'Could not send your message right now. Please try again or email info@komodromosgroup.com directly.'
+}
   const divider = '────────────────────────────────────────'
 
   return [
@@ -330,9 +342,10 @@ export default async function handler(req, res) {
   }
 
   if (!resendResponse.ok) {
+    console.error('[send-contact] Resend rejected message:', resendData)
     return json(res, 502, {
       success: false,
-      error: resendData?.message || 'Email service rejected the message.',
+      error: userFacingEmailError(resendData?.message),
       resendStatus: resendResponse.status,
     })
   }
