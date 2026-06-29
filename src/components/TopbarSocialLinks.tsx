@@ -1,13 +1,35 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import { ChevronDown, Orbit } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { ArrowUpRight, ChevronDown, Headset, Sparkles } from 'lucide-react'
 import { socialLinks } from '../data/socialLinks'
 
 type Props = { variant: 'desktop' | 'mobile' }
+
+const EASE = [0.16, 1, 0.3, 1] as const
+
+const SOCIAL_HINTS: Record<string, string> = {
+  WhatsApp: 'Instant chat',
+  Viber: 'Voice & message',
+  Instagram: 'Stories & updates',
+  Facebook: 'Community',
+  TikTok: 'Behind the scenes',
+  YouTube: 'Video insights',
+}
+
+function deskGreeting(): string {
+  const hour = new Date().getHours()
+  if (hour < 12) return 'Good morning'
+  if (hour < 17) return 'Good afternoon'
+  return 'Good evening'
+}
 
 export default function TopbarSocialLinks({ variant }: Props) {
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)
   const menuId = useId()
+  const reduceMotion = useReducedMotion()
+  const greeting = deskGreeting()
 
   useEffect(() => {
     if (!open) return
@@ -29,57 +51,137 @@ export default function TopbarSocialLinks({ variant }: Props) {
     return () => document.removeEventListener('keydown', onKey)
   }, [open])
 
-  const dropdown = (
-    <div
-      id={menuId}
-      className={
-        variant === 'desktop'
-          ? 'social-hub-dropdown'
-          : 'social-hub-dropdown social-hub-dropdown--mobile'
+  const panelMotion = reduceMotion
+    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
+    : {
+        initial: { opacity: 0, y: -12, scale: 0.94, filter: 'blur(8px)' },
+        animate: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' },
+        exit: { opacity: 0, y: -8, scale: 0.97, filter: 'blur(4px)' },
       }
-      role="menu"
-      aria-label="Social media links"
-    >
-      {socialLinks.map((s) => (
-        <a
-          key={s.label}
-          href={s.href}
-          role="menuitem"
-          className="social-hub-dropdown__item"
-          onClick={() => setOpen(false)}
+
+  const itemMotion = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, x: -10 },
+        animate: { opacity: 1, x: 0 },
+      }
+
+  const panel = (
+    <AnimatePresence>
+      {open ? (
+        <motion.div
+          id={menuId}
+          className={
+            variant === 'desktop'
+              ? 'social-assistant-panel'
+              : 'social-assistant-panel social-assistant-panel--mobile'
+          }
+          role="dialog"
+          aria-label="Connection desk — social channels"
+          {...panelMotion}
+          transition={{ duration: 0.38, ease: EASE }}
         >
-          <span className={`social-hub-dropdown__icon ${s.navClass}`}>{s.svg}</span>
-          <span className="social-hub-dropdown__label">{s.label}</span>
-        </a>
-      ))}
-    </div>
+          <div className="social-assistant-panel__shine" aria-hidden />
+          <header className="social-assistant-panel__head">
+            <div className="social-assistant-panel__agent">
+              <span className="social-assistant-panel__agent-ring" aria-hidden />
+              <span className="social-assistant-panel__agent-icon">
+                <Headset size={16} strokeWidth={2} aria-hidden />
+              </span>
+              <span className="social-assistant-panel__status" aria-hidden />
+            </div>
+            <div className="social-assistant-panel__intro">
+              <p className="social-assistant-panel__eyebrow">
+                <Sparkles size={11} strokeWidth={2.25} aria-hidden />
+                Connection desk
+              </p>
+              <p className="social-assistant-panel__greeting">{greeting}</p>
+              <p className="social-assistant-panel__lead">
+                Choose a channel — our team responds with discretion.
+              </p>
+            </div>
+          </header>
+
+          <ul className="social-assistant-panel__list" role="menu">
+            {socialLinks.map((s, index) => (
+              <motion.li
+                key={s.label}
+                role="none"
+                {...itemMotion}
+                transition={{ duration: 0.32, delay: reduceMotion ? 0 : 0.04 + index * 0.045, ease: EASE }}
+              >
+                <a
+                  href={s.href}
+                  role="menuitem"
+                  className="social-assistant-panel__link"
+                  onClick={() => setOpen(false)}
+                >
+                  <span className={`social-assistant-panel__icon social-assistant-panel__icon--${s.navClass}`}>
+                    {s.svg}
+                  </span>
+                  <span className="social-assistant-panel__copy">
+                    <span className="social-assistant-panel__label">{s.label}</span>
+                    <span className="social-assistant-panel__hint">
+                      {SOCIAL_HINTS[s.label] ?? 'Official channel'}
+                    </span>
+                  </span>
+                  <ArrowUpRight
+                    className="social-assistant-panel__arrow"
+                    size={15}
+                    strokeWidth={2}
+                    aria-hidden
+                  />
+                </a>
+              </motion.li>
+            ))}
+          </ul>
+
+          <motion.div
+            className="social-assistant-panel__footer"
+            {...itemMotion}
+            transition={{ duration: 0.32, delay: reduceMotion ? 0 : 0.34, ease: EASE }}
+          >
+            <Link to="/contact" className="social-assistant-panel__contact" onClick={() => setOpen(false)}>
+              <span>Concierge inquiry form</span>
+              <ArrowUpRight size={14} strokeWidth={2.25} aria-hidden />
+            </Link>
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
   )
 
   const trigger = (
     <button
       type="button"
-      className={
-        variant === 'desktop'
-          ? 'social-hub-trigger'
-          : 'social-hub-trigger social-hub-trigger--mobile'
-      }
+      className={[
+        'social-assistant-trigger',
+        open ? 'social-assistant-trigger--open' : '',
+        variant === 'mobile' ? 'social-assistant-trigger--mobile' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
       aria-expanded={open}
-      aria-haspopup="true"
+      aria-haspopup="dialog"
       aria-controls={menuId}
       onClick={() => setOpen((v) => !v)}
     >
-      <span className="social-hub-trigger__glow" aria-hidden />
-      <Orbit
-        className="social-hub-trigger__share"
-        size={17}
-        strokeWidth={2}
-        aria-hidden
-      />
-      <span className="social-hub-trigger__text">Connect</span>
+      <span className="social-assistant-trigger__aurora" aria-hidden />
+      <span className="social-assistant-trigger__avatar" aria-hidden>
+        <span className="social-assistant-trigger__pulse" />
+        <span className="social-assistant-trigger__avatar-inner">
+          <Headset size={15} strokeWidth={2.15} />
+        </span>
+        <span className="social-assistant-trigger__online" />
+      </span>
+      <span className="social-assistant-trigger__copy">
+        <span className="social-assistant-trigger__kicker">Support</span>
+        <span className="social-assistant-trigger__label">Connect</span>
+      </span>
       <ChevronDown
-        size={16}
+        size={15}
         strokeWidth={2.25}
-        className={`social-hub-trigger__chevron${open ? ' social-hub-trigger__chevron--open' : ''}`}
+        className="social-assistant-trigger__chevron"
         aria-hidden
       />
     </button>
@@ -87,17 +189,17 @@ export default function TopbarSocialLinks({ variant }: Props) {
 
   if (variant === 'desktop') {
     return (
-      <div className="socials desktop-socials social-hub-wrap" ref={wrapRef}>
+      <div className="socials desktop-socials social-assistant-wrap" ref={wrapRef}>
         {trigger}
-        {open ? dropdown : null}
+        {panel}
       </div>
     )
   }
 
   return (
-    <div className="nav-mobile-socials social-hub-wrap" ref={wrapRef}>
+    <div className="nav-mobile-socials social-assistant-wrap" ref={wrapRef}>
       {trigger}
-      {open ? dropdown : null}
+      {panel}
     </div>
   )
 }
