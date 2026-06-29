@@ -302,6 +302,63 @@ function buildEmailText({ source, name, email, phone, company, service, message,
   ].join('\n')
 }
 
+function stripEnv(value) {
+  return value.trim().replace(/^['"]|['"]$/g, '')
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
+
+function normalizeFromAddress(raw) {
+  const fallback = `Komodromos Group <${INBOX_EMAIL}>`
+  const value = stripEnv(raw)
+  if (!value) return fallback
+
+  const bracketMatch = value.match(/^(.+?)\s*<([^>]+)>$/)
+  if (bracketMatch) {
+    const name = bracketMatch[1].trim()
+    const addr = stripEnv(bracketMatch[2])
+    if (isValidEmail(addr)) {
+      return name ? `${name} <${addr}>` : addr
+    }
+  }
+
+  if (isValidEmail(value)) {
+    return `Komodromos Group <${value}>`
+  }
+
+  return fallback
+}
+
+function normalizeRecipient(raw) {
+  const value = stripEnv(raw)
+  return isValidEmail(value) ? value : INBOX_EMAIL
+}
+
+function extractResendError(data) {
+  if (!data || typeof data !== 'object') return 'Unknown email service error'
+  if (typeof data.message === 'string' && data.message.trim()) return data.message
+  if (Array.isArray(data.errors) && data.errors.length > 0) {
+    return data.errors
+      .map((entry) => {
+        if (typeof entry === 'string') return entry
+        if (entry && typeof entry.message === 'string') return entry.message
+        return JSON.stringify(entry)
+      })
+      .join('; ')
+  }
+  return JSON.stringify(data)
+}
+
+function asciiSubject(value) {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\x20-\x7E]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
 function userFacingEmailError(resendMessage) {
   const message = typeof resendMessage === 'string' ? resendMessage : ''
   if (
@@ -310,7 +367,12 @@ function userFacingEmailError(resendMessage) {
   ) {
     return 'Our email service is still being configured. Please email info@komodromosgroup.com directly or call us — we apologise for the inconvenience.'
   }
-  if (message.includes('domain is not verified') || message.includes('not authorized to send')) {
+  if (
+    message.includes('domain is not verified') ||
+    message.includes('not authorized to send') ||
+    message.includes('Invalid `from`') ||
+    message.includes('Invalid from')
+  ) {
     return 'Our email service is still being configured. Please email info@komodromosgroup.com directly — we apologise for the inconvenience.'
   }
   return 'Could not send your message right now. Please try again or email info@komodromosgroup.com directly.'
@@ -353,10 +415,9 @@ export default async function handler(req, res) {
     return json(res, 400, { success: false, error: 'Invalid email address.' })
   }
 
-  const apiKey = readEnv('RESEND_API_KEY')
-  const toEmail = readEnv('CONTACT_TO_EMAIL') || INBOX_EMAIL
-  const fromEmail =
-    readEnv('RESEND_FROM') || 'Komodromos Group <notifications@komodromosgroup.com>'
+  const apiKey = stripEnv(readEnv('RESEND_API_KEY'))
+  const toEmail = normalizeRecipient(readEnv('CONTACT_TO_EMAIL') || INBOX_EMAIL)
+  const fromEmail = normalizeFromAddress(readEnv('RESEND_FROM'))
 
   if (!apiKey) {
     return json(res, 500, {
@@ -368,7 +429,9 @@ export default async function handler(req, res) {
 
   const submittedAt = formatSubmittedAt(new Date())
   const referenceId = buildReferenceId(submittedAt)
-  const subject = `[${referenceId}] New inquiry — ${name}${service ? ` · ${service}` : ''}`
+  const subject = asciiSubject(
+    `[${referenceId}] New inquiry - ${name}${service ? ` - ${service}` : ''}`,
+  )
   const emailPayload = {
     source,
     name,
@@ -383,6 +446,18 @@ export default async function handler(req, res) {
   const html = buildEmailHtml(emailPayload)
   const text = buildEmailText(emailPayload)
 
+  const resendPayload = {
+    from: fromEmail,
+    to: [toEmail],
+    subject: subject.slice(0, 200),
+    html,
+    text,
+  }
+
+  if (isValidEmail(email)) {
+    resendPayload.reply_to = email
+  }
+
   let resendResponse
   try {
     resendResponse = await fetch('https://api.resend.com/emails', {
@@ -391,15 +466,7 @@ export default async function handler(req, res) {
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        reply_to: email,
-        subject: subject.slice(0, 200),
-        html,
-        text,
-        tags: [{ name: 'source', value: source.slice(0, 50).replace(/[^a-zA-Z0-9_-]/g, '-') || 'website' }],
-      }),
+      body: JSON.stringify(resendPayload),
     })
   } catch (err) {
     const errMessage = err instanceof Error ? err.message : 'Network error'
@@ -418,11 +485,19 @@ export default async function handler(req, res) {
   }
 
   if (!resendResponse.ok) {
-    console.error('[send-contact] Resend rejected message:', resendData)
+    const resendMessage = extractResendError(resendData)
+    console.error('[send-contact] Resend rejected message:', {
+      status: resendResponse.status,
+      from: fromEmail,
+      to: toEmail,
+      resendMessage,
+      resendData,
+    })
     return json(res, 502, {
       success: false,
-      error: userFacingEmailError(resendData?.message),
+      error: userFacingEmailError(resendMessage),
       resendStatus: resendResponse.status,
+      resendDetail: resendMessage,
     })
   }
 
