@@ -2,7 +2,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
-import { getServicePagePath, serviceCards } from '../data/serviceCards'
+import { getServicePagePath } from '../data/serviceCards'
+import { getPublicServiceCards } from '../lib/serviceMaintenance'
 
 export type SiteTopbarProps = {
   logoPathname?: string
@@ -132,7 +133,7 @@ export default function SiteTopbar({
                 Explore all solutions
               </Link>
               <ul className="nav-dropdown__list">
-                {serviceCards.map((card) => (
+                {getPublicServiceCards().map((card) => (
                   <li key={card.slug}>
                     <Link
                       to={getServicePagePath(card.slug)}

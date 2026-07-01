@@ -6,6 +6,7 @@ import SiteTopbar from './SiteTopbar'
 import MeetTheTeam from './MeetTheTeam'
 import { useReveal } from '../hooks/useReveal'
 import { getServicePagePath, serviceCards } from '../data/serviceCards'
+import { isServicePubliclyAccessible } from '../lib/serviceMaintenance'
 
 const marqueeItems = [
   'ADR DISPUTE MEDIATION SERVICES',
@@ -217,9 +218,15 @@ export default function KomodromosGroupHomePage() {
                         <span key={tag}>{tag}</span>
                       ))}
                     </div>
-                    <Link to={getServicePagePath(card.slug)} className="action">
-                      REQUEST DETAILS
-                    </Link>
+                    {isServicePubliclyAccessible(card.slug) ? (
+                      <Link to={getServicePagePath(card.slug)} className="action">
+                        REQUEST DETAILS
+                      </Link>
+                    ) : (
+                      <span className="action action--maintenance" aria-disabled="true">
+                        Under maintenance
+                      </span>
+                    )}
                   </div>
                 </div>
               </article>

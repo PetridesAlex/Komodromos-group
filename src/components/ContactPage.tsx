@@ -5,7 +5,7 @@ import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
 import { CONTACT_FIELD_LIMITS } from '../lib/contactFormValidation'
-import { serviceCards } from '../data/serviceCards'
+import { getPublicServiceCards } from '../lib/serviceMaintenance'
 
 const CONTACT_PHONES = ['24333305', '96000336', '99243100', '24333306'] as const
 
@@ -273,7 +273,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                   >
                     <option value="">Select a service</option>
-                    {serviceCards.map((c) => (
+                    {getPublicServiceCards().map((c) => (
                       <option key={c.slug} value={c.title}>
                         {c.title}
                       </option>

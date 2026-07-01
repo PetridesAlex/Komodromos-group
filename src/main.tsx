@@ -60,6 +60,7 @@ import SocialHub from './components/SocialHub.tsx'
 import HeroParallaxEffect from './components/HeroParallaxEffect.tsx'
 import SectionLedScroll from './components/SectionLedScroll.tsx'
 import NotFoundPage from './components/NotFoundPage.tsx'
+import ServiceMaintenanceGate from './components/ServiceMaintenanceGate.tsx'
 import SeoManager, { SeoOverrideProvider } from './seo/SeoManager.tsx'
 
 function Root() {
@@ -85,6 +86,7 @@ function Root() {
           <SeoOverrideProvider>
             <SeoManager />
             <SectionLedScroll />
+            <ServiceMaintenanceGate>
             <Routes>
             <Route path="/" element={<KomodromosGroupHomePage />} />
             <Route path="/contact" element={<ContactPage />} />
@@ -147,6 +149,7 @@ function Root() {
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
+            </ServiceMaintenanceGate>
           </SeoOverrideProvider>
         </BrowserRouter>
         <HeroParallaxEffect />
