@@ -35102,21 +35102,21 @@ a.pool-garden-showcase-card {
   min-height: min(50vh, 480px);
 }
 
-/* Topbar: gold active + cool highlight on hover (brand-aligned) */
+/* Topbar: accent active + cool highlight on hover (navy / light blue) */
 .aviation-services-page .nav-active {
-  color: rgba(232, 212, 160, 0.98) !important;
+  color: rgba(165, 210, 255, 0.98) !important;
 }
 
 .aviation-services-page .nav-links a:hover,
 .aviation-services-page .nav-links a:focus-visible {
-  color: rgba(245, 238, 220, 1);
-  background: rgba(197, 160, 89, 0.1);
+  color: rgba(238, 245, 255, 1);
+  background: rgba(74, 144, 226, 0.1);
 }
 
 .aviation-services-page .nav-links a.nav-active:hover,
 .aviation-services-page .nav-links a.nav-active:focus-visible {
-  color: rgba(255, 248, 230, 1) !important;
-  background: rgba(197, 160, 89, 0.14);
+  color: rgba(220, 235, 255, 1) !important;
+  background: rgba(74, 144, 226, 0.14);
 }
 
 .aviation-services-page .nav-links a::after {
@@ -35255,7 +35255,7 @@ a.pool-garden-showcase-card {
     125deg,
     #ffffff 0%,
     #f0e6d4 35%,
-    #c5a059 68%,
+    #4a90e2 68%,
     #ede4d2 100%
   );
   background-size: 160% 160%;
@@ -35378,7 +35378,7 @@ a.pool-garden-showcase-card {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  color: rgba(197, 160, 89, 0.88);
+  color: rgba(74, 144, 226, 0.88);
 }
 
 .aviation-services {
@@ -35479,10 +35479,10 @@ a.pool-garden-showcase-card {
   border-radius: 12px;
   background: linear-gradient(
     145deg,
-    rgba(197, 160, 89, 0.22) 0%,
+    rgba(74, 144, 226, 0.22) 0%,
     rgba(30, 50, 82, 0.45) 100%
   );
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
@@ -35511,11 +35511,11 @@ a.pool-garden-showcase-card {
 
 .aviation-service-card:hover {
   transform: scale(1.025) translateY(-4px);
-  border-color: rgba(197, 160, 89, 0.45);
+  border-color: rgba(74, 144, 226, 0.45);
   box-shadow:
-    0 0 0 1px rgba(197, 160, 89, 0.2),
+    0 0 0 1px rgba(74, 144, 226, 0.2),
     0 22px 56px rgba(0, 0, 0, 0.45),
-    0 0 40px rgba(197, 160, 89, 0.12);
+    0 0 40px rgba(74, 144, 226, 0.12);
 }
 
 .aviation-service-card:hover .aviation-service-card__bg {
@@ -35526,7 +35526,7 @@ a.pool-garden-showcase-card {
 .aviation-premium {
   padding: clamp(3.5rem, 8vw, 6rem) 0;
   background: linear-gradient(180deg, #05070c 0%, #070d18 45%, #05070a 100%);
-  border-top: 1px solid rgba(197, 160, 89, 0.1);
+  border-top: 1px solid rgba(74, 144, 226, 0.1);
 }
 
 .aviation-premium__inner {
@@ -35580,7 +35580,7 @@ a.pool-garden-showcase-card {
   pointer-events: none;
   background: linear-gradient(
     125deg,
-    rgba(197, 160, 89, 0.12) 0%,
+    rgba(74, 144, 226, 0.12) 0%,
     transparent 45%,
     rgba(80, 120, 180, 0.1) 100%
   );
@@ -35627,7 +35627,7 @@ a.pool-garden-showcase-card {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(197, 160, 89, 0.45) 20%,
+    rgba(74, 144, 226, 0.45) 20%,
     rgba(140, 175, 215, 0.35) 80%,
     transparent
   );
@@ -35648,7 +35648,7 @@ a.pool-garden-showcase-card {
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: rgba(197, 160, 89, 0.65);
+  color: rgba(74, 144, 226, 0.65);
 }
 
 .aviation-process__step-icon {
@@ -35692,7 +35692,7 @@ a.pool-garden-showcase-card {
   position: relative;
   padding: clamp(3.25rem, 7vw, 5rem) 0;
   overflow: hidden;
-  border-top: 1px solid rgba(197, 160, 89, 0.14);
+  border-top: 1px solid rgba(74, 144, 226, 0.14);
   background: linear-gradient(165deg, #050810 0%, #0a1428 48%, #05070c 100%);
 }
 
@@ -35714,7 +35714,7 @@ a.pool-garden-showcase-card {
   height: min(420px, 55vw);
   top: -20%;
   left: -10%;
-  background: rgba(197, 160, 89, 0.35);
+  background: rgba(74, 144, 226, 0.35);
 }
 
 .aviation-cta__blob--2 {
@@ -35783,10 +35783,10 @@ a.pool-garden-showcase-card {
     165deg,
     #faf7f0 0%,
     #e5cf96 45%,
-    #c5a059 100%
+    #4a90e2 100%
   );
   box-shadow:
-    0 0 0 1px rgba(197, 160, 89, 0.3),
+    0 0 0 1px rgba(74, 144, 226, 0.3),
     0 16px 40px rgba(0, 0, 0, 0.4);
   transition:
     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
@@ -35800,7 +35800,7 @@ a.pool-garden-showcase-card {
   box-shadow:
     0 0 0 1px rgba(232, 215, 175, 0.45),
     0 22px 52px rgba(0, 0, 0, 0.45),
-    0 0 48px rgba(197, 160, 89, 0.2);
+    0 0 48px rgba(74, 144, 226, 0.2);
 }
 
 @media (max-width: 1024px) {
@@ -35838,14 +35838,14 @@ a.pool-garden-showcase-card {
 
   .aviation-process__step {
     padding-left: 0.85rem;
-    border-left: 2px solid rgba(197, 160, 89, 0.25);
+    border-left: 2px solid rgba(74, 144, 226, 0.25);
   }
 }
 
 @media (max-width: 900px) {
   .aviation-services-page .nav-links a:hover,
   .aviation-services-page .nav-links a:focus-visible {
-    background: rgba(197, 160, 89, 0.08);
+    background: rgba(74, 144, 226, 0.08);
   }
 }
 
@@ -35950,7 +35950,7 @@ footer.footer2 {
   inset: 0;
   background:
     radial-gradient(ellipse 100% 70% at 50% -10%, rgba(100, 150, 210, 0.14) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 50% at 100% 40%, rgba(197, 160, 89, 0.07) 0%, transparent 50%);
+    radial-gradient(ellipse 60% 50% at 100% 40%, rgba(74, 144, 226, 0.07) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -35984,7 +35984,7 @@ footer.footer2 {
   height: min(40vw, 32rem);
   bottom: 0;
   right: -5%;
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   animation-delay: -10s;
 }
 
@@ -37160,7 +37160,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   text-transform: uppercase;
   text-decoration: none;
   color: #05070a;
-  background: linear-gradient(135deg, #e8c992 0%, var(--gold) 50%, #a8813a 100%);
+  background: linear-gradient(135deg, #e8c992 0%, var(--gold) 50%, #2c5f9e 100%);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -40446,7 +40446,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   height: min(38vw, 440px);
   bottom: -8%;
   right: -6%;
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(74, 144, 226, 0.12);
   animation-delay: -7s;
 }
 
@@ -40625,8 +40625,8 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   margin-top: 2rem;
   padding: 1.45rem 1.4rem 1.55rem;
   border-radius: 16px;
-  border: 1px solid rgba(197, 160, 89, 0.22);
-  background: linear-gradient(160deg, rgba(197, 160, 89, 0.06) 0%, rgba(8, 12, 22, 0.72) 100%);
+  border: 1px solid rgba(74, 144, 226, 0.22);
+  background: linear-gradient(160deg, rgba(74, 144, 226, 0.06) 0%, rgba(8, 12, 22, 0.72) 100%);
 }
 
 .air-light-experiences__qual-title {
@@ -40680,7 +40680,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   height: 5px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--gold), color-mix(in srgb, var(--service-light-blue) 70%, #fff));
-  box-shadow: 0 0 10px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.35);
 }
 
 .air-light-experiences__trial {
@@ -40747,8 +40747,8 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   padding: 1.5rem 1.35rem 1.65rem;
   text-align: center;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(20, 35, 60, 0.45) 50%, rgba(8, 14, 26, 0.8) 100%);
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.12) 0%, rgba(20, 35, 60, 0.45) 50%, rgba(8, 14, 26, 0.8) 100%);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
@@ -40843,7 +40843,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, rgba(197, 160, 89, 0.06) 0%, transparent 45%);
+  background: linear-gradient(145deg, rgba(74, 144, 226, 0.06) 0%, transparent 45%);
   pointer-events: none;
   z-index: 1;
   opacity: 0.9;
@@ -40851,7 +40851,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
 .air-light-experiences__cell:hover .air-light-experiences__img-wrap {
   transform: translateY(-4px) scale(1.01);
-  border-color: rgba(197, 160, 89, 0.35);
+  border-color: rgba(74, 144, 226, 0.35);
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55), 0 0 48px rgba(100, 160, 220, 0.1);
 }
 
@@ -40935,7 +40935,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   text-transform: uppercase;
   text-decoration: none;
   color: #05070a;
-  background: linear-gradient(135deg, #e8c992 0%, var(--gold) 50%, #a8813a 100%);
+  background: linear-gradient(135deg, #e8c992 0%, var(--gold) 50%, #2c5f9e 100%);
   box-shadow: 0 4px 28px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: transform 0.28s ease, box-shadow 0.28s ease;
@@ -40977,7 +40977,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   height: min(45vw, 540px);
   top: -14%;
   right: -10%;
-  background: rgba(197, 160, 89, 0.18);
+  background: rgba(74, 144, 226, 0.18);
 }
 
 .air-jets-inflight__glow--2 {
@@ -41077,7 +41077,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   border: none;
   border-radius: 16px;
   background: linear-gradient(155deg, rgba(255, 255, 255, 0.04) 0%, rgba(12, 18, 32, 0.55) 100%);
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  border: 1px solid rgba(74, 144, 226, 0.2);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
 }
 
@@ -41089,7 +41089,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.5rem;
   line-height: 1;
-  color: rgba(197, 160, 89, 0.35);
+  color: rgba(74, 144, 226, 0.35);
   pointer-events: none;
 }
 
@@ -41428,7 +41428,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.15);
+  border: 1px solid rgba(74, 144, 226, 0.15);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.3) inset;
   background: #080c14;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.35s ease;
@@ -41438,15 +41438,15 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(197, 160, 89, 0.09) 0%, transparent 50%);
+  background: linear-gradient(160deg, rgba(74, 144, 226, 0.09) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
 }
 
 .air-jets-inflight__cell:hover .air-jets-inflight__img-wrap {
   transform: translateY(-4px) scale(1.008);
-  border-color: rgba(197, 160, 89, 0.35);
-  box-shadow: 0 28px 58px rgba(0, 0, 0, 0.55), 0 0 40px rgba(197, 160, 89, 0.08);
+  border-color: rgba(74, 144, 226, 0.35);
+  box-shadow: 0 28px 58px rgba(0, 0, 0, 0.55), 0 0 40px rgba(74, 144, 226, 0.08);
 }
 
 .air-jets-inflight__img {
@@ -41527,7 +41527,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   text-transform: uppercase;
   text-decoration: none;
   color: #05070a;
-  background: linear-gradient(135deg, #e8c992 0%, var(--gold) 50%, #a8813a 100%);
+  background: linear-gradient(135deg, #e8c992 0%, var(--gold) 50%, #2c5f9e 100%);
   box-shadow: 0 4px 28px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: transform 0.28s ease, box-shadow 0.28s ease;
@@ -41678,10 +41678,10 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   background: linear-gradient(
     90deg,
     rgba(224, 198, 150, 0.98) 0%,
-    rgba(197, 160, 89, 0.72) 42%,
-    rgba(197, 160, 89, 0) 100%
+    rgba(74, 144, 226, 0.72) 42%,
+    rgba(74, 144, 226, 0) 100%
   );
-  box-shadow: 0 1px 14px rgba(197, 160, 89, 0.22);
+  box-shadow: 0 1px 14px rgba(74, 144, 226, 0.22);
 }
 
 .yacht-hero__sub {
@@ -41838,9 +41838,9 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   border: 1px solid rgba(232, 205, 145, 0.78);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.22) inset,
-    0 0 0 1px rgba(197, 160, 89, 0.28),
+    0 0 0 1px rgba(74, 144, 226, 0.28),
     0 10px 38px rgba(0, 8, 24, 0.45),
-    0 0 32px rgba(197, 160, 89, 0.28);
+    0 0 32px rgba(74, 144, 226, 0.28);
   backdrop-filter: blur(14px) saturate(1.35);
   -webkit-backdrop-filter: blur(14px) saturate(1.35);
   text-shadow: 0 1px 3px rgba(5, 15, 35, 0.55);
@@ -41849,7 +41849,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .yacht-hero__cta .yacht-btn--ghost:hover {
   background: linear-gradient(
     165deg,
-    rgba(197, 160, 89, 0.42) 0%,
+    rgba(74, 144, 226, 0.42) 0%,
     rgba(245, 228, 195, 0.28) 45%,
     rgba(160, 125, 72, 0.38) 100%
   );
@@ -41934,7 +41934,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .yacht-btn--ghost {
   background: rgba(4, 14, 32, 0.45);
   color: rgba(255, 252, 248, 0.95);
-  border: 1px solid rgba(197, 160, 89, 0.42);
+  border: 1px solid rgba(74, 144, 226, 0.42);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.12) inset,
     0 8px 28px rgba(0, 0, 0, 0.25);
@@ -41943,7 +41943,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .yacht-btn--ghost:hover {
-  background: rgba(197, 160, 89, 0.18);
+  background: rgba(74, 144, 226, 0.18);
   border-color: rgba(224, 200, 150, 0.55);
   color: #fffefb;
   box-shadow:
@@ -41966,14 +41966,14 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   letter-spacing: 0.06em;
   color: rgba(200, 220, 245, 0.88);
   text-decoration: underline;
-  text-decoration-color: rgba(197, 160, 89, 0.45);
+  text-decoration-color: rgba(74, 144, 226, 0.45);
   text-underline-offset: 0.25em;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .yacht-enquiry__terms:hover {
   color: rgba(232, 240, 255, 0.98);
-  text-decoration-color: rgba(197, 160, 89, 0.85);
+  text-decoration-color: rgba(74, 144, 226, 0.85);
 }
 
 .yacht-terms-doc {
@@ -42021,7 +42021,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(197, 160, 89, 0.92);
+  color: rgba(74, 144, 226, 0.92);
 }
 
 .yacht-terms-doc__notice {
@@ -42052,7 +42052,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   line-height: 1.35;
   color: rgba(240, 246, 255, 0.98);
   padding-bottom: 0.45rem;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.28);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.28);
 }
 
 .yacht-terms-doc__p {
@@ -42087,7 +42087,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .yacht-terms-doc__ul li::marker {
-  color: rgba(197, 160, 89, 0.75);
+  color: rgba(74, 144, 226, 0.75);
 }
 
 .yacht-terms-doc__foot {
@@ -42387,8 +42387,8 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   width: 2.1rem;
   height: 1px;
   border-radius: 1px;
-  background: linear-gradient(90deg, rgba(197, 160, 89, 0.9), rgba(150, 210, 245, 0.5));
-  box-shadow: 0 0 12px rgba(197, 160, 89, 0.22);
+  background: linear-gradient(90deg, rgba(74, 144, 226, 0.9), rgba(150, 210, 245, 0.5));
+  box-shadow: 0 0 12px rgba(74, 144, 226, 0.22);
 }
 
 .limo-card__body h3 {
@@ -42790,7 +42790,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   border-radius: 2px;
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.95) 0%,
+    rgba(74, 144, 226, 0.95) 0%,
     rgba(130, 210, 245, 0.85) 55%,
     rgba(130, 210, 245, 0) 100%
   );
@@ -42805,7 +42805,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .limo-detail__occasion-list li::marker {
-  color: rgba(197, 160, 89, 0.78);
+  color: rgba(74, 144, 226, 0.78);
 }
 
 .limo-detail__closing {
@@ -43024,7 +43024,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     0 32px 80px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(197, 160, 89, 0.08);
+    0 0 0 1px rgba(74, 144, 226, 0.08);
 }
 
 .vip-security-panel h2 {
@@ -43103,7 +43103,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   z-index: 2;
   width: 1.5rem;
   height: 2.25rem;
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   border-radius: 999px;
   opacity: 0.6;
 }
@@ -43602,7 +43602,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   border-radius: 18px;
   overflow: hidden;
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.05) 0%, rgba(8, 12, 24, 0.92) 100%);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease,
     border-color 0.35s ease;
@@ -43611,7 +43611,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .yacht-card:hover {
   transform: translateY(-6px) scale(1.01);
   border-color: color-mix(in srgb, var(--gold) 55%, rgba(255, 255, 255, 0.2));
-  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5), 0 0 40px rgba(197, 160, 89, 0.08);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5), 0 0 40px rgba(74, 144, 226, 0.08);
 }
 
 .yacht-card__media {
@@ -43650,7 +43650,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   background: rgba(6, 10, 20, 0.75);
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   color: #f5efe6;
 }
 
@@ -43684,7 +43684,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(197, 160, 89, 0.6);
+  background: rgba(74, 144, 226, 0.6);
 }
 
 .yacht-card__prices {
@@ -43715,7 +43715,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
 .yacht-card__price-num--focus {
   color: color-mix(in srgb, var(--gold) 90%, #fff);
-  text-shadow: 0 0 24px rgba(197, 160, 89, 0.25);
+  text-shadow: 0 0 24px rgba(74, 144, 226, 0.25);
 }
 
 .yacht-card__focus-hint {
@@ -43762,8 +43762,8 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .yacht-card__btn--ghost:hover {
-  border-color: rgba(197, 160, 89, 0.45);
-  background: rgba(197, 160, 89, 0.08);
+  border-color: rgba(74, 144, 226, 0.45);
+  background: rgba(74, 144, 226, 0.08);
 }
 
 .yacht-card__btn--gold {
@@ -44612,7 +44612,7 @@ a.yacht-card {
   padding: 1.35rem 1.25rem;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.15);
+  border: 1px solid rgba(74, 144, 226, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
@@ -44674,8 +44674,8 @@ a.yacht-card {
   max-width: 48rem;
   padding: 2rem 1.75rem;
   border-radius: 18px;
-  background: linear-gradient(125deg, rgba(197, 160, 89, 0.1) 0%, rgba(12, 20, 40, 0.5) 100%);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  background: linear-gradient(125deg, rgba(74, 144, 226, 0.1) 0%, rgba(12, 20, 40, 0.5) 100%);
+  border: 1px solid rgba(74, 144, 226, 0.25);
 }
 
 .yacht-events__title {
@@ -44810,7 +44810,7 @@ a.yacht-card {
   padding: 2.25rem 1.5rem;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   backdrop-filter: blur(12px);
 }
 
@@ -44869,7 +44869,7 @@ a.yacht-card {
   -webkit-backdrop-filter: blur(28px) saturate(1.45);
   border: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow:
-    0 0 0 1px rgba(197, 160, 89, 0.12) inset,
+    0 0 0 1px rgba(74, 144, 226, 0.12) inset,
     0 1px 0 rgba(255, 255, 255, 0.14) inset,
     0 28px 72px rgba(0, 4, 18, 0.55),
     0 0 48px rgba(100, 160, 220, 0.08);
@@ -45032,7 +45032,7 @@ a.yacht-card {
 }
 
 .yacht-modal__close:hover {
-  background: rgba(197, 160, 89, 0.22);
+  background: rgba(74, 144, 226, 0.22);
   border-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -45283,7 +45283,7 @@ a.yacht-card {
       rgba(112, 168, 225, 0.22) 0%,
       transparent 52%
     ),
-    radial-gradient(ellipse 70% 50% at 92% 18%, rgba(197, 160, 89, 0.09), transparent 46%),
+    radial-gradient(ellipse 70% 50% at 92% 18%, rgba(74, 144, 226, 0.09), transparent 46%),
     radial-gradient(
       ellipse 65% 55% at 6% 48%,
       rgba(72, 120, 168, 0.16),
@@ -45320,7 +45320,7 @@ a.yacht-card {
   width: 100%;
   max-width: none;
   padding: 0;
-  border: 1px solid rgba(197, 160, 89, 0.34);
+  border: 1px solid rgba(74, 144, 226, 0.34);
   border-top: 2px solid rgba(218, 192, 138, 0.82);
   background: linear-gradient(
     180deg,
@@ -45342,7 +45342,7 @@ a.yacht-card {
   background: linear-gradient(
     180deg,
     rgba(218, 192, 138, 0.95) 0%,
-    rgba(197, 160, 89, 0.45) 55%,
+    rgba(74, 144, 226, 0.45) 55%,
     rgba(112, 168, 225, 0.35) 100%
   );
   pointer-events: none;
@@ -45356,7 +45356,7 @@ a.yacht-card {
   background: linear-gradient(
     180deg,
     rgba(218, 192, 138, 0.55) 0%,
-    rgba(197, 160, 89, 0.28) 50%,
+    rgba(74, 144, 226, 0.28) 50%,
     rgba(112, 168, 225, 0.22) 100%
   );
 }
@@ -45372,7 +45372,7 @@ a.yacht-card {
   padding: 0.62rem 0.75rem;
   border-radius: 0;
   border: none;
-  border-right: 1px solid rgba(197, 160, 89, 0.2);
+  border-right: 1px solid rgba(74, 144, 226, 0.2);
   background: transparent;
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.52rem, 0.95vw, 0.62rem);
@@ -45397,8 +45397,8 @@ a.yacht-card {
 
 .astreal-page-nav__btn--back {
   padding-left: calc(1rem + 3px);
-  border-right-color: rgba(197, 160, 89, 0.42);
-  background: rgba(197, 160, 89, 0.07);
+  border-right-color: rgba(74, 144, 226, 0.42);
+  background: rgba(74, 144, 226, 0.07);
   color: rgba(232, 214, 178, 0.98);
 }
 
@@ -45407,26 +45407,26 @@ a.yacht-card {
   .astreal-page-nav__btn--back:hover {
     background: rgba(112, 168, 225, 0.1);
     color: rgba(255, 252, 246, 0.98);
-    box-shadow: inset 0 -2px 0 rgba(197, 160, 89, 0.72);
+    box-shadow: inset 0 -2px 0 rgba(74, 144, 226, 0.72);
   }
 
   .astreal-page-nav__btn--back:hover {
-    background: rgba(197, 160, 89, 0.14);
+    background: rgba(74, 144, 226, 0.14);
     box-shadow: inset 0 -2px 0 rgba(218, 192, 138, 0.9);
   }
 }
 
 .astreal-page-nav__btn--current {
-  border-right-color: rgba(197, 160, 89, 0.32);
+  border-right-color: rgba(74, 144, 226, 0.32);
   background: linear-gradient(
     180deg,
-    rgba(197, 160, 89, 0.24) 0%,
-    rgba(197, 160, 89, 0.1) 100%
+    rgba(74, 144, 226, 0.24) 0%,
+    rgba(74, 144, 226, 0.1) 100%
   );
   color: rgba(255, 252, 246, 0.99);
   box-shadow:
     inset 0 -2px 0 rgba(218, 192, 138, 0.92),
-    inset 0 0 0 1px rgba(197, 160, 89, 0.18);
+    inset 0 0 0 1px rgba(74, 144, 226, 0.18);
   cursor: default;
 }
 
@@ -45478,7 +45478,7 @@ a.yacht-card {
   background-color: #061018;
   background-image:
     radial-gradient(ellipse 125% 90% at 50% -8%, rgba(112, 168, 225, 0.18) 0%, transparent 52%),
-    radial-gradient(ellipse 70% 50% at 92% 18%, rgba(197, 160, 89, 0.08), transparent 46%),
+    radial-gradient(ellipse 70% 50% at 92% 18%, rgba(74, 144, 226, 0.08), transparent 46%),
     radial-gradient(ellipse 65% 55% at 6% 48%, rgba(72, 120, 168, 0.14), transparent 52%),
     linear-gradient(180deg, #03060c 0%, #0a1420 32%, #0d1a2c 58%, #071018 100%);
 }
@@ -45513,7 +45513,7 @@ a.yacht-card {
   .astreal-page-nav__btn {
     flex: 1 1 calc(50% - 1px);
     padding-inline: 0.65rem;
-    border-bottom: 1px solid rgba(197, 160, 89, 0.16);
+    border-bottom: 1px solid rgba(74, 144, 226, 0.16);
   }
 
   .astreal-page-nav__divider {
@@ -45632,7 +45632,7 @@ a.yacht-card {
   margin: clamp(5.5rem, 14vh, 7rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2rem, 5vw, 3rem);
   padding: clamp(1.5rem, 3.5vw, 2.25rem);
   border-radius: clamp(14px, 2vw, 20px);
-  border: 1px solid rgba(197, 160, 89, 0.38);
+  border: 1px solid rgba(74, 144, 226, 0.38);
   background: linear-gradient(
     165deg,
     rgba(10, 18, 32, 0.78) 0%,
@@ -45665,7 +45665,7 @@ a.yacht-card {
 .astreal-about-page__cover-panel .astreal-quote.astreal-quote--about-page {
   margin-top: 0.25rem;
   padding: clamp(1rem, 2.5vw, 1.35rem) 0 0;
-  border-top: 1px solid rgba(197, 160, 89, 0.28);
+  border-top: 1px solid rgba(74, 144, 226, 0.28);
 }
 
 .astreal-about-page__cover-panel .astreal-quote.astreal-quote--about-page p {
@@ -45684,12 +45684,12 @@ a.yacht-card {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: clamp(14px, 2vw, 20px);
-  border: 1px solid rgba(197, 160, 89, 0.42);
+  border: 1px solid rgba(74, 144, 226, 0.42);
   background: rgba(8, 14, 24, 0.65);
   box-shadow:
     0 28px 64px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(160, 205, 245, 0.12) inset,
-    0 0 48px -12px rgba(197, 160, 89, 0.22);
+    0 0 48px -12px rgba(74, 144, 226, 0.22);
 }
 
 @media (min-width: 880px) {
@@ -45783,7 +45783,7 @@ a.yacht-card {
   margin: 0;
   padding: clamp(1.25rem, 3vw, 1.75rem) 0 0;
   border: none;
-  border-left: 3px solid rgba(197, 160, 89, 0.55);
+  border-left: 3px solid rgba(74, 144, 226, 0.55);
   border-radius: 0;
   padding-left: 1rem;
   background: transparent;
@@ -45828,7 +45828,7 @@ a.yacht-card {
   max-width: none;
   border-radius: clamp(14px, 1.8vw, 22px);
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   background: rgba(8, 16, 28, 0.55);
   box-shadow:
     0 32px 72px rgba(0, 0, 0, 0.42),
@@ -45844,7 +45844,7 @@ a.yacht-card {
     118deg,
     transparent 0%,
     rgba(255, 255, 255, 0.07) 42%,
-    rgba(197, 160, 89, 0.14) 50%,
+    rgba(74, 144, 226, 0.14) 50%,
     transparent 58%
   );
   transform: translateX(-120%);
@@ -45952,7 +45952,7 @@ a.yacht-card {
   margin: 0;
   border-radius: clamp(12px, 1.6vw, 18px);
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.26);
+  border: 1px solid rgba(74, 144, 226, 0.26);
   background: rgba(8, 16, 28, 0.5);
   box-shadow:
     0 24px 56px rgba(0, 0, 0, 0.38),
@@ -45989,7 +45989,7 @@ a.yacht-card {
   margin: 0;
   border-radius: clamp(10px, 1.4vw, 16px);
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   background: rgba(8, 16, 28, 0.45);
   min-height: clamp(140px, 28vw, 220px);
   transition:
@@ -45999,10 +45999,10 @@ a.yacht-card {
 
 @media (hover: hover) {
   .astreal-invest-page__mosaic-item:hover {
-    border-color: rgba(197, 160, 89, 0.42);
+    border-color: rgba(74, 144, 226, 0.42);
     box-shadow:
       0 14px 36px rgba(0, 0, 0, 0.28),
-      0 0 0 1px rgba(197, 160, 89, 0.12);
+      0 0 0 1px rgba(74, 144, 226, 0.12);
   }
 }
 
@@ -46107,7 +46107,7 @@ a.yacht-card {
   margin: 0;
   border-radius: clamp(12px, 1.5vw, 16px);
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.24);
+  border: 1px solid rgba(74, 144, 226, 0.24);
   background: rgba(8, 16, 28, 0.55);
   box-shadow:
     0 18px 44px rgba(0, 0, 0, 0.32),
@@ -46145,7 +46145,7 @@ a.yacht-card {
 }
 
 .astreal-invest-page__highlight-trigger:focus-visible {
-  outline: 2px solid rgba(197, 160, 89, 0.75);
+  outline: 2px solid rgba(74, 144, 226, 0.75);
   outline-offset: 3px;
 }
 
@@ -46221,10 +46221,10 @@ a.yacht-card {
   align-items: center;
   min-height: 100%;
   border-radius: clamp(12px, 1.5vw, 16px);
-  border: 1px solid rgba(197, 160, 89, 0.32);
+  border: 1px solid rgba(74, 144, 226, 0.32);
   background: linear-gradient(
     145deg,
-    rgba(197, 160, 89, 0.12) 0%,
+    rgba(74, 144, 226, 0.12) 0%,
     rgba(8, 16, 28, 0.72) 48%,
     rgba(12, 24, 42, 0.88) 100%
   );
@@ -46271,7 +46271,7 @@ a.yacht-card {
   max-width: none;
   border-radius: clamp(14px, 1.8vw, 22px);
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   background: rgba(8, 16, 28, 0.55);
   box-shadow:
     0 32px 72px rgba(0, 0, 0, 0.42),
@@ -46287,7 +46287,7 @@ a.yacht-card {
     118deg,
     transparent 0%,
     rgba(255, 255, 255, 0.07) 42%,
-    rgba(197, 160, 89, 0.14) 50%,
+    rgba(74, 144, 226, 0.14) 50%,
     transparent 58%
   );
   transform: translateX(-120%);
@@ -46375,11 +46375,11 @@ a.yacht-card {
   border-radius: 2px;
   background: linear-gradient(
     180deg,
-    rgba(197, 160, 89, 0.98) 0%,
+    rgba(74, 144, 226, 0.98) 0%,
     rgba(150, 195, 235, 0.75) 52%,
-    rgba(197, 160, 89, 0.45) 100%
+    rgba(74, 144, 226, 0.45) 100%
   );
-  box-shadow: 0 0 14px rgba(197, 160, 89, 0.28);
+  box-shadow: 0 0 14px rgba(74, 144, 226, 0.28);
 }
 
 .astreal-about-page__content.astreal-services-page__content
@@ -46441,7 +46441,7 @@ a.yacht-card {
   border: 2px solid rgba(150, 205, 255, 0.62);
   box-shadow:
     0 14px 42px rgba(0, 0, 0, 0.38),
-    0 0 0 1px rgba(197, 160, 89, 0.28),
+    0 0 0 1px rgba(74, 144, 226, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
@@ -46449,7 +46449,7 @@ a.yacht-card {
   border-color: rgba(185, 225, 255, 0.88);
   box-shadow:
     0 22px 64px rgba(0, 0, 0, 0.48),
-    0 0 0 1px rgba(197, 160, 89, 0.45),
+    0 0 0 1px rgba(74, 144, 226, 0.45),
     0 0 36px rgba(100, 175, 255, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -46472,7 +46472,7 @@ a.yacht-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 0 1px rgba(197, 160, 89, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(74, 144, 226, 0.18);
 }
 
 .astreal-services-page .service-list .service-img {
@@ -46514,7 +46514,7 @@ a.yacht-card {
 }
 
 .astreal-services-page .service-list .service-text::-webkit-scrollbar-thumb:hover {
-  background: rgba(197, 160, 89, 0.55);
+  background: rgba(74, 144, 226, 0.55);
 }
 
 .astreal-services-page .service-list .service-inner.img-left .service-text {
@@ -46655,7 +46655,7 @@ a.yacht-card {
   );
   backdrop-filter: blur(14px) saturate(1.15);
   -webkit-backdrop-filter: blur(14px) saturate(1.15);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.22);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.22);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   pointer-events: auto;
 }
@@ -46687,13 +46687,13 @@ a.yacht-card {
 .astreal-hero__top-link:hover,
 .astreal-hero__top-link:focus-visible {
   color: #fffdf7;
-  border-bottom-color: rgba(197, 160, 89, 0.55);
-  text-shadow: 0 0 22px rgba(197, 160, 89, 0.35);
+  border-bottom-color: rgba(74, 144, 226, 0.55);
+  text-shadow: 0 0 22px rgba(74, 144, 226, 0.35);
   outline: none;
 }
 
 .astreal-hero__top-link:focus-visible {
-  outline: 2px solid rgba(197, 160, 89, 0.65);
+  outline: 2px solid rgba(74, 144, 226, 0.65);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -46944,7 +46944,7 @@ a.yacht-card {
   min-height: 3rem;
   padding: 0.55rem 1rem 0.55rem 1.15rem;
   border: 1px solid rgba(255, 255, 255, 0.26);
-  border-bottom-color: rgba(197, 160, 89, 0.42);
+  border-bottom-color: rgba(74, 144, 226, 0.42);
   border-radius: 999px;
   background: rgba(6, 12, 22, 0.22);
   -webkit-backdrop-filter: blur(20px) saturate(1.35);
@@ -46998,13 +46998,13 @@ a.yacht-card {
   color: #fffdf7;
   box-shadow:
     0 14px 34px rgba(0, 0, 0, 0.26),
-    0 0 24px rgba(197, 160, 89, 0.14),
+    0 0 24px rgba(74, 144, 226, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.18);
   outline: none;
 }
 
 .astreal-hero__projects-jump:focus-visible {
-  outline: 2px solid rgba(197, 160, 89, 0.55);
+  outline: 2px solid rgba(74, 144, 226, 0.55);
   outline-offset: 3px;
 }
 
@@ -47106,7 +47106,7 @@ a.yacht-card {
   overflow: hidden auto;
   padding: 0.65rem 0.55rem 0.55rem;
   border-radius: 14px;
-  border: 1px solid rgba(197, 160, 89, 0.32);
+  border: 1px solid rgba(74, 144, 226, 0.32);
   background: rgba(5, 10, 20, 0.88);
   -webkit-backdrop-filter: blur(18px) saturate(1.3);
   backdrop-filter: blur(18px) saturate(1.3);
@@ -47156,7 +47156,7 @@ a.yacht-card {
 .astreal-hero__projects-menu-link:hover,
 .astreal-hero__projects-menu-link:focus-visible {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(197, 160, 89, 0.28);
+  border-color: rgba(74, 144, 226, 0.28);
   transform: translateX(2px);
   outline: none;
 }
@@ -47217,9 +47217,9 @@ a.yacht-card {
   width: calc(100% - 0.2rem);
   margin: 0.45rem auto 0.15rem;
   padding: 0.55rem 0.75rem;
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   border-radius: 999px;
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(74, 144, 226, 0.12);
   font-family: 'Montserrat', sans-serif;
   font-size: 0.62rem;
   font-weight: 700;
@@ -47235,7 +47235,7 @@ a.yacht-card {
 
 .astreal-hero__projects-menu-all:hover,
 .astreal-hero__projects-menu-all:focus-visible {
-  background: rgba(197, 160, 89, 0.22);
+  background: rgba(74, 144, 226, 0.22);
   border-color: rgba(237, 214, 170, 0.55);
   transform: translateY(1px);
   outline: none;
@@ -47579,7 +47579,7 @@ a.yacht-card {
   color: #f8edd4;
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.65),
-    0 0 24px rgba(197, 160, 89, 0.35);
+    0 0 24px rgba(74, 144, 226, 0.35);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -47597,7 +47597,7 @@ a.yacht-card {
 
   50% {
     filter: brightness(1.12);
-    text-shadow: 0 0 28px rgba(197, 160, 89, 0.35);
+    text-shadow: 0 0 28px rgba(74, 144, 226, 0.35);
   }
 }
 
@@ -47613,11 +47613,11 @@ a.yacht-card {
   transform-origin: center center;
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.35) 0%,
+    rgba(74, 144, 226, 0.35) 0%,
     rgba(245, 220, 170, 1) 50%,
-    rgba(197, 160, 89, 0.35) 100%
+    rgba(74, 144, 226, 0.35) 100%
   );
-  box-shadow: 0 0 32px rgba(197, 160, 89, 0.55);
+  box-shadow: 0 0 32px rgba(74, 144, 226, 0.55);
 }
 
 .astreal-hero__title {
@@ -47721,7 +47721,7 @@ a.yacht-card {
   border-radius: inherit;
   background: linear-gradient(
     135deg,
-    rgba(197, 160, 89, 0.35) 0%,
+    rgba(74, 144, 226, 0.35) 0%,
     transparent 45%,
     rgba(130, 185, 235, 0.22) 100%
   );
@@ -47796,14 +47796,14 @@ a.yacht-card {
 .astreal-about {
   position: relative;
   padding: clamp(3rem, 7vw, 5rem) 0;
-  border-top: 1px solid rgba(197, 160, 89, 0.18);
+  border-top: 1px solid rgba(74, 144, 226, 0.18);
   overflow: hidden;
   scroll-margin-top: clamp(4.5rem, 12vh, 6.5rem);
 }
 
 .astreal-about--premium {
   background:
-    radial-gradient(ellipse 120% 80% at 15% 20%, rgba(197, 160, 89, 0.09) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 80% at 15% 20%, rgba(74, 144, 226, 0.09) 0%, transparent 50%),
     radial-gradient(ellipse 90% 70% at 85% 60%, rgba(80, 140, 210, 0.1) 0%, transparent 48%),
     linear-gradient(180deg, rgba(8, 12, 20, 0.96) 0%, rgba(5, 8, 14, 0.98) 100%);
 }
@@ -47813,7 +47813,7 @@ a.yacht-card {
   position: absolute;
   inset: -20% -10%;
   background:
-    radial-gradient(circle at 30% 40%, rgba(197, 160, 89, 0.06) 0%, transparent 42%),
+    radial-gradient(circle at 30% 40%, rgba(74, 144, 226, 0.06) 0%, transparent 42%),
     radial-gradient(circle at 70% 70%, rgba(100, 160, 220, 0.07) 0%, transparent 45%);
   opacity: 0.85;
 }
@@ -47895,7 +47895,7 @@ a.yacht-card {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 28px rgba(197, 160, 89, 0.15);
+  text-shadow: 0 2px 28px rgba(74, 144, 226, 0.15);
 }
 
 .astreal-about__title-accent {
@@ -47907,12 +47907,12 @@ a.yacht-card {
   transform-origin: left center;
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.98) 0%,
+    rgba(74, 144, 226, 0.98) 0%,
     rgba(230, 200, 130, 0.85) 35%,
     rgba(120, 185, 235, 0.65) 85%,
     rgba(120, 185, 235, 0) 100%
   );
-  box-shadow: 0 0 24px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 0 24px rgba(74, 144, 226, 0.35);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -47925,12 +47925,12 @@ a.yacht-card {
   0%,
   100% {
     filter: brightness(1) saturate(1);
-    box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
   }
 
   50% {
     filter: brightness(1.15) saturate(1.1);
-    box-shadow: 0 0 32px rgba(197, 160, 89, 0.45);
+    box-shadow: 0 0 32px rgba(74, 144, 226, 0.45);
   }
 }
 
@@ -47963,11 +47963,11 @@ a.yacht-card {
 .astreal-quote {
   margin: 1.35rem 0 0;
   padding: 1.15rem 1.25rem;
-  border-left: 3px solid rgba(197, 160, 89, 0.75);
+  border-left: 3px solid rgba(74, 144, 226, 0.75);
   border-radius: 0 12px 12px 0;
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.12) 0%,
+    rgba(74, 144, 226, 0.12) 0%,
     rgba(12, 22, 34, 0.65) 100%
   );
 }
@@ -47977,12 +47977,12 @@ a.yacht-card {
   padding: clamp(1.15rem, 2.2vw, 1.45rem) clamp(1.15rem, 2vw, 1.5rem);
   border-left-width: 4px;
   border-radius: 14px;
-  border: 1px solid rgba(197, 160, 89, 0.28);
-  border-left: 4px solid rgba(197, 160, 89, 0.85);
+  border: 1px solid rgba(74, 144, 226, 0.28);
+  border-left: 4px solid rgba(74, 144, 226, 0.85);
   background:
     linear-gradient(
       135deg,
-      rgba(197, 160, 89, 0.14) 0%,
+      rgba(74, 144, 226, 0.14) 0%,
       rgba(14, 24, 40, 0.75) 48%,
       rgba(10, 18, 32, 0.88) 100%
     );
@@ -48096,7 +48096,7 @@ a.yacht-card {
 
 .section-led--warm {
   --section-led-core: rgba(237, 200, 140, 0.5);
-  --section-led-mid: rgba(197, 160, 89, 0.28);
+  --section-led-mid: rgba(74, 144, 226, 0.28);
   --section-led-soft: rgba(160, 120, 60, 0.12);
   --section-led-hot: rgba(255, 240, 210, 0.22);
 }
@@ -48211,7 +48211,7 @@ a.yacht-card {
   box-shadow:
     0 32px 90px rgba(0, 0, 0, 0.42),
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 0 0 1px rgba(197, 160, 89, 0.08);
+    0 0 0 1px rgba(74, 144, 226, 0.08);
   overflow: hidden;
 }
 
@@ -48226,7 +48226,7 @@ a.yacht-card {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 55% 45% at 18% 28%, rgba(197, 160, 89, 0.14) 0%, transparent 52%),
+    radial-gradient(ellipse 55% 45% at 18% 28%, rgba(74, 144, 226, 0.14) 0%, transparent 52%),
     radial-gradient(ellipse 50% 48% at 88% 72%, rgba(85, 145, 205, 0.12) 0%, transparent 50%);
   opacity: 0.9;
 }
@@ -48281,7 +48281,7 @@ a.yacht-card {
     118deg,
     rgba(255, 252, 248, 1) 0%,
     rgba(220, 190, 130, 0.96) 28%,
-    rgba(197, 160, 89, 0.98) 42%,
+    rgba(74, 144, 226, 0.98) 42%,
     rgba(165, 205, 245, 0.95) 78%,
     rgba(250, 248, 255, 1) 100%
   );
@@ -48319,12 +48319,12 @@ a.yacht-card {
   transform-origin: left center;
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.98) 0%,
+    rgba(74, 144, 226, 0.98) 0%,
     rgba(230, 205, 150, 0.55) 42%,
     rgba(120, 185, 235, 0.35) 88%,
     rgba(120, 185, 235, 0) 100%
   );
-  box-shadow: 0 0 28px rgba(197, 160, 89, 0.28);
+  box-shadow: 0 0 28px rgba(74, 144, 226, 0.28);
 }
 
 .astreal-projects-masthead__tagline {
@@ -48356,7 +48356,7 @@ a.yacht-card {
   font-weight: 700;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(197, 160, 89, 0.55);
+  color: rgba(74, 144, 226, 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -48396,7 +48396,7 @@ a.yacht-card {
 .astreal-project-card--viewport {
   border-radius: 0;
   border: none;
-  border-top: 1px solid rgba(197, 160, 89, 0.22);
+  border-top: 1px solid rgba(74, 144, 226, 0.22);
   box-shadow: none;
   background: transparent;
 }
@@ -48497,7 +48497,7 @@ a.yacht-card {
   max-width: min(520px, calc(100vw - 2.5rem));
   padding: clamp(1.15rem, 2.8vw, 1.65rem) clamp(1.35rem, 3vw, 2rem);
   border-radius: clamp(14px, 2vw, 20px);
-  border: 1px solid rgba(197, 160, 89, 0.38);
+  border: 1px solid rgba(74, 144, 226, 0.38);
   background: linear-gradient(
     155deg,
     rgba(12, 22, 38, 0.58) 0%,
@@ -48520,11 +48520,11 @@ a.yacht-card {
   border-radius: 2px;
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.98) 0%,
+    rgba(74, 144, 226, 0.98) 0%,
     rgba(230, 205, 145, 0.55) 55%,
     rgba(120, 185, 235, 0.25) 100%
   );
-  box-shadow: 0 0 24px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 0 24px rgba(74, 144, 226, 0.35);
 }
 
 .astreal-project-card__cap--overlay .astreal-project-card__kicker {
@@ -48856,7 +48856,7 @@ a.yacht-card {
   padding: 0.34rem 0.72rem 0.32rem 0.5rem;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.26);
-  border-bottom-color: rgba(197, 160, 89, 0.42);
+  border-bottom-color: rgba(74, 144, 226, 0.42);
   overflow: hidden;
   background: rgba(6, 12, 22, 0.22);
   -webkit-backdrop-filter: blur(20px) saturate(1.35);
@@ -48901,7 +48901,7 @@ a.yacht-card {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(197, 160, 89, 0.55) 50%,
+    rgba(74, 144, 226, 0.55) 50%,
     transparent 100%
   );
   opacity: 0.75;
@@ -48915,13 +48915,13 @@ a.yacht-card {
   transform: translateY(-1px);
   box-shadow:
     0 14px 34px rgba(0, 0, 0, 0.26),
-    0 0 24px rgba(197, 160, 89, 0.14),
+    0 0 24px rgba(74, 144, 226, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.18);
   outline: none;
 }
 
 .astreal-detail-hero__back:focus-visible {
-  outline: 2px solid rgba(197, 160, 89, 0.55);
+  outline: 2px solid rgba(74, 144, 226, 0.55);
   outline-offset: 3px;
 }
 
@@ -48939,7 +48939,7 @@ a.yacht-card {
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 999px;
-  border: 1px solid rgba(197, 160, 89, 0.45);
+  border: 1px solid rgba(74, 144, 226, 0.45);
   background: rgba(8, 16, 28, 0.45);
   font-size: 1rem;
   font-weight: 300;
@@ -49236,7 +49236,7 @@ a.yacht-card {
   max-width: 100%;
   border-radius: clamp(10px, 1.5vw, 14px);
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.42);
+  border: 1px solid rgba(74, 144, 226, 0.42);
   background: linear-gradient(
     165deg,
     rgba(22, 42, 72, 0.55) 0%,
@@ -49261,7 +49261,7 @@ a.yacht-card {
     115deg,
     rgba(210, 175, 115, 0.55) 0%,
     rgba(120, 175, 235, 0.22) 48%,
-    rgba(197, 160, 89, 0.35) 100%
+    rgba(74, 144, 226, 0.35) 100%
   );
   mask:
     linear-gradient(#fff 0 0) content-box,
@@ -49283,9 +49283,9 @@ a.yacht-card {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(197, 160, 89, 0.65) 22%,
+    rgba(74, 144, 226, 0.65) 22%,
     rgba(130, 185, 235, 0.5) 50%,
-    rgba(197, 160, 89, 0.65) 78%,
+    rgba(74, 144, 226, 0.65) 78%,
     transparent 100%
   );
   opacity: 0.95;
@@ -49367,7 +49367,7 @@ a.yacht-card {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(197, 160, 89, 0.85) 45%,
+    rgba(74, 144, 226, 0.85) 45%,
     rgba(130, 185, 235, 0.55) 100%
   );
   opacity: 0.85;
@@ -49450,11 +49450,11 @@ a.yacht-card {
   border-radius: 2px;
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.95) 0%,
+    rgba(74, 144, 226, 0.95) 0%,
     rgba(235, 210, 155, 0.55) 42%,
     rgba(130, 185, 235, 0.35) 100%
   );
-  box-shadow: 0 0 24px rgba(197, 160, 89, 0.22);
+  box-shadow: 0 0 24px rgba(74, 144, 226, 0.22);
 }
 
 .astreal-detail-copy__body {
@@ -49493,7 +49493,7 @@ a.yacht-card {
   margin-bottom: clamp(0.85rem, 2vw, 1.15rem);
   padding: 0 0 clamp(0.75rem, 1.6vw, 0.95rem);
   padding-left: clamp(0.15rem, 0.5vw, 0.35rem);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.32);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.32);
   font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
   font-size: clamp(1.42rem, 3.1vw, 1.88rem);
   font-weight: 500;
@@ -49517,7 +49517,7 @@ a.yacht-card {
   margin-bottom: 0.65rem;
   background: linear-gradient(
     90deg,
-    rgba(197, 160, 89, 0.95) 0%,
+    rgba(74, 144, 226, 0.95) 0%,
     rgba(235, 210, 155, 0.45) 70%,
     transparent 100%
   );
@@ -49602,7 +49602,7 @@ a.yacht-card {
   margin: 0;
   border-radius: clamp(10px, 1.6vw, 14px);
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.32);
+  border: 1px solid rgba(74, 144, 226, 0.32);
   background: rgba(6, 12, 22, 0.85);
   box-shadow:
     0 16px 40px rgba(0, 0, 0, 0.32),
@@ -49661,7 +49661,7 @@ a.yacht-card {
       rgba(16, 28, 48, 0.42) 0%,
       rgba(8, 14, 24, 0.32) 100%
     );
-  border: 1px solid rgba(197, 160, 89, 0.14);
+  border: 1px solid rgba(74, 144, 226, 0.14);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.05),
     0 18px 48px rgba(0, 0, 0, 0.22);
@@ -49687,7 +49687,7 @@ a.yacht-card {
   background: linear-gradient(
     90deg,
     rgba(130, 185, 235, 0.55) 0%,
-    rgba(197, 160, 89, 0.85) 55%,
+    rgba(74, 144, 226, 0.85) 55%,
     rgba(235, 205, 145, 0.25) 100%
   );
 }
@@ -50153,10 +50153,10 @@ a.yacht-card {
   overflow: hidden;
   padding: clamp(1.65rem, 4vw, 2.5rem);
   border-radius: clamp(16px, 2.5vw, 22px);
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   background:
     radial-gradient(ellipse 80% 70% at 100% 0%, rgba(90, 155, 225, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 65% 55% at 0% 100%, rgba(197, 160, 89, 0.1) 0%, transparent 52%),
+    radial-gradient(ellipse 65% 55% at 0% 100%, rgba(74, 144, 226, 0.1) 0%, transparent 52%),
     linear-gradient(
       165deg,
       rgba(14, 26, 44, 0.72) 0%,
@@ -50328,7 +50328,7 @@ a.yacht-card {
 
 .astreal-detail-connect__btn--ghost {
   color: rgba(252, 246, 232, 0.98);
-  border: 1px solid rgba(197, 160, 89, 0.42);
+  border: 1px solid rgba(74, 144, 226, 0.42);
   background: linear-gradient(
     155deg,
     rgba(14, 26, 44, 0.88) 0%,
@@ -50354,7 +50354,7 @@ a.yacht-card {
   );
   box-shadow:
     0 14px 34px rgba(0, 0, 0, 0.38),
-    0 0 28px rgba(197, 160, 89, 0.18),
+    0 0 28px rgba(74, 144, 226, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   outline: none;
 }
@@ -50367,7 +50367,7 @@ a.yacht-card {
 }
 
 .astreal-detail-connect__btn:focus-visible {
-  outline: 2px solid rgba(197, 160, 89, 0.55);
+  outline: 2px solid rgba(74, 144, 226, 0.55);
   outline-offset: 3px;
 }
 
@@ -50424,7 +50424,7 @@ a.yacht-card {
   50% {
     text-shadow:
       0 0 16px rgba(237, 214, 170, 0.5),
-      0 0 28px rgba(197, 160, 89, 0.22);
+      0 0 28px rgba(74, 144, 226, 0.22);
     filter: brightness(1.1);
   }
 }
@@ -50468,7 +50468,7 @@ a.yacht-card {
 
 .astreal-detail-connect__phone:hover,
 .astreal-detail-connect__phone:focus-visible {
-  border-color: rgba(197, 160, 89, 0.42);
+  border-color: rgba(74, 144, 226, 0.42);
   background: rgba(10, 20, 36, 0.78);
   transform: translateY(-1px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
@@ -50481,7 +50481,7 @@ a.yacht-card {
   width: 2rem;
   height: 2rem;
   border-radius: 999px;
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   background: rgba(8, 16, 28, 0.65);
   font-size: 0.95rem;
   line-height: 1;
@@ -50526,7 +50526,7 @@ a.yacht-card {
 .astreal-detail-connect__email:hover,
 .astreal-detail-connect__email:focus-visible {
   color: rgba(252, 248, 238, 0.98);
-  border-bottom-color: rgba(197, 160, 89, 0.55);
+  border-bottom-color: rgba(74, 144, 226, 0.55);
   outline: none;
 }
 
@@ -50710,7 +50710,7 @@ a.yacht-card {
   flex-shrink: 0;
   font-size: 1rem;
   line-height: 1;
-  color: rgba(197, 160, 89, 0.75);
+  color: rgba(74, 144, 226, 0.75);
   transition: transform 0.25s ease, color 0.25s ease;
 }
 
@@ -50740,7 +50740,7 @@ a.yacht-card {
 }
 
 .astreal-detail-connect__social-grid .social:focus-visible {
-  outline: 2px solid rgba(197, 160, 89, 0.55);
+  outline: 2px solid rgba(74, 144, 226, 0.55);
   outline-offset: 3px;
 }
 
@@ -51003,8 +51003,12 @@ a.yacht-card {
 /* ── Global Wings aviation page (gw-*) ── */
 
 .gw-page {
-  --gw-gold: #c5a059;
-  --gw-gold-light: rgba(232, 212, 160, 0.98);
+  --gw-accent: #4a90e2;
+  --gw-accent-deep: #2c5f9e;
+  --gw-accent-light: rgba(165, 210, 255, 0.98);
+  --gw-accent-pale: #d4e8ff;
+  --gw-gold: var(--gw-accent);
+  --gw-gold-light: var(--gw-accent-light);
   --gw-navy: #03050a;
   --gw-navy-mid: #0a1224;
   --gw-blue-grey: #eef4fc;
@@ -51028,7 +51032,7 @@ a.yacht-card {
     linear-gradient(180deg, rgba(8, 12, 22, 0.98) 0%, rgba(3, 5, 10, 0.96) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.16);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.16);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
 }
 
@@ -51039,9 +51043,9 @@ a.yacht-card {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(197, 160, 89, 0.15) 18%,
-    rgba(232, 212, 160, 0.85) 50%,
-    rgba(197, 160, 89, 0.15) 82%,
+    rgba(74, 144, 226, 0.15) 18%,
+    rgba(165, 210, 255, 0.85) 50%,
+    rgba(74, 144, 226, 0.15) 82%,
     transparent 100%
   );
 }
@@ -51070,7 +51074,7 @@ a.yacht-card {
   min-width: max-content;
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   border-radius: 999px;
   box-shadow:
     0 12px 36px rgba(0, 0, 0, 0.28),
@@ -51093,7 +51097,7 @@ a.yacht-card {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(197, 160, 89, 0.35) 50%,
+    rgba(74, 144, 226, 0.35) 50%,
     transparent 100%
   );
   transform: translateY(-50%);
@@ -51109,7 +51113,7 @@ a.yacht-card {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(245, 238, 220, 0.78);
+  color: rgba(238, 245, 255, 0.78);
   text-decoration: none;
   white-space: nowrap;
   border-radius: 999px;
@@ -51128,7 +51132,7 @@ a.yacht-card {
   bottom: 0.28rem;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--gw-gold) 0%, #e8d4a0 100%);
+  background: linear-gradient(90deg, var(--gw-gold) 0%, #a5c8e8 100%);
   border-radius: 999px;
   transform: translateX(-50%);
   transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1);
@@ -51137,7 +51141,7 @@ a.yacht-card {
 .gw-subnav__link:hover,
 .gw-subnav__link:focus-visible {
   color: var(--gw-gold-light);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   transform: translateY(-1px);
 }
 
@@ -51148,9 +51152,9 @@ a.yacht-card {
 
 .gw-subnav__link--active {
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   box-shadow:
-    0 4px 18px rgba(197, 160, 89, 0.28),
+    0 4px 18px rgba(74, 144, 226, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
@@ -51180,7 +51184,7 @@ a.yacht-card {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(245, 238, 220, 0.92);
+  color: rgba(238, 245, 255, 0.92);
   background:
     linear-gradient(
       145deg,
@@ -51208,13 +51212,13 @@ a.yacht-card {
 .gw-subnav__toggle:hover,
 .gw-subnav__toggle:focus-visible {
   color: var(--gw-gold-light);
-  border-color: rgba(197, 160, 89, 0.32);
+  border-color: rgba(74, 144, 226, 0.32);
   background:
     linear-gradient(
       145deg,
-      rgba(197, 160, 89, 0.14) 0%,
+      rgba(74, 144, 226, 0.14) 0%,
       rgba(255, 255, 255, 0.06) 52%,
-      rgba(197, 160, 89, 0.08) 100%
+      rgba(74, 144, 226, 0.08) 100%
     );
   transform: translateY(-1px);
   box-shadow:
@@ -51224,13 +51228,13 @@ a.yacht-card {
 
 .gw-subnav__toggle--open {
   color: var(--gw-gold-light);
-  border-color: rgba(197, 160, 89, 0.38);
+  border-color: rgba(74, 144, 226, 0.38);
   background:
     linear-gradient(
       145deg,
-      rgba(197, 160, 89, 0.16) 0%,
+      rgba(74, 144, 226, 0.16) 0%,
       rgba(255, 255, 255, 0.07) 50%,
-      rgba(197, 160, 89, 0.1) 100%
+      rgba(74, 144, 226, 0.1) 100%
     );
 }
 
@@ -51313,7 +51317,7 @@ a.yacht-card {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
-  color: rgba(245, 238, 220, 0.76);
+  color: rgba(238, 245, 255, 0.76);
   border-left: 2px solid transparent;
   border-radius: 8px;
   transition:
@@ -51326,17 +51330,17 @@ a.yacht-card {
 .gw-subnav__menu-link:hover,
 .gw-subnav__menu-link:focus-visible {
   color: var(--gw-gold-light);
-  background: rgba(197, 160, 89, 0.08);
-  border-left-color: rgba(197, 160, 89, 0.45);
+  background: rgba(74, 144, 226, 0.08);
+  border-left-color: rgba(74, 144, 226, 0.45);
   padding-left: 0.95rem;
 }
 
 .gw-subnav__menu-link--active {
   color: var(--gw-gold-light);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   border-left-color: var(--gw-gold);
   padding-left: 0.95rem;
-  box-shadow: inset 0 0 0 1px rgba(197, 160, 89, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(74, 144, 226, 0.12);
 }
 
 .gw-aviation-outlet {
@@ -51398,13 +51402,13 @@ a.yacht-card {
     linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, transparent 55%),
     repeating-linear-gradient(
       -45deg,
-      rgba(197, 160, 89, 0.06) 0,
-      rgba(197, 160, 89, 0.06) 1px,
+      rgba(74, 144, 226, 0.06) 0,
+      rgba(74, 144, 226, 0.06) 1px,
       transparent 1px,
       transparent 10px
     ),
     linear-gradient(180deg, #121a2e 0%, #0a1020 100%);
-  border: 1px dashed rgba(197, 160, 89, 0.35);
+  border: 1px dashed rgba(74, 144, 226, 0.35);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -51434,7 +51438,7 @@ a.yacht-card {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(197, 160, 89, 0.65);
+  color: rgba(74, 144, 226, 0.65);
   text-align: center;
   padding: 1rem;
 }
@@ -51535,25 +51539,25 @@ a.yacht-card {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
-  border: 1px solid rgba(255, 248, 230, 0.4);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
+  border: 1px solid rgba(220, 235, 255, 0.4);
   border-radius: 2px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .gw-hero__cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.35);
 }
 
 .gw-hero__cta--secondary {
   color: #fff;
   background: transparent;
-  border-color: rgba(197, 160, 89, 0.55);
+  border-color: rgba(74, 144, 226, 0.55);
 }
 
 .gw-hero__cta--secondary:hover {
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(74, 144, 226, 0.12);
   box-shadow: none;
 }
 
@@ -51577,7 +51581,7 @@ a.yacht-card {
   pointer-events: auto;
   color: rgba(255, 255, 255, 0.85);
   background: rgba(3, 5, 10, 0.45);
-  border: 1px solid rgba(197, 160, 89, 0.3);
+  border: 1px solid rgba(74, 144, 226, 0.3);
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
@@ -51585,7 +51589,7 @@ a.yacht-card {
 
 .gw-hero__control:hover {
   color: var(--gw-gold-light);
-  background: rgba(197, 160, 89, 0.18);
+  background: rgba(74, 144, 226, 0.18);
 }
 
 .gw-hero__control--prev {
@@ -51697,7 +51701,7 @@ a.yacht-card {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 45% at 6% 15%, rgba(197, 160, 89, 0.1) 0%, transparent 68%),
+    radial-gradient(ellipse 55% 45% at 6% 15%, rgba(74, 144, 226, 0.1) 0%, transparent 68%),
     radial-gradient(ellipse 50% 40% at 94% 82%, rgba(10, 18, 36, 0.06) 0%, transparent 68%),
     linear-gradient(90deg, rgba(3, 5, 10, 0.02) 0%, transparent 18%, transparent 82%, rgba(3, 5, 10, 0.02) 100%);
   pointer-events: none;
@@ -51772,7 +51776,7 @@ a.yacht-card {
   inset: 0;
   z-index: 4;
   border-radius: inherit;
-  border: 1px solid rgba(197, 160, 89, 0.18);
+  border: 1px solid rgba(74, 144, 226, 0.18);
   pointer-events: none;
   transition: border-color 0.45s ease;
 }
@@ -51781,11 +51785,11 @@ a.yacht-card {
   transform: translateY(-8px);
   box-shadow:
     0 28px 64px rgba(3, 5, 10, 0.18),
-    0 0 0 1px rgba(197, 160, 89, 0.12);
+    0 0 0 1px rgba(74, 144, 226, 0.12);
 }
 
 .gw-service-card:hover::before {
-  border-color: rgba(197, 160, 89, 0.45);
+  border-color: rgba(74, 144, 226, 0.45);
 }
 
 .gw-service-card__media {
@@ -51823,7 +51827,7 @@ a.yacht-card {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(232, 212, 160, 0.38);
+  color: rgba(165, 210, 255, 0.38);
 }
 
 .gw-service-card__overlay {
@@ -51895,7 +51899,7 @@ a.yacht-card {
   height: 2.5rem;
   color: var(--gw-gold-light);
   background: rgba(3, 5, 10, 0.45);
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   border-radius: 50%;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -51908,7 +51912,7 @@ a.yacht-card {
 
 .gw-service-card:hover .gw-service-card__icon {
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-color: transparent;
   transform: scale(1.08);
 }
@@ -51982,7 +51986,7 @@ a.yacht-card {
   z-index: 5;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, var(--gw-gold) 0%, rgba(232, 212, 160, 0.95) 50%, var(--gw-gold) 100%);
+  background: linear-gradient(90deg, var(--gw-gold) 0%, rgba(165, 210, 255, 0.95) 50%, var(--gw-gold) 100%);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
@@ -52012,7 +52016,7 @@ a.yacht-card {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(74, 144, 226, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -52029,7 +52033,7 @@ a.yacht-card {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 45% at 12% 18%, rgba(197, 160, 89, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 12% 18%, rgba(74, 144, 226, 0.07) 0%, transparent 70%),
     radial-gradient(ellipse 45% 40% at 88% 82%, rgba(10, 18, 36, 0.04) 0%, transparent 70%);
   pointer-events: none;
 }
@@ -52098,7 +52102,7 @@ a.yacht-card {
   inset: 0;
   z-index: 4;
   border-radius: inherit;
-  border: 1px solid rgba(197, 160, 89, 0.18);
+  border: 1px solid rgba(74, 144, 226, 0.18);
   pointer-events: none;
   transition: border-color 0.45s ease;
 }
@@ -52107,11 +52111,11 @@ a.yacht-card {
   transform: translateY(-8px);
   box-shadow:
     0 28px 64px rgba(3, 5, 10, 0.18),
-    0 0 0 1px rgba(197, 160, 89, 0.12);
+    0 0 0 1px rgba(74, 144, 226, 0.12);
 }
 
 .gw-team-card:hover::before {
-  border-color: rgba(197, 160, 89, 0.45);
+  border-color: rgba(74, 144, 226, 0.45);
 }
 
 .gw-team-card__media {
@@ -52149,7 +52153,7 @@ a.yacht-card {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(232, 212, 160, 0.38);
+  color: rgba(165, 210, 255, 0.38);
 }
 
 .gw-team-card__overlay {
@@ -52237,7 +52241,7 @@ a.yacht-card {
   line-height: 1.45;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(232, 212, 160, 0.92);
+  color: rgba(165, 210, 255, 0.92);
 }
 
 .gw-team-card__experience {
@@ -52250,7 +52254,7 @@ a.yacht-card {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 999px;
 }
 
@@ -52271,7 +52275,7 @@ a.yacht-card {
   line-height: 1.35;
   color: rgba(255, 255, 255, 0.88);
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   border-radius: 999px;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -52300,7 +52304,7 @@ a.yacht-card {
   height: 1.75rem;
   color: rgba(255, 255, 255, 0.72);
   background: rgba(3, 5, 10, 0.35);
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   border-radius: 50%;
   text-decoration: none;
   backdrop-filter: blur(8px);
@@ -52319,7 +52323,7 @@ a.yacht-card {
 
 .gw-team-card__social-link:hover {
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-color: transparent;
   transform: translateY(-2px);
 }
@@ -52331,7 +52335,7 @@ a.yacht-card {
   z-index: 5;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, var(--gw-gold) 0%, rgba(232, 212, 160, 0.95) 50%, var(--gw-gold) 100%);
+  background: linear-gradient(90deg, var(--gw-gold) 0%, rgba(165, 210, 255, 0.95) 50%, var(--gw-gold) 100%);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
@@ -52362,8 +52366,8 @@ a.yacht-card {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 45% at 15% 20%, rgba(197, 160, 89, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 85% 80%, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+    radial-gradient(ellipse 55% 45% at 15% 20%, rgba(74, 144, 226, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 80%, rgba(74, 144, 226, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -52423,7 +52427,7 @@ a.yacht-card {
   padding: 0;
   color: #fff;
   background: rgba(3, 5, 10, 0.55);
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   border-radius: 50%;
   backdrop-filter: blur(8px);
   cursor: pointer;
@@ -52437,7 +52441,7 @@ a.yacht-card {
 
 .gw-blog-showcase__nav:hover {
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-color: transparent;
   transform: translateY(-50%) scale(1.06);
 }
@@ -52481,7 +52485,7 @@ a.yacht-card {
   border-radius: 18px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.18);
+  border: 1px solid rgba(74, 144, 226, 0.18);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
   transition:
     border-color 0.45s ease,
@@ -52489,10 +52493,10 @@ a.yacht-card {
 }
 
 .gw-blog-feature--active .gw-blog-feature__link:hover {
-  border-color: rgba(197, 160, 89, 0.45);
+  border-color: rgba(74, 144, 226, 0.45);
   box-shadow:
     0 32px 80px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(197, 160, 89, 0.12);
+    0 0 0 1px rgba(74, 144, 226, 0.12);
 }
 
 .gw-blog-feature__media {
@@ -52519,7 +52523,7 @@ a.yacht-card {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(232, 212, 160, 0.4);
+  color: rgba(165, 210, 255, 0.4);
 }
 
 .gw-blog-feature__overlay {
@@ -52581,7 +52585,7 @@ a.yacht-card {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 999px;
 }
 
@@ -52652,7 +52656,7 @@ a.yacht-card {
   gap: 0.5rem;
   padding: 0.35rem 0.5rem;
   background: rgba(3, 5, 10, 0.55);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  border: 1px solid rgba(74, 144, 226, 0.25);
   border-radius: 999px;
   backdrop-filter: blur(8px);
 }
@@ -52713,7 +52717,7 @@ a.yacht-card {
   display: block;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, var(--gw-gold) 0%, #e8d4a0 100%);
+  background: linear-gradient(90deg, var(--gw-gold) 0%, #a5c8e8 100%);
   transform-origin: left center;
 }
 
@@ -52730,7 +52734,7 @@ a.yacht-card {
   padding: 1rem 1.1rem;
   text-align: left;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.14);
+  border: 1px solid rgba(74, 144, 226, 0.14);
   border-radius: 12px;
   cursor: pointer;
   transition:
@@ -52741,8 +52745,8 @@ a.yacht-card {
 
 .gw-blog-showcase__thumb:hover,
 .gw-blog-showcase__thumb.is-active {
-  background: rgba(197, 160, 89, 0.1);
-  border-color: rgba(197, 160, 89, 0.35);
+  background: rgba(74, 144, 226, 0.1);
+  border-color: rgba(74, 144, 226, 0.35);
 }
 
 .gw-blog-showcase__thumb.is-active {
@@ -52780,7 +52784,7 @@ a.yacht-card {
   width: 100%;
   aspect-ratio: 16 / 9;
   max-height: 642px;
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   border-radius: 4px;
   overflow: hidden;
   box-shadow:
@@ -52816,7 +52820,7 @@ a.yacht-card {
 .gw-client-cell .gw-placeholder {
   min-height: 80px;
   background: #fff;
-  border-color: rgba(197, 160, 89, 0.25);
+  border-color: rgba(74, 144, 226, 0.25);
 }
 
 /* Leader */
@@ -52861,14 +52865,14 @@ a.yacht-card {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 2px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .gw-btn-more:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.35);
 }
 
 .gw-leader__logo {
@@ -53178,7 +53182,7 @@ a.yacht-card {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   border-radius: 6px;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
@@ -53194,7 +53198,7 @@ a.yacht-card {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 55% 45% at 15% 50%, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
+  background: radial-gradient(ellipse 55% 45% at 15% 50%, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -53211,7 +53215,7 @@ a.yacht-card {
   flex-direction: column;
   padding: clamp(1.5rem, 3vw, 2rem);
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   border-radius: 6px;
   backdrop-filter: blur(8px);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -53219,7 +53223,7 @@ a.yacht-card {
 
 .gw-pilots-mission-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(197, 160, 89, 0.45);
+  border-color: rgba(74, 144, 226, 0.45);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
 }
 
@@ -53231,8 +53235,8 @@ a.yacht-card {
   height: 3rem;
   margin-bottom: 1.25rem;
   color: var(--gw-gold-light);
-  background: rgba(197, 160, 89, 0.12);
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  background: rgba(74, 144, 226, 0.12);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   border-radius: 50%;
 }
 
@@ -53298,7 +53302,7 @@ a.yacht-card {
 .gw-pilots-why-card {
   padding: clamp(1.35rem, 2.5vw, 1.75rem);
   background: #fff;
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
   box-shadow: 0 8px 32px rgba(3, 5, 10, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -53306,7 +53310,7 @@ a.yacht-card {
 
 .gw-pilots-why-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(197, 160, 89, 0.35);
+  border-color: rgba(74, 144, 226, 0.35);
   box-shadow: 0 16px 48px rgba(3, 5, 10, 0.1);
 }
 
@@ -53324,7 +53328,7 @@ a.yacht-card {
   width: 1.75rem;
   height: 1.75rem;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 50%;
 }
 
@@ -53336,7 +53340,7 @@ a.yacht-card {
 .gw-pilots-why-card__icon {
   width: 1.35rem;
   height: 1.35rem;
-  color: rgba(197, 160, 89, 0.75);
+  color: rgba(74, 144, 226, 0.75);
 }
 
 .gw-pilots-why-card__title {
@@ -53605,7 +53609,7 @@ a.yacht-card {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(74, 144, 226, 0.35);
   border-radius: 6px;
 }
 
@@ -53620,7 +53624,7 @@ a.yacht-card {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 50% 40% at 85% 20%, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
+  background: radial-gradient(ellipse 50% 40% at 85% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -53638,7 +53642,7 @@ a.yacht-card {
   align-items: center;
   padding: clamp(1.5rem, 3vw, 2rem);
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  border: 1px solid rgba(74, 144, 226, 0.2);
   border-radius: 8px;
 }
 
@@ -53662,8 +53666,8 @@ a.yacht-card {
   height: 3rem;
   margin-bottom: 1rem;
   color: var(--gw-gold-light);
-  background: rgba(197, 160, 89, 0.12);
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  background: rgba(74, 144, 226, 0.12);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   border-radius: 50%;
 }
 
@@ -53695,7 +53699,7 @@ a.yacht-card {
 .gw-airlines-list-block {
   margin-top: 1.25rem;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(197, 160, 89, 0.2);
+  border-top: 1px solid rgba(74, 144, 226, 0.2);
 }
 
 .gw-airlines-list-block__label {
@@ -53735,7 +53739,7 @@ a.yacht-card {
   height: 1.35rem;
   margin-top: 0.1rem;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 50%;
 }
 
@@ -53792,7 +53796,7 @@ a.yacht-card {
   flex-direction: column;
   padding: clamp(1.35rem, 2.5vw, 1.75rem);
   background: #fff;
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
   box-shadow: 0 8px 32px rgba(3, 5, 10, 0.05);
 }
@@ -53803,7 +53807,7 @@ a.yacht-card {
   gap: 0.75rem;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.18);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.18);
 }
 
 .gw-airlines-role-card__icon {
@@ -53861,7 +53865,7 @@ a.yacht-card {
 .gw-airlines-insight-card {
   padding: clamp(1.5rem, 3vw, 2rem);
   background: linear-gradient(180deg, #f8fbff 0%, #fff 100%);
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -53879,7 +53883,7 @@ a.yacht-card {
   height: 2.75rem;
   margin-bottom: 1rem;
   color: var(--gw-gold);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   border-radius: 50%;
 }
 
@@ -53951,14 +53955,14 @@ a.yacht-card {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 2px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .gw-airlines-closing__cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.35);
 }
 
 .gw-airlines-closing__media {
@@ -54202,8 +54206,8 @@ a.yacht-card {
   font-size: 0.78rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.88);
-  background: rgba(197, 160, 89, 0.12);
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  background: rgba(74, 144, 226, 0.12);
+  border: 1px solid rgba(74, 144, 226, 0.28);
   border-radius: 999px;
 }
 
@@ -54234,7 +54238,7 @@ a.yacht-card {
 .gw-jobs-position-card {
   padding: clamp(1.35rem, 2.5vw, 1.75rem);
   background: #fff;
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
   box-shadow: 0 8px 32px rgba(3, 5, 10, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -54251,7 +54255,7 @@ a.yacht-card {
   gap: 0.75rem;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.18);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.18);
 }
 
 .gw-jobs-position-card__icon-wrap {
@@ -54261,7 +54265,7 @@ a.yacht-card {
   width: 2.5rem;
   height: 2.5rem;
   color: var(--gw-gold);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   border-radius: 50%;
 }
 
@@ -54319,7 +54323,7 @@ a.yacht-card {
 .gw-jobs-why-card {
   padding: clamp(1.35rem, 2.5vw, 1.75rem);
   background: linear-gradient(180deg, #f8fbff 0%, #fff 100%);
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -54337,7 +54341,7 @@ a.yacht-card {
   height: 2.75rem;
   margin-bottom: 1rem;
   color: var(--gw-gold);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   border-radius: 50%;
 }
 
@@ -54386,7 +54390,7 @@ a.yacht-card {
   text-align: center;
   padding: 1.25rem 0.75rem;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   border-radius: 6px;
 }
 
@@ -54397,7 +54401,7 @@ a.yacht-card {
   right: -0.5rem;
   width: 0.5rem;
   height: 1px;
-  background: rgba(197, 160, 89, 0.45);
+  background: rgba(74, 144, 226, 0.45);
   transform: translateY(-50%);
   z-index: 1;
 }
@@ -54414,7 +54418,7 @@ a.yacht-card {
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 50%;
 }
 
@@ -54458,14 +54462,14 @@ a.yacht-card {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 2px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .gw-jobs-network__cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.35);
 }
 
 .gw-jobs-network__media {
@@ -54532,23 +54536,23 @@ a.yacht-card {
 
 .gw-jobs-closing__btn--primary {
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
-  border: 1px solid rgba(255, 248, 230, 0.35);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
+  border: 1px solid rgba(220, 235, 255, 0.35);
 }
 
 .gw-jobs-closing__btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.35);
 }
 
 .gw-jobs-closing__btn--secondary {
   color: #fff;
   background: transparent;
-  border: 1px solid rgba(197, 160, 89, 0.55);
+  border: 1px solid rgba(74, 144, 226, 0.55);
 }
 
 .gw-jobs-closing__btn--secondary:hover {
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(74, 144, 226, 0.12);
 }
 
 @media (max-width: 1024px) {
@@ -54775,14 +54779,14 @@ a.yacht-card {
 .gw-trainings-service-card {
   padding: clamp(1.35rem, 2.5vw, 1.75rem);
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   border-radius: 6px;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .gw-trainings-service-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(197, 160, 89, 0.45);
+  border-color: rgba(74, 144, 226, 0.45);
 }
 
 .gw-trainings-service-card__head {
@@ -54791,7 +54795,7 @@ a.yacht-card {
   gap: 0.75rem;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.2);
 }
 
 .gw-trainings-service-card__icon-wrap {
@@ -54801,7 +54805,7 @@ a.yacht-card {
   width: 2.5rem;
   height: 2.5rem;
   color: var(--gw-gold-light);
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(74, 144, 226, 0.12);
   border-radius: 50%;
 }
 
@@ -54897,7 +54901,7 @@ a.yacht-card {
   gap: 0.65rem;
   padding: 0.85rem 1rem;
   background: linear-gradient(180deg, #f8fbff 0%, #fff 100%);
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
 }
 
@@ -54926,7 +54930,7 @@ a.yacht-card {
 .gw-trainings-meta-card {
   padding: clamp(1.35rem, 2.5vw, 1.75rem);
   background: linear-gradient(180deg, #f8fbff 0%, #fff 100%);
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
 }
 
@@ -55004,7 +55008,7 @@ a.yacht-card {
   top: 0.5rem;
   bottom: 0.5rem;
   width: 1px;
-  background: linear-gradient(180deg, var(--gw-gold) 0%, rgba(197, 160, 89, 0.2) 100%);
+  background: linear-gradient(180deg, var(--gw-gold) 0%, rgba(74, 144, 226, 0.2) 100%);
 }
 
 .gw-trainings-timeline__step {
@@ -55036,7 +55040,7 @@ a.yacht-card {
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(3, 5, 10, 0.96);
 }
@@ -55120,7 +55124,7 @@ a.yacht-card {
 .gw-trainings-captain-panel {
   padding: clamp(1.35rem, 2.5vw, 1.75rem);
   background: #fff;
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
   box-shadow: 0 8px 32px rgba(3, 5, 10, 0.05);
 }
@@ -55145,7 +55149,7 @@ a.yacht-card {
   gap: 0.65rem;
   padding: 0.75rem;
   background: linear-gradient(180deg, #f8fbff 0%, #fff 100%);
-  border: 1px solid rgba(197, 160, 89, 0.12);
+  border: 1px solid rgba(74, 144, 226, 0.12);
   border-radius: 4px;
 }
 
@@ -55206,7 +55210,7 @@ a.yacht-card {
 .gw-trainings-why-card {
   padding: clamp(1.35rem, 2.5vw, 1.75rem);
   background: linear-gradient(180deg, #f8fbff 0%, #fff 100%);
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 6px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -55224,7 +55228,7 @@ a.yacht-card {
   height: 2.75rem;
   margin-bottom: 1rem;
   color: var(--gw-gold);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   border-radius: 50%;
 }
 
@@ -55307,23 +55311,23 @@ a.yacht-card {
 
 .gw-trainings-closing__btn--primary {
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
-  border: 1px solid rgba(255, 248, 230, 0.35);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
+  border: 1px solid rgba(220, 235, 255, 0.35);
 }
 
 .gw-trainings-closing__btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.35);
 }
 
 .gw-trainings-closing__btn--secondary {
   color: #fff;
   background: transparent;
-  border: 1px solid rgba(197, 160, 89, 0.55);
+  border: 1px solid rgba(74, 144, 226, 0.55);
 }
 
 .gw-trainings-closing__btn--secondary:hover {
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(74, 144, 226, 0.12);
 }
 
 @media (max-width: 1024px) {
@@ -55546,7 +55550,7 @@ a.yacht-card {
   gap: 1.15rem;
   padding: clamp(1.35rem, 3vw, 1.75rem);
   background: #fff;
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 14px;
   box-shadow:
     0 8px 32px rgba(3, 5, 10, 0.06),
@@ -55558,7 +55562,7 @@ a.yacht-card {
 }
 
 .gw-contact-office:hover {
-  border-color: rgba(197, 160, 89, 0.35);
+  border-color: rgba(74, 144, 226, 0.35);
   box-shadow: 0 20px 48px rgba(3, 5, 10, 0.1);
   transform: translateY(-4px);
 }
@@ -55568,7 +55572,7 @@ a.yacht-card {
   align-items: center;
   gap: 0.85rem;
   padding-bottom: 0.85rem;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.14);
+  border-bottom: 1px solid rgba(74, 144, 226, 0.14);
 }
 
 .gw-contact-office__icon-wrap {
@@ -55579,8 +55583,8 @@ a.yacht-card {
   height: 2.75rem;
   flex-shrink: 0;
   color: var(--gw-gold);
-  background: rgba(197, 160, 89, 0.1);
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  background: rgba(74, 144, 226, 0.1);
+  border: 1px solid rgba(74, 144, 226, 0.2);
   border-radius: 50%;
 }
 
@@ -55676,7 +55680,7 @@ a.yacht-card {
 .gw-contact-form-wrap {
   padding: clamp(1.35rem, 3vw, 1.85rem);
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  border: 1px solid rgba(74, 144, 226, 0.2);
   border-radius: 14px;
   box-shadow: 0 20px 56px rgba(0, 0, 0, 0.25);
 }
@@ -55716,7 +55720,7 @@ a.yacht-card {
   font-size: 0.88rem;
   color: #fff;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   border-radius: 6px;
   transition:
     border-color 0.2s ease,
@@ -55732,9 +55736,9 @@ a.yacht-card {
 .gw-contact-form__field input:focus,
 .gw-contact-form__field textarea:focus {
   outline: none;
-  border-color: rgba(197, 160, 89, 0.55);
+  border-color: rgba(74, 144, 226, 0.55);
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.12);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.12);
 }
 
 .gw-contact-form__field textarea {
@@ -55756,8 +55760,8 @@ a.yacht-card {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
-  border: 1px solid rgba(255, 248, 230, 0.35);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
+  border: 1px solid rgba(220, 235, 255, 0.35);
   border-radius: 2px;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -55765,7 +55769,7 @@ a.yacht-card {
 
 .gw-contact-form__submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.35);
 }
 
 .gw-contact-success {
@@ -55782,7 +55786,7 @@ a.yacht-card {
   margin-bottom: 1rem;
   font-size: 1.35rem;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 50%;
 }
 
@@ -55928,23 +55932,23 @@ a.yacht-card {
 
 .gw-cadet-hero__btn--primary {
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
-  border: 1px solid rgba(255, 248, 230, 0.35);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
+  border: 1px solid rgba(220, 235, 255, 0.35);
 }
 
 .gw-cadet-hero__btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.35);
 }
 
 .gw-cadet-hero__btn--secondary {
   color: #fff;
   background: transparent;
-  border: 1px solid rgba(197, 160, 89, 0.55);
+  border: 1px solid rgba(74, 144, 226, 0.55);
 }
 
 .gw-cadet-hero__btn--secondary:hover {
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(74, 144, 226, 0.12);
 }
 
 .gw-main--cadet {
@@ -56003,7 +56007,7 @@ a.yacht-card {
   gap: 0.85rem;
   padding: clamp(1.35rem, 3vw, 1.75rem);
   background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(3, 5, 10, 0.06);
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
@@ -56011,7 +56015,7 @@ a.yacht-card {
 
 .gw-cadet-programme-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(197, 160, 89, 0.35);
+  border-color: rgba(74, 144, 226, 0.35);
   box-shadow: 0 18px 44px rgba(3, 5, 10, 0.1);
 }
 
@@ -56022,7 +56026,7 @@ a.yacht-card {
   width: 2.75rem;
   height: 2.75rem;
   color: var(--gw-gold);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   border-radius: 50%;
 }
 
@@ -56051,7 +56055,7 @@ a.yacht-card {
 
 .gw-cadet-programme-card__salary {
   padding-top: 0.85rem;
-  border-top: 1px solid rgba(197, 160, 89, 0.14);
+  border-top: 1px solid rgba(74, 144, 226, 0.14);
 }
 
 .gw-cadet-programme-card__salary-label {
@@ -56088,14 +56092,14 @@ a.yacht-card {
   gap: 0.75rem;
   padding: 1rem 1.1rem;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.14);
+  border: 1px solid rgba(74, 144, 226, 0.14);
   border-radius: 8px;
   transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 .gw-cadet-why-card:hover {
-  background: rgba(197, 160, 89, 0.08);
-  border-color: rgba(197, 160, 89, 0.3);
+  background: rgba(74, 144, 226, 0.08);
+  border-color: rgba(74, 144, 226, 0.3);
 }
 
 .gw-cadet-why-card__icon-wrap {
@@ -56137,7 +56141,7 @@ a.yacht-card {
   gap: 0.65rem;
   padding: 0.95rem 1rem;
   background: #f8fbff;
-  border: 1px solid rgba(197, 160, 89, 0.12);
+  border: 1px solid rgba(74, 144, 226, 0.12);
   border-radius: 8px;
 }
 
@@ -56178,7 +56182,7 @@ a.yacht-card {
   bottom: 0.5rem;
   left: 1.35rem;
   width: 2px;
-  background: linear-gradient(180deg, var(--gw-gold) 0%, rgba(197, 160, 89, 0.2) 100%);
+  background: linear-gradient(180deg, var(--gw-gold) 0%, rgba(74, 144, 226, 0.2) 100%);
 }
 
 .gw-cadet-timeline__step {
@@ -56208,15 +56212,15 @@ a.yacht-card {
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.15);
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
 }
 
 .gw-cadet-timeline__body {
   padding: 0.35rem 1.25rem 1.25rem;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.14);
+  border: 1px solid rgba(74, 144, 226, 0.14);
   border-radius: 10px;
 }
 
@@ -56299,14 +56303,14 @@ a.yacht-card {
   padding: clamp(1.35rem, 3vw, 1.75rem);
   text-align: center;
   background: #fff;
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 12px;
   box-shadow: 0 8px 28px rgba(3, 5, 10, 0.05);
 }
 
 .gw-cadet-pricing-card--highlight {
   background: linear-gradient(145deg, rgba(10, 18, 36, 0.98) 0%, rgba(26, 36, 56, 0.95) 100%);
-  border-color: rgba(197, 160, 89, 0.3);
+  border-color: rgba(74, 144, 226, 0.3);
 }
 
 .gw-cadet-pricing-card--highlight .gw-cadet-pricing-card__title,
@@ -56354,7 +56358,7 @@ a.yacht-card {
 .gw-cadet-requirement-card {
   padding: 1.15rem 1.2rem;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.14);
+  border: 1px solid rgba(74, 144, 226, 0.14);
   border-radius: 10px;
 }
 
@@ -56398,8 +56402,8 @@ a.yacht-card {
   margin-inline: auto;
   padding: clamp(1.35rem, 3vw, 1.75rem);
   text-align: center;
-  background: rgba(197, 160, 89, 0.08);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  background: rgba(74, 144, 226, 0.08);
+  border: 1px solid rgba(74, 144, 226, 0.22);
   border-radius: 12px;
 }
 
@@ -56455,7 +56459,7 @@ a.yacht-card {
 .gw-cadet-pilot-card {
   padding: clamp(1.25rem, 3vw, 1.65rem);
   background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
-  border: 1px solid rgba(197, 160, 89, 0.14);
+  border: 1px solid rgba(74, 144, 226, 0.14);
   border-radius: 12px;
   box-shadow: 0 8px 28px rgba(3, 5, 10, 0.05);
 }
@@ -56468,7 +56472,7 @@ a.yacht-card {
   height: 2.5rem;
   margin-bottom: 0.85rem;
   color: var(--gw-gold);
-  background: rgba(197, 160, 89, 0.1);
+  background: rgba(74, 144, 226, 0.1);
   border-radius: 50%;
 }
 
@@ -56536,7 +56540,7 @@ a.yacht-card {
 }
 
 .gw-cadet-faq__item {
-  border: 1px solid rgba(197, 160, 89, 0.16);
+  border: 1px solid rgba(74, 144, 226, 0.16);
   border-radius: 8px;
   overflow: hidden;
   background: #f8fbff;
@@ -56544,7 +56548,7 @@ a.yacht-card {
 }
 
 .gw-cadet-faq__item.is-open {
-  border-color: rgba(197, 160, 89, 0.35);
+  border-color: rgba(74, 144, 226, 0.35);
   box-shadow: 0 8px 24px rgba(3, 5, 10, 0.06);
 }
 
@@ -56643,23 +56647,23 @@ a.yacht-card {
 
 .gw-cadet-closing__btn--primary {
   color: var(--gw-navy);
-  background: linear-gradient(135deg, #e8d4a0 0%, var(--gw-gold) 100%);
-  border: 1px solid rgba(255, 248, 230, 0.35);
+  background: linear-gradient(135deg, #a5c8e8 0%, var(--gw-gold) 100%);
+  border: 1px solid rgba(220, 235, 255, 0.35);
 }
 
 .gw-cadet-closing__btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 12px 32px rgba(74, 144, 226, 0.35);
 }
 
 .gw-cadet-closing__btn--secondary {
   color: #fff;
   background: transparent;
-  border: 1px solid rgba(197, 160, 89, 0.55);
+  border: 1px solid rgba(74, 144, 226, 0.55);
 }
 
 .gw-cadet-closing__btn--secondary:hover {
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(74, 144, 226, 0.12);
 }
 
 @media (max-width: 1024px) {
