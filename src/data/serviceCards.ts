@@ -92,7 +92,6 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/Global-wings.webp`,
     brandLogo: `${SVC_CARD_LOGO}/global-wings.png`,
     brandLogoBlend: 'normal',
-    comingSoon: true,
   },
   {
     slug: 'astreal',
