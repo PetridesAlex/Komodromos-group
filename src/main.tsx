@@ -151,10 +151,10 @@ function Root() {
           </Routes>
             </ServiceMaintenanceGate>
           </SeoOverrideProvider>
+          <HeroParallaxEffect />
+          <CookieBanner />
+          <SocialHub />
         </BrowserRouter>
-        <HeroParallaxEffect />
-        <CookieBanner />
-        <SocialHub />
       </div>
     </>
   )

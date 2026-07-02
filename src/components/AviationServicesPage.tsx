@@ -8,6 +8,7 @@ import { useReveal } from '../hooks/useReveal'
 import {
   AVIATION_SECTIONS,
   AVIATION_YOUTUBE_EMBED,
+  gwAboutSection,
   gwClosingCta,
   gwClientCount,
   gwLeaderSection,
@@ -86,18 +87,28 @@ export default function AviationServicesPage() {
 
       <main className="gw-main" aria-label="Aviation Agency Services">
         <section id={AVIATION_SECTIONS.about} className="gw-section gw-section--about">
-          <div className="container">
-            <header className="gw-section__header reveal">
-              <h2 className="gw-section__title">About Global Wings</h2>
+          <div className="container gw-about">
+            <header className="gw-about__header reveal">
+              <span className="gw-about__eyebrow">{gwAboutSection.eyebrow}</span>
+              <h2 className="gw-about__title">{gwAboutSection.title}</h2>
+              <p className="gw-about__intro">{gwAboutSection.intro}</p>
             </header>
-            <div className="gw-video reveal reveal-delay-1">
-              <div className="gw-video__frame">
-                <iframe
-                  src={AVIATION_YOUTUBE_EMBED}
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+
+            <div className="gw-about__showcase reveal reveal-delay-1">
+              <div className="gw-video">
+                <div className="gw-video__shell" aria-hidden>
+                  <div className="gw-video__accent" />
+                </div>
+                <div className="gw-video__frame">
+                  <iframe
+                    src={AVIATION_YOUTUBE_EMBED}
+                    title="About Global Wings Ltd — company overview"
+                    loading="eager"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
               </div>
             </div>
           </div>

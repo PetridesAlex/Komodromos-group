@@ -1,27 +1,54 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+
+const CONSENT_KEY = 'kg-cookie-consent'
+
+function CookieIcon() {
+  return (
+    <svg
+      className="cookie-icon-svg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="9" cy="10" r="1.1" fill="currentColor" />
+      <circle cx="14.5" cy="9" r="1.1" fill="currentColor" />
+      <circle cx="11" cy="14.5" r="1.1" fill="currentColor" />
+      <circle cx="15.5" cy="13.5" r="1.1" fill="currentColor" />
+      <circle cx="7.5" cy="14" r="1.1" fill="currentColor" />
+    </svg>
+  )
+}
 
 export default function CookieBanner() {
+  const { pathname } = useLocation()
   const [visible, setVisible] = useState(false)
   const [closing, setClosing] = useState(false)
   const [showButton, setShowButton] = useState(false)
 
+  const privacyHref = pathname.startsWith('/services/aviation')
+    ? '/services/aviation/privacy'
+    : '/contact'
+
   useEffect(() => {
-    const consent = sessionStorage.getItem('kg-cookie-consent')
+    const consent = localStorage.getItem(CONSENT_KEY)
     if (!consent) {
-      const timer = setTimeout(() => setVisible(true), 5200)
+      const timer = setTimeout(() => setVisible(true), 1200)
       return () => clearTimeout(timer)
-    } else {
-      setShowButton(true)
     }
+    setShowButton(true)
   }, [])
 
   function handleAccept() {
-    sessionStorage.setItem('kg-cookie-consent', 'accepted')
+    localStorage.setItem(CONSENT_KEY, 'accepted')
     dismiss()
   }
 
   function handleDecline() {
-    sessionStorage.setItem('kg-cookie-consent', 'declined')
+    localStorage.setItem(CONSENT_KEY, 'declined')
     dismiss()
   }
 
@@ -36,31 +63,44 @@ export default function CookieBanner() {
 
   function reopen() {
     setShowButton(false)
-    sessionStorage.removeItem('kg-cookie-consent')
+    localStorage.removeItem(CONSENT_KEY)
     setVisible(true)
   }
 
   return (
     <>
       {visible && (
-        <div className={`cookie-banner ${closing ? 'cookie-exit' : 'cookie-enter'}`}>
+        <div
+          className={`cookie-banner ${closing ? 'cookie-exit' : 'cookie-enter'}`}
+          role="dialog"
+          aria-labelledby="cookie-banner-title"
+          aria-describedby="cookie-banner-desc"
+        >
           <div className="cookie-inner">
             <div className="cookie-text">
-              <div className="cookie-icon">🍪</div>
+              <div className="cookie-icon" aria-hidden>
+                <CookieIcon />
+              </div>
               <div>
-                <p className="cookie-title">We value your privacy</p>
-                <p className="cookie-desc">
-                  We use cookies to enhance your browsing experience, serve
-                  personalized content, and analyze our traffic. By clicking
-                  "Accept All", you consent to our use of cookies.
+                <p id="cookie-banner-title" className="cookie-title">
+                  We value your privacy
+                </p>
+                <p id="cookie-banner-desc" className="cookie-desc">
+                  We use cookies to improve your browsing experience and understand how our
+                  site is used. By clicking &ldquo;Accept All&rdquo;, you consent to our use of
+                  cookies. Read our{' '}
+                  <Link to={privacyHref} className="cookie-policy-link">
+                    Privacy Policy
+                  </Link>
+                  .
                 </p>
               </div>
             </div>
             <div className="cookie-actions">
-              <button className="cookie-decline" onClick={handleDecline}>
+              <button type="button" className="cookie-decline" onClick={handleDecline}>
                 Decline
               </button>
-              <button className="cookie-accept" onClick={handleAccept}>
+              <button type="button" className="cookie-accept" onClick={handleAccept}>
                 Accept All
               </button>
             </div>
@@ -70,12 +110,13 @@ export default function CookieBanner() {
 
       {showButton && !visible && (
         <button
+          type="button"
           className="cookie-fab"
           onClick={reopen}
           aria-label="Cookie settings"
           title="Cookie settings"
         >
-          🍪
+          <CookieIcon />
         </button>
       )}
     </>

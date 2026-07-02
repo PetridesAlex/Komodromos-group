@@ -63,7 +63,16 @@ export const gwHeroSlides: GwHeroSlide[] = [
   },
 ]
 
-export const AVIATION_YOUTUBE_EMBED = 'https://www.youtube.com/embed/ufzgub092ks'
+export const AVIATION_YOUTUBE_VIDEO_ID = 'ufzgub092ks'
+
+export const AVIATION_YOUTUBE_EMBED = `https://www.youtube-nocookie.com/embed/${AVIATION_YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1&playsinline=1&color=white`
+
+export const gwAboutSection = {
+  eyebrow: 'Who we are',
+  title: 'About Global Wings',
+  intro:
+    'Global Wings Ltd connects airlines with qualified flight and cabin crew worldwide — delivering trusted recruitment, training, and operational support with uncompromising professionalism.',
+}
 
 export type AviationServiceCard = {
   title: string

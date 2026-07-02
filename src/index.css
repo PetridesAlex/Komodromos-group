@@ -12998,15 +12998,15 @@ article[data-service-slug='consulting'] .service-brand-logo {
 
 /* ── end Contact Page ── */
 
-/* ── Cookie Banner ── */
+/* ── Cookie Banner (navy / strong blue) ── */
 
 .cookie-banner {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9998;
-  width: min(680px, 92%);
+  z-index: 10050;
+  width: min(700px, calc(100% - 1.5rem));
 }
 
 .cookie-enter {
@@ -13028,29 +13028,57 @@ article[data-service-slug='consulting'] .service-brand-logo {
 }
 
 .cookie-inner {
-  background: linear-gradient(135deg, #0c1628 0%, #111d35 50%, #0a1424 100%);
-  border: 1px solid rgba(197,160,89,0.2);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #03050a 0%, #0a1224 48%, #0d1a33 100%);
+  border: 1px solid rgba(74, 144, 226, 0.42);
   border-radius: 16px;
-  padding: 1.5rem 1.8rem;
+  padding: 1.45rem 1.65rem;
   box-shadow:
-    0 20px 60px rgba(0,0,0,0.5),
-    0 0 30px rgba(197,160,89,0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+    0 22px 64px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(165, 210, 255, 0.06) inset,
+    0 0 36px rgba(74, 144, 226, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.cookie-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #2c5f9e 18%,
+    #4a90e2 50%,
+    #a5d2ff 82%,
+    transparent 100%
+  );
 }
 
 .cookie-text {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.15rem;
 }
 
 .cookie-icon {
-  font-size: 1.6rem;
   flex-shrink: 0;
-  line-height: 1;
-  margin-top: 0.1rem;
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 12px;
+  color: #a5d2ff;
+  background: linear-gradient(145deg, rgba(74, 144, 226, 0.22) 0%, rgba(44, 95, 158, 0.14) 100%);
+  border: 1px solid rgba(74, 144, 226, 0.35);
+  box-shadow: 0 0 18px rgba(74, 144, 226, 0.12);
+}
+
+.cookie-icon-svg {
+  display: block;
 }
 
 .cookie-title {
@@ -13058,14 +13086,29 @@ article[data-service-slug='consulting'] .service-brand-logo {
   font-weight: 700;
   font-size: 1rem;
   margin: 0 0 0.35rem;
-  color: #fff;
+  color: #f4f8ff;
 }
 
 .cookie-desc {
   font-size: 0.82rem;
   line-height: 1.55;
-  color: rgba(255,255,255,0.55);
+  color: rgba(220, 232, 248, 0.72);
   margin: 0;
+}
+
+.cookie-policy-link {
+  color: #a5d2ff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(165, 210, 255, 0.45);
+  text-underline-offset: 2px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.cookie-policy-link:hover,
+.cookie-policy-link:focus-visible {
+  color: #d4e8ff;
+  text-decoration-color: rgba(212, 232, 255, 0.85);
 }
 
 .cookie-actions {
@@ -13075,69 +13118,107 @@ article[data-service-slug='consulting'] .service-brand-logo {
 }
 
 .cookie-decline {
-  padding: 0.6rem 1.2rem;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.6);
+  padding: 0.62rem 1.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(165, 210, 255, 0.22);
+  color: rgba(220, 232, 248, 0.78);
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   cursor: pointer;
-  transition: border-color 0.25s, color 0.25s;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
 }
 
-.cookie-decline:hover {
-  border-color: rgba(255,255,255,0.35);
+.cookie-decline:hover,
+.cookie-decline:focus-visible {
+  border-color: rgba(165, 210, 255, 0.45);
   color: #fff;
+  background: rgba(74, 144, 226, 0.1);
 }
 
 .cookie-accept {
-  padding: 0.6rem 1.4rem;
-  background: linear-gradient(135deg, var(--gold), #a8813a);
-  border: none;
-  color: #05070a;
+  padding: 0.62rem 1.45rem;
+  background: linear-gradient(135deg, #4a90e2 0%, #2c5f9e 100%);
+  border: 1px solid rgba(165, 210, 255, 0.28);
+  color: #fff;
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
 }
 
-.cookie-accept:hover {
+.cookie-accept:hover,
+.cookie-accept:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 4px 18px rgba(197,160,89,0.3);
+  filter: brightness(1.06);
+  box-shadow: 0 6px 22px rgba(74, 144, 226, 0.42);
 }
 
 .cookie-fab {
   position: fixed;
-  bottom: 1.2rem;
-  left: 1.2rem;
-  z-index: 9997;
+  bottom: max(1.2rem, env(safe-area-inset-bottom, 0px));
+  left: max(1.2rem, env(safe-area-inset-left, 0px));
+  z-index: 10049;
   width: 44px;
   height: 44px;
   border-radius: 999px;
-  border: 1px solid rgba(197,160,89,0.25);
-  background: linear-gradient(135deg, #0c1628, #111d35);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  font-size: 1.2rem;
+  border: 1px solid rgba(74, 144, 226, 0.45);
+  background: linear-gradient(145deg, #0a1224 0%, #03050a 100%);
+  color: #a5d2ff;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.42),
+    0 0 16px rgba(74, 144, 226, 0.14);
   cursor: pointer;
   display: grid;
   place-items: center;
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-  animation: cookieFabIn 0.4s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation: cookieFabIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.cookie-fab:hover {
-  transform: scale(1.1);
-  border-color: var(--gold);
-  box-shadow: 0 6px 24px rgba(197,160,89,0.2);
+.cookie-fab:hover,
+.cookie-fab:focus-visible {
+  transform: scale(1.08);
+  border-color: #4a90e2;
+  color: #d4e8ff;
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(74, 144, 226, 0.28);
 }
 
 @keyframes cookieFabIn {
   from { opacity: 0; transform: scale(0.6); }
   to   { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 640px) {
+  .cookie-inner {
+    padding: 1.2rem 1.15rem;
+  }
+
+  .cookie-text {
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .cookie-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 10px;
+  }
+
+  .cookie-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .cookie-decline,
+  .cookie-accept {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* ── end Cookie Banner ── */
@@ -51686,7 +51767,123 @@ a.yacht-card {
 }
 
 .gw-section--about {
-  background: #fff;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f4f8ff 42%, #eef4fc 100%);
+}
+
+.gw-section--about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 0%, rgba(74, 144, 226, 0.1) 0%, transparent 62%),
+    radial-gradient(ellipse 55% 45% at 92% 100%, rgba(44, 95, 158, 0.08) 0%, transparent 58%);
+  pointer-events: none;
+}
+
+.gw-about {
+  position: relative;
+  z-index: 1;
+}
+
+.gw-about__header {
+  max-width: 44rem;
+  margin: 0 auto clamp(2rem, 4.5vw, 2.75rem);
+  text-align: center;
+}
+
+.gw-about__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gw-accent-deep);
+}
+
+.gw-about__title {
+  margin: 0 0 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.85rem, 4.2vw, 2.65rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--gw-text);
+}
+
+.gw-about__intro {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.9rem, 1.6vw, 1rem);
+  line-height: 1.8;
+  color: var(--gw-text-muted);
+}
+
+.gw-about__showcase {
+  max-width: min(1120px, 100%);
+  margin-inline: auto;
+}
+
+/* Video */
+.gw-video {
+  position: relative;
+}
+
+.gw-video__shell {
+  position: absolute;
+  inset: -0.85rem;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(74, 144, 226, 0.18) 0%, rgba(44, 95, 158, 0.1) 100%);
+  border: 1px solid rgba(74, 144, 226, 0.22);
+  box-shadow:
+    0 28px 72px rgba(3, 5, 10, 0.14),
+    0 0 48px rgba(74, 144, 226, 0.12);
+  pointer-events: none;
+}
+
+.gw-video__accent {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #2c5f9e 16%,
+    #4a90e2 50%,
+    #a5d2ff 84%,
+    transparent 100%
+  );
+}
+
+.gw-video__frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #03050a;
+  border: 1px solid rgba(74, 144, 226, 0.45);
+  box-shadow:
+    0 18px 48px rgba(3, 5, 10, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.65) inset;
+  transform: translateZ(0);
+}
+
+.gw-video__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #000;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .gw-section--services {
@@ -52778,28 +52975,6 @@ a.yacht-card {
   color: #fff;
 }
 
-/* Video */
-.gw-video__frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 642px;
-  border: 1px solid rgba(74, 144, 226, 0.35);
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow:
-    0 24px 64px rgba(3, 5, 10, 0.12),
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-}
-
-.gw-video__frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
 /* Clients grid */
 .gw-clients-grid {
   display: grid;
@@ -53002,6 +53177,15 @@ a.yacht-card {
 
   .gw-blog-feature__content {
     margin-top: -3rem;
+  }
+
+  .gw-video__shell {
+    inset: -0.5rem;
+    border-radius: 16px;
+  }
+
+  .gw-video__frame {
+    border-radius: 12px;
   }
 }
 
