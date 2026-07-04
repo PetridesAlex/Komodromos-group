@@ -55,6 +55,7 @@ import StorageUnitSpecificationsPage from './components/StorageUnitSpecification
 import StorageTipDetailPage from './components/StorageTipDetailPage.tsx'
 import StorageExtraServicesPage from './components/StorageExtraServicesPage.tsx'
 import Preloader from './components/Preloader.tsx'
+import NavigationPathSync from './components/NavigationPathSync.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
 import HeroParallaxEffect from './components/HeroParallaxEffect.tsx'
@@ -83,6 +84,7 @@ function Root() {
       {!loaded && <Preloader onDone={handleDone} />}
       <div style={loaded ? undefined : { display: 'none' }}>
         <BrowserRouter>
+          <NavigationPathSync />
           <SeoOverrideProvider>
             <SeoManager />
             <SectionLedScroll />

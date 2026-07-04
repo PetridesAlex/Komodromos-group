@@ -66,9 +66,19 @@ export const airlinesServiceBlocks = [
   },
 ] as const
 
+export const airlinesRolesSection = {
+  eyebrow: 'Roles We Recruit For',
+  title: 'Comprehensive coverage across aviation disciplines',
+  intro:
+    'From C-suite leadership to line maintenance and flight deck operations — we recruit across every layer of airline and aviation operator staffing.',
+}
+
 export const airlinesRoleCategories = [
   {
     title: 'General & Executive Positions',
+    shortLabel: 'Executive',
+    summary:
+      'Senior leaders, directors, and post holders shaping airline strategy, safety culture, and commercial performance.',
     roles: [
       'CEO & COO',
       'Managing Director',
@@ -98,6 +108,9 @@ export const airlinesRoleCategories = [
   },
   {
     title: 'Aircrew & Operations',
+    shortLabel: 'Aircrew',
+    summary:
+      'Flight deck, cabin, and operations personnel supporting daily network reliability and training excellence.',
     roles: [
       'Ferry Crews',
       'Flight Instructors & Examiners',
@@ -116,6 +129,9 @@ export const airlinesRoleCategories = [
   },
   {
     title: 'Engineering & Technical Positions',
+    shortLabel: 'Engineering',
+    summary:
+      'Licensed engineers, planners, and technical specialists keeping fleets airworthy and programmes on schedule.',
     roles: [
       'Licensed Engineers',
       'Planning Engineers',
@@ -134,9 +150,17 @@ export const airlinesRoleCategories = [
   },
 ] as const
 
+export const airlinesInsightsSection = {
+  eyebrow: 'Industry Expertise',
+  title: 'Why airlines trust Global Wings',
+  intro:
+    'Beyond placement — we bring international campaign experience, compliance knowledge, and operational flexibility to every partnership.',
+}
+
 export const airlinesInsightSections = [
   {
     title: 'International Recruitment Campaigns',
+    tag: 'Global reach',
     paragraphs: [
       'Global Wings Ltd consultants have extensive experience managing international aviation recruitment campaigns.',
       'We support airlines by sourcing personnel overseas through local resources, international candidate networks, and our global aviation database.',
@@ -145,6 +169,7 @@ export const airlinesInsightSections = [
   },
   {
     title: 'Temporary & Permanent Labour Deployment',
+    tag: 'Workforce mobility',
     paragraphs: [
       'Aviation is a global industry. Global Wings Ltd provides specialist consultants who understand international aviation labour markets and can source skilled aerospace personnel worldwide.',
       'We support clients with workforce deployment while ensuring compliance with local employment legislation, taxation requirements, and operational needs.',
@@ -152,6 +177,7 @@ export const airlinesInsightSections = [
   },
   {
     title: 'Unique Industry Insight',
+    tag: 'Strategic advantage',
     paragraphs: [
       'Global Wings Ltd goes beyond a traditional aviation recruitment agency.',
       'Our expertise in aviation staffing, European payroll compliance, market-specific skills availability, and international workforce management gives our clients a strong competitive advantage.',
@@ -160,6 +186,7 @@ export const airlinesInsightSections = [
   },
   {
     title: 'Flexibility & Cost Management',
+    tag: 'Operational agility',
     paragraphs: [
       'Our team helps airlines respond quickly to market opportunities and operational demands.',
       'Whether dealing with scheduled growth, unscheduled staffing needs, fleet expansion, aircraft maintenance, new aircraft types, or seasonal adjustments, Global Wings Ltd can provide highly qualified aviation professionals at short notice.',

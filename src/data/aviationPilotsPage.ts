@@ -1,11 +1,19 @@
 export const pilotsIntro = {
   eyebrow: 'Company Introduction',
   title: 'Who We Are',
+  intro:
+    'International aviation recruitment connecting airlines with qualified professionals across Europe, the Middle East, Asia, and beyond.',
   paragraphs: [
     'Global Wings Ltd is an international aviation recruitment and aviation solutions company connecting airlines with highly qualified aviation professionals across Europe, the Middle East, Asia, and beyond.',
     'Founded by experienced aviation professionals, we understand the industry\'s demands and provide reliable recruitment, consulting, and aviation support services tailored to both airlines and candidates.',
     'Our mission is to create long-term partnerships built on professionalism, trust, and exceptional service.',
   ],
+  highlights: [
+    { value: '35+', label: 'Countries served' },
+    { value: '25+', label: 'Partner airlines' },
+    { value: 'Global', label: 'Recruitment reach' },
+  ],
+  frameBadge: 'Trusted aviation partner',
 }
 
 export type PilotsMissionCard = {
@@ -37,6 +45,13 @@ export const pilotsMissionCards: PilotsMissionCard[] = [
 export type PilotsWhyCard = {
   title: string
   text: string
+}
+
+export const pilotsWhySection = {
+  eyebrow: 'Why Choose Global Wings',
+  title: 'The partner airlines & professionals trust',
+  intro:
+    'Global reach, experienced consultants, and long-term partnerships — built for airlines hiring crew and professionals advancing their careers.',
 }
 
 export const pilotsWhyCards: PilotsWhyCard[] = [
@@ -80,10 +95,19 @@ export const pilotsStats: PilotsStat[] = [
 ]
 
 export const pilotsClosing = {
-  title: 'Building Aviation Careers Worldwide',
+  eyebrow: 'Your Aviation Partner',
+  title: 'Building aviation careers',
+  titleEmphasis: 'worldwide.',
   paragraphs: [
     'At Global Wings, we believe every successful flight begins with exceptional people.',
     'Our dedicated team works closely with airlines and aviation professionals to deliver recruitment solutions that create lasting value for everyone involved.',
     'Whether you are an airline searching for qualified crew or a professional looking for your next career opportunity, Global Wings is your trusted aviation partner.',
   ],
+  highlights: [
+    { value: '2,500+', label: 'Placements' },
+    { value: '25+', label: 'Airline partners' },
+    { value: '35+', label: 'Countries' },
+  ],
+  primaryCta: 'Contact our team',
+  secondaryCta: 'View aviation jobs',
 }

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import GwBlogSection from './aviation/GwBlogSection'
 import GwHeroCarousel from './aviation/GwHeroCarousel'
 import GwImagePlaceholder from './aviation/GwImagePlaceholder'
@@ -8,6 +10,7 @@ import { useReveal } from '../hooks/useReveal'
 import {
   AVIATION_SECTIONS,
   AVIATION_YOUTUBE_EMBED,
+  AVIATION_ROUTES,
   gwAboutSection,
   gwClosingCta,
   gwClientCount,
@@ -87,28 +90,57 @@ export default function AviationServicesPage() {
 
       <main className="gw-main" aria-label="Aviation Agency Services">
         <section id={AVIATION_SECTIONS.about} className="gw-section gw-section--about">
-          <div className="container gw-about">
-            <header className="gw-about__header reveal">
-              <span className="gw-about__eyebrow">{gwAboutSection.eyebrow}</span>
-              <h2 className="gw-about__title">{gwAboutSection.title}</h2>
-              <p className="gw-about__intro">{gwAboutSection.intro}</p>
-            </header>
+          <div className="container">
+            <div className="gw-about">
+              <div className="gw-about__layout">
+                <article className="gw-about__panel gw-about__panel--copy reveal">
+                  <div className="gw-about__panel-accent" aria-hidden />
+                  <div className="gw-about__panel-inner">
+                    <span className="gw-about__eyebrow">{gwAboutSection.eyebrow}</span>
+                    <h2 className="gw-about__title">{gwAboutSection.title}</h2>
+                    <p className="gw-about__intro">{gwAboutSection.intro}</p>
 
-            <div className="gw-about__showcase reveal reveal-delay-1">
-              <div className="gw-video">
-                <div className="gw-video__shell" aria-hidden>
-                  <div className="gw-video__accent" />
-                </div>
-                <div className="gw-video__frame">
-                  <iframe
-                    src={AVIATION_YOUTUBE_EMBED}
-                    title="About Global Wings Ltd — company overview"
-                    loading="eager"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                </div>
+                    <ul className="gw-about__highlights" aria-label="Company highlights">
+                      {gwAboutSection.highlights.map((item) => (
+                        <li key={item.label}>
+                          <span className="gw-about__highlight-value">{item.value}</span>
+                          <span className="gw-about__highlight-label">{item.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <ul className="gw-about__capabilities" aria-label="Core capabilities">
+                      {gwAboutSection.capabilities.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+
+                <article className="gw-about__panel gw-about__panel--media reveal reveal-delay-1">
+                  <div className="gw-about__panel-accent" aria-hidden />
+                  <div className="gw-about__media-inner">
+                    <div className="gw-about__video-label">
+                      <span className="gw-about__video-badge">Company overview</span>
+                      <p className="gw-about__video-caption">{gwAboutSection.videoCaption}</p>
+                    </div>
+                    <div className="gw-video gw-video--about">
+                      <div className="gw-video__shell" aria-hidden>
+                        <div className="gw-video__accent" />
+                      </div>
+                      <div className="gw-video__frame">
+                        <iframe
+                          src={AVIATION_YOUTUBE_EMBED}
+                          title="About Global Wings Ltd — company overview"
+                          loading="eager"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
@@ -185,10 +217,46 @@ export default function AviationServicesPage() {
 
         <GwBlogSection sectionId={AVIATION_SECTIONS.blog} />
 
-        <section className="gw-section gw-section--closing" aria-label="Contact call to action">
+        <section className="gw-section gw-section--closing" aria-labelledby="gw-home-closing-title">
+          <div className="gw-closing__bg" aria-hidden />
           <div className="container gw-closing">
-            <h3 className="gw-closing__lead reveal">{gwClosingCta.lead}</h3>
-            <h2 className="gw-closing__title reveal reveal-delay-1">{gwClosingCta.title}</h2>
+            <div className="gw-closing__copy reveal">
+              <p className="gw-closing__eyebrow">{gwClosingCta.eyebrow}</p>
+              <h2 id="gw-home-closing-title" className="gw-closing__title reveal reveal-delay-1">
+                {gwClosingCta.title}{' '}
+                <span className="gw-closing__title-em">{gwClosingCta.titleEmphasis}</span>
+              </h2>
+              <p className="gw-closing__lead">{gwClosingCta.lead}</p>
+              <ul className="gw-closing__stats" aria-label="Global Wings highlights">
+                {gwClosingCta.highlights.map((item) => (
+                  <li key={item.label}>
+                    <span className="gw-closing__stat-value">{item.value}</span>
+                    <span className="gw-closing__stat-label">{item.label}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="gw-closing__actions">
+                <Link to={AVIATION_ROUTES.contact} className="gw-closing__cta gw-closing__cta--primary">
+                  <span className="gw-closing__cta-fill" aria-hidden />
+                  <span className="gw-closing__cta-label">{gwClosingCta.primaryCta}</span>
+                  <ArrowRight className="gw-closing__cta-icon" aria-hidden size={16} />
+                </Link>
+                <Link to={`${AVIATION_ROUTES.home}#${AVIATION_SECTIONS.services}`} className="gw-closing__cta gw-closing__cta--secondary">
+                  <span className="gw-closing__cta-label">{gwClosingCta.secondaryCta}</span>
+                  <ArrowRight className="gw-closing__cta-icon" aria-hidden size={16} />
+                </Link>
+              </div>
+            </div>
+            <div className="gw-closing__panel reveal reveal-delay-1" aria-hidden>
+              <span className="gw-closing__panel-accent" />
+              <p className="gw-closing__panel-eyebrow">Why Global Wings</p>
+              <p className="gw-closing__panel-title">Recruitment. Training. Results.</p>
+              <ul className="gw-closing__panel-list">
+                <li>Flight crew &amp; cabin crew resourcing</li>
+                <li>Airline partnerships worldwide</li>
+                <li>Training, cadet &amp; career programmes</li>
+              </ul>
+            </div>
           </div>
         </section>
       </main>

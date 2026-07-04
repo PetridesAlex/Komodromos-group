@@ -1,20 +1,19 @@
 import { Link } from 'react-router-dom'
 import {
-  Award,
+  ArrowRight,
   BookOpen,
   ClipboardCheck,
   Globe2,
   GraduationCap,
   Headset,
   MapPin,
-  Plane,
   Route,
   Shield,
-  Stethoscope,
-  Users,
-  Wrench,
 } from 'lucide-react'
 import GwImagePlaceholder from './GwImagePlaceholder'
+import GwPageHero from './GwPageHero'
+import GwTrainingsServicesSection from './GwTrainingsServicesSection'
+import GwTrainingsTimelineSection from './GwTrainingsTimelineSection'
 import { useReveal } from '../../hooks/useReveal'
 import { AVIATION_ROUTES } from '../../data/globalWingsPage'
 import {
@@ -23,14 +22,12 @@ import {
   trainingsClosing,
   trainingsHero,
   trainingsIntro,
-  trainingsServiceCategories,
-  trainingsTimeline,
   trainingsWhyCards,
+  trainingsWhySection,
 } from '../../data/aviationTrainingsPage'
 
 const SERVICE_INTEREST = 'Aviation Agency Services'
 
-const SERVICE_ICONS = [Plane, Award, ClipboardCheck, Stethoscope, Wrench] as const
 const WHY_ICONS = [Globe2, GraduationCap, Headset, Shield, Route, BookOpen] as const
 
 const applyState = {
@@ -52,17 +49,16 @@ export default function GwTrainingsPage() {
 
   return (
     <div className="gw-aviation-page gw-trainings-page" ref={pageRef}>
-      <section className="gw-trainings-hero" aria-labelledby="gw-trainings-hero-title">
-        <GwImagePlaceholder variant="hero-bg" className="gw-trainings-hero__bg" label="Insert image here" />
-        <div className="gw-trainings-hero__scrim" aria-hidden />
-        <div className="container gw-trainings-hero__inner">
-          <p className="gw-trainings-hero__eyebrow reveal">Training & Aviation Services · Global Wings</p>
-          <h1 id="gw-trainings-hero-title" className="gw-trainings-hero__title reveal reveal-delay-1">
-            {trainingsHero.title}
-          </h1>
-          <p className="gw-trainings-hero__subtitle reveal reveal-delay-2">{trainingsHero.subtitle}</p>
-        </div>
-      </section>
+      <GwPageHero
+        id="gw-trainings-hero-title"
+        eyebrow="Training & Aviation Services · Global Wings"
+        title={trainingsHero.title}
+        subtitle={trainingsHero.subtitle}
+        highlights={[
+          { value: 'Type', label: 'Ratings & checks' },
+          { value: 'Career', label: 'Development' },
+        ]}
+      />
 
       <main className="gw-main gw-main--trainings" aria-label="Training and Aviation Services">
         <section className="gw-trainings-section gw-trainings-section--intro">
@@ -82,124 +78,76 @@ export default function GwTrainingsPage() {
           </div>
         </section>
 
-        <section className="gw-trainings-section gw-trainings-section--services" aria-labelledby="gw-trainings-services-title">
-          <div className="container">
-            <header className="gw-trainings-section__header reveal">
-              <p className="gw-trainings-section__eyebrow">Our Training Services</p>
-              <h2 id="gw-trainings-services-title" className="gw-trainings-section__title gw-trainings-section__title--light">
-                Comprehensive programmes for every stage of your career
-              </h2>
-            </header>
-            <div className="gw-trainings-services-grid">
-              {trainingsServiceCategories.map((category, i) => {
-                const Icon = SERVICE_ICONS[i] ?? Plane
-                return (
-                  <article
-                    key={category.title}
-                    className={`gw-trainings-service-card reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}
-                  >
-                    <div className="gw-trainings-service-card__head">
-                      <span className="gw-trainings-service-card__icon-wrap">
-                        <Icon className="gw-trainings-service-card__icon" aria-hidden strokeWidth={1.5} />
-                      </span>
-                      <h3 className="gw-trainings-service-card__title">{category.title}</h3>
-                    </div>
-                    <ul className="gw-trainings-service-card__list">
-                      {category.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
+        <GwTrainingsServicesSection />
 
         <section className="gw-trainings-section gw-trainings-section--line" aria-labelledby="gw-trainings-line-title">
           <div className="container">
-            <div className="gw-trainings-line">
-              <div className="gw-trainings-line__copy reveal">
-                <p className="gw-trainings-section__eyebrow">{lineTrainingProgram.eyebrow}</p>
-                <h2 id="gw-trainings-line-title" className="gw-trainings-section__title">
-                  {lineTrainingProgram.title}
-                </h2>
-                {lineTrainingProgram.paragraphs.map((para, i) => (
-                  <p key={i} className="gw-trainings-line__para">
-                    {para}
-                  </p>
-                ))}
-              </div>
-              <div className="gw-trainings-line__media reveal reveal-delay-1">
-                <GwImagePlaceholder aspectRatio="16 / 11" label="Insert image here" />
-              </div>
-            </div>
-
-            <div className="gw-trainings-includes reveal">
-              <h3 className="gw-trainings-includes__title">Programme Includes</h3>
-              <div className="gw-trainings-includes-grid">
-                {lineTrainingProgram.includes.map((item, i) => (
-                  <div key={item} className={`gw-trainings-include-card reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}>
-                    <span className="gw-trainings-include-card__dot" aria-hidden />
-                    <p className="gw-trainings-include-card__text">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="gw-trainings-meta-grid reveal">
-              <div className="gw-trainings-meta-card">
-                <MapPin className="gw-trainings-meta-card__icon" aria-hidden strokeWidth={1.5} />
-                <h3 className="gw-trainings-meta-card__title">Programme Location</h3>
-                <p className="gw-trainings-meta-card__value">{lineTrainingProgram.location}</p>
-              </div>
-              <div className="gw-trainings-meta-card gw-trainings-meta-card--wide">
-                <ClipboardCheck className="gw-trainings-meta-card__icon" aria-hidden strokeWidth={1.5} />
-                <h3 className="gw-trainings-meta-card__title">Minimum Entry Requirements</h3>
-                <ul className="gw-trainings-meta-card__list">
-                  {lineTrainingProgram.requirements.map((req) => (
-                    <li key={req}>{req}</li>
+            <div className="gw-trainings-line-shell reveal">
+              <div className="gw-trainings-line">
+                <div className="gw-trainings-line__copy">
+                  <p className="gw-trainings-section__eyebrow">{lineTrainingProgram.eyebrow}</p>
+                  <h2 id="gw-trainings-line-title" className="gw-trainings-section__title">
+                    {lineTrainingProgram.title}
+                  </h2>
+                  {lineTrainingProgram.paragraphs.map((para, i) => (
+                    <p key={i} className="gw-trainings-line__para">
+                      {para}
+                    </p>
                   ))}
-                </ul>
+                </div>
+                <div className="gw-trainings-line__media reveal reveal-delay-1">
+                  <GwImagePlaceholder aspectRatio="16 / 11" label="Insert image here" />
+                </div>
+              </div>
+
+              <div className="gw-trainings-includes">
+                <div className="gw-trainings-includes__head">
+                  <h3 className="gw-trainings-includes__title">Programme Includes</h3>
+                  <p className="gw-trainings-includes__count">{lineTrainingProgram.includes.length} inclusions</p>
+                </div>
+                <div className="gw-trainings-includes-grid">
+                  {lineTrainingProgram.includes.map((item, i) => (
+                    <div
+                      key={item}
+                      className={`gw-trainings-include-card reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}
+                    >
+                      <span className="gw-trainings-include-card__index" aria-hidden>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <p className="gw-trainings-include-card__text">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="gw-trainings-meta-grid">
+                <div className="gw-trainings-meta-card">
+                  <span className="gw-trainings-meta-card__accent" aria-hidden />
+                  <MapPin className="gw-trainings-meta-card__icon" aria-hidden strokeWidth={1.5} />
+                  <h3 className="gw-trainings-meta-card__title">Programme Location</h3>
+                  <p className="gw-trainings-meta-card__value">{lineTrainingProgram.location}</p>
+                </div>
+                <div className="gw-trainings-meta-card gw-trainings-meta-card--wide">
+                  <span className="gw-trainings-meta-card__accent" aria-hidden />
+                  <ClipboardCheck className="gw-trainings-meta-card__icon" aria-hidden strokeWidth={1.5} />
+                  <h3 className="gw-trainings-meta-card__title">Minimum Entry Requirements</h3>
+                  <ul className="gw-trainings-meta-card__list">
+                    {lineTrainingProgram.requirements.map((req, i) => (
+                      <li key={req}>
+                        <span className="gw-trainings-meta-card__req-index" aria-hidden>
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        {req}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="gw-trainings-section gw-trainings-section--timeline" aria-labelledby="gw-trainings-timeline-title">
-          <div className="container">
-            <header className="gw-trainings-section__header reveal">
-              <p className="gw-trainings-section__eyebrow gw-trainings-section__eyebrow--light">Training Programme Timeline</p>
-              <h2 id="gw-trainings-timeline-title" className="gw-trainings-section__title gw-trainings-section__title--light">
-                Your path from selection to First Officer employment
-              </h2>
-            </header>
-            <ol className="gw-trainings-timeline">
-              {trainingsTimeline.map((step, i) => (
-                <li
-                  key={step.title}
-                  className={`gw-trainings-timeline__step reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}
-                >
-                  <div className="gw-trainings-timeline__marker">
-                    <span className="gw-trainings-timeline__index">{step.step}</span>
-                  </div>
-                  <div className="gw-trainings-timeline__body">
-                    <h3 className="gw-trainings-timeline__title">Step {parseInt(step.step, 10)} — {step.title}</h3>
-                    {step.items.length > 1 || !step.items[0]?.includes('Official evaluation') ? (
-                      <ul className="gw-trainings-timeline__list">
-                        {step.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="gw-trainings-timeline__text">{step.items[0]}</p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
+        <GwTrainingsTimelineSection />
 
         <section className="gw-trainings-section gw-trainings-section--captain" aria-labelledby="gw-trainings-captain-title">
           <div className="container">
@@ -222,21 +170,30 @@ export default function GwTrainingsPage() {
 
             <div className="gw-trainings-captain-grid reveal">
               <div className="gw-trainings-captain-panel">
+                <span className="gw-trainings-captain-panel__accent" aria-hidden />
                 <h3 className="gw-trainings-captain-panel__title">Programme Benefits</h3>
                 <div className="gw-trainings-benefits-grid">
                   {captainProgram.benefits.map((item, i) => (
                     <div key={item} className={`gw-trainings-benefit-card reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}>
-                      <Users className="gw-trainings-benefit-card__icon" aria-hidden strokeWidth={1.5} />
+                      <span className="gw-trainings-benefit-card__index" aria-hidden>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
                       <p className="gw-trainings-benefit-card__text">{item}</p>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="gw-trainings-captain-panel gw-trainings-captain-panel--req">
+                <span className="gw-trainings-captain-panel__accent" aria-hidden />
                 <h3 className="gw-trainings-captain-panel__title">Minimum Requirements</h3>
                 <ul className="gw-trainings-captain-reqs">
-                  {captainProgram.requirements.map((req) => (
-                    <li key={req}>{req}</li>
+                  {captainProgram.requirements.map((req, i) => (
+                    <li key={req}>
+                      <span className="gw-trainings-captain-reqs__index" aria-hidden>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      {req}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -246,20 +203,25 @@ export default function GwTrainingsPage() {
 
         <section className="gw-trainings-section gw-trainings-section--why" aria-labelledby="gw-trainings-why-title">
           <div className="container">
-            <header className="gw-trainings-section__header reveal">
-              <p className="gw-trainings-section__eyebrow">Why Train With Global Wings</p>
+            <header className="gw-trainings-section__header gw-trainings-why__header reveal">
+              <p className="gw-trainings-section__eyebrow">{trainingsWhySection.eyebrow}</p>
               <h2 id="gw-trainings-why-title" className="gw-trainings-section__title">
-                World-class training backed by industry expertise
+                {trainingsWhySection.title}
               </h2>
+              <p className="gw-trainings-why__intro">{trainingsWhySection.intro}</p>
             </header>
             <div className="gw-trainings-why-grid">
               {trainingsWhyCards.map((item, i) => {
                 const Icon = WHY_ICONS[i] ?? Globe2
+                const featured = i < 2
                 return (
                   <article
                     key={item.title}
-                    className={`gw-trainings-why-card reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}
+                    className={`gw-trainings-why-card${featured ? ' gw-trainings-why-card--featured' : ''} reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}
                   >
+                    <span className="gw-trainings-why-card__index" aria-hidden>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                     <span className="gw-trainings-why-card__icon-wrap">
                       <Icon className="gw-trainings-why-card__icon" aria-hidden strokeWidth={1.5} />
                     </span>
@@ -273,24 +235,48 @@ export default function GwTrainingsPage() {
         </section>
 
         <section className="gw-trainings-section gw-trainings-section--closing" aria-labelledby="gw-trainings-closing-title">
+          <div className="gw-trainings-closing__bg" aria-hidden />
           <div className="container gw-trainings-closing">
-            <div className="gw-trainings-closing__inner reveal">
+            <div className="gw-trainings-closing__copy reveal">
+              <p className="gw-trainings-closing__eyebrow">{trainingsClosing.eyebrow}</p>
               <h2 id="gw-trainings-closing-title" className="gw-trainings-closing__title">
-                {trainingsClosing.title}
+                {trainingsClosing.title}{' '}
+                <span className="gw-trainings-closing__title-em">{trainingsClosing.titleEmphasis}</span>
               </h2>
               {trainingsClosing.paragraphs.map((para, i) => (
                 <p key={i} className="gw-trainings-closing__para">
                   {para}
                 </p>
               ))}
+              <ul className="gw-trainings-closing__stats" aria-label="Training highlights">
+                {trainingsClosing.highlights.map((item) => (
+                  <li key={item.label}>
+                    <span className="gw-trainings-closing__stat-value">{item.value}</span>
+                    <span className="gw-trainings-closing__stat-label">{item.label}</span>
+                  </li>
+                ))}
+              </ul>
               <div className="gw-trainings-closing__actions">
-                <Link to={AVIATION_ROUTES.contact} state={applyState} className="gw-trainings-closing__btn gw-trainings-closing__btn--primary">
-                  {trainingsClosing.primaryCta}
+                <Link to={AVIATION_ROUTES.contact} state={applyState} className="gw-trainings-closing__cta gw-trainings-closing__cta--primary">
+                  <span className="gw-trainings-closing__cta-fill" aria-hidden />
+                  <span className="gw-trainings-closing__cta-label">{trainingsClosing.primaryCta}</span>
+                  <ArrowRight className="gw-trainings-closing__cta-icon" aria-hidden size={16} />
                 </Link>
-                <Link to={AVIATION_ROUTES.contact} state={advisorState} className="gw-trainings-closing__btn gw-trainings-closing__btn--secondary">
-                  {trainingsClosing.secondaryCta}
+                <Link to={AVIATION_ROUTES.contact} state={advisorState} className="gw-trainings-closing__cta gw-trainings-closing__cta--secondary">
+                  <span className="gw-trainings-closing__cta-label">{trainingsClosing.secondaryCta}</span>
+                  <ArrowRight className="gw-trainings-closing__cta-icon" aria-hidden size={16} />
                 </Link>
               </div>
+            </div>
+            <div className="gw-trainings-closing__panel reveal reveal-delay-1" aria-hidden>
+              <span className="gw-trainings-closing__panel-accent" />
+              <p className="gw-trainings-closing__panel-eyebrow">Global Wings Training</p>
+              <p className="gw-trainings-closing__panel-title">From cadet to Captain</p>
+              <ul className="gw-trainings-closing__panel-list">
+                <li>Type ratings &amp; line training</li>
+                <li>Captain upgrade programmes</li>
+                <li>Airline assessment preparation</li>
+              </ul>
             </div>
           </div>
         </section>

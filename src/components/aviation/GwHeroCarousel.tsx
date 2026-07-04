@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
-import { AVIATION_SECTIONS, aviationSectionHref, gwHeroSlides } from '../../data/globalWingsPage'
+import { ChevronDown, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
+import { AVIATION_SECTIONS, aviationSectionHref, gwHeroCta, gwHeroSlides } from '../../data/globalWingsPage'
 import GwImagePlaceholder from './GwImagePlaceholder'
 
 const SERVICES_LINK = aviationSectionHref('services')
@@ -73,6 +73,10 @@ export default function GwHeroCarousel() {
 
                 {slide.type === 'text' ? (
                   <>
+                    <p className="gw-hero__eyebrow">
+                      <span className="gw-hero__eyebrow-dot" aria-hidden />
+                      Global Wings Ltd · Aviation Agency
+                    </p>
                     <h1 className="gw-hero__title">{slide.title}</h1>
                     <h2 className="gw-hero__subtitle">{slide.subtitle}</h2>
                   </>
@@ -86,7 +90,11 @@ export default function GwHeroCarousel() {
                   }`}
                   to={SERVICES_LINK}
                 >
-                  Start now
+                  {slide.type !== 'image-only' || slide.ctaVariant !== 'secondary' ? (
+                    <span className="gw-hero__cta-fill" aria-hidden />
+                  ) : null}
+                  <span className="gw-hero__cta-label">{gwHeroCta.label}</span>
+                  <ArrowRight className="gw-hero__cta-icon" aria-hidden size={16} strokeWidth={2.25} />
                 </Link>
               </div>
             </div>

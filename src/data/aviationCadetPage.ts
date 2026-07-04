@@ -1,3 +1,21 @@
+export const cadetProgrammesSection = {
+  eyebrow: 'Career Pathways',
+  title: 'Programmes We Offer',
+  intro: 'Structured airline career pathways — from cadet employment through First Officer upgrade programmes.',
+}
+
+export const cadetWhySection = {
+  eyebrow: 'Programme Benefits',
+  title: 'Why Choose GlobalCadet?',
+  intro: 'Global airline opportunities, sponsored development, and world-class training — built for long-term careers.',
+}
+
+export const cadetFaqSection = {
+  eyebrow: 'Support',
+  title: 'Frequently Asked Questions',
+  intro: 'Answers to the most common questions about eligibility, training, and joining the GlobalCadet Programme.',
+}
+
 export const cadetHero = {
   eyebrow: 'GLOBALCADET Programme',
   title: 'Launch Your Aviation Career',

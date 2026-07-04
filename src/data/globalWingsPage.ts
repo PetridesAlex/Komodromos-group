@@ -27,18 +27,27 @@ export function aviationSectionHref(section: keyof typeof AVIATION_SECTIONS) {
 
 export type AviationNavItem = {
   label: string
+  shortLabel: string
   to: string
 }
 
+export const gwSubNavBrand = {
+  nameLead: 'Global',
+  nameEmphasis: 'Wings',
+  tagline: 'Aviation Recruitment & Training',
+  mobileTagline: 'Aviation Agency',
+  ariaLabel: 'Global Wings — aviation recruitment and training',
+}
+
 export const aviationSubNavItems: AviationNavItem[] = [
-  { label: 'HOME', to: AVIATION_ROUTES.home },
-  { label: 'ABOUT US', to: aviationSectionHref('about') },
-  { label: 'PILOTS', to: AVIATION_ROUTES.pilots },
-  { label: 'AVIATION JOBS', to: AVIATION_ROUTES.jobs },
-  { label: 'AIRLINES SERVICES', to: AVIATION_ROUTES.airlines },
-  { label: 'TRAININGS & RATINGS', to: AVIATION_ROUTES.trainings },
-  { label: 'CONTACT US', to: AVIATION_ROUTES.contact },
-  { label: 'GLOBALCADET PROGRAMME', to: AVIATION_ROUTES.cadet },
+  { label: 'HOME', shortLabel: 'Home', to: AVIATION_ROUTES.home },
+  { label: 'ABOUT US', shortLabel: 'About', to: aviationSectionHref('about') },
+  { label: 'PILOTS', shortLabel: 'Pilots', to: AVIATION_ROUTES.pilots },
+  { label: 'AVIATION JOBS', shortLabel: 'Jobs', to: AVIATION_ROUTES.jobs },
+  { label: 'AIRLINES SERVICES', shortLabel: 'Airlines', to: AVIATION_ROUTES.airlines },
+  { label: 'TRAININGS & RATINGS', shortLabel: 'Training', to: AVIATION_ROUTES.trainings },
+  { label: 'CONTACT US', shortLabel: 'Contact', to: AVIATION_ROUTES.contact },
+  { label: 'GLOBALCADET PROGRAMME', shortLabel: 'Cadet', to: AVIATION_ROUTES.cadet },
 ]
 
 export type GwHeroSlide =
@@ -46,6 +55,10 @@ export type GwHeroSlide =
   | { type: 'banner' }
   | { type: 'text'; title: string; subtitle: string }
   | { type: 'image-only'; ctaVariant: 'primary' | 'secondary' }
+
+export const gwHeroCta = {
+  label: 'Explore our services',
+}
 
 export const gwHeroSlides: GwHeroSlide[] = [
   { type: 'logo' },
@@ -72,6 +85,18 @@ export const gwAboutSection = {
   title: 'About Global Wings',
   intro:
     'Global Wings Ltd connects airlines with qualified flight and cabin crew worldwide — delivering trusted recruitment, training, and operational support with uncompromising professionalism.',
+  highlights: [
+    { value: '15+', label: 'Years experience' },
+    { value: 'Global', label: 'Recruitment reach' },
+    { value: '360°', label: 'Aviation solutions' },
+  ],
+  capabilities: [
+    'Pilot & crew recruitment',
+    'Airline staffing solutions',
+    'Training & type ratings',
+    'Executive aviation search',
+  ],
+  videoCaption: 'Discover how Global Wings connects aviation talent with opportunity worldwide.',
 }
 
 export type AviationServiceCard = {
@@ -268,9 +293,18 @@ export const aviationBlogPosts: AviationBlogPost[] = [
 ]
 
 export const gwClosingCta = {
+  eyebrow: 'Partner With Global Wings',
+  title: 'The new way of',
+  titleEmphasis: 'aviation success.',
   lead:
-    'Take the next step in your business or let us provide the crucial personnel or services for your organization. Contact us and make the right move with us.',
-  title: 'Global Wings Ltd the new way of success..',
+    'Take the next step in your business — or let us provide the crucial personnel and services your organisation needs. Contact us and make the right move with Global Wings.',
+  primaryCta: 'Contact our team',
+  secondaryCta: 'Explore services',
+  highlights: [
+    { value: '12+', label: 'Years experience' },
+    { value: 'Global', label: 'Recruitment reach' },
+    { value: '24/7', label: 'Aviation support' },
+  ],
 }
 
 export const gwSocialLinks = [

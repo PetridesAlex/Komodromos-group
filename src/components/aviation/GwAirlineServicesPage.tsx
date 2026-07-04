@@ -4,23 +4,18 @@ import {
   Briefcase,
   Check,
   Crown,
-  Globe2,
   Layers,
-  Plane,
-  Shield,
-  Sparkles,
-  Users,
-  Wrench,
 } from 'lucide-react'
+import GwAirlinesInsightsSection from './GwAirlinesInsightsSection'
+import GwAirlinesRolesSection from './GwAirlinesRolesSection'
 import GwImagePlaceholder from './GwImagePlaceholder'
+import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
 import { AVIATION_ROUTES } from '../../data/globalWingsPage'
 import {
   airlinesClosing,
   airlinesFlightCrew,
   airlinesHero,
-  airlinesInsightSections,
-  airlinesRoleCategories,
   airlinesServiceBlocks,
 } from '../../data/aviationAirlineServicesPage'
 
@@ -30,25 +25,21 @@ const SERVICE_ICONS = {
   executive: Crown,
 } as const
 
-const ROLE_ICONS = [Briefcase, Plane, Wrench] as const
-const INSIGHT_ICONS = [Globe2, Users, Shield, Sparkles] as const
-
 export default function GwAirlineServicesPage() {
   const pageRef = useReveal()
 
   return (
     <div className="gw-aviation-page gw-airlines-page" ref={pageRef}>
-      <section className="gw-airlines-hero" aria-labelledby="gw-airlines-hero-title">
-        <GwImagePlaceholder variant="hero-bg" className="gw-airlines-hero__bg" label="Insert image here" />
-        <div className="gw-airlines-hero__scrim" aria-hidden />
-        <div className="container gw-airlines-hero__inner">
-          <p className="gw-airlines-hero__eyebrow reveal">Airline Services · Global Wings</p>
-          <h1 id="gw-airlines-hero-title" className="gw-airlines-hero__title reveal reveal-delay-1">
-            {airlinesHero.title}
-          </h1>
-          <p className="gw-airlines-hero__subtitle reveal reveal-delay-2">{airlinesHero.subtitle}</p>
-        </div>
-      </section>
+      <GwPageHero
+        id="gw-airlines-hero-title"
+        eyebrow="Airline Services · Global Wings"
+        title={airlinesHero.title}
+        subtitle={airlinesHero.subtitle}
+        highlights={[
+          { value: 'Crew', label: 'Flight & cabin' },
+          { value: 'Exec', label: 'Leadership search' },
+        ]}
+      />
 
       <main className="gw-main gw-main--airlines" aria-label="Airline Services">
         <section className="gw-airlines-section gw-airlines-section--intro">
@@ -156,69 +147,16 @@ export default function GwAirlineServicesPage() {
           </div>
         </section>
 
-        <section className="gw-airlines-section gw-airlines-section--roles" aria-labelledby="gw-airlines-roles-title">
-          <div className="container">
-            <header className="gw-airlines-section__header reveal">
-              <p className="gw-airlines-section__eyebrow">Roles We Recruit For</p>
-              <h2 id="gw-airlines-roles-title" className="gw-airlines-section__title">
-                Comprehensive coverage across aviation disciplines
-              </h2>
-            </header>
-            <div className="gw-airlines-roles-grid">
-              {airlinesRoleCategories.map((category, i) => {
-                const Icon = ROLE_ICONS[i] ?? Briefcase
-                return (
-                  <article
-                    key={category.title}
-                    className={`gw-airlines-role-card reveal reveal-delay-${Math.min(i + 1, 3)}`}
-                  >
-                    <div className="gw-airlines-role-card__head">
-                      <Icon className="gw-airlines-role-card__icon" aria-hidden strokeWidth={1.5} />
-                      <h3 className="gw-airlines-role-card__title">{category.title}</h3>
-                    </div>
-                    <ul className="gw-airlines-role-card__list">
-                      {category.roles.map((role) => (
-                        <li key={role}>{role}</li>
-                      ))}
-                    </ul>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
+        <GwAirlinesRolesSection />
 
-        <section className="gw-airlines-section gw-airlines-section--insights" aria-label="Industry expertise">
-          <div className="container">
-            <div className="gw-airlines-insights-grid">
-              {airlinesInsightSections.map((section, i) => {
-                const Icon = INSIGHT_ICONS[i] ?? Globe2
-                return (
-                  <article
-                    key={section.title}
-                    className={`gw-airlines-insight-card reveal reveal-delay-${Math.min((i % 2) + 1, 2)}`}
-                  >
-                    <div className="gw-airlines-insight-card__icon-wrap">
-                      <Icon className="gw-airlines-insight-card__icon" aria-hidden strokeWidth={1.5} />
-                    </div>
-                    <h3 className="gw-airlines-insight-card__title">{section.title}</h3>
-                    {section.paragraphs.map((para, pi) => (
-                      <p key={pi} className="gw-airlines-insight-card__para">
-                        {para}
-                      </p>
-                    ))}
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
+        <GwAirlinesInsightsSection />
 
         <section className="gw-airlines-section gw-airlines-section--closing" aria-labelledby="gw-airlines-closing-title">
           <div className="container gw-airlines-closing">
             <div className="gw-airlines-closing__copy reveal">
               <h2 id="gw-airlines-closing-title" className="gw-airlines-closing__title">
-                {airlinesClosing.title}
+                Ready to Strengthen Your{' '}
+                <span className="gw-airlines-closing__title-em">Aviation Team?</span>
               </h2>
               {airlinesClosing.paragraphs.map((para, i) => (
                 <p key={i} className="gw-airlines-closing__para">
@@ -226,8 +164,9 @@ export default function GwAirlineServicesPage() {
                 </p>
               ))}
               <Link to={AVIATION_ROUTES.contact} className="gw-airlines-closing__cta">
-                Contact our team
-                <ArrowRight aria-hidden size={16} />
+                <span className="gw-airlines-closing__cta-fill" aria-hidden />
+                <span className="gw-airlines-closing__cta-label">Contact our team</span>
+                <ArrowRight className="gw-airlines-closing__cta-icon" aria-hidden size={16} />
               </Link>
             </div>
             <div className="gw-airlines-closing__media reveal reveal-delay-1">

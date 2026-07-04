@@ -13,9 +13,18 @@ export const trainingsIntro = {
   ],
 }
 
+export const trainingsServicesSection = {
+  eyebrow: 'Our Training Services',
+  title: 'Comprehensive programmes for every stage of your career',
+  intro:
+    'From ab-initio flight training to type ratings, medical licensing, and airline assessment prep — structured pathways built with industry partners.',
+}
+
 export const trainingsServiceCategories = [
   {
     title: 'Flight Training',
+    shortLabel: 'Flight',
+    summary: 'PPL through type ratings — the complete pathway from first licence to airline-ready credentials.',
     items: [
       'PPL Training',
       'CPL Training',
@@ -33,10 +42,14 @@ export const trainingsServiceCategories = [
   },
   {
     title: 'Instructor Qualifications',
+    shortLabel: 'Instructors',
+    summary: 'TRI, TRE, and flight instructor ratings for pilots advancing into training and checking roles.',
     items: ['TRI Ratings', 'TRE Ratings', 'Flight Instructor Ratings'],
   },
   {
     title: 'Pilot Assessment Preparation',
+    shortLabel: 'Assessment',
+    summary: 'Interview coaching, simulator prep, and airline assessment support to help you perform at your best.',
     items: [
       'Airline Interview Preparation',
       'Simulator Assessment Preparation',
@@ -45,6 +58,8 @@ export const trainingsServiceCategories = [
   },
   {
     title: 'Medical & Licensing',
+    shortLabel: 'Medical',
+    summary: 'Class 1 medicals, licence renewals, and revalidations handled with aviation-specialist guidance.',
     items: [
       'Class 1 Medical Initial',
       'Class 1 Medical Renewals',
@@ -54,6 +69,8 @@ export const trainingsServiceCategories = [
   },
   {
     title: 'Additional Aviation Services',
+    shortLabel: 'Services',
+    summary: 'Ferry flights, ACMI, CV consultancy, and recruitment support beyond core training programmes.',
     items: [
       'Ferry Flights Worldwide',
       'ACMI Services',
@@ -64,7 +81,14 @@ export const trainingsServiceCategories = [
   },
 ] as const
 
-export const lineTrainingProgram = {
+export const trainingsWhySection = {
+  eyebrow: 'Why Train With Global Wings',
+  title: 'World-class training backed by industry expertise',
+  intro:
+    'Airline partnerships, experienced instructors, and internationally recognised programmes — designed to accelerate your aviation career.',
+}
+
+export const trainingsLineSection = {
   eyebrow: 'Airbus A320 / Boeing 737 Line Training Program',
   title: 'Build Airline Experience While Securing Your Future',
   paragraphs: [
@@ -98,13 +122,22 @@ export const lineTrainingProgram = {
 export type TrainingTimelineStep = {
   step: string
   title: string
+  shortLabel: string
   items: string[]
+}
+
+export const trainingsTimelineSection = {
+  eyebrow: 'Training Programme Timeline',
+  title: 'Your path from selection to First Officer employment',
+  intro:
+    'Six structured phases — from airline selection through line training to your guaranteed First Officer contract.',
 }
 
 export const trainingsTimeline: TrainingTimelineStep[] = [
   {
     step: '01',
     title: 'Airline Selection',
+    shortLabel: 'Selection',
     items: [
       'Airbus A320 Type Rating',
       'Airline Chief Pilot Interview',
@@ -115,6 +148,7 @@ export const trainingsTimeline: TrainingTimelineStep[] = [
   {
     step: '02',
     title: 'Ground School',
+    shortLabel: 'Ground',
     items: [
       'Safety & Emergency Procedures (SEP)',
       'Crew Resource Management (CRM)',
@@ -127,6 +161,7 @@ export const trainingsTimeline: TrainingTimelineStep[] = [
   {
     step: '03',
     title: 'Cruise Phase',
+    shortLabel: 'Cruise',
     items: [
       '100 Flight Hours',
       'Minimum 40 Flight Sectors',
@@ -138,6 +173,7 @@ export const trainingsTimeline: TrainingTimelineStep[] = [
   {
     step: '04',
     title: 'Full Flight Training',
+    shortLabel: 'Line FT',
     items: [
       'Additional 100 Flight Hours',
       'Minimum 40 Flight Sectors',
@@ -148,6 +184,7 @@ export const trainingsTimeline: TrainingTimelineStep[] = [
   {
     step: '05',
     title: 'Line Check',
+    shortLabel: 'Check',
     items: [
       'Official evaluation conducted by an authorised TRE before progressing to operational line flying.',
     ],
@@ -155,13 +192,14 @@ export const trainingsTimeline: TrainingTimelineStep[] = [
   {
     step: '06',
     title: 'First Officer Employment',
+    shortLabel: 'Employment',
     items: [
       'Complete the remaining hours to achieve 500 hours total line experience while working as a First Officer under a guaranteed one-year airline contract.',
     ],
   },
 ]
 
-export const captainProgram = {
+export const trainingsCaptainSection = {
   eyebrow: 'Direct Entry Captain Conversion Programme',
   title: 'Upgrade Your Career to Captain',
   paragraphs: [
@@ -188,6 +226,10 @@ export const captainProgram = {
     'Minimum 3,000 Hours on Type',
   ],
 }
+
+export const lineTrainingProgram = trainingsLineSection
+
+export const captainProgram = trainingsCaptainSection
 
 export const trainingsWhyCards = [
   {
@@ -217,9 +259,16 @@ export const trainingsWhyCards = [
 ] as const
 
 export const trainingsClosing = {
-  title: 'Ready to Advance Your Aviation Career?',
+  eyebrow: 'Next Step',
+  title: 'Ready to Advance Your',
+  titleEmphasis: 'Aviation Career?',
   paragraphs: [
     'Whether you\'re preparing for your first airline position, upgrading your qualifications, or pursuing a Captain command upgrade, Global Wings Ltd provides the training, expertise, and international connections to help you achieve your goals.',
+  ],
+  highlights: [
+    { value: '500+', label: 'Line hours programmes' },
+    { value: 'EASA', label: 'Recognised training' },
+    { value: 'Global', label: 'Career pathways' },
   ],
   primaryCta: 'Apply for Training',
   secondaryCta: 'Speak with an Aviation Advisor',

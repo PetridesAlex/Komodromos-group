@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Award,
@@ -14,7 +14,8 @@ import {
   TrendingUp,
   Users,
 } from 'lucide-react'
-import GwImagePlaceholder from './GwImagePlaceholder'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
 import { AVIATION_ROUTES } from '../../data/globalWingsPage'
 import {
@@ -22,15 +23,18 @@ import {
   cadetBaseTraining,
   cadetClosing,
   cadetFaqs,
+  cadetFaqSection,
   cadetHero,
   cadetPartnerBenefits,
   cadetProgrammes,
+  cadetProgrammesSection,
   cadetRequirements,
   cadetStats,
   cadetTimeline,
   cadetTypeRatings,
   cadetWhyChoose,
   cadetWhyPilots,
+  cadetWhySection,
   type CadetStat,
 } from '../../data/aviationCadetPage'
 
@@ -112,6 +116,7 @@ function CadetStatItem({ stat }: { stat: CadetStat }) {
 }
 
 function CadetFaqAccordion() {
+  const reduceMotion = useReducedMotion()
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
@@ -119,22 +124,132 @@ function CadetFaqAccordion() {
       {cadetFaqs.map((item, i) => {
         const isOpen = openIndex === i
         return (
-          <article key={item.question} className={`gw-cadet-faq__item${isOpen ? ' is-open' : ''}`}>
+          <article
+            key={item.question}
+            className={`gw-cadet-faq__item${isOpen ? ' gw-cadet-faq__item--open' : ''}${i === 0 ? ' gw-cadet-faq__item--featured' : ''}`}
+          >
+            <span className="gw-cadet-faq__accent" aria-hidden />
             <button
               type="button"
               className="gw-cadet-faq__trigger"
               aria-expanded={isOpen}
               onClick={() => setOpenIndex(isOpen ? null : i)}
             >
-              <span>{item.question}</span>
+              <span className="gw-cadet-faq__index" aria-hidden>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span className="gw-cadet-faq__question">{item.question}</span>
               <ChevronDown className="gw-cadet-faq__chevron" aria-hidden size={18} strokeWidth={2} />
             </button>
-            <div className="gw-cadet-faq__panel" hidden={!isOpen}>
-              <p>{item.answer}</p>
-            </div>
+            <AnimatePresence initial={false}>
+              {isOpen ? (
+                <motion.div
+                  className="gw-cadet-faq__panel"
+                  initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.32, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="gw-cadet-faq__panel-inner">
+                    <p>{item.answer}</p>
+                  </div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           </article>
         )
       })}
+    </div>
+  )
+}
+
+function CadetProgrammesExplorer() {
+  const reduceMotion = useReducedMotion()
+  const baseId = useId()
+  const [activeIndex, setActiveIndex] = useState(0)
+  const activeProgramme = cadetProgrammes[activeIndex]
+  const ActiveIcon = PROGRAMME_ICONS[activeIndex] ?? Plane
+
+  const selectProgramme = useCallback((index: number) => {
+    setActiveIndex(index)
+  }, [])
+
+  function handleTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    const lastIndex = cadetProgrammes.length - 1
+    let next = index
+
+    if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+      event.preventDefault()
+      next = index === lastIndex ? 0 : index + 1
+    } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+      event.preventDefault()
+      next = index === 0 ? lastIndex : index - 1
+    } else {
+      return
+    }
+
+    selectProgramme(next)
+    document.getElementById(`${baseId}-prog-tab-${next}`)?.focus()
+  }
+
+  return (
+    <div className="gw-cadet-programmes__shell reveal reveal-delay-1">
+      <div className="gw-cadet-programmes__nav" role="tablist" aria-label="GlobalCadet programmes">
+        {cadetProgrammes.map((programme, index) => {
+          const Icon = PROGRAMME_ICONS[index] ?? Plane
+          const isActive = index === activeIndex
+
+          return (
+            <button
+              key={programme.id}
+              type="button"
+              id={`${baseId}-prog-tab-${index}`}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={`${baseId}-prog-panel`}
+              tabIndex={isActive ? 0 : -1}
+              className={`gw-cadet-programmes__tab${isActive ? ' gw-cadet-programmes__tab--active' : ''}`}
+              onClick={() => selectProgramme(index)}
+              onKeyDown={(event) => handleTabKeyDown(event, index)}
+            >
+              <span className="gw-cadet-programmes__tab-icon-wrap" aria-hidden>
+                <Icon className="gw-cadet-programmes__tab-icon" strokeWidth={1.5} />
+              </span>
+              <span className="gw-cadet-programmes__tab-label">{programme.title}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.article
+          key={activeProgramme.id}
+          id={`${baseId}-prog-panel`}
+          role="tabpanel"
+          aria-labelledby={`${baseId}-prog-tab-${activeIndex}`}
+          className="gw-cadet-programme-feature"
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+          transition={{ duration: reduceMotion ? 0.01 : 0.34, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="gw-cadet-programme-feature__accent" aria-hidden />
+          <div className="gw-cadet-programme-feature__head">
+            <span className="gw-cadet-programme-feature__icon-wrap" aria-hidden>
+              <ActiveIcon className="gw-cadet-programme-feature__icon" strokeWidth={1.5} />
+            </span>
+            <div>
+              <p className="gw-cadet-programme-feature__eyebrow">Selected programme</p>
+              <h3 className="gw-cadet-programme-feature__title">{activeProgramme.title}</h3>
+            </div>
+          </div>
+          <p className="gw-cadet-programme-feature__text">{activeProgramme.description}</p>
+          <div className="gw-cadet-programme-feature__salary">
+            <span className="gw-cadet-programme-feature__salary-label">{activeProgramme.salaryLabel}</span>
+            <strong>{activeProgramme.salary}</strong>
+          </div>
+        </motion.article>
+      </AnimatePresence>
     </div>
   )
 }
@@ -144,77 +259,58 @@ export default function GwCadetPage() {
 
   return (
     <div className="gw-aviation-page gw-cadet-page" ref={pageRef}>
-      <section className="gw-cadet-hero" aria-labelledby="gw-cadet-hero-title">
-        <GwImagePlaceholder variant="hero-bg" className="gw-cadet-hero__bg" label="Insert image here" />
-        <div className="gw-cadet-hero__scrim" aria-hidden />
-        <div className="container gw-cadet-hero__inner">
-          <p className="gw-cadet-hero__eyebrow reveal">{cadetHero.eyebrow}</p>
-          <h1 id="gw-cadet-hero-title" className="gw-cadet-hero__title reveal reveal-delay-1">
-            {cadetHero.title}
-          </h1>
-          <p className="gw-cadet-hero__tagline reveal reveal-delay-2">{cadetHero.tagline}</p>
-          {cadetHero.paragraphs.map((para, i) => (
-            <p key={i} className={`gw-cadet-hero__para reveal reveal-delay-${Math.min(i + 3, 4)}`}>
-              {para}
-            </p>
-          ))}
-          <div className="gw-cadet-hero__actions reveal reveal-delay-4">
-            <Link to={AVIATION_ROUTES.contact} state={applyState} className="gw-cadet-hero__btn gw-cadet-hero__btn--primary">
-              {cadetHero.primaryCta}
-            </Link>
-            <Link to={AVIATION_ROUTES.contact} state={advisorState} className="gw-cadet-hero__btn gw-cadet-hero__btn--secondary">
-              {cadetHero.secondaryCta}
-            </Link>
-          </div>
-        </div>
-      </section>
+      <GwPageHero
+        id="gw-cadet-hero-title"
+        eyebrow={cadetHero.eyebrow}
+        title={cadetHero.title}
+        subtitle={cadetHero.tagline}
+        paragraphs={cadetHero.paragraphs}
+        actions={[
+          { label: cadetHero.primaryCta, to: AVIATION_ROUTES.contact, variant: 'primary', state: applyState },
+          {
+            label: cadetHero.secondaryCta,
+            to: AVIATION_ROUTES.contact,
+            variant: 'secondary',
+            state: advisorState,
+          },
+        ]}
+      />
 
       <main className="gw-main gw-main--cadet" aria-label="GlobalCadet Programme">
         <section className="gw-cadet-section gw-cadet-section--programmes" aria-labelledby="gw-cadet-programmes-title">
-          <div className="container">
-            <header className="gw-cadet-section__header reveal">
-              <p className="gw-cadet-section__eyebrow">Career Pathways</p>
+          <div className="container gw-cadet-programmes">
+            <header className="gw-cadet-section__header gw-cadet-programmes__header reveal">
+              <p className="gw-cadet-section__eyebrow">{cadetProgrammesSection.eyebrow}</p>
               <h2 id="gw-cadet-programmes-title" className="gw-cadet-section__title">
-                Programmes We Offer
+                {cadetProgrammesSection.title}
               </h2>
+              <p className="gw-cadet-programmes__intro">{cadetProgrammesSection.intro}</p>
             </header>
-            <div className="gw-cadet-programmes-grid">
-              {cadetProgrammes.map((programme, i) => {
-                const Icon = PROGRAMME_ICONS[i] ?? Plane
-                return (
-                  <article
-                    key={programme.id}
-                    className={`gw-cadet-programme-card reveal reveal-delay-${Math.min(i + 1, 3)}`}
-                  >
-                    <div className="gw-cadet-programme-card__icon-wrap">
-                      <Icon className="gw-cadet-programme-card__icon" aria-hidden strokeWidth={1.5} />
-                    </div>
-                    <h3 className="gw-cadet-programme-card__title">{programme.title}</h3>
-                    <p className="gw-cadet-programme-card__text">{programme.description}</p>
-                    <div className="gw-cadet-programme-card__salary">
-                      <span className="gw-cadet-programme-card__salary-label">{programme.salaryLabel}</span>
-                      <strong>{programme.salary}</strong>
-                    </div>
-                  </article>
-                )
-              })}
-            </div>
+            <CadetProgrammesExplorer />
           </div>
         </section>
 
         <section className="gw-cadet-section gw-cadet-section--why" aria-labelledby="gw-cadet-why-title">
           <div className="container">
-            <header className="gw-cadet-section__header reveal">
-              <p className="gw-cadet-section__eyebrow">Programme Benefits</p>
+            <header className="gw-cadet-section__header gw-cadet-why__header reveal">
+              <p className="gw-cadet-section__eyebrow">{cadetWhySection.eyebrow}</p>
               <h2 id="gw-cadet-why-title" className="gw-cadet-section__title gw-cadet-section__title--light">
-                Why Choose GlobalCadet?
+                {cadetWhySection.title}
               </h2>
+              <p className="gw-cadet-why__intro">{cadetWhySection.intro}</p>
             </header>
             <div className="gw-cadet-why-grid">
               {cadetWhyChoose.map((item, i) => {
                 const Icon = WHY_ICONS[i] ?? Globe2
+                const featured = i < 3
                 return (
-                  <article key={item} className={`gw-cadet-why-card reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}>
+                  <article
+                    key={item}
+                    className={`gw-cadet-why-card${featured ? ' gw-cadet-why-card--featured' : ''} reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}
+                  >
+                    <span className="gw-cadet-why-card__index" aria-hidden>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                     <span className="gw-cadet-why-card__icon-wrap">
                       <Icon className="gw-cadet-why-card__icon" aria-hidden strokeWidth={1.5} />
                     </span>
@@ -393,11 +489,12 @@ export default function GwCadetPage() {
 
         <section className="gw-cadet-section gw-cadet-section--faq" aria-labelledby="gw-cadet-faq-title">
           <div className="container gw-cadet-faq-layout">
-            <header className="gw-cadet-section__header reveal">
-              <p className="gw-cadet-section__eyebrow">Support</p>
+            <header className="gw-cadet-section__header gw-cadet-faq__header reveal">
+              <p className="gw-cadet-section__eyebrow">{cadetFaqSection.eyebrow}</p>
               <h2 id="gw-cadet-faq-title" className="gw-cadet-section__title">
-                Frequently Asked Questions
+                {cadetFaqSection.title}
               </h2>
+              <p className="gw-cadet-faq__intro">{cadetFaqSection.intro}</p>
             </header>
             <div className="reveal reveal-delay-1">
               <CadetFaqAccordion />

@@ -166,16 +166,21 @@ export default function TopbarSocialLinks({ variant }: Props) {
       aria-controls={menuId}
       onClick={() => setOpen((v) => !v)}
     >
+      <span className="social-assistant-trigger__glow" aria-hidden />
       <span className="social-assistant-trigger__aurora" aria-hidden />
       <span className="social-assistant-trigger__avatar" aria-hidden>
         <span className="social-assistant-trigger__pulse" />
+        <span className="social-assistant-trigger__pulse social-assistant-trigger__pulse--delayed" />
         <span className="social-assistant-trigger__avatar-inner">
-          <Headset size={15} strokeWidth={2.15} />
+          <Headset size={16} strokeWidth={2.25} />
         </span>
         <span className="social-assistant-trigger__online" />
       </span>
       <span className="social-assistant-trigger__copy">
-        <span className="social-assistant-trigger__kicker">Support</span>
+        <span className="social-assistant-trigger__kicker">
+          <span className="social-assistant-trigger__live-dot" aria-hidden />
+          Live now
+        </span>
         <span className="social-assistant-trigger__label">Connect</span>
       </span>
       <ChevronDown

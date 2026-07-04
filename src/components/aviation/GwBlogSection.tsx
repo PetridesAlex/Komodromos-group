@@ -261,7 +261,7 @@ export default function GwBlogSection({ sectionId }: { sectionId: string }) {
           </motion.div>
         </div>
 
-        <div className="container gw-blog-showcase__footer">
+          <div className="container gw-blog-showcase__footer">
           <div className="gw-blog-showcase__progress" aria-hidden>
             <motion.span
               className="gw-blog-showcase__progress-bar"
@@ -270,20 +270,36 @@ export default function GwBlogSection({ sectionId }: { sectionId: string }) {
             />
           </div>
 
-          <div className="gw-blog-showcase__thumbs" role="tablist" aria-label="Select article">
-            {aviationBlogPosts.map((post, i) => (
-              <button
-                key={post.to}
-                type="button"
-                role="tab"
-                aria-selected={i === active}
-                className={`gw-blog-showcase__thumb${i === active ? ' is-active' : ''}`}
-                onClick={() => goTo(i)}
-              >
-                <span className="gw-blog-showcase__thumb-tag">{post.tag}</span>
-                <span className="gw-blog-showcase__thumb-title">{post.title.trim()}</span>
-              </button>
-            ))}
+          <div className="gw-blog-showcase__thumbs-shell">
+            <div className="gw-blog-showcase__thumbs" role="tablist" aria-label="Select article">
+              {aviationBlogPosts.map((post, i) => (
+                <button
+                  key={post.to}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === active}
+                  className={`gw-blog-showcase__thumb${i === active ? ' is-active' : ''}`}
+                  onClick={() => goTo(i)}
+                >
+                  {i === active ? (
+                    <motion.span
+                      layoutId="gw-blog-thumb-indicator"
+                      className="gw-blog-showcase__thumb-indicator"
+                      transition={{ duration: reduceMotion ? 0.01 : 0.38, ease: [0.22, 1, 0.36, 1] }}
+                      aria-hidden
+                    />
+                  ) : null}
+                  <span className="gw-blog-showcase__thumb-index" aria-hidden>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="gw-blog-showcase__thumb-copy">
+                    <span className="gw-blog-showcase__thumb-tag">{post.tag}</span>
+                    <span className="gw-blog-showcase__thumb-title">{post.title.trim()}</span>
+                  </span>
+                  <ArrowUpRight className="gw-blog-showcase__thumb-arrow" aria-hidden size={16} strokeWidth={2} />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import {
+  ArrowRight,
   Award,
-  Check,
   Eye,
   Globe2,
   Handshake,
@@ -13,13 +14,16 @@ import {
   Users,
 } from 'lucide-react'
 import GwImagePlaceholder from './GwImagePlaceholder'
+import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
+import { AVIATION_ROUTES } from '../../data/globalWingsPage'
 import {
   pilotsClosing,
   pilotsIntro,
   pilotsMissionCards,
   pilotsStats,
   pilotsWhyCards,
+  pilotsWhySection,
 } from '../../data/aviationPilotsPage'
 
 const MISSION_ICONS = {
@@ -94,35 +98,51 @@ export default function GwPilotsPage() {
 
   return (
     <div className="gw-aviation-page gw-pilots-page" ref={pageRef}>
-      <section className="gw-pilots-hero" aria-labelledby="gw-pilots-hero-title">
-        <GwImagePlaceholder variant="hero-bg" className="gw-pilots-hero__bg" label="Insert image here" />
-        <div className="gw-pilots-hero__scrim" aria-hidden />
-        <div className="container gw-pilots-hero__inner">
-          <p className="gw-pilots-hero__eyebrow reveal">Pilots · Global Wings</p>
-          <h1 id="gw-pilots-hero-title" className="gw-pilots-hero__title reveal reveal-delay-1">
-            {pilotsIntro.title}
-          </h1>
-          <p className="gw-pilots-hero__lead reveal reveal-delay-2">{pilotsIntro.paragraphs[0]}</p>
-        </div>
-      </section>
+      <GwPageHero
+        id="gw-pilots-hero-title"
+        eyebrow="Pilots · Global Wings"
+        title={pilotsIntro.title}
+        lead={pilotsIntro.paragraphs[0]}
+        highlights={[
+          { value: 'Global', label: 'Recruitment reach' },
+          { value: 'Trusted', label: 'Airline partners' },
+        ]}
+      />
 
       <main className="gw-main gw-main--pilots" aria-label="Global Wings Pilots">
         <section className="gw-pilots-section gw-pilots-section--intro">
-          <div className="container gw-pilots-intro">
-            <div className="gw-pilots-intro__copy reveal">
-              <p className="gw-pilots-section__eyebrow">{pilotsIntro.eyebrow}</p>
-              <h2 className="gw-pilots-section__title">{pilotsIntro.title}</h2>
-              {pilotsIntro.paragraphs.map((para, i) => (
-                <p key={i} className="gw-pilots-intro__para">
-                  {para}
-                </p>
-              ))}
-            </div>
-            <div className="gw-pilots-intro__media reveal reveal-delay-1">
-              <div className="gw-pilots-intro__frame">
-                <GwImagePlaceholder aspectRatio="4 / 5" label="Insert image here" />
-                <span className="gw-pilots-intro__frame-accent" aria-hidden />
-              </div>
+          <div className="container">
+            <div className="gw-pilots-intro">
+              <article className="gw-pilots-intro__panel gw-pilots-intro__copy reveal">
+                <span className="gw-pilots-intro__panel-accent" aria-hidden />
+                <div className="gw-pilots-intro__panel-inner">
+                  <p className="gw-pilots-section__eyebrow">{pilotsIntro.eyebrow}</p>
+                  <h2 className="gw-pilots-section__title">{pilotsIntro.title}</h2>
+                  <p className="gw-pilots-intro__lead">{pilotsIntro.intro}</p>
+                  <div className="gw-pilots-intro__body">
+                    {pilotsIntro.paragraphs.map((para, i) => (
+                      <p key={i} className="gw-pilots-intro__para">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                  <ul className="gw-pilots-intro__stats" aria-label="Global Wings at a glance">
+                    {pilotsIntro.highlights.map((item) => (
+                      <li key={item.label}>
+                        <span className="gw-pilots-intro__stat-value">{item.value}</span>
+                        <span className="gw-pilots-intro__stat-label">{item.label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+              <article className="gw-pilots-intro__panel gw-pilots-intro__media reveal reveal-delay-1">
+                <span className="gw-pilots-intro__panel-accent" aria-hidden />
+                <div className="gw-pilots-intro__frame">
+                  <GwImagePlaceholder aspectRatio="4 / 5" label="Insert image here" />
+                  <span className="gw-pilots-intro__frame-badge">{pilotsIntro.frameBadge}</span>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -167,27 +187,30 @@ export default function GwPilotsPage() {
         </section>
 
         <section className="gw-pilots-section gw-pilots-section--why" aria-labelledby="gw-pilots-why-title">
-          <div className="container">
-            <header className="gw-pilots-section__header reveal">
-              <p className="gw-pilots-section__eyebrow">Why Choose Global Wings</p>
+          <div className="gw-pilots-why__bg" aria-hidden />
+          <div className="container gw-pilots-why">
+            <header className="gw-pilots-section__header gw-pilots-why__header reveal">
+              <p className="gw-pilots-section__eyebrow">{pilotsWhySection.eyebrow}</p>
               <h2 id="gw-pilots-why-title" className="gw-pilots-section__title">
-                The partner airlines &amp; professionals trust
+                {pilotsWhySection.title}
               </h2>
+              <p className="gw-pilots-why__intro">{pilotsWhySection.intro}</p>
             </header>
             <div className="gw-pilots-why-grid">
               {pilotsWhyCards.map((item, i) => {
                 const Icon = WHY_ICONS[i] ?? Globe2
+                const featured = i < 2
                 return (
                   <article
                     key={item.title}
-                    className={`gw-pilots-why-card reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}
+                    className={`gw-pilots-why-card${featured ? ' gw-pilots-why-card--featured' : ''} reveal reveal-delay-${Math.min((i % 3) + 1, 3)}`}
                   >
-                    <div className="gw-pilots-why-card__head">
-                      <span className="gw-pilots-why-card__check" aria-hidden>
-                        <Check strokeWidth={2.5} />
-                      </span>
+                    <span className="gw-pilots-why-card__index" aria-hidden>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="gw-pilots-why-card__icon-wrap">
                       <Icon className="gw-pilots-why-card__icon" aria-hidden strokeWidth={1.5} />
-                    </div>
+                    </span>
                     <h3 className="gw-pilots-why-card__title">{item.title}</h3>
                     <p className="gw-pilots-why-card__text">{item.text}</p>
                   </article>
@@ -213,19 +236,45 @@ export default function GwPilotsPage() {
         </section>
 
         <section className="gw-pilots-section gw-pilots-section--closing" aria-labelledby="gw-pilots-closing-title">
+          <div className="gw-pilots-closing__bg" aria-hidden />
           <div className="container gw-pilots-closing">
             <div className="gw-pilots-closing__copy reveal">
+              <p className="gw-pilots-closing__eyebrow">{pilotsClosing.eyebrow}</p>
               <h2 id="gw-pilots-closing-title" className="gw-pilots-closing__title">
-                {pilotsClosing.title}
+                {pilotsClosing.title}{' '}
+                <span className="gw-pilots-closing__title-em">{pilotsClosing.titleEmphasis}</span>
               </h2>
               {pilotsClosing.paragraphs.map((para, i) => (
                 <p key={i} className="gw-pilots-closing__para">
                   {para}
                 </p>
               ))}
+              <ul className="gw-pilots-closing__stats" aria-label="Global Wings impact">
+                {pilotsClosing.highlights.map((item) => (
+                  <li key={item.label}>
+                    <span className="gw-pilots-closing__stat-value">{item.value}</span>
+                    <span className="gw-pilots-closing__stat-label">{item.label}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="gw-pilots-closing__actions">
+                <Link to={AVIATION_ROUTES.contact} className="gw-pilots-closing__cta gw-pilots-closing__cta--primary">
+                  <span className="gw-pilots-closing__cta-fill" aria-hidden />
+                  <span className="gw-pilots-closing__cta-label">{pilotsClosing.primaryCta}</span>
+                  <ArrowRight className="gw-pilots-closing__cta-icon" aria-hidden size={16} />
+                </Link>
+                <Link to={AVIATION_ROUTES.jobs} className="gw-pilots-closing__cta gw-pilots-closing__cta--secondary">
+                  <span className="gw-pilots-closing__cta-label">{pilotsClosing.secondaryCta}</span>
+                  <ArrowRight className="gw-pilots-closing__cta-icon" aria-hidden size={16} />
+                </Link>
+              </div>
             </div>
-            <div className="gw-pilots-closing__media reveal reveal-delay-1">
-              <GwImagePlaceholder aspectRatio="16 / 11" label="Insert image here" />
+            <div className="gw-pilots-closing__panel reveal reveal-delay-1">
+              <span className="gw-pilots-closing__panel-accent" aria-hidden />
+              <div className="gw-pilots-closing__media">
+                <GwImagePlaceholder aspectRatio="16 / 11" label="Insert image here" />
+              </div>
+              <p className="gw-pilots-closing__panel-caption">Connecting exceptional talent with leading airlines</p>
             </div>
           </div>
         </section>

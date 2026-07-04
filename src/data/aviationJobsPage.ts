@@ -19,26 +19,85 @@ export const jobsMarkets = {
   title: 'Opportunities Around the World',
   intro:
     'Our recruitment network spans multiple international markets, providing candidates with access to aviation careers across the globe.',
-  label: 'We regularly recruit for opportunities in:',
+  label: 'Markets we actively recruit across',
+  stats: [
+    { value: '35+', label: 'Countries' },
+    { value: '5', label: 'Regions' },
+    { value: '15+', label: 'Years placing talent' },
+  ],
   regions: [
-    'Europe',
-    'Middle East',
-    'Saudi Arabia',
-    'United Arab Emirates',
-    'Asia',
-    'China',
-    'Japan',
-    'Malaysia',
-    'Canada',
-    'South America',
+    {
+      name: 'Europe',
+      code: 'EU',
+      countries: [
+        'United Kingdom',
+        'Germany',
+        'France',
+        'Spain',
+        'Netherlands',
+        'Greece',
+        'Italy',
+        'Ireland',
+        'Portugal',
+        'Scandinavia',
+      ],
+    },
+    {
+      name: 'Middle East',
+      code: 'ME',
+      countries: [
+        'United Arab Emirates',
+        'Saudi Arabia',
+        'Qatar',
+        'Bahrain',
+        'Kuwait',
+        'Oman',
+        'Jordan',
+      ],
+    },
+    {
+      name: 'Asia Pacific',
+      code: 'APAC',
+      countries: [
+        'China',
+        'Japan',
+        'Malaysia',
+        'Singapore',
+        'South Korea',
+        'India',
+        'Thailand',
+        'Indonesia',
+        'Philippines',
+        'Vietnam',
+      ],
+    },
+    {
+      name: 'Americas',
+      code: 'AM',
+      countries: ['Canada', 'United States', 'Brazil', 'Colombia', 'Chile', 'Mexico'],
+    },
+    {
+      name: 'Africa',
+      code: 'AF',
+      countries: ['South Africa', 'Kenya', 'Morocco', 'Nigeria', 'Egypt', 'Tunisia'],
+    },
   ],
   outro:
     'As our airline partnerships continue to grow, new international opportunities become available throughout the year.',
 }
 
+export const jobsPositionsSection = {
+  eyebrow: 'Positions We Recruit For',
+  title: 'Roles across every aviation discipline',
+  intro:
+    'From flight deck command to executive leadership, we recruit across every major aviation function — matching qualified professionals with airlines and operators worldwide.',
+}
+
 export const jobsPositionCategories = [
   {
     title: 'Flight Deck',
+    summary:
+      'Captains, first officers, instructors, and type-rated pilots for scheduled, charter, and training operations.',
     roles: [
       'Captains',
       'First Officers',
@@ -51,6 +110,8 @@ export const jobsPositionCategories = [
   },
   {
     title: 'Cabin Crew',
+    summary:
+      'Front-of-cabin talent for premium carriers — from cabin crew through to senior pursers and cabin managers.',
     roles: [
       'Cabin Crew',
       'Senior Cabin Crew',
@@ -60,6 +121,8 @@ export const jobsPositionCategories = [
   },
   {
     title: 'Engineering',
+    summary:
+      'Licensed engineers, mechanics, and quality specialists supporting line maintenance, MRO, and fleet reliability.',
     roles: [
       'Licensed Aircraft Engineers',
       'Aircraft Mechanics',
@@ -71,6 +134,8 @@ export const jobsPositionCategories = [
   },
   {
     title: 'Operations',
+    summary:
+      'Dispatch, airport, and ground operations professionals keeping networks safe, efficient, and on schedule.',
     roles: [
       'Flight Dispatchers',
       'Operations Controllers',
@@ -81,6 +146,8 @@ export const jobsPositionCategories = [
   },
   {
     title: 'Executive & Management',
+    summary:
+      'Senior leaders and post holders shaping airline strategy, safety culture, and commercial growth.',
     roles: [
       'CEO',
       'COO',
@@ -94,6 +161,18 @@ export const jobsPositionCategories = [
     ],
   },
 ] as const
+
+export const jobsWhySection = {
+  eyebrow: 'Why Choose Global Wings',
+  title: 'Your trusted partner in aviation careers',
+  intro:
+    'From first application to long-term placement — we combine global airline access, deep industry expertise, and dedicated career guidance at every step.',
+  highlights: [
+    { value: '15+', label: 'Years recruiting' },
+    { value: '35+', label: 'Markets covered' },
+    { value: 'End-to-end', label: 'Career support' },
+  ],
+}
 
 export const jobsWhyCards = [
   {
@@ -144,10 +223,29 @@ export const jobsTalentNetwork = {
 
 export const jobsClosing = {
   title: 'Ready to Take Off?',
+  titleEmphasis: 'Submit your CV.',
   paragraphs: [
     'Whether you\'re an experienced aviation professional or looking for your next international opportunity, Global Wings Ltd is here to help you reach new heights.',
     'Join thousands of aviation professionals who trust Global Wings to advance their careers.',
   ],
-  primaryCta: 'Submit Your CV',
   secondaryCta: 'View Current Vacancies',
+}
+
+export const jobsCvForm = {
+  eyebrow: 'Talent Network',
+  title: 'Submit your CV',
+  intro: 'Upload your résumé and join the Global Wings talent database. Our recruitment team will contact you when suitable opportunities arise.',
+  acceptedFormats: 'PDF, Word (.doc, .docx), ODT, or RTF — maximum 4 MB',
+  successTitle: 'CV received',
+  successMessage:
+    'Thank you — your application has been sent to our recruitment team. We will review your profile and be in touch when a suitable opportunity arises.',
+  roleOptions: [
+    'Pilot',
+    'Cabin Crew',
+    'Flight Engineer',
+    'Operations / Ground Staff',
+    'Management / Executive',
+    'Other aviation role',
+  ],
+  defaultMessage: 'I would like to join the Global Wings Talent Network and be considered for aviation opportunities.',
 }

@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import GwImagePlaceholder from './GwImagePlaceholder'
+import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
 import {
   aviationSectionSlugs,
@@ -24,12 +25,15 @@ export default function GwAviationSectionPage() {
 
   return (
     <div className="gw-aviation-page gw-aviation-page--section" ref={pageRef}>
+      <GwPageHero
+        eyebrow="Global Wings Ltd"
+        title={section.heading}
+        subtitle={`Resources and information for ${section.title}.`}
+      />
+
       <main className="gw-main gw-main--section" aria-label={section.title}>
         <section className="gw-section gw-section--about">
           <div className="container">
-            <header className="gw-section__header reveal">
-              <h1 className="gw-section__title">{section.heading}</h1>
-            </header>
             <div className="gw-section-shell reveal reveal-delay-1">
               <GwImagePlaceholder aspectRatio="16 / 7" label="Insert image here" />
               <p className="gw-section-shell__note">
