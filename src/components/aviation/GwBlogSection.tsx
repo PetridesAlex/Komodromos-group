@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import GwSectionHeader from './GwSectionHeader'
 import GwImagePlaceholder from './GwImagePlaceholder'
 import { aviationBlogPosts, type AviationBlogPost } from '../../data/globalWingsPage'
 
@@ -207,19 +208,13 @@ export default function GwBlogSection({ sectionId }: { sectionId: string }) {
       <div className="gw-blog-section__bg" aria-hidden />
 
       <div className="container">
-        <motion.header
-          className="gw-section__header gw-blog-section__header"
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="gw-blog-section__eyebrow">Latest insights</span>
-          <h2 className="gw-section__title gw-blog-section__title">Blog Posts</h2>
-          <p className="gw-blog-section__intro">
-            Industry perspectives, service updates, and guidance from the Global Wings team.
-          </p>
-        </motion.header>
+        <GwSectionHeader
+          className="gw-blog-section__header"
+          variant="dark"
+          eyebrow="Latest insights"
+          title="Blog Posts"
+          intro="Industry perspectives, service updates, and guidance from the Global Wings team."
+        />
       </div>
 
       <div className="gw-blog-showcase" aria-roledescription="carousel" aria-label="Blog posts">

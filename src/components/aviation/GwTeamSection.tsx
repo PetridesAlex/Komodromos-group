@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Rss } from 'lucide-react'
+import GwSectionHeader from './GwSectionHeader'
 import GwImagePlaceholder from './GwImagePlaceholder'
 import { gwSocialLinks, gwTeamMembers, type GwTeamMember } from '../../data/globalWingsPage'
 
@@ -168,19 +169,12 @@ export default function GwTeamSection({ sectionId }: { sectionId: string }) {
   return (
     <section id={sectionId} className="gw-section gw-section--team">
       <div className="container">
-        <motion.header
-          className="gw-section__header gw-team-section__header"
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="gw-team-section__eyebrow">Leadership &amp; expertise</span>
-          <h2 className="gw-section__title">Our Team</h2>
-          <p className="gw-team-section__intro">
-            Experienced aviation professionals dedicated to connecting talent with opportunity worldwide.
-          </p>
-        </motion.header>
+        <GwSectionHeader
+          className="gw-team-section__header"
+          eyebrow="Leadership & expertise"
+          title="Our Team"
+          intro="Experienced aviation professionals dedicated to connecting talent with opportunity worldwide."
+        />
       </div>
 
       <div className="gw-section__bleed gw-team-grid">

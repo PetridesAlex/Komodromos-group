@@ -50,33 +50,39 @@ export const aviationSubNavItems: AviationNavItem[] = [
   { label: 'GLOBALCADET PROGRAMME', shortLabel: 'Cadet', to: AVIATION_ROUTES.cadet },
 ]
 
-export type GwHeroSlide =
-  | { type: 'logo' }
-  | { type: 'banner' }
-  | { type: 'text'; title: string; subtitle: string }
-  | { type: 'image-only'; ctaVariant: 'primary' | 'secondary' }
+export type GwHeroMessage = {
+  eyebrow: string
+  title: string
+  subtitle: string
+}
 
 export const gwHeroCta = {
   label: 'Explore our services',
 }
 
-export const gwHeroSlides: GwHeroSlide[] = [
-  { type: 'logo' },
-  { type: 'banner' },
+export const gwHeroMessages: GwHeroMessage[] = [
   {
-    type: 'text',
+    eyebrow: 'Global Wings Ltd · Aviation Agency',
     title: 'Global Wings Ltd | Aviation Agency',
     subtitle: 'The new way of success',
   },
-  { type: 'image-only', ctaVariant: 'secondary' },
   {
-    type: 'text',
-    title: 'Global Wings Ltd | Aviation Agency',
-    subtitle: 'The new way of success',
+    eyebrow: 'Aviation Recruitment & Training',
+    title: 'Your aviation career starts here',
+    subtitle: 'Connecting professionals with leading airlines worldwide',
   },
 ]
 
+/** Hero caption cycle — video clear, then message, then repeat. */
+export const gwHeroCycle = {
+  videoClearMs: 3200,
+  captionVisibleMs: 4800,
+  fadeMs: 650,
+} as const
+
 export const AVIATION_YOUTUBE_VIDEO_ID = 'ufzgub092ks'
+
+export const AVIATION_YOUTUBE_WATCH_URL = `https://www.youtube.com/watch?v=${AVIATION_YOUTUBE_VIDEO_ID}`
 
 export const AVIATION_YOUTUBE_EMBED = `https://www.youtube-nocookie.com/embed/${AVIATION_YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1&playsinline=1&color=white`
 
@@ -85,6 +91,8 @@ export const gwAboutSection = {
   title: 'About Global Wings',
   intro:
     'Global Wings Ltd connects airlines with qualified flight and cabin crew worldwide — delivering trusted recruitment, training, and operational support with uncompromising professionalism.',
+  body:
+    'From airline partnerships to cadet pathways, we support aviation professionals and operators at every stage — with discretion, speed, and deep industry expertise.',
   highlights: [
     { value: '15+', label: 'Years experience' },
     { value: 'Global', label: 'Recruitment reach' },
@@ -96,7 +104,10 @@ export const gwAboutSection = {
     'Training & type ratings',
     'Executive aviation search',
   ],
-  videoCaption: 'Discover how Global Wings connects aviation talent with opportunity worldwide.',
+  filmBadge: 'Company film',
+  filmLead: 'Discover how Global Wings connects aviation talent with opportunity worldwide.',
+  filmLinkLabel: 'Watch our story',
+  filmLinkHint: 'Opens on YouTube',
 }
 
 export type AviationServiceCard = {

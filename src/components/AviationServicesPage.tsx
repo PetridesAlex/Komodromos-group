@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import GwAboutSection from './aviation/GwAboutSection'
+import GwSectionHeader from './aviation/GwSectionHeader'
 import GwBlogSection from './aviation/GwBlogSection'
 import GwHeroCarousel from './aviation/GwHeroCarousel'
 import GwImagePlaceholder from './aviation/GwImagePlaceholder'
@@ -9,9 +11,7 @@ import GwTeamSection from './aviation/GwTeamSection'
 import { useReveal } from '../hooks/useReveal'
 import {
   AVIATION_SECTIONS,
-  AVIATION_YOUTUBE_EMBED,
   AVIATION_ROUTES,
-  gwAboutSection,
   gwClosingCta,
   gwClientCount,
   gwLeaderSection,
@@ -89,70 +89,18 @@ export default function AviationServicesPage() {
       <GwHeroCarousel />
 
       <main className="gw-main" aria-label="Aviation Agency Services">
-        <section id={AVIATION_SECTIONS.about} className="gw-section gw-section--about">
-          <div className="container">
-            <div className="gw-about">
-              <div className="gw-about__layout">
-                <article className="gw-about__panel gw-about__panel--copy reveal">
-                  <div className="gw-about__panel-accent" aria-hidden />
-                  <div className="gw-about__panel-inner">
-                    <span className="gw-about__eyebrow">{gwAboutSection.eyebrow}</span>
-                    <h2 className="gw-about__title">{gwAboutSection.title}</h2>
-                    <p className="gw-about__intro">{gwAboutSection.intro}</p>
-
-                    <ul className="gw-about__highlights" aria-label="Company highlights">
-                      {gwAboutSection.highlights.map((item) => (
-                        <li key={item.label}>
-                          <span className="gw-about__highlight-value">{item.value}</span>
-                          <span className="gw-about__highlight-label">{item.label}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <ul className="gw-about__capabilities" aria-label="Core capabilities">
-                      {gwAboutSection.capabilities.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-
-                <article className="gw-about__panel gw-about__panel--media reveal reveal-delay-1">
-                  <div className="gw-about__panel-accent" aria-hidden />
-                  <div className="gw-about__media-inner">
-                    <div className="gw-about__video-label">
-                      <span className="gw-about__video-badge">Company overview</span>
-                      <p className="gw-about__video-caption">{gwAboutSection.videoCaption}</p>
-                    </div>
-                    <div className="gw-video gw-video--about">
-                      <div className="gw-video__shell" aria-hidden>
-                        <div className="gw-video__accent" />
-                      </div>
-                      <div className="gw-video__frame">
-                        <iframe
-                          src={AVIATION_YOUTUBE_EMBED}
-                          title="About Global Wings Ltd — company overview"
-                          loading="eager"
-                          referrerPolicy="strict-origin-when-cross-origin"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
+        <GwAboutSection sectionId={AVIATION_SECTIONS.about} />
 
         <GwServicesSection sectionId={AVIATION_SECTIONS.services} />
 
         <section id={AVIATION_SECTIONS.clients} className="gw-section gw-section--clients">
           <div className="container">
-            <header className="gw-section__header reveal">
-              <h2 className="gw-section__title">Our Clients</h2>
-            </header>
+            <GwSectionHeader
+              className="gw-clients-section__header"
+              eyebrow="Trusted partnerships"
+              title="Our Clients"
+              intro="Leading airlines and aviation operators who rely on Global Wings for recruitment, staffing, and career programmes worldwide."
+            />
           </div>
           <div className="gw-section__bleed gw-clients-grid">
             {Array.from({ length: gwClientCount }, (_, i) => (

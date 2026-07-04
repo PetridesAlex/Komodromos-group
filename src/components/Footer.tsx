@@ -45,33 +45,36 @@ export default function Footer() {
         </div>
 
         <div className="footer2-actions">
-          {footerLinks.map((link, i) => (
-            <span key={link.label}>
-              <Link to={link.to}>{link.label}</Link>
-              {i < footerLinks.length - 1 && (
-                <span className="footer2-sep">&mdash;</span>
-              )}
-            </span>
+          {footerLinks.map((link) => (
+            <Link key={link.label} to={link.to} className="footer2-actions__link">
+              <span className="footer2-actions__fill" aria-hidden />
+              <span className="footer2-actions__label">{link.label}</span>
+            </Link>
           ))}
         </div>
 
         <div className="footer2-socials">
           {socialLinks.map((s) => (
-            <a key={s.label} href={s.href} aria-label={s.label}>
-              {s.svg}
+            <a key={s.label} href={s.href} className="footer2-socials__link" aria-label={s.label}>
+              <span className="footer2-socials__icon">{s.svg}</span>
             </a>
           ))}
         </div>
 
         <div className="footer2-bottom">
-          <span>{t('footer.copyright')}</span>
-          <span className="footer2-tagline">
-            {t('footer.tagline1')}
-            <br />
-            {t('footer.tagline2')}
-            <br />
-            {t('footer.tagline3')}
-          </span>
+          <div className="footer2-bottom__left">
+            <span className="footer2-bottom__copy">{t('footer.copyright')}</span>
+          </div>
+          <span className="footer2-bottom__rule" aria-hidden />
+          <div className="footer2-bottom__right">
+            <span className="footer2-tagline">
+              <span className="footer2-tagline__line">{t('footer.tagline1')}</span>
+              <span className="footer2-tagline__line">{t('footer.tagline2')}</span>
+              <span className="footer2-tagline__line footer2-tagline__line--accent">
+                {t('footer.tagline3')}
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </footer>

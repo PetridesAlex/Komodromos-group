@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Plane } from 'lucide-react'
 import { gwSubNavBrand } from '../../data/globalWingsPage'
+import { prefetchGwHeroVideo } from '../../lib/gwHeroVideo'
 
 const DURATION_MS = 3000
 const TICK_MS = 40
@@ -17,6 +18,7 @@ export default function GwAviationPreloader({ onDone }: Props) {
   const finishedRef = useRef(false)
 
   useEffect(() => {
+    prefetchGwHeroVideo()
     document.documentElement.style.overflow = 'hidden'
     document.body.style.overflow = 'hidden'
 

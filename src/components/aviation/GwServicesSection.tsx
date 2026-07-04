@@ -2,6 +2,7 @@ import type { LucideIcon } from 'lucide-react'
 import { ArrowUpRight, Briefcase, Building2, GraduationCap, PlaneTakeoff } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Link } from 'react-router-dom'
+import GwSectionHeader from './GwSectionHeader'
 import GwImagePlaceholder from './GwImagePlaceholder'
 import { aviationServiceCards, type AviationServiceCard } from '../../data/globalWingsPage'
 
@@ -81,20 +82,12 @@ export default function GwServicesSection({ sectionId }: { sectionId: string }) 
     <section id={sectionId} className="gw-section gw-section--services">
       <div className="gw-services-section__bg" aria-hidden />
       <div className="container">
-        <motion.header
-          className="gw-section__header gw-services-section__header"
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="gw-services-section__eyebrow">What we offer</span>
-          <h2 className="gw-section__title">Our Services</h2>
-          <p className="gw-services-section__intro">
-            End-to-end aviation solutions — from pilot recruitment and airline staffing to global careers and
-            professional training.
-          </p>
-        </motion.header>
+        <GwSectionHeader
+          className="gw-services-section__header"
+          eyebrow="What we offer"
+          title="Our Services"
+          intro="End-to-end aviation solutions — from pilot recruitment and airline staffing to global careers and professional training."
+        />
       </div>
 
       <div className="gw-section__bleed gw-services-grid">
