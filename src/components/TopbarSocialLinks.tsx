@@ -82,23 +82,47 @@ export default function TopbarSocialLinks({ variant }: Props) {
           transition={{ duration: 0.38, ease: EASE }}
         >
           <div className="social-assistant-panel__shine" aria-hidden />
+          <div className="social-assistant-panel__head-glow" aria-hidden />
           <header className="social-assistant-panel__head">
-            <div className="social-assistant-panel__agent">
+            <motion.div
+              className="social-assistant-panel__agent"
+              initial={reduceMotion ? false : { opacity: 0, scale: 0.82 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.36, ease: EASE }}
+            >
               <span className="social-assistant-panel__agent-ring" aria-hidden />
+              <span className="social-assistant-panel__agent-ring social-assistant-panel__agent-ring--pulse" aria-hidden />
               <span className="social-assistant-panel__agent-icon">
-                <Headset size={16} strokeWidth={2} aria-hidden />
+                <Headset size={18} strokeWidth={2.25} aria-hidden />
               </span>
               <span className="social-assistant-panel__status" aria-hidden />
-            </div>
+            </motion.div>
             <div className="social-assistant-panel__intro">
-              <p className="social-assistant-panel__eyebrow">
-                <Sparkles size={11} strokeWidth={2.25} aria-hidden />
+              <motion.p
+                className="social-assistant-panel__eyebrow"
+                initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.32, delay: reduceMotion ? 0 : 0.06, ease: EASE }}
+              >
+                <Sparkles size={12} strokeWidth={2.25} aria-hidden />
                 Connection desk
-              </p>
-              <p className="social-assistant-panel__greeting">{greeting}</p>
-              <p className="social-assistant-panel__lead">
+              </motion.p>
+              <motion.p
+                className="social-assistant-panel__greeting"
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.36, delay: reduceMotion ? 0 : 0.12, ease: EASE }}
+              >
+                {greeting}
+              </motion.p>
+              <motion.p
+                className="social-assistant-panel__lead"
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.36, delay: reduceMotion ? 0 : 0.18, ease: EASE }}
+              >
                 Choose a channel — our team responds with discretion.
-              </p>
+              </motion.p>
             </div>
           </header>
 
