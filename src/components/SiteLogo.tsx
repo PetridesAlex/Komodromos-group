@@ -1,5 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { MAIN_LOGO } from '../data/mainLogo'
+import { GROUP_SITE_URL } from '../seo/domainRegistry'
+import { useSiteContext } from '../seo/SiteContext'
 
 type SiteLogoProps = {
   /** Router pathname used in the logo link */
@@ -13,6 +15,28 @@ export default function SiteLogo({
   scrollToId = 'home',
 }: SiteLogoProps) {
   const location = useLocation()
+  const { isBrandDomain } = useSiteContext()
+
+  const logoImage = (
+    <img
+      src={MAIN_LOGO.src}
+      alt="Komodromos Group"
+      className="logo__img"
+      width={MAIN_LOGO.width}
+      height={MAIN_LOGO.height}
+      loading="eager"
+      decoding="async"
+      fetchPriority="high"
+    />
+  )
+
+  if (isBrandDomain) {
+    return (
+      <a href={`${GROUP_SITE_URL}/#${scrollToId}`} className="logo">
+        {logoImage}
+      </a>
+    )
+  }
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (location.pathname !== logoPathname) return
@@ -32,16 +56,7 @@ export default function SiteLogo({
       className="logo"
       onClick={handleLogoClick}
     >
-      <img
-        src={MAIN_LOGO.src}
-        alt="Komodromos Group"
-        className="logo__img"
-        width={MAIN_LOGO.width}
-        height={MAIN_LOGO.height}
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-      />
+      {logoImage}
     </Link>
   )
 }
