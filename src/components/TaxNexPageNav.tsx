@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './LanguageSwitcher'
 import { TAX_NEX_FAQ_SECTION_ID } from '../data/taxNexFaqData'
+import { taxPath } from '../lib/brandPaths'
 
 type NavLinkItem = {
   key: string
@@ -43,7 +44,7 @@ export default function TaxNexPageNav() {
 
   const mainLinks: NavLinkItem[] = [
     { key: 'intro', label: t('serviceDetail.intro'), href: '#tax-hero' },
-    { key: 'services', label: t('serviceDetail.services'), href: '/services/tax/services', isRouter: true },
+    { key: 'services', label: t('serviceDetail.services'), href: taxPath('services'), isRouter: true },
     { key: 'packages', label: t('serviceDetail.packages'), href: '#tax-pricing' },
     { key: 'mission', label: t('serviceDetail.mission'), href: '#tax-mission' },
     { key: 'steps', label: t('serviceDetail.steps'), href: '#tax-steps' },
@@ -52,7 +53,7 @@ export default function TaxNexPageNav() {
     {
       key: 'faq',
       label: t('serviceDetail.faq'),
-      href: `/services/tax#${TAX_NEX_FAQ_SECTION_ID}`,
+      href: `${taxPath()}#${TAX_NEX_FAQ_SECTION_ID}`,
       isRouter: true,
     },
     { key: 'updates', label: t('serviceDetail.updates'), href: '#tax-newsletter' },
@@ -63,26 +64,26 @@ export default function TaxNexPageNav() {
     {
       key: 'income-calc',
       label: t('serviceDetail.incomeTaxCalc'),
-      href: '/services/tax/income-tax-calculator',
+      href: taxPath('income-tax-calculator'),
       isRouter: true,
     },
     { key: 'residence', label: t('serviceDetail.taxResidenceCheck'), href: '#tax-tools' },
     {
       key: 'transfer',
       label: t('serviceDetail.transferFeesCalc'),
-      href: '/services/tax/transfer-fees-calculator',
+      href: taxPath('transfer-fees-calculator'),
       isRouter: true,
     },
     {
       key: 'exemption-20',
       label: t('serviceDetail.taxExemption20'),
-      href: '/services/tax/income-tax-calculator',
+      href: taxPath('income-tax-calculator'),
       isRouter: true,
     },
     {
       key: 'exemption-50',
       label: t('serviceDetail.taxExemption50'),
-      href: '/services/tax/income-tax-calculator',
+      href: taxPath('income-tax-calculator'),
       isRouter: true,
     },
     { key: 'td59', label: 'FORM TD59', href: '#tax-tools' },

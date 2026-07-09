@@ -11,7 +11,7 @@ import GwAirlinesRolesSection from './GwAirlinesRolesSection'
 import GwImagePlaceholder from './GwImagePlaceholder'
 import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
-import { AVIATION_ROUTES } from '../../data/globalWingsPage'
+import { getAviationRoutes } from '../../data/globalWingsPage'
 import {
   airlinesClosing,
   airlinesFlightCrew,
@@ -163,7 +163,7 @@ export default function GwAirlineServicesPage() {
                   {para}
                 </p>
               ))}
-              <Link to={AVIATION_ROUTES.contact} className="gw-airlines-closing__cta">
+              <Link to={getAviationRoutes().contact} className="gw-airlines-closing__cta">
                 <span className="gw-airlines-closing__cta-fill" aria-hidden />
                 <span className="gw-airlines-closing__cta-label">Contact our team</span>
                 <ArrowRight className="gw-airlines-closing__cta-icon" aria-hidden size={16} />

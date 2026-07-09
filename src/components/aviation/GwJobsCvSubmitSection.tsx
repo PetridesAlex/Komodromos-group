@@ -1,7 +1,7 @@
 import { useRef, useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, FileText, Send, Upload, X } from 'lucide-react'
-import { AVIATION_ROUTES } from '../../data/globalWingsPage'
+import { getAviationRoutes } from '../../data/globalWingsPage'
 import { jobsClosing, jobsCvForm } from '../../data/aviationJobsPage'
 import {
   CV_ACCEPTED_EXTENSIONS,
@@ -173,7 +173,7 @@ export default function GwJobsCvSubmitSection() {
             </p>
           ))}
           <Link
-            to={AVIATION_ROUTES.contact}
+            to={getAviationRoutes().contact}
             state={contactVacanciesState}
             className="gw-jobs-closing__link"
           >

@@ -17,7 +17,7 @@ import {
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
-import { AVIATION_ROUTES } from '../../data/globalWingsPage'
+import { getAviationRoutes } from '../../data/globalWingsPage'
 import {
   cadetAssessment,
   cadetBaseTraining,
@@ -266,10 +266,10 @@ export default function GwCadetPage() {
         subtitle={cadetHero.tagline}
         paragraphs={cadetHero.paragraphs}
         actions={[
-          { label: cadetHero.primaryCta, to: AVIATION_ROUTES.contact, variant: 'primary', state: applyState },
+          { label: cadetHero.primaryCta, to: getAviationRoutes().contact, variant: 'primary', state: applyState },
           {
             label: cadetHero.secondaryCta,
-            to: AVIATION_ROUTES.contact,
+            to: getAviationRoutes().contact,
             variant: 'secondary',
             state: advisorState,
           },
@@ -514,10 +514,10 @@ export default function GwCadetPage() {
                 </p>
               ))}
               <div className="gw-cadet-closing__actions">
-                <Link to={AVIATION_ROUTES.contact} state={applyState} className="gw-cadet-closing__btn gw-cadet-closing__btn--primary">
+                <Link to={getAviationRoutes().contact} state={applyState} className="gw-cadet-closing__btn gw-cadet-closing__btn--primary">
                   {cadetClosing.primaryCta}
                 </Link>
-                <Link to={AVIATION_ROUTES.contact} state={advisorState} className="gw-cadet-closing__btn gw-cadet-closing__btn--secondary">
+                <Link to={getAviationRoutes().contact} state={advisorState} className="gw-cadet-closing__btn gw-cadet-closing__btn--secondary">
                   {cadetClosing.secondaryCta}
                 </Link>
               </div>

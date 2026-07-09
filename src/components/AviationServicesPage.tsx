@@ -11,7 +11,7 @@ import GwTeamSection from './aviation/GwTeamSection'
 import { useReveal } from '../hooks/useReveal'
 import {
   AVIATION_SECTIONS,
-  AVIATION_ROUTES,
+  getAviationRoutes,
   gwClosingCta,
   gwClientCount,
   gwLeaderSection,
@@ -184,12 +184,12 @@ export default function AviationServicesPage() {
                 ))}
               </ul>
               <div className="gw-closing__actions">
-                <Link to={AVIATION_ROUTES.contact} className="gw-closing__cta gw-closing__cta--primary">
+                <Link to={getAviationRoutes().contact} className="gw-closing__cta gw-closing__cta--primary">
                   <span className="gw-closing__cta-fill" aria-hidden />
                   <span className="gw-closing__cta-label">{gwClosingCta.primaryCta}</span>
                   <ArrowRight className="gw-closing__cta-icon" aria-hidden size={16} />
                 </Link>
-                <Link to={`${AVIATION_ROUTES.home}#${AVIATION_SECTIONS.services}`} className="gw-closing__cta gw-closing__cta--secondary">
+                <Link to={`${getAviationRoutes().home}#${AVIATION_SECTIONS.services}`} className="gw-closing__cta gw-closing__cta--secondary">
                   <span className="gw-closing__cta-label">{gwClosingCta.secondaryCta}</span>
                   <ArrowRight className="gw-closing__cta-icon" aria-hidden size={16} />
                 </Link>

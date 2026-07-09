@@ -13,7 +13,7 @@ import GwJobsCvSubmitSection from './GwJobsCvSubmitSection'
 import GwJobsPositionsSection from './GwJobsPositionsSection'
 import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
-import { AVIATION_ROUTES } from '../../data/globalWingsPage'
+import { getAviationRoutes } from '../../data/globalWingsPage'
 import {
   jobsCareerIntro,
   jobsHero,
@@ -209,7 +209,7 @@ export default function GwAviationJobsPage() {
                   {para}
                 </p>
               ))}
-              <Link to={AVIATION_ROUTES.contact} state={contactCvState} className="gw-jobs-network__cta">
+              <Link to={getAviationRoutes().contact} state={contactCvState} className="gw-jobs-network__cta">
                 Submit Your CV
                 <ArrowRight aria-hidden size={16} />
               </Link>

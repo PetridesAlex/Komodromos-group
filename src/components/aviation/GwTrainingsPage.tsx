@@ -15,7 +15,7 @@ import GwPageHero from './GwPageHero'
 import GwTrainingsServicesSection from './GwTrainingsServicesSection'
 import GwTrainingsTimelineSection from './GwTrainingsTimelineSection'
 import { useReveal } from '../../hooks/useReveal'
-import { AVIATION_ROUTES } from '../../data/globalWingsPage'
+import { getAviationRoutes } from '../../data/globalWingsPage'
 import {
   captainProgram,
   lineTrainingProgram,
@@ -257,12 +257,12 @@ export default function GwTrainingsPage() {
                 ))}
               </ul>
               <div className="gw-trainings-closing__actions">
-                <Link to={AVIATION_ROUTES.contact} state={applyState} className="gw-trainings-closing__cta gw-trainings-closing__cta--primary">
+                <Link to={getAviationRoutes().contact} state={applyState} className="gw-trainings-closing__cta gw-trainings-closing__cta--primary">
                   <span className="gw-trainings-closing__cta-fill" aria-hidden />
                   <span className="gw-trainings-closing__cta-label">{trainingsClosing.primaryCta}</span>
                   <ArrowRight className="gw-trainings-closing__cta-icon" aria-hidden size={16} />
                 </Link>
-                <Link to={AVIATION_ROUTES.contact} state={advisorState} className="gw-trainings-closing__cta gw-trainings-closing__cta--secondary">
+                <Link to={getAviationRoutes().contact} state={advisorState} className="gw-trainings-closing__cta gw-trainings-closing__cta--secondary">
                   <span className="gw-trainings-closing__cta-label">{trainingsClosing.secondaryCta}</span>
                   <ArrowRight className="gw-trainings-closing__cta-icon" aria-hidden size={16} />
                 </Link>

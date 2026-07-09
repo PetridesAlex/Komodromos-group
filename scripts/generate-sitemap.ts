@@ -1,7 +1,11 @@
 import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { getIndexableSeoRoutes, getSeoAllowlistPaths } from '../src/seo/routes.ts'
-import { SITE_URL } from '../src/seo/siteConfig.ts'
+import {
+  BRAND_DOMAINS,
+  GROUP_SITE_URL,
+  internalPathToBrandPath,
+} from '../src/seo/domainRegistry.ts'
 
 const root = resolve(import.meta.dirname, '..')
 const lastmod = new Date().toISOString().slice(0, 10)
@@ -9,26 +13,86 @@ const lastmod = new Date().toISOString().slice(0, 10)
 const indexableRoutes = getIndexableSeoRoutes()
 const allowlistPaths = getSeoAllowlistPaths()
 
-const sitemapEntries = indexableRoutes
-  .map((entry) => {
-    const priority = entry.priority ?? 0.6
-    const changefreq = entry.changefreq ?? 'monthly'
-    return `  <url>
-    <loc>${SITE_URL}${entry.path === '/' ? '' : entry.path}</loc>
+function buildUrlEntry(siteUrl: string, path: string, priority = 0.6, changefreq = 'monthly') {
+  const loc = `${siteUrl}${path === '/' ? '' : path}`
+  return `  <url>
+    <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority.toFixed(1)}</priority>
   </url>`
-  })
-  .join('\n')
+}
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+function buildSitemap(siteUrl: string, entries: string[]) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapEntries}
+${entries.join('\n')}
 </urlset>
 `
+}
 
-writeFileSync(resolve(root, 'public/sitemap.xml'), sitemap, 'utf8')
+const groupEntries = indexableRoutes.map((entry) =>
+  buildUrlEntry(
+    GROUP_SITE_URL,
+    entry.path,
+    entry.priority ?? 0.6,
+    entry.changefreq ?? 'monthly',
+  ),
+)
+
+const brandSitemaps: Array<{ filename: string; siteUrl: string; entries: string[] }> = []
+
+for (const brand of BRAND_DOMAINS) {
+  const siteUrl = `https://${brand.host}`
+  const entries = indexableRoutes
+    .filter((entry) => entry.path === brand.basePath || entry.path.startsWith(`${brand.basePath}/`))
+    .map((entry) =>
+      buildUrlEntry(
+        siteUrl,
+        internalPathToBrandPath(entry.path, brand),
+        entry.priority ?? 0.6,
+        entry.changefreq ?? 'monthly',
+      ),
+    )
+
+  if (entries.length > 0) {
+    brandSitemaps.push({
+      filename: `sitemap-${brand.slug}.xml`,
+      siteUrl,
+      entries,
+    })
+  }
+}
+
+writeFileSync(resolve(root, 'public/sitemap-group.xml'), buildSitemap(GROUP_SITE_URL, groupEntries), 'utf8')
+
+for (const brandSitemap of brandSitemaps) {
+  writeFileSync(
+    resolve(root, `public/${brandSitemap.filename}`),
+    buildSitemap(brandSitemap.siteUrl, brandSitemap.entries),
+    'utf8',
+  )
+}
+
+const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${GROUP_SITE_URL}/sitemap-group.xml</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+${brandSitemaps
+  .map(
+    (brandSitemap) => `  <sitemap>
+    <loc>${brandSitemap.siteUrl}/${brandSitemap.filename}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>`,
+  )
+  .join('\n')}
+</sitemapindex>
+`
+
+writeFileSync(resolve(root, 'public/sitemap.xml'), sitemapIndex, 'utf8')
+
 writeFileSync(
   resolve(root, 'public/seo-allowlist.json'),
   JSON.stringify(allowlistPaths, null, 2),
@@ -40,4 +104,19 @@ writeFileSync(
   'utf8',
 )
 
-console.log(`Generated sitemap with ${indexableRoutes.length} URLs and allowlist with ${allowlistPaths.length} paths.`)
+writeFileSync(
+  resolve(root, 'public/robots.txt'),
+  `User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: ${GROUP_SITE_URL}/sitemap.xml
+Sitemap: https://www.global-wings.co/sitemap-aviation.xml
+Sitemap: https://www.taxnexcy.com/sitemap-tax.xml
+`,
+  'utf8',
+)
+
+console.log(
+  `Generated sitemap index, ${brandSitemaps.length + 1} sitemap files, and allowlist with ${allowlistPaths.length} paths.`,
+)

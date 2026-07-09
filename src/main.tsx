@@ -1,68 +1,20 @@
 import { StrictMode, useState, useCallback, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import './i18n'
 import './index.css'
 import './tailwind.css'
-import KomodromosGroupHomePage from './components/KomodromosGroupHomePage.tsx'
-import ContactPage from './components/ContactPage.tsx'
-import ServiceDetailPage from './components/ServiceDetailPage.tsx'
-import WeddingServicesPage from './components/WeddingServicesPage.tsx'
-import WeddingPackageDetailPage from './components/WeddingPackageDetailPage.tsx'
-import BusinessConsultingPage from './components/BusinessConsultingPage.tsx'
-import PoolGardenServicesPage from './components/PoolGardenServicesPage.tsx'
-import PoolCategoryDetailPage from './components/PoolCategoryDetailPage.tsx'
-import AviationServicesPage from './components/AviationServicesPage.tsx'
-import GwCadetPage from './components/aviation/GwCadetPage.tsx'
-import GwContactPage from './components/aviation/GwContactPage.tsx'
-import GwAviationLayout from './components/aviation/GwAviationLayout.tsx'
-import GwAviationSectionPage from './components/aviation/GwAviationSectionPage.tsx'
-import GwPilotsPage from './components/aviation/GwPilotsPage.tsx'
-import GwAirlineServicesPage from './components/aviation/GwAirlineServicesPage.tsx'
-import GwAviationJobsPage from './components/aviation/GwAviationJobsPage.tsx'
-import GwTrainingsPage from './components/aviation/GwTrainingsPage.tsx'
-import AirServicesPage from './components/AirServicesPage.tsx'
-import AirCategoryPage from './components/AirCategoryPage.tsx'
-import PrivateJetFleetPage from './components/air/PrivateJetFleetPage.tsx'
-import PrivateJetFleetDetailPage from './components/air/PrivateJetFleetDetailPage.tsx'
-import LightAircraftFleetPage from './components/air/LightAircraftFleetPage.tsx'
-import LightAircraftFleetDetailPage from './components/air/LightAircraftFleetDetailPage.tsx'
-import LincolnLimousineDetailPage from './components/LincolnLimousineDetailPage.tsx'
-import LimousineDetailPage from './components/LimousineDetailPage.tsx'
-import LimousinesExperiencesPage from './components/LimousinesExperiencesPage.tsx'
-import VipSecurityProtectionPage from './components/VipSecurityProtectionPage.tsx'
-import VipTourIslandPage from './components/VipTourIslandPage.tsx'
-import YachtChartersPage from './components/yacht-charters/YachtChartersPage.tsx'
-import YachtDetailPage from './components/yacht-charters/YachtDetailPage.tsx'
-import TaxHowToTicPage from './components/TaxHowToTicPage.tsx'
-import TaxTaxResidenceCertificatePage from './components/TaxTaxResidenceCertificatePage.tsx'
-import TaxNonDomCertificatePage from './components/TaxNonDomCertificatePage.tsx'
-import TaxClearancesPage from './components/TaxClearancesPage.tsx'
-import TaxPaymentSupportPage from './components/TaxPaymentSupportPage.tsx'
-import TaxTransferFeesCalculatorPage from './components/TaxTransferFeesCalculatorPage.tsx'
-import TaxIncomeCalculatorPage from './components/TaxIncomeCalculatorPage.tsx'
-import TaxServicesOverviewPage from './components/TaxServicesOverviewPage.tsx'
-import TaxCompanyRegistrationPage from './components/TaxCompanyRegistrationPage.tsx'
-import TaxOfficeSecretarialPage from './components/TaxOfficeSecretarialPage.tsx'
-import TaxisNetService from './pages/TaxisNetService.tsx'
-import AstrealDevelopersPage from './components/AstrealDevelopersPage.tsx'
-import AstrealAboutPage from './components/AstrealAboutPage.tsx'
-import AstrealInvestCyprusPage from './components/AstrealInvestCyprusPage.tsx'
-import AstrealOurServicesPage from './components/AstrealOurServicesPage.tsx'
-import AstrealProjectDetailPage from './components/AstrealProjectDetailPage.tsx'
-import StorageUnitSpecificationsPage from './components/StorageUnitSpecificationsPage.tsx'
-import StorageTipDetailPage from './components/StorageTipDetailPage.tsx'
-import StorageExtraServicesPage from './components/StorageExtraServicesPage.tsx'
 import Preloader from './components/Preloader.tsx'
 import NavigationPathSync from './components/NavigationPathSync.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
 import HeroParallaxEffect from './components/HeroParallaxEffect.tsx'
 import SectionLedScroll from './components/SectionLedScroll.tsx'
-import NotFoundPage from './components/NotFoundPage.tsx'
 import ServiceMaintenanceGate from './components/ServiceMaintenanceGate.tsx'
 import SeoManager, { SeoOverrideProvider } from './seo/SeoManager.tsx'
+import { SiteContextProvider } from './seo/SiteContext.tsx'
+import { AppRoutes } from './components/AppRoutes.tsx'
 
 function Root() {
   const [loaded, setLoaded] = useState(false)
@@ -84,78 +36,19 @@ function Root() {
       {!loaded && <Preloader onDone={handleDone} />}
       <div style={loaded ? undefined : { display: 'none' }}>
         <BrowserRouter>
-          <NavigationPathSync />
-          <SeoOverrideProvider>
-            <SeoManager />
-            <SectionLedScroll />
-            <ServiceMaintenanceGate>
-            <Routes>
-            <Route path="/" element={<KomodromosGroupHomePage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/services/wedding" element={<WeddingServicesPage />} />
-            <Route path="/services/wedding/packages/:packageId" element={<WeddingPackageDetailPage />} />
-            <Route path="/services/consulting" element={<BusinessConsultingPage />} />
-            <Route path="/services/pool" element={<PoolGardenServicesPage />} />
-            <Route path="/services/pool/categories/:categoryId" element={<PoolCategoryDetailPage />} />
-            <Route path="/services/pool/services/:serviceId" element={<PoolCategoryDetailPage />} />
-            <Route path="/services/pool/linings/:liningId" element={<PoolCategoryDetailPage />} />
-            <Route path="/services/aviation" element={<GwAviationLayout />}>
-              <Route index element={<AviationServicesPage />} />
-              <Route path="pilots" element={<GwPilotsPage />} />
-              <Route path="airlines" element={<GwAirlineServicesPage />} />
-              <Route path="jobs" element={<GwAviationJobsPage />} />
-              <Route path="trainings" element={<GwTrainingsPage />} />
-              <Route path="contact" element={<GwContactPage />} />
-              <Route path="cadet-programme" element={<GwCadetPage />} />
-              <Route path=":sectionSlug" element={<GwAviationSectionPage />} />
-            </Route>
-            <Route path="/services/air" element={<AirServicesPage />} />
-            <Route path="/services/air/private-jets/fleet" element={<PrivateJetFleetPage />} />
-            <Route path="/services/air/private-jets/fleet/:aircraftId" element={<PrivateJetFleetDetailPage />} />
-            <Route path="/services/air/light-aircraft/fleet" element={<LightAircraftFleetPage />} />
-            <Route path="/services/air/light-aircraft/fleet/:aircraftId" element={<LightAircraftFleetDetailPage />} />
-            <Route path="/services/air/:categorySlug" element={<AirCategoryPage />} />
-            <Route
-              path="/services/limousines-experiences/chrysler-300-super-stretch"
-              element={<LimousineDetailPage />}
-            />
-            <Route
-              path="/services/limousines-experiences/lincoln-30ft-stretched"
-              element={<LincolnLimousineDetailPage />}
-            />
-            <Route path="/services/limousines-experiences" element={<LimousinesExperiencesPage />} />
-            <Route path="/services/vip-security-protection" element={<VipSecurityProtectionPage />} />
-            <Route path="/services/vip-tour-around-island" element={<VipTourIslandPage />} />
-            <Route path="/services/yacht-charters/:yachtId" element={<YachtDetailPage />} />
-            <Route path="/services/yacht-charters" element={<YachtChartersPage />} />
-            <Route path="/services/tax/how-to-get-a-tic" element={<TaxHowToTicPage />} />
-            <Route path="/services/tax/tax-residence-certificate" element={<TaxTaxResidenceCertificatePage />} />
-            <Route path="/services/tax/non-dom-certificate" element={<TaxNonDomCertificatePage />} />
-            <Route path="/services/tax/tax-clearances" element={<TaxClearancesPage />} />
-            <Route path="/services/tax/tax-payment-support" element={<TaxPaymentSupportPage />} />
-            <Route path="/services/tax/transfer-fees-calculator" element={<TaxTransferFeesCalculatorPage />} />
-            <Route path="/services/tax/income-tax-calculator" element={<TaxIncomeCalculatorPage />} />
-            <Route path="/services/tax/taxisnet-application" element={<TaxisNetService />} />
-            <Route path="/services/tax/services" element={<TaxServicesOverviewPage />} />
-            <Route path="/services/tax/company-registration-cyprus" element={<TaxCompanyRegistrationPage />} />
-            <Route path="/services/tax/office-secretarial-services" element={<TaxOfficeSecretarialPage />} />
-            <Route path="/services/astreal/about" element={<AstrealAboutPage />} />
-            <Route path="/services/astreal/invest-in-cyprus" element={<AstrealInvestCyprusPage />} />
-            <Route path="/services/astreal/our-services" element={<AstrealOurServicesPage />} />
-            <Route path="/services/astreal/projects/:projectId" element={<AstrealProjectDetailPage />} />
-            <Route path="/services/astreal" element={<AstrealDevelopersPage />} />
-            <Route path="/services/storage/unit-specifications" element={<StorageUnitSpecificationsPage />} />
-            <Route path="/services/storage/tips/:tipId" element={<StorageTipDetailPage />} />
-            <Route path="/services/storage/extra-services/man-with-van" element={<StorageExtraServicesPage />} />
-            <Route path="/services" element={<Navigate to="/#services" replace />} />
-            <Route path="/services/:slug" element={<ServiceDetailPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-            </ServiceMaintenanceGate>
-          </SeoOverrideProvider>
-          <HeroParallaxEffect />
-          <CookieBanner />
-          <SocialHub />
+          <SiteContextProvider>
+            <NavigationPathSync />
+            <SeoOverrideProvider>
+              <SeoManager />
+              <SectionLedScroll />
+              <ServiceMaintenanceGate>
+                <AppRoutes />
+              </ServiceMaintenanceGate>
+            </SeoOverrideProvider>
+            <HeroParallaxEffect />
+            <CookieBanner />
+            <SocialHub />
+          </SiteContextProvider>
         </BrowserRouter>
       </div>
     </>

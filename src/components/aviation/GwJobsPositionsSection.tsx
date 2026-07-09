@@ -2,7 +2,7 @@ import { useCallback, useId, useState, type KeyboardEvent } from 'react'
 import { ArrowRight, Briefcase, Compass, Plane, Users, Wrench } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Link } from 'react-router-dom'
-import { AVIATION_ROUTES } from '../../data/globalWingsPage'
+import { getAviationRoutes } from '../../data/globalWingsPage'
 import { jobsPositionCategories, jobsPositionsSection } from '../../data/aviationJobsPage'
 
 const POSITION_ICONS = [Plane, Users, Wrench, Compass, Briefcase] as const
@@ -177,7 +177,7 @@ export default function GwJobsPositionsSection() {
                   <p className="gw-jobs-positions__panel-note">
                     Don&apos;t see your exact title? We recruit across adjacent aviation specialisms too.
                   </p>
-                  <Link to={AVIATION_ROUTES.contact} state={contactVacanciesState} className="gw-jobs-positions__cta">
+                  <Link to={getAviationRoutes().contact} state={contactVacanciesState} className="gw-jobs-positions__cta">
                     Discuss your role
                     <ArrowRight aria-hidden size={16} />
                   </Link>

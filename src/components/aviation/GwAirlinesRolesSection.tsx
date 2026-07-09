@@ -2,7 +2,7 @@ import { useCallback, useId, useState, type KeyboardEvent } from 'react'
 import { ArrowRight, Briefcase, Plane, Wrench } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Link } from 'react-router-dom'
-import { AVIATION_ROUTES } from '../../data/globalWingsPage'
+import { getAviationRoutes } from '../../data/globalWingsPage'
 import {
   airlinesRoleCategories,
   airlinesRolesSection,
@@ -165,7 +165,7 @@ export default function GwAirlinesRolesSection() {
                   <p className="gw-airlines-roles__panel-note">
                     Need a bespoke airline staffing brief? Our consultants tailor searches to your fleet and network.
                   </p>
-                  <Link to={AVIATION_ROUTES.contact} state={contactState} className="gw-airlines-roles__cta">
+                  <Link to={getAviationRoutes().contact} state={contactState} className="gw-airlines-roles__cta">
                     Discuss requirements
                     <ArrowRight aria-hidden size={16} />
                   </Link>

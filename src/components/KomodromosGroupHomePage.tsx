@@ -5,8 +5,9 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import MeetTheTeam from './MeetTheTeam'
 import { useReveal } from '../hooks/useReveal'
-import { getServicePagePath, serviceCards } from '../data/serviceCards'
-import { isServicePubliclyAccessible } from '../lib/serviceMaintenance'
+import { getServicePageHref, isExternalServiceHref, serviceCards } from '../data/serviceCards'
+import { hasDedicatedBrandDomain, isServiceLinkableFromGroup } from '../lib/serviceMaintenance'
+import { prepareGlobalWingsEntryNavigation } from '../lib/gwEntryNavigation'
 
 const marqueeItems = [
   'ADR DISPUTE MEDIATION SERVICES',
@@ -187,7 +188,7 @@ export default function KomodromosGroupHomePage() {
                       </span>
                     </div>
                     <img src={card.image} alt={card.title} className="service-img" />
-                    {card.comingSoon ? (
+                    {card.comingSoon && !hasDedicatedBrandDomain(card.slug) ? (
                       <div className="service-media__coming-soon" aria-hidden>
                         <div className="service-media__coming-soon-plaque">
                           <span className="service-media__coming-soon-kicker">Currently unavailable</span>
@@ -218,10 +219,23 @@ export default function KomodromosGroupHomePage() {
                         <span key={tag}>{tag}</span>
                       ))}
                     </div>
-                    {isServicePubliclyAccessible(card.slug) ? (
-                      <Link to={getServicePagePath(card.slug)} className="action">
-                        REQUEST DETAILS
-                      </Link>
+                    {isServiceLinkableFromGroup(card.slug) ? (
+                      isExternalServiceHref(card.slug) ? (
+                        <a
+                          href={getServicePageHref(card.slug)}
+                          className="action"
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            if (card.slug === 'aviation') prepareGlobalWingsEntryNavigation()
+                          }}
+                        >
+                          REQUEST DETAILS
+                        </a>
+                      ) : (
+                        <Link to={getServicePageHref(card.slug)} className="action">
+                          REQUEST DETAILS
+                        </Link>
+                      )
                     ) : (
                       <span className="action action--maintenance" aria-disabled="true">
                         Under maintenance

@@ -16,6 +16,8 @@ export type ServiceCard = {
   brandLogoBlend?: 'lighten' | 'normal'
   /** Homepage cover badge — service detail temporarily offline */
   comingSoon?: boolean
+  /** When set, this service has a dedicated brand domain (see domainRegistry). */
+  brandSlug?: string
 }
 
 /** Homepage / service list covers in `public/images/services/companie-services-cover/` */
@@ -92,6 +94,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/Global-wings.webp`,
     brandLogo: `${SVC_CARD_LOGO}/global-wings.png`,
     brandLogoBlend: 'normal',
+    brandSlug: 'aviation',
   },
   {
     slug: 'astreal',
@@ -127,6 +130,7 @@ export const serviceCards: ServiceCard[] = [
     brandLogo: `${SVC_CARD_LOGO}/tax-nex.png`,
     brandLogoBlend: 'lighten',
     comingSoon: true,
+    brandSlug: 'tax',
   },
   {
     slug: 'janchapelle',
@@ -164,4 +168,6 @@ export function getServiceBySlug(slug: string | undefined) {
 export function getServicePagePath(slug: string): string {
   return `/services/${slug}`
 }
+
+export { getServicePageHref, isExternalServiceHref } from '../seo/domainRegistry'
 

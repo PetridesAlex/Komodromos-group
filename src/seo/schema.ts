@@ -10,13 +10,13 @@ import {
 
 export type JsonLd = Record<string, unknown> | Array<Record<string, unknown>>
 
-export function organizationSchema(): Record<string, unknown> {
+export function organizationSchema(siteUrl: string = SITE_URL): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: SITE_NAME_FULL,
-    url: SITE_URL,
-    logo: absoluteUrl('/images/services/companie-services-cover/cards-logos-services/main-logo.png'),
+    url: siteUrl,
+    logo: absoluteUrl('/images/services/companie-services-cover/cards-logos-services/main-logo.png', siteUrl),
     email: ORGANIZATION_EMAIL,
     telephone: ORGANIZATION_PHONE,
     address: {
@@ -27,12 +27,15 @@ export function organizationSchema(): Record<string, unknown> {
   }
 }
 
-export function websiteSchema(): Record<string, unknown> {
+export function websiteSchema(
+  siteUrl: string = SITE_URL,
+  siteName: string = SITE_NAME_FULL,
+): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: SITE_NAME_FULL,
-    url: SITE_URL,
+    name: siteName,
+    url: siteUrl,
     publisher: {
       '@type': 'Organization',
       name: SITE_NAME,
@@ -40,7 +43,10 @@ export function websiteSchema(): Record<string, unknown> {
   }
 }
 
-export function breadcrumbSchema(items: Array<{ name: string; path: string }>): Record<string, unknown> {
+export function breadcrumbSchema(
+  items: Array<{ name: string; path: string }>,
+  siteUrl: string = SITE_URL,
+): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -48,7 +54,7 @@ export function breadcrumbSchema(items: Array<{ name: string; path: string }>): 
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: absoluteUrl(item.path),
+      item: absoluteUrl(item.path, siteUrl),
     })),
   }
 }
@@ -57,31 +63,35 @@ export function webPageSchema({
   title,
   description,
   path,
+  siteUrl = SITE_URL,
+  siteName = SITE_NAME_FULL,
 }: {
   title: string
   description: string
   path: string
+  siteUrl?: string
+  siteName?: string
 }): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: title,
     description,
-    url: absoluteUrl(path),
+    url: absoluteUrl(path, siteUrl),
     isPartOf: {
       '@type': 'WebSite',
-      name: SITE_NAME_FULL,
-      url: SITE_URL,
+      name: siteName,
+      url: siteUrl,
     },
   }
 }
 
-export function contactPageSchema(): Record<string, unknown> {
+export function contactPageSchema(siteUrl: string = SITE_URL): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact Komodromos Group',
-    url: absoluteUrl('/contact'),
+    url: absoluteUrl('/contact', siteUrl),
     mainEntity: {
       '@type': 'Organization',
       name: SITE_NAME_FULL,

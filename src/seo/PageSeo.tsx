@@ -3,11 +3,11 @@ import {
   DEFAULT_DESCRIPTION,
   SITE_NAME,
   absoluteImageUrl,
-  absoluteUrl,
   formatPageTitle,
 } from './siteConfig'
 import type { JsonLd } from './schema'
 import { combineSchemas, organizationSchema, websiteSchema } from './schema'
+import { useSiteContext } from './SiteContext'
 
 export type PageSeoProps = {
   title: string
@@ -32,13 +32,15 @@ export default function PageSeo({
   jsonLd,
   includeGlobalSchema = true,
 }: PageSeoProps) {
-  const pageTitle = formatPageTitle(title)
+  const { siteUrl, absoluteUrl, brand } = useSiteContext()
+  const pageTitle = formatPageTitle(title, brand?.siteName)
   const canonical = absoluteUrl(path)
-  const ogImage = absoluteImageUrl(image)
+  const ogImage = absoluteImageUrl(image, siteUrl)
   const robots = noindex ? 'noindex, nofollow' : 'index, follow'
+  const siteName = brand?.siteNameFull ?? SITE_NAME
 
   const globalSchema = includeGlobalSchema
-    ? combineSchemas(organizationSchema(), websiteSchema())
+    ? combineSchemas(organizationSchema(siteUrl), websiteSchema(siteUrl, siteName))
     : null
 
   const schemaPayload =
@@ -54,7 +56,7 @@ export default function PageSeo({
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonical} />
 
-      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:site_name" content={siteName} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={description} />

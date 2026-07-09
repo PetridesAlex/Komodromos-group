@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom'
 import PageSeo, { type PageSeoProps } from './PageSeo'
 import { getSeoForPath } from './routes'
 import { breadcrumbSchema, combineSchemas, contactPageSchema, webPageSchema } from './schema'
+import { resolveInternalPath } from './domainRegistry'
+import { useSiteContext } from './SiteContext'
 
 export type SeoOverride = Partial<PageSeoProps>
 
@@ -36,12 +38,21 @@ export function usePageSeo(override: SeoOverride) {
   }, [ctx, location.pathname, title, description, path, image, noindex, jsonLd])
 }
 
-function buildPageSchema(path: string, title: string, description: string) {
+function buildPageSchema(
+  path: string,
+  title: string,
+  description: string,
+  siteUrl: string,
+  siteName: string,
+) {
   if (path === '/contact') {
-    return combineSchemas(contactPageSchema(), webPageSchema({ title, description, path }))
+    return combineSchemas(
+      contactPageSchema(siteUrl),
+      webPageSchema({ title, description, path, siteUrl, siteName }),
+    )
   }
 
-  if (path.startsWith('/services/')) {
+  if (path.startsWith('/services/') || path === '/') {
     const crumbs = [{ name: 'Home', path: '/' }]
     if (path.startsWith('/services/')) {
       crumbs.push({ name: 'Services', path: '/' })
@@ -60,31 +71,36 @@ function buildPageSchema(path: string, title: string, description: string) {
       }
     }
     return combineSchemas(
-      webPageSchema({ title, description, path }),
-      breadcrumbSchema(crumbs.slice(0, 4)),
+      webPageSchema({ title, description, path, siteUrl, siteName }),
+      breadcrumbSchema(crumbs.slice(0, 4), siteUrl),
     )
   }
 
-  return webPageSchema({ title, description, path })
+  return webPageSchema({ title, description, path, siteUrl, siteName })
 }
 
 export default function SeoManager() {
   const location = useLocation()
   const ctx = useContext(SeoOverrideContext)
-  const registry = getSeoForPath(location.pathname)
+  const { host, siteUrl, brand, canonicalPath } = useSiteContext()
+  const internalPath = resolveInternalPath(location.pathname, host)
+  const registry = getSeoForPath(internalPath)
   const merged = { ...registry, ...ctx?.override }
 
   if (!merged?.title) return null
 
-  const path = merged.path ?? location.pathname
+  const displayPath = canonicalPath(merged.path ?? internalPath)
   const description = merged.description ?? registry?.description ?? ''
-  const jsonLd = merged.jsonLd ?? buildPageSchema(path, merged.title, description)
+  const siteName = brand?.siteNameFull ?? 'Komodromos Group of Companies'
+  const jsonLd =
+    merged.jsonLd ??
+    buildPageSchema(displayPath, merged.title, description, siteUrl, siteName)
 
   return (
     <PageSeo
       title={merged.title}
       description={description}
-      path={path}
+      path={displayPath}
       image={merged.image ?? registry?.ogImage}
       noindex={merged.noindex ?? (registry ? !registry.index : true)}
       jsonLd={jsonLd}

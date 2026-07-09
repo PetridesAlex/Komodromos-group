@@ -1,3 +1,5 @@
+import { aviationPath, getAviationRoutes } from '../lib/brandPaths'
+
 /** Internal Komodromos routes for Aviation Agency Services */
 export const AVIATION_ROUTES = {
   home: '/services/aviation',
@@ -9,6 +11,8 @@ export const AVIATION_ROUTES = {
   privacy: '/services/aviation/privacy',
   contact: '/services/aviation/contact',
 } as const
+
+export { getAviationRoutes, aviationPath }
 
 /** In-page section anchors on the main aviation landing page */
 export const AVIATION_SECTIONS = {
@@ -22,7 +26,21 @@ export const AVIATION_SECTIONS = {
 } as const
 
 export function aviationSectionHref(section: keyof typeof AVIATION_SECTIONS) {
-  return `${AVIATION_ROUTES.home}#${AVIATION_SECTIONS[section]}`
+  return `${getAviationRoutes().home}#${AVIATION_SECTIONS[section]}`
+}
+
+export function getAviationSubNavItems(): AviationNavItem[] {
+  const routes = getAviationRoutes()
+  return [
+    { label: 'HOME', shortLabel: 'Home', to: routes.home },
+    { label: 'ABOUT US', shortLabel: 'About', to: aviationSectionHref('about') },
+    { label: 'PILOTS', shortLabel: 'Pilots', to: routes.pilots },
+    { label: 'AVIATION JOBS', shortLabel: 'Jobs', to: routes.jobs },
+    { label: 'AIRLINES SERVICES', shortLabel: 'Airlines', to: routes.airlines },
+    { label: 'TRAININGS & RATINGS', shortLabel: 'Training', to: routes.trainings },
+    { label: 'CONTACT US', shortLabel: 'Contact', to: routes.contact },
+    { label: 'GLOBALCADET PROGRAMME', shortLabel: 'Cadet', to: routes.cadet },
+  ]
 }
 
 export type AviationNavItem = {

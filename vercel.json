@@ -7,6 +7,18 @@
       "permanent": true
     },
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "global-wings.co" }],
+      "destination": "https://www.global-wings.co/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "taxnexcy.com" }],
+      "destination": "https://www.taxnexcy.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/:path+/",
       "destination": "/:path+",
       "permanent": true
@@ -27,7 +39,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api/|sitemap\\.xml|robots\\.txt|seo-allowlist\\.json|assets/|images/|favicon\\.svg|favicon\\.ico).*)",
+      "source": "/((?!api/|sitemap\\.xml|sitemap-.*\\.xml|robots\\.txt|seo-allowlist\\.json|assets/|images/|favicon\\.svg|favicon\\.ico).*)",
       "destination": "/index.html"
     }
   ]

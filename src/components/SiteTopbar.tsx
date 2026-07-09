@@ -2,8 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
-import { getServicePagePath } from '../data/serviceCards'
+import { getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
 import { getPublicServiceCards } from '../lib/serviceMaintenance'
+import { prepareGlobalWingsEntryNavigation } from '../lib/gwEntryNavigation'
 
 export type SiteTopbarProps = {
   logoPathname?: string
@@ -133,20 +134,45 @@ export default function SiteTopbar({
                 Explore all solutions
               </Link>
               <ul className="nav-dropdown__list">
-                {getPublicServiceCards().map((card) => (
-                  <li key={card.slug}>
-                    <Link
-                      to={getServicePagePath(card.slug)}
-                      className="nav-dropdown__link"
-                      onClick={close}
-                    >
+                {getPublicServiceCards().map((card) => {
+                  const external = isExternalServiceHref(card.slug)
+                  const href = getServicePageHref(card.slug)
+                  const isGlobalWings = card.slug === 'aviation'
+                  const linkContent = (
+                    <>
                       <span className="nav-dropdown__eyebrow">{card.eyebrow}</span>
                       <span className="nav-dropdown__title">
                         {card.navTitle ?? card.title}
                       </span>
-                    </Link>
-                  </li>
-                ))}
+                    </>
+                  )
+
+                  return (
+                    <li key={card.slug}>
+                      {external ? (
+                        <a
+                          href={href}
+                          className="nav-dropdown__link"
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            if (isGlobalWings) prepareGlobalWingsEntryNavigation()
+                            close()
+                          }}
+                        >
+                          {linkContent}
+                        </a>
+                      ) : (
+                        <Link
+                          to={href}
+                          className="nav-dropdown__link"
+                          onClick={close}
+                        >
+                          {linkContent}
+                        </Link>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           </div>

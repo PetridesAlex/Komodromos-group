@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { ArrowUpRight, ChevronDown, Menu } from 'lucide-react'
 import { Link, useLocation, type Location } from 'react-router-dom'
-import { AVIATION_ROUTES, aviationSubNavItems, gwSubNavBrand } from '../../data/globalWingsPage'
+import { getAviationRoutes, getAviationSubNavItems, gwSubNavBrand } from '../../data/globalWingsPage'
 
 function navTarget(to: string) {
   const hashIndex = to.indexOf('#')
@@ -13,6 +13,7 @@ function navTarget(to: string) {
 }
 
 function isAviationNavActive(to: string, location: Location) {
+  const routes = getAviationRoutes()
   const hashIndex = to.indexOf('#')
 
   if (hashIndex !== -1) {
@@ -21,7 +22,7 @@ function isAviationNavActive(to: string, location: Location) {
     return location.pathname === pathname && location.hash === hash
   }
 
-  if (to === AVIATION_ROUTES.home) {
+  if (to === routes.home) {
     return location.pathname === to && !location.hash
   }
 
@@ -41,6 +42,8 @@ export default function GwSubNav() {
   const [indicator, setIndicator] = useState<IndicatorStyle>({ width: 0, left: 0 })
   const [indicatorReady, setIndicatorReady] = useState(false)
 
+  const aviationSubNavItems = getAviationSubNavItems()
+  const aviationRoutes = getAviationRoutes()
   const activeItem = aviationSubNavItems.find((item) => isAviationNavActive(item.to, location))
 
   const updateIndicator = useCallback(() => {
@@ -123,7 +126,7 @@ export default function GwSubNav() {
     <nav className="gw-subnav" aria-label="Aviation services navigation">
       <div className="gw-subnav__shell">
         <div className="container gw-subnav__bar gw-subnav__bar--desktop">
-          <Link to={AVIATION_ROUTES.home} className="gw-subnav__brand" aria-label={gwSubNavBrand.ariaLabel}>
+          <Link to={aviationRoutes.home} className="gw-subnav__brand" aria-label={gwSubNavBrand.ariaLabel}>
             <span className="gw-subnav__mark" aria-hidden>
               GW
             </span>
@@ -167,14 +170,14 @@ export default function GwSubNav() {
             </ul>
           </div>
 
-          <Link to={AVIATION_ROUTES.contact} className="gw-subnav__cta">
+          <Link to={aviationRoutes.contact} className="gw-subnav__cta">
             Enquire
             <ArrowUpRight aria-hidden size={14} strokeWidth={2.25} />
           </Link>
         </div>
 
         <div className="container gw-subnav__bar gw-subnav__bar--mobile" ref={mobileRef}>
-          <Link to={AVIATION_ROUTES.home} className="gw-subnav__brand gw-subnav__brand--compact" aria-label={gwSubNavBrand.ariaLabel}>
+          <Link to={aviationRoutes.home} className="gw-subnav__brand gw-subnav__brand--compact" aria-label={gwSubNavBrand.ariaLabel}>
             <span className="gw-subnav__mark" aria-hidden>
               GW
             </span>

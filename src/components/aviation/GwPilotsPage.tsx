@@ -16,7 +16,7 @@ import {
 import GwImagePlaceholder from './GwImagePlaceholder'
 import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
-import { AVIATION_ROUTES } from '../../data/globalWingsPage'
+import { getAviationRoutes } from '../../data/globalWingsPage'
 import {
   pilotsClosing,
   pilotsIntro,
@@ -258,12 +258,12 @@ export default function GwPilotsPage() {
                 ))}
               </ul>
               <div className="gw-pilots-closing__actions">
-                <Link to={AVIATION_ROUTES.contact} className="gw-pilots-closing__cta gw-pilots-closing__cta--primary">
+                <Link to={getAviationRoutes().contact} className="gw-pilots-closing__cta gw-pilots-closing__cta--primary">
                   <span className="gw-pilots-closing__cta-fill" aria-hidden />
                   <span className="gw-pilots-closing__cta-label">{pilotsClosing.primaryCta}</span>
                   <ArrowRight className="gw-pilots-closing__cta-icon" aria-hidden size={16} />
                 </Link>
-                <Link to={AVIATION_ROUTES.jobs} className="gw-pilots-closing__cta gw-pilots-closing__cta--secondary">
+                <Link to={getAviationRoutes().jobs} className="gw-pilots-closing__cta gw-pilots-closing__cta--secondary">
                   <span className="gw-pilots-closing__cta-label">{pilotsClosing.secondaryCta}</span>
                   <ArrowRight className="gw-pilots-closing__cta-icon" aria-hidden size={16} />
                 </Link>

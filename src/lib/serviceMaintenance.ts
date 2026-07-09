@@ -1,4 +1,5 @@
 import { getServiceBySlug, serviceCards, type ServiceCard } from '../data/serviceCards'
+import { getBrandBySlug } from '../seo/domainRegistry'
 
 /** VIP sub-pages live outside `/services/vip` but belong to the VIP service card. */
 const VIP_NESTED_PREFIXES = [
@@ -19,14 +20,24 @@ export function isServiceUnderMaintenance(slug: string | undefined): boolean {
   return getServiceBySlug(slug)?.comingSoon === true
 }
 
+export function hasDedicatedBrandDomain(slug: string): boolean {
+  return Boolean(getBrandBySlug(slug))
+}
+
 export function isServicePubliclyAccessible(slug: string): boolean {
   if (isMaintenancePreviewEnabled()) return true
   return !isServiceUnderMaintenance(slug)
 }
 
+/** Group homepage / Solutions menu — brand-domain services always link out. */
+export function isServiceLinkableFromGroup(slug: string): boolean {
+  if (hasDedicatedBrandDomain(slug)) return true
+  return isServicePubliclyAccessible(slug)
+}
+
 export function getPublicServiceCards(): ServiceCard[] {
   if (isMaintenancePreviewEnabled()) return serviceCards
-  return serviceCards.filter((card) => !card.comingSoon)
+  return serviceCards.filter((card) => !card.comingSoon || hasDedicatedBrandDomain(card.slug))
 }
 
 function normalizePath(pathname: string): string {

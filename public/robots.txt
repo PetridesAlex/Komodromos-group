@@ -3,3 +3,5 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://www.komodromosgroup.com/sitemap.xml
+Sitemap: https://www.global-wings.co/sitemap-aviation.xml
+Sitemap: https://www.taxnexcy.com/sitemap-tax.xml
