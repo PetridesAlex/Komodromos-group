@@ -103,16 +103,17 @@ function isGlobalWingsBootContext(): boolean {
   return normalizeInternalPath(window.location.pathname).startsWith('/services/aviation')
 }
 
-/** Global Wings splash on first visit to Global Wings (brand domain or aviation routes). */
+/** Global Wings loads directly — no boot splash. */
 export function shouldUseGlobalWingsEntryPreloader(): boolean {
-  if (typeof window === 'undefined') return false
-  if (!isGlobalWingsBootContext()) return false
+  return false
+}
 
-  if (hasGwEntryFlag(window.location.search)) return true
-  if (hasGlobalWingsEntryIntent()) return true
-  if (wasGlobalWingsBootPreloaderDone()) return false
-
-  return true
+function prepareGlobalWingsBoot(): void {
+  if (typeof window === 'undefined') return
+  markGlobalWingsBootPreloaderDone()
+  markGroupBootPreloaderDone()
+  consumeGlobalWingsEntryIntent()
+  stripGlobalWingsEntryQuery()
 }
 
 function isGroupSiteBoot(): boolean {
@@ -155,7 +156,7 @@ export function stripGroupReturnQuery() {
   window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`)
 }
 
-export type BootPreloader = 'global-wings' | 'group' | 'none'
+export type BootPreloader = 'group' | 'none'
 
 export function getBootPreloader(): BootPreloader {
   if (typeof window !== 'undefined' && hasGroupReturnFlag(window.location.search)) {
@@ -163,7 +164,10 @@ export function getBootPreloader(): BootPreloader {
     stripGroupReturnQuery()
     return 'none'
   }
-  if (shouldUseGlobalWingsEntryPreloader()) return 'global-wings'
+  if (typeof window !== 'undefined' && isGlobalWingsBootContext()) {
+    prepareGlobalWingsBoot()
+    return 'none'
+  }
   if (shouldShowGroupBootPreloader()) return 'group'
   if (typeof window !== 'undefined' && getBrandByHost(window.location.hostname)) {
     markGroupBootPreloaderDone()

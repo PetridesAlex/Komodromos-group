@@ -6,13 +6,9 @@ import './i18n'
 import './index.css'
 import './tailwind.css'
 import Preloader from './components/Preloader.tsx'
-import GwAviationPreloader from './components/aviation/GwAviationPreloader.tsx'
 import {
-  consumeGlobalWingsEntryIntent,
   getBootPreloader,
-  markGlobalWingsBootPreloaderDone,
   markGroupBootPreloaderDone,
-  stripGlobalWingsEntryQuery,
 } from './lib/navigationHistory.ts'
 import { unlockDocumentScroll } from './lib/documentScrollLock.ts'
 import NavigationPathSync from './components/NavigationPathSync.tsx'
@@ -27,15 +23,6 @@ import { AppRoutes } from './components/AppRoutes.tsx'
 
 function Root() {
   const [bootPreloader, setBootPreloader] = useState(getBootPreloader)
-
-  const handleGlobalWingsPreloaderDone = useCallback(() => {
-    markGlobalWingsBootPreloaderDone()
-    markGroupBootPreloaderDone()
-    consumeGlobalWingsEntryIntent()
-    stripGlobalWingsEntryQuery()
-    unlockDocumentScroll()
-    setBootPreloader('none')
-  }, [])
 
   const handleGroupPreloaderDone = useCallback(() => {
     markGroupBootPreloaderDone()
@@ -53,16 +40,9 @@ function Root() {
       return
     }
 
-    const safetyTimer = window.setTimeout(() => {
-      if (bootPreloader === 'global-wings') {
-        handleGlobalWingsPreloaderDone()
-        return
-      }
-      handleGroupPreloaderDone()
-    }, 5000)
-
+    const safetyTimer = window.setTimeout(handleGroupPreloaderDone, 5000)
     return () => window.clearTimeout(safetyTimer)
-  }, [bootPreloader, handleGlobalWingsPreloaderDone, handleGroupPreloaderDone])
+  }, [bootPreloader, handleGroupPreloaderDone])
 
   return (
     <>
@@ -82,9 +62,6 @@ function Root() {
         </SiteContextProvider>
       </BrowserRouter>
 
-      {bootPreloader === 'global-wings' ? (
-        <GwAviationPreloader onDone={handleGlobalWingsPreloaderDone} />
-      ) : null}
       {bootPreloader === 'group' ? <Preloader onDone={handleGroupPreloaderDone} /> : null}
     </>
   )
