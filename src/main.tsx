@@ -11,6 +11,7 @@ import {
   consumeGlobalWingsEntryIntent,
   getBootPreloader,
   markGlobalWingsBootPreloaderDone,
+  markGroupBootPreloaderDone,
   stripGlobalWingsEntryQuery,
 } from './lib/navigationHistory.ts'
 import NavigationPathSync from './components/NavigationPathSync.tsx'
@@ -29,12 +30,14 @@ function Root() {
 
   const handleGlobalWingsPreloaderDone = useCallback(() => {
     markGlobalWingsBootPreloaderDone()
+    markGroupBootPreloaderDone()
     consumeGlobalWingsEntryIntent()
     stripGlobalWingsEntryQuery()
     setBootPreloader('none')
   }, [])
 
   const handleGroupPreloaderDone = useCallback(() => {
+    markGroupBootPreloaderDone()
     setBootPreloader('none')
   }, [])
 

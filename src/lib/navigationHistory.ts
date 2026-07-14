@@ -10,6 +10,7 @@ let currentPathname = previousPathname
 export const GW_ENTRY_QUERY = 'gw-entry'
 export const GW_ENTRY_SESSION_KEY = 'gw-entry-intent'
 export const GW_ENTRY_BOOT_DONE_KEY = 'gw-entry-boot-done'
+export const GROUP_BOOT_DONE_KEY = 'group-boot-done'
 
 /** Call on every client-side route change (before reading entry state). */
 export function syncNavigationPath(pathname: string) {
@@ -47,15 +48,11 @@ function hasGlobalWingsEntryIntent(): boolean {
   return sessionStorage.getItem(GW_ENTRY_SESSION_KEY) === '1'
 }
 
-function isGroupAviationPath(pathname: string): boolean {
-  const normalized = normalizeInternalPath(pathname)
-  return normalized === '/services/aviation' || normalized.startsWith('/services/aviation/')
-}
-
 export function markGlobalWingsEntryIntent() {
   if (typeof sessionStorage === 'undefined') return
   sessionStorage.setItem(GW_ENTRY_SESSION_KEY, '1')
   sessionStorage.removeItem(GW_ENTRY_BOOT_DONE_KEY)
+  markGroupBootPreloaderDone()
 }
 
 export function consumeGlobalWingsEntryIntent(): boolean {
@@ -75,24 +72,40 @@ export function wasGlobalWingsBootPreloaderDone(): boolean {
   return sessionStorage.getItem(GW_ENTRY_BOOT_DONE_KEY) === '1'
 }
 
-/** Show the Global Wings entry preloader at app boot (before React Router mounts). */
+export function markGroupBootPreloaderDone() {
+  if (typeof sessionStorage === 'undefined') return
+  sessionStorage.setItem(GROUP_BOOT_DONE_KEY, '1')
+}
+
+export function wasGroupBootPreloaderDone(): boolean {
+  if (typeof sessionStorage === 'undefined') return false
+  return sessionStorage.getItem(GROUP_BOOT_DONE_KEY) === '1'
+}
+
+/** Global Wings splash only when entering from outside (gw-entry or click intent). */
 export function shouldUseGlobalWingsEntryPreloader(): boolean {
   if (typeof window === 'undefined') return false
+  if (wasGlobalWingsBootPreloaderDone()) return false
 
   if (hasGwEntryFlag(window.location.search)) {
-    if (typeof sessionStorage !== 'undefined') {
-      sessionStorage.removeItem(GW_ENTRY_BOOT_DONE_KEY)
-    }
     return true
   }
 
-  if (hasGlobalWingsEntryIntent()) return true
+  return hasGlobalWingsEntryIntent()
+}
 
-  if (isGroupAviationPath(window.location.pathname) && !wasGlobalWingsBootPreloaderDone()) {
-    return true
-  }
+function isGroupSiteBoot(): boolean {
+  const host = window.location.hostname
+  return !getBrandByHost(host)
+}
 
-  return false
+/** Komodromos Group splash once per session on the group homepage. */
+export function shouldShowGroupBootPreloader(): boolean {
+  if (typeof window === 'undefined') return false
+  if (wasGroupBootPreloaderDone()) return false
+  if (shouldUseGlobalWingsEntryPreloader()) return false
+  if (!isGroupSiteBoot()) return false
+  return true
 }
 
 /** Skip the Komodromos Group splash when entering Global Wings. */
@@ -100,7 +113,7 @@ export function shouldSkipGroupPreloader(): boolean {
   if (typeof window === 'undefined') return false
   if (shouldUseGlobalWingsEntryPreloader()) return true
   if (getBrandByHost(window.location.hostname)?.slug === 'aviation') return true
-  if (isGroupAviationPath(window.location.pathname)) return true
+  if (wasGroupBootPreloaderDone()) return true
   return false
 }
 
@@ -116,6 +129,9 @@ export type BootPreloader = 'global-wings' | 'group' | 'none'
 
 export function getBootPreloader(): BootPreloader {
   if (shouldUseGlobalWingsEntryPreloader()) return 'global-wings'
-  if (!shouldSkipGroupPreloader()) return 'group'
+  if (shouldShowGroupBootPreloader()) return 'group'
+  if (typeof window !== 'undefined' && getBrandByHost(window.location.hostname)) {
+    markGroupBootPreloaderDone()
+  }
   return 'none'
 }
