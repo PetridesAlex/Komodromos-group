@@ -57,11 +57,6 @@ export function buildGroupSiteReturnUrl(hash = 'home'): string {
   return url.toString()
 }
 
-function hasGlobalWingsEntryIntent(): boolean {
-  if (typeof sessionStorage === 'undefined') return false
-  return sessionStorage.getItem(GW_ENTRY_SESSION_KEY) === '1'
-}
-
 export function markGlobalWingsEntryIntent() {
   if (typeof sessionStorage === 'undefined') return
   sessionStorage.setItem(GW_ENTRY_SESSION_KEY, '1')
