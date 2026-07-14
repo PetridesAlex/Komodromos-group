@@ -53542,11 +53542,148 @@ a.yacht-card {
 }
 
 .gw-section--clients {
-  background: #fff;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3.75rem, 7.5vw, 5.75rem) 0 clamp(4rem, 8vw, 6rem);
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 0%, rgba(74, 144, 226, 0.14) 0%, transparent 58%),
+    linear-gradient(168deg, #03060f 0%, #0a1628 36%, #0f2240 58%, #060b14 100%);
+  color: #f4f8ff;
 }
 
 .gw-section--clients .gw-section__header {
   margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.gw-clients-section__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gw-clients-section__aurora {
+  position: absolute;
+  width: 120%;
+  height: 50%;
+  left: -10%;
+  filter: blur(56px);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+}
+
+.gw-clients-section__aurora--one {
+  top: -8%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(74, 144, 226, 0.28) 38%,
+    rgba(165, 210, 255, 0.18) 58%,
+    transparent 100%
+  );
+  animation: gw-clients-aurora-a 7s ease-in-out infinite alternate;
+}
+
+.gw-clients-section__aurora--two {
+  bottom: 4%;
+  background: linear-gradient(
+    -80deg,
+    transparent 0%,
+    rgba(44, 95, 158, 0.24) 42%,
+    rgba(74, 144, 226, 0.16) 64%,
+    transparent 100%
+  );
+  animation: gw-clients-aurora-b 8.5s ease-in-out infinite alternate;
+}
+
+@keyframes gw-clients-aurora-a {
+  from { transform: translateX(-4%) skewX(-5deg); opacity: 0.42; }
+  to { transform: translateX(5%) skewX(-2deg); opacity: 0.72; }
+}
+
+@keyframes gw-clients-aurora-b {
+  from { transform: translateX(3%) skewX(4deg); opacity: 0.38; }
+  to { transform: translateX(-6%) skewX(7deg); opacity: 0.66; }
+}
+
+.gw-clients-section__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  background:
+    linear-gradient(rgba(74, 144, 226, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 144, 226, 0.12) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+}
+
+.gw-clients-section__beam {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  width: min(72rem, 120%);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(74, 144, 226, 0.12) 18%,
+    rgba(165, 210, 255, 0.55) 50%,
+    rgba(74, 144, 226, 0.12) 82%,
+    transparent 100%
+  );
+  box-shadow: 0 0 28px rgba(74, 144, 226, 0.35);
+}
+
+.gw-clients-section__head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gw-clients-section__ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 auto clamp(2rem, 4vw, 2.75rem);
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(74, 144, 226, 0.28);
+  background: rgba(74, 144, 226, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 1px rgba(165, 210, 255, 0.06) inset;
+}
+
+.gw-clients-section__ribbon-stat {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(220, 232, 248, 0.82);
+}
+
+.gw-clients-section__ribbon-stat strong {
+  font-weight: 800;
+  color: #a5d2ff;
+}
+
+.gw-clients-section__ribbon-divider {
+  width: 1px;
+  height: 1rem;
+  background: rgba(165, 210, 255, 0.28);
+}
+
+.gw-clients-section__ribbon-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(165, 210, 255, 0.72);
 }
 
 .gw-section--leader {
@@ -54365,8 +54502,27 @@ a.yacht-card {
 /* Clients — premium logo marquee */
 .gw-clients-marquee {
   position: relative;
-  padding: 0 0 clamp(2.5rem, 5vw, 3.75rem);
+  padding: 0;
   overflow: hidden;
+}
+
+.gw-clients-marquee__edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(3rem, 8vw, 6rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gw-clients-marquee__edge--left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(6, 11, 20, 0.95) 0%, transparent 100%);
+}
+
+.gw-clients-marquee__edge--right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(6, 11, 20, 0.95) 0%, transparent 100%);
 }
 
 .gw-clients-marquee::before {
@@ -54374,8 +54530,7 @@ a.yacht-card {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 40% at 12% 30%, rgba(74, 144, 226, 0.06), transparent 70%),
-    radial-gradient(ellipse 50% 35% at 88% 70%, rgba(44, 95, 158, 0.05), transparent 68%);
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(74, 144, 226, 0.1), transparent 72%);
   pointer-events: none;
 }
 
@@ -54384,7 +54539,22 @@ a.yacht-card {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2.4vw, 1.5rem);
+  gap: clamp(1.35rem, 3vw, 2rem);
+  padding-block: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.gw-clients-marquee__divider {
+  height: 1px;
+  margin-inline: clamp(1rem, 5vw, 4rem);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(74, 144, 226, 0.35) 20%,
+    rgba(165, 210, 255, 0.55) 50%,
+    rgba(74, 144, 226, 0.35) 80%,
+    transparent 100%
+  );
+  opacity: 0.75;
 }
 
 .gw-clients-marquee__row {
@@ -54396,8 +54566,8 @@ a.yacht-card {
   mask-image: linear-gradient(
     90deg,
     transparent 0%,
-    #000 8%,
-    #000 92%,
+    #000 10%,
+    #000 90%,
     transparent 100%
   );
 }
@@ -54414,13 +54584,13 @@ a.yacht-card {
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
-  gap: clamp(0.85rem, 2vw, 1.35rem);
+  gap: clamp(1rem, 2.2vw, 1.65rem);
   width: max-content;
-  padding-inline: clamp(0.75rem, 2.5vw, 1.5rem);
+  padding-inline: clamp(1rem, 3vw, 2rem);
 }
 
 .gw-clients-marquee__track--animate {
-  animation: gw-clients-marquee-scroll var(--marquee-duration, 60s) linear infinite;
+  animation: gw-clients-marquee-scroll var(--marquee-duration, 48s) linear infinite;
   will-change: transform;
 }
 
@@ -54444,85 +54614,139 @@ a.yacht-card {
 
 .gw-clients-marquee__item {
   flex: 0 0 auto;
-  width: clamp(11.5rem, 22vw, 15.5rem);
+  width: clamp(12rem, 23vw, 16.5rem);
   margin: 0;
   text-align: center;
 }
 
 .gw-clients-marquee__card {
+  position: relative;
   display: grid;
   place-items: center;
-  min-height: clamp(5.5rem, 10vw, 6.75rem);
-  padding: clamp(0.85rem, 2vw, 1.15rem) clamp(1rem, 2.2vw, 1.35rem);
-  background: #fff;
-  border: 1px solid rgba(74, 144, 226, 0.14);
-  border-radius: 14px;
+  min-height: clamp(6rem, 11vw, 7.25rem);
+  padding: clamp(0.95rem, 2.2vw, 1.25rem) clamp(1.1rem, 2.4vw, 1.5rem);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(165, 210, 255, 0.38);
+  border-radius: 16px;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 10px 28px -16px rgba(27, 63, 122, 0.28);
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 18px 42px -22px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(74, 144, 226, 0.1);
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.gw-clients-marquee__card-glow {
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.18) 0%, transparent 68%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .gw-clients-marquee__card img {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
-  max-width: 11rem;
-  height: clamp(2.75rem, 5vw, 3.5rem);
+  max-width: 11.5rem;
+  height: clamp(2.85rem, 5.2vw, 3.65rem);
   object-fit: contain;
   object-position: center;
-  filter: grayscale(0.15) contrast(1.02);
+  filter: grayscale(0.08) contrast(1.04);
   transition:
-    filter 0.35s ease,
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    filter 0.4s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .gw-clients-marquee__caption {
-  margin: 0.55rem 0 0;
+  margin: 0.8rem 0 0;
+  padding-top: 0.55rem;
+}
+
+.gw-clients-marquee__caption-text {
+  display: inline-block;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: clamp(0.74rem, 1.15vw, 0.92rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(44, 95, 158, 0.62);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: rgba(244, 248, 255, 0.94);
+  text-shadow: 0 2px 16px rgba(74, 144, 226, 0.28);
+  position: relative;
+  padding-bottom: 0.35rem;
+}
+
+.gw-clients-marquee__caption-text::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 1.75rem;
+  height: 2px;
+  transform: translateX(-50%) scaleX(0.35);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #4a90e2, transparent);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s ease;
 }
 
 @media (hover: hover) {
   .gw-clients-marquee__item:hover .gw-clients-marquee__card {
-    transform: translateY(-5px);
-    border-color: rgba(74, 144, 226, 0.38);
+    border-color: rgba(165, 210, 255, 0.62);
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.95) inset,
-      0 18px 36px -14px rgba(27, 63, 122, 0.34),
-      0 0 0 1px rgba(74, 144, 226, 0.08);
+      0 1px 0 rgba(255, 255, 255, 0.98) inset,
+      0 24px 48px -18px rgba(0, 0, 0, 0.62),
+      0 0 32px rgba(74, 144, 226, 0.22);
+  }
+
+  .gw-clients-marquee__item:hover .gw-clients-marquee__card-glow {
+    opacity: 1;
   }
 
   .gw-clients-marquee__item:hover .gw-clients-marquee__card img {
-    filter: grayscale(0) contrast(1.04);
-    transform: scale(1.03);
+    filter: grayscale(0) contrast(1.06);
+    transform: scale(1.04);
   }
 
-  .gw-clients-marquee__item:hover .gw-clients-marquee__caption {
-    color: rgba(44, 95, 158, 0.88);
+  .gw-clients-marquee__item:hover .gw-clients-marquee__caption-text {
+    color: #ffffff;
+    text-shadow: 0 2px 20px rgba(74, 144, 226, 0.45);
+  }
+
+  .gw-clients-marquee__item:hover .gw-clients-marquee__caption-text::after {
+    width: 2.75rem;
+    transform: translateX(-50%) scaleX(1);
   }
 }
 
 @media (max-width: 768px) {
+  .gw-clients-section__ribbon {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
   .gw-clients-marquee__item {
-    width: clamp(10.5rem, 72vw, 13.5rem);
+    width: clamp(11rem, 74vw, 14rem);
   }
 
   .gw-clients-marquee__card {
-    min-height: clamp(5rem, 18vw, 6rem);
+    min-height: clamp(5.5rem, 20vw, 6.5rem);
+  }
+
+  .gw-clients-marquee__caption-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .gw-clients-section__aurora--one,
+  .gw-clients-section__aurora--two,
   .gw-clients-marquee__track--animate {
     animation: none !important;
   }
