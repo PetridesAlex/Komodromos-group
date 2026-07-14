@@ -265,22 +265,23 @@ function gwClientLogoSrc(filename: string) {
 
 export type GwClientLogo = {
   name: string
-  src: string
+  src?: string
+  shortName?: string
 }
 
 export const gwClientLogos: GwClientLogo[] = [
   { name: 'Turkish Airlines', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_35_11 PM.png') },
   { name: 'airhub Aviation', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_38_49 PM.png') },
-  { name: 'Jetstream Aviation Academy', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_42_36 PM.png') },
+  { name: 'Jetstream Aviation Academy', shortName: 'Jetstream Academy', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_42_36 PM.png') },
   { name: 'SKY express', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_46_42 PM.png') },
   { name: 'Avion Express', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_50_01 PM.png') },
-  { name: 'San Marino Executive Aviation', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_54_09 PM.png') },
+  { name: 'San Marino Executive Aviation', shortName: 'San Marino Aviation', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_54_09 PM.png') },
   { name: 'Marathon Airlines', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_55_35 PM.png') },
   { name: 'SmartLynx Airlines', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_56_30 PM.png') },
-  { name: 'Avia Solutions Group', src: gwClientLogoSrc('Avia Solution Group.png') },
-  { name: 'BH Training', src: gwClientLogoSrc('BAA .jpg') },
-  { name: 'CAE Inc.', src: gwClientLogoSrc('CAE_Inc.-Logo.wine.webp') },
-  { name: 'Get Jet', src: gwClientLogoSrc('Get Jet.webp') },
+  { name: 'Avia Solutions Group', shortName: 'Avia Solutions', src: gwClientLogoSrc('Avia Solution Group.png') },
+  { name: 'BA Training', src: gwClientLogoSrc('BAA .jpg') },
+  { name: 'CAE Inc.', src: gwClientLogoSrc('CAE_Inc.-Logo.wine.png') },
+  { name: 'GetJet Airlines', shortName: 'GetJet', src: gwClientLogoSrc('Get Jet.png') },
 ]
 
 /** @deprecated Use gwClientLogos.length */

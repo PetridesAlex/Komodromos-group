@@ -1,7 +1,48 @@
-import { useMemo, type CSSProperties } from 'react'
+import { useMemo, useState, type CSSProperties } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import GwSectionHeader from './GwSectionHeader'
 import { AVIATION_SECTIONS, gwClientLogos, type GwClientLogo } from '../../data/globalWingsPage'
+
+function ClientCard({
+  logo,
+  showLabel,
+}: {
+  logo: GwClientLogo
+  showLabel: boolean
+}) {
+  const [imageFailed, setImageFailed] = useState(false)
+  const cardLabel = logo.shortName ?? logo.name
+  const useTextFallback = !logo.src || imageFailed
+
+  return (
+    <>
+      <div
+        className={`gw-clients-marquee__card${useTextFallback ? ' gw-clients-marquee__card--text' : ''}`}
+      >
+        <span className="gw-clients-marquee__card-glow" aria-hidden />
+        {useTextFallback ? (
+          <span className="gw-clients-marquee__card-name">{cardLabel}</span>
+        ) : (
+          <img
+            src={logo.src}
+            alt={`${logo.name} logo`}
+            width={240}
+            height={96}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+            onError={() => setImageFailed(true)}
+          />
+        )}
+      </div>
+      {showLabel ? (
+        <figcaption className="gw-clients-marquee__caption">
+          <span className="gw-clients-marquee__caption-text">{logo.name}</span>
+        </figcaption>
+      ) : null}
+    </>
+  )
+}
 
 function MarqueeRow({
   logos,
@@ -38,28 +79,12 @@ function MarqueeRow({
         >
           {trackLogos.map((logo, index) => (
             <motion.figure
-              key={`${logo.src}-${index}`}
+              key={`${logo.name}-${index}`}
               className="gw-clients-marquee__item reveal revealed"
               whileHover={reducedMotion ? undefined : { y: -6, scale: 1.02 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="gw-clients-marquee__card">
-                <span className="gw-clients-marquee__card-glow" aria-hidden />
-                <img
-                  src={logo.src}
-                  alt={reducedMotion || index < logos.length ? `${logo.name} logo` : ''}
-                  width={240}
-                  height={96}
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                />
-              </div>
-              {(reducedMotion || index < logos.length) && (
-                <figcaption className="gw-clients-marquee__caption">
-                  <span className="gw-clients-marquee__caption-text">{logo.name}</span>
-                </figcaption>
-              )}
+              <ClientCard logo={logo} showLabel={reducedMotion || index < logos.length} />
             </motion.figure>
           ))}
         </div>

@@ -54690,6 +54690,26 @@ a.yacht-card {
     transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.gw-clients-marquee__card--text {
+  padding-inline: clamp(0.85rem, 2vw, 1.15rem);
+}
+
+.gw-clients-marquee__card-name {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.72rem, 1.15vw, 0.92rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
+  color: #1a3a66;
+}
+
 .gw-clients-marquee__caption {
   margin: 0.8rem 0 0;
   padding-top: 0.55rem;
