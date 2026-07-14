@@ -202,17 +202,27 @@ export function getServicePageHref(slug: string, currentHost?: string | null): s
   const brand = getBrandBySlug(slug)
   if (!brand) return `/services/${slug}`
 
-  const onBrandHost = getBrandByHost(currentHost ?? null)?.slug === slug
+  const host = currentHost ?? (typeof window !== 'undefined' ? window.location.host : null)
+  const onBrandHost = getBrandByHost(host ?? null)?.slug === slug
   if (onBrandHost) return '/'
+
+  // Local dev: keep brand navigation on the same origin (localhost) instead of
+  // sending users to production brand domains, which breaks the embedded preview.
+  if (import.meta.env.DEV) {
+    if (slug === 'aviation') return `/services/aviation?${GW_ENTRY_QUERY}=1`
+    return `/services/${slug}`
+  }
 
   const base = `https://${brand.host}/`
   return slug === 'aviation' ? withAviationEntryParam(base) : base
 }
 
 export function isExternalServiceHref(slug: string, currentHost?: string | null): boolean {
+  if (import.meta.env.DEV) return false
   const brand = getBrandBySlug(slug)
   if (!brand) return false
-  return getBrandByHost(currentHost ?? null)?.slug !== slug
+  const host = currentHost ?? (typeof window !== 'undefined' ? window.location.host : null)
+  return getBrandByHost(host ?? null)?.slug !== slug
 }
 
 export const AVIATION_ROUTE_SEGMENTS = [

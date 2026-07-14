@@ -232,7 +232,13 @@ export default function KomodromosGroupHomePage() {
                           REQUEST DETAILS
                         </a>
                       ) : (
-                        <Link to={getServicePageHref(card.slug)} className="action">
+                        <Link
+                          to={getServicePageHref(card.slug)}
+                          className="action"
+                          onClick={() => {
+                            if (card.slug === 'aviation') prepareGlobalWingsEntryNavigation()
+                          }}
+                        >
                           REQUEST DETAILS
                         </Link>
                       )

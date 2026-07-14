@@ -165,7 +165,10 @@ export default function SiteTopbar({
                         <Link
                           to={href}
                           className="nav-dropdown__link"
-                          onClick={close}
+                          onClick={() => {
+                            if (isGlobalWings) prepareGlobalWingsEntryNavigation()
+                            close()
+                          }}
                         >
                           {linkContent}
                         </Link>

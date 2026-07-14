@@ -12,6 +12,7 @@ import {
   isEnteringAviationFromOutside,
   markGlobalWingsBootPreloaderDone,
   markGroupBootPreloaderDone,
+  stripGlobalWingsEntryQuery,
   wasGlobalWingsBootPreloaderDone,
 } from '../../lib/navigationHistory'
 import { useSiteContext } from '../../seo/SiteContext'
@@ -33,6 +34,7 @@ export default function GwAviationLayout() {
     markGlobalWingsBootPreloaderDone()
     markGroupBootPreloaderDone()
     consumeGlobalWingsEntryIntent()
+    stripGlobalWingsEntryQuery()
     setEntryPreloader(false)
   }, [])
 
