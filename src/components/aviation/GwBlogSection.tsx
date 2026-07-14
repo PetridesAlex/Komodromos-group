@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import GwSectionHeader from './GwSectionHeader'
-import { aviationBlogPosts, type AviationBlogPost } from '../../data/globalWingsPage'
+import { getAviationBlogPosts, type AviationBlogPost } from '../../data/globalWingsPage'
 
 function GwAviationLink({
   to,
@@ -182,6 +182,7 @@ function GwBlogFeature({
 
 export default function GwBlogSection({ sectionId }: { sectionId: string }) {
   const reduceMotion = useReducedMotion()
+  const aviationBlogPosts = getAviationBlogPosts()
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
   const [trackOffset, setTrackOffset] = useState(0)

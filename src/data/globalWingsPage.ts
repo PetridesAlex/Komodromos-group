@@ -144,10 +144,14 @@ function gwServiceImageSrc(filename: string) {
   return `${GW_SERVICES_IMAGES_BASE}/${encodeURIComponent(filename)}`
 }
 
-export const aviationServiceCards: AviationServiceCard[] = [
+type AviationServiceCardDef = Omit<AviationServiceCard, 'to'> & {
+  routeKey: 'pilots' | 'airlines' | 'jobs' | 'trainings'
+}
+
+const aviationServiceCardDefs: AviationServiceCardDef[] = [
   {
     title: 'Pilots',
-    to: AVIATION_ROUTES.pilots,
+    routeKey: 'pilots',
     description:
       'International pilot recruitment and placement connecting qualified aviators with leading airlines worldwide.',
     icon: 'pilots',
@@ -157,7 +161,7 @@ export const aviationServiceCards: AviationServiceCard[] = [
   },
   {
     title: 'Airline Services',
-    to: AVIATION_ROUTES.airlines,
+    routeKey: 'airlines',
     description:
       'Crew resourcing, executive search, and specialist staffing solutions tailored to airline operations.',
     icon: 'airlines',
@@ -167,7 +171,7 @@ export const aviationServiceCards: AviationServiceCard[] = [
   },
   {
     title: 'Aviation Jobs',
-    to: AVIATION_ROUTES.jobs,
+    routeKey: 'jobs',
     description:
       'Global career opportunities for aviation professionals across airlines, MROs, and aerospace organisations.',
     icon: 'jobs',
@@ -177,7 +181,7 @@ export const aviationServiceCards: AviationServiceCard[] = [
   },
   {
     title: 'Trainings & More Services',
-    to: AVIATION_ROUTES.trainings,
+    routeKey: 'trainings',
     description:
       'Professional pilot training, certifications, type ratings, and career development programmes.',
     icon: 'trainings',
@@ -186,6 +190,23 @@ export const aviationServiceCards: AviationServiceCard[] = [
     imagePosition: 'center 40%',
   },
 ]
+
+/** Domain-aware service card links (e.g. /pilots on global-wings.co). */
+export function getAviationServiceCards(): AviationServiceCard[] {
+  const routes = getAviationRoutes()
+  return aviationServiceCardDefs.map(({ routeKey, ...card }) => ({
+    ...card,
+    to: routes[routeKey],
+  }))
+}
+
+/** @deprecated Use getAviationServiceCards() for correct brand-domain paths */
+export const aviationServiceCards: AviationServiceCard[] = aviationServiceCardDefs.map(
+  ({ routeKey, ...card }) => ({
+    ...card,
+    to: AVIATION_ROUTES[routeKey],
+  }),
+)
 
 export type AviationSectionSlug =
   | 'pilots'
@@ -380,50 +401,57 @@ function gwBlogImageSrc(filename: string) {
   return `${GW_BLOG_IMAGES_BASE}/${encodeURIComponent(filename)}`
 }
 
-export const aviationBlogPosts: AviationBlogPost[] = [
-  {
-    title: 'Experience & Capabilities',
-    to: aviationSectionHref('leader'),
-    tag: 'Insights',
-    excerpt:
-      'Global Wings Ltd have over 12 years combined experience in advising commercial and non-commercial airlines and aircraft operators on effective staffing and aviation recruitment solutions.',
-    images: [
-      {
-        src: gwBlogImageSrc('Experience & Capabilities.jpg'),
-        alt: 'Professional handshake representing aviation skills, experience, and growth',
-        imagePosition: 'center center',
-      },
-    ],
-  },
-  {
-    title: 'Flight Crew Resourcing',
-    to: AVIATION_ROUTES.airlines,
-    tag: 'Services',
-    excerpt:
-      'When seeking experienced and qualified flight crew to meet your operations or training requirements, Global Wings Ltd is the partner you can trust!',
-    images: [
-      {
-        src: gwBlogImageSrc('Flight Crew Resourcing.png'),
-        alt: 'Aviation recruiter reviewing a global flight crew talent network on a tablet',
-        imagePosition: 'center 42%',
-      },
-    ],
-  },
-  {
-    title: 'Privacy Policy',
-    to: AVIATION_ROUTES.privacy,
-    tag: 'Legal',
-    excerpt:
-      'At Global Wings Ltd we are committed to maintaining the accuracy, confidentiality and security of your personal information. This Privacy Policy describes the personal information...',
-    images: [
-      {
-        src: gwBlogImageSrc('Privacy Policy .png'),
-        alt: 'Digital padlock representing secure handling of personal aviation data',
-        imagePosition: 'center 38%',
-      },
-    ],
-  },
-]
+export function getAviationBlogPosts(): AviationBlogPost[] {
+  const routes = getAviationRoutes()
+
+  return [
+    {
+      title: 'Experience & Capabilities',
+      to: aviationSectionHref('leader'),
+      tag: 'Insights',
+      excerpt:
+        'Global Wings Ltd have over 12 years combined experience in advising commercial and non-commercial airlines and aircraft operators on effective staffing and aviation recruitment solutions.',
+      images: [
+        {
+          src: gwBlogImageSrc('Experience & Capabilities.jpg'),
+          alt: 'Professional handshake representing aviation skills, experience, and growth',
+          imagePosition: 'center center',
+        },
+      ],
+    },
+    {
+      title: 'Flight Crew Resourcing',
+      to: routes.airlines,
+      tag: 'Services',
+      excerpt:
+        'When seeking experienced and qualified flight crew to meet your operations or training requirements, Global Wings Ltd is the partner you can trust!',
+      images: [
+        {
+          src: gwBlogImageSrc('Flight Crew Resourcing.png'),
+          alt: 'Aviation recruiter reviewing a global flight crew talent network on a tablet',
+          imagePosition: 'center 42%',
+        },
+      ],
+    },
+    {
+      title: 'Privacy Policy',
+      to: routes.privacy,
+      tag: 'Legal',
+      excerpt:
+        'At Global Wings Ltd we are committed to maintaining the accuracy, confidentiality and security of your personal information. This Privacy Policy describes the personal information...',
+      images: [
+        {
+          src: gwBlogImageSrc('Privacy Policy .png'),
+          alt: 'Digital padlock representing secure handling of personal aviation data',
+          imagePosition: 'center 38%',
+        },
+      ],
+    },
+  ]
+}
+
+/** @deprecated Use getAviationBlogPosts() for correct brand-domain paths */
+export const aviationBlogPosts: AviationBlogPost[] = getAviationBlogPosts()
 
 export const gwClosingCta = {
   eyebrow: 'Partner With Global Wings',

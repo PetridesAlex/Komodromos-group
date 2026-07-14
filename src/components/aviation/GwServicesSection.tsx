@@ -3,7 +3,7 @@ import { ArrowUpRight, Briefcase, Building2, GraduationCap, PlaneTakeoff } from 
 import { motion, useReducedMotion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import GwSectionHeader from './GwSectionHeader'
-import { aviationServiceCards, type AviationServiceCard } from '../../data/globalWingsPage'
+import { getAviationServiceCards, type AviationServiceCard } from '../../data/globalWingsPage'
 
 const SERVICE_ICONS: Record<AviationServiceCard['icon'], LucideIcon> = {
   pilots: PlaneTakeoff,
@@ -86,6 +86,7 @@ function GwServiceCard({
 
 export default function GwServicesSection({ sectionId }: { sectionId: string }) {
   const reduceMotion = useReducedMotion()
+  const aviationServiceCards = getAviationServiceCards()
 
   return (
     <section id={sectionId} className="gw-section gw-section--services">
@@ -101,7 +102,7 @@ export default function GwServicesSection({ sectionId }: { sectionId: string }) 
 
       <div className="gw-section__bleed gw-services-grid">
         {aviationServiceCards.map((item, i) => (
-          <GwServiceCard key={item.to} item={item} index={i} reduceMotion={reduceMotion} />
+          <GwServiceCard key={item.icon} item={item} index={i} reduceMotion={reduceMotion} />
         ))}
       </div>
     </section>
