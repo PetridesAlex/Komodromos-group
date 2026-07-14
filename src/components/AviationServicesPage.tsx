@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import GwAboutSection from './aviation/GwAboutSection'
-import GwSectionHeader from './aviation/GwSectionHeader'
 import GwBlogSection from './aviation/GwBlogSection'
+import GwClientsSection from './aviation/GwClientsSection'
 import GwHeroCarousel from './aviation/GwHeroCarousel'
 import GwImagePlaceholder from './aviation/GwImagePlaceholder'
 import GwServicesSection from './aviation/GwServicesSection'
@@ -13,7 +13,6 @@ import {
   AVIATION_SECTIONS,
   getAviationRoutes,
   gwClosingCta,
-  gwClientCount,
   gwLeaderSection,
   gwStats,
 } from '../data/globalWingsPage'
@@ -93,27 +92,7 @@ export default function AviationServicesPage() {
 
         <GwServicesSection sectionId={AVIATION_SECTIONS.services} />
 
-        <section id={AVIATION_SECTIONS.clients} className="gw-section gw-section--clients">
-          <div className="container">
-            <GwSectionHeader
-              className="gw-clients-section__header"
-              eyebrow="Trusted partnerships"
-              title="Our Clients"
-              intro="Leading airlines and aviation operators who rely on Global Wings for recruitment, staffing, and career programmes worldwide."
-            />
-          </div>
-          <div className="gw-section__bleed gw-clients-grid">
-            {Array.from({ length: gwClientCount }, (_, i) => (
-              <a
-                key={i}
-                href="#"
-                className={`gw-client-cell reveal reveal-delay-${Math.min((i % 4) + 1, 4)}`}
-              >
-                <GwImagePlaceholder aspectRatio="570 / 270" variant="logo" label="Insert image here" />
-              </a>
-            ))}
-          </div>
-        </section>
+        <GwClientsSection />
 
         <section id={AVIATION_SECTIONS.leader} className="gw-section gw-section--leader">
           <div className="container gw-leader">

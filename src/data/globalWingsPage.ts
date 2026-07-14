@@ -133,6 +133,15 @@ export type AviationServiceCard = {
   to: string
   description: string
   icon: 'pilots' | 'airlines' | 'jobs' | 'trainings'
+  imageSrc: string
+  imageAlt: string
+  imagePosition?: string
+}
+
+const GW_SERVICES_IMAGES_BASE = '/images/services/global-wings/services'
+
+function gwServiceImageSrc(filename: string) {
+  return `${GW_SERVICES_IMAGES_BASE}/${encodeURIComponent(filename)}`
 }
 
 export const aviationServiceCards: AviationServiceCard[] = [
@@ -142,6 +151,9 @@ export const aviationServiceCards: AviationServiceCard[] = [
     description:
       'International pilot recruitment and placement connecting qualified aviators with leading airlines worldwide.',
     icon: 'pilots',
+    imageSrc: gwServiceImageSrc('PILOTS .png'),
+    imageAlt: 'Airline captain in formal uniform with command cap and gold epaulettes',
+    imagePosition: 'center 28%',
   },
   {
     title: 'Airline Services',
@@ -149,6 +161,9 @@ export const aviationServiceCards: AviationServiceCard[] = [
     description:
       'Crew resourcing, executive search, and specialist staffing solutions tailored to airline operations.',
     icon: 'airlines',
+    imageSrc: gwServiceImageSrc('AIRLINE SERVICES .png'),
+    imageAlt: 'Professional airline cabin crew providing premium in-flight service',
+    imagePosition: 'center 35%',
   },
   {
     title: 'Aviation Jobs',
@@ -156,6 +171,9 @@ export const aviationServiceCards: AviationServiceCard[] = [
     description:
       'Global career opportunities for aviation professionals across airlines, MROs, and aerospace organisations.',
     icon: 'jobs',
+    imageSrc: gwServiceImageSrc('AVIATION JOBS .png'),
+    imageAlt: 'Aviation professional reviewing career opportunities at an airport',
+    imagePosition: 'center center',
   },
   {
     title: 'Trainings & More Services',
@@ -163,6 +181,9 @@ export const aviationServiceCards: AviationServiceCard[] = [
     description:
       'Professional pilot training, certifications, type ratings, and career development programmes.',
     icon: 'trainings',
+    imageSrc: gwServiceImageSrc('TRAININGS.png'),
+    imageAlt: 'Pilot training session in a professional aviation simulator environment',
+    imagePosition: 'center 40%',
   },
 ]
 
@@ -215,7 +236,34 @@ export const aviationSections: Record<AviationSectionSlug, AviationSection> = {
 
 export const aviationSectionSlugs = Object.keys(aviationSections) as AviationSectionSlug[]
 
-export const gwClientCount = 10
+const GW_CLIENTS_BASE = '/images/services/global-wings/clients-brands'
+
+function gwClientLogoSrc(filename: string) {
+  return `${GW_CLIENTS_BASE}/${encodeURIComponent(filename)}`
+}
+
+export type GwClientLogo = {
+  name: string
+  src: string
+}
+
+export const gwClientLogos: GwClientLogo[] = [
+  { name: 'Turkish Airlines', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_35_11 PM.png') },
+  { name: 'airhub Aviation', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_38_49 PM.png') },
+  { name: 'Jetstream Aviation Academy', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_42_36 PM.png') },
+  { name: 'SKY express', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_46_42 PM.png') },
+  { name: 'Avion Express', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_50_01 PM.png') },
+  { name: 'San Marino Executive Aviation', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_54_09 PM.png') },
+  { name: 'Marathon Airlines', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_55_35 PM.png') },
+  { name: 'SmartLynx Airlines', src: gwClientLogoSrc('ChatGPT Image Jul 7, 2026, 09_56_30 PM.png') },
+  { name: 'Avia Solutions Group', src: gwClientLogoSrc('Avia Solution Group.png') },
+  { name: 'BH Training', src: gwClientLogoSrc('BAA .jpg') },
+  { name: 'CAE Inc.', src: gwClientLogoSrc('CAE_Inc.-Logo.wine.webp') },
+  { name: 'Get Jet', src: gwClientLogoSrc('Get Jet.webp') },
+]
+
+/** @deprecated Use gwClientLogos.length */
+export const gwClientCount = gwClientLogos.length
 
 export const gwLeaderSection = {
   title: 'The Global Leader in Aviation Solutions',

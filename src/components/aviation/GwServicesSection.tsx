@@ -3,7 +3,6 @@ import { ArrowUpRight, Briefcase, Building2, GraduationCap, PlaneTakeoff } from 
 import { motion, useReducedMotion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import GwSectionHeader from './GwSectionHeader'
-import GwImagePlaceholder from './GwImagePlaceholder'
 import { aviationServiceCards, type AviationServiceCard } from '../../data/globalWingsPage'
 
 const SERVICE_ICONS: Record<AviationServiceCard['icon'], LucideIcon> = {
@@ -43,7 +42,17 @@ function GwServiceCard({
             whileHover={reduceMotion ? undefined : { scale: 1.06 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <GwImagePlaceholder className="gw-service-card__photo" label="Insert image here" />
+            <img
+              className="gw-service-card__photo"
+              src={item.imageSrc}
+              alt={item.imageAlt}
+              width={960}
+              height={1280}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              draggable={false}
+              style={item.imagePosition ? { objectPosition: item.imagePosition } : undefined}
+            />
             <div className="gw-service-card__overlay" aria-hidden />
             <div className="gw-service-card__shine" aria-hidden />
           </motion.div>

@@ -6,7 +6,7 @@ import GwSubNav from './GwSubNav'
 import GwAviationPreloader from './GwAviationPreloader'
 import { useAviationScroll } from '../../hooks/useAviationScroll'
 import { getServiceBySlug } from '../../data/serviceCards'
-import { GW_ENTRY_QUERY, hasGwEntryFlag, isEnteringAviationFromOutside } from '../../lib/navigationHistory'
+import { GW_ENTRY_QUERY, hasGwEntryFlag, isEnteringAviationFromOutside, wasGlobalWingsBootPreloaderDone } from '../../lib/navigationHistory'
 import { GROUP_SITE_URL } from '../../seo/domainRegistry'
 import { useSiteContext } from '../../seo/SiteContext'
 
@@ -19,6 +19,7 @@ export default function GwAviationLayout() {
   const card = getServiceBySlug('aviation')
   const entryCheckedRef = useRef(false)
   const [showPreloader, setShowPreloader] = useState(() => {
+    if (wasGlobalWingsBootPreloaderDone()) return false
     entryCheckedRef.current = true
     return (
       hasGwEntryFlag(location.search) ||

@@ -6,6 +6,13 @@ import './i18n'
 import './index.css'
 import './tailwind.css'
 import Preloader from './components/Preloader.tsx'
+import GwAviationPreloader from './components/aviation/GwAviationPreloader.tsx'
+import {
+  consumeGlobalWingsEntryIntent,
+  getBootPreloader,
+  markGlobalWingsBootPreloaderDone,
+  stripGlobalWingsEntryQuery,
+} from './lib/navigationHistory.ts'
 import NavigationPathSync from './components/NavigationPathSync.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
@@ -17,8 +24,19 @@ import { SiteContextProvider } from './seo/SiteContext.tsx'
 import { AppRoutes } from './components/AppRoutes.tsx'
 
 function Root() {
-  const [loaded, setLoaded] = useState(false)
-  const handleDone = useCallback(() => setLoaded(true), [])
+  const [bootPreloader, setBootPreloader] = useState(getBootPreloader)
+  const appReady = bootPreloader === 'none'
+
+  const handleGlobalWingsPreloaderDone = useCallback(() => {
+    markGlobalWingsBootPreloaderDone()
+    consumeGlobalWingsEntryIntent()
+    stripGlobalWingsEntryQuery()
+    setBootPreloader('none')
+  }, [])
+
+  const handleGroupPreloaderDone = useCallback(() => {
+    setBootPreloader('none')
+  }, [])
 
   useEffect(() => {
     document.documentElement.style.overflow = ''
@@ -33,8 +51,11 @@ function Root() {
 
   return (
     <>
-      {!loaded && <Preloader onDone={handleDone} />}
-      <div style={loaded ? undefined : { display: 'none' }}>
+      {bootPreloader === 'global-wings' ? (
+        <GwAviationPreloader onDone={handleGlobalWingsPreloaderDone} />
+      ) : null}
+      {bootPreloader === 'group' ? <Preloader onDone={handleGroupPreloaderDone} /> : null}
+      <div style={appReady ? undefined : { display: 'none' }}>
         <BrowserRouter>
           <SiteContextProvider>
             <NavigationPathSync />
