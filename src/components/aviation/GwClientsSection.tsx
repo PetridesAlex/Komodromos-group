@@ -96,7 +96,6 @@ export default function GwClientsSection() {
         <span className="gw-clients-section__aurora gw-clients-section__aurora--one" />
         <span className="gw-clients-section__aurora gw-clients-section__aurora--two" />
         <span className="gw-clients-section__grid" />
-        <span className="gw-clients-section__beam" />
       </div>
 
       <div className="container gw-clients-section__head">
