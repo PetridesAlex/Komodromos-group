@@ -51548,11 +51548,21 @@ a.yacht-card {
   top: var(--gw-topbar-h);
   z-index: 40;
   background:
-    linear-gradient(180deg, rgba(6, 10, 18, 0.98) 0%, rgba(3, 5, 10, 0.97) 100%);
-  backdrop-filter: blur(18px) saturate(1.2);
-  -webkit-backdrop-filter: blur(18px) saturate(1.2);
-  border-bottom: 1px solid rgba(74, 144, 226, 0.18);
-  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.24);
+    radial-gradient(120% 160% at 50% -55%, rgba(44, 95, 158, 0.28) 0%, transparent 58%),
+    radial-gradient(70% 120% at 100% 40%, rgba(74, 144, 226, 0.1) 0%, transparent 52%),
+    radial-gradient(55% 100% at 0% 60%, rgba(26, 52, 92, 0.14) 0%, transparent 48%),
+    linear-gradient(
+      180deg,
+      rgba(10, 17, 30, 0.99) 0%,
+      rgba(6, 10, 20, 0.985) 46%,
+      rgba(3, 5, 12, 0.995) 100%
+    );
+  backdrop-filter: blur(22px) saturate(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+  border-bottom: 1px solid rgba(165, 210, 255, 0.14);
+  box-shadow:
+    0 20px 56px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .gw-subnav::before {
@@ -51562,19 +51572,50 @@ a.yacht-card {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(44, 95, 158, 0.35) 14%,
-    rgba(74, 144, 226, 0.95) 50%,
-    rgba(44, 95, 158, 0.35) 86%,
+    rgba(44, 95, 158, 0.45) 12%,
+    rgba(120, 185, 255, 0.95) 50%,
+    rgba(44, 95, 158, 0.45) 88%,
     transparent 100%
   );
+  box-shadow: 0 0 18px rgba(74, 144, 226, 0.35);
 }
 
 .gw-subnav__shell {
   position: relative;
 }
 
+.gw-subnav__shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(74, 144, 226, 0.05) 42%,
+    rgba(165, 210, 255, 0.07) 50%,
+    rgba(74, 144, 226, 0.05) 58%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.gw-subnav__shell::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent
+  );
+  pointer-events: none;
+}
+
 .gw-subnav__bar {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: clamp(0.75rem, 2vw, 1.25rem);
@@ -51663,6 +51704,18 @@ a.yacht-card {
   -webkit-overflow-scrolling: touch;
 }
 
+.gw-subnav__track--desktop {
+  padding: 0.22rem 0.4rem;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, rgba(255, 255, 255, 0.025) 100%);
+  border: 1px solid rgba(74, 144, 226, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.22),
+    0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
 .gw-subnav__track::-webkit-scrollbar {
   display: none;
 }
@@ -51672,14 +51725,15 @@ a.yacht-card {
   top: 50%;
   left: 0;
   z-index: 0;
-  height: calc(100% - 2px);
-  border-radius: 10px;
+  height: calc(100% - 4px);
+  border-radius: 11px;
   background:
-    linear-gradient(135deg, rgba(74, 144, 226, 0.28) 0%, rgba(44, 95, 158, 0.22) 100%);
-  border: 1px solid rgba(74, 144, 226, 0.42);
+    linear-gradient(135deg, rgba(74, 144, 226, 0.38) 0%, rgba(44, 95, 158, 0.28) 100%);
+  border: 1px solid rgba(165, 210, 255, 0.32);
   box-shadow:
-    0 8px 22px rgba(74, 144, 226, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 10px 26px rgba(74, 144, 226, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.12);
   opacity: 0;
   transform: translateY(-50%);
   transition:
@@ -51712,27 +51766,40 @@ a.yacht-card {
 
 .gw-subnav__link {
   display: block;
-  padding: 0.58rem 0.82rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: rgba(220, 232, 248, 0.72);
+  padding: 0.62rem 0.9rem;
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(196, 214, 238, 0.66);
   text-decoration: none;
   white-space: nowrap;
-  border-radius: 10px;
-  transition: color 0.22s ease;
+  border-radius: 11px;
+  transition:
+    color 0.26s ease,
+    transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.26s ease,
+    text-shadow 0.26s ease;
   scroll-snap-align: center;
 }
 
 .gw-subnav__link:hover,
 .gw-subnav__link:focus-visible {
-  color: #f4f8ff;
+  color: #ffffff;
+  transform: translateY(-1px);
+  letter-spacing: 0.16em;
+  text-shadow: 0 0 20px rgba(74, 144, 226, 0.42);
   outline: none;
 }
 
 .gw-subnav__link--active {
   color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 16px rgba(74, 144, 226, 0.38);
 }
 
 .gw-subnav__cta {
@@ -51885,11 +51952,12 @@ a.yacht-card {
 }
 
 .gw-subnav__menu-link-label {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: rgba(244, 248, 255, 0.92);
+  font-family: 'Outfit', 'Montserrat', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(220, 232, 248, 0.88);
 }
 
 .gw-subnav__menu-link-full {
@@ -55021,8 +55089,14 @@ a.yacht-card {
   .gw-hero__cta:hover,
   .gw-btn-more:hover,
   .gw-subnav__cta:hover,
+  .gw-subnav__link:hover,
   .gw-subnav__menu-link:hover {
     transform: none;
+  }
+
+  .gw-subnav__link:hover {
+    letter-spacing: inherit;
+    text-shadow: none;
   }
 
   .gw-subnav__menu-wrap {

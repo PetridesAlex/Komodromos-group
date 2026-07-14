@@ -4,7 +4,7 @@ import SiteTopbar from '../SiteTopbar'
 import GwSubNav from './GwSubNav'
 import { useAviationScroll } from '../../hooks/useAviationScroll'
 import { getServiceBySlug } from '../../data/serviceCards'
-import { GROUP_SITE_URL } from '../../seo/domainRegistry'
+import { buildGroupSiteReturnUrl } from '../../lib/navigationHistory'
 import { useSiteContext } from '../../seo/SiteContext'
 
 export default function GwAviationLayout() {
@@ -26,7 +26,7 @@ export default function GwAviationLayout() {
           logoPathname={isBrandDomain ? '/' : '/'}
           logoScrollToId="home"
           homeHref="/"
-          servicesSectionHref={isBrandDomain ? `${GROUP_SITE_URL}/#services` : '/#services'}
+          servicesSectionHref={isBrandDomain ? buildGroupSiteReturnUrl('services') : '/#services'}
         />
 
         <GwSubNav />

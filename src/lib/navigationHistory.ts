@@ -1,5 +1,6 @@
 import {
   AVIATION_ROUTE_SEGMENTS,
+  GROUP_SITE_URL,
   getBrandByHost,
   normalizeInternalPath,
 } from '../seo/domainRegistry'
@@ -11,6 +12,7 @@ export const GW_ENTRY_QUERY = 'gw-entry'
 export const GW_ENTRY_SESSION_KEY = 'gw-entry-intent'
 export const GW_ENTRY_BOOT_DONE_KEY = 'gw-entry-boot-done'
 export const GROUP_BOOT_DONE_KEY = 'group-boot-done'
+export const GROUP_RETURN_QUERY = 'group-return'
 
 /** Call on every client-side route change (before reading entry state). */
 export function syncNavigationPath(pathname: string) {
@@ -41,6 +43,18 @@ export function isEnteringAviationFromOutside(pathname: string, isAviationBrandH
 
 export function hasGwEntryFlag(search: string): boolean {
   return new URLSearchParams(search).get(GW_ENTRY_QUERY) === '1'
+}
+
+export function hasGroupReturnFlag(search: string): boolean {
+  return new URLSearchParams(search).get(GROUP_RETURN_QUERY) === '1'
+}
+
+/** Cross-domain link back to the group hub without replaying the group boot splash. */
+export function buildGroupSiteReturnUrl(hash = 'home'): string {
+  const url = new URL(`${GROUP_SITE_URL}/`)
+  url.searchParams.set(GROUP_RETURN_QUERY, '1')
+  url.hash = hash
+  return url.toString()
 }
 
 function hasGlobalWingsEntryIntent(): boolean {
@@ -125,9 +139,22 @@ export function stripGlobalWingsEntryQuery() {
   window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`)
 }
 
+export function stripGroupReturnQuery() {
+  if (typeof window === 'undefined') return
+  const url = new URL(window.location.href)
+  if (!url.searchParams.has(GROUP_RETURN_QUERY)) return
+  url.searchParams.delete(GROUP_RETURN_QUERY)
+  window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`)
+}
+
 export type BootPreloader = 'global-wings' | 'group' | 'none'
 
 export function getBootPreloader(): BootPreloader {
+  if (typeof window !== 'undefined' && hasGroupReturnFlag(window.location.search)) {
+    markGroupBootPreloaderDone()
+    stripGroupReturnQuery()
+    return 'none'
+  }
   if (shouldUseGlobalWingsEntryPreloader()) return 'global-wings'
   if (shouldShowGroupBootPreloader()) return 'group'
   if (typeof window !== 'undefined' && getBrandByHost(window.location.hostname)) {

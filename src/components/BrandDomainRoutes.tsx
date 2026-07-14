@@ -20,6 +20,7 @@ import TaxServicesOverviewPage from './TaxServicesOverviewPage'
 import TaxTaxResidenceCertificatePage from './TaxTaxResidenceCertificatePage'
 import TaxTransferFeesCalculatorPage from './TaxTransferFeesCalculatorPage'
 import TaxisNetService from '../pages/TaxisNetService'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import SiteTopbar from './SiteTopbar'
 import TaxNexCyprusPage from './TaxNexCyprusPage'
 
@@ -30,7 +31,7 @@ function TaxBrandHome() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="https://www.komodromosgroup.com/#services"
+        servicesSectionHref={buildGroupSiteReturnUrl('services')}
       />
       <TaxNexCyprusPage />
     </div>

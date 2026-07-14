@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { MAIN_LOGO } from '../data/mainLogo'
-import { GROUP_SITE_URL } from '../seo/domainRegistry'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
 
 type SiteLogoProps = {
@@ -32,7 +32,7 @@ export default function SiteLogo({
 
   if (isBrandDomain) {
     return (
-      <a href={`${GROUP_SITE_URL}/#${scrollToId}`} className="logo">
+      <a href={buildGroupSiteReturnUrl(scrollToId)} className="logo">
         {logoImage}
       </a>
     )
