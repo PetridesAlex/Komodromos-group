@@ -14,6 +14,7 @@ import {
   markGroupBootPreloaderDone,
   stripGlobalWingsEntryQuery,
 } from './lib/navigationHistory.ts'
+import { unlockDocumentScroll } from './lib/documentScrollLock.ts'
 import NavigationPathSync from './components/NavigationPathSync.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
 import SocialHub from './components/SocialHub.tsx'
@@ -26,55 +27,65 @@ import { AppRoutes } from './components/AppRoutes.tsx'
 
 function Root() {
   const [bootPreloader, setBootPreloader] = useState(getBootPreloader)
-  const appReady = bootPreloader === 'none'
 
   const handleGlobalWingsPreloaderDone = useCallback(() => {
     markGlobalWingsBootPreloaderDone()
     markGroupBootPreloaderDone()
     consumeGlobalWingsEntryIntent()
     stripGlobalWingsEntryQuery()
+    unlockDocumentScroll()
     setBootPreloader('none')
   }, [])
 
   const handleGroupPreloaderDone = useCallback(() => {
     markGroupBootPreloaderDone()
+    unlockDocumentScroll()
     setBootPreloader('none')
   }, [])
 
   useEffect(() => {
-    document.documentElement.style.overflow = ''
-    document.body.style.overflow = ''
-    document.body.style.position = ''
-    document.body.style.top = ''
-    document.body.style.left = ''
-    document.body.style.right = ''
-    document.body.style.width = ''
-    document.body.removeAttribute('data-kg-scroll-lock-y')
+    unlockDocumentScroll()
   }, [])
+
+  useEffect(() => {
+    if (bootPreloader === 'none') {
+      unlockDocumentScroll()
+      return
+    }
+
+    const safetyTimer = window.setTimeout(() => {
+      if (bootPreloader === 'global-wings') {
+        handleGlobalWingsPreloaderDone()
+        return
+      }
+      handleGroupPreloaderDone()
+    }, 5000)
+
+    return () => window.clearTimeout(safetyTimer)
+  }, [bootPreloader, handleGlobalWingsPreloaderDone, handleGroupPreloaderDone])
 
   return (
     <>
+      <BrowserRouter>
+        <SiteContextProvider>
+          <NavigationPathSync />
+          <SeoOverrideProvider>
+            <SeoManager />
+            <SectionLedScroll />
+            <ServiceMaintenanceGate>
+              <AppRoutes />
+            </ServiceMaintenanceGate>
+          </SeoOverrideProvider>
+          <HeroParallaxEffect />
+          <CookieBanner />
+          <SocialHub />
+        </SiteContextProvider>
+      </BrowserRouter>
+
       {bootPreloader === 'global-wings' ? (
         <GwAviationPreloader onDone={handleGlobalWingsPreloaderDone} />
       ) : null}
       {bootPreloader === 'group' ? <Preloader onDone={handleGroupPreloaderDone} /> : null}
-      <div style={appReady ? undefined : { display: 'none' }}>
-        <BrowserRouter>
-          <SiteContextProvider>
-            <NavigationPathSync />
-            <SeoOverrideProvider>
-              <SeoManager />
-              <SectionLedScroll />
-              <ServiceMaintenanceGate>
-                <AppRoutes />
-              </ServiceMaintenanceGate>
-            </SeoOverrideProvider>
-            <HeroParallaxEffect />
-            <CookieBanner />
-            <SocialHub />
-          </SiteContextProvider>
-        </BrowserRouter>
-      </div>
     </>
   )
 }

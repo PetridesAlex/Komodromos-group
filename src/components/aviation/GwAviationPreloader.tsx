@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Plane } from 'lucide-react'
 import { gwSubNavBrand } from '../../data/globalWingsPage'
+import { lockDocumentScroll, unlockDocumentScroll } from '../../lib/documentScrollLock'
 import { prefetchGwHeroVideo } from '../../lib/gwHeroVideo'
 
 const GW_LOGO_SRC = '/images/services/companie-services-cover/cards-logos-services/global-wings.png'
@@ -37,6 +38,7 @@ export default function GwAviationPreloader({ onDone }: Props) {
   const [statusVisible, setStatusVisible] = useState(true)
   const onDoneRef = useRef(onDone)
   const finishedRef = useRef(false)
+  const exitTimerRef = useRef<number | null>(null)
   const statusRef = useRef<string>(STATUS_PHASES[0].label)
 
   onDoneRef.current = onDone
@@ -54,38 +56,46 @@ export default function GwAviationPreloader({ onDone }: Props) {
 
   useEffect(() => {
     prefetchGwHeroVideo()
-    document.documentElement.style.overflow = 'hidden'
-    document.body.style.overflow = 'hidden'
+    lockDocumentScroll()
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const durationMs = reduceMotion ? 900 : DURATION_MS
+    const exitMs = reduceMotion ? 180 : EXIT_MS
     const start = performance.now()
-    const tick = () => {
-      const elapsed = performance.now() - start
-      const linear = Math.min(1, elapsed / DURATION_MS)
-      const next = easeOutCubic(linear) * 100
-      setProgress(next)
 
-      if (elapsed >= DURATION_MS) {
-        if (!finishedRef.current) {
-          finishedRef.current = true
-          setProgress(100)
-          setFadeOut(true)
-          window.setTimeout(() => {
-            document.documentElement.style.overflow = ''
-            document.body.style.overflow = ''
-            onDoneRef.current()
-          }, EXIT_MS)
-        }
-        return
-      }
-
-      window.setTimeout(tick, TICK_MS)
+    const finish = () => {
+      if (finishedRef.current) return
+      finishedRef.current = true
+      setProgress(100)
+      setFadeOut(true)
+      if (exitTimerRef.current !== null) window.clearTimeout(exitTimerRef.current)
+      exitTimerRef.current = window.setTimeout(() => {
+        exitTimerRef.current = null
+        unlockDocumentScroll()
+        onDoneRef.current()
+      }, exitMs)
     }
 
-    const timer = window.setTimeout(tick, TICK_MS)
+    const timer = window.setInterval(() => {
+      const elapsed = performance.now() - start
+      const linear = Math.min(1, elapsed / durationMs)
+      setProgress(easeOutCubic(linear) * 100)
+      if (elapsed >= durationMs) {
+        window.clearInterval(timer)
+        finish()
+      }
+    }, TICK_MS)
+
+    const safetyTimer = window.setTimeout(finish, durationMs + exitMs + 250)
+
     return () => {
-      window.clearTimeout(timer)
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
+      window.clearInterval(timer)
+      window.clearTimeout(safetyTimer)
+      if (exitTimerRef.current !== null) {
+        window.clearTimeout(exitTimerRef.current)
+        exitTimerRef.current = null
+      }
+      unlockDocumentScroll()
     }
   }, [])
 

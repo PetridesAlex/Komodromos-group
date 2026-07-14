@@ -96,16 +96,23 @@ export function wasGroupBootPreloaderDone(): boolean {
   return sessionStorage.getItem(GROUP_BOOT_DONE_KEY) === '1'
 }
 
-/** Global Wings splash only when entering from outside (gw-entry or click intent). */
+function isGlobalWingsBootContext(): boolean {
+  if (typeof window === 'undefined') return false
+  const brand = getBrandByHost(window.location.hostname)
+  if (brand?.slug === 'aviation') return true
+  return normalizeInternalPath(window.location.pathname).startsWith('/services/aviation')
+}
+
+/** Global Wings splash on first visit to Global Wings (brand domain or aviation routes). */
 export function shouldUseGlobalWingsEntryPreloader(): boolean {
   if (typeof window === 'undefined') return false
+  if (!isGlobalWingsBootContext()) return false
+
+  if (hasGwEntryFlag(window.location.search)) return true
+  if (hasGlobalWingsEntryIntent()) return true
   if (wasGlobalWingsBootPreloaderDone()) return false
 
-  if (hasGwEntryFlag(window.location.search)) {
-    return true
-  }
-
-  return hasGlobalWingsEntryIntent()
+  return true
 }
 
 function isGroupSiteBoot(): boolean {
@@ -117,6 +124,7 @@ function isGroupSiteBoot(): boolean {
 export function shouldShowGroupBootPreloader(): boolean {
   if (typeof window === 'undefined') return false
   if (wasGroupBootPreloaderDone()) return false
+  if (isGlobalWingsBootContext()) return false
   if (shouldUseGlobalWingsEntryPreloader()) return false
   if (!isGroupSiteBoot()) return false
   return true
