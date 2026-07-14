@@ -3,7 +3,6 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import GwSectionHeader from './GwSectionHeader'
-import GwImagePlaceholder from './GwImagePlaceholder'
 import { aviationBlogPosts, type AviationBlogPost } from '../../data/globalWingsPage'
 
 function GwAviationLink({
@@ -41,14 +40,42 @@ function GwAviationLink({
   )
 }
 
-function GwBlogMedia({ post, reduceMotion }: { post: AviationBlogPost; reduceMotion: boolean | null }) {
-  const [activeSlide, setActiveSlide] = useState(0)
-  const slides = post.carouselSlides ?? 1
+function GwBlogPhoto({
+  image,
+  eager = false,
+}: {
+  image: AviationBlogPost['images'][number]
+  eager?: boolean
+}) {
+  return (
+    <img
+      className="gw-blog-feature__photo"
+      src={image.src}
+      alt={image.alt}
+      width={1680}
+      height={720}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      draggable={false}
+      style={image.imagePosition ? { objectPosition: image.imagePosition } : undefined}
+    />
+  )
+}
 
-  if (slides <= 1) {
-    return (
-      <GwImagePlaceholder aspectRatio="21 / 9" className="gw-blog-feature__photo" label="Insert image here" />
-    )
+function GwBlogMedia({
+  post,
+  reduceMotion,
+  eager = false,
+}: {
+  post: AviationBlogPost
+  reduceMotion: boolean | null
+  eager?: boolean
+}) {
+  const [activeSlide, setActiveSlide] = useState(0)
+  const images = post.images
+
+  if (images.length <= 1) {
+    return images[0] ? <GwBlogPhoto image={images[0]} eager={eager} /> : null
   }
 
   return (
@@ -63,7 +90,7 @@ function GwBlogMedia({ post, reduceMotion }: { post: AviationBlogPost; reduceMot
             exit={reduceMotion ? undefined : { opacity: 0, scale: 0.98 }}
             transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            <GwImagePlaceholder aspectRatio="21 / 9" className="gw-blog-feature__photo" label="Insert image here" />
+            <GwBlogPhoto image={images[activeSlide]} eager={eager && activeSlide === 0} />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -76,14 +103,17 @@ function GwBlogMedia({ post, reduceMotion }: { post: AviationBlogPost; reduceMot
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
-            setActiveSlide((s) => (s - 1 + slides) % slides)
+            setActiveSlide((s) => (s - 1 + images.length) % images.length)
           }}
         >
           <ChevronLeft size={18} strokeWidth={2} aria-hidden />
         </button>
         <div className="gw-blog-feature__carousel-dots" aria-hidden>
-          {Array.from({ length: slides }, (_, i) => (
-            <span key={i} className={`gw-blog-feature__carousel-dot${i === activeSlide ? ' is-active' : ''}`} />
+          {images.map((image, i) => (
+            <span
+              key={image.src}
+              className={`gw-blog-feature__carousel-dot${i === activeSlide ? ' is-active' : ''}`}
+            />
           ))}
         </div>
         <button
@@ -93,7 +123,7 @@ function GwBlogMedia({ post, reduceMotion }: { post: AviationBlogPost; reduceMot
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
-            setActiveSlide((s) => (s + 1) % slides)
+            setActiveSlide((s) => (s + 1) % images.length)
           }}
         >
           <ChevronRight size={18} strokeWidth={2} aria-hidden />
@@ -128,7 +158,7 @@ function GwBlogFeature({
     >
       <GwAviationLink to={post.to} className="gw-blog-feature__link">
         <div className="gw-blog-feature__media">
-          <GwBlogMedia post={post} reduceMotion={reduceMotion} />
+          <GwBlogMedia post={post} reduceMotion={reduceMotion} eager={index === 0 && isActive} />
           <div className="gw-blog-feature__overlay" aria-hidden />
           <div className="gw-blog-feature__shine" aria-hidden />
           <span className="gw-blog-feature__index" aria-hidden>
@@ -256,7 +286,7 @@ export default function GwBlogSection({ sectionId }: { sectionId: string }) {
           </motion.div>
         </div>
 
-          <div className="container gw-blog-showcase__footer">
+        <div className="container gw-blog-showcase__footer">
           <div className="gw-blog-showcase__progress" aria-hidden>
             <motion.span
               className="gw-blog-showcase__progress-bar"

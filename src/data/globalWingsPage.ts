@@ -341,7 +341,19 @@ export type AviationBlogPost = {
   to: string
   excerpt: string
   tag: string
+  images: {
+    src: string
+    alt: string
+    imagePosition?: string
+  }[]
+  /** @deprecated Use images.length */
   carouselSlides?: number
+}
+
+const GW_BLOG_IMAGES_BASE = '/images/services/global-wings/blog'
+
+function gwBlogImageSrc(filename: string) {
+  return `${GW_BLOG_IMAGES_BASE}/${encodeURIComponent(filename)}`
 }
 
 export const aviationBlogPosts: AviationBlogPost[] = [
@@ -351,6 +363,13 @@ export const aviationBlogPosts: AviationBlogPost[] = [
     tag: 'Insights',
     excerpt:
       'Global Wings Ltd have over 12 years combined experience in advising commercial and non-commercial airlines and aircraft operators on effective staffing and aviation recruitment solutions.',
+    images: [
+      {
+        src: gwBlogImageSrc('Experience & Capabilities.jpg'),
+        alt: 'Professional handshake representing aviation skills, experience, and growth',
+        imagePosition: 'center center',
+      },
+    ],
   },
   {
     title: 'Flight Crew Resourcing',
@@ -358,7 +377,13 @@ export const aviationBlogPosts: AviationBlogPost[] = [
     tag: 'Services',
     excerpt:
       'When seeking experienced and qualified flight crew to meet your operations or training requirements, Global Wings Ltd is the partner you can trust!',
-    carouselSlides: 3,
+    images: [
+      {
+        src: gwBlogImageSrc('Flight Crew Resourcing.png'),
+        alt: 'Aviation recruiter reviewing a global flight crew talent network on a tablet',
+        imagePosition: 'center 42%',
+      },
+    ],
   },
   {
     title: 'Privacy Policy',
@@ -366,6 +391,13 @@ export const aviationBlogPosts: AviationBlogPost[] = [
     tag: 'Legal',
     excerpt:
       'At Global Wings Ltd we are committed to maintaining the accuracy, confidentiality and security of your personal information. This Privacy Policy describes the personal information...',
+    images: [
+      {
+        src: gwBlogImageSrc('Privacy Policy .png'),
+        alt: 'Digital padlock representing secure handling of personal aviation data',
+        imagePosition: 'center 38%',
+      },
+    ],
   },
 ]
 
