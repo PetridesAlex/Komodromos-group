@@ -17,6 +17,10 @@ export type SiteTopbarProps = {
   className?: string
 }
 
+function isExternalHref(href: string): boolean {
+  return href.startsWith('http://') || href.startsWith('https://')
+}
+
 function NavHome({
   href,
   onNavigate,
@@ -24,7 +28,7 @@ function NavHome({
   href: string
   onNavigate: () => void
 }) {
-  if (href.startsWith('#')) {
+  if (href.startsWith('#') || isExternalHref(href)) {
     return (
       <a href={href} onClick={onNavigate}>
         Overview
@@ -45,7 +49,7 @@ function NavServicesTrigger({
   href: string
   onNavigate: () => void
 }) {
-  if (href.startsWith('#')) {
+  if (href.startsWith('#') || isExternalHref(href)) {
     return (
       <a href={href} className="nav-dropdown__trigger" onClick={onNavigate}>
         Solutions
