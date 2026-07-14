@@ -3,13 +3,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import GwSectionHeader from './GwSectionHeader'
 import { AVIATION_SECTIONS, gwClientLogos, type GwClientLogo } from '../../data/globalWingsPage'
 
-function ClientCard({
-  logo,
-  showLabel,
-}: {
-  logo: GwClientLogo
-  showLabel: boolean
-}) {
+function ClientCard({ logo }: { logo: GwClientLogo }) {
   const [imageFailed, setImageFailed] = useState(false)
   const cardLabel = logo.shortName ?? logo.name
   const useTextFallback = !logo.src || imageFailed
@@ -25,7 +19,7 @@ function ClientCard({
         ) : (
           <img
             src={logo.src}
-            alt={`${logo.name} logo`}
+            alt=""
             width={240}
             height={96}
             loading="lazy"
@@ -35,11 +29,9 @@ function ClientCard({
           />
         )}
       </div>
-      {showLabel ? (
-        <figcaption className="gw-clients-marquee__caption">
-          <span className="gw-clients-marquee__caption-text">{logo.name}</span>
-        </figcaption>
-      ) : null}
+      <figcaption className="gw-clients-marquee__caption">
+        <span className="gw-clients-marquee__caption-text">{logo.name}</span>
+      </figcaption>
     </>
   )
 }
@@ -84,7 +76,7 @@ function MarqueeRow({
               whileHover={reducedMotion ? undefined : { y: -6, scale: 1.02 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
-              <ClientCard logo={logo} showLabel={reducedMotion || index < logos.length} />
+              <ClientCard logo={logo} />
             </motion.figure>
           ))}
         </div>

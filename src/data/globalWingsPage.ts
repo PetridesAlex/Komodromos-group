@@ -330,12 +330,6 @@ export const gwTeamMembers: GwTeamMember[] = [
     imagePosition: 'center 20%',
   },
   {
-    name: 'Andy Georgiou Komodromou',
-    role: 'Business Management & Marketing (MBA)',
-    background:
-      'Background: A320 Airlines Pilot, MBA, Psychologist, Member of Flight Safety Faundation.\n8 years experience\n.',
-  },
-  {
     name: 'Dr George Athanasiou',
     role: 'MD, MSc, AvMed',
     background:
@@ -343,11 +337,6 @@ export const gwTeamMembers: GwTeamMember[] = [
     imageSrc: gwTeamImageSrc('Dr George Athanasiou .png'),
     imageAlt: 'Dr George Athanasiou, aviation medical examiner',
     imagePosition: 'center 18%',
-  },
-  {
-    name: 'Kalia Stavrou',
-    role: 'Bachelor of Laws',
-    background: 'Background: Bachelor of Laws\n LLB  (Hons)',
   },
   {
     name: 'Chariklia Mich',

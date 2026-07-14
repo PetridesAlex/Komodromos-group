@@ -54716,7 +54716,8 @@ a.yacht-card {
 }
 
 .gw-clients-marquee__caption-text {
-  display: inline-block;
+  display: block;
+  max-width: 100%;
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.74rem, 1.15vw, 0.92rem);
   font-weight: 800;
@@ -54726,6 +54727,9 @@ a.yacht-card {
   text-shadow: 0 2px 16px rgba(74, 144, 226, 0.28);
   position: relative;
   padding-bottom: 0.35rem;
+  white-space: normal;
+  text-wrap: balance;
+  line-height: 1.35;
 }
 
 .gw-clients-marquee__caption-text::after {
