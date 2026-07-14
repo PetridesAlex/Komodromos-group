@@ -278,6 +278,15 @@ export type GwTeamMember = {
   name: string
   role: string
   background?: string
+  imageSrc?: string
+  imageAlt?: string
+  imagePosition?: string
+}
+
+const GW_TEAM_IMAGES_BASE = '/images/services/global-wings/team'
+
+function gwTeamImageSrc(filename: string) {
+  return `${GW_TEAM_IMAGES_BASE}/${encodeURIComponent(filename)}`
 }
 
 export const gwTeamMembers: GwTeamMember[] = [
@@ -285,12 +294,18 @@ export const gwTeamMembers: GwTeamMember[] = [
     name: 'Capt. Giannos Komodromos',
     role:
       'CEO at Komodromos Group of Companies | Lawyer Corporate & Tax/Vat Consultant (LLB UoL) | Legal Mediator & Arbitrator A.D.R | Aviation Legal Consultant | Captain,TRI,CRMI,Flight Operations Auditor A320F',
+    imageSrc: gwTeamImageSrc('Capt. Giannos Komodromos .png'),
+    imageAlt: 'Capt. Giannos Komodromos, CEO of Komodromos Group and Global Wings',
+    imagePosition: 'center 22%',
   },
   {
     name: 'Capt. Philip Kanonis ',
     role: 'MEng CEng MRAeS',
     background:
       'Background: Airline Pilot, Technical Pilot, Aeornautical Engineer\n\n20 years experience.',
+    imageSrc: gwTeamImageSrc('Capt. Philip Kanonis .png'),
+    imageAlt: 'Capt. Philip Kanonis, airline and technical pilot',
+    imagePosition: 'center 20%',
   },
   {
     name: 'Andy Georgiou Komodromou',
@@ -303,6 +318,9 @@ export const gwTeamMembers: GwTeamMember[] = [
     role: 'MD, MSc, AvMed',
     background:
       'Background:General and Aviation Medicine\nAviation Authorised Medical Examiner - CY-AME-03.\n25 Years experience.',
+    imageSrc: gwTeamImageSrc('Dr George Athanasiou .png'),
+    imageAlt: 'Dr George Athanasiou, aviation medical examiner',
+    imagePosition: 'center 18%',
   },
   {
     name: 'Kalia Stavrou',
@@ -314,12 +332,18 @@ export const gwTeamMembers: GwTeamMember[] = [
     role: 'Bachelor of Laws',
     background:
       'Background: Law area & AML, Human Resources specialist\n4 years experience',
+    imageSrc: gwTeamImageSrc('CHARIKLEIA COSTA .png'),
+    imageAlt: 'Chariklia Mich, law and human resources specialist',
+    imagePosition: 'center 24%',
   },
   {
     name: 'Loukia Andreou',
     role: 'Office Manager',
     background:
       'Background: Bachelor degree environmental science and technology\n- Master of science on energy resources management\n7 Years Experience',
+    imageSrc: gwTeamImageSrc('LOUKIA ANDREOU .png'),
+    imageAlt: 'Loukia Andreou, office manager at Global Wings',
+    imagePosition: 'center 20%',
   },
 ]
 

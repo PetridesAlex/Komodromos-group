@@ -53819,6 +53819,33 @@ a.yacht-card {
   height: 100%;
   margin: 0;
   border-radius: 0;
+  object-fit: cover;
+  object-position: center 20%;
+  transform: scale(1.02);
+  filter: contrast(1.04) saturate(1.04);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.gw-team-card:hover .gw-team-card__photo:not(.gw-team-card__photo--fallback) {
+  filter: contrast(1.06) saturate(1.06);
+}
+
+.gw-team-card__photo--fallback {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(74, 144, 226, 0.22) 0%, transparent 58%),
+    linear-gradient(155deg, rgba(3, 5, 10, 0.98) 0%, rgba(14, 24, 48, 0.94) 48%, rgba(26, 36, 56, 0.9) 100%);
+}
+
+.gw-team-card__initials {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(165, 210, 255, 0.42);
+  text-shadow: 0 4px 24px rgba(74, 144, 226, 0.25);
 }
 
 .gw-team-card__photo.gw-placeholder {
@@ -53844,9 +53871,9 @@ a.yacht-card {
   background:
     linear-gradient(
       180deg,
-      rgba(3, 5, 10, 0.12) 0%,
-      rgba(3, 5, 10, 0.06) 24%,
-      rgba(3, 5, 10, 0.62) 62%,
+      rgba(3, 5, 10, 0.06) 0%,
+      rgba(3, 5, 10, 0.02) 22%,
+      rgba(3, 5, 10, 0.52) 58%,
       rgba(3, 5, 10, 0.96) 100%
     );
   transition: opacity 0.5s ease;

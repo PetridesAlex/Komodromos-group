@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Rss } from 'lucide-react'
 import GwSectionHeader from './GwSectionHeader'
-import GwImagePlaceholder from './GwImagePlaceholder'
 import { gwSocialLinks, gwTeamMembers, type GwTeamMember } from '../../data/globalWingsPage'
 
 const SOCIAL_ICONS: Record<(typeof gwSocialLinks)[number]['id'], ReactNode> = {
@@ -87,6 +86,37 @@ function parseBackground(text: string, roleHeadline: string) {
   return { items, experience }
 }
 
+function teamInitials(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean)
+  const first = parts[0]?.[0] ?? ''
+  const last = parts[parts.length - 1]?.[0] ?? ''
+  return `${first}${last}`.toUpperCase()
+}
+
+function GwTeamPhoto({ member, eager = false }: { member: GwTeamMember; eager?: boolean }) {
+  if (member.imageSrc) {
+    return (
+      <img
+        className="gw-team-card__photo"
+        src={member.imageSrc}
+        alt={member.imageAlt ?? member.name}
+        width={640}
+        height={800}
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        draggable={false}
+        style={member.imagePosition ? { objectPosition: member.imagePosition } : undefined}
+      />
+    )
+  }
+
+  return (
+    <div className="gw-team-card__photo gw-team-card__photo--fallback" aria-hidden>
+      <span className="gw-team-card__initials">{teamInitials(member.name)}</span>
+    </div>
+  )
+}
+
 function GwTeamCard({
   member,
   index,
@@ -120,7 +150,7 @@ function GwTeamCard({
           whileHover={reduceMotion ? undefined : { scale: 1.06 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
-          <GwImagePlaceholder className="gw-team-card__photo" label="Insert image here" />
+          <GwTeamPhoto member={member} eager={index < 2} />
           <div className="gw-team-card__overlay" aria-hidden />
           <div className="gw-team-card__shine" aria-hidden />
         </motion.div>
