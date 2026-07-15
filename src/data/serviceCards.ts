@@ -36,7 +36,6 @@ export const serviceCards: ServiceCard[] = [
     image: '/images/services/vip-service/luxury-travel.webp',
     brandLogo: `${SVC_CARD_LOGO}/luxury-sky.png`,
     brandLogoBlend: 'lighten',
-    comingSoon: true,
   },
   {
     slug: 'wedding',

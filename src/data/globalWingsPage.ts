@@ -289,6 +289,8 @@ export const gwClientCount = gwClientLogos.length
 
 export const gwLeaderSection = {
   title: 'The Global Leader in Aviation Solutions',
+  imageSrc: '/images/services/global-wings/global-leaders/global-wings-aviation-leader.webp',
+  imageAlt: 'Global Wings aviation leadership — recruitment and crew solutions worldwide',
   paragraphs: [
     'Global Wings Ltd is a Pilot Recruitment Agency providing various job opportunities to pilots & cabin crews all over the world.\n\nWhen seeking experienced and qualified flight or cabin crews to meet your operations or training requirements,  Global Wings Ltd is the crew agency you can trust!\n\nWe have successfully sourced, screened and submitted required personnel for many airlines, from major international carriers right through to domestic start up operations.',
     'We offer airlines the operational flexibility needed, especially during high demand seasons, fleet expansions, aircraft introduction or route expansion. We offer a cost effective solution to providing a qualified, experienced and professional flight, cabin crews and engineers whenever you may need them.',
@@ -316,6 +318,7 @@ export const gwTeamMembers: GwTeamMember[] = [
     name: 'Capt. Giannos Komodromos',
     role:
       'CEO at Komodromos Group of Companies | Lawyer Corporate & Tax/Vat Consultant (LLB UoL) | Legal Mediator & Arbitrator A.D.R | Aviation Legal Consultant | Captain,TRI,CRMI,Flight Operations Auditor A320F',
+    background: '19 years of experience.',
     imageSrc: gwTeamImageSrc('Capt. Giannos Komodromos .png'),
     imageAlt: 'Capt. Giannos Komodromos, CEO of Komodromos Group and Global Wings',
     imagePosition: 'center 22%',
@@ -324,7 +327,7 @@ export const gwTeamMembers: GwTeamMember[] = [
     name: 'Capt. Philip Kanonis ',
     role: 'MEng CEng MRAeS',
     background:
-      'Background: Airline Pilot, Technical Pilot, Aeornautical Engineer\n\n20 years experience.',
+      'Background: Airline Pilot, Technical Pilot, Aeornautical Engineer\n\n22 years of experience.',
     imageSrc: gwTeamImageSrc('Capt. Philip Kanonis .png'),
     imageAlt: 'Capt. Philip Kanonis, airline and technical pilot',
     imagePosition: 'center 20%',
@@ -333,7 +336,7 @@ export const gwTeamMembers: GwTeamMember[] = [
     name: 'Dr George Athanasiou',
     role: 'MD, MSc, AvMed',
     background:
-      'Background:General and Aviation Medicine\nAviation Authorised Medical Examiner - CY-AME-03.\n25 Years experience.',
+      'Background:General and Aviation Medicine\nAviation Authorised Medical Examiner - CY-AME-03.\n28 years of experience.',
     imageSrc: gwTeamImageSrc('Dr George Athanasiou .png'),
     imageAlt: 'Dr George Athanasiou, aviation medical examiner',
     imagePosition: 'center 18%',
@@ -342,7 +345,7 @@ export const gwTeamMembers: GwTeamMember[] = [
     name: 'Chariklia Mich',
     role: 'Bachelor of Laws',
     background:
-      'Background: Law area & AML, Human Resources specialist\n4 years experience',
+      'Background: Law area & AML, Human Resources specialist\n6 years of experience',
     imageSrc: gwTeamImageSrc('CHARIKLEIA COSTA .png'),
     imageAlt: 'Chariklia Mich, law and human resources specialist',
     imagePosition: 'center 24%',
@@ -351,7 +354,7 @@ export const gwTeamMembers: GwTeamMember[] = [
     name: 'Loukia Andreou',
     role: 'Office Manager',
     background:
-      'Background: Bachelor degree environmental science and technology\n- Master of science on energy resources management\n7 Years Experience',
+      'Background: Bachelor degree environmental science and technology\n- Master of science on energy resources management\n10 years of experience',
     imageSrc: gwTeamImageSrc('LOUKIA ANDREOU .png'),
     imageAlt: 'Loukia Andreou, office manager at Global Wings',
     imagePosition: 'center 20%',
@@ -403,7 +406,7 @@ export function getAviationBlogPosts(): AviationBlogPost[] {
         'Global Wings Ltd have over 12 years combined experience in advising commercial and non-commercial airlines and aircraft operators on effective staffing and aviation recruitment solutions.',
       images: [
         {
-          src: gwBlogImageSrc('Experience & Capabilities.jpg'),
+          src: gwBlogImageSrc('experience-capabilities.jpg'),
           alt: 'Professional handshake representing aviation skills, experience, and growth',
           imagePosition: 'center center',
         },

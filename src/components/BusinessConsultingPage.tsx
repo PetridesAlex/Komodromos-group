@@ -574,9 +574,43 @@ export default function BusinessConsultingPage() {
                   <span className="bc-btn__label">Contact</span>
                   <span className="bc-btn__title">Get in touch today</span>
                 </Link>
-                <a href="tel:+35770003008" className="bc-contact__phone">
-                  +357 7000 3008
-                </a>
+                <div className="bc-contact__phones">
+                  <div className="bc-contact__phones-group">
+                    <p className="bc-contact__phones-label">Direct lines</p>
+                    <div className="bc-contact__phones-row">
+                      <a href="tel:+35724333305" className="bc-contact__phone-chip">
+                        <Phone className="bc-contact__phone-chip-icon" aria-hidden size={16} strokeWidth={2.25} />
+                        <span>+357 2433 3305</span>
+                      </a>
+                      <a href="tel:+35724333306" className="bc-contact__phone-chip">
+                        <Phone className="bc-contact__phone-chip-icon" aria-hidden size={16} strokeWidth={2.25} />
+                        <span>+357 2433 3306</span>
+                      </a>
+                      <a href="tel:+35724428111" className="bc-contact__phone-chip">
+                        <Phone className="bc-contact__phone-chip-icon" aria-hidden size={16} strokeWidth={2.25} />
+                        <span>+357 2442 8111</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div className="bc-contact__phones-divider" aria-hidden />
+                  <div className="bc-contact__phones-group">
+                    <p className="bc-contact__phones-label">Alternative numbers</p>
+                    <div className="bc-contact__phones-row">
+                      <a href="tel:+35796000336" className="bc-contact__phone-chip">
+                        <Phone className="bc-contact__phone-chip-icon" aria-hidden size={16} strokeWidth={2.25} />
+                        <span>+357 9600 0336</span>
+                      </a>
+                      <a href="tel:+35796000236" className="bc-contact__phone-chip">
+                        <Phone className="bc-contact__phone-chip-icon" aria-hidden size={16} strokeWidth={2.25} />
+                        <span>+357 9600 0236</span>
+                      </a>
+                      <a href="tel:+35799243100" className="bc-contact__phone-chip">
+                        <Phone className="bc-contact__phone-chip-icon" aria-hidden size={16} strokeWidth={2.25} />
+                        <span>+357 9924 3100</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

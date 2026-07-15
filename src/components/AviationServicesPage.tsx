@@ -121,7 +121,19 @@ export default function AviationServicesPage() {
               </a>
             </div>
             <div className="gw-leader__media reveal reveal-delay-1">
-              <GwImagePlaceholder aspectRatio="1 / 1" className="gw-leader__logo" label="Insert image here" />
+              <div className="gw-leader__logo-frame">
+                <span className="gw-leader__logo-ring" aria-hidden />
+                <span className="gw-leader__logo-glow" aria-hidden />
+                <img
+                  className="gw-leader__logo"
+                  src={gwLeaderSection.imageSrc}
+                  alt={gwLeaderSection.imageAlt}
+                  width={520}
+                  height={520}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
           </div>
         </section>

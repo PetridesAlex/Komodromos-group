@@ -40,6 +40,9 @@ const SOCIAL_ICONS: Record<(typeof gwSocialLinks)[number]['id'], ReactNode> = {
   rss: <Rss aria-hidden size={13} strokeWidth={2} />,
 }
 
+const TEAM_EXPERIENCE_PATTERN =
+  /\d+\s*(?:years?|Years?)\s*(?:of\s+)?(?:experience|Experience)\.?/i
+
 function parseRole(role: string) {
   if (!role.includes(' | ')) {
     return { headline: role, credentials: [] as string[] }
@@ -49,7 +52,7 @@ function parseRole(role: string) {
 }
 
 function parseBackground(text: string, roleHeadline: string) {
-  const experiencePattern = /\d+\s*(?:years?|Years?)\s*(?:experience|Experience)\.?/i
+  const experiencePattern = TEAM_EXPERIENCE_PATTERN
   const items: string[] = []
   let experience: string | undefined
   const roleKey = roleHeadline.toLowerCase().replace(/[^a-z0-9]/g, '')
@@ -130,7 +133,9 @@ function GwTeamCard({
   const { items: backgroundItems, experience } = member.background
     ? parseBackground(member.background, headline)
     : { items: [] as string[], experience: undefined }
-  const highlights = [...credentials, ...backgroundItems]
+  const highlights = [...credentials, ...backgroundItems].filter(
+    (item) => !TEAM_EXPERIENCE_PATTERN.test(item),
+  )
 
   return (
     <motion.article
