@@ -106,6 +106,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/Astreal-developers.webp`,
     brandLogo: `${SVC_CARD_LOGO}/astreal-developers.png`,
     brandLogoBlend: 'lighten',
+    brandSlug: 'astreal',
   },
   {
     slug: 'hr',

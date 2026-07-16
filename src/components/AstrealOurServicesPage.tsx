@@ -8,6 +8,8 @@ import {
   ASTREAL_OUR_SERVICES_HERO_IMAGE,
   ASTREAL_OUR_SERVICES_PAGE,
 } from '../data/astrealOurServicesContent'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
 
 const VIEW = { once: true, amount: 0.28, margin: '-48px 0px' } as const
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -16,6 +18,8 @@ const page = ASTREAL_OUR_SERVICES_PAGE
 export default function AstrealOurServicesPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
+  const { isBrandDomain } = useSiteContext()
+  const servicesSectionHref = isBrandDomain ? buildGroupSiteReturnUrl('services') : '/#services'
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -73,7 +77,7 @@ export default function AstrealOurServicesPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
       />
 
       <main className="astreal-about-page astreal-services-page">

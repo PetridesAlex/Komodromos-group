@@ -28,6 +28,14 @@ export const BRAND_DOMAINS: BrandDomainConfig[] = [
     siteNameFull: 'TaxNex Cyprus',
     basePath: '/services/tax',
   },
+  {
+    slug: 'astreal',
+    host: 'www.astrealdevelopers.com',
+    apexHost: 'astrealdevelopers.com',
+    siteName: 'Astreal Developers',
+    siteNameFull: 'Astreal Developers',
+    basePath: '/services/astreal',
+  },
 ]
 
 const BRAND_BY_HOST = new Map<string, BrandDomainConfig>()
@@ -249,9 +257,27 @@ export const TAX_ROUTE_SEGMENTS = [
   'office-secretarial-services',
 ] as const
 
+export const ASTREAL_ROUTE_SEGMENTS = [
+  'about',
+  'invest-in-cyprus',
+  'our-services',
+  'projects/astron',
+  'projects/astron-nova',
+  'projects/coral',
+  'projects/venus',
+  'projects/athenian-heritage-luxury-residence',
+] as const
+
+function brandRouteSegments(brand: BrandDomainConfig): readonly string[] {
+  if (brand.slug === 'aviation') return AVIATION_ROUTE_SEGMENTS
+  if (brand.slug === 'tax') return TAX_ROUTE_SEGMENTS
+  if (brand.slug === 'astreal') return ASTREAL_ROUTE_SEGMENTS
+  return []
+}
+
 export function getBrandAllowlistPaths(brand: BrandDomainConfig): string[] {
   const paths = ['/']
-  for (const segment of brand.slug === 'aviation' ? AVIATION_ROUTE_SEGMENTS : TAX_ROUTE_SEGMENTS) {
+  for (const segment of brandRouteSegments(brand)) {
     paths.push(segment === 'services' && brand.slug === 'tax' ? '/services' : `/${segment}`)
   }
   return paths

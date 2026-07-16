@@ -1,18 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
+import { getAstrealRoutes } from '../lib/brandPaths'
 
 const EASE = [0.22, 1, 0.36, 1] as const
-
-const ASTREAL_HUB = {
-  label: 'Astreal Developers',
-  path: '/services/astreal',
-} as const
-
-const ASTREAL_SIBLING_PAGES = [
-  { label: 'About us', path: '/services/astreal/about' },
-  { label: 'Our Services', path: '/services/astreal/our-services' },
-  { label: 'Invest in Cyprus', path: '/services/astreal/invest-in-cyprus' },
-] as const
 
 const navContainer = {
   hidden: {},
@@ -39,8 +29,15 @@ type AstrealPageNavProps = {
 export default function AstrealPageNav({ currentLabel }: AstrealPageNavProps) {
   const { pathname } = useLocation()
   const reduceMotion = useReducedMotion()
+  const routes = getAstrealRoutes()
 
-  const siblings = ASTREAL_SIBLING_PAGES.filter((page) => page.path !== pathname)
+  const siblingPages = [
+    { label: 'About us', path: routes.about },
+    { label: 'Our Services', path: routes.ourServices },
+    { label: 'Invest in Cyprus', path: routes.invest },
+  ] as const
+
+  const siblings = siblingPages.filter((page) => page.path !== pathname)
 
   const linkMotion = reduceMotion
     ? {}
@@ -63,7 +60,7 @@ export default function AstrealPageNav({ currentLabel }: AstrealPageNavProps) {
   return (
     <motion.nav className="astreal-page-nav" aria-label="Page navigation" {...motionProps}>
       <MotionLink
-        to={ASTREAL_HUB.path}
+        to={routes.home}
         className="astreal-page-nav__btn astreal-page-nav__btn--back"
         variants={itemVariants}
         {...linkMotion}
@@ -94,7 +91,7 @@ export default function AstrealPageNav({ currentLabel }: AstrealPageNavProps) {
       ))}
 
       <MotionLink
-        to={`${ASTREAL_HUB.path}#astreal-projects`}
+        to={routes.projectsHash}
         className="astreal-page-nav__btn astreal-page-nav__btn--link"
         variants={itemVariants}
         {...linkMotion}

@@ -23,6 +23,11 @@ import TaxisNetService from '../pages/TaxisNetService'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import SiteTopbar from './SiteTopbar'
 import TaxNexCyprusPage from './TaxNexCyprusPage'
+import AstrealDevelopersPage from './AstrealDevelopersPage'
+import AstrealAboutPage from './AstrealAboutPage'
+import AstrealInvestCyprusPage from './AstrealInvestCyprusPage'
+import AstrealOurServicesPage from './AstrealOurServicesPage'
+import AstrealProjectDetailPage from './AstrealProjectDetailPage'
 
 function TaxBrandHome() {
   return (
@@ -78,12 +83,28 @@ function TaxBrandRoutes() {
   )
 }
 
+function AstrealBrandRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<AstrealDevelopersPage />} />
+      <Route path="/about" element={<AstrealAboutPage />} />
+      <Route path="/invest-in-cyprus" element={<AstrealInvestCyprusPage />} />
+      <Route path="/our-services" element={<AstrealOurServicesPage />} />
+      <Route path="/projects/:projectId" element={<AstrealProjectDetailPage />} />
+      <Route path="/services/astreal/*" element={<Navigate to="/" replace />} />
+      <Route path="/services/*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  )
+}
+
 type Props = {
-  brandSlug: 'aviation' | 'tax'
+  brandSlug: 'aviation' | 'tax' | 'astreal'
 }
 
 export default function BrandDomainRoutes({ brandSlug }: Props) {
   if (brandSlug === 'aviation') return <AviationBrandRoutes />
   if (brandSlug === 'tax') return <TaxBrandRoutes />
+  if (brandSlug === 'astreal') return <AstrealBrandRoutes />
   return null
 }

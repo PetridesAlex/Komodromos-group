@@ -19,6 +19,12 @@
       "permanent": true
     },
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "astrealdevelopers.com" }],
+      "destination": "https://www.astrealdevelopers.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/:path+/",
       "destination": "/:path+",
       "permanent": true

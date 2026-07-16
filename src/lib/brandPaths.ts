@@ -51,6 +51,29 @@ export function taxPath(subpath = ''): string {
   return `/services/tax/${clean}`
 }
 
+export function astrealPath(subpath = ''): string {
+  const brand = currentBrand()
+  const clean = subpath.replace(/^\/services\/astreal\/?/, '').replace(/^\//, '')
+
+  if (brand?.slug === 'astreal') {
+    return clean ? `/${clean}` : '/'
+  }
+
+  if (!clean) return '/services/astreal'
+  return `/services/astreal/${clean}`
+}
+
+export function getAstrealRoutes() {
+  return {
+    home: astrealPath(),
+    about: astrealPath('about'),
+    ourServices: astrealPath('our-services'),
+    invest: astrealPath('invest-in-cyprus'),
+    projects: (projectId: string) => astrealPath(`projects/${projectId}`),
+    projectsHash: `${astrealPath()}#astreal-projects`,
+  } as const
+}
+
 export function toBrandPathIfNeeded(internalPath: string): string {
   const brand = currentBrand()
   if (!brand) return internalPath

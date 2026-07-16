@@ -10,6 +10,9 @@ import {
   type AstrealDetailCopyImageBreak,
 } from '../data/astrealDevelopersPage'
 import NotFoundPage from './NotFoundPage'
+import { getAstrealRoutes } from '../lib/brandPaths'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
 
 type DetailCopyStreamItem =
   | { kind: 'paragraph'; para: string; index: number }
@@ -114,6 +117,9 @@ export default function AstrealProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>()
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
+  const { isBrandDomain } = useSiteContext()
+  const routes = getAstrealRoutes()
+  const servicesSectionHref = isBrandDomain ? buildGroupSiteReturnUrl('services') : '/#services'
   const [isNarrowViewport, setIsNarrowViewport] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(max-width: 899px)').matches,
   )
@@ -176,7 +182,7 @@ export default function AstrealProjectDetailPage() {
   }, [lightboxIndex, closeLightbox, goPrevLightbox, goNextLightbox])
 
   if (projectId === 'island-studios') {
-    return <Navigate to="/services/astreal/projects/coral" replace />
+    return <Navigate to={routes.projects('coral')} replace />
   }
 
   if (!project) {
@@ -222,7 +228,7 @@ export default function AstrealProjectDetailPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
       />
 
       <header className="astreal-detail-hero" aria-labelledby="astreal-detail-title">
@@ -242,7 +248,7 @@ export default function AstrealProjectDetailPage() {
         <div className="astreal-detail-hero__back-slot">
           <motion.div className="astreal-detail-hero__back-wrap" {...detailHeroBack}>
             <Link
-              to="/services/astreal#astreal-projects"
+              to={routes.projectsHash}
               className="astreal-detail-hero__back"
               aria-label="Back to all Astreal projects"
             >

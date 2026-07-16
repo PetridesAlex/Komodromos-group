@@ -9,6 +9,10 @@ import {
   astrealHeroImage,
   astrealProjectCards,
 } from '../data/astrealDevelopersPage'
+import { getAstrealRoutes } from '../lib/brandPaths'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
+import { GROUP_SITE_URL } from '../seo/domainRegistry'
 
 const VIEW = { once: true, amount: 0.35, margin: '-48px 0px' } as const
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -16,8 +20,12 @@ const EASE = [0.22, 1, 0.36, 1] as const
 export default function AstrealDevelopersPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
+  const { isBrandDomain } = useSiteContext()
+  const routes = getAstrealRoutes()
   const [projectsMenuOpen, setProjectsMenuOpen] = useState(false)
   const projectsPickerRef = useRef<HTMLDivElement>(null)
+  const poolHref = isBrandDomain ? `${GROUP_SITE_URL}/services/pool` : '/services/pool'
+  const servicesSectionHref = isBrandDomain ? buildGroupSiteReturnUrl('services') : '/#services'
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -220,30 +228,43 @@ export default function AstrealDevelopersPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
       />
 
       <header className="astreal-hero" aria-labelledby="astreal-hero-title">
         <nav className="astreal-hero__top-bar" aria-label="Astreal hero quick links">
           <div className="container astreal-hero__top-bar-inner">
-            <Link to="/services/astreal/about" className="astreal-hero__top-link">
+            <Link to={routes.about} className="astreal-hero__top-link">
               About us
             </Link>
-            <Link to="/services/astreal/our-services" className="astreal-hero__top-link">
+            <Link to={routes.ourServices} className="astreal-hero__top-link">
               Our services
             </Link>
-            <Link to="/services/astreal/invest-in-cyprus" className="astreal-hero__top-link">
+            <Link to={routes.invest} className="astreal-hero__top-link">
               Invest in Cyprus
             </Link>
-            <Link
-              to="/services/pool"
-              className="astreal-hero__top-link astreal-hero__top-link--premium"
-              aria-label="Swimming pool and outdoor services — open Komodromos pool & garden page"
-            >
-              <span className="astreal-hero__top-link-promo">Featured service</span>
-              <span className="astreal-hero__top-link-main">Swimming pool &amp; outdoor</span>
-              <span className="astreal-hero__top-link-sub">Explore pool services →</span>
-            </Link>
+            {isBrandDomain ? (
+              <a
+                href={poolHref}
+                className="astreal-hero__top-link astreal-hero__top-link--premium"
+                aria-label="Swimming pool and outdoor services — open Komodromos pool & garden page"
+                rel="noopener noreferrer"
+              >
+                <span className="astreal-hero__top-link-promo">Featured service</span>
+                <span className="astreal-hero__top-link-main">Swimming pool &amp; outdoor</span>
+                <span className="astreal-hero__top-link-sub">Explore pool services →</span>
+              </a>
+            ) : (
+              <Link
+                to={poolHref}
+                className="astreal-hero__top-link astreal-hero__top-link--premium"
+                aria-label="Swimming pool and outdoor services — open Komodromos pool & garden page"
+              >
+                <span className="astreal-hero__top-link-promo">Featured service</span>
+                <span className="astreal-hero__top-link-main">Swimming pool &amp; outdoor</span>
+                <span className="astreal-hero__top-link-sub">Explore pool services →</span>
+              </Link>
+            )}
           </div>
         </nav>
         <motion.div className="astreal-hero__bg" aria-hidden {...heroBgReveal}>
@@ -381,7 +402,7 @@ export default function AstrealDevelopersPage() {
                       >
                         <Link
                           role="menuitem"
-                          to={`/services/astreal/projects/${project.id}`}
+                          to={routes.projects(project.id)}
                           className="astreal-hero__projects-menu-link"
                           onClick={() => setProjectsMenuOpen(false)}
                         >
@@ -492,7 +513,7 @@ export default function AstrealDevelopersPage() {
                 <div className="astreal-project-card__media-scrim" aria-hidden />
                 <Link
                   className="astreal-project-card__hit"
-                  to={`/services/astreal/projects/${project.id}`}
+                  to={routes.projects(project.id)}
                   aria-label={`Open ${project.title} property page`}
                   tabIndex={-1}
                 >
@@ -519,7 +540,7 @@ export default function AstrealDevelopersPage() {
                       )}
                     </span>
                     <Link
-                      to={`/services/astreal/projects/${project.id}`}
+                      to={routes.projects(project.id)}
                       className="astreal-project-card__cta"
                     >
                       <span className="astreal-project-card__cta-label">View property</span>

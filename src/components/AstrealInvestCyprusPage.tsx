@@ -8,6 +8,8 @@ import {
   ASTREAL_INVEST_CYPRUS_HERO_IMAGE,
   ASTREAL_INVEST_CYPRUS_INTRO,
 } from '../data/astrealInvestCyprusContent'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
 
 const VIEW = { once: true, amount: 0.12, margin: '0px 0px -60px 0px' } as const
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -67,6 +69,8 @@ const mosaicImgReveal = {
 export default function AstrealInvestCyprusPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
+  const { isBrandDomain } = useSiteContext()
+  const servicesSectionHref = isBrandDomain ? buildGroupSiteReturnUrl('services') : '/#services'
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const highlightGallery = useMemo(
@@ -214,7 +218,7 @@ export default function AstrealInvestCyprusPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
       />
 
       <main className="astreal-about-page astreal-invest-page">

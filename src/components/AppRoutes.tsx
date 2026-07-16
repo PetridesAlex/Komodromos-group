@@ -63,6 +63,10 @@ export function AppRoutes() {
     return <BrandDomainRoutes brandSlug="tax" />
   }
 
+  if (brand?.slug === 'astreal') {
+    return <BrandDomainRoutes brandSlug="astreal" />
+  }
+
   return <GroupRoutes />
 }
 

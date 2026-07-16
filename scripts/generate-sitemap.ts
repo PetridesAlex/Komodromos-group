@@ -113,6 +113,7 @@ Disallow: /api/
 Sitemap: ${GROUP_SITE_URL}/sitemap.xml
 Sitemap: https://www.global-wings.co/sitemap-aviation.xml
 Sitemap: https://www.taxnexcy.com/sitemap-tax.xml
+Sitemap: https://www.astrealdevelopers.com/sitemap-astreal.xml
 `,
   'utf8',
 )
