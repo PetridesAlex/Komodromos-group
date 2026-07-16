@@ -12,8 +12,13 @@ import {
 
 const STATIC_PREFIXES = ['/assets/', '/images/', '/api/']
 const STATIC_FILES = new Set([
-  '/favicon.svg',
   '/favicon.ico',
+  '/favicon-16x16.png',
+  '/favicon-32x32.png',
+  '/apple-touch-icon.png',
+  '/android-chrome-192x192.png',
+  '/android-chrome-512x512.png',
+  '/site.webmanifest',
   '/robots.txt',
   '/sitemap.xml',
   '/sitemap-group.xml',
