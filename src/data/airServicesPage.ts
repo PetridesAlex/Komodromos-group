@@ -155,11 +155,21 @@ export const airLightFleet = {
 
 export type AirLightFleetAircraftId = (typeof airLightFleet.aircraft)[number]['id']
 
+export type AirLightFleetStoryBlock = {
+  title: string
+  text: string
+  image: { src: string; alt: string }
+  /** Visual side on desktop — alternates if omitted */
+  imageSide?: 'left' | 'right'
+}
+
 export const airLightFleetDetails: Record<
   AirLightFleetAircraftId,
   {
     intro: string
     description: string
+    /** Editorial image + short copy rows (preferred over long text sections) */
+    story?: AirLightFleetStoryBlock[]
     sections?: { title: string; paragraphs: string[] }[]
     bullets?: string[]
     specs?: string[]
@@ -168,77 +178,54 @@ export const airLightFleetDetails: Record<
   }
 > = {
   'regional-light': {
-    intro: 'Cessna 172 Skyhawk - the legendary flying experience.',
+    intro: 'Cessna 172 Skyhawk — the legendary flying experience.',
     description:
-      'One of the most trusted and iconic aircraft in aviation history, the C-172 combines comfort, safety, stability and pure flying enjoyment for premium training and unforgettable scenic flights above Cyprus and the Greek Islands.',
-    sections: [
+      'Trusted worldwide for comfort, stability and pure flying enjoyment — ideal for scenic flights and premium training above Cyprus and the Greek Islands.',
+    story: [
       {
-        title: 'Discover Cyprus & the Greek Islands from Above',
-        paragraphs: [
-          'As the aircraft climbs above the Mediterranean coastline, beaches, mountain landscapes and historical landmarks open below in a panoramic aerial view.',
-          'The C-172 experience is designed for private weekend escapes, lifestyle flights and memorable discovery routes across island destinations.',
-        ],
+        title: 'Cyprus & the Islands from above',
+        text: 'Climb above the Mediterranean coastline and watch beaches, mountains and landmarks unfold below — a private aerial perspective designed for discovery and weekend escapes.',
+        image: {
+          src: `${AIR_IMG}/light-aircrafts/light-aircraft-1.webp`,
+          alt: 'Regional light aircraft in flight',
+        },
+        imageSide: 'left',
       },
       {
-        title: 'Premium Flying Training Experience',
-        paragraphs: [
-          'Globally recognized as a leading training aircraft, the C-172 is trusted by pilots and aviation academies for stable handling and confidence-building flight characteristics.',
-          'Training flights include guided cockpit experience, real flight procedures and navigation fundamentals with professional instructors.',
-        ],
+        title: 'In the cockpit',
+        text: 'A stable, confidence-building platform with guided procedures and a hands-on feel — perfect for first flights, scenic discovery or Private Pilot Licence progression.',
+        image: {
+          src: `${AIR_IMG}/light-aircrafts/light-aircraft-13.webp`,
+          alt: 'Pilot perspective from light aircraft',
+        },
+        imageSide: 'right',
       },
       {
-        title: 'Ideal for Scenic & Discovery Flights',
-        paragraphs: [
-          'Whether it is your first flight or a tailored aviation moment, each mission can be customized for sightseeing, pilot discovery or short regional hops.',
-        ],
+        title: 'An aviation classic',
+        text: 'More than a transfer — a refined sky experience built around safety, comfort and unforgettable Mediterranean light.',
+        image: {
+          src: `${AIR_IMG}/light-aircrafts/light-aircraft-14.webp`,
+          alt: 'Light aircraft after scenic mission',
+        },
+        imageSide: 'left',
       },
-      {
-        title: 'The Aviation Legend Experience',
-        paragraphs: [
-          'Flying the C-172 is more than transport: it is an aviation milestone built around prestige, safety, comfort and inspiring Mediterranean scenery.',
-        ],
-      },
-    ],
-    bullets: [
-      'Spectacular aerial views of island villages and white-washed architecture',
-      'Magical sunsets above the Aegean Sea',
-      'Private weekend air escapes',
-      'Romantic and lifestyle aerial experiences',
-      'Hands-on cockpit experience with professional instructors',
-      'Perfect platform for Private Pilot Licence (PPL) progression',
     ],
     specs: [
       'Aircraft Type: Single-engine light aircraft',
       'Engine: Lycoming IO-360 series',
       'Cruise Speed: approx. 120 knots (222 km/h)',
-      'Maximum Range: approx. 640 nautical miles (1,185 km)',
-      'Service Ceiling: 13,500 ft',
+      'Maximum Range: approx. 640 nm (1,185 km)',
       'Avionics: Garmin glass cockpit (G1000 or equivalent)',
-      'Cruising Altitude: 8,000 ft',
-      'Cruising Speed (ops profile): 85 kts',
+      'Capacity: up to 3 passengers + 120 lb baggage',
       'Crew: 1',
-      'Capacity: up to 3 passengers + 120 lb (54 kg) baggage',
-      'Length: 27 ft 2 in (8.28 m)',
-      'Wingspan: 36 ft 1 in (11.00 m)',
-      'Height: 8 ft 11 in (2.72 m)',
-      'Wing Area: 174 sq ft (16.2 m2)',
     ],
     price: 'EUR 350 per hour',
     gallery: [
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-1.webp`, alt: 'Regional light aircraft in flight' },
       { src: `${AIR_IMG}/light-aircrafts/light-aircraft-2.webp`, alt: 'Light aircraft on approach' },
       { src: `${AIR_IMG}/light-aircrafts/light-aircraft-3.webp`, alt: 'Light aircraft over coastline' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-4.webp`, alt: 'Light aircraft wing and sky view' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-5.webp`, alt: 'Light aircraft in Mediterranean airspace' },
       { src: `${AIR_IMG}/light-aircrafts/light-aircraft-6.webp`, alt: 'C-172 private scenic flight view' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-7.webp`, alt: 'Light aircraft above island route' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-8.webp`, alt: 'Aerial view during regional flight' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-9.webp`, alt: 'C-172 exterior profile in operation' },
       { src: `${AIR_IMG}/light-aircrafts/light-aircraft-10.webp`, alt: 'Light aircraft cockpit and controls' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-11.webp`, alt: 'Light aircraft prepared for departure' },
       { src: `${AIR_IMG}/light-aircrafts/light-aircraft-12.webp`, alt: 'C-172 over coastal landscape' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-13.webp`, alt: 'Pilot perspective from light aircraft' },
-      { src: `${AIR_IMG}/light-aircrafts/light-aircraft-14.webp`, alt: 'Light aircraft after scenic mission' },
     ],
   },
   'scenic-tour': {

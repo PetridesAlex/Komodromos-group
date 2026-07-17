@@ -19,6 +19,7 @@ export default function LightAircraftFleetDetailPage() {
 
   const detail = airLightFleetDetails[aircraft.id]
   const lightCategoryPath = `/services/air/${airCategoryPath.light}`
+  const hasStory = Boolean(detail.story && detail.story.length > 0)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -33,7 +34,7 @@ export default function LightAircraftFleetDetailPage() {
         servicesSectionHref="/#services"
       />
 
-      <main className="air-pjf air-pjf--light air-pjf-detail">
+      <main className={`air-pjf air-pjf--light air-pjf-detail${hasStory ? ' air-pjf-detail--editorial' : ''}`}>
         <section className="air-pjf__masthead" aria-labelledby="air-pjf-detail-title">
           <div className="container air-pjf__masthead-inner">
             <nav className="air-category-breadcrumb" aria-label="Breadcrumb">
@@ -82,7 +83,7 @@ export default function LightAircraftFleetDetailPage() {
             </h1>
             <p className="air-pjf__lead">{detail.intro}</p>
             <p className="air-pjf__lead air-pjf__lead--detail">{detail.description}</p>
-            {detail.bullets && detail.bullets.length > 0 ? (
+            {!hasStory && detail.bullets && detail.bullets.length > 0 ? (
               <ul className="air-pjf__detail-list">
                 {detail.bullets.map((item, i) => (
                   <motion.li
@@ -104,7 +105,45 @@ export default function LightAircraftFleetDetailPage() {
           </div>
         </section>
 
-        {detail.sections && detail.sections.length > 0 ? (
+        {hasStory ? (
+          <section className="air-pjf__story" aria-label={`${aircraft.name} experience`}>
+            <div className="container">
+              {detail.story!.map((block, i) => {
+                const imageLeft = (block.imageSide ?? (i % 2 === 0 ? 'left' : 'right')) === 'left'
+                return (
+                  <motion.article
+                    key={block.title}
+                    className={`air-pjf__story-row${imageLeft ? '' : ' air-pjf__story-row--flip'}`}
+                    initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-60px 0px -40px 0px', amount: 0.2 }}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.6,
+                      delay: reduceMotion ? 0 : Math.min(i * 0.06, 0.18),
+                      ease: EASE,
+                    }}
+                  >
+                    <figure className="air-pjf__story-media">
+                      <img
+                        src={block.image.src}
+                        alt={block.image.alt}
+                        loading={i === 0 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        width={1400}
+                        height={900}
+                      />
+                    </figure>
+                    <div className="air-pjf__story-copy">
+                      <p className="air-pjf__story-kicker">Experience 0{i + 1}</p>
+                      <h2>{block.title}</h2>
+                      <p>{block.text}</p>
+                    </div>
+                  </motion.article>
+                )
+              })}
+            </div>
+          </section>
+        ) : detail.sections && detail.sections.length > 0 ? (
           <section className="air-pjf__fleet" aria-label={`${aircraft.name} highlights`}>
             <div className="container">
               <div className="air-pjf__detail-sections">
@@ -151,7 +190,7 @@ export default function LightAircraftFleetDetailPage() {
           <section className="air-pjf__fleet" aria-label={`${aircraft.name} specifications`}>
             <div className="container">
               <motion.article
-                className="air-pjf__detail-specs-card"
+                className={`air-pjf__detail-specs-card${hasStory ? ' air-pjf__detail-specs-card--compact' : ''}`}
                 initial={reduceMotion ? false : { opacity: 0, y: 36, scale: 0.985 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: '-70px 0px -50px 0px', amount: 0.2 }}
@@ -169,58 +208,63 @@ export default function LightAircraftFleetDetailPage() {
           </section>
         ) : null}
 
-        <section className="air-pjf__fleet" aria-label={`${aircraft.name} gallery`}>
-          <div className="container">
-            <motion.ul
-              className="air-pjf__detail-gallery"
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-70px 0px -40px 0px', amount: 0.16 }}
-              transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
-            >
-              {detail.gallery.map((item, i) => (
-                <motion.li
-                  key={item.src}
-                  className="air-pjf__detail-cell"
-                  initial={reduceMotion ? false : { opacity: 0, y: 26, scale: 0.98 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: '-70px 0px -40px 0px', amount: 0.16 }}
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.56,
-                    delay: reduceMotion ? 0 : Math.min(i * 0.07, 0.35),
-                    ease: EASE,
-                  }}
-                  whileHover={reduceMotion ? undefined : { y: -6 }}
-                >
-                  <figure className="air-pjf__detail-fig">
-                    <img
-                      className="air-pjf__detail-img"
-                      src={item.src}
-                      alt={item.alt}
-                      loading="lazy"
-                      decoding="async"
-                      width={1200}
-                      height={780}
-                    />
-                  </figure>
-                </motion.li>
-              ))}
-            </motion.ul>
-
-            <div className="air-pjf__actions">
-              <Link to={airLightFleetPath} className="air-category-hero__cta">
-                Back to light fleet
-              </Link>
-              <Link
-                to="/contact"
-                className="air-category-hero__cta air-category-hero__cta--ghost"
-                state={{ serviceInterest: 'VIP Services', vipSubService: `Light aircraft — ${aircraft.name}` }}
+        {detail.gallery.length > 0 ? (
+          <section className="air-pjf__fleet" aria-label={`${aircraft.name} gallery`}>
+            <div className="container">
+              {hasStory ? (
+                <p className="air-pjf__gallery-label">More from the fleet</p>
+              ) : null}
+              <motion.ul
+                className={`air-pjf__detail-gallery${hasStory ? ' air-pjf__detail-gallery--compact' : ''}`}
+                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-70px 0px -40px 0px', amount: 0.16 }}
+                transition={{ duration: reduceMotion ? 0 : 0.62, ease: EASE }}
               >
-                Enquire
-              </Link>
+                {detail.gallery.map((item, i) => (
+                  <motion.li
+                    key={item.src}
+                    className="air-pjf__detail-cell"
+                    initial={reduceMotion ? false : { opacity: 0, y: 26, scale: 0.98 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: '-70px 0px -40px 0px', amount: 0.16 }}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.56,
+                      delay: reduceMotion ? 0 : Math.min(i * 0.07, 0.35),
+                      ease: EASE,
+                    }}
+                    whileHover={reduceMotion ? undefined : { y: -6 }}
+                  >
+                    <figure className="air-pjf__detail-fig">
+                      <img
+                        className="air-pjf__detail-img"
+                        src={item.src}
+                        alt={item.alt}
+                        loading="lazy"
+                        decoding="async"
+                        width={1200}
+                        height={780}
+                      />
+                    </figure>
+                  </motion.li>
+                ))}
+              </motion.ul>
+
+              <div className="air-pjf__actions">
+                <Link to={airLightFleetPath} className="air-category-hero__cta">
+                  Back to light fleet
+                </Link>
+                <Link
+                  to="/contact"
+                  className="air-category-hero__cta air-category-hero__cta--ghost"
+                  state={{ serviceInterest: 'VIP Services', vipSubService: `Light aircraft — ${aircraft.name}` }}
+                >
+                  Enquire
+                </Link>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : null}
       </main>
 
       <Footer />

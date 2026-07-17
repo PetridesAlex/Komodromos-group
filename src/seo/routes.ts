@@ -198,6 +198,54 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       priority: 0.7,
     }),
     route({
+      path: '/services/super-luxury-cars',
+      title: 'Super & Luxury Cars',
+      description:
+        'Super and luxury car experiences in Cyprus — exclusive supercar and premium vehicle hire for private clients through Komodromos VIP Services.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/super-luxury-cars/maserati-ghibli',
+      title: 'Maserati Ghibli Luxury Package',
+      description:
+        'Maserati Ghibli Luxury Package — Italian craftsmanship, refined elegance, and VIP chauffeur experiences across Cyprus and Greece with Komodromos VIP Services.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/super-luxury-cars/porsche-718-boxster-s',
+      title: 'Porsche 718 Boxster S',
+      description:
+        'Porsche 718 Boxster S — open-top sports car experiences for VIP travel across Cyprus and Greece with Komodromos VIP Services.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/super-luxury-cars/lamborghini-huracan',
+      title: 'Lamborghini Huracán',
+      description:
+        'Lamborghini Huracán with 700 HP performance package, Formula 1-inspired Inconel exhaust, and AWD — VIP supercar experiences across Cyprus and Greece.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/super-luxury-cars/lamborghini-urus',
+      title: 'Lamborghini Urus',
+      description:
+        'Lamborghini Urus Super SUV — twin-turbo V8 performance and luxury for VIP travel across Cyprus and Greece with Komodromos Group.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/super-luxury-cars/mercedes-s-class',
+      title: 'Mercedes-Benz S-Class',
+      description:
+        'Mercedes-Benz S-Class — flagship luxury saloon for executive and VIP travel across Cyprus and Greece with Komodromos Group.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
       path: '/services/limousines-experiences/chrysler-300-super-stretch',
       title: 'Chrysler 300 Super Stretch',
       description:

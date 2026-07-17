@@ -40538,6 +40538,160 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   margin-bottom: 0;
 }
 
+/* C-172 editorial: image + short copy rows */
+.air-pjf-detail--editorial .air-pjf__masthead {
+  padding-bottom: clamp(1.1rem, 2.5vh, 1.75rem);
+}
+
+.air-pjf-detail--editorial .air-pjf__masthead-inner {
+  max-width: 42rem;
+}
+
+.air-pjf-detail--editorial .air-pjf__lead--detail {
+  margin-bottom: 0;
+}
+
+.air-pjf__story {
+  position: relative;
+  z-index: 1;
+  padding: clamp(0.5rem, 2vh, 1.25rem) 0 clamp(1.5rem, 3.5vh, 2.5rem);
+}
+
+.air-pjf__story .container {
+  width: min(1180px, 94%);
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3.25rem);
+}
+
+.air-pjf__story-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .air-pjf__story-row {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  }
+
+  .air-pjf__story-row--flip {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  }
+
+  .air-pjf__story-row--flip .air-pjf__story-media {
+    order: 2;
+  }
+
+  .air-pjf__story-row--flip .air-pjf__story-copy {
+    order: 1;
+  }
+}
+
+.air-pjf__story-media {
+  margin: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(150, 210, 245, 0.32);
+  background: rgba(6, 14, 28, 0.85);
+  box-shadow:
+    0 22px 56px rgba(0, 0, 0, 0.42),
+    0 0 40px rgba(70, 160, 220, 0.12);
+}
+
+.air-pjf__story-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.air-pjf__story-row:hover .air-pjf__story-media img {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .air-pjf__story-row:hover .air-pjf__story-media img {
+    transform: none;
+  }
+}
+
+.air-pjf__story-copy {
+  padding: clamp(0.35rem, 1.5vw, 0.75rem) 0;
+}
+
+.air-pjf__story-kicker {
+  margin: 0 0 0.55rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(150, 210, 245, 0.92);
+}
+
+.air-pjf__story-copy h2 {
+  margin: 0 0 0.7rem;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.65rem, 2.8vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  color: #fffaf2;
+}
+
+.air-pjf__story-copy p {
+  margin: 0;
+  max-width: 36ch;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.88rem, 1.4vw, 0.98rem);
+  line-height: 1.7;
+  color: rgba(220, 230, 242, 0.92);
+}
+
+.air-pjf__detail-specs-card--compact {
+  max-width: 52rem;
+  margin-inline: auto;
+  padding: clamp(1rem, 2.2vw, 1.35rem);
+}
+
+.air-pjf__detail-specs-card--compact .air-pjf__detail-specs-list {
+  columns: 1;
+}
+
+@media (min-width: 720px) {
+  .air-pjf__detail-specs-card--compact .air-pjf__detail-specs-list {
+    columns: 2;
+    column-gap: 1.5rem;
+  }
+}
+
+.air-pjf__gallery-label {
+  margin: 0 0 0.85rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(160, 210, 245, 0.88);
+  text-align: center;
+}
+
+.air-pjf__detail-gallery--compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+@media (min-width: 900px) {
+  .air-pjf__detail-gallery--compact {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+}
+
 .air-pjf__detail-specs-list {
   list-style: none;
   margin: 0;
@@ -43057,6 +43211,44 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   box-shadow: 0 14px 34px rgba(65, 145, 195, 0.34);
 }
 
+.limo-card--placeholder {
+  opacity: 0.72;
+  border-style: dashed;
+}
+
+.limo-card__media--placeholder {
+  min-height: 12rem;
+  background:
+    linear-gradient(145deg, rgba(18, 36, 58, 0.95) 0%, rgba(8, 16, 28, 0.98) 100%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 8px,
+      rgba(74, 144, 226, 0.06) 8px,
+      rgba(74, 144, 226, 0.06) 16px
+    );
+}
+
+.limo-showcase__back-wrap {
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
+.limo-showcase__back {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(165, 210, 255, 0.78);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.limo-showcase__back:hover {
+  color: #a5d2ff;
+}
+
 .limo-detail {
   padding-top: clamp(3rem, 6.5vw, 4.5rem);
   padding-bottom: clamp(3rem, 6.5vw, 4.75rem);
@@ -43302,6 +43494,18 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
     border-left: 0;
     border-right: 0;
   }
+
+  .limo-detail--luxury .limo-detail-gallery--luxury-full {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 0.4rem;
+  }
+
+  .limo-detail--luxury .limo-detail-gallery__item {
+    border-radius: 10px;
+    border: 1px solid rgba(170, 210, 245, 0.32);
+  }
 }
 
 .limo-detail__panel {
@@ -43480,6 +43684,405 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   color: rgba(228, 240, 252, 0.95);
   border: 1px solid rgba(145, 196, 240, 0.34);
   background: rgba(7, 16, 30, 0.65);
+}
+
+/* —— Super & Luxury Cars detail: premium panel + CTA —— */
+.limo-detail--luxury {
+  position: relative;
+  overflow-x: clip;
+  padding-top: clamp(1.25rem, 3vw, 2.25rem);
+  background:
+    radial-gradient(ellipse 70% 42% at 12% 8%, rgba(48, 120, 198, 0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 38% at 88% 18%, rgba(186, 150, 72, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg, #040913 0%, #02050c 100%);
+}
+
+.limo-detail--luxury .limo-detail-gallery--luxury-full {
+  width: 100%;
+  max-width: none;
+  margin: 0 0 clamp(1.35rem, 3vw, 2.25rem);
+  padding: 0 clamp(0.45rem, 1.1vw, 0.85rem);
+  gap: clamp(0.45rem, 1vw, 0.75rem);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.limo-detail--luxury .limo-detail-gallery__item {
+  border-radius: clamp(10px, 1.2vw, 16px);
+  border-color: rgba(170, 210, 245, 0.32);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.limo-detail--luxury .limo-detail-gallery__item:hover {
+  border-color: rgba(200, 230, 255, 0.55);
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(120, 190, 240, 0.18);
+}
+
+.limo-detail--luxury .limo-detail-gallery__item img {
+  aspect-ratio: 16 / 10;
+  min-height: clamp(220px, 42vw, 420px);
+}
+
+.limo-detail--luxury .limo-detail-gallery__item--hero img {
+  aspect-ratio: 21 / 9;
+  min-height: clamp(280px, 52vw, 560px);
+}
+
+.limo-detail--luxury .limo-detail__content {
+  width: min(1480px, 96%);
+}
+
+@media (min-width: 700px) {
+  .limo-detail--luxury .limo-detail-gallery--luxury-full {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .limo-detail--luxury .limo-detail-gallery__item--hero {
+    grid-column: 1 / -1;
+  }
+
+  .limo-detail--luxury .limo-detail-gallery__item:not(.limo-detail-gallery__item--hero) img {
+    min-height: clamp(240px, 28vw, 380px);
+  }
+}
+
+@media (min-width: 1100px) {
+  .limo-detail--luxury .limo-detail-gallery--luxury-full {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 0 clamp(0.55rem, 1vw, 1rem);
+    gap: 0.75rem;
+  }
+
+  .limo-detail--luxury .limo-detail-gallery__item--hero {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .limo-detail--luxury .limo-detail-gallery__item--hero img {
+    min-height: 100%;
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .limo-detail--luxury .limo-detail-gallery__item:not(.limo-detail-gallery__item--hero) img {
+    aspect-ratio: 4 / 3;
+    min-height: clamp(260px, 22vw, 360px);
+  }
+}
+
+@media (min-width: 1400px) {
+  .limo-detail--luxury .limo-detail-gallery--luxury-full {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 0 1rem;
+    gap: 0.85rem;
+  }
+
+  .limo-detail--luxury .limo-detail-gallery__item:not(.limo-detail-gallery__item--hero) img {
+    min-height: clamp(300px, 20vw, 400px);
+  }
+}
+
+.limo-detail__panel--luxury {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 96, 0.28);
+  background:
+    linear-gradient(
+      152deg,
+      rgba(36, 32, 24, 0.55) 0%,
+      rgba(12, 22, 40, 0.88) 28%,
+      rgba(6, 12, 24, 0.97) 68%,
+      rgba(3, 8, 16, 0.99) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 200, 0.1),
+    0 0 0 1px rgba(212, 175, 88, 0.06),
+    0 40px 100px rgba(0, 0, 0, 0.58);
+  padding: clamp(1.55rem, 3.4vw, 2.5rem);
+}
+
+.limo-detail__panel--luxury::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(184, 148, 72, 0.35) 12%,
+    rgba(232, 201, 122, 0.95) 50%,
+    rgba(184, 148, 72, 0.35) 88%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.limo-detail__panel--luxury::after {
+  content: '';
+  position: absolute;
+  top: -42%;
+  right: -16%;
+  width: min(460px, 72%);
+  height: min(460px, 72%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 88, 0.12) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.limo-detail--luxury .limo-detail__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.64rem;
+  letter-spacing: 0.34em;
+  color: rgba(232, 201, 122, 0.95);
+  text-shadow: 0 0 18px rgba(212, 175, 88, 0.28);
+}
+
+.limo-detail--luxury .limo-detail__eyebrow::before {
+  content: '';
+  width: 1.75rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(232, 201, 122, 0.95), rgba(232, 201, 122, 0.15));
+  box-shadow: 0 0 10px rgba(212, 175, 88, 0.45);
+}
+
+.limo-detail--luxury .limo-detail__panel h2 {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.25rem, 4vw, 3.15rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  color: rgba(255, 252, 245, 0.99);
+  text-shadow:
+    0 2px 28px rgba(212, 175, 88, 0.12),
+    0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.limo-detail--luxury .limo-detail__lead {
+  font-size: clamp(0.98rem, 1.7vw, 1.1rem);
+  line-height: 1.78;
+  color: rgba(228, 220, 204, 0.9);
+  max-width: 62ch;
+}
+
+.limo-detail--luxury .limo-detail__facts {
+  gap: 0.9rem;
+  margin-bottom: 1.45rem;
+}
+
+.limo-detail--luxury .limo-detail__facts article {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 168, 96, 0.26);
+  background:
+    linear-gradient(
+      155deg,
+      rgba(42, 36, 26, 0.72) 0%,
+      rgba(14, 20, 34, 0.94) 42%,
+      rgba(7, 12, 22, 0.98) 100%
+    );
+  padding: 1.05rem 1.1rem 1.05rem 1.25rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 200, 0.08),
+    0 14px 32px rgba(0, 0, 0, 0.32);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.limo-detail--luxury .limo-detail__facts article::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #f0d78a 0%, #c9a24a 48%, #8a6a2e 100%);
+  box-shadow: 0 0 16px rgba(212, 175, 88, 0.45);
+}
+
+.limo-detail--luxury .limo-detail__facts article::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 100% 0%, rgba(212, 175, 88, 0.08) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.limo-detail--luxury .limo-detail__facts article:hover {
+  border-color: rgba(232, 201, 122, 0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 200, 0.12),
+    0 20px 40px rgba(0, 0, 0, 0.38),
+    0 0 32px rgba(212, 175, 88, 0.1);
+}
+
+.limo-detail--luxury .limo-detail__facts h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(240, 215, 138, 0.98);
+  text-shadow: 0 0 18px rgba(212, 175, 88, 0.35);
+}
+
+.limo-detail--luxury .limo-detail__facts p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  line-height: 1.62;
+  color: rgba(236, 230, 218, 0.92);
+  text-shadow: none;
+}
+
+.limo-detail--luxury .limo-detail__prose p {
+  color: rgba(214, 208, 196, 0.9);
+}
+
+.limo-detail--luxury .limo-detail__closing {
+  margin-top: 0.85rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(201, 168, 96, 0.28);
+  font-size: clamp(1.22rem, 2.2vw, 1.48rem);
+  color: rgba(250, 242, 220, 0.98);
+}
+
+.limo-detail--luxury .limo-detail__actions {
+  margin-top: 1.55rem;
+  gap: 0.75rem 0.95rem;
+  align-items: center;
+}
+
+.limo-detail__cta--luxury {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 2.85rem;
+  padding: 0.95rem 1.55rem;
+  border-radius: 12px;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: #1a1408;
+  border: 1px solid rgba(255, 236, 190, 0.45);
+  background:
+    linear-gradient(115deg, #f3e0a8 0%, #e0c06a 28%, #c9a24a 58%, #a07d2e 100%);
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 88, 0.35),
+    0 14px 36px rgba(140, 100, 30, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition:
+    box-shadow 0.35s ease,
+    filter 0.35s ease;
+}
+
+.limo-detail__cta--luxury .limo-detail__cta-label {
+  position: relative;
+  z-index: 1;
+}
+
+.limo-detail__cta--luxury::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 62%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  animation: limo-luxury-cta-sheen 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.limo-detail__cta--luxury::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 230, 160, 0.65), transparent 42%, rgba(184, 140, 50, 0.35));
+  opacity: 0.55;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.limo-detail__cta--luxury:hover {
+  filter: brightness(1.08) saturate(1.05);
+  box-shadow:
+    0 0 0 1px rgba(240, 215, 138, 0.55),
+    0 20px 48px rgba(140, 100, 30, 0.55),
+    0 0 40px rgba(212, 175, 88, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transform: none;
+}
+
+.limo-detail__cta--luxury:focus-visible {
+  outline: 2px solid rgba(240, 215, 138, 0.95);
+  outline-offset: 3px;
+}
+
+.limo-detail__back--luxury {
+  border-radius: 12px;
+  min-height: 2.85rem;
+  padding: 0.95rem 1.25rem;
+  border: 1px solid rgba(201, 168, 96, 0.38);
+  background: linear-gradient(165deg, rgba(36, 30, 20, 0.88) 0%, rgba(8, 12, 22, 0.94) 100%);
+  color: rgba(245, 236, 214, 0.98);
+  box-shadow: inset 0 1px 0 rgba(255, 236, 200, 0.08);
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.limo-detail__back--luxury:hover {
+  border-color: rgba(232, 201, 122, 0.62);
+  background: linear-gradient(165deg, rgba(48, 40, 26, 0.94) 0%, rgba(12, 18, 30, 0.98) 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 200, 0.12),
+    0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+@keyframes limo-luxury-cta-sheen {
+  0%,
+  55% {
+    transform: translateX(-120%);
+  }
+  75%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .limo-detail__cta--luxury::before {
+    animation: none;
+  }
+
+  .limo-detail__back--luxury:hover {
+    transform: none;
+  }
 }
 
 .vip-security-layout {

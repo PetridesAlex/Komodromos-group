@@ -33,6 +33,7 @@ export const vipSubServices: VipSubServiceItem[] = [
     slug: 'super-luxury-cars',
     title: 'Super & Luxury Cars',
     image: `${base}/lamporghini.webp`,
+    to: '/services/super-luxury-cars',
   },
   {
     slug: 'limousines',
