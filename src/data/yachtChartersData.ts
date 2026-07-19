@@ -679,6 +679,55 @@ const LUXURY_SKY_3: YachtCharter = {
   detailPage: LUXURY_SKY_3_DETAIL,
 }
 
+const CORAL_III_DIR = '/images/services/maritime-services/yacht-cards/Coral-III'
+const coralIiiAsset = (file: string) => img(`${CORAL_III_DIR}/${file}`)
+const CORAL_III_IMAGE = coralIiiAsset('coral-cruise-3.jpeg')
+
+const CORAL_III_GALLERY = [
+  'coral-cruise-3.jpeg',
+  'coral-cruise-III.jpeg',
+  'coral-cruise-I2.jpeg',
+  'coral-cruise-4.jpeg',
+  'coral-cruise-5.jpeg',
+  'coral-cruise-6.jpeg',
+  'coral-cruise-7.jpeg',
+].map(coralIiiAsset)
+
+const CORAL_III_DETAIL: YachtDetailPageContent = {
+  paragraphs: [
+    'Coral III is a premium coastal cruise experience on the Cyprus waterfront — ideal for private groups, celebrations, and leisurely Mediterranean days at sea. Itineraries and onboard details can be tailored with our charter concierge.',
+  ],
+  charterRates: [
+    { label: '4 hours', value: 'On request' },
+    { label: '6 hours', value: 'On request' },
+    { label: 'Full day', value: 'On request' },
+  ],
+  vesselSpecs: [
+    { label: 'Vessel', value: 'Coral III' },
+    { label: 'Type', value: 'Cruise' },
+    { label: 'Location', value: 'Cyprus' },
+    { label: 'Charters', value: 'Private & group' },
+  ],
+}
+
+const CORAL_III: YachtCharter = {
+  id: 'coral-iii',
+  name: 'Coral III',
+  type: 'Motor Yacht',
+  location: 'Cyprus',
+  guests: 50,
+  price4h: 'On request',
+  price6h: 'On request',
+  priceFullDay: 'On request',
+  image: CORAL_III_IMAGE,
+  gallery: CORAL_III_GALLERY,
+  description:
+    'Coral III — premium coastal cruise charter for private groups and celebrations along the Cyprus coastline.',
+  included: [...DEFAULT_INCLUDED],
+  durations: ['4 hours', '6 hours', 'Full day'],
+  detailPage: CORAL_III_DETAIL,
+}
+
 /** Resolved copy + tables for `/services/yacht-charters/:id` (falls back from fleet card fields). */
 export function getYachtDetailContent(yacht: YachtCharter): YachtDetailPageContent {
   if (yacht.detailPage) return yacht.detailPage
@@ -747,6 +796,7 @@ export const yachtFleet: YachtCharter[] = [
   LUXURY_SKY_1,
   LUXURY_SKY_2,
   LUXURY_SKY_3,
+  CORAL_III,
 ]
 
 export type CharterHub = {

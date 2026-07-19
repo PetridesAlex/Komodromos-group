@@ -6,6 +6,7 @@ const PORSCHE = `${CARS}/porche`
 const LAMBORGHINI = `${CARS}/lamborghini`
 const LAMBORGHINI_URUS = `${CARS}/lamborghini-urus`
 const MERCEDES = `${CARS}/mercendez`
+const PORSCHE_911 = `${CARS}/porsche-911-carrera`
 
 export const SUPER_LUXURY_CARS_HERO = `${BASE}/lamporghini.webp`
 
@@ -80,6 +81,14 @@ export const superLuxuryCarCards: SuperLuxuryCarCard[] = [
     image: `${MERCEDES}/mercendez-cover.png`,
     imageAlt: 'Mercedes-Benz S-Class available through Komodromos VIP Services',
     to: '/services/super-luxury-cars/mercedes-s-class',
+  },
+  {
+    id: 'porsche-911',
+    kicker: 'Vehicle 06',
+    title: 'Porsche 911 Carrera 4S Cabriolet',
+    image: `${PORSCHE_911}/porsche-911-cover.png`,
+    imageAlt: 'Porsche 911 Carrera 4S Cabriolet available through Komodromos VIP Services',
+    to: '/services/super-luxury-cars/porsche-911-carrera-4s-cabriolet',
   },
 ]
 
@@ -363,5 +372,58 @@ export const mercedesSClassDetail: SuperLuxuryCarDetail = {
     'Experience the benchmark of executive luxury. Discover Cyprus and Greece in the Mercedes-Benz S-Class with Komodromos Group Luxury Car Rental.',
   ctaLabel: 'Request this vehicle',
   vipSubService: 'Mercedes-Benz S-Class',
+}
+
+export const porsche911Carrera4SDetail: SuperLuxuryCarDetail = {
+  slug: 'porsche-911-carrera-4s-cabriolet',
+  eyebrow: 'Super & Luxury Cars',
+  title: 'Porsche 911 Carrera 4S Cabriolet',
+  tagline: 'The Ultimate Open-Top Driving Experience.',
+  heroImage: `${PORSCHE_911}/porsche-911-cover.png`,
+  gallery: [
+    `${PORSCHE_911}/porsche-911-cover.png`,
+    `${PORSCHE_911}/porsche-911-1.png`,
+    `${PORSCHE_911}/porsche-911-2.png`,
+    `${PORSCHE_911}/porsche-911-3.png`,
+    `${PORSCHE_911}/porsche-911-4.png`,
+    `${PORSCHE_911}/porsche-911-5.png`,
+    `${PORSCHE_911}/porsche-911-6.png`,
+    `${PORSCHE_911}/porsche-911-7.png`,
+    `${PORSCHE_911}/porsche-911-8.png`,
+    `${PORSCHE_911}/porsche-911-9.png`,
+    `${PORSCHE_911}/porsche-911-10.png`,
+    `${PORSCHE_911}/porsche-911-11.png`,
+  ],
+  panelEyebrow: 'Iconic convertible sports car',
+  panelTitle: 'Porsche 911 Carrera 4S Cabriolet',
+  lead:
+    'Experience the perfect fusion of timeless design, exhilarating performance, and uncompromising luxury with the Porsche 911 Carrera 4S Cabriolet. An automotive icon admired around the world, this exceptional sports car delivers breathtaking performance while offering the freedom of open-air driving.',
+  facts: [
+    {
+      title: 'Performance',
+      body: 'Legendary Porsche engineering with intelligent all-wheel drive for precision, confidence, and excitement.',
+    },
+    {
+      title: 'Open-Top',
+      body: 'Convertible freedom that turns coastal drives and sunset escapes into unforgettable moments.',
+    },
+    {
+      title: 'Cabin',
+      body: 'Handcrafted materials, cutting-edge technology, and exceptional comfort behind the wheel.',
+    },
+    {
+      title: 'Destinations',
+      body: 'Cyprus coastlines, Greek roads, and exclusive arrivals with unmistakable prestige.',
+    },
+  ],
+  paragraphs: [
+    'Powered by legendary Porsche engineering and equipped with intelligent all-wheel drive, the 911 Carrera 4S Cabriolet offers remarkable precision, confidence, and excitement on every journey. Whether cruising along the spectacular coastlines of Cyprus, discovering the picturesque roads of Greece, or arriving in style at an exclusive destination, every drive becomes an unforgettable experience.',
+    'The luxurious interior combines handcrafted materials, cutting-edge technology, and exceptional comfort, ensuring every moment behind the wheel is as refined as it is thrilling.',
+    'From romantic sunset drives to unforgettable weekend escapes, the Porsche 911 Carrera 4S Cabriolet is more than a luxury sports car—it is a statement of prestige, passion, and driving excellence.',
+  ],
+  closing:
+    'Feel the wind. Embrace the performance. Experience the legendary Porsche 911 Carrera 4S Cabriolet with Komodromos Group Luxury Car Rental and discover Cyprus and Greece like never before.',
+  ctaLabel: 'Request this vehicle',
+  vipSubService: 'Porsche 911 Carrera 4S Cabriolet',
 }
 

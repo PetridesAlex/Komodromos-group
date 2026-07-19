@@ -56,6 +56,7 @@ export const vipSubServices: VipSubServiceItem[] = [
     slug: 'fishing-scuba',
     title: 'Fishing & Scuba Diving',
     image: `${base}/fishing-scuba-diving.webp`,
+    to: '/services/fishing-scuba-diving',
   },
   {
     slug: 'real-estate',

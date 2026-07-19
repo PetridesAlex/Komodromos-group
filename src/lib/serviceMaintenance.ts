@@ -6,6 +6,7 @@ const VIP_NESTED_PREFIXES = [
   '/services/air',
   '/services/limousines-experiences',
   '/services/super-luxury-cars',
+  '/services/fishing-scuba-diving',
   '/services/vip-security-protection',
   '/services/vip-tour-around-island',
   '/services/yacht-charters',

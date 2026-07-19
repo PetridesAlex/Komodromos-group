@@ -206,6 +206,30 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       priority: 0.7,
     }),
     route({
+      path: '/services/fishing-scuba-diving',
+      title: 'Fishing & Scuba Diving',
+      description:
+        'Private fishing and scuba diving experiences in Cyprus — curated VIP water activities with Komodromos Group.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
+      path: '/services/fishing-scuba-diving/scuba-diving',
+      title: 'Scuba Diving',
+      description:
+        'Scuba diving in Ayia Napa and the legendary Zenobia shipwreck — private VIP diving experiences with Komodromos Group.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/fishing-scuba-diving/fishing',
+      title: 'Fishing',
+      description:
+        'Authentic Cypriot fishing experiences with local fishermen — traditional and power boat trips on the Mediterranean with Komodromos Group.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
       path: '/services/super-luxury-cars/maserati-ghibli',
       title: 'Maserati Ghibli Luxury Package',
       description:
@@ -242,6 +266,14 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       title: 'Mercedes-Benz S-Class',
       description:
         'Mercedes-Benz S-Class — flagship luxury saloon for executive and VIP travel across Cyprus and Greece with Komodromos Group.',
+      index: true,
+      priority: 0.6,
+    }),
+    route({
+      path: '/services/super-luxury-cars/porsche-911-carrera-4s-cabriolet',
+      title: 'Porsche 911 Carrera 4S Cabriolet',
+      description:
+        'Porsche 911 Carrera 4S Cabriolet — ultimate open-top sports car experiences across Cyprus and Greece with Komodromos Group Luxury Car Rental.',
       index: true,
       priority: 0.6,
     }),

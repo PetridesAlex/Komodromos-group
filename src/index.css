@@ -43069,6 +43069,373 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   color: rgba(205, 222, 240, 0.9);
 }
 
+.fishing-scuba-hub {
+  position: relative;
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 6vw, 4.75rem);
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 0%, rgba(48, 130, 190, 0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 35% at 100% 40%, rgba(40, 100, 150, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg, #040913 0%, #02060e 55%, #02050c 100%);
+}
+
+.fishing-scuba-hub__inner {
+  width: min(1180px, 94%);
+}
+
+.fishing-scuba-hub__header {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto clamp(2rem, 4.5vw, 3rem);
+}
+
+.fishing-scuba-hub__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 0.9rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(232, 201, 122, 0.95);
+}
+
+.fishing-scuba-hub__eyebrow::before,
+.fishing-scuba-hub__eyebrow::after {
+  content: '';
+  width: 1.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 201, 122, 0.85), transparent);
+}
+
+.fishing-scuba-hub__title {
+  margin: 0 0 0.95rem;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 3.8vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  color: rgba(255, 252, 245, 0.98);
+  text-shadow: 0 2px 28px rgba(40, 100, 160, 0.2);
+}
+
+.fishing-scuba-hub__intro {
+  margin: 0 auto;
+  max-width: 38rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+  line-height: 1.75;
+  color: rgba(210, 224, 238, 0.9);
+}
+
+.fishing-scuba-hub__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.15rem, 2.5vw, 1.65rem);
+  margin: 0 0 clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+@media (min-width: 860px) {
+  .fishing-scuba-hub__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.fishing-scuba-hub__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(180, 210, 240, 0.28);
+  background:
+    linear-gradient(165deg, rgba(18, 32, 54, 0.92) 0%, rgba(6, 12, 24, 0.98) 100%);
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.fishing-scuba-hub__card:hover {
+  border-color: rgba(220, 200, 140, 0.45);
+  box-shadow:
+    0 32px 70px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(212, 175, 88, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.fishing-scuba-hub__card:focus-visible {
+  outline: 2px solid rgba(232, 201, 122, 0.9);
+  outline-offset: 3px;
+}
+
+.fishing-scuba-hub__card-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: #061018;
+}
+
+.fishing-scuba-hub__card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fishing-scuba-hub__card:hover .fishing-scuba-hub__card-media img {
+  transform: scale(1.05);
+}
+
+.fishing-scuba-hub__card-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 35%,
+    rgba(4, 10, 20, 0.35) 70%,
+    rgba(4, 10, 20, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.fishing-scuba-hub__card-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(1.15rem, 2.4vw, 1.55rem);
+  border-top: 1px solid rgba(201, 168, 96, 0.18);
+}
+
+.fishing-scuba-hub__card-kicker {
+  margin: 0 0 0.45rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(232, 201, 122, 0.92);
+}
+
+.fishing-scuba-hub__card-body h3 {
+  margin: 0 0 0.55rem;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.55rem, 2.4vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: rgba(255, 252, 245, 0.98);
+}
+
+.fishing-scuba-hub__card-blurb {
+  margin: 0 0 1.15rem;
+  flex: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: rgba(205, 218, 232, 0.88);
+}
+
+.fishing-scuba-hub__card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(186, 225, 255, 0.95);
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.fishing-scuba-hub__card:hover .fishing-scuba-hub__card-cta {
+  color: rgba(240, 215, 138, 0.98);
+  letter-spacing: 0.26em;
+}
+
+.fishing-scuba-hub__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem 1.25rem;
+}
+
+.fishing-scuba-hub__quote {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  padding: 0.9rem 1.55rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #041018;
+  border: 1px solid rgba(180, 225, 255, 0.55);
+  background: linear-gradient(115deg, #7ec8ff 0%, #3d9ae8 28%, #1f6fc4 62%, #155a9e 100%);
+  box-shadow:
+    0 0 0 1px rgba(90, 170, 240, 0.4),
+    0 14px 36px rgba(30, 110, 190, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition:
+    filter 0.3s ease,
+    box-shadow 0.35s ease,
+    transform 0.3s ease,
+    background 0.35s ease,
+    border-color 0.3s ease;
+}
+
+.fishing-scuba-hub__quote:hover {
+  color: #021018;
+  filter: brightness(1.1) saturate(1.08);
+  transform: translateY(-3px);
+  border-color: rgba(200, 235, 255, 0.85);
+  background: linear-gradient(115deg, #a8dbff 0%, #55b0f0 30%, #2a82d4 65%, #1a6ab0 100%);
+  box-shadow:
+    0 0 0 1px rgba(140, 210, 255, 0.55),
+    0 20px 48px rgba(35, 125, 210, 0.6),
+    0 0 36px rgba(80, 170, 255, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.fishing-scuba-hub__back {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: rgba(186, 210, 235, 0.82);
+  transition: color 0.25s ease;
+}
+
+.fishing-scuba-hub__back:hover {
+  color: rgba(240, 215, 138, 0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fishing-scuba-hub__card:hover .fishing-scuba-hub__card-media img {
+    transform: none;
+  }
+
+  .fishing-scuba-hub__quote:hover {
+    transform: none;
+  }
+}
+
+.water-experience {
+  padding-top: clamp(1.5rem, 3.5vw, 2.75rem);
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  background:
+    radial-gradient(ellipse 70% 40% at 10% 0%, rgba(40, 130, 190, 0.12) 0%, transparent 55%),
+    linear-gradient(180deg, #040913 0%, #02050c 100%);
+}
+
+.water-experience .container {
+  width: min(1180px, 94%);
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+
+.water-experience__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .water-experience__row {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  }
+
+  .water-experience__row--flip {
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  }
+
+  .water-experience__row--flip .water-experience__media {
+    order: 2;
+  }
+
+  .water-experience__row--flip .water-experience__copy {
+    order: 1;
+  }
+}
+
+.water-experience__media {
+  margin: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(150, 210, 245, 0.3);
+  background: rgba(6, 14, 28, 0.85);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.4);
+}
+
+.water-experience__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.water-experience__row:hover .water-experience__media img {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water-experience__row:hover .water-experience__media img {
+    transform: none;
+  }
+}
+
+.water-experience__kicker {
+  margin: 0 0 0.55rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(150, 210, 245, 0.92);
+}
+
+.water-experience__copy h2 {
+  margin: 0 0 0.75rem;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.55rem, 2.6vw, 2.05rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #fffaf2;
+}
+
+.water-experience__copy p {
+  margin: 0 0 0.75rem;
+  max-width: 40ch;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.88rem, 1.35vw, 0.98rem);
+  line-height: 1.7;
+  color: rgba(220, 230, 242, 0.92);
+}
+
+.water-experience__copy p:last-child {
+  margin-bottom: 0;
+}
+
 .limo-grid {
   margin: 1.25rem 0 1rem;
   display: grid;

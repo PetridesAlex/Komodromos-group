@@ -5,7 +5,6 @@ import Footer from '../Footer'
 import SiteTopbar from '../SiteTopbar'
 import { useReveal } from '../../hooks/useReveal'
 import {
-  charteringCyprus,
   popularExperiences,
   privateEvents,
   whyChooseUs,
@@ -228,83 +227,6 @@ export default function YachtChartersPage() {
           {filteredFleet.length === 0 ? (
             <p className="yacht-fleet__empty">No yachts match — try widening your filters.</p>
           ) : null}
-        </div>
-      </section>
-
-      <section className="yacht-section yacht-charter-info" aria-labelledby="charter-info-title">
-        <div className="container">
-          <motion.h2
-            id="charter-info-title"
-            className="yacht-section__title"
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
-          >
-            {charteringCyprus.title}
-          </motion.h2>
-          <motion.p
-            className="yacht-charter-info__intro"
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
-          >
-            {charteringCyprus.intro}
-          </motion.p>
-          <div className="yacht-charter-info__hubs">
-            {charteringCyprus.hubs.map((hub, i) => (
-              <motion.article
-                key={hub.title}
-                className="yacht-charter-info__hub"
-                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{
-                  duration: reduceMotion ? 0.01 : 0.5,
-                  delay: reduceMotion ? 0 : i * 0.06,
-                }}
-              >
-                <div
-                  className={`yacht-charter-info__hub-media${hub.image ? '' : ' yacht-charter-info__hub-media--placeholder'}`}
-                >
-                  {hub.image ? (
-                    <img
-                      src={hub.image}
-                      alt={hub.imageAlt ?? hub.title}
-                      width={640}
-                      height={420}
-                      sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <div
-                      className="yacht-charter-info__hub-placeholder"
-                      role="img"
-                      aria-label={`Image placeholder for ${hub.title}`}
-                    >
-                      <span className="yacht-charter-info__hub-placeholder__label">Insert image</span>
-                      <span className="yacht-charter-info__hub-placeholder__hint">{hub.title}</span>
-                    </div>
-                  )}
-                </div>
-                <div className="yacht-charter-info__hub-body">
-                  <h3 className="yacht-charter-info__hub-title">{hub.title}</h3>
-                  <p className="yacht-charter-info__hub-text">{hub.text}</p>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-          <motion.p
-            className="yacht-charter-info__closing"
-            initial={reduceMotion ? false : { opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.55 }}
-          >
-            {charteringCyprus.closing}
-          </motion.p>
         </div>
       </section>
 

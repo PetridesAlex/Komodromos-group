@@ -155,7 +155,6 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/justice-law.webp`,
     brandLogo: `${SVC_CARD_LOGO}/law-logo.png`,
     brandLogoBlend: 'lighten',
-    comingSoon: true,
   },
 ]
 

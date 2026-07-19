@@ -26,11 +26,15 @@ import LincolnLimousineDetailPage from './LincolnLimousineDetailPage'
 import LimousineDetailPage from './LimousineDetailPage'
 import LimousinesExperiencesPage from './LimousinesExperiencesPage'
 import SuperLuxuryCarsPage from './SuperLuxuryCarsPage'
+import FishingScubaPage from './FishingScubaPage'
+import FishingDetailPage from './FishingDetailPage'
+import ScubaDivingDetailPage from './ScubaDivingDetailPage'
 import MaseratiGhibliDetailPage from './MaseratiGhibliDetailPage'
 import Porsche718BoxsterDetailPage from './Porsche718BoxsterDetailPage'
 import LamborghiniHuracanDetailPage from './LamborghiniHuracanDetailPage'
 import LamborghiniUrusDetailPage from './LamborghiniUrusDetailPage'
 import MercedesSClassDetailPage from './MercedesSClassDetailPage'
+import Porsche911Carrera4SDetailPage from './Porsche911Carrera4SDetailPage'
 import VipSecurityProtectionPage from './VipSecurityProtectionPage'
 import VipTourIslandPage from './VipTourIslandPage'
 import YachtChartersPage from './yacht-charters/YachtChartersPage'
@@ -112,7 +116,14 @@ function GroupRoutes() {
       <Route path="/services/super-luxury-cars/lamborghini-huracan" element={<LamborghiniHuracanDetailPage />} />
       <Route path="/services/super-luxury-cars/lamborghini-urus" element={<LamborghiniUrusDetailPage />} />
       <Route path="/services/super-luxury-cars/mercedes-s-class" element={<MercedesSClassDetailPage />} />
+      <Route
+        path="/services/super-luxury-cars/porsche-911-carrera-4s-cabriolet"
+        element={<Porsche911Carrera4SDetailPage />}
+      />
       <Route path="/services/super-luxury-cars" element={<SuperLuxuryCarsPage />} />
+      <Route path="/services/fishing-scuba-diving/fishing" element={<FishingDetailPage />} />
+      <Route path="/services/fishing-scuba-diving/scuba-diving" element={<ScubaDivingDetailPage />} />
+      <Route path="/services/fishing-scuba-diving" element={<FishingScubaPage />} />
       <Route path="/services/vip-security-protection" element={<VipSecurityProtectionPage />} />
       <Route path="/services/vip-tour-around-island" element={<VipTourIslandPage />} />
       <Route path="/services/yacht-charters/:yachtId" element={<YachtDetailPage />} />
