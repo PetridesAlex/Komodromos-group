@@ -481,6 +481,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.komodromosgroup.com/services/yacht-charters/onassis</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.komodromosgroup.com/services/yacht-charters/princess-30m</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -620,6 +626,36 @@
   </url>
   <url>
     <loc>https://www.komodromosgroup.com/services/yacht-charters/coral-iii</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.komodromosgroup.com/services/yacht-charters/onassis/exterior</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.komodromosgroup.com/services/yacht-charters/onassis/general</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.komodromosgroup.com/services/yacht-charters/onassis/history</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.komodromosgroup.com/services/yacht-charters/onassis/interior</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.komodromosgroup.com/services/yacht-charters/onassis/lifestyle</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

@@ -728,6 +728,47 @@ const CORAL_III: YachtCharter = {
   detailPage: CORAL_III_DETAIL,
 }
 
+/** Onassis — flagship charter (first card in the fleet). Cover asset lives in `yacht-cards/`. */
+const ONASSIS_IMAGE = img(`${YACHT_CARD_DIR}/Onassis.webp`)
+
+const ONASSIS_DETAIL: YachtDetailPageContent = {
+  paragraphs: [
+    'Onassis is our flagship charter yacht — a statement of scale and craftsmanship reserved for the most discerning guests. Expansive sun-drenched decks, an elegant light-filled saloon, and refined en-suite accommodation combine with a full professional crew to deliver a truly bespoke Mediterranean experience from Limassol.',
+    'Whether hosting a landmark celebration, a private principal escape, or an executive gathering at sea, Onassis pairs generous entertaining spaces with discreet, five-star service and fully tailored itineraries along the Cyprus coast and beyond.',
+  ],
+  charterRates: [
+    { label: 'Half day', value: 'On request' },
+    { label: 'Full day', value: 'On request' },
+    { label: 'Overnight', value: 'On request' },
+    { label: 'Weekly', value: 'On request' },
+  ],
+  vesselSpecs: [
+    { label: 'Accommodation', value: 'Multiple en-suite cabins + crew quarters' },
+    { label: 'Passengers', value: 'Up to 12' },
+    { label: 'Home port', value: 'Limassol Marina' },
+  ],
+  ratesFootnote:
+    'Charter rates depend on season, itinerary, and provisioning. Ask us for a written quote covering crew, standard operational fuel where applicable, and any APA or catering preferences.',
+}
+
+const ONASSIS: YachtCharter = {
+  id: 'onassis',
+  name: 'Onassis',
+  type: 'Motor Yacht',
+  location: 'Limassol Marina',
+  guests: 12,
+  price4h: 'On request',
+  price6h: 'On request',
+  priceFullDay: 'On request',
+  image: ONASSIS_IMAGE,
+  gallery: [ONASSIS_IMAGE],
+  description:
+    'Onassis — flagship motor yacht charter for landmark celebrations, principal escapes, and executive hosting along the Cyprus coast.',
+  included: [...DEFAULT_INCLUDED],
+  durations: ['4 hours', '6 hours', 'Full day'],
+  detailPage: ONASSIS_DETAIL,
+}
+
 /** Resolved copy + tables for `/services/yacht-charters/:id` (falls back from fleet card fields). */
 export function getYachtDetailContent(yacht: YachtCharter): YachtDetailPageContent {
   if (yacht.detailPage) return yacht.detailPage
@@ -792,6 +833,7 @@ export const yachtCharterIntro: {
 }
 
 export const yachtFleet: YachtCharter[] = [
+  ONASSIS,
   ...DIAMANTIDES_STYLE_FLEET_NAMES.map((name) => buildCharterForFleetName(name)),
   LUXURY_SKY_1,
   LUXURY_SKY_2,

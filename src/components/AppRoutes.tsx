@@ -40,6 +40,8 @@ import VipSecurityProtectionPage from './VipSecurityProtectionPage'
 import VipTourIslandPage from './VipTourIslandPage'
 import YachtChartersPage from './yacht-charters/YachtChartersPage'
 import YachtDetailPage from './yacht-charters/YachtDetailPage'
+import OnassisExperiencePage from './yacht-charters/OnassisExperiencePage'
+import OnassisCategoryPage from './yacht-charters/OnassisCategoryPage'
 import TaxHowToTicPage from './TaxHowToTicPage'
 import TaxTaxResidenceCertificatePage from './TaxTaxResidenceCertificatePage'
 import TaxNonDomCertificatePage from './TaxNonDomCertificatePage'
@@ -144,6 +146,8 @@ function GroupRoutes() {
       <Route path="/services/vip-security-protection" element={<VipSecurityProtectionPage />} />
       <Route path="/services/casino-experiences" element={<CasinoExperiencesPage />} />
       <Route path="/services/vip-tour-around-island" element={<VipTourIslandPage />} />
+      <Route path="/services/yacht-charters/onassis" element={<OnassisExperiencePage />} />
+      <Route path="/services/yacht-charters/onassis/:categoryId" element={<OnassisCategoryPage />} />
       <Route path="/services/yacht-charters/:yachtId" element={<YachtDetailPage />} />
       <Route path="/services/yacht-charters" element={<YachtChartersPage />} />
       <Route path="/services/tax/how-to-get-a-tic" element={<TaxHowToTicPage />} />

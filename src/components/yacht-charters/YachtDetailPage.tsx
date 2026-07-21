@@ -40,28 +40,40 @@ export default function YachtDetailPage() {
         servicesSectionHref="/#services"
       />
 
-      <section className="yacht-detail-hero" aria-label="Yacht photography" data-hero-parallax-root>
-        <div className="yacht-detail-hero__media" data-hero-parallax>
-          <img
-            className="yacht-detail-hero__img"
-            src={heroSrc}
-            alt=""
-            width={2000}
-            height={1000}
-            sizes="100vw"
-            fetchPriority="high"
-            decoding="async"
-          />
+      <section className="yacht-detail-hero" aria-label="Yacht photography">
+        <div className="yacht-detail-hero__frame">
+          <nav className="yacht-detail-hero__nav" aria-label="Previous page">
+            <button
+              type="button"
+              className="yacht-detail-hero-back"
+              onClick={() => navigate(-1)}
+            >
+              <span aria-hidden>←</span> Previous page
+            </button>
+          </nav>
+
+          <figure className="yacht-detail-hero__media">
+            <img
+              className="yacht-detail-hero__img"
+              src={heroSrc}
+              alt={`${yacht.name} — ${yacht.type}`}
+              width={1600}
+              height={900}
+              sizes="(max-width: 960px) 100vw, 900px"
+              fetchPriority="high"
+              decoding="async"
+            />
+            <span className="yacht-detail-hero__scrim" aria-hidden />
+            <figcaption className="yacht-detail-hero__caption">
+              <span className="yacht-detail-hero__kicker">
+                {yacht.type} · {yacht.location}
+              </span>
+              <span className="yacht-detail-hero__name" aria-hidden>
+                {yacht.name}
+              </span>
+            </figcaption>
+          </figure>
         </div>
-        <nav className="yacht-detail-hero__nav" aria-label="Previous page">
-          <button
-            type="button"
-            className="yacht-detail-hero-back"
-            onClick={() => navigate(-1)}
-          >
-            ← Previous page
-          </button>
-        </nav>
       </section>
 
       <article className="yacht-detail-article">

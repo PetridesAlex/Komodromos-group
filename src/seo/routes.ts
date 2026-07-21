@@ -14,6 +14,7 @@ import { serviceCards } from '../data/serviceCards'
 import { STORAGE_USEFUL_TIPS } from '../data/storageUsefulTipsContent'
 import { weddingPackages } from '../data/weddingPackages'
 import { yachtFleet } from '../data/yachtChartersData'
+import { onassisCategories } from '../data/onassisExperience'
 import { SITE_NAME_FULL } from './siteConfig'
 
 export type SeoRouteEntry = {
@@ -573,6 +574,19 @@ function buildDynamicRoutes(): SeoRouteEntry[] {
         index: true,
         priority: 0.5,
         ogImage: yacht.image,
+      }),
+    )
+  }
+
+  for (const cat of onassisCategories) {
+    routes.push(
+      route({
+        path: `/services/yacht-charters/onassis/${cat.id}`,
+        title: `Onassis — ${cat.title}`,
+        description: cat.tagline.slice(0, 155),
+        index: true,
+        priority: 0.5,
+        ogImage: cat.cover,
       }),
     )
   }
