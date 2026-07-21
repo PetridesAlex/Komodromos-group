@@ -106,7 +106,32 @@ function buildActionButton(label, href, primary = false) {
   `.trim()
 }
 
-function buildEmailHtml({ source, name, email, phone, company, service, message, submittedAt, referenceId }) {
+function buildBookingSection(detailsTitle, details) {
+  if (!Array.isArray(details) || details.length === 0) return ''
+  const rows = details
+    .map((entry) => buildDetailRow(entry.label, entry.value, { highlight: true }))
+    .join('')
+  return `
+          <tr>
+            <td style="padding:0 0 18px 0;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:#0a101c;border-left:1px solid #24314a;border-right:1px solid #24314a;">
+                <tr>
+                  <td style="padding:24px 28px 8px 28px;">
+                    <p style="margin:0 0 16px;font-size:10px;line-height:1.4;letter-spacing:0.2em;text-transform:uppercase;color:#c8a96a;font-weight:700;">
+                      ${escapeHtml(detailsTitle || 'Booking details')}
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+                      ${rows}
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+  `.trim()
+}
+
+function buildEmailHtml({ source, name, email, phone, company, service, message, submittedAt, referenceId, detailsTitle, details }) {
   const detailRows = [
     buildDetailRow('Full name', name, { highlight: true }),
     buildDetailRow('Email address', email, { href: `mailto:${email}`, highlight: true }),
@@ -116,6 +141,8 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
     buildDetailRow('Company / organisation', company),
     buildDetailRow('Service of interest', service, { highlight: true }),
   ].join('')
+
+  const bookingSection = buildBookingSection(detailsTitle, details)
 
   const telHref = phone ? `tel:${phone.replace(/\s+/g, '')}` : `mailto:${email}`
   const actionButtons = [
@@ -208,6 +235,8 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
             </td>
           </tr>
 
+          ${bookingSection}
+
           <tr>
             <td style="padding:0 0 18px 0;">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;background:#0a101c;border-left:1px solid #24314a;border-right:1px solid #24314a;">
@@ -271,8 +300,18 @@ function buildEmailHtml({ source, name, email, phone, company, service, message,
 </html>`.trim()
 }
 
-function buildEmailText({ source, name, email, phone, company, service, message, submittedAt, referenceId }) {
+function buildEmailText({ source, name, email, phone, company, service, message, submittedAt, referenceId, detailsTitle, details }) {
   const divider = '────────────────────────────────────────'
+
+  const bookingLines =
+    Array.isArray(details) && details.length > 0
+      ? [
+          '',
+          (detailsTitle || 'BOOKING DETAILS').toUpperCase(),
+          divider,
+          ...details.map((entry) => `${entry.label}: ${entry.value}`),
+        ]
+      : []
 
   return [
     COMPANY_NAME.toUpperCase(),
@@ -290,6 +329,7 @@ function buildEmailText({ source, name, email, phone, company, service, message,
     `Phone number:       ${displayValue(phone)}`,
     `Company:            ${displayValue(company)}`,
     `Service interest:   ${displayValue(service)}`,
+    ...bookingLines,
     '',
     'MESSAGE',
     divider,
@@ -396,6 +436,16 @@ export default async function handler(req, res) {
   const company = cleanField(body.company, 160)
   const service = cleanField(body.service, 200)
   const message = cleanField(body.message, 8000)
+  const detailsTitle = cleanField(body.detailsTitle, 80)
+  const details = Array.isArray(body.details)
+    ? body.details
+        .slice(0, 20)
+        .map((entry) => ({
+          label: cleanField(entry && entry.label, 60),
+          value: cleanField(entry && entry.value, 200),
+        }))
+        .filter((entry) => entry.label && entry.value)
+    : []
 
   const missing = []
   if (!name) missing.push('name')
@@ -442,6 +492,8 @@ export default async function handler(req, res) {
     message,
     submittedAt,
     referenceId,
+    detailsTitle,
+    details,
   }
   const html = buildEmailHtml(emailPayload)
   const text = buildEmailText(emailPayload)

@@ -70,6 +70,7 @@ export const vipSubServices: VipSubServiceItem[] = [
     kicker: 'Casino',
     nameLine: 'experiences',
     image: `${base}/cazino.webp`,
+    to: '/services/casino-experiences',
   },
   {
     slug: 'vip-tour-island',

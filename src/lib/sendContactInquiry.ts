@@ -3,6 +3,11 @@ import {
   validateContactPayload,
 } from './contactFormValidation'
 
+export type ContactInquiryDetail = {
+  label: string
+  value: string
+}
+
 export type ContactInquiryPayload = {
   source: string
   name: string
@@ -11,6 +16,9 @@ export type ContactInquiryPayload = {
   company?: string
   service?: string
   message: string
+  /** Optional structured detail rows (e.g. reservation date/time/guests). */
+  detailsTitle?: string
+  details?: ContactInquiryDetail[]
 }
 
 type ContactInquiryResponse = {

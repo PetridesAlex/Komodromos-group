@@ -302,6 +302,14 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       priority: 0.7,
     }),
     route({
+      path: '/services/casino-experiences',
+      title: 'Casino Experiences — City of Dreams Mediterranean',
+      description:
+        "Europe's ultimate luxury casino experience at City of Dreams Mediterranean — VIP gaming, the Platinum Club, fine dining, and exclusive chauffeur-driven transportation with Komodromos Group.",
+      index: true,
+      priority: 0.7,
+    }),
+    route({
       path: '/services/vip-tour-around-island',
       title: 'VIP Tour Around the Island',
       description:

@@ -35,6 +35,7 @@ import LamborghiniHuracanDetailPage from './LamborghiniHuracanDetailPage'
 import LamborghiniUrusDetailPage from './LamborghiniUrusDetailPage'
 import MercedesSClassDetailPage from './MercedesSClassDetailPage'
 import Porsche911Carrera4SDetailPage from './Porsche911Carrera4SDetailPage'
+import CasinoExperiencesPage from './CasinoExperiencesPage'
 import VipSecurityProtectionPage from './VipSecurityProtectionPage'
 import VipTourIslandPage from './VipTourIslandPage'
 import YachtChartersPage from './yacht-charters/YachtChartersPage'
@@ -141,6 +142,7 @@ function GroupRoutes() {
       <Route path="/services/fishing-scuba-diving/scuba-diving" element={<ScubaDivingDetailPage />} />
       <Route path="/services/fishing-scuba-diving" element={<FishingScubaPage />} />
       <Route path="/services/vip-security-protection" element={<VipSecurityProtectionPage />} />
+      <Route path="/services/casino-experiences" element={<CasinoExperiencesPage />} />
       <Route path="/services/vip-tour-around-island" element={<VipTourIslandPage />} />
       <Route path="/services/yacht-charters/:yachtId" element={<YachtDetailPage />} />
       <Route path="/services/yacht-charters" element={<YachtChartersPage />} />

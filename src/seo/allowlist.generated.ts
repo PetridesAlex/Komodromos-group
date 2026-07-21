@@ -32,6 +32,7 @@ export const SEO_ALLOWLIST = new Set<string>([
   "/services/limousines-experiences/chrysler-300-super-stretch",
   "/services/limousines-experiences/lincoln-30ft-stretched",
   "/services/vip-security-protection",
+  "/services/casino-experiences",
   "/services/vip-tour-around-island",
   "/services/yacht-charters",
   "/services/tax/how-to-get-a-tic",
