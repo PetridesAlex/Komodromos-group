@@ -17,6 +17,8 @@ import ServiceDefaultSections from './ServiceDefaultSections'
 import TaxNexCyprusPage from './TaxNexCyprusPage'
 import { Hero9 } from './hero-9'
 import NotFoundPage from './NotFoundPage'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
 
 const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
 const VIP_PORTFOLIO_SECTION_ID = 'vip-portfolio'
@@ -55,9 +57,19 @@ function clearDocumentScrollLock() {
   }
 }
 
-export default function ServiceDetailPage() {
-  const { slug } = useParams<{ slug: string }>()
+export default function ServiceDetailPage({
+  slugOverride,
+}: {
+  /** Renders a fixed service (used when served from its own brand domain root). */
+  slugOverride?: string
+} = {}) {
+  const params = useParams<{ slug: string }>()
+  const slug = slugOverride ?? params.slug
   const location = useLocation()
+  const { isBrandDomain } = useSiteContext()
+  const servicesSectionHref = isBrandDomain
+    ? buildGroupSiteReturnUrl('services')
+    : '/#services'
   const card = getServiceBySlug(slug)
   const defaultContent = slug ? getServicePageContent(slug) : undefined
   const pageRef = useReveal()
@@ -169,7 +181,7 @@ export default function ServiceDetailPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
       />
       {slug === 'storage' ? (
         <div className="storage-page-subnav" aria-label="Storage page navigation">

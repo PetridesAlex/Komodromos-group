@@ -11,6 +11,9 @@ import {
   resolvePoolGardenDetailPage,
 } from '../data/poolGardenPage'
 import NotFoundPage from './NotFoundPage'
+import { poolBrandHref } from '../lib/brandPaths'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
 
 const POOL_EASE = [0.22, 1, 0.36, 1] as const
 
@@ -44,6 +47,10 @@ export default function PoolCategoryDetailPage() {
   }>()
   const reduceMotion = useReducedMotion()
   const pageRef = useReveal()
+  const { isBrandDomain } = useSiteContext()
+  const servicesSectionHref = isBrandDomain
+    ? buildGroupSiteReturnUrl('services')
+    : '/#services'
   const page = resolvePoolGardenDetailPage(categoryId, serviceId, liningId)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
@@ -78,7 +85,7 @@ export default function PoolCategoryDetailPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
       />
 
       <article className="pool-category-detail">
@@ -88,7 +95,7 @@ export default function PoolCategoryDetailPage() {
               <ol className="pool-category-detail__breadcrumb-list">
                 <li className="pool-category-detail__breadcrumb-item">
                   <Link
-                    to="/services/pool"
+                    to={poolBrandHref('/services/pool')}
                     className="pool-category-detail__crumb pool-category-detail__crumb--link"
                   >
                     Pool &amp; Garden
@@ -99,7 +106,7 @@ export default function PoolCategoryDetailPage() {
                 </li>
                 <li className="pool-category-detail__breadcrumb-item">
                   <Link
-                    to={page.sectionHref}
+                    to={poolBrandHref(page.sectionHref)}
                     className="pool-category-detail__crumb pool-category-detail__crumb--link"
                   >
                     {page.sectionLabel}
@@ -331,7 +338,7 @@ export default function PoolCategoryDetailPage() {
             >
               Request a consultation
             </Link>
-            <Link to={page.sectionHref} className="pool-category-detail__back">
+            <Link to={poolBrandHref(page.sectionHref)} className="pool-category-detail__back">
               <ArrowLeft size={15} strokeWidth={2.25} aria-hidden />
               Back to {page.sectionLabel.toLowerCase()}
             </Link>
@@ -343,7 +350,7 @@ export default function PoolCategoryDetailPage() {
             <div className="pool-category-detail__pager-inner">
               {prevSibling ? (
                 <Link
-                  to={page.detailPath(prevSibling.id)}
+                  to={poolBrandHref(page.detailPath(prevSibling.id))}
                   className="pool-category-detail__pager-link pool-category-detail__pager-link--prev"
                 >
                   <ArrowLeft size={16} strokeWidth={2.25} aria-hidden />
@@ -357,7 +364,7 @@ export default function PoolCategoryDetailPage() {
               )}
               {nextSibling ? (
                 <Link
-                  to={page.detailPath(nextSibling.id)}
+                  to={poolBrandHref(page.detailPath(nextSibling.id))}
                   className="pool-category-detail__pager-link pool-category-detail__pager-link--next"
                 >
                   <span className="pool-category-detail__pager-label">

@@ -48,6 +48,7 @@ export const serviceCards: ServiceCard[] = [
     brandLogo: `${SVC_CARD_LOGO}/wedding-sky.png`,
     brandLogoBlend: 'lighten',
     comingSoon: true,
+    brandSlug: 'wedding',
   },
   {
     slug: 'pool',
@@ -59,6 +60,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/Swimming-ppool.webp`,
     brandLogo: `${SVC_CARD_LOGO}/blue-sky.png`,
     brandLogoBlend: 'lighten',
+    brandSlug: 'pool',
   },
   {
     slug: 'storage',
@@ -144,6 +146,7 @@ export const serviceCards: ServiceCard[] = [
     brandLogo: `${SVC_CARD_LOGO}/jan-chapelle.png`,
     brandLogoBlend: 'lighten',
     comingSoon: true,
+    brandSlug: 'janchapelle',
   },
   {
     slug: 'adr-mediation',
@@ -155,6 +158,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/justice-law.webp`,
     brandLogo: `${SVC_CARD_LOGO}/law-logo.png`,
     brandLogoBlend: 'lighten',
+    brandSlug: 'adr-mediation',
   },
 ]
 

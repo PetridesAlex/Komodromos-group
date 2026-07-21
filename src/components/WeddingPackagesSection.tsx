@@ -1,12 +1,13 @@
 import type { KeyboardEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { weddingPackages } from '../data/weddingPackages'
+import { weddingBrandHref } from '../lib/brandPaths'
 
 export default function WeddingPackagesSection() {
   const navigate = useNavigate()
 
   const openPackage = (packageId: string) => {
-    navigate(`/services/wedding/packages/${packageId}`)
+    navigate(weddingBrandHref(`/services/wedding/packages/${packageId}`))
   }
 
   const onCardKeyDown = (event: KeyboardEvent<HTMLElement>, packageId: string) => {
@@ -65,7 +66,7 @@ export default function WeddingPackagesSection() {
                   {pkg.taglineEl}
                 </p>
                 <Link
-                  to={`/services/wedding/packages/${pkg.id}`}
+                  to={weddingBrandHref(`/services/wedding/packages/${pkg.id}`)}
                   className="wedding-packages-section__details"
                   onClick={(event) => event.stopPropagation()}
                 >

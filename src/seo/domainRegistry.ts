@@ -36,6 +36,38 @@ export const BRAND_DOMAINS: BrandDomainConfig[] = [
     siteNameFull: 'Astreal Developers',
     basePath: '/services/astreal',
   },
+  {
+    slug: 'pool',
+    host: 'www.bluesky-pools.com',
+    apexHost: 'bluesky-pools.com',
+    siteName: 'Blue Sky Pools',
+    siteNameFull: 'Blue Sky Pools & Gardens',
+    basePath: '/services/pool',
+  },
+  {
+    slug: 'adr-mediation',
+    host: 'www.adrcentercy.com',
+    apexHost: 'adrcentercy.com',
+    siteName: 'ADR Center',
+    siteNameFull: 'A.D.R Dispute Mediation Center',
+    basePath: '/services/adr-mediation',
+  },
+  {
+    slug: 'janchapelle',
+    host: 'www.janchapelle.com',
+    apexHost: 'janchapelle.com',
+    siteName: 'Janchapelle',
+    siteNameFull: 'Janchapelle — Luxury Bridal Collection',
+    basePath: '/services/janchapelle',
+  },
+  {
+    slug: 'wedding',
+    host: 'www.weddingskycy.com',
+    apexHost: 'weddingskycy.com',
+    siteName: 'Wedding Sky',
+    siteNameFull: 'Wedding Sky Cyprus',
+    basePath: '/services/wedding',
+  },
 ]
 
 const BRAND_BY_HOST = new Map<string, BrandDomainConfig>()
@@ -268,10 +300,35 @@ export const ASTREAL_ROUTE_SEGMENTS = [
   'projects/athenian-heritage-luxury-residence',
 ] as const
 
+export const POOL_ROUTE_SEGMENTS = [
+  'categories/overflow',
+  'categories/skimmer',
+  'categories/infinity',
+  'services/fountains',
+  'services/cooling-and-heating',
+  'services/swim-spas',
+  'services/bar-and-stools',
+  'services/service-and-maintenance',
+  'services/garden-services',
+  'linings/liners',
+  'linings/mosaic-and-ceramic',
+] as const
+
+export const WEDDING_ROUTE_SEGMENTS = [
+  'packages/basic',
+  'packages/basic-plus',
+  'packages/classic',
+  'packages/classic-plus',
+  'packages/premium',
+  'packages/customised',
+] as const
+
 function brandRouteSegments(brand: BrandDomainConfig): readonly string[] {
   if (brand.slug === 'aviation') return AVIATION_ROUTE_SEGMENTS
   if (brand.slug === 'tax') return TAX_ROUTE_SEGMENTS
   if (brand.slug === 'astreal') return ASTREAL_ROUTE_SEGMENTS
+  if (brand.slug === 'pool') return POOL_ROUTE_SEGMENTS
+  if (brand.slug === 'wedding') return WEDDING_ROUTE_SEGMENTS
   return []
 }
 

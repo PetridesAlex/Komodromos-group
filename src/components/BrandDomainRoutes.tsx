@@ -28,6 +28,11 @@ import AstrealAboutPage from './AstrealAboutPage'
 import AstrealInvestCyprusPage from './AstrealInvestCyprusPage'
 import AstrealOurServicesPage from './AstrealOurServicesPage'
 import AstrealProjectDetailPage from './AstrealProjectDetailPage'
+import PoolGardenServicesPage from './PoolGardenServicesPage'
+import PoolCategoryDetailPage from './PoolCategoryDetailPage'
+import ServiceDetailPage from './ServiceDetailPage'
+import WeddingServicesPage from './WeddingServicesPage'
+import WeddingPackageDetailPage from './WeddingPackageDetailPage'
 
 function TaxBrandHome() {
   return (
@@ -98,13 +103,72 @@ function AstrealBrandRoutes() {
   )
 }
 
+function PoolBrandRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<PoolGardenServicesPage />} />
+      <Route path="/categories/:categoryId" element={<PoolCategoryDetailPage />} />
+      <Route path="/services/:serviceId" element={<PoolCategoryDetailPage />} />
+      <Route path="/linings/:liningId" element={<PoolCategoryDetailPage />} />
+      <Route path="/services/pool/*" element={<Navigate to="/" replace />} />
+      <Route path="/services/*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  )
+}
+
+function AdrBrandRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<ServiceDetailPage slugOverride="adr-mediation" />} />
+      <Route path="/services/adr-mediation/*" element={<Navigate to="/" replace />} />
+      <Route path="/services/*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  )
+}
+
+function JanchapelleBrandRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<ServiceDetailPage slugOverride="janchapelle" />} />
+      <Route path="/services/janchapelle/*" element={<Navigate to="/" replace />} />
+      <Route path="/services/*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  )
+}
+
+function WeddingBrandRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<WeddingServicesPage />} />
+      <Route path="/packages/:packageId" element={<WeddingPackageDetailPage />} />
+      <Route path="/services/wedding/*" element={<Navigate to="/" replace />} />
+      <Route path="/services/*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  )
+}
+
 type Props = {
-  brandSlug: 'aviation' | 'tax' | 'astreal'
+  brandSlug:
+    | 'aviation'
+    | 'tax'
+    | 'astreal'
+    | 'pool'
+    | 'adr-mediation'
+    | 'janchapelle'
+    | 'wedding'
 }
 
 export default function BrandDomainRoutes({ brandSlug }: Props) {
   if (brandSlug === 'aviation') return <AviationBrandRoutes />
   if (brandSlug === 'tax') return <TaxBrandRoutes />
   if (brandSlug === 'astreal') return <AstrealBrandRoutes />
+  if (brandSlug === 'pool') return <PoolBrandRoutes />
+  if (brandSlug === 'adr-mediation') return <AdrBrandRoutes />
+  if (brandSlug === 'janchapelle') return <JanchapelleBrandRoutes />
+  if (brandSlug === 'wedding') return <WeddingBrandRoutes />
   return null
 }

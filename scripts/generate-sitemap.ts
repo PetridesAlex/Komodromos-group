@@ -114,6 +114,10 @@ Sitemap: ${GROUP_SITE_URL}/sitemap.xml
 Sitemap: https://www.global-wings.co/sitemap-aviation.xml
 Sitemap: https://www.taxnexcy.com/sitemap-tax.xml
 Sitemap: https://www.astrealdevelopers.com/sitemap-astreal.xml
+Sitemap: https://www.bluesky-pools.com/sitemap-pool.xml
+Sitemap: https://www.adrcentercy.com/sitemap-adr-mediation.xml
+Sitemap: https://www.janchapelle.com/sitemap-janchapelle.xml
+Sitemap: https://www.weddingskycy.com/sitemap-wedding.xml
 `,
   'utf8',
 )

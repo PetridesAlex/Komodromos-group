@@ -77,6 +77,22 @@ export function AppRoutes() {
     return <BrandDomainRoutes brandSlug="astreal" />
   }
 
+  if (brand?.slug === 'pool') {
+    return <BrandDomainRoutes brandSlug="pool" />
+  }
+
+  if (brand?.slug === 'adr-mediation') {
+    return <BrandDomainRoutes brandSlug="adr-mediation" />
+  }
+
+  if (brand?.slug === 'janchapelle') {
+    return <BrandDomainRoutes brandSlug="janchapelle" />
+  }
+
+  if (brand?.slug === 'wedding') {
+    return <BrandDomainRoutes brandSlug="wedding" />
+  }
+
   return <GroupRoutes />
 }
 

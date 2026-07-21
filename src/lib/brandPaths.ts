@@ -74,6 +74,50 @@ export function getAstrealRoutes() {
   } as const
 }
 
+export function poolPath(subpath = ''): string {
+  const brand = currentBrand()
+  const clean = subpath.replace(/^\/services\/pool\/?/, '').replace(/^\//, '')
+
+  if (brand?.slug === 'pool') {
+    return clean ? `/${clean}` : '/'
+  }
+
+  if (!clean) return '/services/pool'
+  return `/services/pool/${clean}`
+}
+
+/** Converts an absolute internal pool path (optionally with a hash) to the
+ *  correct link target for the current host — brand-relative on bluesky-pools.com,
+ *  full `/services/pool/...` on the group site. */
+export function poolBrandHref(internalPathWithHash: string): string {
+  const hashIdx = internalPathWithHash.indexOf('#')
+  const path = hashIdx === -1 ? internalPathWithHash : internalPathWithHash.slice(0, hashIdx)
+  const hash = hashIdx === -1 ? '' : internalPathWithHash.slice(hashIdx)
+  return `${poolPath(path)}${hash}`
+}
+
+export function weddingPath(subpath = ''): string {
+  const brand = currentBrand()
+  const clean = subpath.replace(/^\/services\/wedding\/?/, '').replace(/^\//, '')
+
+  if (brand?.slug === 'wedding') {
+    return clean ? `/${clean}` : '/'
+  }
+
+  if (!clean) return '/services/wedding'
+  return `/services/wedding/${clean}`
+}
+
+/** Converts an absolute internal wedding path (optionally with a hash) to the
+ *  correct link target for the current host — brand-relative on weddingskycy.com,
+ *  full `/services/wedding/...` on the group site. */
+export function weddingBrandHref(internalPathWithHash: string): string {
+  const hashIdx = internalPathWithHash.indexOf('#')
+  const path = hashIdx === -1 ? internalPathWithHash : internalPathWithHash.slice(0, hashIdx)
+  const hash = hashIdx === -1 ? '' : internalPathWithHash.slice(hashIdx)
+  return `${weddingPath(path)}${hash}`
+}
+
 export function toBrandPathIfNeeded(internalPath: string): string {
   const brand = currentBrand()
   if (!brand) return internalPath

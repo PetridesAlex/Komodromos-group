@@ -25,6 +25,10 @@ const STATIC_FILES = new Set([
   '/sitemap-aviation.xml',
   '/sitemap-tax.xml',
   '/sitemap-astreal.xml',
+  '/sitemap-pool.xml',
+  '/sitemap-adr-mediation.xml',
+  '/sitemap-janchapelle.xml',
+  '/sitemap-wedding.xml',
   '/seo-allowlist.json',
   '/index.html',
 ])

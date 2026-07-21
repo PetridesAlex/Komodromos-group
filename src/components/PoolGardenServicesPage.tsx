@@ -8,6 +8,9 @@ import { useReveal } from '../hooks/useReveal'
 import { useLazyVideo } from '../hooks/useLazyVideo'
 import { getServiceBySlug } from '../data/serviceCards'
 import { getServicePageContent } from '../data/servicePageSections'
+import { poolBrandHref } from '../lib/brandPaths'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
 import {
   poolCategories,
   poolGardenPillars,
@@ -173,6 +176,10 @@ const POOL_EDITORIAL_IMAGE =
 export default function PoolGardenServicesPage() {
   const reduceMotion = useReducedMotion()
   const pageRef = useReveal()
+  const { isBrandDomain } = useSiteContext()
+  const servicesSectionHref = isBrandDomain
+    ? buildGroupSiteReturnUrl('services')
+    : '/#services'
   const { containerRef: heroVideoContainerRef, videoRef, shouldLoad: shouldLoadHeroVideo } =
     useLazyVideo()
   const card = getServiceBySlug('pool')
@@ -211,7 +218,7 @@ export default function PoolGardenServicesPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
       />
 
       <section className="pool-garden-hero" aria-label="Introduction" data-hero-parallax-root>
@@ -467,7 +474,7 @@ export default function PoolGardenServicesPage() {
                 return (
                   <Link
                     key={item.id}
-                    to={poolCategoryDetailPath(item.id)}
+                    to={poolBrandHref(poolCategoryDetailPath(item.id))}
                     className={[
                       'pool-garden-showcase-card',
                       'pool-garden-showcase-card--categories',
@@ -519,7 +526,7 @@ export default function PoolGardenServicesPage() {
                 return (
                   <motion.div key={item.id} variants={scrollGridItemVariants}>
                     <Link
-                      to={poolCategoryDetailPath(item.id)}
+                      to={poolBrandHref(poolCategoryDetailPath(item.id))}
                       className={[
                         'pool-garden-showcase-card',
                         'pool-garden-showcase-card--categories',
@@ -592,7 +599,7 @@ export default function PoolGardenServicesPage() {
                 return (
                   <Link
                     key={item.id}
-                    to={poolServiceDetailPath(item.id)}
+                    to={poolBrandHref(poolServiceDetailPath(item.id))}
                     className="pool-garden-showcase-card pool-garden-showcase-card--interactive"
                     aria-label={`Learn more about ${item.label}`}
                   >
@@ -638,7 +645,7 @@ export default function PoolGardenServicesPage() {
                     variants={repairGridItemVariants}
                   >
                     <Link
-                      to={poolServiceDetailPath(item.id)}
+                      to={poolBrandHref(poolServiceDetailPath(item.id))}
                       className="pool-garden-showcase-card pool-garden-showcase-card--repair-motion pool-garden-showcase-card--interactive"
                       aria-label={`Learn more about ${item.label}`}
                     >
@@ -704,7 +711,7 @@ export default function PoolGardenServicesPage() {
                 return (
                   <Link
                     key={item.id}
-                    to={poolLiningDetailPath(item.id)}
+                    to={poolBrandHref(poolLiningDetailPath(item.id))}
                     className="pool-garden-showcase-card pool-garden-showcase-card--tall pool-garden-showcase-card--interactive"
                     aria-label={`Learn more about ${item.label}`}
                   >
@@ -746,7 +753,7 @@ export default function PoolGardenServicesPage() {
                 return (
                   <motion.div key={item.id} variants={scrollGridItemVariants}>
                     <Link
-                      to={poolLiningDetailPath(item.id)}
+                      to={poolBrandHref(poolLiningDetailPath(item.id))}
                       className="pool-garden-showcase-card pool-garden-showcase-card--tall pool-garden-showcase-card--interactive"
                       aria-label={`Learn more about ${item.label}`}
                     >

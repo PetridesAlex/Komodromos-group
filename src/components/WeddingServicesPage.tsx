@@ -7,6 +7,8 @@ import WeddingIntroSocial from './WeddingIntroSocial'
 import WeddingHighlightTiles from './WeddingHighlightTiles'
 import WeddingPackagesSection from './WeddingPackagesSection'
 import { useReveal } from '../hooks/useReveal'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
 
 const WHY_CHOOSE = [
   'Transparent planning and disciplined investment across every budget line',
@@ -107,6 +109,10 @@ export default function WeddingServicesPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0)
   const location = useLocation()
   const pageRef = useReveal()
+  const { isBrandDomain } = useSiteContext()
+  const servicesSectionHref = isBrandDomain
+    ? buildGroupSiteReturnUrl('services')
+    : '/#services'
 
   useEffect(() => {
     if (!location.hash) {
@@ -153,7 +159,7 @@ export default function WeddingServicesPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
         className={navScrolled ? 'topbar--scrolled' : undefined}
       />
 

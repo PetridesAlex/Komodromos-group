@@ -7,10 +7,17 @@ import { weddingPackages } from '../data/weddingPackages'
 import { weddingPackageDetails } from '../data/weddingPackageDetails'
 import { weddingPackageLongContentById } from '../data/weddingBasicPackageContent'
 import NotFoundPage from './NotFoundPage'
+import { weddingBrandHref } from '../lib/brandPaths'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
 
 export default function WeddingPackageDetailPage() {
   const pageRef = useReveal()
   const { packageId } = useParams()
+  const { isBrandDomain } = useSiteContext()
+  const servicesSectionHref = isBrandDomain
+    ? buildGroupSiteReturnUrl('services')
+    : '/#services'
 
   const packageTier = useMemo(
     () => weddingPackages.find((tier) => tier.id === packageId),
@@ -38,7 +45,7 @@ export default function WeddingPackageDetailPage() {
         logoPathname="/"
         logoScrollToId="home"
         homeHref="/"
-        servicesSectionHref="/#services"
+        servicesSectionHref={servicesSectionHref}
       />
 
       <section className="wedding-package-detail-hero" data-hero-parallax-root>
@@ -75,7 +82,7 @@ export default function WeddingPackageDetailPage() {
               Book consultation
             </Link>
             <Link
-              to="/services/wedding#wedding-packages-heading"
+              to={weddingBrandHref('/services/wedding#wedding-packages-heading')}
               className="wedding-package-detail-hero__action wedding-package-detail-hero__action--ghost"
             >
               Back to packages
@@ -111,7 +118,7 @@ export default function WeddingPackageDetailPage() {
         <div className="container wedding-package-detail-nav reveal reveal-delay-3">
           {prevTier ? (
             <Link
-              to={`/services/wedding/packages/${prevTier.id}`}
+              to={weddingBrandHref(`/services/wedding/packages/${prevTier.id}`)}
               className="wedding-package-detail-nav__link"
             >
               <span>Previous</span>
@@ -123,7 +130,7 @@ export default function WeddingPackageDetailPage() {
 
           {nextTier ? (
             <Link
-              to={`/services/wedding/packages/${nextTier.id}`}
+              to={weddingBrandHref(`/services/wedding/packages/${nextTier.id}`)}
               className="wedding-package-detail-nav__link wedding-package-detail-nav__link--next"
             >
               <span>Next</span>
