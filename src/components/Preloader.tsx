@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-import { MAIN_LOGO } from '../data/mainLogo'
+
+/** New Komodromos Group brand mark (transparent blue emblem). */
+const BRAND_MARK = '/images/brand/komodromos-mark.png'
 
 export default function Preloader({ onDone }: { onDone: () => void }) {
   const [progress, setProgress] = useState(0)
@@ -43,13 +45,15 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
 
       <div className="preloader-content">
         <div className="preloader-logo-wrap">
+          <span className="preloader-logo-halo" aria-hidden />
           <img
-            src={MAIN_LOGO.src}
+            src={BRAND_MARK}
             alt="Komodromos Group"
             className="preloader-logo-img"
-            width={MAIN_LOGO.width}
-            height={MAIN_LOGO.height}
+            width={512}
+            height={512}
             decoding="async"
+            fetchPriority="high"
           />
         </div>
         <p className="preloader-tagline">Premium Companies &middot; Unified Standards</p>
