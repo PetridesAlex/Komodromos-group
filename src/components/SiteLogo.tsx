@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { MAIN_LOGO } from '../data/mainLogo'
+import { BRAND_MARK } from '../data/mainLogo'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
 
@@ -19,11 +19,11 @@ export default function SiteLogo({
 
   const logoImage = (
     <img
-      src={MAIN_LOGO.src}
+      src={BRAND_MARK.src}
       alt="Komodromos Group"
-      className="logo__img"
-      width={MAIN_LOGO.width}
-      height={MAIN_LOGO.height}
+      className="logo__mark"
+      width={BRAND_MARK.width}
+      height={BRAND_MARK.height}
       loading="eager"
       decoding="async"
       fetchPriority="high"

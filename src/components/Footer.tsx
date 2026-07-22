@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import i18n from '../i18n'
-import { MAIN_LOGO } from '../data/mainLogo'
+import { BRAND_MARK } from '../data/mainLogo'
 import { socialLinks } from '../data/socialLinks'
 
 /** Group footer (`footer2`) always uses English; TaxNex hub does not render this component. */
@@ -33,11 +33,11 @@ export default function Footer() {
         <div className="footer2-brand">
           <Link to="/" className="footer2-logo">
             <img
-              src={MAIN_LOGO.src}
+              src={BRAND_MARK.src}
               alt="Komodromos Group"
-              className="footer2-logo-img"
-              width={MAIN_LOGO.width}
-              height={MAIN_LOGO.height}
+              className="footer2-logo-mark"
+              width={BRAND_MARK.width}
+              height={BRAND_MARK.height}
               loading="lazy"
               decoding="async"
             />
