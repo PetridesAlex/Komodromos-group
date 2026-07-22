@@ -131,7 +131,6 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/tax.webp`,
     brandLogo: `${SVC_CARD_LOGO}/tax-nex.png`,
     brandLogoBlend: 'lighten',
-    comingSoon: true,
     brandSlug: 'tax',
   },
   {
