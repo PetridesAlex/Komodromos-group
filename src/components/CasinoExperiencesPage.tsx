@@ -85,7 +85,7 @@ const TRANSPORT_TIERS: readonly TransportTier[] = [
       'Professional chauffeur',
       'Complete discretion and privacy',
     ],
-    image: `${CASINO_IMG}/casino-services-3.webp`,
+    image: `${CASINO_IMG}/casino-maybach-car.webp`,
   },
   {
     icon: ShieldCheck,
