@@ -375,7 +375,7 @@ export default function CasinoExperiencesPage() {
               {HIGHLIGHTS.map(({ icon: Icon, text }) => (
                 <li key={text} className="casino-highlight">
                   <span className="casino-highlight__icon" aria-hidden>
-                    <Icon size={18} strokeWidth={1.75} />
+                    <Icon size={22} strokeWidth={1.75} />
                   </span>
                   <span className="casino-highlight__text">{text}</span>
                 </li>

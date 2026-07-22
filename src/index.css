@@ -65998,44 +65998,104 @@ a.yacht-card {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.85rem;
+  gap: clamp(1rem, 1.6vw, 1.4rem);
 }
 
 .casino-highlight {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  padding: 1.1rem 1.25rem;
-  border: 1px solid rgba(63, 127, 255, 0.16);
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.015);
-  transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  gap: clamp(1rem, 1.4vw, 1.35rem);
+  padding: clamp(1.4rem, 2vw, 1.9rem) clamp(1.5rem, 2vw, 2rem);
+  border: 1px solid rgba(63, 127, 255, 0.18);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(63, 127, 255, 0.05), rgba(255, 255, 255, 0.012));
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(22px) scale(0.98);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease, background 0.3s ease, box-shadow 0.35s ease;
 }
 
+/* Sheen that sweeps across on hover */
+.casino-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(120, 170, 255, 0.14) 45%,
+    rgba(180, 210, 255, 0.28) 50%,
+    rgba(120, 170, 255, 0.14) 55%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+/* Staggered reveal once the grid scrolls into view */
+.casino-highlights__grid.revealed .casino-highlight {
+  opacity: 1;
+  transform: none;
+}
+
+.casino-highlights__grid.revealed .casino-highlight:nth-child(1) { transition-delay: 0.04s; }
+.casino-highlights__grid.revealed .casino-highlight:nth-child(2) { transition-delay: 0.1s; }
+.casino-highlights__grid.revealed .casino-highlight:nth-child(3) { transition-delay: 0.16s; }
+.casino-highlights__grid.revealed .casino-highlight:nth-child(4) { transition-delay: 0.22s; }
+.casino-highlights__grid.revealed .casino-highlight:nth-child(5) { transition-delay: 0.28s; }
+.casino-highlights__grid.revealed .casino-highlight:nth-child(6) { transition-delay: 0.34s; }
+.casino-highlights__grid.revealed .casino-highlight:nth-child(7) { transition-delay: 0.4s; }
+.casino-highlights__grid.revealed .casino-highlight:nth-child(8) { transition-delay: 0.46s; }
+.casino-highlights__grid.revealed .casino-highlight:nth-child(9) { transition-delay: 0.52s; }
+
 .casino-highlight:hover {
-  border-color: rgba(63, 127, 255, 0.45);
-  transform: translateY(-2px);
-  background: rgba(63, 127, 255, 0.05);
+  border-color: rgba(63, 127, 255, 0.55);
+  transform: translateY(-6px) scale(1.015);
+  background: linear-gradient(135deg, rgba(63, 127, 255, 0.1), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 18px 40px -18px rgba(26, 74, 170, 0.65), 0 0 0 1px rgba(63, 127, 255, 0.12);
+}
+
+.casino-highlight:hover::before {
+  transform: translateX(120%);
 }
 
 .casino-highlight__icon {
   flex: none;
-  width: 42px;
-  height: 42px;
+  width: clamp(48px, 4vw, 58px);
+  height: clamp(48px, 4vw, 58px);
   display: grid;
   place-items: center;
   border-radius: 50%;
   color: var(--casino-gold);
-  background: radial-gradient(circle, rgba(63, 127, 255, 0.16), rgba(63, 127, 255, 0.04));
-  border: 1px solid rgba(63, 127, 255, 0.3);
+  background: radial-gradient(circle, rgba(63, 127, 255, 0.22), rgba(63, 127, 255, 0.05));
+  border: 1px solid rgba(63, 127, 255, 0.35);
+  box-shadow: 0 0 0 0 rgba(63, 127, 255, 0.35);
+  animation: casinoHighlightPulse 3.2s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.casino-highlight:hover .casino-highlight__icon {
+  transform: scale(1.12) rotate(-6deg);
+  border-color: rgba(120, 170, 255, 0.7);
+  box-shadow: 0 0 22px -2px rgba(63, 127, 255, 0.6);
+}
+
+@keyframes casinoHighlightPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(63, 127, 255, 0.28); }
+  50% { box-shadow: 0 0 0 7px rgba(63, 127, 255, 0); }
 }
 
 .casino-highlight__text {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+  font-weight: 600;
   line-height: 1.4;
-  color: rgba(238, 234, 226, 0.9);
+  letter-spacing: 0.01em;
+  color: rgba(242, 240, 234, 0.94);
 }
 
 /* ── Transport tiers ── */
@@ -66300,6 +66360,20 @@ a.yacht-card {
   .casino-highlight:hover,
   .casino-btn:hover {
     transform: none;
+  }
+
+  .casino-highlight {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .casino-highlight__icon {
+    animation: none;
+  }
+
+  .casino-highlight::before {
+    display: none;
   }
 
   .casino-tier:hover .casino-tier__media img,
