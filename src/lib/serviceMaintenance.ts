@@ -31,15 +31,20 @@ export function isServicePubliclyAccessible(slug: string): boolean {
   return !isServiceUnderMaintenance(slug)
 }
 
-/** Group homepage / Solutions menu — brand-domain services always link out. */
+/**
+ * Group homepage / Solutions menu — brand-domain services link out, but a
+ * service explicitly under maintenance stays blocked even if it owns a brand
+ * domain (only linkable while previewing locally).
+ */
 export function isServiceLinkableFromGroup(slug: string): boolean {
+  if (isServiceUnderMaintenance(slug)) return isMaintenancePreviewEnabled()
   if (hasDedicatedBrandDomain(slug)) return true
   return isServicePubliclyAccessible(slug)
 }
 
 export function getPublicServiceCards(): ServiceCard[] {
   if (isMaintenancePreviewEnabled()) return serviceCards
-  return serviceCards.filter((card) => !card.comingSoon || hasDedicatedBrandDomain(card.slug))
+  return serviceCards.filter((card) => !card.comingSoon)
 }
 
 function normalizePath(pathname: string): string {

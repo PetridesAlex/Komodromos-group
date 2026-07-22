@@ -6,7 +6,7 @@ import SiteTopbar from './SiteTopbar'
 import MeetTheTeam from './MeetTheTeam'
 import { useReveal } from '../hooks/useReveal'
 import { getServicePageHref, isExternalServiceHref, serviceCards } from '../data/serviceCards'
-import { hasDedicatedBrandDomain, isServiceLinkableFromGroup } from '../lib/serviceMaintenance'
+import { isServiceLinkableFromGroup } from '../lib/serviceMaintenance'
 import { prepareGlobalWingsEntryNavigation } from '../lib/gwEntryNavigation'
 
 const marqueeItems = [
@@ -188,7 +188,7 @@ export default function KomodromosGroupHomePage() {
                       </span>
                     </div>
                     <img src={card.image} alt={card.title} className="service-img" />
-                    {card.comingSoon && !hasDedicatedBrandDomain(card.slug) ? (
+                    {card.comingSoon ? (
                       <div className="service-media__coming-soon" aria-hidden>
                         <div className="service-media__coming-soon-plaque">
                           <span className="service-media__coming-soon-kicker">Currently unavailable</span>
