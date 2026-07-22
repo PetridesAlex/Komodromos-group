@@ -56,6 +56,30 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
             fetchPriority="high"
           />
         </div>
+        <h1 className="preloader-wordmark" aria-label="Komodromos Group">
+          {'KOMODROMOS'.split('').map((ch, i) => (
+            <span
+              key={`k-${i}`}
+              className="preloader-wordmark__letter"
+              style={{ animationDelay: `${0.5 + i * 0.06}s` }}
+              aria-hidden
+            >
+              {ch}
+            </span>
+          ))}
+          <span className="preloader-wordmark__space" aria-hidden />
+          {'GROUP'.split('').map((ch, i) => (
+            <span
+              key={`g-${i}`}
+              className="preloader-wordmark__letter preloader-wordmark__letter--accent"
+              style={{ animationDelay: `${0.5 + (10 + i) * 0.06}s` }}
+              aria-hidden
+            >
+              {ch}
+            </span>
+          ))}
+          <span className="preloader-wordmark__shine" aria-hidden />
+        </h1>
         <p className="preloader-tagline">Premium Companies &middot; Unified Standards</p>
       </div>
 
