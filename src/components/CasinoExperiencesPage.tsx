@@ -85,7 +85,7 @@ const TRANSPORT_TIERS: readonly TransportTier[] = [
       'Professional chauffeur',
       'Complete discretion and privacy',
     ],
-    image: `${CASINO_IMG}/casino-services-5.webp`,
+    image: `${CASINO_IMG}/casino-services-3.webp`,
   },
   {
     icon: ShieldCheck,
@@ -219,7 +219,7 @@ export default function CasinoExperiencesPage() {
           className="casino-hero__bg"
           aria-hidden
           data-hero-parallax
-          style={{ backgroundImage: `url("${CASINO_IMG}/casino-services-1.webp")` }}
+          style={{ backgroundImage: `url("${CASINO_IMG}/casino-services-6.webp")` }}
         />
         <div className="casino-hero__scrim" aria-hidden />
         <div className="casino-hero__glow casino-hero__glow--1" aria-hidden />
@@ -285,7 +285,7 @@ export default function CasinoExperiencesPage() {
           <div className="container casino-grand__inner">
             <div className="casino-grand__media reveal">
               <img
-                src={`${CASINO_IMG}/casino-services-2.webp`}
+                src={`${CASINO_IMG}/casino-services-3.webp`}
                 alt="The Grand Casino gaming floor"
                 loading="lazy"
                 decoding="async"
@@ -354,7 +354,7 @@ export default function CasinoExperiencesPage() {
             </div>
             <div className="casino-beyond__media reveal">
               <img
-                src={`${CASINO_IMG}/casino-services-3.webp`}
+                src={`${CASINO_IMG}/casino-services-5.webp`}
                 alt="Fine dining and live entertainment at the resort"
                 loading="lazy"
                 decoding="async"
