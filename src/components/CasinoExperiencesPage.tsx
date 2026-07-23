@@ -17,7 +17,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 
-const CASINO_IMG = '/images/services/Casino'
+const CASINO_IMG = '/images/services/vip-service/Casino'
 
 const TABLE_GAMES = ['American Roulette', 'Blackjack', 'Baccarat', 'Poker'] as const
 
@@ -67,7 +67,7 @@ const TRANSPORT_TIERS: readonly TransportTier[] = [
       'Spacious VIP seating',
       'Professional chauffeur service',
     ],
-    image: `${CASINO_IMG}/casino-services-4.webp`,
+    image: '/images/services/vip-service/limousine-services/chrystler/chrysler6.webp',
     note: 'Perfect for couples, groups of friends, celebrations, bachelor & bachelorette parties, corporate guests, or an unforgettable casino arrival.',
   },
   {
@@ -99,7 +99,7 @@ const TRANSPORT_TIERS: readonly TransportTier[] = [
       'Complete comfort and discretion',
       'Peace of mind from arrival to departure',
     ],
-    image: `${CASINO_IMG}/casino-services-6.webp`,
+    image: `${CASINO_IMG}/casino-security.webp`,
   },
   {
     icon: ShieldPlus,
@@ -114,7 +114,7 @@ const TRANSPORT_TIERS: readonly TransportTier[] = [
       'Maximum discretion',
       'Premium executive comfort',
     ],
-    image: `${CASINO_IMG}/casino-services-2.webp`,
+    image: `${CASINO_IMG}/casino-bmw.webp`,
     note: 'Ideal for high-profile individuals, executives, diplomats, celebrities, and guests requiring enhanced security.',
   },
 ]
@@ -384,6 +384,27 @@ export default function CasinoExperiencesPage() {
           </div>
         </section>
 
+        <section className="casino-section casino-gallery" aria-label="Gallery">
+          <div className="container">
+            <header className="casino-section__head reveal">
+              <p className="casino-eyebrow">
+                <Car size={14} strokeWidth={2} aria-hidden /> The Atmosphere
+              </p>
+              <h2 className="casino-heading casino-heading--center">A glimpse of the experience</h2>
+            </header>
+            <div className="casino-gallery__grid reveal">
+              {GALLERY.map((src, index) => (
+                <figure
+                  key={src}
+                  className={`casino-gallery__item${index % 5 === 0 ? ' casino-gallery__item--wide' : ''}`}
+                >
+                  <img src={src} alt="City of Dreams Mediterranean" loading="lazy" decoding="async" />
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="casino-section casino-transport" aria-labelledby="casino-transport-title">
           <div className="container">
             <header className="casino-section__head reveal">
@@ -418,27 +439,6 @@ export default function CasinoExperiencesPage() {
                     {tier.note ? <p className="casino-tier__note">{tier.note}</p> : null}
                   </div>
                 </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="casino-section casino-gallery" aria-label="Gallery">
-          <div className="container">
-            <header className="casino-section__head reveal">
-              <p className="casino-eyebrow">
-                <Car size={14} strokeWidth={2} aria-hidden /> The Atmosphere
-              </p>
-              <h2 className="casino-heading casino-heading--center">A glimpse of the experience</h2>
-            </header>
-            <div className="casino-gallery__grid reveal">
-              {GALLERY.map((src, index) => (
-                <figure
-                  key={src}
-                  className={`casino-gallery__item${index % 5 === 0 ? ' casino-gallery__item--wide' : ''}`}
-                >
-                  <img src={src} alt="City of Dreams Mediterranean" loading="lazy" decoding="async" />
-                </figure>
               ))}
             </div>
           </div>

@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import {
+  ArrowRight,
+  Globe2,
+  GraduationCap,
+  Trophy,
+  Users,
+  type LucideIcon,
+} from 'lucide-react'
 import GwAboutSection from './aviation/GwAboutSection'
 import GwBlogSection from './aviation/GwBlogSection'
 import GwClientsSection from './aviation/GwClientsSection'
 import GwHeroCarousel from './aviation/GwHeroCarousel'
-import GwImagePlaceholder from './aviation/GwImagePlaceholder'
 import GwServicesSection from './aviation/GwServicesSection'
 import GwTeamSection from './aviation/GwTeamSection'
 import { useReveal } from '../hooks/useReveal'
@@ -17,16 +23,26 @@ import {
   gwStats,
 } from '../data/globalWingsPage'
 
+/** Maps each stat to a Lucide icon that matches its meaning. */
+const GW_STAT_ICONS: Record<string, LucideIcon> = {
+  'Happy Clients': Users,
+  'International partners': Globe2,
+  Trainings: GraduationCap,
+  Success: Trophy,
+}
+
 function GwStatItem({
   value,
   label,
   animate,
   suffix = '',
+  icon: Icon,
 }: {
   value: string
   label: string
   animate?: boolean
   suffix?: string
+  icon: LucideIcon
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [display, setDisplay] = useState(animate ? '0' : value)
@@ -70,7 +86,9 @@ function GwStatItem({
 
   return (
     <div className="gw-stat reveal" ref={ref}>
-      <GwImagePlaceholder variant="icon" className="gw-stat__icon" label="Insert image here" />
+      <span className="gw-stat__icon" aria-hidden>
+        <Icon size={30} strokeWidth={1.6} />
+      </span>
       <p className="gw-stat__value">
         {display}
         {suffix}
@@ -149,6 +167,7 @@ export default function AviationServicesPage() {
                 label={stat.label}
                 animate={stat.animate}
                 suffix={stat.value.includes('%') ? '%' : ''}
+                icon={GW_STAT_ICONS[stat.label] ?? Trophy}
               />
             ))}
           </div>

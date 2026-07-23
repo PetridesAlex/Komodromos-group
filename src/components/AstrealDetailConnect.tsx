@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import AppointmentModal from './AppointmentModal'
 import { socialLinks } from '../data/socialLinks'
 import {
   ASTREAL_CONTACT_EMAIL,
@@ -19,6 +21,7 @@ const INSTANT_CHANNELS = [
 export default function AstrealDetailConnect({ projectTitle }: Props) {
   const serviceInterest = `Astreal — ${projectTitle}`
   const otherSocials = socialLinks.filter((s) => s.label !== 'WhatsApp' && s.label !== 'Viber')
+  const [appointmentOpen, setAppointmentOpen] = useState(false)
 
   return (
     <section
@@ -37,13 +40,13 @@ export default function AstrealDetailConnect({ projectTitle }: Props) {
           </p>
 
           <div className="astreal-detail-connect__cta-row">
-            <Link
-              to="/contact"
+            <button
+              type="button"
               className="astreal-detail-connect__btn astreal-detail-connect__btn--primary"
-              state={{ serviceInterest, contactPrefill: { message: `I would like to book a private viewing for ${projectTitle}.` } }}
+              onClick={() => setAppointmentOpen(true)}
             >
               <span className="astreal-detail-connect__btn-text">Book an appointment</span>
-            </Link>
+            </button>
             <Link
               to="/contact"
               className="astreal-detail-connect__btn astreal-detail-connect__btn--ghost"
@@ -129,6 +132,16 @@ export default function AstrealDetailConnect({ projectTitle }: Props) {
           </div>
         </div>
       </div>
+
+      <AppointmentModal
+        open={appointmentOpen}
+        onClose={() => setAppointmentOpen(false)}
+        source="Astreal Appointment"
+        service={serviceInterest}
+        eyebrow="Private consultation"
+        title="Book an appointment"
+        subtitle={`Schedule a viewing or consultation for ${projectTitle}. Pick a date and time and we'll confirm shortly.`}
+      />
     </section>
   )
 }
