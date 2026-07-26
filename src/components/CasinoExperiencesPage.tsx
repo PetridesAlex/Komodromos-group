@@ -90,7 +90,7 @@ const TRANSPORT_TIERS: readonly TransportTier[] = [
   {
     icon: ShieldCheck,
     eyebrow: 'Discreet protection',
-    name: 'Luxury Security Escort',
+    name: 'VIP Security Escort',
     blurb:
       'For guests requiring enhanced privacy and security, a dedicated Range Rover VIP security vehicle can accompany your journey.',
     features: [
@@ -228,13 +228,22 @@ export default function CasinoExperiencesPage() {
         <div className="container casino-hero__inner">
           <p className="casino-hero__eyebrow reveal">Casino Experiences</p>
           <h1 className="casino-hero__title reveal reveal-delay-1">
-            City of Dreams Mediterranean
+            <span className="casino-hero__title-line">City of Dreams</span>
+            <span className="casino-hero__title-line casino-hero__title-line--accent">
+              Mediterranean
+            </span>
           </h1>
           <p className="casino-hero__subtitle reveal reveal-delay-2">
-            Europe&rsquo;s Ultimate Luxury Casino Experience
+            <span className="casino-hero__subtitle-text">
+              Europe&rsquo;s Ultimate Luxury Casino Experience
+            </span>
           </p>
           <p className="casino-hero__tagline reveal reveal-delay-3">
-            Where Fortune Meets Unparalleled Luxury
+            <span className="casino-hero__tagline-rule" aria-hidden />
+            <span className="casino-hero__tagline-text">
+              Where Fortune Meets Unparalleled Luxury
+            </span>
+            <span className="casino-hero__tagline-rule" aria-hidden />
           </p>
           <div className="casino-hero__actions reveal reveal-delay-3">
             <button type="button" className="casino-btn casino-btn--gold" onClick={scrollToContent}>
