@@ -2569,10 +2569,14 @@ a {
   border: 0;
   margin: 0;
   padding: 0;
-  background: rgba(6, 24, 20, 0.45);
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 20%, rgba(13, 148, 136, 0.22) 0%, transparent 55%),
+    rgba(2, 18, 14, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.28s ease;
+  transition: opacity 0.35s ease;
 }
 
 .taxnex-nav__backdrop--visible {
@@ -2581,149 +2585,321 @@ a {
 }
 
 .taxnex-nav__panel {
+  --tx-nav-ink: #043d30;
+  --tx-nav-teal: #0f766e;
+  --tx-nav-bright: #14b8a6;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 201;
   display: flex;
   flex-direction: column;
-  width: min(100vw, 22rem);
+  width: min(100vw, 22.5rem);
   max-width: 100%;
   height: 100dvh;
   padding:
-    max(0.75rem, env(safe-area-inset-top, 0px))
-    max(0.85rem, env(safe-area-inset-right, 0px))
-    max(1rem, env(safe-area-inset-bottom, 0px))
-    max(0.85rem, env(safe-area-inset-left, 0px));
+    max(0.9rem, env(safe-area-inset-top, 0px))
+    max(1rem, env(safe-area-inset-right, 0px))
+    max(1.15rem, env(safe-area-inset-bottom, 0px))
+    max(1rem, env(safe-area-inset-left, 0px));
   box-sizing: border-box;
-  border-right: 1px solid rgba(45, 212, 191, 0.35);
-  background: linear-gradient(180deg, #ffffff 0%, #f0fdf9 48%, #ecfdf5 100%);
-  box-shadow: 12px 0 40px rgba(6, 78, 59, 0.18);
+  border-right: 1px solid rgba(45, 212, 191, 0.28);
+  background:
+    radial-gradient(ellipse 90% 40% at 0% 0%, rgba(45, 212, 191, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 35% at 100% 100%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
+    linear-gradient(168deg, #ffffff 0%, #f0fdf9 38%, #ecfdf5 72%, #e6faf3 100%);
+  box-shadow:
+    16px 0 48px rgba(4, 40, 32, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
   overflow: hidden;
+  animation: taxnexNavPanelIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.taxnex-nav__panel--open {
+  transform: none;
+}
+
+.taxnex-nav__panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(20, 184, 166, 0.35) 12%,
+    rgba(45, 212, 191, 0.95) 50%,
+    rgba(20, 184, 166, 0.35) 88%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .taxnex-nav__panel-head {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.85rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px solid rgba(13, 148, 136, 0.2);
+  gap: 0.85rem;
+  margin-bottom: 1.05rem;
+  padding: 0.15rem 0 0.95rem;
+  border-bottom: 1px solid rgba(13, 148, 136, 0.18);
+}
+
+.taxnex-nav__panel-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.taxnex-nav__panel-eyebrow {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  color: var(--tx-nav-ink);
 }
 
 .taxnex-nav__panel-title {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #0f766e;
+  color: var(--tx-nav-teal);
 }
 
 .taxnex-nav__close {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 2rem;
-  height: 2rem;
+  flex-shrink: 0;
+  width: 2.35rem;
+  height: 2.35rem;
   border: 1px solid rgba(13, 148, 136, 0.28);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #0f766e;
-  font-size: 1.35rem;
-  line-height: 1;
+  border-radius: 12px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.98) 0%, rgba(236, 253, 245, 0.95) 100%);
+  color: var(--tx-nav-teal);
   cursor: pointer;
+  box-shadow:
+    0 6px 16px rgba(6, 95, 70, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.taxnex-nav__close span {
+  position: absolute;
+  width: 0.95rem;
+  height: 1.5px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.taxnex-nav__close span:first-child {
+  transform: rotate(45deg);
+}
+
+.taxnex-nav__close span:last-child {
+  transform: rotate(-45deg);
+}
+
+.taxnex-nav__close:hover,
+.taxnex-nav__close:focus-visible {
+  border-color: rgba(13, 148, 136, 0.5);
+  background: linear-gradient(160deg, #ecfdf5 0%, #d1fae5 100%);
+  transform: scale(1.04);
+  box-shadow: 0 8px 20px rgba(6, 95, 70, 0.16);
 }
 
 .taxnex-nav__links {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.42rem;
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  padding-right: 0.15rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(13, 148, 136, 0.35) transparent;
 }
 
 .taxnex-nav__link {
+  --nav-i: 0;
+  position: relative;
   display: flex;
   align-items: center;
-  min-height: 2.65rem;
-  padding: 0.55rem 0.75rem;
-  border-radius: 10px;
-  border: 1px solid rgba(16, 185, 129, 0.22);
-  background: rgba(255, 255, 255, 0.88);
+  min-height: 2.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(240, 253, 249, 0.88) 100%);
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  line-height: 1.25;
-  color: #0a3d2f;
+  line-height: 1.3;
+  color: var(--tx-nav-ink);
+  box-shadow:
+    0 4px 12px rgba(6, 78, 59, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  transform: translateX(-12px);
+  animation: taxnexNavLinkIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(0.05s + (var(--nav-i) * 0.035s));
   transition:
-    background 0.22s ease,
-    border-color 0.22s ease,
-    transform 0.22s ease;
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease,
+    color 0.25s ease;
+}
+
+.taxnex-nav__link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #2dd4bf, #0d9488);
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.taxnex-nav__link-label {
+  position: relative;
+  z-index: 1;
 }
 
 .taxnex-nav__link:hover,
 .taxnex-nav__link:focus-visible {
-  border-color: rgba(13, 148, 136, 0.45);
-  background: rgba(236, 253, 245, 0.98);
-  transform: translateX(2px);
+  border-color: rgba(13, 148, 136, 0.42);
+  background:
+    linear-gradient(145deg, #ffffff 0%, #d1fae5 100%);
+  color: #022c22;
+  transform: translateX(4px);
+  box-shadow:
+    0 8px 20px rgba(6, 95, 70, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.taxnex-nav__link:hover::before,
+.taxnex-nav__link:focus-visible::before {
+  opacity: 1;
+  transform: scaleY(1);
 }
 
 .taxnex-nav__link--cta {
-  margin-top: 0.25rem;
-  border-color: rgba(6, 95, 70, 0.55);
-  background: linear-gradient(145deg, #0d9488 0%, #059669 55%, #047857 100%);
+  margin-top: 0.35rem;
+  border-color: rgba(6, 95, 70, 0.4);
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.18) 0%, transparent 42%),
+    linear-gradient(145deg, #14b8a6 0%, #0d9488 42%, #059669 78%, #047857 100%);
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(6, 95, 70, 0.28);
+  box-shadow:
+    0 12px 28px rgba(6, 95, 70, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.taxnex-nav__link--cta::before {
+  display: none;
 }
 
 .taxnex-nav__link--cta:hover,
 .taxnex-nav__link--cta:focus-visible {
   color: #ffffff;
-  background: linear-gradient(145deg, #0f766e 0%, #059669 55%, #065f46 100%);
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.22) 0%, transparent 42%),
+    linear-gradient(145deg, #0f766e 0%, #0d9488 45%, #047857 100%);
+  transform: translateX(4px);
+  box-shadow:
+    0 16px 32px rgba(6, 95, 70, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
 }
 
 .taxnex-nav__link--sub {
-  min-height: 2.35rem;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
+  min-height: 2.45rem;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
   text-transform: none;
+  font-weight: 650;
+  color: #065f46;
 }
 
 .taxnex-nav__group {
-  margin-top: 0.35rem;
-  padding-top: 0.5rem;
+  margin-top: 0.55rem;
+  padding-top: 0.75rem;
   border-top: 1px solid rgba(13, 148, 136, 0.16);
 }
 
 .taxnex-nav__group-label {
-  margin: 0 0 0.45rem;
-  padding-inline: 0.2rem;
+  margin: 0 0 0.55rem;
+  padding-inline: 0.25rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #0f766e;
+  color: var(--tx-nav-teal);
 }
 
 .taxnex-nav__group-links {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.38rem;
 }
 
 .taxnex-nav__lang {
   margin-top: auto;
-  padding-top: 0.85rem;
+  padding-top: 1rem;
   display: flex;
   justify-content: center;
+}
+
+@keyframes taxnexNavLinkIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-nav__panel {
+    transition: none;
+  }
+
+  .taxnex-nav__link {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .taxnex-nav__link:hover,
+  .taxnex-nav__link:focus-visible,
+  .taxnex-nav__link--cta:hover,
+  .taxnex-nav__link--cta:focus-visible,
+  .taxnex-nav__close:hover,
+  .taxnex-nav__close:focus-visible {
+    transform: none;
+  }
 }
 
 @media (max-width: 768px) {

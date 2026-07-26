@@ -89,17 +89,18 @@ export default function TaxNexPageNav() {
     { key: 'td59', label: 'FORM TD59', href: '#tax-tools' },
   ]
 
-  const renderLink = (item: NavLinkItem | NavToolItem, className: string) => {
+  const renderLink = (item: NavLinkItem | NavToolItem, className: string, index = 0) => {
+    const style = { ['--nav-i' as string]: String(index) }
     if (item.isRouter) {
       return (
-        <Link key={item.key} to={item.href} className={className} onClick={closeMenu}>
-          {item.label}
+        <Link key={item.key} to={item.href} className={className} style={style} onClick={closeMenu}>
+          <span className="taxnex-nav__link-label">{item.label}</span>
         </Link>
       )
     }
     return (
-      <a key={item.key} href={item.href} className={className} onClick={closeMenu}>
-        {item.label}
+      <a key={item.key} href={item.href} className={className} style={style} onClick={closeMenu}>
+        <span className="taxnex-nav__link-label">{item.label}</span>
       </a>
     )
   }
@@ -122,21 +123,36 @@ export default function TaxNexPageNav() {
           aria-label={t('serviceDetail.taxNavAria')}
         >
           <div className="taxnex-nav__panel-head">
-            <p className="taxnex-nav__panel-title">{t('serviceDetail.taxNavAria')}</p>
-            <button type="button" className="taxnex-nav__close" onClick={closeMenu} aria-label={t('common.close', 'Close')}>
-              ×
+            <div className="taxnex-nav__panel-brand">
+              <span className="taxnex-nav__panel-eyebrow">TaxNex</span>
+              <p className="taxnex-nav__panel-title">{t('serviceDetail.taxNavAria')}</p>
+            </div>
+            <button
+              type="button"
+              className="taxnex-nav__close"
+              onClick={closeMenu}
+              aria-label={t('common.close', 'Close')}
+            >
+              <span aria-hidden />
+              <span aria-hidden />
             </button>
           </div>
 
           <nav className="taxnex-nav__links">
-            {mainLinks.map((item) =>
-              renderLink(item, `taxnex-nav__link${item.cta ? ' taxnex-nav__link--cta' : ''}`),
+            {mainLinks.map((item, index) =>
+              renderLink(
+                item,
+                `taxnex-nav__link${item.cta ? ' taxnex-nav__link--cta' : ''}`,
+                index,
+              ),
             )}
 
             <div className="taxnex-nav__group">
               <p className="taxnex-nav__group-label">{t('serviceDetail.tools')}</p>
               <div className="taxnex-nav__group-links">
-                {toolLinks.map((item) => renderLink(item, 'taxnex-nav__link taxnex-nav__link--sub'))}
+                {toolLinks.map((item, index) =>
+                  renderLink(item, 'taxnex-nav__link taxnex-nav__link--sub', mainLinks.length + index),
+                )}
               </div>
             </div>
 
