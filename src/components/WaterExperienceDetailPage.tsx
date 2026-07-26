@@ -88,7 +88,7 @@ export default function WaterExperienceDetailPage({ detail }: Props) {
       </section>
 
       <section
-        className="service-default-sections limo-detail limo-detail--luxury"
+        className="service-default-sections limo-detail limo-detail--luxury limo-detail--ocean"
         aria-label={`${detail.title} gallery`}
       >
         <motion.div
