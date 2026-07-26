@@ -5,6 +5,9 @@ import TopbarSocialLinks from './TopbarSocialLinks'
 import { getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
 import { getPublicServiceCards } from '../lib/serviceMaintenance'
 import { prepareGlobalWingsEntryNavigation } from '../lib/gwEntryNavigation'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
+import { GROUP_SITE_URL } from '../seo/domainRegistry'
 
 export type SiteTopbarProps = {
   logoPathname?: string
@@ -84,8 +87,15 @@ export default function SiteTopbar({
   servicesSectionHref,
   className,
 }: SiteTopbarProps) {
+  const { isBrandDomain } = useSiteContext()
   const [menuOpen, setMenuOpen] = useState(false)
   const close = useCallback(() => setMenuOpen(false), [])
+  const resolvedHomeHref = isBrandDomain ? buildGroupSiteReturnUrl('home') : homeHref
+  const resolvedServicesHref = isBrandDomain
+    ? buildGroupSiteReturnUrl('services')
+    : servicesSectionHref
+  const exploreAllHref = isBrandDomain ? buildGroupSiteReturnUrl('services') : '/#services'
+  const contactHref = isBrandDomain ? `${GROUP_SITE_URL}/contact` : '/contact'
 
   useEffect(() => {
     if (!menuOpen) return
@@ -122,21 +132,31 @@ export default function SiteTopbar({
       <div className="container topbar-inner">
         <SiteLogo pathname={logoPathname} scrollToId={logoScrollToId} />
         <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
-          <NavHome href={homeHref} onNavigate={close} />
+          <NavHome href={resolvedHomeHref} onNavigate={close} />
           <div className="nav-dropdown">
-            <NavServicesTrigger href={servicesSectionHref} onNavigate={close} />
+            <NavServicesTrigger href={resolvedServicesHref} onNavigate={close} />
             <div
               className="nav-dropdown__panel"
               role="navigation"
               aria-label="Group companies and services"
             >
-              <Link
-                to="/#services"
-                className="nav-dropdown__link nav-dropdown__link--all"
-                onClick={close}
-              >
-                Explore all solutions
-              </Link>
+              {isExternalHref(exploreAllHref) ? (
+                <a
+                  href={exploreAllHref}
+                  className="nav-dropdown__link nav-dropdown__link--all"
+                  onClick={close}
+                >
+                  Explore all solutions
+                </a>
+              ) : (
+                <Link
+                  to="/#services"
+                  className="nav-dropdown__link nav-dropdown__link--all"
+                  onClick={close}
+                >
+                  Explore all solutions
+                </Link>
+              )}
               <ul className="nav-dropdown__list">
                 {getPublicServiceCards().map((card) => {
                   const external = isExternalServiceHref(card.slug)
@@ -183,9 +203,15 @@ export default function SiteTopbar({
               </ul>
             </div>
           </div>
-          <Link to="/contact" onClick={close} className="nav-links__cta">
-            Concierge Desk
-          </Link>
+          {isExternalHref(contactHref) ? (
+            <a href={contactHref} onClick={close} className="nav-links__cta">
+              Concierge Desk
+            </a>
+          ) : (
+            <Link to="/contact" onClick={close} className="nav-links__cta">
+              Concierge Desk
+            </Link>
+          )}
           <TopbarSocialLinks variant="mobile" />
         </nav>
         <TopbarSocialLinks variant="desktop" />

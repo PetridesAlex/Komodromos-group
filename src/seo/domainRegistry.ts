@@ -240,29 +240,45 @@ export function withAviationEntryParam(url: string): string {
 
 export function getServicePageHref(slug: string, currentHost?: string | null): string {
   const brand = getBrandBySlug(slug)
-  if (!brand) return `/services/${slug}`
-
   const host = currentHost ?? (typeof window !== 'undefined' ? window.location.host : null)
-  const onBrandHost = getBrandByHost(host ?? null)?.slug === slug
-  if (onBrandHost) return '/'
+  const currentBrand = getBrandByHost(host ?? null)
 
-  // Local dev: keep brand navigation on the same origin (localhost) instead of
-  // sending users to production brand domains, which breaks the embedded preview.
-  if (import.meta.env.DEV) {
-    if (slug === 'aviation') return `/services/aviation?${GW_ENTRY_QUERY}=1`
-    return `/services/${slug}`
+  if (brand) {
+    const onBrandHost = currentBrand?.slug === slug
+    if (onBrandHost) return '/'
+
+    // Local dev: keep brand navigation on the same origin (localhost) instead of
+    // sending users to production brand domains, which breaks the embedded preview.
+    if (import.meta.env.DEV) {
+      if (slug === 'aviation') return `/services/aviation?${GW_ENTRY_QUERY}=1`
+      return `/services/${slug}`
+    }
+
+    const base = `https://${brand.host}/`
+    return slug === 'aviation' ? withAviationEntryParam(base) : base
   }
 
-  const base = `https://${brand.host}/`
-  return slug === 'aviation' ? withAviationEntryParam(base) : base
+  // Group-only services: from a brand domain, leave to the group site so SPA
+  // routes like /services/vip are not swallowed by brand catch-alls.
+  if (currentBrand && !import.meta.env.DEV) {
+    return `${GROUP_SITE_URL}/services/${slug}`
+  }
+
+  return `/services/${slug}`
 }
 
 export function isExternalServiceHref(slug: string, currentHost?: string | null): boolean {
   if (import.meta.env.DEV) return false
-  const brand = getBrandBySlug(slug)
-  if (!brand) return false
   const host = currentHost ?? (typeof window !== 'undefined' ? window.location.host : null)
-  return getBrandByHost(host ?? null)?.slug !== slug
+  const currentBrand = getBrandByHost(host ?? null)
+  const brand = getBrandBySlug(slug)
+
+  if (brand) {
+    return currentBrand?.slug !== slug
+  }
+
+  // From taxnexcy.com (or any brand host), group-service paths must be full URLs.
+  return Boolean(currentBrand)
 }
 
 export const AVIATION_ROUTE_SEGMENTS = [
