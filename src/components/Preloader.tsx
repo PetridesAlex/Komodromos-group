@@ -80,7 +80,11 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
           ))}
           <span className="preloader-wordmark__shine" aria-hidden />
         </h1>
-        <p className="preloader-tagline">Premium Companies &middot; Unified Standards</p>
+        <p className="preloader-tagline">
+          <span className="preloader-tagline__rule" aria-hidden />
+          <span className="preloader-tagline__text">Premium Companies · Unified Standards</span>
+          <span className="preloader-tagline__rule" aria-hidden />
+        </p>
       </div>
 
       <div className="preloader-bar-wrap">
