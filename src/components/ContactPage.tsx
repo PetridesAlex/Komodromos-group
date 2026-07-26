@@ -458,7 +458,7 @@ export default function ContactPage() {
                       onClick={() => requestService(card.title)}
                     >
                       Request this service
-                      <ArrowUpRight size={16} strokeWidth={2.25} aria-hidden />
+                      <ArrowUpRight size={18} strokeWidth={2.25} aria-hidden />
                     </button>
                   </div>
                 </li>
