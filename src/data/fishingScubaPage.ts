@@ -157,6 +157,7 @@ export const scubaDivingDetail: WaterExperienceDetail = {
     `${SCUBA}/scuba-diving-fitfth.webp`,
     `${SCUBA}/scuba-diving-six.webp`,
     `${SCUBA}/scuba-diving-seven.webp`,
+    `${SCUBA}/scuba-diving-eight.webp`,
     `${SCUBA}/scuba-diving-2.png`,
     `${SCUBA}/scuba-diving-3.png`,
     `${SCUBA}/scuba-diving-4.png`,
