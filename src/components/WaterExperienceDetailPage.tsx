@@ -53,32 +53,68 @@ export default function WaterExperienceDetailPage({ detail }: Props) {
         <div className="container">
           {detail.experiences.map((block, i) => {
             const imageLeft = (block.imageSide ?? (i % 2 === 0 ? 'left' : 'right')) === 'left'
+            const copyFrom = imageLeft ? 18 : -18
             return (
               <motion.article
                 key={block.title}
                 className={`water-experience__row${imageLeft ? '' : ' water-experience__row--flip'}`}
-                initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 36 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: true, margin: '-80px' }}
                 transition={{
-                  duration: reduceMotion ? 0.01 : 0.6,
-                  delay: reduceMotion ? 0 : Math.min(i * 0.06, 0.16),
+                  duration: reduceMotion ? 0.01 : 0.7,
+                  delay: reduceMotion ? 0 : Math.min(i * 0.08, 0.18),
                   ease: EASE,
                 }}
               >
-                <figure className="water-experience__media">
+                <motion.figure
+                  className="water-experience__media"
+                  initial={reduceMotion ? false : { opacity: 0, scale: 1.04, x: imageLeft ? -24 : 24 }}
+                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: reduceMotion ? 0.01 : 0.85, ease: EASE }}
+                >
                   <img
                     src={block.image}
                     alt={block.imageAlt}
                     loading={i === 0 ? 'eager' : 'lazy'}
                     decoding="async"
                   />
-                </figure>
+                </motion.figure>
                 <div className="water-experience__copy">
-                  <p className="water-experience__kicker">Experience 0{i + 1}</p>
-                  <h2>{block.title}</h2>
-                  {block.paragraphs.map((p) => (
-                    <p key={p.slice(0, 40)}>{p}</p>
+                  <motion.p
+                    className="water-experience__kicker"
+                    initial={reduceMotion ? false : { opacity: 0, y: 14, x: copyFrom }}
+                    whileInView={{ opacity: 1, y: 0, x: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: reduceMotion ? 0.01 : 0.55, delay: reduceMotion ? 0 : 0.08, ease: EASE }}
+                  >
+                    <span className="water-experience__kicker-mark" aria-hidden />
+                    Experience 0{i + 1}
+                  </motion.p>
+                  <motion.h2
+                    initial={reduceMotion ? false : { opacity: 0, y: 22, x: copyFrom }}
+                    whileInView={{ opacity: 1, y: 0, x: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: reduceMotion ? 0.01 : 0.65, delay: reduceMotion ? 0 : 0.16, ease: EASE }}
+                  >
+                    {block.title}
+                  </motion.h2>
+                  {block.paragraphs.map((p, pi) => (
+                    <motion.p
+                      key={p.slice(0, 40)}
+                      className="water-experience__body"
+                      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-30px' }}
+                      transition={{
+                        duration: reduceMotion ? 0.01 : 0.55,
+                        delay: reduceMotion ? 0 : 0.24 + pi * 0.1,
+                        ease: EASE,
+                      }}
+                    >
+                      {p}
+                    </motion.p>
                   ))}
                 </div>
               </motion.article>
