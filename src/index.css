@@ -4120,6 +4120,7 @@ a {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
+  cursor: pointer;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -8338,6 +8339,168 @@ a {
   max-width: min(32rem, 100%);
 }
 
+.taxnex-checkout-modal__dialog--online-appt {
+  max-width: min(36rem, 100%);
+  padding: clamp(1.35rem, 4vw, 1.9rem);
+}
+
+.taxnex-online-appt__form {
+  gap: 0.95rem;
+}
+
+.taxnex-online-appt__cal {
+  position: relative;
+  padding: clamp(0.95rem, 2.4vw, 1.2rem);
+  border-radius: 1.05rem;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  background:
+    linear-gradient(165deg, rgba(236, 253, 245, 0.95) 0%, rgba(240, 253, 250, 0.88) 55%, rgba(255, 255, 255, 0.96) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.75) inset,
+    0 18px 36px -28px rgba(6, 95, 70, 0.45);
+}
+
+.taxnex-online-appt__cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.taxnex-online-appt__cal-navbtn {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.75rem;
+  color: #065f46;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  cursor: pointer;
+  transition: background 0.22s ease, transform 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+}
+
+.taxnex-online-appt__cal-navbtn:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(5, 150, 105, 0.5);
+  transform: translateY(-1px);
+}
+
+.taxnex-online-appt__cal-navbtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.taxnex-online-appt__cal-month {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  color: #064e3b;
+}
+
+.taxnex-online-appt__cal-weekdays,
+.taxnex-online-appt__cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.28rem;
+}
+
+.taxnex-online-appt__cal-weekdays {
+  margin-bottom: 0.4rem;
+}
+
+.taxnex-online-appt__cal-weekdays span {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(6, 95, 70, 0.55);
+}
+
+.taxnex-online-appt__cal-empty {
+  aspect-ratio: 1 / 1;
+}
+
+.taxnex-online-appt__cal-day {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  border-radius: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: #065f46;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(16, 185, 129, 0.14);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.taxnex-online-appt__cal-day:hover:not(:disabled) {
+  background: rgba(167, 243, 208, 0.55);
+  border-color: rgba(16, 185, 129, 0.45);
+  transform: translateY(-1px);
+}
+
+.taxnex-online-appt__cal-day.is-today:not(.is-selected) {
+  box-shadow: 0 0 0 1.5px rgba(5, 150, 105, 0.45);
+}
+
+.taxnex-online-appt__cal-day.is-selected {
+  color: #fff;
+  background: linear-gradient(165deg, #10b981 0%, #047857 100%);
+  border-color: rgba(4, 120, 87, 0.7);
+  box-shadow: 0 10px 22px -12px rgba(4, 120, 87, 0.75);
+}
+
+.taxnex-online-appt__cal-day:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+  background: transparent;
+  border-color: transparent;
+}
+
+.taxnex-online-appt__hint,
+.taxnex-online-appt__selected {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.taxnex-online-appt__hint {
+  color: rgba(6, 95, 70, 0.62);
+}
+
+.taxnex-online-appt__selected {
+  color: #047857;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taxnex-online-appt__cal-navbtn,
+  .taxnex-online-appt__cal-day {
+    transition: none;
+  }
+
+  .taxnex-online-appt__cal-navbtn:hover:not(:disabled),
+  .taxnex-online-appt__cal-day:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
 /* TaxNex — newsletter / lead capture (premium dialog) */
 .taxnex-newsletter-modal__dialog {
   max-width: min(34rem, 100%);
@@ -9116,6 +9279,7 @@ a {
 
 .taxnex-step__cta {
   display: inline-flex;
+  align-items: center;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.68rem;
   font-weight: 700;
@@ -9123,8 +9287,11 @@ a {
   text-transform: uppercase;
   color: #047857;
   text-decoration: none;
+  border: none;
   border-bottom: 2px solid rgba(52, 211, 153, 0.45);
-  padding-bottom: 2px;
+  padding: 0 0 2px;
+  background: none;
+  cursor: pointer;
 }
 
 .taxnex-step__cta:hover,
@@ -9183,6 +9350,8 @@ a {
 
 .taxnex-tool-card__btn {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 42px;
   padding: 0.55rem 1.1rem;
   border-radius: 10px;
@@ -9195,6 +9364,7 @@ a {
   background: linear-gradient(145deg, #a7f3d0 0%, #34d399 55%, #059669 100%);
   border: 1px solid rgba(167, 243, 208, 0.45);
   text-decoration: none;
+  cursor: pointer;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;

@@ -10,6 +10,7 @@ import {
 import { getTaxNexAddressLine } from '../data/taxNexPageContent'
 import { useReveal } from '../hooks/useReveal'
 import SiteTopbar from './SiteTopbar'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -78,13 +79,9 @@ export default function TaxNexCorporateServiceDetailPage({ serviceId }: Props) {
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.48, ease: EASE, delay: 0.12 }}
             >
-              <Link
-                className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
-                to="/contact"
-                state={{ serviceInterest: 'Tax & Accounting Services' }}
-              >
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {copy.primaryCta}
-              </Link>
+              </TaxContactLink>
               <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {copy.backCta}
               </Link>

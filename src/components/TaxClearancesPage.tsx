@@ -12,6 +12,7 @@ import {
 import { useReveal } from '../hooks/useReveal'
 import SiteTopbar from './SiteTopbar'
 import { TaxNexGuideArticleBody } from './TaxNexGuideArticleBody'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.28 } as const
@@ -85,13 +86,9 @@ export default function TaxClearancesPage() {
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.48, ease: EASE, delay: 0.12 }}
             >
-              <Link
-                className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
-                to="/contact"
-                state={{ serviceInterest: 'Tax & Accounting Services' }}
-              >
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}
-              </Link>
+              </TaxContactLink>
               <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {titles.backCta}
               </Link>
@@ -146,9 +143,9 @@ export default function TaxClearancesPage() {
                   ? 'We can help you prepare your filings, liaise with the Tax Department, and obtain your clearance certificate.'
                   : 'Μπορούμε να σας βοηθήσουμε στην προετοιμασία των δηλώσεών σας, στην επικοινωνία με το Τμήμα Φορολογίας και στην απόκτηση του πιστοποιητικού ενημερότητας.'}
               </p>
-              <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact" state={{ serviceInterest: 'Tax & Accounting Services' }}>
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}
-              </Link>
+              </TaxContactLink>
             </div>
           </section>
         </main>

@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import AviationServicesPage from './AviationServicesPage'
 import GwAirlineServicesPage from './aviation/GwAirlineServicesPage'
 import GwAviationJobsPage from './aviation/GwAviationJobsPage'
@@ -21,6 +22,7 @@ import TaxTaxResidenceCertificatePage from './TaxTaxResidenceCertificatePage'
 import TaxTransferFeesCalculatorPage from './TaxTransferFeesCalculatorPage'
 import TaxisNetService from '../pages/TaxisNetService'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { GROUP_SITE_URL } from '../seo/domainRegistry'
 import SiteTopbar from './SiteTopbar'
 import TaxNexCyprusPage from './TaxNexCyprusPage'
 import AstrealDevelopersPage from './AstrealDevelopersPage'
@@ -57,6 +59,21 @@ function TaxGroupPathRedirect() {
   return <Navigate to={to} replace />
 }
 
+/** /contact is a group-site page — send brand-domain visitors there. */
+function TaxBrandContactRedirect() {
+  useEffect(() => {
+    window.location.replace(`${GROUP_SITE_URL}/contact`)
+  }, [])
+
+  return (
+    <div className="page">
+      <div className="taxnex-root" style={{ minHeight: '40vh', display: 'grid', placeItems: 'center' }}>
+        <p className="taxnex-muted">Redirecting to contact…</p>
+      </div>
+    </div>
+  )
+}
+
 function AviationBrandRoutes() {
   return (
     <Routes>
@@ -90,6 +107,7 @@ function TaxBrandRoutes() {
       <Route path="/services" element={<TaxServicesOverviewPage />} />
       <Route path="/company-registration-cyprus" element={<TaxCompanyRegistrationPage />} />
       <Route path="/office-secretarial-services" element={<TaxOfficeSecretarialPage />} />
+      <Route path="/contact" element={<TaxBrandContactRedirect />} />
       <Route path="/services/tax/*" element={<TaxGroupPathRedirect />} />
       <Route path="/services/tax" element={<TaxGroupPathRedirect />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />

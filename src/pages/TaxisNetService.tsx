@@ -8,6 +8,7 @@ import {
 } from '../lib/taxisnetApplicationSubmit'
 import { taxBrandHref } from '../lib/brandPaths'
 import './TaxisNetService.css'
+import TaxContactLink from '../components/TaxContactLink'
 
 export type TaxisNetFormPayload = TaxisNetApplicationPayload
 
@@ -263,9 +264,9 @@ export default function TaxisNetService() {
                     >
                       Νέα αίτηση
                     </Link>
-                    <Link to="/contact" className="taxisnet-success__btn taxisnet-success__btn--outline">
+                    <TaxContactLink className="taxisnet-success__btn taxisnet-success__btn--outline">
                       Επικοινωνία
-                    </Link>
+                    </TaxContactLink>
                     <Link
                       to={taxBrandHref('/services/tax/income-tax-calculator')}
                       className="taxisnet-success__btn taxisnet-success__btn--ghost"
@@ -777,8 +778,8 @@ export default function TaxisNetService() {
                 />
                 <span>
                   Έχω διαβάσει και αποδέχομαι τους{' '}
-                  <Link to="/contact">Terms and Conditions</Link> και την{' '}
-                  <Link to="/contact">Privacy Policy</Link>.
+                  <TaxContactLink>Terms and Conditions</TaxContactLink> και την{' '}
+                  <TaxContactLink>Privacy Policy</TaxContactLink>.
                 </span>
               </label>
               {errors.consentTerms ? <p className="taxisnet-form__error">{errors.consentTerms}</p> : null}

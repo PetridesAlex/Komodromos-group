@@ -12,6 +12,7 @@ import {
 import { useReveal } from '../hooks/useReveal'
 import SiteTopbar from './SiteTopbar'
 import { TaxNexGuideArticleBody } from './TaxNexGuideArticleBody'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.28 } as const
@@ -85,13 +86,9 @@ export default function TaxTaxResidenceCertificatePage() {
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.48, ease: EASE, delay: 0.12 }}
             >
-              <Link
-                className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
-                to="/contact"
-                state={{ serviceInterest: 'Tax & Accounting Services' }}
-              >
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}
-              </Link>
+              </TaxContactLink>
               <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {titles.backCta}
               </Link>
@@ -142,9 +139,9 @@ export default function TaxTaxResidenceCertificatePage() {
                   ? 'We can review your position under the 183-day and 60-day rules, prepare your application, and liaise with the Tax Department on your behalf.'
                   : 'Μπορούμε να ελέγξουμε τη θέση σας βάσει των κανόνων των 183 και 60 ημερών, να προετοιμάσουμε το αίτημά σας και να επικοινωνήσουμε με το Τμήμα Φορολογίας για λογαριασμό σας.'}
               </p>
-              <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact" state={{ serviceInterest: 'Tax & Accounting Services' }}>
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}
-              </Link>
+              </TaxContactLink>
             </div>
           </section>
         </main>

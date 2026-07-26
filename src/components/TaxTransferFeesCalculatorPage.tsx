@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -224,13 +225,9 @@ export default function TaxTransferFeesCalculatorPage() {
                   >
                     Back to tax services
                   </Link>
-                  <Link
-                    to="/contact"
-                    state={{ serviceInterest: 'Tax & Accounting Services' }}
-                    className="inline-flex h-11 items-center justify-center rounded-lg border border-[#6f8fc5] bg-[#2d4770] px-5 text-sm font-semibold uppercase tracking-wide text-[#e8f1ff] transition hover:bg-[#385785]"
-                  >
+                  <TaxContactLink state={{ serviceInterest: 'Tax & Accounting Services' }} className="inline-flex h-11 items-center justify-center rounded-lg border border-[#6f8fc5] bg-[#2d4770] px-5 text-sm font-semibold uppercase tracking-wide text-[#e8f1ff] transition hover:bg-[#385785]">
                     Speak with a tax pro
-                  </Link>
+                  </TaxContactLink>
                 </div>
               </div>
             </motion.div>

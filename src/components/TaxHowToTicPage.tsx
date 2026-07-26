@@ -9,6 +9,7 @@ import { getTaxServiceGuideNav } from '../data/taxTaxServiceGuideNav'
 import { useReveal } from '../hooks/useReveal'
 import SiteTopbar from './SiteTopbar'
 import { TaxNexGuideArticleBody } from './TaxNexGuideArticleBody'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.28 } as const
@@ -152,9 +153,9 @@ export default function TaxHowToTicPage() {
                   ? 'Our team can review your draft registration and documents before you submit to the portal.'
                   : 'Η ομάδα μας μπορεί να ελέγξει το προσχέδιο εγγραφής και τα δικαιολογητικά πριν την οριστική υποβολή στην πύλη.'}
               </p>
-              <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact" state={{ serviceInterest: 'Tax & Accounting Services' }}>
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.contactCta}
-              </Link>
+              </TaxContactLink>
             </div>
           </section>
         </main>

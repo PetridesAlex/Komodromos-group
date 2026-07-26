@@ -19,6 +19,7 @@ import { getTaxNexAddressLine } from '../data/taxNexPageContent'
 import { useReveal } from '../hooks/useReveal'
 import AnimatedCounter from './AnimatedCounter'
 import SiteTopbar from './SiteTopbar'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.2 } as const
@@ -88,13 +89,9 @@ function RegCoDuoCard({
         <h2 className="taxnex-regco-duo-card__title">{item.title[locale]}</h2>
         <p className="taxnex-regco-duo-card__text">{item.body[locale]}</p>
         {item.cta ? (
-          <Link
-            className="taxnex-btn taxnex-btn--primary taxnex-regco-duo-card__cta"
-            to="/contact"
-            state={{ serviceInterest: 'Tax & Accounting Services' }}
-          >
+          <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-regco-duo-card__cta" state={{ serviceInterest: 'Tax & Accounting Services' }}>
             {item.cta[locale]}
-          </Link>
+          </TaxContactLink>
         ) : null}
       </motion.div>
     </motion.article>
@@ -209,13 +206,9 @@ export default function TaxCompanyRegistrationPage() {
               </h1>
               <p className="taxnex-regco-hero__intro">{titles.intro}</p>
               <div className="taxnex-regco-hero__actions">
-                <Link
-                  className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
-                  to="/contact"
-                  state={{ serviceInterest: 'Tax & Accounting Services' }}
-                >
+                <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                   {titles.secureCta}
-                </Link>
+                </TaxContactLink>
                 <Link className="taxnex-btn taxnex-btn--ghost taxnex-btn--lg taxnex-regco-hero__back" to={taxBrandHref('/services/tax')}>
                   {titles.backCta}
                 </Link>
@@ -426,13 +419,9 @@ export default function TaxCompanyRegistrationPage() {
               <p className="taxnex-bottom-cta__label">{titles.contactCta}</p>
               <h2 className="taxnex-h2 taxnex-h2--tight">{titles.contactHeading}</h2>
               <p className="taxnex-muted">{titles.contactBody}</p>
-              <Link
-                className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
-                to="/contact"
-                state={{ serviceInterest: 'Tax & Accounting Services' }}
-              >
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}
-              </Link>
+              </TaxContactLink>
               <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {titles.backCta}
               </Link>

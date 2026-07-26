@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import TaxContactLink from '../components/TaxContactLink'
 
 /** Greek FAQ — copied from https://taxnexcy.com (Συχνές ερωτήσεις), structure preserved. */
 export type TaxNexFaqItem = {
@@ -98,9 +98,9 @@ export const TAX_NEX_FAQ_ITEMS: TaxNexFaqItem[] = [
         </p>
         <p>
           Το μόνο που έχετε να κάνετε είναι να{' '}
-          <Link className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900" to="/contact">
+          <TaxContactLink className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900">
             Επικοινωνήσετε Μαζί Μας!
-          </Link>
+          </TaxContactLink>
         </p>
       </>
     ),
@@ -143,9 +143,9 @@ export const TAX_NEX_FAQ_ITEMS: TaxNexFaqItem[] = [
           3. Εισόδημα σύνταξης από <span className="underline">εργασία στην Κύπρο, κλπ</span>;
         </p>
         <p>
-          <Link className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900" to="/contact">
+          <TaxContactLink className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900">
             Επικοινωνήστε Μαζί Μας
-          </Link>{' '}
+          </TaxContactLink>{' '}
           αν χρειάζεστε οποιαδήποτε βοήθεια!
         </p>
       </>
@@ -167,9 +167,9 @@ export const TAX_NEX_FAQ_ITEMS: TaxNexFaqItem[] = [
             TaxNexcy.com
           </a>
           , ή{' '}
-          <Link className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900" to="/contact">
+          <TaxContactLink className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900">
             στείλτε μας ένα μήνυμα
-          </Link>
+          </TaxContactLink>
           . Θα χαρούμε να προσφέρουμε μια εξατομικευμένη λύση που λειτουργεί ειδικά για εσάς!
         </p>
       </>
@@ -260,9 +260,9 @@ const TAX_NEX_FAQ_ITEMS_EN: TaxNexFaqItem[] = [
         </ol>
         <p>These returns are different, but we can manually prepare and submit your self-employed return.</p>
         <p>
-          <Link className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900" to="/contact">
+          <TaxContactLink className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900">
             Contact us
-          </Link>
+          </TaxContactLink>
           .
         </p>
       </>
@@ -309,9 +309,9 @@ const TAX_NEX_FAQ_ITEMS_EN: TaxNexFaqItem[] = [
     answer: (
       <p>
         Yes. You can use TaxNexcy.com or{' '}
-        <Link className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900" to="/contact">
+        <TaxContactLink className="font-semibold text-emerald-800 underline underline-offset-2 hover:text-emerald-900">
           send us a message
-        </Link>{' '}
+        </TaxContactLink>{' '}
         for a tailored solution.
       </p>
     ),

@@ -1,6 +1,7 @@
 import {
   getBrandByHost,
   internalPathToBrandPath,
+  GROUP_SITE_URL,
   type BrandDomainConfig,
 } from '../seo/domainRegistry'
 
@@ -62,6 +63,14 @@ export function taxBrandHref(internalPathWithHash: string): string {
     return `${path}${hash}`
   }
   return `${taxPath(path)}${hash}`
+}
+
+/** Contact destination that works on both the group site and taxnexcy.com.
+ *  Brand domain uses the absolute group contact URL (SPA has no /contact route). */
+export function taxContactHref(): string {
+  const brand = currentBrand()
+  if (brand?.slug === 'tax') return `${GROUP_SITE_URL}/contact`
+  return '/contact'
 }
 
 export function astrealPath(subpath = ''): string {

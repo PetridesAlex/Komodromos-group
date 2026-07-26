@@ -13,6 +13,7 @@ import {
 } from '../lib/cyprusIncomeTax2026TaxNex'
 import { TAX_CALC_UI, TAX_CALC_2025_UI, TAX_CALC_2026_UI } from '../data/taxIncomeCalculatorPageContent'
 import { taxBrandHref } from '../lib/brandPaths'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 const TAX_LOGO = '/images/services/tax-services/tax-nex.png'
@@ -248,12 +249,9 @@ export default function TaxIncomeCalculatorPage() {
                       <p>{TAX_CALC_2026_UI.introP2}</p>
                       <p>
                         {TAX_CALC_UI.introP3BeforeLink}
-                        <Link
-                          className="font-semibold text-[#047857] underline decoration-emerald-300 underline-offset-2 hover:text-[#065f46]"
-                          to="/contact"
-                        >
+                        <TaxContactLink className="font-semibold text-[#047857] underline decoration-emerald-300 underline-offset-2 hover:text-[#065f46]">
                           {TAX_CALC_UI.introLink}
-                        </Link>
+                        </TaxContactLink>
                         {TAX_CALC_UI.introP3AfterLink}
                       </p>
                       <p className="rounded-lg border border-amber-200/90 bg-amber-50/90 px-4 py-3 text-sm font-medium text-amber-950/90">
@@ -266,12 +264,9 @@ export default function TaxIncomeCalculatorPage() {
                       <p>{TAX_CALC_2025_UI.introP2}</p>
                       <p>
                         {TAX_CALC_2025_UI.introP3BeforeLink}
-                        <Link
-                          className="font-semibold text-[#047857] underline decoration-emerald-300 underline-offset-2 hover:text-[#065f46]"
-                          to="/contact"
-                        >
+                        <TaxContactLink className="font-semibold text-[#047857] underline decoration-emerald-300 underline-offset-2 hover:text-[#065f46]">
                           {TAX_CALC_UI.introLink}
-                        </Link>
+                        </TaxContactLink>
                         {TAX_CALC_UI.introP3AfterLink}
                       </p>
                       <p className="rounded-lg border border-amber-200/90 bg-amber-50/90 px-4 py-3 text-sm font-medium text-amber-950/90">

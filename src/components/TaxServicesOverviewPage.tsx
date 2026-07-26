@@ -6,6 +6,7 @@ import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { TAX_NEX_PRICING_PLANS, TAX_NEX_VAT_PCT } from '../data/taxNexPageContent'
 import { taxBrandHref } from '../lib/brandPaths'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -191,12 +192,9 @@ export default function TaxServicesOverviewPage() {
                   {section.title}
                 </h3>
                 <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">{section.body}</p>
-                <Link
-                  to="/contact"
-                  className="mt-5 inline-flex h-11 items-center justify-center rounded-lg border border-emerald-300 bg-emerald-600 px-5 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-emerald-500"
-                >
+                <TaxContactLink className="mt-5 inline-flex h-11 items-center justify-center rounded-lg border border-emerald-300 bg-emerald-600 px-5 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-emerald-500">
                   ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ
-                </Link>
+                </TaxContactLink>
               </div>
             </motion.article>
           ))}

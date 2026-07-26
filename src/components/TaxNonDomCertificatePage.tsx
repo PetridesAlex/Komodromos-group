@@ -12,6 +12,7 @@ import {
 import { useReveal } from '../hooks/useReveal'
 import SiteTopbar from './SiteTopbar'
 import { TaxNexGuideArticleBody } from './TaxNexGuideArticleBody'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.28 } as const
@@ -85,13 +86,9 @@ export default function TaxNonDomCertificatePage() {
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ duration: 0.48, ease: EASE, delay: 0.12 }}
             >
-              <Link
-                className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
-                to="/contact"
-                state={{ serviceInterest: 'Tax & Accounting Services' }}
-              >
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}
-              </Link>
+              </TaxContactLink>
               <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {titles.backCta}
               </Link>
@@ -142,9 +139,9 @@ export default function TaxNonDomCertificatePage() {
                   ? 'We can help you prepare and submit your application to the Cyprus Tax Department and explain how the rules apply to your situation.'
                   : 'Μπορούμε να σας βοηθήσουμε στην προετοιμασία και υποβολή της αίτησής σας στο Τμήμα Φορολογίας και να εξηγήσουμε πώς εφαρμόζονται οι κανόνες στην περίπτωσή σας.'}
               </p>
-              <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact" state={{ serviceInterest: 'Tax & Accounting Services' }}>
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}
-              </Link>
+              </TaxContactLink>
             </div>
           </section>
         </main>

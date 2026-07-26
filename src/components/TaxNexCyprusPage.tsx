@@ -25,6 +25,7 @@ import TaxNexPageNav from './TaxNexPageNav'
 import TaxNexTopbarSocials from './TaxNexTopbarSocials'
 import TaxPagePromoBar from './TaxPagePromoBar'
 import TaxMeetingRequestModal from './TaxMeetingRequestModal'
+import TaxOnlineAppointmentModal from './TaxOnlineAppointmentModal'
 import TaxNewsletterLeadModal from './TaxNewsletterLeadModal'
 import TaxPlanCheckoutModal from './TaxPlanCheckoutModal'
 
@@ -139,6 +140,7 @@ export default function TaxNexCyprusPage() {
   const taxToolCards = getTaxNexToolCards(locale)
   const [showCookieNotice, setShowCookieNotice] = useState(false)
   const [meetingModalOpen, setMeetingModalOpen] = useState(false)
+  const [onlineApptModalOpen, setOnlineApptModalOpen] = useState(false)
   const [newsletterModalOpen, setNewsletterModalOpen] = useState(false)
   const [paymentModal, setPaymentModal] = useState<{
     plan: (typeof taxPricingPlans)[number]
@@ -250,12 +252,20 @@ export default function TaxNexCyprusPage() {
                 <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to={taxBrandHref(TAX_INCOME_CALCULATOR_PATH)}>
                   {t('tax.calculateTax')}
                 </Link>
-                <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact">
+                <button
+                  type="button"
+                  className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
+                  onClick={() => setMeetingModalOpen(true)}
+                >
                   {t('tax.bookMeeting')}
-                </Link>
-                <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact">
+                </button>
+                <button
+                  type="button"
+                  className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
+                  onClick={() => setOnlineApptModalOpen(true)}
+                >
                   {t('tax.bookOnlineMeeting')}
-                </Link>
+                </button>
               </div>
               <p className="taxnex-hero__phones" aria-label={t('tax.contactPhonesAria')}>
                 <a className="taxnex-hero__phone" href="tel:+357243333305">
@@ -755,13 +765,19 @@ export default function TaxNexCyprusPage() {
                 <div className="taxnex-step__body">
                   <h3 className="taxnex-step__title">{step.title}</h3>
                   <p className="taxnex-step__lead">{step.lead}</p>
-                  <Link
-                    className="taxnex-step__cta"
-                    to={taxBrandHref(step.href)}
-                    state={step.href === '/contact' ? { serviceInterest: 'Tax & Accounting Services' } : undefined}
-                  >
-                    {step.cta}
-                  </Link>
+                  {step.href === '/contact' ? (
+                    <button
+                      type="button"
+                      className="taxnex-step__cta"
+                      onClick={() => setMeetingModalOpen(true)}
+                    >
+                      {step.cta}
+                    </button>
+                  ) : (
+                    <Link className="taxnex-step__cta" to={taxBrandHref(step.href)}>
+                      {step.cta}
+                    </Link>
+                  )}
                 </div>
               </motion.li>
             ))}
@@ -869,9 +885,19 @@ export default function TaxNexCyprusPage() {
               >
                 <h3 className="taxnex-tool-card__title">{tool.title}</h3>
                 <p className="taxnex-tool-card__desc">{tool.description}</p>
-                <Link className="taxnex-tool-card__btn" to={taxBrandHref(tool.href)}>
-                  {tool.cta}
-                </Link>
+                {tool.href === '/contact' ? (
+                  <button
+                    type="button"
+                    className="taxnex-tool-card__btn"
+                    onClick={() => setMeetingModalOpen(true)}
+                  >
+                    {tool.cta}
+                  </button>
+                ) : (
+                  <Link className="taxnex-tool-card__btn" to={taxBrandHref(tool.href)}>
+                    {tool.cta}
+                  </Link>
+                )}
               </motion.article>
             ))}
           </div>
@@ -982,6 +1008,10 @@ export default function TaxNexCyprusPage() {
       </section>
 
       <TaxMeetingRequestModal isOpen={meetingModalOpen} onClose={() => setMeetingModalOpen(false)} />
+      <TaxOnlineAppointmentModal
+        isOpen={onlineApptModalOpen}
+        onClose={() => setOnlineApptModalOpen(false)}
+      />
       <TaxNewsletterLeadModal isOpen={newsletterModalOpen} onClose={() => setNewsletterModalOpen(false)} />
 
       {showCookieNotice ? (

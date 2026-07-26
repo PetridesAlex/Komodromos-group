@@ -6,6 +6,7 @@ import {
   TAX_CORPORATE_SERVICES_SECTION,
 } from '../data/taxNexCorporateServicesContent'
 import { taxBrandHref } from '../lib/brandPaths'
+import TaxContactLink from './TaxContactLink'
 
 const VIEW = { once: true, amount: 0.22 } as const
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -79,13 +80,12 @@ export default function TaxNexCorporateServicesSection() {
                       </Link>
                     </h3>
                     <div className="taxnex-corp-block__actions">
-                      <Link
+                      <TaxContactLink
                         className="taxnex-btn taxnex-btn--ghost taxnex-corp-block__contact"
-                        to="/contact"
                         state={{ serviceInterest: 'Tax & Accounting Services' }}
                       >
                         {copy.contactCta}
-                      </Link>
+                      </TaxContactLink>
                       <Link
                         className="taxnex-corp-block__more"
                         to={href}

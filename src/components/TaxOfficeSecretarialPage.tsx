@@ -19,6 +19,7 @@ import { getTaxNexAddressLine } from '../data/taxNexPageContent'
 import { useReveal } from '../hooks/useReveal'
 import AnimatedCounter from './AnimatedCounter'
 import SiteTopbar from './SiteTopbar'
+import TaxContactLink from './TaxContactLink'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.2 } as const
@@ -122,13 +123,9 @@ function OfficePricingCard({
         whileTap={reduceMotion ? undefined : { scale: 0.98 }}
         transition={{ duration: 0.22, ease: EASE }}
       >
-        <Link
-          className={`taxnex-btn taxnex-btn--lg taxnex-office-plan__cta${plan.featured ? ' taxnex-btn--primary' : ' taxnex-btn--outline'}`}
-          to="/contact"
-          state={{ serviceInterest: 'Tax & Accounting Services' }}
-        >
+        <TaxContactLink className={`taxnex-btn taxnex-btn--lg taxnex-office-plan__cta${plan.featured ? ' taxnex-btn--primary' : ' taxnex-btn--outline'}`} state={{ serviceInterest: 'Tax & Accounting Services' }}>
           {titles.planCta}
-        </Link>
+        </TaxContactLink>
       </motion.div>
     </motion.article>
   )
@@ -199,13 +196,9 @@ export default function TaxOfficeSecretarialPage() {
               </h1>
               <p className="taxnex-regco-hero__intro">{titles.intro}</p>
               <div className="taxnex-regco-hero__actions">
-                <Link
-                  className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
-                  to="/contact"
-                  state={{ serviceInterest: 'Tax & Accounting Services' }}
-                >
+                <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                   {titles.secureCta}
-                </Link>
+                </TaxContactLink>
                 <Link className="taxnex-btn taxnex-btn--ghost taxnex-btn--lg taxnex-regco-hero__back" to={taxBrandHref('/services/tax')}>
                   {titles.backCta}
                 </Link>
@@ -260,13 +253,9 @@ export default function TaxOfficeSecretarialPage() {
                     </ul>
                   </motion.div>
                   <p className="taxnex-office-main__tagline">{main.tagline[locale]}</p>
-                  <Link
-                    className="taxnex-btn taxnex-btn--primary taxnex-office-main__cta"
-                    to="/contact"
-                    state={{ serviceInterest: 'Tax & Accounting Services' }}
-                  >
+                  <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-office-main__cta" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                     {main.visitCta[locale]}
-                  </Link>
+                  </TaxContactLink>
                 </motion.div>
               </motion.div>
             </div>
@@ -366,13 +355,9 @@ export default function TaxOfficeSecretarialPage() {
                     whileTap={reduceMotion ? undefined : { scale: 0.98 }}
                     transition={{ duration: 0.22, ease: EASE }}
                   >
-                    <Link
-                      className="taxnex-btn taxnex-btn--primary taxnex-btn--lg taxnex-office-flex__cta"
-                      to="/contact"
-                      state={{ serviceInterest: 'Tax & Accounting Services' }}
-                    >
+                    <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg taxnex-office-flex__cta" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                       {titles.flexCta}
-                    </Link>
+                    </TaxContactLink>
                   </motion.div>
                 </motion.div>
               </motion.article>
@@ -457,13 +442,9 @@ export default function TaxOfficeSecretarialPage() {
               <p className="taxnex-bottom-cta__label">{titles.contactCta}</p>
               <h2 className="taxnex-h2 taxnex-h2--tight">{titles.contactHeading}</h2>
               <p className="taxnex-muted">{titles.contactBody}</p>
-              <Link
-                className="taxnex-btn taxnex-btn--primary taxnex-btn--lg"
-                to="/contact"
-                state={{ serviceInterest: 'Tax & Accounting Services' }}
-              >
+              <TaxContactLink className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" state={{ serviceInterest: 'Tax & Accounting Services' }}>
                 {titles.primaryCta}
-              </Link>
+              </TaxContactLink>
               <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {titles.backCta}
               </Link>
