@@ -6,6 +6,7 @@ import {
   submitTaxisNetApplication,
   type TaxisNetApplicationPayload,
 } from '../lib/taxisnetApplicationSubmit'
+import { taxBrandHref } from '../lib/brandPaths'
 import './TaxisNetService.css'
 
 export type TaxisNetFormPayload = TaxisNetApplicationPayload
@@ -227,7 +228,7 @@ export default function TaxisNetService() {
         <div className="taxisnet-form-page__shell">
           <nav className="taxisnet-form-page__crumbs" aria-label="Breadcrumb">
             <div className="taxisnet-form-page__crumbs-inner">
-              <Link to="/services/tax/income-tax-calculator">Αριθμομηχανή φόρου εισοδήματος</Link>
+              <Link to={taxBrandHref('/services/tax/income-tax-calculator')}>Αριθμομηχανή φόρου εισοδήματος</Link>
               <span className="taxisnet-form-page__crumbs-sep" aria-hidden>
                 /
               </span>
@@ -256,7 +257,7 @@ export default function TaxisNetService() {
                   </p>
                   <div className="taxisnet-success__actions">
                     <Link
-                      to="/services/tax/taxisnet-application"
+                      to={taxBrandHref('/services/tax/taxisnet-application')}
                       reloadDocument
                       className="taxisnet-success__btn taxisnet-success__btn--primary"
                     >
@@ -266,7 +267,7 @@ export default function TaxisNetService() {
                       Επικοινωνία
                     </Link>
                     <Link
-                      to="/services/tax/income-tax-calculator"
+                      to={taxBrandHref('/services/tax/income-tax-calculator')}
                       className="taxisnet-success__btn taxisnet-success__btn--ghost"
                     >
                       Αριθμομηχανή φόρου

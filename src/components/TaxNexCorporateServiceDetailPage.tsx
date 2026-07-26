@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { taxBrandHref } from '../lib/brandPaths'
 import { motion, useReducedMotion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import {
@@ -44,7 +45,7 @@ export default function TaxNexCorporateServiceDetailPage({ serviceId }: Props) {
           <div className="taxnex-page-hero__bg" aria-hidden />
           <div className="container taxnex-page-hero__inner">
             <nav className="taxnex-page-hero__crumbs" aria-label="Breadcrumb">
-              <Link to="/services/tax" className="taxnex-page-hero__crumb">
+              <Link to={taxBrandHref('/services/tax')} className="taxnex-page-hero__crumb">
                 TaxNex Cyprus
               </Link>
               <span className="taxnex-page-hero__crumb-sep" aria-hidden>
@@ -84,7 +85,7 @@ export default function TaxNexCorporateServiceDetailPage({ serviceId }: Props) {
               >
                 {copy.primaryCta}
               </Link>
-              <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to="/services/tax">
+              <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {copy.backCta}
               </Link>
             </motion.div>

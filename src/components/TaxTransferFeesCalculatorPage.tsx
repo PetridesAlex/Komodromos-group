@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { taxBrandHref } from '../lib/brandPaths'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
@@ -218,7 +219,7 @@ export default function TaxTransferFeesCalculatorPage() {
 
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link
-                    to="/services/tax"
+                    to={taxBrandHref('/services/tax')}
                     className="inline-flex h-11 items-center justify-center rounded-lg border border-[#9eb5d8] bg-[#edf4ff] px-5 text-sm font-semibold uppercase tracking-wide text-[#2f5ca3] transition hover:bg-[#dfeafe]"
                   >
                     Back to tax services

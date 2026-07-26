@@ -12,6 +12,7 @@ import {
   type TaxNex2026FamilyStatus,
 } from '../lib/cyprusIncomeTax2026TaxNex'
 import { TAX_CALC_UI, TAX_CALC_2025_UI, TAX_CALC_2026_UI } from '../data/taxIncomeCalculatorPageContent'
+import { taxBrandHref } from '../lib/brandPaths'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 const TAX_LOGO = '/images/services/tax-services/tax-nex.png'
@@ -163,7 +164,7 @@ export default function TaxIncomeCalculatorPage() {
               <span className="opacity-40" aria-hidden>
                 ·
               </span>
-              <Link to="/services/tax" className="transition-colors hover:text-[#047857]">
+              <Link to={taxBrandHref('/services/tax')} className="transition-colors hover:text-[#047857]">
                 {TAX_CALC_UI.breadcrumbTax}
               </Link>
               <span className="opacity-40" aria-hidden>
@@ -721,7 +722,7 @@ export default function TaxIncomeCalculatorPage() {
                   </h3>
                   <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-[#4a6359]">{TAX_CALC_UI.ctaBody}</p>
                   <Link
-                    to={TAXISNET_APPLICATION_PATH}
+                    to={taxBrandHref(TAXISNET_APPLICATION_PATH)}
                     className="mt-6 inline-flex min-h-[3rem] items-center justify-center rounded-xl bg-[linear-gradient(180deg,#059669_0%,#047857_100%)] px-8 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-[0_14px_32px_-12px_rgba(6,95,70,0.65)] ring-1 ring-white/20 transition hover:brightness-[1.03]"
                   >
                     {TAX_CALC_UI.ctaPrimary}
@@ -734,7 +735,7 @@ export default function TaxIncomeCalculatorPage() {
 
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
-                    to="/services/tax"
+                    to={taxBrandHref('/services/tax')}
                     className="inline-flex min-h-[2.75rem] items-center justify-center rounded-xl border border-emerald-300/90 bg-white px-6 text-xs font-bold uppercase tracking-wide text-[#047857] shadow-sm transition hover:bg-emerald-50"
                   >
                     {TAX_CALC_UI.backTax}

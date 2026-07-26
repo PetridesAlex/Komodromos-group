@@ -2,6 +2,8 @@
  * Shared sidebar nav for TaxNex-style tax service inner guides (TIC, tax residence, etc.).
  */
 
+import { taxBrandHref, taxPath } from '../lib/brandPaths'
+
 export type TaxServiceGuideNavItem = {
   id: string
   labelEl: string
@@ -50,8 +52,16 @@ const TAX_SERVICE_GUIDE_NAV_BASE: Omit<TaxServiceGuideNavItem, 'current'>[] = [
 
 export function getTaxServiceGuideNav(pathname: string): TaxServiceGuideNavItem[] {
   const base = normalizePath(pathname)
-  return TAX_SERVICE_GUIDE_NAV_BASE.map((item) => ({
-    ...item,
-    current: base === normalizePath(item.href),
-  }))
+  return TAX_SERVICE_GUIDE_NAV_BASE.map((item) => {
+    const href = taxBrandHref(item.href)
+    const brandPath = taxPath(item.href)
+    return {
+      ...item,
+      href,
+      current:
+        base === normalizePath(href) ||
+        base === normalizePath(brandPath) ||
+        base === normalizePath(item.href),
+    }
+  })
 }

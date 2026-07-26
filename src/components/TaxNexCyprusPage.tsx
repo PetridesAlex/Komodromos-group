@@ -17,6 +17,7 @@ import {
 } from '../data/taxNexPageContent'
 import { TAX_NEX_2026_CHANGES_ROWS } from '../data/taxNex2026ChangesTableContent'
 import { getTaxPlanCheckoutUrl, isValidHttpUrl } from '../lib/taxPlanCheckout'
+import { taxBrandHref } from '../lib/brandPaths'
 import TaxNexCorporateServicesSection from './TaxNexCorporateServicesSection'
 import TaxNexFaqSection from './TaxNexFaqSection'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -246,7 +247,7 @@ export default function TaxNexCyprusPage() {
                 <span className="taxnex-hero__stage-text">{t('tax.stageWord')}</span>
               </p>
               <div className="taxnex-hero__cta-row">
-                <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to={TAX_INCOME_CALCULATOR_PATH}>
+                <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to={taxBrandHref(TAX_INCOME_CALCULATOR_PATH)}>
                   {t('tax.calculateTax')}
                 </Link>
                 <Link className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" to="/contact">
@@ -756,7 +757,7 @@ export default function TaxNexCyprusPage() {
                   <p className="taxnex-step__lead">{step.lead}</p>
                   <Link
                     className="taxnex-step__cta"
-                    to={step.href}
+                    to={taxBrandHref(step.href)}
                     state={step.href === '/contact' ? { serviceInterest: 'Tax & Accounting Services' } : undefined}
                   >
                     {step.cta}
@@ -868,7 +869,7 @@ export default function TaxNexCyprusPage() {
               >
                 <h3 className="taxnex-tool-card__title">{tool.title}</h3>
                 <p className="taxnex-tool-card__desc">{tool.description}</p>
-                <Link className="taxnex-tool-card__btn" to={tool.href}>
+                <Link className="taxnex-tool-card__btn" to={taxBrandHref(tool.href)}>
                   {tool.cta}
                 </Link>
               </motion.article>
@@ -922,7 +923,7 @@ export default function TaxNexCyprusPage() {
             <div className="taxnex-changes2026__cta">
               <Link
                 className="taxnex-btn taxnex-btn--primary taxnex-btn--lg taxnex-changes2026__cta-btn"
-                to={TAX_INCOME_CALCULATOR_PATH}
+                to={taxBrandHref(TAX_INCOME_CALCULATOR_PATH)}
               >
                 {t('tax.changes2026Cta')}
               </Link>

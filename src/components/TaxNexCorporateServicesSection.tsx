@@ -5,6 +5,7 @@ import {
   TAX_CORPORATE_SERVICE_ROWS,
   TAX_CORPORATE_SERVICES_SECTION,
 } from '../data/taxNexCorporateServicesContent'
+import { taxBrandHref } from '../lib/brandPaths'
 
 const VIEW = { once: true, amount: 0.22 } as const
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -43,6 +44,7 @@ export default function TaxNexCorporateServicesSection() {
         <div className="taxnex-corp__rows">
           {TAX_CORPORATE_SERVICE_ROWS.map((row, index) => {
             const copy = row.card[locale]
+            const href = taxBrandHref(row.card.href)
             return (
               <motion.article
                 key={row.card.id}
@@ -72,7 +74,7 @@ export default function TaxNexCorporateServicesSection() {
                   <span className="taxnex-corp-block__scrim" aria-hidden />
                   <figcaption className="taxnex-corp-block__caption">
                     <h3 className="taxnex-corp-block__title">
-                      <Link to={row.card.href} className="taxnex-corp-block__title-link">
+                      <Link to={href} className="taxnex-corp-block__title-link">
                         {copy.title}
                       </Link>
                     </h3>
@@ -86,7 +88,7 @@ export default function TaxNexCorporateServicesSection() {
                       </Link>
                       <Link
                         className="taxnex-corp-block__more"
-                        to={row.card.href}
+                        to={href}
                         aria-label={copy.readMoreAria}
                       >
                         {copy.readMoreCta}

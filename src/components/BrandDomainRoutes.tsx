@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import AviationServicesPage from './AviationServicesPage'
 import GwAirlineServicesPage from './aviation/GwAirlineServicesPage'
 import GwAviationJobsPage from './aviation/GwAviationJobsPage'
@@ -48,6 +48,15 @@ function TaxBrandHome() {
   )
 }
 
+/** Remap legacy group paths (/services/tax/...) to brand-relative URLs so SPA
+ *  clicks on taxnexcy.com land on the right page instead of the homepage. */
+function TaxGroupPathRedirect() {
+  const { pathname, search, hash } = useLocation()
+  const rest = pathname.replace(/^\/services\/tax\/?/, '')
+  const to = `${rest ? `/${rest}` : '/'}${search}${hash}`
+  return <Navigate to={to} replace />
+}
+
 function AviationBrandRoutes() {
   return (
     <Routes>
@@ -81,7 +90,8 @@ function TaxBrandRoutes() {
       <Route path="/services" element={<TaxServicesOverviewPage />} />
       <Route path="/company-registration-cyprus" element={<TaxCompanyRegistrationPage />} />
       <Route path="/office-secretarial-services" element={<TaxOfficeSecretarialPage />} />
-      <Route path="/services/tax/*" element={<Navigate to="/" replace />} />
+      <Route path="/services/tax/*" element={<TaxGroupPathRedirect />} />
+      <Route path="/services/tax" element={<TaxGroupPathRedirect />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

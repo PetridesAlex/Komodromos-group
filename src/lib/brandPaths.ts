@@ -51,6 +51,19 @@ export function taxPath(subpath = ''): string {
   return `/services/tax/${clean}`
 }
 
+/** Converts an absolute internal tax path (optionally with a hash) to the
+ *  correct link target for the current host — brand-relative on taxnexcy.com,
+ *  full `/services/tax/...` on the group site. */
+export function taxBrandHref(internalPathWithHash: string): string {
+  const hashIdx = internalPathWithHash.indexOf('#')
+  const path = hashIdx === -1 ? internalPathWithHash : internalPathWithHash.slice(0, hashIdx)
+  const hash = hashIdx === -1 ? '' : internalPathWithHash.slice(hashIdx)
+  if (path !== '/services/tax' && !path.startsWith('/services/tax/')) {
+    return `${path}${hash}`
+  }
+  return `${taxPath(path)}${hash}`
+}
+
 export function astrealPath(subpath = ''): string {
   const brand = currentBrand()
   const clean = subpath.replace(/^\/services\/astreal\/?/, '').replace(/^\//, '')

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { taxBrandHref } from '../lib/brandPaths'
 
 function TickerCells({ phrase, gap }: { phrase: string; gap: string }) {
   const cell = `${phrase}${gap}`
@@ -24,7 +25,7 @@ export default function TaxPagePromoBar() {
       <div className="tax-page-promo-bar__gloss" aria-hidden />
       <div className="tax-page-promo-bar__scanline" aria-hidden />
       <Link
-        to="/services/tax#tax-contact"
+        to={taxBrandHref('/services/tax#tax-contact')}
         className="tax-page-promo-bar__link"
         aria-label={t('serviceDetail.taxPromoCtaAria')}
       >

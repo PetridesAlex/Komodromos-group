@@ -5,6 +5,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { TAX_NEX_PRICING_PLANS, TAX_NEX_VAT_PCT } from '../data/taxNexPageContent'
+import { taxBrandHref } from '../lib/brandPaths'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -88,7 +89,7 @@ export default function TaxServicesOverviewPage() {
             transition={{ duration: reduceMotion ? 0 : 0.58, ease: EASE }}
           >
             <Link
-              to="/services/tax"
+              to={taxBrandHref('/services/tax')}
               className="inline-flex h-10 items-center justify-center rounded-lg border border-emerald-300/65 bg-emerald-50 px-4 text-xs font-bold uppercase tracking-[0.14em] text-emerald-800 transition hover:bg-emerald-100"
             >
               ΑΡΧΙΚΗ
@@ -132,7 +133,11 @@ export default function TaxServicesOverviewPage() {
                   </p>
                   <div className="mt-4">
                     <Link
-                      to={plan.id === 'diy' ? '/services/tax/income-tax-calculator' : '/contact'}
+                      to={
+                        plan.id === 'diy'
+                          ? taxBrandHref('/services/tax/income-tax-calculator')
+                          : '/contact'
+                      }
                       className="inline-flex h-11 items-center justify-center rounded-lg border border-slate-800/20 bg-slate-900 px-5 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-slate-800"
                     >
                       ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ
@@ -160,7 +165,7 @@ export default function TaxServicesOverviewPage() {
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{card.body}</p>
                 <Link
-                  to={card.href}
+                  to={taxBrandHref(card.href)}
                   className="mt-4 inline-flex h-11 items-center justify-center rounded-lg border border-slate-900/20 bg-slate-900 px-5 text-xs font-bold uppercase tracking-[0.12em] text-white transition hover:bg-slate-800"
                 >
                   ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ

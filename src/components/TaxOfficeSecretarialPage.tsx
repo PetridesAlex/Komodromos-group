@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { taxBrandHref } from '../lib/brandPaths'
 import { motion, useReducedMotion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import {
@@ -183,7 +184,7 @@ export default function TaxOfficeSecretarialPage() {
               transition={{ duration: 0.65, ease: EASE, delay: 0.08 }}
             >
               <nav className="taxnex-regco-hero__crumbs" aria-label="Breadcrumb">
-                <Link to="/services/tax" className="taxnex-regco-hero__crumb">
+                <Link to={taxBrandHref('/services/tax')} className="taxnex-regco-hero__crumb">
                   TaxNex Cyprus
                 </Link>
                 <span className="taxnex-regco-hero__crumb-sep" aria-hidden>
@@ -205,7 +206,7 @@ export default function TaxOfficeSecretarialPage() {
                 >
                   {titles.secureCta}
                 </Link>
-                <Link className="taxnex-btn taxnex-btn--ghost taxnex-btn--lg taxnex-regco-hero__back" to="/services/tax">
+                <Link className="taxnex-btn taxnex-btn--ghost taxnex-btn--lg taxnex-regco-hero__back" to={taxBrandHref('/services/tax')}>
                   {titles.backCta}
                 </Link>
               </div>
@@ -463,7 +464,7 @@ export default function TaxOfficeSecretarialPage() {
               >
                 {titles.primaryCta}
               </Link>
-              <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to="/services/tax">
+              <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {titles.backCta}
               </Link>
             </motion.div>

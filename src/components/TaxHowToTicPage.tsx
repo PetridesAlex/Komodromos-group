@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { taxBrandHref } from '../lib/brandPaths'
 import { motion, useReducedMotion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import { getTaxNexAddressLine } from '../data/taxNexPageContent'
@@ -50,7 +51,7 @@ export default function TaxHowToTicPage() {
           <div className="taxnex-page-hero__bg" aria-hidden />
           <div className="container taxnex-page-hero__inner">
             <nav className="taxnex-page-hero__crumbs" aria-label="Breadcrumb">
-              <Link to="/services/tax" className="taxnex-page-hero__crumb">
+              <Link to={taxBrandHref('/services/tax')} className="taxnex-page-hero__crumb">
                 {titles.breadcrumbParent}
               </Link>
               <span className="taxnex-page-hero__crumb-sep" aria-hidden>
@@ -84,7 +85,7 @@ export default function TaxHowToTicPage() {
               <a className="taxnex-btn taxnex-btn--primary taxnex-btn--lg" href={TAX_FOR_ALL_URL} target="_blank" rel="noopener noreferrer">
                 {titles.portalCta}
               </a>
-              <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to="/services/tax">
+              <Link className="taxnex-btn taxnex-btn--outline taxnex-btn--lg" to={taxBrandHref('/services/tax')}>
                 {titles.backCta}
               </Link>
             </motion.div>
