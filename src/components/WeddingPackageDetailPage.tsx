@@ -48,44 +48,55 @@ export default function WeddingPackageDetailPage() {
         servicesSectionHref={servicesSectionHref}
       />
 
-      <section className="wedding-package-detail-hero" data-hero-parallax-root>
-        <div className="wedding-package-detail-hero__bg" data-hero-parallax>
-          <img src={packageTier.image} alt="" loading="eager" decoding="async" />
-          <div className="wedding-package-detail-hero__scrim" aria-hidden />
-        </div>
+      <section className="wedding-package-detail-hero">
+        <div className="wedding-package-detail-hero__bg" aria-hidden />
         <div className="container wedding-package-detail-hero__content">
-          <p className="wedding-package-detail-hero__eyebrow">
-            Wedding package {String(packageTier.sortOrder).padStart(2, '0')}
-          </p>
+          <div className="wedding-package-detail-hero__kicker">
+            <span className="wedding-package-detail-hero__eyebrow">
+              Wedding package {String(packageTier.sortOrder).padStart(2, '0')}
+            </span>
+            <span className="wedding-package-detail-hero__rule" aria-hidden />
+          </div>
+
           <h1 className="wedding-package-detail-hero__title">
             {longContent ? longContent.title : packageTier.name}
           </h1>
+
           {longContent ? (
             <p className="wedding-package-detail-hero__subtitle">{longContent.subtitle}</p>
           ) : null}
+
           <p className="wedding-package-detail-hero__title-el" lang="el">
             {packageTier.nameEl}
           </p>
-          <p className="wedding-package-detail-hero__price">
-            {longContent ? longContent.priceDisplay : packageTier.priceDisplay}
-          </p>
-          <p className="wedding-package-detail-hero__summary">{detail.summary}</p>
-          <p className="wedding-package-detail-hero__summary-el" lang="el">
-            {detail.summaryEl}
-          </p>
+
+          <div className="wedding-package-detail-hero__price-row">
+            <p className="wedding-package-detail-hero__price">
+              {longContent ? longContent.priceDisplay : packageTier.priceDisplay}
+            </p>
+            <span className="wedding-package-detail-hero__price-note">Investment from</span>
+          </div>
+
+          <div className="wedding-package-detail-hero__copy">
+            <p className="wedding-package-detail-hero__summary">{detail.summary}</p>
+            <p className="wedding-package-detail-hero__summary-el" lang="el">
+              {detail.summaryEl}
+            </p>
+          </div>
+
           <div className="wedding-package-detail-hero__actions">
             <Link
               to="/contact"
               state={{ serviceInterest: 'Wedding Services', weddingPackage: packageTier.name }}
               className="wedding-package-detail-hero__action wedding-package-detail-hero__action--primary"
             >
-              Book consultation
+              <span>Book consultation</span>
             </Link>
             <Link
               to={weddingBrandHref('/services/wedding#wedding-packages-heading')}
               className="wedding-package-detail-hero__action wedding-package-detail-hero__action--ghost"
             >
-              Back to packages
+              <span>Back to packages</span>
             </Link>
           </div>
         </div>

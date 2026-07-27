@@ -561,7 +561,7 @@ export default function WeddingServicesPage() {
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 <h3 className="wedding-about__subhead">{card.title}</h3>
-                {card.tagline ? (
+                {'tagline' in card && card.tagline ? (
                   <p className="wedding-about__tagline">{card.tagline}</p>
                 ) : null}
                 <p className="wedding-about__copy">{card.copy}</p>
