@@ -29811,60 +29811,83 @@ a.action {
   }
 }
 
+/* ── Wedding highlight tiles: premium white + strong blue ── */
+
 .wedding-highlight-tiles {
+  --ws-ink: #07111f;
+  --ws-blue: #1a5bb8;
+  --ws-blue-bright: #3f7fff;
+  --ws-blue-deep: #0d3d8a;
+  --ws-soft: #e8f1ff;
+  --ws-line: rgba(40, 110, 210, 0.18);
   position: relative;
-  padding-bottom: clamp(0.5rem, 2vw, 1rem);
+  padding: clamp(3.75rem, 8vw, 6.25rem) 0;
+  border-top: 1px solid var(--ws-line);
+  background:
+    radial-gradient(ellipse 70% 45% at 85% 0%, rgba(63, 127, 255, 0.12) 0%, transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f4f8ff 48%, #ffffff 100%);
 }
 
 .wedding-highlight-tiles .container {
-  width: min(1440px, 96%);
+  width: min(1240px, 94%);
 }
 
 .wedding-highlight-tiles__head {
-  max-width: 44rem;
-  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+  max-width: 40rem;
+  margin: 0 auto clamp(2.25rem, 4.5vw, 3.25rem);
+  text-align: center;
 }
 
 .wedding-highlight-tiles__eyebrow {
+  margin: 0 0 0.7rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(165, 200, 232, 0.9);
-  margin: 0 0 0.65rem;
+  color: var(--ws-blue-bright);
 }
 
 .wedding-highlight-tiles__h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  line-height: 1.2;
-  color: rgba(255, 255, 255, 0.96);
   margin: 0 0 0.85rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.95rem, 4.2vw, 2.85rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  color: var(--ws-ink);
+}
+
+.wedding-highlight-tiles__rule {
+  display: block;
+  width: 3.25rem;
+  height: 2px;
+  margin: 0 auto 1.15rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #3f7fff 0%, #1a5bb8 100%);
+  box-shadow: 0 0 14px rgba(63, 127, 255, 0.35);
 }
 
 .wedding-highlight-tiles__intro {
+  margin: 0 0 0.65rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.62);
-  margin: 0 0 0.75rem;
+  font-size: clamp(0.94rem, 1.5vw, 1.04rem);
+  line-height: 1.78;
+  color: rgba(30, 55, 95, 0.72);
 }
 
 .wedding-highlight-tiles__intro-el {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.48);
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: rgba(45, 75, 120, 0.58);
 }
 
 .wedding-highlight-tiles__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(10px, 1.2vw, 14px);
+  gap: clamp(0.85rem, 1.8vw, 1.2rem);
 }
 
 @media (max-width: 1100px) {
@@ -29873,33 +29896,45 @@ a.action {
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 560px) {
   .wedding-highlight-tiles__grid {
     grid-template-columns: 1fr;
   }
 }
 
 .wedding-highlight-tiles__tile {
+  --tile-i: 0;
   position: relative;
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: inherit;
-  border-radius: 10px;
+  border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(165, 200, 232, 0.18);
-  background: linear-gradient(
-    165deg,
-    rgba(12, 18, 28, 0.92) 0%,
-    rgba(6, 10, 18, 0.98) 100%
-  );
+  border: 1px solid rgba(63, 127, 255, 0.2);
+  background: #ffffff;
+  box-shadow:
+    0 16px 40px rgba(25, 70, 150, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  animation: weddingHighlightIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(0.05s + (var(--tile-i) * 0.055s));
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.35s ease,
-    box-shadow 0.35s ease,
-    filter 0.35s ease;
-  will-change: transform;
-  animation: wedding-highlight-tile-float 7s ease-in-out infinite;
+    box-shadow 0.35s ease;
+}
+
+@keyframes weddingHighlightIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .wedding-highlight-tiles__tile::after {
@@ -29907,28 +29942,18 @@ a.action {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    116deg,
+    115deg,
     transparent 0%,
-    rgba(165, 200, 232, 0.08) 40%,
-    rgba(200, 169, 106, 0.05) 56%,
-    transparent 78%
+    rgba(63, 127, 255, 0.12) 46%,
+    transparent 68%
   );
   opacity: 0;
-  transform: translateX(-40%);
+  transform: translateX(-50%);
   transition:
     opacity 0.4s ease,
     transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
-}
-
-@keyframes wedding-highlight-tile-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-2px);
-  }
+  z-index: 3;
 }
 
 article.wedding-highlight-tiles__tile {
@@ -29941,13 +29966,11 @@ article.wedding-highlight-tiles__tile {
 
 .wedding-highlight-tiles__tile:hover,
 .wedding-highlight-tiles__tile:focus-within {
-  transform: translateY(-8px);
-  border-color: rgba(200, 169, 106, 0.42);
+  transform: translate3d(0, -8px, 0);
+  border-color: rgba(63, 127, 255, 0.5);
   box-shadow:
-    0 24px 58px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(200, 169, 106, 0.12),
-    0 0 42px rgba(165, 200, 232, 0.12);
-  filter: saturate(1.04);
+    0 28px 60px rgba(25, 70, 150, 0.18),
+    0 0 0 1px rgba(63, 127, 255, 0.12);
 }
 
 .wedding-highlight-tiles__tile:hover::after,
@@ -29956,66 +29979,34 @@ article.wedding-highlight-tiles__tile {
   transform: translateX(0);
 }
 
-.wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__caption,
-.wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__caption {
-  border-top-color: rgba(200, 169, 106, 0.38);
-}
-
-.wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__caption::before,
-.wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__caption::before {
-  box-shadow: 0 0 28px rgba(200, 169, 106, 0.22);
-}
-
 .wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__media img,
 .wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__media img {
-  transform: scale(1.1) translateY(-2px);
+  transform: scale(1.08);
+}
+
+.wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__cta,
+.wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__cta {
+  color: #ffffff;
+  background: linear-gradient(145deg, #3f7fff 0%, #1a5bb8 100%);
+  border-color: transparent;
+  box-shadow: 0 10px 22px rgba(26, 91, 184, 0.3);
+}
+
+.wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__cta svg,
+.wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__cta svg {
+  transform: translate(2px, -2px);
 }
 
 .wedding-highlight-tiles__tile--link:focus-visible {
-  outline: 2px solid rgba(165, 200, 232, 0.95);
+  outline: 2px solid rgba(63, 127, 255, 0.9);
   outline-offset: 3px;
 }
 
 .wedding-highlight-tiles__media {
   position: relative;
-  aspect-ratio: 11 / 8;
-  min-height: clamp(290px, 34vw, 390px);
+  aspect-ratio: 5 / 4;
   overflow: hidden;
-  border-bottom: 1px solid rgba(200, 169, 106, 0.22);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.45);
-}
-
-.wedding-highlight-tiles__media::before {
-  content: '';
-  position: absolute;
-  inset: 10px;
-  border: 1px solid rgba(165, 200, 232, 0.26);
-  border-radius: 8px;
-  pointer-events: none;
-  z-index: 2;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
-    0 0 24px rgba(165, 200, 232, 0.08);
-}
-
-.wedding-highlight-tiles__media::after {
-  content: '';
-  position: absolute;
-  inset: 15px;
-  background:
-    linear-gradient(90deg, rgba(200, 169, 106, 0.75), rgba(200, 169, 106, 0.75)) top left / 30px 1px no-repeat,
-    linear-gradient(180deg, rgba(200, 169, 106, 0.75), rgba(200, 169, 106, 0.75)) top left / 1px 24px no-repeat,
-    linear-gradient(90deg, rgba(200, 169, 106, 0.75), rgba(200, 169, 106, 0.75)) top right / 30px 1px no-repeat,
-    linear-gradient(180deg, rgba(200, 169, 106, 0.75), rgba(200, 169, 106, 0.75)) top right / 1px 24px no-repeat,
-    linear-gradient(90deg, rgba(165, 200, 232, 0.68), rgba(165, 200, 232, 0.68)) bottom left / 30px 1px no-repeat,
-    linear-gradient(180deg, rgba(165, 200, 232, 0.68), rgba(165, 200, 232, 0.68)) bottom left / 1px 24px no-repeat,
-    linear-gradient(90deg, rgba(165, 200, 232, 0.68), rgba(165, 200, 232, 0.68)) bottom right / 30px 1px no-repeat,
-    linear-gradient(180deg, rgba(165, 200, 232, 0.68), rgba(165, 200, 232, 0.68)) bottom right / 1px 24px no-repeat;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.92;
+  background: #0d2a55;
 }
 
 .wedding-highlight-tiles__media img {
@@ -30023,22 +30014,7 @@ article.wedding-highlight-tiles__tile {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@media (max-width: 768px) {
-  .wedding-highlight-tiles__media {
-    aspect-ratio: 4 / 3;
-    min-height: 0;
-  }
-
-  .wedding-highlight-tiles__media::before {
-    inset: 8px;
-  }
-
-  .wedding-highlight-tiles__media::after {
-    inset: 11px;
-  }
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .wedding-highlight-tiles__scrim {
@@ -30046,10 +30022,33 @@ article.wedding-highlight-tiles__tile {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(2, 6, 12, 0.05) 0%,
-    rgba(2, 6, 12, 0.45) 100%
+    rgba(8, 28, 60, 0.05) 0%,
+    rgba(8, 28, 60, 0.2) 55%,
+    rgba(7, 17, 31, 0.55) 100%
   );
   pointer-events: none;
+}
+
+.wedding-highlight-tiles__index {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 20, 60, 0.45);
+  background: linear-gradient(145deg, rgba(63, 127, 255, 0.85) 0%, rgba(13, 61, 138, 0.9) 100%);
+  border: 1px solid rgba(190, 220, 255, 0.4);
+  border-radius: 999px;
+  min-width: 2.35rem;
+  height: 2.35rem;
+  display: grid;
+  place-items: center;
+  padding: 0 0.45rem;
+  box-shadow: 0 8px 20px rgba(10, 40, 100, 0.35);
 }
 
 .wedding-highlight-tiles__caption {
@@ -30057,41 +30056,22 @@ article.wedding-highlight-tiles__tile {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  padding: clamp(1.3rem, 2.9vw, 1.75rem) 1.15rem clamp(1.35rem, 2.9vw, 1.7rem) 1.45rem;
-  background:
-    linear-gradient(
-      165deg,
-      rgba(28, 22, 16, 0.55) 0%,
-      transparent 42%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(14, 12, 18, 0.98) 0%,
-      rgba(5, 7, 12, 0.995) 100%
-    );
-  border-top: 1px solid rgba(200, 169, 106, 0.28);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    inset -1px 0 0 rgba(0, 0, 0, 0.12),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  gap: 0.35rem;
+  padding: 1.2rem 1.2rem 1.3rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+  border-top: 1px solid rgba(63, 127, 255, 0.14);
 }
 
 .wedding-highlight-tiles__caption::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.95rem;
-  bottom: 0.95rem;
+  top: 0.9rem;
+  bottom: 0.9rem;
   width: 3px;
-  border-radius: 0 2px 2px 0;
-  background: linear-gradient(
-    180deg,
-    rgba(200, 169, 106, 0.95) 0%,
-    rgba(165, 200, 232, 0.45) 55%,
-    rgba(200, 169, 106, 0.35) 100%
-  );
-  box-shadow: 0 0 20px rgba(200, 169, 106, 0.12);
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #3f7fff 0%, #1a5bb8 100%);
+  opacity: 0.85;
   pointer-events: none;
 }
 
@@ -30100,85 +30080,86 @@ article.wedding-highlight-tiles__tile {
 }
 
 .wedding-highlight-tiles__kicker {
-  position: relative;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(0.72rem, 0.96vw, 0.84rem);
-  font-style: italic;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  padding-left: 0.65rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(170, 214, 252, 0.98);
-  text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.35),
-    0 0 20px rgba(165, 200, 232, 0.2);
-  margin: 0 0 clamp(1.15rem, 2.4vw, 1.55rem);
-  padding-bottom: clamp(1rem, 2.1vw, 1.35rem);
-  line-height: 1.35;
+  color: var(--ws-blue);
+  margin: 0 0 0.15rem;
 }
 
 .wedding-highlight-tiles__kicker::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(200, 169, 106, 0.65) 0%,
-    rgba(165, 200, 232, 0.32) 52%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  display: none;
 }
 
 .wedding-highlight-tiles__title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.8rem, 1.15vw, 0.95rem);
-  font-weight: 600;
-  letter-spacing: 0.025em;
-  line-height: 1.58;
-  color: rgba(255, 255, 255, 0.97);
-  margin: 0 0 clamp(0.45rem, 1vw, 0.65rem);
+  padding-left: 0.65rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.02rem, 1.6vw, 1.18rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--ws-ink);
+  margin: 0;
 }
 
 .wedding-highlight-tiles__title-el {
+  padding: 0.55rem 0 0 0.65rem;
+  margin: 0.35rem 0 0;
+  border-top: 1px solid rgba(63, 127, 255, 0.12);
+  background: none;
+  border-radius: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.74rem, 1vw, 0.84rem);
+  font-size: 0.78rem;
   font-weight: 500;
-  line-height: 1.62;
-  letter-spacing: 0.015em;
-  color: rgba(198, 214, 234, 0.72);
-  margin: clamp(1.35rem, 2.9vw, 1.85rem) 0 0;
-  padding: clamp(1.05rem, 2.1vw, 1.35rem) 0 0;
-  border-top: 1px solid rgba(200, 169, 106, 0.12);
-  background: linear-gradient(
-    180deg,
-    rgba(165, 200, 232, 0.04) 0%,
-    transparent 65%
-  );
-  border-radius: 0 0 2px 2px;
+  line-height: 1.55;
+  color: rgba(40, 70, 110, 0.65);
+}
+
+.wedding-highlight-tiles__cta {
+  align-self: flex-start;
+  margin: 0.75rem 0 0 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(63, 127, 255, 0.35);
+  background: rgba(63, 127, 255, 0.08);
+  color: var(--ws-blue-deep);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.wedding-highlight-tiles__cta svg {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .wedding-highlight-tiles__tile {
     animation: none;
+    opacity: 1;
+    transform: none;
   }
 
   .wedding-highlight-tiles__tile:hover,
   .wedding-highlight-tiles__tile:focus-within {
     transform: none;
-    filter: none;
   }
 
   .wedding-highlight-tiles__tile::after {
     transition: none;
-  }
-
-  .wedding-highlight-tiles__tile:hover::after,
-  .wedding-highlight-tiles__tile:focus-within::after {
-    opacity: 0;
-    transform: none;
   }
 
   .wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__media img,
