@@ -47,7 +47,6 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/wedding-sky.webp`,
     brandLogo: `${SVC_CARD_LOGO}/wedding-sky.png`,
     brandLogoBlend: 'lighten',
-    comingSoon: true,
     brandSlug: 'wedding',
   },
   {
