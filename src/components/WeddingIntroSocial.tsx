@@ -6,30 +6,30 @@ export default function WeddingIntroSocial() {
       <div className="wedding-intro-social__ambient" aria-hidden />
       <div className="container wedding-intro-social__shell">
         <header className="wedding-intro-social__header">
-          <div className="wedding-intro-social__header-text">
-            <p className="wedding-intro-social__eyebrow">The Wedding Sky standard</p>
-            <h2 id="wedding-intro-heading" className="wedding-intro-social__title">
-              Cyprus celebrations, composed with care
-            </h2>
-          </div>
+          <p className="wedding-intro-social__eyebrow">The Wedding Sky standard</p>
+          <h2 id="wedding-intro-heading" className="wedding-intro-social__title">
+            Cyprus celebrations, composed with care
+          </h2>
+          <span className="wedding-intro-social__rule" aria-hidden />
         </header>
 
         <div className="wedding-intro-social__body">
-          <div className="wedding-intro-social__column">
+          <article className="wedding-intro-social__column">
+            <p className="wedding-intro-social__lang">English</p>
             <p className="wedding-intro-social__lead">
               We choreograph celebrations that feel intentional — from first concept to the
               last guest departure — with teams who understand hospitality, timing, and the
               emotional cadence of a wedding week.
             </p>
-          </div>
-          <div className="wedding-intro-social__divider" aria-hidden />
-          <div className="wedding-intro-social__column wedding-intro-social__column--el">
+          </article>
+          <article className="wedding-intro-social__column wedding-intro-social__column--el">
+            <p className="wedding-intro-social__lang">Ελληνικά</p>
             <p className="wedding-intro-social__lead-el" lang="el">
               Οργανώνουμε γάμους με ακρίβεια και ζεστασιά — από την πρώτη ιδέα μέχρι το αντίο των
               καλεσμένων — με ομάδες που σέβονται τη φιλοξενία, το χρόνο και τη συγκίνηση μιας
               εβδομάδας γάμου.
             </p>
-          </div>
+          </article>
         </div>
 
         <div className="wedding-intro-social__connect">
