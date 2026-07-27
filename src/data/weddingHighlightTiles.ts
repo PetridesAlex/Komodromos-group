@@ -13,48 +13,50 @@ export type WeddingHighlightTile = {
   contact?: boolean
 }
 
+const TILE_IMG = '/images/services/wedding-highlights'
+
 export const weddingHighlightTiles: WeddingHighlightTile[] = [
   {
     id: 'cyprus-destinations',
     kicker: 'Destinations',
     title: 'Island-wide ceremonies & receptions',
     titleEl: 'Τελετές και δεξιώσεις σε όλη την Κύπρο',
-    image: '/images/services/companie-services-cover/wedding-sky.webp',
+    image: `${TILE_IMG}/destinations.webp`,
   },
   {
     id: 'planning',
     kicker: 'Planning',
     title: 'Concept, timeline & vendor orchestration',
     titleEl: 'Κονσεπτ, χρονοδιάγραμμα και συντονισμός συνεργατών',
-    image: '/images/services/vip-service/wedding-package.webp',
+    image: `${TILE_IMG}/planning.webp`,
   },
   {
     id: 'bridal-style',
     kicker: 'Style',
     title: 'Bridal couture & partner ateliers',
     titleEl: 'Νυφικό στυλ και συνεργαζόμενα ατελιέ',
-    image: '/images/services/companie-services-cover/Bridal.webp',
+    image: `${TILE_IMG}/bridal.webp`,
   },
   {
     id: 'production',
     kicker: 'Production',
     title: 'Venue design, lighting & run of show',
     titleEl: 'Χώρος, φωτισμός και ροή εκδήλωσης',
-    image: '/images/services/companie-services-cover/Jan-chapelle .webp',
+    image: `${TILE_IMG}/production.webp`,
   },
   {
     id: 'guests',
     kicker: 'Guests',
     title: 'Hospitality, travel cues & seating craft',
     titleEl: 'Φιλοξενία, μετακινήσεις και καθίσματα',
-    image: '/images/services/vip-service/Super-luxury.webp',
+    image: `${TILE_IMG}/guests.webp`,
   },
   {
     id: 'stories',
     kicker: 'Stories',
     title: 'Words from couples we walked beside',
     titleEl: 'Λόγια ζευγαριών που μας εμπιστεύτηκαν',
-    image: '/images/services/companie-services-cover/wedding-sky.webp',
+    image: `${TILE_IMG}/stories.webp`,
     hashHref: '#wedding-testimonials-heading',
   },
   {
@@ -62,7 +64,7 @@ export const weddingHighlightTiles: WeddingHighlightTile[] = [
     kicker: 'Packages',
     title: 'Tiers from essential to fully bespoke',
     titleEl: 'Επίπεδα από το βασικό έως το πλήρως προσαρμοσμένο',
-    image: '/images/services/vip-service/wedding-package.webp',
+    image: `${TILE_IMG}/packages.webp`,
     hashHref: '#wedding-packages-heading',
   },
   {
@@ -70,7 +72,7 @@ export const weddingHighlightTiles: WeddingHighlightTile[] = [
     kicker: 'Start',
     title: 'Book a private consultation',
     titleEl: 'Κλείστε ιδιωτική συνάντηση',
-    image: '/images/services/companie-services-cover/Bridal.webp',
+    image: `${TILE_IMG}/consultation.webp`,
     contact: true,
   },
 ]

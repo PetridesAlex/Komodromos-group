@@ -24,25 +24,27 @@ export default function WeddingPackagesSection() {
       aria-labelledby="wedding-packages-section-title"
     >
       <div className="container">
-        <p className="wedding-section__eyebrow">INVESTMENT LEVELS</p>
-        <h2 id="wedding-packages-section-title" className="wedding-section__title">
-          Wedding packages
-        </h2>
-        <p className="wedding-section__intro wedding-packages-section__intro">
-          Each tier reflects a different depth of planning, production, and on-site leadership.
-          Premium sits at the top of our fixed catalogue; Customised is quoted around your brief.
-        </p>
-        <p className="wedding-packages-section__intro-el" lang="el">
-          Κάθε επίπεδο αντιστοιχεί σε διαφορετικό βάθος σχεδιασμού και παραγωγής. Το Premium
-          βρίσκεται στην κορυφή του σταθερού καταλόγου· το Customised τιμολογείται ανάλογα με το
-          project σας.
-        </p>
+        <header className="wedding-section__head reveal">
+          <p className="wedding-section__eyebrow">INVESTMENT LEVELS</p>
+          <h2 id="wedding-packages-section-title" className="wedding-section__title">
+            Wedding packages
+          </h2>
+          <p className="wedding-section__intro wedding-packages-section__intro">
+            Each tier reflects a different depth of planning, production, and on-site leadership.
+            Premium sits at the top of our fixed catalogue; Customised is quoted around your brief.
+          </p>
+          <p className="wedding-packages-section__intro-el" lang="el">
+            Κάθε επίπεδο αντιστοιχεί σε διαφορετικό βάθος σχεδιασμού και παραγωγής. Το Premium
+            βρίσκεται στην κορυφή του σταθερού καταλόγου· το Customised τιμολογείται ανάλογα με το
+            project σας.
+          </p>
+        </header>
         <div className="wedding-packages-section__grid">
-          {weddingPackages.map((pkg) => (
+          {weddingPackages.map((pkg, index) => (
             <article
               key={pkg.id}
               id={`wedding-package-${pkg.id}`}
-              className="wedding-packages-section__card wedding-packages-section__card--interactive"
+              className={`wedding-packages-section__card wedding-packages-section__card--interactive reveal reveal-delay-${Math.min((index % 4) + 1, 4)}`}
               role="link"
               tabIndex={0}
               onClick={() => openPackage(pkg.id)}

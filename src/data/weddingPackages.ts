@@ -18,7 +18,7 @@ export type WeddingPackageTier = {
 
 const PKG_IMG = '/images/services/wedding-packages'
 
-/** Placeholder art: swap files in public/images/services/wedding-packages/ per tier when ready. */
+/** Package card / detail hero imagery (distinct cover per tier). */
 export const weddingPackages: WeddingPackageTier[] = [
   {
     id: 'basic',

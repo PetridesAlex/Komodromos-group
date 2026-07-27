@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { UserCircle2 } from 'lucide-react'
+import { Mail, MapPin, Phone, UserCircle2 } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import WeddingIntroSocial from './WeddingIntroSocial'
@@ -18,12 +18,36 @@ const WHY_CHOOSE = [
 ] as const
 
 const WEDDING_OFFERINGS = [
-  { title: 'Full-service planning', desc: 'Timeline, vendors, and creative direction from first sketch to farewell.' },
-  { title: 'Venue & production', desc: 'Scenic Cyprus locations, staging, lighting, and flawless run-of-show.' },
-  { title: 'Guest experience', desc: 'Travel, hospitality, and seating crafted for every attendee.' },
-  { title: 'Styling & florals', desc: 'Cohesive palettes, florals, and detail styling for photography-ready moments.' },
-  { title: 'Destination weddings', desc: 'Local expertise and discreet coordination for international couples.' },
-  { title: 'Day-of coordination', desc: 'Calm leadership on the day so you can stay present and celebrate.' },
+  {
+    title: 'Full-service planning',
+    desc: 'Timeline, vendors, and creative direction from first sketch to farewell.',
+    image: '/images/services/wedding-highlights/planning.webp',
+  },
+  {
+    title: 'Venue & production',
+    desc: 'Scenic Cyprus locations, staging, lighting, and flawless run-of-show.',
+    image: '/images/services/wedding-highlights/production.webp',
+  },
+  {
+    title: 'Guest experience',
+    desc: 'Travel, hospitality, and seating crafted for every attendee.',
+    image: '/images/services/wedding-highlights/guests.webp',
+  },
+  {
+    title: 'Styling & florals',
+    desc: 'Cohesive palettes, florals, and detail styling for photography-ready moments.',
+    image: '/images/services/wedding-highlights/bridal.webp',
+  },
+  {
+    title: 'Destination weddings',
+    desc: 'Local expertise and discreet coordination for international couples.',
+    image: '/images/services/wedding-highlights/destinations.webp',
+  },
+  {
+    title: 'Day-of coordination',
+    desc: 'Calm leadership on the day so you can stay present and celebrate.',
+    image: '/images/services/wedding-highlights/consultation.webp',
+  },
 ] as const
 
 const TESTIMONIALS: { author: string; quote: string; lang?: string }[] = [
@@ -249,12 +273,12 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-pillars" aria-label="Wedding Sky services">
         <div className="container wedding-pillars__inner">
-          {WEDDING_PILLARS.map((pillar) =>
+          {WEDDING_PILLARS.map((pillar, index) =>
             'external' in pillar && pillar.external ? (
               <a
                 key={pillar.label}
                 href={pillar.href}
-                className="wedding-pillars__item"
+                className={`wedding-pillars__item reveal reveal-delay-${Math.min(index + 1, 4)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -264,7 +288,11 @@ export default function WeddingServicesPage() {
                 </span>
               </a>
             ) : (
-              <a key={pillar.label} href={pillar.href} className="wedding-pillars__item">
+              <a
+                key={pillar.label}
+                href={pillar.href}
+                className={`wedding-pillars__item reveal reveal-delay-${Math.min(index + 1, 4)}`}
+              >
                 <span className="wedding-pillars__label">{pillar.label}</span>
                 <span className="wedding-pillars__plus" aria-hidden>
                   +
@@ -279,7 +307,7 @@ export default function WeddingServicesPage() {
         href={WEDDING_YOUTUBE_CHANNEL}
         target="_blank"
         rel="noopener noreferrer"
-        className="wedding-tv-ad-bar"
+        className="wedding-tv-ad-bar reveal"
       >
         <span className="wedding-tv-ad-bar__shine" aria-hidden />
         <div className="container wedding-tv-ad-bar__inner">
@@ -313,7 +341,7 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-video-section">
         <div className="container">
-          <div className="wedding-video-frame">
+          <div className="wedding-video-frame reveal-scale">
             <div className="wedding-video-embed">
               <iframe
                 title="Wedding Sky — showcase video"
@@ -334,7 +362,7 @@ export default function WeddingServicesPage() {
         <div className="container">
           <button
             type="button"
-            className="wedding-knowledge-bar__trigger"
+            className="wedding-knowledge-bar__trigger reveal"
             onClick={() => setFaqOpen(true)}
           >
             <span className="wedding-knowledge-bar__line" aria-hidden />
@@ -402,7 +430,7 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-section wedding-services-block">
         <div className="container">
-          <header className="wedding-section__head">
+          <header className="wedding-section__head reveal">
             <p className="wedding-section__eyebrow">Wedding Sky</p>
             <h2 className="wedding-section__title">Our services</h2>
             <p className="wedding-section__intro wedding-services-block__intro">
@@ -413,12 +441,22 @@ export default function WeddingServicesPage() {
           </header>
           <div className="wedding-offerings">
             {WEDDING_OFFERINGS.map((item, index) => (
-              <article key={item.title} className="wedding-offering-card">
-                <span className="wedding-offering-card__index" aria-hidden>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <h3 className="wedding-offering-card__title">{item.title}</h3>
-                <p className="wedding-offering-card__desc">{item.desc}</p>
+              <article
+                key={item.title}
+                className={`wedding-offering-card reveal reveal-delay-${Math.min((index % 3) + 1, 3)}`}
+                style={{ ['--offer-i' as string]: String(index) }}
+              >
+                <div className="wedding-offering-card__media">
+                  <img src={item.image} alt="" loading="lazy" decoding="async" />
+                  <div className="wedding-offering-card__media-scrim" aria-hidden />
+                  <span className="wedding-offering-card__index" aria-hidden>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <div className="wedding-offering-card__body">
+                  <h3 className="wedding-offering-card__title">{item.title}</h3>
+                  <p className="wedding-offering-card__desc">{item.desc}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -427,7 +465,7 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-section wedding-why">
         <div className="container">
-          <header className="wedding-section__head">
+          <header className="wedding-section__head reveal">
             <p className="wedding-section__eyebrow">Our approach</p>
             <h2 className="wedding-section__title wedding-why__title">
               Why couples choose Wedding Sky
@@ -439,7 +477,10 @@ export default function WeddingServicesPage() {
           </header>
           <div className="wedding-why__grid">
             {WHY_CHOOSE.map((line, index) => (
-              <div key={line} className="wedding-why__card">
+              <div
+                key={line}
+                className={`wedding-why__card reveal reveal-delay-${Math.min(index + 1, 4)}`}
+              >
                 <span className="wedding-why__num" aria-hidden>
                   {String(index + 1).padStart(2, '0')}
                 </span>
@@ -452,19 +493,22 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-section wedding-testimonials" aria-labelledby="wedding-testimonials-heading">
         <div className="container">
-          <p className="wedding-section__eyebrow">Love stories</p>
-          <h2 id="wedding-testimonials-heading" className="wedding-section__title">
-            Testimonials
-          </h2>
-          <p className="wedding-section__intro wedding-testimonials__intro">
-            Kind words from couples who trusted Wedding Sky with their day.
-          </p>
+          <header className="wedding-section__head wedding-testimonials__head reveal">
+            <p className="wedding-section__eyebrow">Love stories</p>
+            <h2 id="wedding-testimonials-heading" className="wedding-section__title">
+              Testimonials
+            </h2>
+            <p className="wedding-section__intro wedding-testimonials__intro">
+              Kind words from couples who trusted Wedding Sky with their day.
+            </p>
+          </header>
           <div className="wedding-testimonials__grid">
-            {TESTIMONIALS.map((t) => (
+            {TESTIMONIALS.map((t, index) => (
               <blockquote
                 key={t.author}
-                className="wedding-testimonial"
+                className={`wedding-testimonial reveal reveal-delay-${Math.min(index + 1, 4)}`}
                 lang={t.lang}
+                style={{ ['--review-i' as string]: String(index) }}
               >
                 <div className="wedding-testimonial__header">
                   <div
@@ -494,7 +538,7 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-section wedding-about" id="wedding-about">
         <div className="container wedding-about__inner">
-          <header className="wedding-about__head">
+          <header className="wedding-about__head reveal">
             <p className="wedding-about__eyebrow">Wedding Sky</p>
             <h2 className="wedding-section__title wedding-about__page-title">About us</h2>
             <span className="wedding-about__rule" aria-hidden />
@@ -508,7 +552,7 @@ export default function WeddingServicesPage() {
             {WEDDING_ABOUT_CARDS.map((card, index) => (
               <article
                 key={card.title}
-                className={`wedding-about__card${
+                className={`wedding-about__card reveal reveal-delay-${Math.min(index + 1, 4)}${
                   'featured' in card && card.featured ? ' wedding-about__card--featured' : ''
                 }`}
                 style={{ ['--about-i' as string]: String(index) }}
@@ -525,7 +569,7 @@ export default function WeddingServicesPage() {
             ))}
           </div>
 
-          <div className="wedding-about__cta-wrap">
+          <div className="wedding-about__cta-wrap reveal">
             <Link to="/contact" className="wedding-about__cta">
               Start a conversation
             </Link>
@@ -535,15 +579,26 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-section wedding-visit" aria-labelledby="wedding-visit-heading">
         <div className="container wedding-visit__inner">
-          <h2 id="wedding-visit-heading" className="wedding-section__title">
-            Location &amp; contact
-          </h2>
-          <p className="wedding-section__intro wedding-visit__intro">
-            Visit us in Limassol or reach the Wedding Sky team directly.
-          </p>
+          <header className="wedding-section__head wedding-visit__head reveal">
+            <p className="wedding-section__eyebrow">Wedding Sky</p>
+            <h2 id="wedding-visit-heading" className="wedding-section__title">
+              Location &amp; contact
+            </h2>
+            <p className="wedding-section__intro wedding-visit__intro">
+              Visit us in Limassol or reach the Wedding Sky team directly.
+            </p>
+          </header>
           <div className="wedding-visit__grid">
-            <div className="wedding-visit__card">
-              <h3 className="wedding-visit__label">Address</h3>
+            <div
+              className="wedding-visit__card reveal reveal-delay-1"
+              style={{ ['--visit-i' as string]: '0' }}
+            >
+              <div className="wedding-visit__card-top">
+                <span className="wedding-visit__icon" aria-hidden>
+                  <MapPin size={20} strokeWidth={1.75} />
+                </span>
+                <h3 className="wedding-visit__label">Address</h3>
+              </div>
               <address className="wedding-visit__address">
                 John Kennedy Street, Iris House, 4th Floor, 440A
                 <br />
@@ -552,8 +607,16 @@ export default function WeddingServicesPage() {
                 Cyprus
               </address>
             </div>
-            <div className="wedding-visit__card">
-              <h3 className="wedding-visit__label">Telephone</h3>
+            <div
+              className="wedding-visit__card reveal reveal-delay-2"
+              style={{ ['--visit-i' as string]: '1' }}
+            >
+              <div className="wedding-visit__card-top">
+                <span className="wedding-visit__icon" aria-hidden>
+                  <Phone size={20} strokeWidth={1.75} />
+                </span>
+                <h3 className="wedding-visit__label">Telephone</h3>
+              </div>
               <ul className="wedding-visit__list">
                 <li>
                   <a href="tel:+35724333305">+357 24 333 305</a>
@@ -577,8 +640,16 @@ export default function WeddingServicesPage() {
                 </li>
               </ul>
             </div>
-            <div className="wedding-visit__card">
-              <h3 className="wedding-visit__label">E-mail</h3>
+            <div
+              className="wedding-visit__card reveal reveal-delay-3"
+              style={{ ['--visit-i' as string]: '2' }}
+            >
+              <div className="wedding-visit__card-top">
+                <span className="wedding-visit__icon" aria-hidden>
+                  <Mail size={20} strokeWidth={1.75} />
+                </span>
+                <h3 className="wedding-visit__label">E-mail</h3>
+              </div>
               <ul className="wedding-visit__list">
                 <li>
                   <a href="mailto:info@weddingskycy.com">info@weddingskycy.com</a>
@@ -591,7 +662,7 @@ export default function WeddingServicesPage() {
               </ul>
             </div>
           </div>
-          <div className="wedding-visit__map-wrap">
+          <div className="wedding-visit__map-wrap reveal reveal-delay-4">
             <iframe
               title="Wedding Sky — map"
               className="wedding-visit__map"
