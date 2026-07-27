@@ -6,7 +6,6 @@ export default function WeddingIntroSocial() {
       <div className="wedding-intro-social__ambient" aria-hidden />
       <div className="container wedding-intro-social__shell">
         <header className="wedding-intro-social__header">
-          <div className="wedding-intro-social__header-mark" aria-hidden />
           <div className="wedding-intro-social__header-text">
             <p className="wedding-intro-social__eyebrow">The Wedding Sky standard</p>
             <h2 id="wedding-intro-heading" className="wedding-intro-social__title">
