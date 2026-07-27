@@ -50,6 +50,31 @@ const TESTIMONIALS: { author: string; quote: string; lang?: string }[] = [
 const WEDDING_YOUTUBE_CHANNEL =
   'https://www.youtube.com/@weddingskybykomodromosgrou3234'
 
+const WEDDING_ABOUT_CARDS = [
+  {
+    title: 'Wedding Sky',
+    copy:
+      'Wedding Sky is a leading company providing luxury weddings and event planning services in Cyprus. Our initiative is based on our love for weddings, passion for creating spectacular affairs, creativity, and commitment to our beloved clientele.',
+  },
+  {
+    title: 'Our approach',
+    tagline: 'Precision. Warmth. Discretion.',
+    copy:
+      'We believe in clear timelines, honest counsel, and calm leadership on the day. Every celebration is built around your story — with vendors, venues, and production aligned to one coherent plan.',
+    featured: true,
+  },
+  {
+    title: 'Production & creative',
+    copy:
+      'From styling and florals to lighting and run-of-show, our producers and partners work to one standard: seamless execution so you can stay present with family and guests.',
+  },
+  {
+    title: 'Our team',
+    copy:
+      'Planners, coordinators, and specialists across Cyprus — supported by a trusted network of venues, artisans, and hospitality partners who share our commitment to quality.',
+  },
+] as const
+
 const WEDDING_PILLARS = [
   { label: 'Destination Weddings', href: '#wedding-packages-heading' },
   { label: 'Full-Service Planning', href: '#wedding-about' },
@@ -469,50 +494,35 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-section wedding-about" id="wedding-about">
         <div className="container wedding-about__inner">
-          <h2 className="wedding-section__title wedding-about__page-title">About us</h2>
+          <header className="wedding-about__head">
+            <p className="wedding-about__eyebrow">Wedding Sky</p>
+            <h2 className="wedding-section__title wedding-about__page-title">About us</h2>
+            <span className="wedding-about__rule" aria-hidden />
+            <p className="wedding-about__lead">
+              Luxury wedding planning in Cyprus — built on taste, precision, and care for every
+              couple we guide.
+            </p>
+          </header>
 
-          <div className="wedding-about__row">
-            <div className="wedding-about__block wedding-about__panel">
-              <h3 className="wedding-about__subhead">Wedding Sky</h3>
-              <p className="wedding-about__copy">
-                Wedding Sky is a leading company providing luxury weddings and event
-                planning services in Cyprus. Our initiative is based on our love for
-                weddings, passion for creating spectacular affairs, creativity, and
-                commitment to our beloved clientele.
-              </p>
-            </div>
-
-            <div className="wedding-about__block wedding-about__block--muted wedding-about__panel">
-              <h3 className="wedding-about__subhead">Our approach</h3>
-              <p className="wedding-about__tagline">
-                Precision. Warmth. Discretion.
-              </p>
-              <p className="wedding-about__copy">
-                We believe in clear timelines, honest counsel, and calm leadership on
-                the day. Every celebration is built around your story — with vendors,
-                venues, and production aligned to one coherent plan.
-              </p>
-            </div>
-          </div>
-
-          <div className="wedding-about__row">
-            <div className="wedding-about__block wedding-about__panel">
-              <h3 className="wedding-about__subhead">Production &amp; creative</h3>
-              <p className="wedding-about__copy">
-                From styling and florals to lighting and run-of-show, our producers and
-                partners work to one standard: seamless execution so you can stay
-                present with family and guests.
-              </p>
-            </div>
-
-            <div className="wedding-about__block wedding-about__panel">
-              <h3 className="wedding-about__subhead">Our team</h3>
-              <p className="wedding-about__copy">
-                Planners, coordinators, and specialists across Cyprus — supported by a
-                trusted network of venues, artisans, and hospitality partners who share
-                our commitment to quality.
-              </p>
-            </div>
+          <div className="wedding-about__grid">
+            {WEDDING_ABOUT_CARDS.map((card, index) => (
+              <article
+                key={card.title}
+                className={`wedding-about__card${
+                  'featured' in card && card.featured ? ' wedding-about__card--featured' : ''
+                }`}
+                style={{ ['--about-i' as string]: String(index) }}
+              >
+                <span className="wedding-about__card-index" aria-hidden>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 className="wedding-about__subhead">{card.title}</h3>
+                {card.tagline ? (
+                  <p className="wedding-about__tagline">{card.tagline}</p>
+                ) : null}
+                <p className="wedding-about__copy">{card.copy}</p>
+              </article>
+            ))}
           </div>
 
           <div className="wedding-about__cta-wrap">
