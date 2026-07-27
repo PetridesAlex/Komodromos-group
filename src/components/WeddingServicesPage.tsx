@@ -50,6 +50,13 @@ const TESTIMONIALS: { author: string; quote: string; lang?: string }[] = [
 const WEDDING_YOUTUBE_CHANNEL =
   'https://www.youtube.com/@weddingskybykomodromosgrou3234'
 
+const WEDDING_PILLARS = [
+  { label: 'Destination Weddings', href: '#wedding-packages-heading' },
+  { label: 'Full-Service Planning', href: '#wedding-about' },
+  { label: 'Styling & Production', href: '#wedding-packages-heading' },
+  { label: 'Films & Moments', href: WEDDING_YOUTUBE_CHANNEL, external: true },
+] as const
+
 const WEDDING_FAQ_ITEMS = [
   {
     title: '1. About My Special Event in Cyprus',
@@ -163,6 +170,86 @@ export default function WeddingServicesPage() {
         className={navScrolled ? 'topbar--scrolled' : undefined}
       />
 
+      <section className="wedding-hero" aria-labelledby="wedding-hero-heading" data-hero-parallax-root>
+        <div className="wedding-hero__layers" aria-hidden>
+          <div
+            className="wedding-hero__bg"
+            data-hero-parallax
+            style={{
+              backgroundImage:
+                'url(/images/services/companie-services-cover/wedding-sky.webp)',
+            }}
+          />
+          <div className="wedding-hero__vignette" />
+          <div className="wedding-hero__scrim" />
+          <div className="wedding-hero__grain" />
+        </div>
+
+        <div className="wedding-hero__frame">
+          <div className="wedding-hero__brand-block">
+            <p className="wedding-hero__located">Located in Cyprus</p>
+            <h1 id="wedding-hero-heading" className="wedding-hero__brand">
+              Wedding Sky
+            </h1>
+            <p className="wedding-hero__atelier">
+              Luxury Destination Wedding Planning Atelier
+            </p>
+          </div>
+
+          <div className="wedding-hero__footer-row">
+            <div className="wedding-hero__footer-copy">
+              <p className="wedding-hero__title">
+                Make your dream wedding come true
+              </p>
+              <p className="wedding-hero__lead">
+                From intimate vows to grand celebrations, we design refined experiences in
+                Cyprus — guided by taste, precision, and love stories that feel unmistakably
+                yours.
+              </p>
+            </div>
+            <div className="wedding-hero__meta">
+              <p className="wedding-hero__established">Komodromos Group</p>
+              <div className="wedding-hero__actions">
+                <a href="#wedding-packages-heading" className="wedding-hero__cta">
+                  Explore packages
+                </a>
+                <Link to="/contact" className="wedding-hero__cta wedding-hero__cta--ghost">
+                  Enquire
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="wedding-pillars" aria-label="Wedding Sky services">
+        <div className="container wedding-pillars__inner">
+          {WEDDING_PILLARS.map((pillar) =>
+            'external' in pillar && pillar.external ? (
+              <a
+                key={pillar.label}
+                href={pillar.href}
+                className="wedding-pillars__item"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="wedding-pillars__label">{pillar.label}</span>
+                <span className="wedding-pillars__plus" aria-hidden>
+                  +
+                </span>
+              </a>
+            ) : (
+              <a key={pillar.label} href={pillar.href} className="wedding-pillars__item">
+                <span className="wedding-pillars__label">{pillar.label}</span>
+                <span className="wedding-pillars__plus" aria-hidden>
+                  +
+                </span>
+              </a>
+            ),
+          )}
+        </div>
+      </section>
+
       <a
         href={WEDDING_YOUTUBE_CHANNEL}
         target="_blank"
@@ -195,41 +282,6 @@ export default function WeddingServicesPage() {
           </span>
         </div>
       </a>
-
-      <section className="wedding-hero" aria-labelledby="wedding-hero-heading" data-hero-parallax-root>
-        <div className="wedding-hero__layers" aria-hidden>
-          <div
-            className="wedding-hero__bg"
-            data-hero-parallax
-            style={{
-              backgroundImage:
-                'url(/images/services/companie-services-cover/wedding-sky.webp)',
-            }}
-          />
-          <div className="wedding-hero__vignette" />
-          <div className="wedding-hero__scrim" />
-          <div className="wedding-hero__grain" />
-        </div>
-        <div className="wedding-hero__accent-line" aria-hidden />
-        <div className="container wedding-hero__outer">
-          <div className="wedding-hero__inner">
-            <div className="wedding-hero__panel">
-              <p className="wedding-hero__eyebrow">
-                <span className="wedding-hero__eyebrow-mark" aria-hidden />
-                Wedding Sky
-              </p>
-              <h1 id="wedding-hero-heading" className="wedding-hero__title">
-                Make your dream wedding come true
-              </h1>
-              <p className="wedding-hero__lead">
-                From intimate vows to grand celebrations, we design refined experiences in
-                Cyprus — guided by taste, precision, and love stories that feel unmistakably
-                yours.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <WeddingIntroSocial />
       <WeddingHighlightTiles />
