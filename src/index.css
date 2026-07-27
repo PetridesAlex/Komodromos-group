@@ -25633,33 +25633,39 @@ a.action {
   position: relative;
   display: block;
   text-decoration: none;
-  color: #f0f0f0;
+  color: #f4f8ff;
   overflow: hidden;
   isolation: isolate;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(105deg, #1a1a1a 0%, #2a2a2a 48%, #1a1a1a 100%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(120, 180, 255, 0.28);
+  background:
+    radial-gradient(ellipse 80% 120% at 15% 50%, rgba(63, 127, 255, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 100% at 90% 40%, rgba(26, 91, 184, 0.4) 0%, transparent 50%),
+    linear-gradient(105deg, #071428 0%, #0d2f62 42%, #12408a 58%, #0a2348 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(170, 210, 255, 0.18),
+    0 10px 28px rgba(10, 40, 100, 0.28);
   transition:
     background 0.35s ease,
-    box-shadow 0.35s ease;
+    box-shadow 0.35s ease,
+    filter 0.35s ease;
 }
 
 .wedding-tv-ad-bar:hover {
-  background: linear-gradient(105deg, #202020 0%, #333 48%, #202020 100%);
+  filter: brightness(1.06);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 10px 28px rgba(0, 0, 0, 0.28);
+    inset 0 1px 0 rgba(190, 220, 255, 0.25),
+    0 14px 36px rgba(20, 70, 160, 0.35);
 }
 
 @supports not (
   (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
 ) {
   .wedding-tv-ad-bar {
-    background: linear-gradient(105deg, #1a1a1a 0%, #2a2a2a 48%, #1a1a1a 100%);
+    background: linear-gradient(105deg, #071428 0%, #0d2f62 48%, #071428 100%);
   }
 
   .wedding-tv-ad-bar:hover {
-    background: linear-gradient(105deg, #202020 0%, #333 48%, #202020 100%);
+    background: linear-gradient(105deg, #0a1c38 0%, #12408a 48%, #0a1c38 100%);
   }
 }
 
@@ -25669,9 +25675,9 @@ a.action {
   background: linear-gradient(
     105deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.04) 38%,
-    rgba(255, 255, 255, 0.14) 48%,
-    rgba(255, 255, 255, 0.04) 55%,
+    rgba(100, 170, 255, 0.12) 38%,
+    rgba(220, 238, 255, 0.28) 48%,
+    rgba(100, 170, 255, 0.12) 55%,
     transparent 62%
   );
   animation: weddingTvAdShine 4.2s ease-in-out infinite;
@@ -25703,38 +25709,33 @@ a.action {
 }
 
 .wedding-tv-ad-bar__copy {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  color: rgba(232, 244, 255, 0.94);
+  letter-spacing: 0.04em;
+  color: rgba(220, 236, 255, 0.96);
   text-align: center;
   max-width: 42rem;
   line-height: 1.45;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 14px rgba(0, 30, 80, 0.45);
 }
 
 .wedding-tv-ad-bar__cta {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.48rem 0.95rem;
+  padding: 0.52rem 1.05rem;
   border-radius: 999px;
-  font-size: 0.62rem;
+  font-size: 0.64rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #fff;
-  background: linear-gradient(
-    135deg,
-    #ff0033 0%,
-    #e6002e 40%,
-    #cc0026 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, #6fb0ff 0%, #3f7fff 40%, #1a5bb8 100%);
+  border: 1px solid rgba(190, 220, 255, 0.45);
   box-shadow:
-    0 2px 16px rgba(255, 0, 50, 0.45),
-    0 0 24px rgba(255, 40, 80, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    0 4px 18px rgba(30, 90, 200, 0.45),
+    0 0 24px rgba(63, 127, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -25745,9 +25746,9 @@ a.action {
   filter: brightness(1.08);
   transform: translateY(-1px);
   box-shadow:
-    0 4px 22px rgba(255, 0, 50, 0.55),
-    0 0 32px rgba(255, 60, 100, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 6px 24px rgba(30, 90, 200, 0.55),
+    0 0 32px rgba(90, 160, 255, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .wedding-tv-ad-bar__cta-yt {
@@ -29766,7 +29767,7 @@ a.action {
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.64rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--ws-blue-deep);
   border: 1px solid rgba(63, 127, 255, 0.28);
