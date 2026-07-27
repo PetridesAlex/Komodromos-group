@@ -26,9 +26,9 @@ export function useReveal() {
         })
       },
       {
-        threshold: [0.08, 0.16],
-        rootMargin: '0px 0px -6% 0px',
-      }
+        threshold: [0.06, 0.14],
+        rootMargin: '0px 0px -8% 0px',
+      },
     )
 
     const observeAll = () => {
@@ -39,11 +39,14 @@ export function useReveal() {
     }
 
     observeAll()
-    // Catch nested sections that paint a frame later
     const frame = window.requestAnimationFrame(observeAll)
+
+    const mutation = new MutationObserver(() => observeAll())
+    mutation.observe(root, { childList: true, subtree: true })
 
     return () => {
       window.cancelAnimationFrame(frame)
+      mutation.disconnect()
       observer.disconnect()
     }
   }, [])

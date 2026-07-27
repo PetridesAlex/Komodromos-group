@@ -15,11 +15,12 @@ type Props = {
 
 export default function YachtCard({ yacht, index, reduceMotion }: Props) {
   const stagger = reduceMotion ? 0 : Math.min(index * 0.055, 0.72)
+  const isFlagship = Boolean(yacht.featured)
 
   return (
     <MotionLink
       to={`/services/yacht-charters/${yacht.id}`}
-      className="yacht-card yacht-card--minimal"
+      className={`yacht-card yacht-card--minimal${isFlagship ? ' yacht-card--flagship' : ''}`}
       layout="position"
       initial={reduceMotion ? false : { opacity: 0, y: 42, scale: 0.96 }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
@@ -33,8 +34,8 @@ export default function YachtCard({ yacht, index, reduceMotion }: Props) {
         reduceMotion
           ? undefined
           : {
-              y: -6,
-              scale: 1.015,
+              y: isFlagship ? -4 : -6,
+              scale: isFlagship ? 1.008 : 1.015,
               transition: { type: 'spring', stiffness: 420, damping: 28 },
             }
       }
@@ -47,13 +48,32 @@ export default function YachtCard({ yacht, index, reduceMotion }: Props) {
           className="yacht-card__img"
           src={yacht.image}
           alt=""
-          width={800}
-          height={450}
-          loading="lazy"
+          width={isFlagship ? 1600 : 800}
+          height={isFlagship ? 900 : 450}
+          loading={index === 0 ? 'eager' : 'lazy'}
           decoding="async"
         />
+        {isFlagship ? (
+          <>
+            <div className="yacht-card__flagship-veil" aria-hidden />
+            <div className="yacht-card__flagship-frame" aria-hidden />
+            <div className="yacht-card__flagship-copy">
+              {yacht.featuredEyebrow ? (
+                <p className="yacht-card__flagship-eyebrow">{yacht.featuredEyebrow}</p>
+              ) : null}
+              <h3 className="yacht-card__name">{yacht.name}</h3>
+              {yacht.featuredMeta ? (
+                <p className="yacht-card__flagship-meta">{yacht.featuredMeta}</p>
+              ) : null}
+              <span className="yacht-card__flagship-cta">
+                Discover the experience
+                <span aria-hidden> →</span>
+              </span>
+            </div>
+          </>
+        ) : null}
       </div>
-      <h3 className="yacht-card__name">{yacht.name}</h3>
+      {isFlagship ? null : <h3 className="yacht-card__name">{yacht.name}</h3>}
     </MotionLink>
   )
 }

@@ -582,7 +582,7 @@ function buildDynamicRoutes(): SeoRouteEntry[] {
     routes.push(
       route({
         path: `/services/yacht-charters/onassis/${cat.id}`,
-        title: `Onassis — ${cat.title}`,
+        title: `Christina O — ${cat.title}`,
         description: cat.tagline.slice(0, 155),
         index: true,
         priority: 0.5,

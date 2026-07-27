@@ -36,6 +36,11 @@ export type YachtCharter = {
   durations: string[]
   /** When set, vessel detail page uses this rich copy and tables instead of generic defaults. */
   detailPage?: YachtDetailPageContent
+  /** Full-width flagship treatment in the fleet grid. */
+  featured?: boolean
+  /** Short line shown on the featured fleet card. */
+  featuredEyebrow?: string
+  featuredMeta?: string
 }
 
 /** Portfolio mirror — charter fleet names from diamantidesyachting.com/services/yacht-charter/ */
@@ -728,45 +733,50 @@ const CORAL_III: YachtCharter = {
   detailPage: CORAL_III_DETAIL,
 }
 
-/** Onassis — flagship charter (first card in the fleet). Cover asset lives in `yacht-cards/`. */
-const ONASSIS_IMAGE = img(`${YACHT_CARD_DIR}/Onassis.webp`)
+/** Christina O — flagship charter (first card in the fleet). */
+const ONASSIS_IMAGE = img(
+  '/images/services/maritime-services/Christina-O/cover/DJI_0935-2.webp',
+)
 
 const ONASSIS_DETAIL: YachtDetailPageContent = {
   paragraphs: [
-    'Onassis is our flagship charter yacht — a statement of scale and craftsmanship reserved for the most discerning guests. Expansive sun-drenched decks, an elegant light-filled saloon, and refined en-suite accommodation combine with a full professional crew to deliver a truly bespoke Mediterranean experience from Limassol.',
-    'Whether hosting a landmark celebration, a private principal escape, or an executive gathering at sea, Onassis pairs generous entertaining spaces with discreet, five-star service and fully tailored itineraries along the Cyprus coast and beyond.',
+    'Christina O is one of the most legendary superyachts ever created — originally owned by Aristotle Onassis and transformed into a floating palace of elegance, power and timeless sophistication.',
+    'She accommodates up to 34 overnight guests in 17 island-named staterooms, and up to 157 guests while at anchor for exclusive events. Charter from €750,000 per week, plus applicable expenses (APA & VAT where applicable).',
   ],
   charterRates: [
-    { label: 'Half day', value: 'On request' },
-    { label: 'Full day', value: 'On request' },
+    { label: 'Weekly', value: 'From €750,000' },
+    { label: 'Events at anchor', value: 'On request' },
     { label: 'Overnight', value: 'On request' },
-    { label: 'Weekly', value: 'On request' },
+    { label: 'Bespoke', value: 'On request' },
   ],
   vesselSpecs: [
-    { label: 'Accommodation', value: 'Multiple en-suite cabins + crew quarters' },
-    { label: 'Passengers', value: 'Up to 12' },
-    { label: 'Home port', value: 'Limassol Marina' },
+    { label: 'Accommodation', value: '17 luxurious staterooms' },
+    { label: 'Overnight guests', value: 'Up to 34' },
+    { label: 'Events at anchor', value: 'Up to 157' },
   ],
   ratesFootnote:
-    'Charter rates depend on season, itinerary, and provisioning. Ask us for a written quote covering crew, standard operational fuel where applicable, and any APA or catering preferences.',
+    'From €750,000 per week, plus applicable expenses (APA & VAT where applicable). Ask us for a written quote tailored to your itinerary and occasion.',
 }
 
 const ONASSIS: YachtCharter = {
   id: 'onassis',
-  name: 'Onassis',
+  name: 'Christina O',
   type: 'Motor Yacht',
   location: 'Limassol Marina',
-  guests: 12,
+  guests: 34,
   price4h: 'On request',
   price6h: 'On request',
-  priceFullDay: 'On request',
+  priceFullDay: 'From €750,000 / wk',
   image: ONASSIS_IMAGE,
   gallery: [ONASSIS_IMAGE],
   description:
-    'Onassis — flagship motor yacht charter for landmark celebrations, principal escapes, and executive hosting along the Cyprus coast.',
+    'Christina O — the legendary Onassis superyacht for private escapes, VIP celebrations and exclusive events. From €750,000 per week.',
   included: [...DEFAULT_INCLUDED],
-  durations: ['4 hours', '6 hours', 'Full day'],
+  durations: ['Weekly', 'Events', 'Bespoke'],
   detailPage: ONASSIS_DETAIL,
+  featured: true,
+  featuredEyebrow: 'Legendary flagship',
+  featuredMeta: '34 overnight guests · 17 suites · From €750,000 / week',
 }
 
 /** Resolved copy + tables for `/services/yacht-charters/:id` (falls back from fleet card fields). */
