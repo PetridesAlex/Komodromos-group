@@ -377,16 +377,21 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-section wedding-services-block">
         <div className="container">
-          <p className="wedding-section__eyebrow">Wedding Sky</p>
-          <h2 className="wedding-section__title">Our services</h2>
-          <p className="wedding-section__intro wedding-services-block__intro">
-            Planning, creative direction, and on-site production under one disciplined
-            structure — calibrated to your vision, traditions, and the experience you
-            want every guest to remember.
-          </p>
+          <header className="wedding-section__head">
+            <p className="wedding-section__eyebrow">Wedding Sky</p>
+            <h2 className="wedding-section__title">Our services</h2>
+            <p className="wedding-section__intro wedding-services-block__intro">
+              Planning, creative direction, and on-site production under one disciplined
+              structure — calibrated to your vision, traditions, and the experience you
+              want every guest to remember.
+            </p>
+          </header>
           <div className="wedding-offerings">
-            {WEDDING_OFFERINGS.map((item) => (
+            {WEDDING_OFFERINGS.map((item, index) => (
               <article key={item.title} className="wedding-offering-card">
+                <span className="wedding-offering-card__index" aria-hidden>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <h3 className="wedding-offering-card__title">{item.title}</h3>
                 <p className="wedding-offering-card__desc">{item.desc}</p>
               </article>
@@ -397,17 +402,22 @@ export default function WeddingServicesPage() {
 
       <section className="wedding-section wedding-why">
         <div className="container">
-          <p className="wedding-section__eyebrow">Our approach</p>
-          <h2 className="wedding-section__title wedding-why__title">
-            Why couples choose Wedding Sky
-          </h2>
-          <p className="wedding-section__intro wedding-why__intro">
-            Standards we apply to every mandate — whether your celebration is intimate or
-            full-scale.
-          </p>
+          <header className="wedding-section__head">
+            <p className="wedding-section__eyebrow">Our approach</p>
+            <h2 className="wedding-section__title wedding-why__title">
+              Why couples choose Wedding Sky
+            </h2>
+            <p className="wedding-section__intro wedding-why__intro">
+              Standards we apply to every mandate — whether your celebration is intimate or
+              full-scale.
+            </p>
+          </header>
           <div className="wedding-why__grid">
-            {WHY_CHOOSE.map((line) => (
+            {WHY_CHOOSE.map((line, index) => (
               <div key={line} className="wedding-why__card">
+                <span className="wedding-why__num" aria-hidden>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <p className="wedding-why__text">{line}</p>
               </div>
             ))}
