@@ -14,37 +14,6 @@ const christinaAsset = (folder: string, file: string) =>
   `${CHRISTINA_O_DIR}/${folder}/${encodeURIComponent(file)}`
 
 const EXTERIOR_IMAGES = [
-  "C-O-juin2018_244_stef-bravin.jpg",
-  "C-O-juin2018_243_stef-bravin.jpg",
-  "C-O-juin2018_242_stef-bravin.jpg",
-  "C-O-juin2018_240_stef-bravin.jpg",
-  "C-O-juin2018_239_stef-bravin.jpg",
-  "C-O-juin2018_238_stef-bravin.jpg",
-  "C-O-juin2018_154_stef-bravin.jpg",
-  "C-O-juin2018_146_stef-bravin.jpg",
-  "1955 05 22 in Monaco gettyimages-515257348-2048x2048.jpg",
-  "1956 03 Onassis in Ari's bar gettyimages-545942177-2048x2048.jpg",
-  "1956 Onassis by the pool note shine on metal gettyimages-545066665-2048x2048.jpg",
-  "1959 07 30 Delphi gettyimages-517256898-1024x1024.webp",
-  "1959 07 With Churchill's parrot   gettyimages-56209445-2048x2048 2.jpg",
-  "1959 3am wearing chinchilla offered by Onassis Maria leaves a party given for her at the Dorchester after her performance in Medea behind is Alexis Minottis the Director.jpg",
-  "1961 06 In the Hudson gettyimages-514901370-2048x2048.jpg",
-  "1961 06 Onassis in Lapis Lounge GettyImages-141568688.width-2560.jpg",
-  "1961 Callas lounge stage gettyimages-141568708-2048x2048.jpg",
-  "1968 10 18 On Skorpios dock with helicopter gettyimages-515542744-2048x2048.jpg",
-  "1968 10 21 Onassis wedding to Jackie on board.png",
-  "1968 11 13 Letter from Jackie to Lord Harlech David Ormsby-Gore (1).webp",
-  "1969 Onassis and Jackie 'heading to the Caribbean'_ (1).webp",
-  "Aristóteles Onassis (1).webp",
-  "CHRISTINA O history.jpg",
-  "Jackie in Lapis Lounge (1).webp",
-  "Liz Taylor Richard Burton on CHRISTINA O_LOW.jpg",
-  "Onassis family with car on Skorpios dock with Jackie's children JFK Junior and Caroline (1).webp",
-] as const
-
-const exteriorGallery = EXTERIOR_IMAGES.map((file) => christinaAsset('exterior', file))
-
-const HISTORY_IMAGES = [
   "CHRISTINA O aerial 1.jpg",
   "CHRISTINA O aerial Aft 2022.jpg",
   "CHRISTINA O aerial Aft.jpg",
@@ -83,6 +52,37 @@ const HISTORY_IMAGES = [
   "Sport tender and Hacker Craft.jpg",
   "Swimming pool.jpg",
   "View from Hackers.jpg",
+] as const
+
+const exteriorGallery = EXTERIOR_IMAGES.map((file) => christinaAsset('exterior', file))
+
+const HISTORY_IMAGES = [
+  "C-O-juin2018_244_stef-bravin.jpg",
+  "C-O-juin2018_243_stef-bravin.jpg",
+  "C-O-juin2018_242_stef-bravin.jpg",
+  "C-O-juin2018_240_stef-bravin.jpg",
+  "C-O-juin2018_239_stef-bravin.jpg",
+  "C-O-juin2018_238_stef-bravin.jpg",
+  "C-O-juin2018_154_stef-bravin.jpg",
+  "C-O-juin2018_146_stef-bravin.jpg",
+  "1955 05 22 in Monaco gettyimages-515257348-2048x2048.jpg",
+  "1956 03 Onassis in Ari's bar gettyimages-545942177-2048x2048.jpg",
+  "1956 Onassis by the pool note shine on metal gettyimages-545066665-2048x2048.jpg",
+  "1959 07 30 Delphi gettyimages-517256898-1024x1024.webp",
+  "1959 07 With Churchill's parrot   gettyimages-56209445-2048x2048 2.jpg",
+  "1959 3am wearing chinchilla offered by Onassis Maria leaves a party given for her at the Dorchester after her performance in Medea behind is Alexis Minottis the Director.jpg",
+  "1961 06 In the Hudson gettyimages-514901370-2048x2048.jpg",
+  "1961 06 Onassis in Lapis Lounge GettyImages-141568688.width-2560.jpg",
+  "1961 Callas lounge stage gettyimages-141568708-2048x2048.jpg",
+  "1968 10 18 On Skorpios dock with helicopter gettyimages-515542744-2048x2048.jpg",
+  "1968 10 21 Onassis wedding to Jackie on board.png",
+  "1968 11 13 Letter from Jackie to Lord Harlech David Ormsby-Gore (1).webp",
+  "1969 Onassis and Jackie 'heading to the Caribbean'_ (1).webp",
+  "Aristóteles Onassis (1).webp",
+  "CHRISTINA O history.jpg",
+  "Jackie in Lapis Lounge (1).webp",
+  "Liz Taylor Richard Burton on CHRISTINA O_LOW.jpg",
+  "Onassis family with car on Skorpios dock with Jackie's children JFK Junior and Caroline (1).webp",
 ] as const
 
 const historyGallery = HISTORY_IMAGES.map((file) => christinaAsset('History', file))
@@ -539,7 +539,7 @@ export const onassisCategories: OnassisCategory[] = [
     label: 'Overview',
     title: 'General Overview',
     tagline: 'Capacity, charter formats and what makes her extraordinary.',
-    cover: generalGallery[0],
+    cover: christinaAsset('GENERAL', 'CHRISTINA O pool.jpg'),
     paragraphs: [
       'Christina O accommodates up to 34 overnight guests in 17 luxurious staterooms, and up to 157 guests while at anchor for exclusive events — ideal for VIP celebrations, corporate receptions, weddings and private dinners.',
       'Charter from €750,000 per week, plus applicable expenses (APA & VAT where applicable). Every itinerary is tailored through a single concierge line — provisioning, catering, entertainment and transfers included in the planning.',
@@ -565,7 +565,7 @@ export const onassisCategories: OnassisCategory[] = [
     label: 'History',
     title: 'History & Provenance',
     tagline: 'From wartime frigate to the height of opulence.',
-    cover: christinaAsset('History', 'DJI_0851-3.jpg'),
+    cover: christinaAsset('History', 'CHRISTINA O history.jpg'),
     paragraphs: [
       'Built in 1943 as a Canadian Navy frigate, Christina O served during the Normandy Landings before Aristotle Onassis acquired her in 1952 and commissioned one of the most ambitious yacht transformations ever undertaken.',
       'Former King Farouk of Egypt famously described her as “the height of opulence.” For decades she was Onassis’ private residence at sea — later welcoming icons from Marilyn Monroe and Frank Sinatra to President Kennedy, Churchill, and Grace Kelly. Today she remains a living legend, including appearances in Netflix’s “The Crown”.',
