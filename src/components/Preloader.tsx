@@ -1,11 +1,20 @@
 import { useEffect, useState, useRef } from 'react'
+import { serviceCards } from '../data/serviceCards'
 
 /** New Komodromos Group brand mark (transparent blue emblem). */
 const BRAND_MARK = '/images/brand/komodromos-mark.png'
 
+/** Same portfolio as the Solutions dropdown — shown as a brief preload advertise reel. */
+const PRELOAD_SERVICES = serviceCards.map((card) => ({
+  eyebrow: card.eyebrow,
+  title: card.navTitle ?? card.title,
+}))
+
 export default function Preloader({ onDone }: { onDone: () => void }) {
   const [progress, setProgress] = useState(0)
   const [fadeOut, setFadeOut] = useState(false)
+  const [serviceIndex, setServiceIndex] = useState(0)
+  const [servicePhase, setServicePhase] = useState<'in' | 'out'>('in')
   const onDoneRef = useRef(onDone)
   onDoneRef.current = onDone
   const calledDone = useRef(false)
@@ -36,6 +45,47 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
 
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    if (PRELOAD_SERVICES.length === 0) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setServicePhase('in')
+      return
+    }
+
+    let cancelled = false
+    let index = 0
+    let timeoutId = 0
+    const startDelay = 700
+    const holdMs = 300
+    const outMs = 180
+
+    const schedule = (fn: () => void, ms: number) => {
+      timeoutId = window.setTimeout(() => {
+        if (!cancelled) fn()
+      }, ms)
+    }
+
+    const showNext = () => {
+      setServicePhase('in')
+      setServiceIndex(index)
+      schedule(() => {
+        setServicePhase('out')
+        schedule(() => {
+          index = (index + 1) % PRELOAD_SERVICES.length
+          showNext()
+        }, outMs)
+      }, holdMs)
+    }
+
+    schedule(showNext, startDelay)
+    return () => {
+      cancelled = true
+      window.clearTimeout(timeoutId)
+    }
+  }, [])
+
+  const activeService = PRELOAD_SERVICES[serviceIndex] ?? PRELOAD_SERVICES[0]
 
   return (
     <div className={`preloader ${fadeOut ? 'preloader-exit' : ''}`}>
@@ -85,14 +135,32 @@ export default function Preloader({ onDone }: { onDone: () => void }) {
           <span className="preloader-tagline__text">Premium Companies · Unified Standards</span>
           <span className="preloader-tagline__rule" aria-hidden />
         </p>
+
+        {activeService ? (
+          <div className="preloader-services" aria-hidden>
+            <p className="preloader-services__label">Group companies</p>
+            <div
+              key={serviceIndex}
+              className={`preloader-services__item preloader-services__item--${servicePhase}`}
+            >
+              <span className="preloader-services__eyebrow">{activeService.eyebrow}</span>
+              <span className="preloader-services__title">{activeService.title}</span>
+            </div>
+            <div className="preloader-services__dots">
+              {PRELOAD_SERVICES.map((service, i) => (
+                <span
+                  key={service.title}
+                  className={`preloader-services__dot${i === serviceIndex ? ' is-active' : ''}`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
 
       <div className="preloader-bar-wrap">
         <div className="preloader-bar">
-          <div
-            className="preloader-fill"
-            style={{ width: `${progress}%` }}
-          />
+          <div className="preloader-fill" style={{ width: `${progress}%` }} />
         </div>
         <span className="preloader-pct">{Math.round(progress)}%</span>
       </div>
