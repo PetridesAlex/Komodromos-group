@@ -2,21 +2,31 @@ import {
   ORGANIZATION_ADDRESS,
   ORGANIZATION_EMAIL,
   ORGANIZATION_PHONE,
-  SITE_NAME,
+  ORGANIZATION_SAME_AS,
   SITE_NAME_FULL,
   SITE_URL,
   absoluteUrl,
 } from './siteConfig'
+import { MAIN_LOGO } from '../data/mainLogo'
 
 export type JsonLd = Record<string, unknown> | Array<Record<string, unknown>>
 
+const LOGO_PATH = MAIN_LOGO.src
+
 export function organizationSchema(siteUrl: string = SITE_URL): Record<string, unknown> {
-  return {
+  const orgId = `${siteUrl.replace(/\/$/, '')}/#organization`
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': orgId,
     name: SITE_NAME_FULL,
-    url: siteUrl,
-    logo: absoluteUrl('/images/services/companie-services-cover/cards-logos-services/main-logo.png', siteUrl),
+    url: siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`,
+    logo: {
+      '@type': 'ImageObject',
+      url: absoluteUrl(LOGO_PATH, siteUrl),
+      width: MAIN_LOGO.width,
+      height: MAIN_LOGO.height,
+    },
     email: ORGANIZATION_EMAIL,
     telephone: ORGANIZATION_PHONE,
     address: {
@@ -25,20 +35,27 @@ export function organizationSchema(siteUrl: string = SITE_URL): Record<string, u
       addressCountry: ORGANIZATION_ADDRESS.country,
     },
   }
+
+  if (ORGANIZATION_SAME_AS.length > 0) {
+    schema.sameAs = ORGANIZATION_SAME_AS
+  }
+
+  return schema
 }
 
 export function websiteSchema(
   siteUrl: string = SITE_URL,
   siteName: string = SITE_NAME_FULL,
 ): Record<string, unknown> {
+  const base = siteUrl.replace(/\/$/, '')
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${base}/#website`,
     name: siteName,
-    url: siteUrl,
+    url: siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`,
     publisher: {
-      '@type': 'Organization',
-      name: SITE_NAME,
+      '@id': `${base}/#organization`,
     },
   }
 }
@@ -81,7 +98,7 @@ export function webPageSchema({
     isPartOf: {
       '@type': 'WebSite',
       name: siteName,
-      url: siteUrl,
+      url: siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`,
     },
   }
 }

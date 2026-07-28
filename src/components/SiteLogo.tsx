@@ -38,6 +38,11 @@ export default function SiteLogo({
     )
   }
 
+  const isHomeScrollTarget = scrollToId === 'home' && logoPathname === '/'
+  const linkTo = isHomeScrollTarget
+    ? { pathname: logoPathname }
+    : { pathname: logoPathname, hash: scrollToId }
+
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (location.pathname !== logoPathname) return
     e.preventDefault()
@@ -47,15 +52,13 @@ export default function SiteLogo({
         : 'smooth',
       block: 'start',
     })
-    window.history.replaceState(null, '', `${logoPathname}#${scrollToId}`)
+    // Keep homepage URL clean — never write `#home` into the address bar.
+    const nextUrl = isHomeScrollTarget ? logoPathname : `${logoPathname}#${scrollToId}`
+    window.history.replaceState(null, '', nextUrl)
   }
 
   return (
-    <Link
-      to={{ pathname: logoPathname, hash: scrollToId }}
-      className="logo"
-      onClick={handleLogoClick}
-    >
+    <Link to={linkTo} className="logo" onClick={handleLogoClick}>
       {logoImage}
     </Link>
   )

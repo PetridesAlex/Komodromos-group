@@ -29,6 +29,10 @@ export default function KomodromosGroupHomePage() {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const t = window.setTimeout(() => {
       el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+      // Legacy `/#home` — scroll then clean the URL so the address bar stays `/`.
+      if (id === 'home') {
+        window.history.replaceState(null, '', '/')
+      }
     }, 0)
     return () => window.clearTimeout(t)
   }, [location.pathname, location.hash])
@@ -38,7 +42,7 @@ export default function KomodromosGroupHomePage() {
       <SiteTopbar
         logoPathname="/"
         logoScrollToId="home"
-        homeHref="#home"
+        homeHref="/"
         servicesSectionHref="#services"
       />
 
@@ -187,7 +191,16 @@ export default function KomodromosGroupHomePage() {
                         {card.eyebrow}
                       </span>
                     </div>
-                    <img src={card.image} alt={card.title} className="service-img" />
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                      className="service-img"
+                      width={1536}
+                      height={1024}
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      {...(index < 2 ? { fetchPriority: 'high' as const } : {})}
+                    />
                     {card.comingSoon ? (
                       <div className="service-media__coming-soon" aria-hidden>
                         <div className="service-media__coming-soon-plaque">

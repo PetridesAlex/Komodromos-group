@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
 import { getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
@@ -12,7 +12,7 @@ import { GROUP_SITE_URL } from '../seo/domainRegistry'
 export type SiteTopbarProps = {
   logoPathname?: string
   logoScrollToId?: string
-  /** `#home` on group page, `/` on SSC */
+  /** `/` on group homepage (scrolls to hero without `#home`), `/` on other pages */
   homeHref: string
   /** `#services` / `#storage-options` / `/#storage-options` for dropdown trigger */
   servicesSectionHref: string
@@ -24,6 +24,16 @@ function isExternalHref(href: string): boolean {
   return href.startsWith('http://') || href.startsWith('https://')
 }
 
+function scrollToHomeHero() {
+  document.getElementById('home')?.scrollIntoView({
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ? 'auto'
+      : 'smooth',
+    block: 'start',
+  })
+  window.history.replaceState(null, '', '/')
+}
+
 function NavHome({
   href,
   onNavigate,
@@ -31,6 +41,8 @@ function NavHome({
   href: string
   onNavigate: () => void
 }) {
+  const location = useLocation()
+
   if (href.startsWith('#') || isExternalHref(href)) {
     return (
       <a href={href} onClick={onNavigate}>
@@ -38,8 +50,17 @@ function NavHome({
       </a>
     )
   }
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href === '/' && location.pathname === '/') {
+      e.preventDefault()
+      scrollToHomeHero()
+    }
+    onNavigate()
+  }
+
   return (
-    <Link to={href} onClick={onNavigate}>
+    <Link to={href} onClick={handleClick}>
       Overview
     </Link>
   )

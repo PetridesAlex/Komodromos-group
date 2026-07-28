@@ -4,8 +4,15 @@ import { GROUP_SITE_URL } from './domainRegistry'
 export const SITE_URL = GROUP_SITE_URL
 export const SITE_NAME = 'Komodromos Group'
 export const SITE_NAME_FULL = 'Komodromos Group of Companies'
+
+/** Homepage document title — used as-is (no site-name suffix). 57 characters. */
+export const HOMEPAGE_TITLE =
+  'Komodromos Group | Aviation, Property & Business Services'
+
+/** Default / homepage meta description — 150 characters. */
 export const DEFAULT_DESCRIPTION =
-  'Komodromos Group of Companies — premium services across aviation, VIP concierge, tax & accounting, property development, storage, weddings, and business consulting in Cyprus and internationally.'
+  'Komodromos Group of Companies delivers premium aviation, VIP concierge, tax, property development, storage, weddings and business solutions in Cyprus.'
+
 export const DEFAULT_OG_IMAGE = `${SITE_URL}${MAIN_LOGO.src}`
 export const ORGANIZATION_EMAIL = 'info@komodromosgroup.com'
 export const ORGANIZATION_PHONE = '+35724333305'
@@ -14,9 +21,18 @@ export const ORGANIZATION_ADDRESS = {
   country: 'CY',
 }
 
+/** Real social profile URLs only — omit placeholders. Empty until profiles are configured. */
+export const ORGANIZATION_SAME_AS: string[] = []
+
 export function formatPageTitle(pageTitle: string, brandName?: string): string {
   const siteLabel = brandName ?? SITE_NAME
-  if (pageTitle === SITE_NAME || pageTitle === SITE_NAME_FULL || pageTitle === brandName) {
+  if (
+    pageTitle === SITE_NAME ||
+    pageTitle === SITE_NAME_FULL ||
+    pageTitle === HOMEPAGE_TITLE ||
+    pageTitle === brandName
+  ) {
+    if (pageTitle === HOMEPAGE_TITLE) return HOMEPAGE_TITLE
     return brandName ?? SITE_NAME_FULL
   }
   return `${pageTitle} | ${siteLabel}`
@@ -24,7 +40,7 @@ export function formatPageTitle(pageTitle: string, brandName?: string): string {
 
 export function absoluteUrl(path: string, siteUrl: string = SITE_URL): string {
   const normalized = path.startsWith('/') ? path : `/${path}`
-  if (normalized === '/') return siteUrl
+  if (normalized === '/') return siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`
   return `${siteUrl}${normalized}`
 }
 

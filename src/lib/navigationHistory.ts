@@ -49,11 +49,14 @@ export function hasGroupReturnFlag(search: string): boolean {
   return new URLSearchParams(search).get(GROUP_RETURN_QUERY) === '1'
 }
 
-/** Cross-domain link back to the group hub without replaying the group boot splash. */
+/** Cross-domain link back to the group hub without replaying the group boot splash.
+ * Pass `home` (or omit) for a clean root URL with no hash; other values set `#services` / `#contact` etc. */
 export function buildGroupSiteReturnUrl(hash = 'home'): string {
   const url = new URL(`${GROUP_SITE_URL}/`)
   url.searchParams.set(GROUP_RETURN_QUERY, '1')
-  url.hash = hash
+  if (hash && hash !== 'home') {
+    url.hash = hash
+  }
   return url.toString()
 }
 

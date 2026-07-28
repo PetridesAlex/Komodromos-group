@@ -15,7 +15,7 @@ import { STORAGE_USEFUL_TIPS } from '../data/storageUsefulTipsContent'
 import { weddingPackages } from '../data/weddingPackages'
 import { yachtFleet } from '../data/yachtChartersData'
 import { onassisCategories } from '../data/onassisExperience'
-import { SITE_NAME_FULL } from './siteConfig'
+import { DEFAULT_DESCRIPTION, HOMEPAGE_TITLE } from './siteConfig'
 
 export type SeoRouteEntry = {
   path: string
@@ -47,9 +47,8 @@ function buildStaticRoutes(): SeoRouteEntry[] {
   const routes: SeoRouteEntry[] = [
     route({
       path: '/',
-      title: SITE_NAME_FULL,
-      description:
-        'Komodromos Group of Companies — aviation, VIP concierge, tax & accounting, property development, storage, weddings, and business consulting across Cyprus and internationally.',
+      title: HOMEPAGE_TITLE,
+      description: DEFAULT_DESCRIPTION,
       index: true,
       priority: 1,
       changefreq: 'weekly',
