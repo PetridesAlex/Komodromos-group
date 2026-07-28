@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
-import { getServiceBySlug } from '../data/serviceCards'
+import { getServiceBySlug, getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
 import { getServicePageContent } from '../data/servicePageSections'
 import {
   getStorageWhatsAppUrl,
@@ -18,6 +18,8 @@ import TaxNexCyprusPage from './TaxNexCyprusPage'
 import { Hero9 } from './hero-9'
 import NotFoundPage from './NotFoundPage'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { getPublicServiceCards, isServiceLinkableFromGroup } from '../lib/serviceMaintenance'
+import { prepareGlobalWingsEntryNavigation } from '../lib/gwEntryNavigation'
 import { useSiteContext } from '../seo/SiteContext'
 
 const VIP_DETAIL_HERO_IMAGE = '/images/services/vip-service/vip-hero.webp'
@@ -269,7 +271,7 @@ export default function ServiceDetailPage({
                   <img
                     className="service-detail-hero-bg__img"
                     src={VIP_DETAIL_HERO_IMAGE}
-                    alt=""
+                    alt={`${card.title} — VIP concierge lifestyle`}
                     width={1920}
                     height={1080}
                     decoding="async"
@@ -315,10 +317,66 @@ export default function ServiceDetailPage({
           {defaultContent && slug !== 'vip' ? (
             <ServiceDefaultSections content={defaultContent} serviceInterest={card.title} />
           ) : null}
+
+          <RelatedServicesSection currentSlug={slug} />
         </>
       )}
 
+      {slug === 'storage' || slug === 'tax' ? (
+        <RelatedServicesSection currentSlug={slug} />
+      ) : null}
+
       {slug === 'tax' ? null : <Footer />}
     </div>
+  )
+}
+
+function RelatedServicesSection({ currentSlug }: { currentSlug?: string }) {
+  const related = getPublicServiceCards()
+    .filter((card) => card.slug !== currentSlug && isServiceLinkableFromGroup(card.slug))
+    .slice(0, 6)
+
+  if (related.length === 0) return null
+
+  return (
+    <section className="section service-related" aria-labelledby="related-services-heading">
+      <div className="container">
+        <p className="eyebrow">Explore more</p>
+        <h2 id="related-services-heading">Related services</h2>
+        <p className="section-sub">Discover other Komodromos Group companies and solutions.</p>
+        <ul className="service-related__list">
+          {related.map((card) => {
+            const href = getServicePageHref(card.slug)
+            const label = card.navTitle ?? card.title
+            return (
+              <li key={card.slug}>
+                {isExternalServiceHref(card.slug) ? (
+                  <a
+                    href={href}
+                    className="service-related__link"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      if (card.slug === 'aviation') prepareGlobalWingsEntryNavigation()
+                    }}
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <Link
+                    to={href}
+                    className="service-related__link"
+                    onClick={() => {
+                      if (card.slug === 'aviation') prepareGlobalWingsEntryNavigation()
+                    }}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </section>
   )
 }

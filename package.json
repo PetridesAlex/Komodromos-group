@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "dev:api": "vercel dev",
-    "build": "tsx scripts/generate-sitemap.ts && tsc -b && vite build",
+    "build": "tsx scripts/generate-sitemap.ts && tsx scripts/generate-seo-head.ts && tsc -b && vite build",
     "seo:audit": "tsx scripts/seo-audit.ts",
+    "seo:head": "tsx scripts/generate-seo-head.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -123,6 +123,35 @@ export function contactPageSchema(siteUrl: string = SITE_URL): Record<string, un
   }
 }
 
+/** Service schema for top-level /services/{slug} hubs. */
+export function serviceSchema({
+  name,
+  description,
+  path,
+  siteUrl = SITE_URL,
+}: {
+  name: string
+  description: string
+  path: string
+  siteUrl?: string
+}): Record<string, unknown> {
+  const base = siteUrl.replace(/\/$/, '')
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    description,
+    url: absoluteUrl(path, siteUrl),
+    provider: {
+      '@id': `${base}/#organization`,
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Cyprus',
+    },
+  }
+}
+
 export function combineSchemas(...schemas: Array<Record<string, unknown>>): JsonLd {
   return schemas
 }

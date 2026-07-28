@@ -1,11 +1,14 @@
 import { rewrite } from '@vercel/functions'
 import { SEO_ALLOWLIST } from './src/seo/allowlist.generated'
+import { SEO_HEAD_META } from './src/seo/headMeta.generated'
+import { injectSeoHead } from './src/seo/injectSeoHead'
 import {
   brandPathToInternalPath,
   getBrandByHost,
   getBrandAllowlistPaths,
   getBrandRedirectUrl,
   getGroupToBrandRedirectUrl,
+  internalPathToBrandPath,
   isGroupHost,
   normalizeInternalPath,
 } from './src/seo/domainRegistry'
@@ -30,6 +33,7 @@ const STATIC_FILES = new Set([
   '/sitemap-janchapelle.xml',
   '/sitemap-wedding.xml',
   '/seo-allowlist.json',
+  '/seo-head.json',
   '/index.html',
 ])
 
@@ -52,7 +56,14 @@ function isAllowedPath(pathname: string, host: string): boolean {
   return SEO_ALLOWLIST.has(normalized)
 }
 
-export default function middleware(request: Request) {
+function wantsHtml(request: Request): boolean {
+  const accept = request.headers.get('accept') ?? ''
+  // Document navigations and crawlers typically include text/html
+  if (!accept || accept === '*/*') return true
+  return accept.includes('text/html')
+}
+
+export default async function middleware(request: Request) {
   const url = new URL(request.url)
   const host = url.hostname
   const normalized = normalizeInternalPath(url.pathname)
@@ -83,8 +94,45 @@ export default function middleware(request: Request) {
   if (!isAllowedPath(normalized, host)) {
     return rewrite(new URL('/index.html', request.url), { status: 404 })
   }
+
+  if (wantsHtml(request) && request.method === 'GET') {
+    const brand = getBrandByHost(host)
+    const internalPath = brand ? brandPathToInternalPath(normalized, brand) : normalized
+    const meta = SEO_HEAD_META[internalPath]
+
+    if (meta) {
+      let headMeta = meta
+      if (brand) {
+        const brandPath = internalPathToBrandPath(internalPath, brand)
+        const canonical =
+          brandPath === '/'
+            ? `https://${brand.host}/`
+            : `https://${brand.host}${brandPath}`
+        headMeta = { ...meta, canonical }
+      }
+
+      try {
+        const indexRes = await fetch(new URL('/index.html', request.url))
+        if (indexRes.ok) {
+          const html = await indexRes.text()
+          const patched = injectSeoHead(html, headMeta)
+          return new Response(patched, {
+            status: 200,
+            headers: {
+              'Content-Type': 'text/html; charset=utf-8',
+              'Cache-Control': 'public, max-age=0, must-revalidate',
+            },
+          })
+        }
+      } catch {
+        // Fall through to SPA rewrite
+      }
+    }
+  }
 }
 
 export const config = {
-  matcher: ['/((?!api|assets|images|favicon|robots\\.txt|sitemap|seo-allowlist\\.json).*)'],
+  matcher: [
+    '/((?!api|assets|images|favicon|robots\\.txt|sitemap|seo-allowlist\\.json|seo-head\\.json).*)',
+  ],
 }

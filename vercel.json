@@ -45,7 +45,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!api/|sitemap\\.xml|sitemap-.*\\.xml|robots\\.txt|seo-allowlist\\.json|assets/|images/|favicon\\.ico|favicon-.*\\.png|apple-touch-icon\\.png|android-chrome-.*\\.png|site\\.webmanifest).*)",
+      "source": "/((?!api/|sitemap\\.xml|sitemap-.*\\.xml|robots\\.txt|seo-allowlist\\.json|seo-head\\.json|assets/|images/|favicon\\.ico|favicon-.*\\.png|apple-touch-icon\\.png|android-chrome-.*\\.png|site\\.webmanifest).*)",
       "destination": "/index.html"
     }
   ]

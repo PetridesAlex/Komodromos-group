@@ -1,0 +1,891 @@
+{
+  "/": {
+    "title": "Komodromos Group | Aviation, Property & Business Services",
+    "description": "Komodromos Group of Companies delivers premium aviation, VIP concierge, tax, property development, storage, weddings and business solutions in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/contact": {
+    "title": "Contact Us | Komodromos Group",
+    "description": "Get in touch with Komodromos Group in Limassol, Cyprus. Phone, email, and enquiry form for aviation, VIP, tax, property, storage, and wedding services.",
+    "canonical": "https://www.komodromosgroup.com/contact",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/wedding": {
+    "title": "Wedding Sky Luxury Events Cyprus | Komodromos Group",
+    "description": "Wedding Sky luxury wedding planning in Cyprus — curated packages, venue coordination, and signature celebrations by the Komodromos Group of Companies.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/consulting": {
+    "title": "Business Consulting Advisory Cyprus | Komodromos Group",
+    "description": "Strategic business consulting in Cyprus from Komodromos Group — growth advisory, operations, corporate structuring, and tailored solutions for organisations.",
+    "canonical": "https://www.komodromosgroup.com/services/consulting",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool": {
+    "title": "Pool & Garden Services in Cyprus | Komodromos Group",
+    "description": "Blue Sky pool and garden services in Cyprus — construction, renovation, linings, landscaping, and premium outdoor living solutions by Komodromos Group.",
+    "canonical": "https://www.komodromosgroup.com/services/pool",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/aviation": {
+    "title": "Global Wings Aviation Agency Cyprus | Komodromos Group",
+    "description": "Global Wings aviation agency — pilot recruitment, airline crew, training, and cadet programmes worldwide. Premium aviation services by Komodromos Group.",
+    "canonical": "https://www.komodromosgroup.com/services/aviation",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/aviation/pilots": {
+    "title": "Global Wings Pilots Cyprus Services | Komodromos Group",
+    "description": "Experienced pilot recruitment and placement services for commercial and private aviation operators worldwide. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/aviation/pilots",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/aviation/airlines": {
+    "title": "Airline Services Cyprus Services | Komodromos Group",
+    "description": "Flight and cabin crew resourcing for airlines — flexible staffing solutions from Global Wings Ltd, Komodromos Group. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/aviation/airlines",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/aviation/jobs": {
+    "title": "Aviation Jobs Cyprus Services Premium | Komodromos Group",
+    "description": "Aviation career opportunities — pilot, cabin crew, and engineering roles sourced through Global Wings recruitment. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/aviation/jobs",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/aviation/trainings": {
+    "title": "Aviation Trainings Cyprus Services | Komodromos Group",
+    "description": "Professional aviation training programmes, certifications, and career development from Global Wings Ltd. Premium Komodromos Group service in Cyprus. Enquire for",
+    "canonical": "https://www.komodromosgroup.com/services/aviation/trainings",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/aviation/cadet-programme": {
+    "title": "Globalcadet Programme Cyprus Services | Komodromos Group",
+    "description": "Globalcadet pilot training pathway — structured cadet programme for aspiring commercial pilots through Global Wings. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/aviation/cadet-programme",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/aviation/contact": {
+    "title": "Global Wings Contact Cyprus Services | Komodromos Group",
+    "description": "Contact Global Wings Ltd for pilot recruitment, airline crew solutions, and aviation training enquiries. Premium Komodromos Group service in Cyprus. Enquire for",
+    "canonical": "https://www.komodromosgroup.com/services/aviation/contact",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/aviation/privacy": {
+    "title": "Privacy Policy Cyprus Services Premium | Komodromos Group",
+    "description": "Privacy policy for Global Wings Ltd — how we collect, use, and protect your personal information. Premium Komodromos Group service in Cyprus. Enquire for",
+    "canonical": "https://www.komodromosgroup.com/services/aviation/privacy",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/air": {
+    "title": "Private Jets & Light Aircraft Cyprus | Komodromos Group",
+    "description": "Charter private jets and light aircraft in Cyprus with Komodromos Group — premium air services, fleet options, and tailored flight experiences for VIP travel.",
+    "canonical": "https://www.komodromosgroup.com/services/air",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/air/private-jets": {
+    "title": "Private Jets Cyprus Services Premium | Komodromos Group",
+    "description": "Private jet charter and in-flight services — super-midsize to heavy jets for executive travel, board moves, and intercontinental missions. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/air/private-jets",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/air/light-aircraft": {
+    "title": "Light Aircraft Cyprus Services Premium | Komodromos Group",
+    "description": "Light aircraft charter, scenic tours, and discovery flights across Cyprus and the Mediterranean — flexible regional aviation. Premium Komodromos Group service",
+    "canonical": "https://www.komodromosgroup.com/services/air/light-aircraft",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/air/private-jets/fleet": {
+    "title": "Private Jet Fleet Cyprus Services | Komodromos Group",
+    "description": "Explore our private jet fleet — Challenger, Learjet, and long-range aircraft for charter missions across Cyprus and internationally. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/air/private-jets/fleet",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/air/light-aircraft/fleet": {
+    "title": "Light Aircraft Fleet Cyprus Services | Komodromos Group",
+    "description": "Light aircraft fleet for scenic routes, regional access, and pilot training — C-172 and DA42 platforms in Cyprus. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/air/light-aircraft/fleet",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/limousines-experiences": {
+    "title": "Limousine Hire & VIP Transfers Cyprus | Komodromos Group",
+    "description": "Premium limousine hire and chauffeur experiences in Cyprus — stretch limousines for weddings, events, and VIP transfers with Komodromos Group services.",
+    "canonical": "https://www.komodromosgroup.com/services/limousines-experiences",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/super-luxury-cars": {
+    "title": "Super Luxury Car Hire in Cyprus | Komodromos Group",
+    "description": "Super luxury car hire in Cyprus — Lamborghini, Porsche, Maserati, and Mercedes for VIP travel, events, and exclusive experiences with Komodromos Group.",
+    "canonical": "https://www.komodromosgroup.com/services/super-luxury-cars",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/fishing-scuba-diving": {
+    "title": "Fishing & Scuba Diving in Cyprus | Komodromos Group",
+    "description": "Fishing and scuba diving experiences in Cyprus — guided water adventures and VIP leisure activities arranged through Komodromos Group lifestyle services.",
+    "canonical": "https://www.komodromosgroup.com/services/fishing-scuba-diving",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/fishing-scuba-diving/scuba-diving": {
+    "title": "Scuba Diving Cyprus Services Premium | Komodromos Group",
+    "description": "Scuba diving in Ayia Napa and the legendary Zenobia shipwreck — private VIP diving experiences with Komodromos Group. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/fishing-scuba-diving/scuba-diving",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/fishing-scuba-diving/fishing": {
+    "title": "Fishing Cyprus Services Premium | Komodromos Group",
+    "description": "Authentic Cypriot fishing experiences with local fishermen — traditional and power boat trips on the Mediterranean with Komodromos Group. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/fishing-scuba-diving/fishing",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/super-luxury-cars/maserati-ghibli": {
+    "title": "Maserati Ghibli Luxury Package Cyprus | Komodromos Group",
+    "description": "Maserati Ghibli Luxury Package — Italian craftsmanship, refined elegance, and VIP chauffeur experiences across Cyprus and Greece with Komodromos VIP Services.",
+    "canonical": "https://www.komodromosgroup.com/services/super-luxury-cars/maserati-ghibli",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/super-luxury-cars/porsche-718-boxster-s": {
+    "title": "Porsche 718 Boxster S Cyprus Services | Komodromos Group",
+    "description": "Porsche 718 Boxster S — open-top sports car experiences for VIP travel across Cyprus and Greece with Komodromos VIP Services. Premium Komodromos Group service",
+    "canonical": "https://www.komodromosgroup.com/services/super-luxury-cars/porsche-718-boxster-s",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/super-luxury-cars/lamborghini-huracan": {
+    "title": "Lamborghini Huracán Cyprus Services | Komodromos Group",
+    "description": "Lamborghini Huracán with 700 HP performance package, Formula 1-inspired Inconel exhaust, and AWD — VIP supercar experiences across Cyprus and Greece. Premium",
+    "canonical": "https://www.komodromosgroup.com/services/super-luxury-cars/lamborghini-huracan",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/super-luxury-cars/lamborghini-urus": {
+    "title": "Lamborghini Urus Cyprus Services | Komodromos Group",
+    "description": "Lamborghini Urus Super SUV — twin-turbo V8 performance and luxury for VIP travel across Cyprus and Greece with Komodromos Group. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/super-luxury-cars/lamborghini-urus",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/super-luxury-cars/mercedes-s-class": {
+    "title": "Mercedes-Benz S-Class Cyprus Services | Komodromos Group",
+    "description": "Mercedes-Benz S-Class — flagship luxury saloon for executive and VIP travel across Cyprus and Greece with Komodromos Group. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/super-luxury-cars/mercedes-s-class",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/super-luxury-cars/porsche-911-carrera-4s-cabriolet": {
+    "title": "Porsche 911 Carrera 4S Cabriolet | Komodromos Group",
+    "description": "Porsche 911 Carrera 4S Cabriolet — ultimate open-top sports car experiences across Cyprus and Greece with Komodromos Group Luxury Car Rental. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/super-luxury-cars/porsche-911-carrera-4s-cabriolet",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/limousines-experiences/chrysler-300-super-stretch": {
+    "title": "Chrysler 300 Super Stretch Cyprus | Komodromos Group",
+    "description": "Chrysler 300 super stretch limousine — premium VIP ground transport for weddings, events, and corporate travel in Cyprus. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/limousines-experiences/chrysler-300-super-stretch",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/limousines-experiences/lincoln-30ft-stretched": {
+    "title": "Lincoln 30ft Stretched Limousine | Komodromos Group",
+    "description": "Lincoln 30ft stretched limousine — flagship VIP limousine experience for celebrations and executive transport in Cyprus. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/limousines-experiences/lincoln-30ft-stretched",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-security-protection": {
+    "title": "VIP Security & Close Protection | Komodromos Group",
+    "description": "VIP security and close protection in Cyprus — discreet professional security for executives, events, and private clients with Komodromos Group VIP services.",
+    "canonical": "https://www.komodromosgroup.com/services/vip-security-protection",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/casino-experiences": {
+    "title": "VIP Casino Experiences in Cyprus | Komodromos Group",
+    "description": "VIP casino experiences in Cyprus — exclusive gaming evenings, host arrangements, and lifestyle concierge support from Komodromos Group VIP lifestyle services.",
+    "canonical": "https://www.komodromosgroup.com/services/casino-experiences",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island": {
+    "title": "VIP Cyprus Island Tours & Travel | Komodromos Group",
+    "description": "Private VIP tours around Cyprus — curated island itineraries, chauffeured sightseeing, and premium day experiences with Komodromos Group concierge services.",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/yacht-charters": {
+    "title": "Yacht Charters & Christina O Cyprus | Komodromos Group",
+    "description": "Luxury yacht charters in Cyprus — motor yachts, coastal cruises, and flagship Christina O experiences arranged by Komodromos Group maritime concierge services.",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/how-to-get-a-tic": {
+    "title": "How to Get a TIC Cyprus Services | Komodromos Group",
+    "description": "Guide to obtaining a Tax Identification Code (TIC) in Cyprus — requirements, process, and support from Komodromos tax advisors. Premium Komodromos Group service",
+    "canonical": "https://www.komodromosgroup.com/services/tax/how-to-get-a-tic",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/tax-residence-certificate": {
+    "title": "Tax Residence Certificate Cyprus | Komodromos Group",
+    "description": "Cyprus tax residence certificate application support — documentation, eligibility, and advisory from Komodromos tax team. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/tax/tax-residence-certificate",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/non-dom-certificate": {
+    "title": "Non-Dom Certificate Cyprus Services | Komodromos Group",
+    "description": "Non-domiciled status certificate guidance for Cyprus — tax planning and application support from experienced advisors. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/tax/non-dom-certificate",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/tax-clearances": {
+    "title": "Tax Clearances Cyprus Services Premium | Komodromos Group",
+    "description": "Tax clearance certificates and compliance support in Cyprus — streamlined processing with Komodromos tax specialists. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/tax/tax-clearances",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/tax-payment-support": {
+    "title": "Tax Payment Support Cyprus Services | Komodromos Group",
+    "description": "Assistance with tax payments and settlements in Cyprus — guidance on deadlines, methods, and compliance. Premium Komodromos Group service in Cyprus. Enquire for",
+    "canonical": "https://www.komodromosgroup.com/services/tax/tax-payment-support",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/transfer-fees-calculator": {
+    "title": "Transfer Fees Calculator Cyprus | Komodromos Group",
+    "description": "Cyprus property transfer fee calculator — estimate stamp duties and transfer costs with Komodromos tax tools. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/tax/transfer-fees-calculator",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/income-tax-calculator": {
+    "title": "Income Tax Calculator Cyprus Services | Komodromos Group",
+    "description": "Cyprus income tax calculator — estimate personal tax liability with guidance from Komodromos tax advisors. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/tax/income-tax-calculator",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/taxisnet-application": {
+    "title": "TAXISnet Application Cyprus Services | Komodromos Group",
+    "description": "TAXISnet registration and application support for Cyprus tax portal access — setup assistance from Komodromos Group. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/tax/taxisnet-application",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/services": {
+    "title": "Tax Advisory Services Cyprus Services | Komodromos Group",
+    "description": "Full tax and accounting services in Cyprus — compliance, advisory, payroll, and corporate tax support from Nex Cyprus. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/tax/services",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/company-registration-cyprus": {
+    "title": "Company Registration Cyprus Cyprus | Komodromos Group",
+    "description": "Cyprus company formation and registration — incorporation, structuring, and ongoing compliance with Komodromos tax team. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/tax/company-registration-cyprus",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/tax/office-secretarial-services": {
+    "title": "Office & Secretarial Services Cyprus | Komodromos Group",
+    "description": "Corporate secretarial and office administration services in Cyprus — filings, registers, and governance support. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/tax/office-secretarial-services",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/astreal": {
+    "title": "Astreal Property Developers Cyprus | Komodromos Group",
+    "description": "Astreal Developers property development in Cyprus — residential and investment projects, buyer guidance, and premium real estate within Komodromos Group.",
+    "canonical": "https://www.komodromosgroup.com/services/astreal",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/astreal/about": {
+    "title": "About Astreal Developers Cyprus | Komodromos Group",
+    "description": "About Astreal Developers — vision, craftsmanship, and Mediterranean luxury living projects across Cyprus. Premium Komodromos Group service in Cyprus. Enquire",
+    "canonical": "https://www.komodromosgroup.com/services/astreal/about",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/astreal/invest-in-cyprus": {
+    "title": "Invest in Cyprus Cyprus Services | Komodromos Group",
+    "description": "Property investment in Cyprus with Astreal Developers — residency, yields, and premium developments guided by Komodromos Group. Premium Komodromos Group service",
+    "canonical": "https://www.komodromosgroup.com/services/astreal/invest-in-cyprus",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/astreal/our-services": {
+    "title": "Astreal Our Services Cyprus Services | Komodromos Group",
+    "description": "Astreal Developers services — design, construction, sales, and aftercare for luxury residential projects in Cyprus. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/astreal/our-services",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/unit-specifications": {
+    "title": "Storage Unit Specifications Cyprus | Komodromos Group",
+    "description": "Self-storage unit sizes and specifications in Cyprus — secure, climate-aware units from Storage2Rent, Komodromos Group. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/storage/unit-specifications",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/extra-services/man-with-van": {
+    "title": "Man with Van Cyprus Services Premium | Komodromos Group",
+    "description": "Man-with-van moving and delivery service for storage customers in Cyprus — flexible help with loading and transport. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/storage/extra-services/man-with-van",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip": {
+    "title": "VIP Concierge & Luxury Lifestyle | Komodromos Group",
+    "description": "VIP concierge and luxury lifestyle services in Cyprus — private travel, yachts, cars, security, casino nights, and bespoke itineraries from Komodromos Group.",
+    "canonical": "https://www.komodromosgroup.com/services/vip",
+    "ogImage": "https://www.komodromosgroup.com/images/services/vip-service/luxury-travel.webp",
+    "index": true
+  },
+  "/services/storage": {
+    "title": "Storage2Rent Self-Storage Cyprus | Komodromos Group",
+    "description": "Storage2Rent secure self-storage in Cyprus — flexible units, premium facilities, moving support, and tailored storage solutions for homes and businesses.",
+    "canonical": "https://www.komodromosgroup.com/services/storage",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/Storage-rent.webp",
+    "index": true
+  },
+  "/services/hr": {
+    "title": "HR Management & Talent Strategy | Komodromos Group",
+    "description": "Komodromos Group Human Resources Management in Cyprus — talent strategy, executive search, leadership development, and organisational culture with The Circle™.",
+    "canonical": "https://www.komodromosgroup.com/services/hr",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/11 The-circle.webp",
+    "index": true
+  },
+  "/services/tax": {
+    "title": "TaxNex Tax & Accounting in Cyprus | Komodromos Group",
+    "description": "TaxNex Cyprus tax and accounting services — company registration, tax residence, clearances, TAXISnet support, and corporate compliance with Komodromos Group.",
+    "canonical": "https://www.komodromosgroup.com/services/tax",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/tax.webp",
+    "index": true
+  },
+  "/services/janchapelle": {
+    "title": "Janchapelle Bridal Couture Cyprus | Komodromos Group",
+    "description": "Janchapelle bridal and couture in Cyprus — wedding dresses, styling appointments, and premium bridal experiences within Komodromos Group wedding services.",
+    "canonical": "https://www.komodromosgroup.com/services/janchapelle",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/Bridal.webp",
+    "index": true
+  },
+  "/services/adr-mediation": {
+    "title": "ADR Mediation Dispute Center Cyprus | Komodromos Group",
+    "description": "A.D.R Dispute Mediation Center in Cyprus — professional mediation, conflict resolution, and alternative dispute services within the Komodromos Group network.",
+    "canonical": "https://www.komodromosgroup.com/services/adr-mediation",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/justice-law.webp",
+    "index": true
+  },
+  "/services/wedding/packages/basic": {
+    "title": "Basic Wedding Package Cyprus Services | Komodromos Group",
+    "description": "Basic — Essential planning and coordination for an elegant Cyprus celebration.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/basic",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-basic.webp",
+    "index": true
+  },
+  "/services/wedding/packages/basic-plus": {
+    "title": "Basic Plus Wedding Package Cyprus | Komodromos Group",
+    "description": "Basic Plus — Expanded vendor access and styling support beyond the essentials.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/basic-plus",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-basic-plus.webp",
+    "index": true
+  },
+  "/services/wedding/packages/classic": {
+    "title": "Classic Wedding Package Cyprus Services | Komodromos Group",
+    "description": "Classic — Full creative direction with refined production and guest care.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/classic",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-classic.webp",
+    "index": true
+  },
+  "/services/wedding/packages/classic-plus": {
+    "title": "Classic Plus Wedding Package Cyprus | Komodromos Group",
+    "description": "Classic Plus — Premium staging, extended hours, and bespoke detail programming.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/classic-plus",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-classic-plus.webp",
+    "index": true
+  },
+  "/services/wedding/packages/premium": {
+    "title": "Premium Wedding Package Cyprus Services | Komodromos Group",
+    "description": "Premium — Our signature tier — maximum craft, discretion, and white-glove execution.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/premium",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-premium.webp",
+    "index": true
+  },
+  "/services/wedding/packages/customised": {
+    "title": "Customised Wedding Package Cyprus | Komodromos Group",
+    "description": "Customised — A fully tailored programme built around your vision and investment level.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/customised",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-customised.webp",
+    "index": true
+  },
+  "/services/pool/categories/overflow": {
+    "title": "Overflow Cyprus Services Premium | Komodromos Group",
+    "description": "Overflow — pool design and construction. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for tailored",
+    "canonical": "https://www.komodromosgroup.com/services/pool/categories/overflow",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/categories/skimmer": {
+    "title": "Skimmer Cyprus Services Premium | Komodromos Group",
+    "description": "Skimmer — pool design and construction. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for tailored",
+    "canonical": "https://www.komodromosgroup.com/services/pool/categories/skimmer",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/categories/infinity": {
+    "title": "Infinity Cyprus Services Premium | Komodromos Group",
+    "description": "Infinity — pool design and construction. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for tailored",
+    "canonical": "https://www.komodromosgroup.com/services/pool/categories/infinity",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/services/fountains": {
+    "title": "Fountains Cyprus Services Premium | Komodromos Group",
+    "description": "Fountains — pool renovation and garden services. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for",
+    "canonical": "https://www.komodromosgroup.com/services/pool/services/fountains",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/services/cooling-and-heating": {
+    "title": "Cooling and heating Cyprus Services | Komodromos Group",
+    "description": "Cooling and heating — pool renovation and garden services. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/pool/services/cooling-and-heating",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/services/swim-spas": {
+    "title": "Swim spas Cyprus Services Premium | Komodromos Group",
+    "description": "Swim spas — pool renovation and garden services. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for",
+    "canonical": "https://www.komodromosgroup.com/services/pool/services/swim-spas",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/services/bar-and-stools": {
+    "title": "Bar and stools Cyprus Services Premium | Komodromos Group",
+    "description": "Bar and stools — pool renovation and garden services. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/pool/services/bar-and-stools",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/services/service-and-maintenance": {
+    "title": "Service and maintenance Cyprus Services | Komodromos Group",
+    "description": "Service and maintenance — pool renovation and garden services. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/pool/services/service-and-maintenance",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/services/garden-services": {
+    "title": "Garden services Cyprus Services | Komodromos Group",
+    "description": "Garden services — pool renovation and garden services. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/pool/services/garden-services",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/linings/liners": {
+    "title": "Liners Cyprus Services Premium — pool lin | Komodromos Group",
+    "description": "Liners — pool internal linings and finishes. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for",
+    "canonical": "https://www.komodromosgroup.com/services/pool/linings/liners",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/pool/linings/mosaic-and-ceramic": {
+    "title": "Mosaic & ceramic Cyprus Services | Komodromos Group",
+    "description": "Mosaic & ceramic — pool internal linings and finishes. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/pool/linings/mosaic-and-ceramic",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/air/private-jets/fleet/challenger-604": {
+    "title": "Bombardier Challenger 604 / 605 | Komodromos Group",
+    "description": "Bombardier Challenger 604 / 605 — private jet charter. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/air/private-jets/fleet/challenger-604",
+    "ogImage": "https://www.komodromosgroup.com/images/services/vip-service/air-services/private-jet-bombardier/Bombardier-challenger%20.webp",
+    "index": true
+  },
+  "/services/air/private-jets/fleet/learjet-60-xr": {
+    "title": "Bombardier Learjet 60 XR Cyprus | Komodromos Group",
+    "description": "Bombardier Learjet 60 XR — private jet charter. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for",
+    "canonical": "https://www.komodromosgroup.com/services/air/private-jets/fleet/learjet-60-xr",
+    "ogImage": "https://www.komodromosgroup.com/images/services/vip-service/air-services/private-jet-bombardier-learjet-60-xr/on%20air.webp",
+    "index": true
+  },
+  "/services/air/private-jets/fleet/global-charter": {
+    "title": "World Cyprus Services Premium — air priva | Komodromos Group",
+    "description": "World — private jet charter. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for tailored air private",
+    "canonical": "https://www.komodromosgroup.com/services/air/private-jets/fleet/global-charter",
+    "ogImage": "https://www.komodromosgroup.com/images/services/vip-service/air-services/private-jet-world/world-5.webp",
+    "index": true
+  },
+  "/services/air/light-aircraft/fleet/regional-light": {
+    "title": "C-172 Cyprus Services Premium — air light | Komodromos Group",
+    "description": "C-172 — light aircraft charter. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for tailored air light",
+    "canonical": "https://www.komodromosgroup.com/services/air/light-aircraft/fleet/regional-light",
+    "ogImage": "https://www.komodromosgroup.com/images/services/vip-service/air-services/light-aircrafts/light-aircraft-1.webp",
+    "index": true
+  },
+  "/services/air/light-aircraft/fleet/scenic-tour": {
+    "title": "The DA42 Cyprus Services Premium | Komodromos Group",
+    "description": "The DA42 — light aircraft charter. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for tailored air",
+    "canonical": "https://www.komodromosgroup.com/services/air/light-aircraft/fleet/scenic-tour",
+    "ogImage": "https://www.komodromosgroup.com/images/services/vip-service/air-services/light-aircrafts-2/light-aircraft-19.webp",
+    "index": true
+  },
+  "/services/yacht-charters/onassis": {
+    "title": "Christina O Yacht Charter Cyprus | Komodromos Group",
+    "description": "Christina O — the legendary Onassis superyacht for private escapes, VIP celebrations and exclusive events. From €750,000 per week. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/onassis",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/Christina-O/cover/DJI_0935-2.webp",
+    "index": true
+  },
+  "/services/yacht-charters/princess-30m": {
+    "title": "Princess 30M Yacht Charter Cyprus | Komodromos Group",
+    "description": "Princess 30M — flagship-scale entertaining, extended passages, and full-service hospitality suitable for principal guests and bespoke itineraries from Lima",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/princess-30m",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Princess-30m.webp",
+    "index": true
+  },
+  "/services/yacht-charters/azimut-27-grande": {
+    "title": "Azimut 27 Grande Yacht Charter Cyprus | Komodromos Group",
+    "description": "Azimut 27 Grande — flagship-scale entertaining, extended passages, and full-service hospitality suitable for principal guests and bespoke itineraries from",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/azimut-27-grande",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Azimut-47-grande.webp",
+    "index": true
+  },
+  "/services/yacht-charters/princess-88": {
+    "title": "Princess 88 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Princess 88 — flagship-scale entertaining, extended passages, and full-service hospitality suitable for principal guests and bespoke itineraries from Limas",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/princess-88",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Princess-88.webp",
+    "index": true
+  },
+  "/services/yacht-charters/falcon-86": {
+    "title": "Falcon 86 Yacht Charter Cyprus Services | Komodromos Group",
+    "description": "Falcon 86 — flagship-scale entertaining, extended passages, and full-service hospitality suitable for principal guests and bespoke itineraries from Limasso",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/falcon-86",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Falcon-86.webp",
+    "index": true
+  },
+  "/services/yacht-charters/fairline-75": {
+    "title": "Fairline 75 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Fairline 75 — flagship-scale entertaining, extended passages, and full-service hospitality suitable for principal guests and bespoke itineraries from Limas",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/fairline-75",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Fairline-75.webp",
+    "index": true
+  },
+  "/services/yacht-charters/ferretti-69": {
+    "title": "Ferretti 69 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Ferretti 69 — refined flybridge motor yacht experience for private cruises, corporate hosting, and celebration charters with discreet crew coordination.",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/ferretti-69",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Ferretti-69.webp",
+    "index": true
+  },
+  "/services/yacht-charters/azimut-magellano-66": {
+    "title": "Azimut Magellano 66 Yacht Charter | Komodromos Group",
+    "description": "Azimut Magellano 66 — refined flybridge motor yacht experience for private cruises, corporate hosting, and celebration charters with discreet crew coordina",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/azimut-magellano-66",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Azimut-magellano-66.webp",
+    "index": true
+  },
+  "/services/yacht-charters/azimut-64": {
+    "title": "Azimut 64 Yacht Charter Cyprus Services | Komodromos Group",
+    "description": "Azimut 64 — refined flybridge motor yacht experience for private cruises, corporate hosting, and celebration charters with discreet crew coordination.",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/azimut-64",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Azimut-64.webp",
+    "index": true
+  },
+  "/services/yacht-charters/sunseeker-64": {
+    "title": "Sunseeker 64 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Sunseeker 64 — refined flybridge motor yacht experience for private cruises, corporate hosting, and celebration charters with discreet crew coordination.",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/sunseeker-64",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Sunseeker-64.webp",
+    "index": true
+  },
+  "/services/yacht-charters/princess-62": {
+    "title": "Princess 62 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Princess 62 — refined flybridge motor yacht experience for private cruises, corporate hosting, and celebration charters with discreet crew coordination.",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/princess-62",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Princess-62.webp",
+    "index": true
+  },
+  "/services/yacht-charters/sacs-strider-18": {
+    "title": "Sacs Strider 18 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Sacs Strider 18 — nimble day-cruiser format for coastal hops, swim stops, and flexible skippered charters tailored to your timetable. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/sacs-strider-18",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Sacs-strider-18.webp",
+    "index": true
+  },
+  "/services/yacht-charters/cranchi-fifty-8-fly": {
+    "title": "Cranchi Fifty 8 Fly Yacht Charter | Komodromos Group",
+    "description": "Cranchi Fifty 8 Fly — refined flybridge motor yacht experience for private cruises, corporate hosting, and celebration charters with discreet crew coordina",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/cranchi-fifty-8-fly",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Cranchi-fifty-8-Fly.webp",
+    "index": true
+  },
+  "/services/yacht-charters/ferretti-550": {
+    "title": "Ferretti 550 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Ferretti 550 — refined flybridge motor yacht experience for private cruises, corporate hosting, and celebration charters with discreet crew coordination.",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/ferretti-550",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Ferretti-550.webp",
+    "index": true
+  },
+  "/services/yacht-charters/beneteau-monte-carlo-50-fly": {
+    "title": "Beneteau Monte Carlo 50 Fly Yacht Charter | Komodromos Group",
+    "description": "Beneteau Monte Carlo 50 Fly — refined flybridge motor yacht experience for private cruises, corporate hosting, and celebration charters with discreet crew",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/beneteau-monte-carlo-50-fly",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Beneteau-monte-carlo-50-Fly.webp",
+    "index": true
+  },
+  "/services/yacht-charters/fairline-targa-48v": {
+    "title": "Fairline Targa 48V Yacht Charter | Komodromos Group",
+    "description": "Fairline Targa 48V — nimble day-cruiser format for coastal hops, swim stops, and flexible skippered charters tailored to your timetable. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/fairline-targa-48v",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Fairline-targa-48V.webp",
+    "index": true
+  },
+  "/services/yacht-charters/fairline-targa-48": {
+    "title": "Fairline Targa 48 Yacht Charter | Komodromos Group",
+    "description": "Fairline Targa 48 — nimble day-cruiser format for coastal hops, swim stops, and flexible skippered charters tailored to your timetable. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/fairline-targa-48",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Fairline-trarga-48.webp",
+    "index": true
+  },
+  "/services/yacht-charters/atlantis-47": {
+    "title": "Atlantis 47 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Atlantis 47 — nimble day-cruiser format for coastal hops, swim stops, and flexible skippered charters tailored to your timetable. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/atlantis-47",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Atlantis-47.webp",
+    "index": true
+  },
+  "/services/yacht-charters/searay-425": {
+    "title": "Searay 425 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Searay 425 — nimble day-cruiser format for coastal hops, swim stops, and flexible skippered charters tailored to your timetable. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/searay-425",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Searay-425.webp",
+    "index": true
+  },
+  "/services/yacht-charters/beneteau-monte-carlo-42": {
+    "title": "Beneteau Monte Carlo 42 Yacht Charter | Komodromos Group",
+    "description": "Beneteau Monte Carlo 42 — nimble day-cruiser format for coastal hops, swim stops, and flexible skippered charters tailored to your timetable. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/beneteau-monte-carlo-42",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Beneteau-monte-carlo-42.webp",
+    "index": true
+  },
+  "/services/yacht-charters/four-winns-378-vista": {
+    "title": "Four Winns 378 Vista Yacht Charter | Komodromos Group",
+    "description": "Four Winns 378 Vista — nimble day-cruiser format for coastal hops, swim stops, and flexible skippered charters tailored to your timetable. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/four-winns-378-vista",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Four-winns-378-Vista.webp",
+    "index": true
+  },
+  "/services/yacht-charters/luxury-sky-1": {
+    "title": "Luxury Sky 1 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Luxury Sky 1 — 25 m motor yacht in Protaras for up to 150 guests, crew of four, three cabins; charters from €1,100 (2h). Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/luxury-sky-1",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/luxury-sky-1/luxury-sky-11.webp",
+    "index": true
+  },
+  "/services/yacht-charters/luxury-sky-2": {
+    "title": "Luxury Sky 2 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Luxury Sky 2 — 21 m motor yacht in Protaras for up to 60 guests, crew of four, three cabins; charters from €600 (2h). Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/luxury-sky-2",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/luxury-sky-2/luxury-sky-25.webp",
+    "index": true
+  },
+  "/services/yacht-charters/luxury-sky-3": {
+    "title": "Luxury Sky 3 Yacht Charter Cyprus | Komodromos Group",
+    "description": "Luxury Sky 3 — 29 m motor yacht in Protaras for up to 150 guests, crew of four, four cabins; charters from €1,100 (2h). Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/luxury-sky-3",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/luxury-sky-3/luxury-sky-32.webp",
+    "index": true
+  },
+  "/services/yacht-charters/coral-iii": {
+    "title": "Coral III Yacht Charter Cyprus Services | Komodromos Group",
+    "description": "Coral III — premium coastal cruise charter for private groups and celebrations along the Cyprus coastline. Premium Komodromos Group service in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/coral-iii",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/yacht-cards/Coral-III/coral-cruise-3.jpeg",
+    "index": true
+  },
+  "/services/yacht-charters/onassis/exterior": {
+    "title": "Christina O — The Exterior Cyprus | Komodromos Group",
+    "description": "Sun decks, entertainment terraces and an unmistakable silhouette. Premium Komodromos Group service in Cyprus. Enquire for tailored yacht charters onassis",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/onassis/exterior",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/Christina-O/exterior/CHRISTINA%20O%20aerial%201.jpg",
+    "index": true
+  },
+  "/services/yacht-charters/onassis/general": {
+    "title": "Christina O — General Overview Cyprus | Komodromos Group",
+    "description": "Capacity, charter formats and what makes her extraordinary. Premium Komodromos Group service in Cyprus. Enquire for tailored yacht charters onassis general",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/onassis/general",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/Christina-O/GENERAL/CHRISTINA%20O%20pool.jpg",
+    "index": true
+  },
+  "/services/yacht-charters/onassis/history": {
+    "title": "Christina O — History & Provenance | Komodromos Group",
+    "description": "From wartime frigate to the height of opulence. Premium Komodromos Group service in Cyprus. Enquire for tailored yacht charters onassis history support in",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/onassis/history",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/Christina-O/History/CHRISTINA%20O%20history.jpg",
+    "index": true
+  },
+  "/services/yacht-charters/onassis/interior": {
+    "title": "Christina O — The Interior Cyprus | Komodromos Group",
+    "description": "Seventeen island-named suites and the legendary Ari’s Bar. Premium Komodromos Group service in Cyprus. Enquire for tailored yacht charters onassis interior",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/onassis/interior",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/Christina-O/Interior/Ari's%20bar%201.JPG",
+    "index": true
+  },
+  "/services/yacht-charters/onassis/lifestyle": {
+    "title": "Christina O — The Lifestyle Cyprus | Komodromos Group",
+    "description": "Celebrations, water toys and unforgettable evenings at sea. Premium Komodromos Group service in Cyprus. Enquire for tailored yacht charters onassis lifestyle",
+    "canonical": "https://www.komodromosgroup.com/services/yacht-charters/onassis/lifestyle",
+    "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/Christina-O/Lifestyle/C-O-juin2018_65_stef-bravin.jpg",
+    "index": true
+  },
+  "/services/storage/tips/business-items": {
+    "title": "Moving Away for University: Practical | Komodromos Group",
+    "description": "Starting university marks an exciting new chapter in life, bringing with it a sense of independence, opportunity, and new experiences. However, it also req",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/business-items",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/flexible-storage": {
+    "title": "Create a More Sustainable and Organised | Komodromos Group",
+    "description": "At Storage2Rent, we believe that a well-organised home can also contribute to a more sustainable way of life. Small changes to our daily habits can signifi",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/flexible-storage",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/tailored-plans": {
+    "title": "Flexible Storage Solutions for Students | Komodromos Group",
+    "description": "Student life brings exciting new experiences, but it often comes with limited living space. Whether you are moving away for university or temporarily retur",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/tailored-plans",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/clothes-long-term": {
+    "title": "How to Organise Your Wardrobe Effectively | Komodromos Group",
+    "description": "Many people assume they need more storage space when, in reality, they simply need better organisation. With a few practical steps, you can maximise your w",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/clothes-long-term",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/office-move": {
+    "title": "Smart Ways to Store Your Sports Equipment | Komodromos Group",
+    "description": "Sports equipment often represents a significant investment, both financially and personally. Whether you own bicycles, gym equipment, water sports gear, ra",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/office-move",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/home-space": {
+    "title": "Smart Tips for Safe and Efficient Storage | Komodromos Group",
+    "description": "Proper storage does more than simply save space. It helps protect your belongings, keeps your home organised, and makes it easier to find what you need whe",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/home-space",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/packing-furniture": {
+    "title": "Changing Seasons? How to Store Your | Komodromos Group",
+    "description": "A change of season is the perfect opportunity to organise your wardrobe and free up valuable space in your home. With the right storage methods, your cloth",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/packing-furniture",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/container-vs-warehouse": {
+    "title": "Moving Home? Temporary Storage Is the | Komodromos Group",
+    "description": "Moving can be a demanding and stressful process, particularly when your new home or office is not yet ready. In such situations, temporary storage provides",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/container-vs-warehouse",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/document-archives": {
+    "title": "Storage2Rent – Modern and Reliable | Komodromos Group",
+    "description": "At Storage2Rent, we provide secure, flexible, and professional storage solutions for both private individuals and businesses throughout Cyprus. Our mission",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/document-archives",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/renovation-storage": {
+    "title": "Reasons to Choose a Storage Unit | Komodromos Group",
+    "description": "As storage requirements continue to grow, more individuals and businesses are turning to professional storage solutions to create additional space and prot",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/renovation-storage",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/pallet-logistics": {
+    "title": "Things You Can Store in a Storage Unit | Komodromos Group",
+    "description": "Many people assume that storage units are only useful for storing furniture during a house move. In reality, modern storage solutions can accommodate almos",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/pallet-logistics",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/storage/tips/seasonal-inventory": {
+    "title": "Does Your New Apartment Lack Storage | Komodromos Group",
+    "description": "Retailers and hospitality businesses rotate summer and winter lines, event stock, and promotional materials. Off-site storage turns seasonal peaks into man",
+    "canonical": "https://www.komodromosgroup.com/services/storage/tips/seasonal-inventory",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/astreal/projects/astron": {
+    "title": "ASTRON Villas Cyprus Services Premium | Komodromos Group",
+    "description": "ASTRON 1 — two detached 3-bedroom villas in Kiti, Larnaca: 150 sqm internal, 351 sqm plots, private pools, south-facing design, minutes from the airport an",
+    "canonical": "https://www.komodromosgroup.com/services/astreal/projects/astron",
+    "ogImage": "https://www.komodromosgroup.com/images/services/Astreal-Developers/astron-project/astron-project-1.webp",
+    "index": true
+  },
+  "/services/astreal/projects/astron-nova": {
+    "title": "ASTRON NOVA Cyprus Services Premium | Komodromos Group",
+    "description": "Three ultra-luxurious contemporary residences in Kiti, Larnaca — 143 m² internal, 200 m² plots, south-facing design, optional pool & pergola. From €360,000",
+    "canonical": "https://www.komodromosgroup.com/services/astreal/projects/astron-nova",
+    "ogImage": "https://www.komodromosgroup.com/images/services/Astreal-Developers/astron-nova-project/astron-nova-project-1.webp",
+    "index": true
+  },
+  "/services/astreal/projects/coral": {
+    "title": "CORAL Cyprus Services Premium — astreal p | Komodromos Group",
+    "description": "Luxury residential development in Kiti — 300 sqm covered, 530 sqm land, private pool, jacuzzi, sauna, and south-facing architecture. By ASTREAL Developers,",
+    "canonical": "https://www.komodromosgroup.com/services/astreal/projects/coral",
+    "ogImage": "https://www.komodromosgroup.com/images/services/Astreal-Developers/island-studios/Island-studios-1.webp",
+    "index": true
+  },
+  "/services/astreal/projects/venus": {
+    "title": "VENUS Cyprus Services Premium — astreal p | Komodromos Group",
+    "description": "A distinguished private residence in Larnaca — refined European-inspired architecture, resort-style indoor and outdoor pools, generous ensuite bedrooms, an",
+    "canonical": "https://www.komodromosgroup.com/services/astreal/projects/venus",
+    "ogImage": "https://www.komodromosgroup.com/images/services/Astreal-Developers/Venus-project/venus-project-6.webp",
+    "index": true
+  },
+  "/services/astreal/projects/athenian-heritage-luxury-residence": {
+    "title": "ATHENIAN HERITAGE LUXURY RESIDENCE | Komodromos Group",
+    "description": "An exclusive ultra-luxury residential renovation in historic Athens — contemporary elegance with timeless Athenian character, premium finishes, and a compl",
+    "canonical": "https://www.komodromosgroup.com/services/astreal/projects/athenian-heritage-luxury-residence",
+    "ogImage": "https://www.komodromosgroup.com/images/services/Astreal-Developers/athenian-heritage-rennoavation-project/athenian-heritage-luxury-residence-3.webp",
+    "index": true
+  }
+}

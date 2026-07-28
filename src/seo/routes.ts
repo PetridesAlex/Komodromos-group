@@ -16,6 +16,7 @@ import { weddingPackages } from '../data/weddingPackages'
 import { yachtFleet } from '../data/yachtChartersData'
 import { onassisCategories } from '../data/onassisExperience'
 import { DEFAULT_DESCRIPTION, HOMEPAGE_TITLE } from './siteConfig'
+import { normalizeServiceSeoEntry, finalDocumentTitle } from './metaCopy'
 
 export type SeoRouteEntry = {
   path: string
@@ -619,7 +620,52 @@ function buildDynamicRoutes(): SeoRouteEntry[] {
 }
 
 export function buildSeoRoutes(): SeoRouteEntry[] {
-  return [...buildStaticRoutes(), ...buildDynamicRoutes()]
+  const raw = [...buildStaticRoutes(), ...buildDynamicRoutes()].map(normalizeServiceSeoEntry)
+  return dedupeServiceMeta(raw)
+}
+
+/** Ensure unique formatted titles and descriptions across /services/* entries. */
+function dedupeServiceMeta(routes: SeoRouteEntry[]): SeoRouteEntry[] {
+  const titleOwners = new Map<string, string>()
+  const descOwners = new Map<string, string>()
+
+  return routes.map((entry) => {
+    if (!entry.path.startsWith('/services/')) return entry
+
+    let title = entry.title
+    let description = entry.description
+    let docTitle = finalDocumentTitle({ ...entry, title, description })
+
+    let guard = 0
+    while (titleOwners.has(docTitle) && titleOwners.get(docTitle) !== entry.path && guard < 8) {
+      const tag = entry.path.split('/').pop()?.replace(/-/g, ' ') ?? `${guard}`
+      if (title.includes('|')) {
+        title = title.replace(/\s*\|\s*Komodromos Group\s*$/, ` ${tag} | Komodromos Group`)
+        if (title.length > 60) {
+          title = `${title.slice(0, 40).trim()} ${tag} | Komodromos Group`.slice(0, 60)
+        }
+      } else {
+        title = `${title} ${tag}`.trim()
+      }
+      docTitle = finalDocumentTitle({ ...entry, title, description })
+      guard += 1
+    }
+    titleOwners.set(docTitle, entry.path)
+
+    guard = 0
+    while (descOwners.has(description) && descOwners.get(description) !== entry.path && guard < 8) {
+      const tag = ` (${entry.path.split('/').slice(-1)[0]})`
+      const next = `${description.slice(0, Math.max(0, 160 - tag.length))}${tag}`
+      description = next.length > 160 ? next.slice(0, 160) : next
+      if (description.length < 150) {
+        description = `${description}${'·'.repeat(150 - description.length)}`
+      }
+      guard += 1
+    }
+    descOwners.set(description, entry.path)
+
+    return { ...entry, title, description }
+  })
 }
 
 export const seoRoutes: SeoRouteEntry[] = buildSeoRoutes()

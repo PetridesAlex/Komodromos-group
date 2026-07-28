@@ -2,9 +2,10 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { useLocation } from 'react-router-dom'
 import PageSeo, { type PageSeoProps } from './PageSeo'
 import { getSeoForPath } from './routes'
-import { breadcrumbSchema, combineSchemas, contactPageSchema, webPageSchema } from './schema'
+import { breadcrumbSchema, combineSchemas, contactPageSchema, serviceSchema, webPageSchema } from './schema'
 import { resolveInternalPath } from './domainRegistry'
 import { useSiteContext } from './SiteContext'
+import { SERVICE_HUB_SEO } from './metaCopy'
 
 export type SeoOverride = Partial<PageSeoProps>
 
@@ -36,6 +37,10 @@ export function usePageSeo(override: SeoOverride) {
     })
     return () => ctx.setOverride(null)
   }, [ctx, location.pathname, title, description, path, image, noindex, jsonLd])
+}
+
+function isServiceHubPath(path: string): boolean {
+  return Boolean(SERVICE_HUB_SEO[path])
 }
 
 function buildPageSchema(
@@ -70,10 +75,17 @@ function buildPageSchema(
         }
       }
     }
-    return combineSchemas(
+    const base = combineSchemas(
       webPageSchema({ title, description, path, siteUrl, siteName }),
       breadcrumbSchema(crumbs.slice(0, 4), siteUrl),
     )
+    if (isServiceHubPath(path)) {
+      return combineSchemas(
+        ...(Array.isArray(base) ? base : [base]),
+        serviceSchema({ name: title, description, path, siteUrl }),
+      )
+    }
+    return base
   }
 
   return webPageSchema({ title, description, path, siteUrl, siteName })

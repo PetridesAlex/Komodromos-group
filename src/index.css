@@ -16674,6 +16674,38 @@ a.contact-channel__value:focus-visible {
   margin: 0;
 }
 
+.service-related {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.service-related__list {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem 1.25rem;
+}
+
+.service-related__link {
+  display: inline-flex;
+  color: rgba(245, 230, 192, 0.92);
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.35);
+  padding-bottom: 0.15rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.service-related__link:hover,
+.service-related__link:focus-visible {
+  color: #fff;
+  border-color: rgba(245, 230, 192, 0.85);
+  outline: none;
+}
+
 /* VIP: full-viewport hero + dedicated art (`vip-hero.webp`) */
 .service-detail-hero--vip-full {
   --service-detail-topbar-h: 72px;

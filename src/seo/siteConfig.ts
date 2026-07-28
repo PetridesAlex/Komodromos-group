@@ -26,6 +26,7 @@ export const ORGANIZATION_SAME_AS: string[] = []
 
 export function formatPageTitle(pageTitle: string, brandName?: string): string {
   const siteLabel = brandName ?? SITE_NAME
+  const suffix = ` | ${siteLabel}`
   if (
     pageTitle === SITE_NAME ||
     pageTitle === SITE_NAME_FULL ||
@@ -35,7 +36,11 @@ export function formatPageTitle(pageTitle: string, brandName?: string): string {
     if (pageTitle === HOMEPAGE_TITLE) return HOMEPAGE_TITLE
     return brandName ?? SITE_NAME_FULL
   }
-  return `${pageTitle} | ${siteLabel}`
+  // Already a full document title (hub SEO / hand-tuned)
+  if (pageTitle.endsWith(suffix) || pageTitle.includes(' | ')) {
+    return pageTitle
+  }
+  return `${pageTitle}${suffix}`
 }
 
 export function absoluteUrl(path: string, siteUrl: string = SITE_URL): string {
