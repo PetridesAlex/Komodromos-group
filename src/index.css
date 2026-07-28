@@ -46127,7 +46127,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   display: block;
   width: fit-content;
   max-width: 100%;
-  margin: 1rem auto 0;
+  margin: 0.25rem auto 0;
   padding: 0.35rem 0.15rem;
   border: none;
   background: none;
@@ -46136,16 +46136,16 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: rgba(200, 220, 245, 0.88);
+  color: rgba(232, 214, 170, 0.78);
   text-decoration: underline;
-  text-decoration-color: rgba(74, 144, 226, 0.45);
+  text-decoration-color: rgba(212, 184, 130, 0.4);
   text-underline-offset: 0.25em;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .yacht-enquiry__terms:hover {
-  color: rgba(232, 240, 255, 0.98);
-  text-decoration-color: rgba(74, 144, 226, 0.85);
+  color: rgba(247, 241, 228, 0.98);
+  text-decoration-color: rgba(232, 214, 170, 0.85);
 }
 
 .yacht-terms-doc {
@@ -50179,101 +50179,281 @@ a.yacht-card {
   color: rgba(40, 52, 74, 0.9);
 }
 
+/* Shared section chrome for lower yacht bands */
+.yacht-section__head {
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.yacht-section__head--center {
+  text-align: center;
+}
+
+.yacht-section__eyebrow {
+  margin: 0 0 0.55rem;
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(212, 184, 130, 0.88);
+}
+
+.yacht-popular {
+  padding: clamp(3.25rem, 7vw, 5rem) 0;
+  background:
+    radial-gradient(70% 50% at 0% 0%, rgba(212, 184, 130, 0.08), transparent 55%),
+    linear-gradient(180deg, #060910 0%, #0a101c 100%);
+  border-top: 1px solid rgba(212, 184, 130, 0.12);
+}
+
 .yacht-popular__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.65rem;
-  max-width: 36rem;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .yacht-popular__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  .yacht-popular__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
 }
 
 .yacht-popular__item {
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  border-left: 3px solid color-mix(in srgb, var(--gold) 70%, transparent);
-  background: rgba(255, 255, 255, 0.03);
-  font-size: 0.9rem;
-  color: rgba(215, 225, 240, 0.92);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.35rem;
+  min-height: 8.5rem;
+  padding: 1.2rem 1.15rem 1.25rem;
+  border: 1px solid rgba(212, 184, 130, 0.22);
+  background:
+    linear-gradient(155deg, rgba(232, 214, 170, 0.08), transparent 42%),
+    rgba(12, 18, 32, 0.88);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+.yacht-popular__item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232, 214, 170, 0.45);
+  background:
+    linear-gradient(155deg, rgba(232, 214, 170, 0.14), transparent 44%),
+    #121a2c;
+}
+
+.yacht-popular__index {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: rgba(232, 214, 170, 0.78);
+}
+
+.yacht-popular__label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  color: #f7f1e4;
+}
+
+.yacht-events {
+  padding: clamp(2.75rem, 6vw, 4.25rem) 0;
+  background: linear-gradient(180deg, #0a101c 0%, #0c1424 100%);
 }
 
 .yacht-events__panel {
-  max-width: 48rem;
-  padding: 2rem 1.75rem;
-  border-radius: 18px;
-  background: linear-gradient(125deg, rgba(74, 144, 226, 0.1) 0%, rgba(12, 20, 40, 0.5) 100%);
-  border: 1px solid rgba(74, 144, 226, 0.25);
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  max-width: none;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  border: 1px solid rgba(212, 184, 130, 0.28);
+  background:
+    linear-gradient(125deg, rgba(212, 184, 130, 0.1) 0%, transparent 40%),
+    linear-gradient(180deg, rgba(16, 24, 42, 0.95), rgba(8, 12, 22, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 28px 60px rgba(0, 0, 0, 0.28);
+}
+
+@media (min-width: 860px) {
+  .yacht-events__panel {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+    align-items: end;
+  }
 }
 
 .yacht-events__title {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.65rem;
-  margin: 0 0 0.75rem;
+  font-size: clamp(1.85rem, 3.5vw, 2.55rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.9rem;
+  color: #fff;
 }
 
 .yacht-events__text {
   margin: 0;
+  max-width: 48ch;
   line-height: 1.75;
-  color: rgba(210, 220, 235, 0.9);
+  font-size: clamp(0.98rem, 1.3vw, 1.05rem);
+  color: rgba(220, 226, 236, 0.82);
+}
+
+.yacht-events__tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.yacht-events__tags li {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(212, 184, 130, 0.28);
+  background: rgba(232, 214, 170, 0.06);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240, 226, 196, 0.9);
+}
+
+.yacht-reviews {
+  padding: clamp(3.25rem, 7vw, 5rem) 0;
+  background:
+    radial-gradient(60% 45% at 100% 0%, rgba(143, 186, 255, 0.07), transparent 55%),
+    linear-gradient(180deg, #0c1424 0%, #080e18 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .yacht-reviews__grid {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
 @media (min-width: 768px) {
   .yacht-reviews__grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 }
 
 .yacht-reviews__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   margin: 0;
-  padding: 1.35rem 1.2rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 100%;
+  padding: 1.55rem 1.35rem 1.4rem;
+  border: 1px solid rgba(212, 184, 130, 0.2);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.05), transparent 42%),
+    rgba(10, 15, 28, 0.9);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.yacht-reviews__card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232, 214, 170, 0.38);
+}
+
+.yacht-reviews__mark {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3.2rem;
+  line-height: 0.7;
+  color: rgba(232, 214, 170, 0.55);
 }
 
 .yacht-reviews__quote {
-  font-size: 0.9rem;
-  line-height: 1.65;
+  flex: 1;
+  margin: 0 0 1.25rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.08rem, 1.6vw, 1.22rem);
   font-style: italic;
-  color: rgba(225, 230, 240, 0.92);
-  margin: 0 0 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: rgba(244, 239, 228, 0.94);
 }
 
 .yacht-reviews__foot {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(212, 184, 130, 0.18);
 }
 
 .yacht-reviews__name {
+  font-family: 'Outfit', system-ui, sans-serif;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 650;
   font-size: 0.82rem;
-  color: color-mix(in srgb, var(--gold) 75%, #fff);
+  letter-spacing: 0.04em;
+  color: #e8d6aa;
 }
 
 .yacht-reviews__ctx {
+  font-family: 'Outfit', system-ui, sans-serif;
   font-size: 0.72rem;
-  color: rgba(175, 190, 210, 0.75);
+  color: rgba(185, 198, 218, 0.72);
+}
+
+.yacht-faq {
+  padding: clamp(3.25rem, 7vw, 5rem) 0;
+  background: linear-gradient(180deg, #080e18 0%, #0a101c 100%);
+}
+
+.yacht-faq__inner {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+@media (min-width: 900px) {
+  .yacht-faq__inner {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: start;
+  }
+
+  .yacht-faq .yacht-section__head {
+    position: sticky;
+    top: 6.5rem;
+    margin-bottom: 0;
+  }
 }
 
 .yacht-faq__list {
-  max-width: 44rem;
+  max-width: none;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.75rem;
 }
 
 .yacht-faq__item {
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 184, 130, 0.18);
+  background: rgba(12, 18, 32, 0.88);
   overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.yacht-faq__item--open {
+  border-color: rgba(232, 214, 170, 0.4);
+  background: rgba(16, 24, 42, 0.96);
 }
 
 .yacht-faq__q {
@@ -50282,22 +50462,28 @@ a.yacht-card {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1.1rem;
+  padding: 1.15rem 1.25rem;
   background: transparent;
   border: none;
-  color: #f0f4f8;
+  color: #f4efe4;
   font-family: 'Outfit', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.98rem;
+  font-weight: 550;
   text-align: left;
   cursor: pointer;
 }
 
+.yacht-faq__q-text {
+  flex: 1;
+  min-width: 0;
+}
+
 .yacht-faq__icon {
   flex-shrink: 0;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-right: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid #e8d6aa;
+  border-bottom: 2px solid #e8d6aa;
   transform: rotate(45deg);
   transition: transform 0.3s ease;
 }
@@ -50314,43 +50500,62 @@ a.yacht-card {
 }
 
 .yacht-faq__item--open .yacht-faq__a-wrap {
-  max-height: 16rem;
+  max-height: 18rem;
   opacity: 1;
 }
 
 .yacht-faq__a {
   margin: 0;
-  padding: 0 1.1rem 1.1rem;
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: rgba(195, 210, 225, 0.88);
+  padding: 0 1.25rem 1.25rem;
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: rgba(200, 210, 225, 0.82);
 }
 
 .yacht-enquiry {
-  padding-bottom: 4rem;
+  padding: clamp(3rem, 7vw, 5rem) 0 clamp(4rem, 8vw, 5.5rem);
+  background:
+    radial-gradient(70% 55% at 50% 0%, rgba(212, 184, 130, 0.12), transparent 55%),
+    linear-gradient(180deg, #0a101c 0%, #05080f 100%);
 }
 
 .yacht-enquiry__panel {
   text-align: center;
-  max-width: 40rem;
+  max-width: min(46rem, 100%);
   margin: 0 auto;
-  padding: 2.25rem 1.5rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(74, 144, 226, 0.22);
+  padding: clamp(2.25rem, 5vw, 3.25rem) clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid rgba(212, 184, 130, 0.32);
+  background:
+    linear-gradient(160deg, rgba(232, 214, 170, 0.1), transparent 45%),
+    rgba(10, 15, 28, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 30px 70px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(12px);
 }
 
 .yacht-enquiry__title {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.85rem;
-  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.85rem;
+  color: #fff;
 }
 
 .yacht-enquiry__lead {
-  margin: 0 0 1.35rem;
-  line-height: 1.65;
-  color: rgba(200, 215, 230, 0.88);
+  margin: 0 auto 1.65rem;
+  max-width: 38ch;
+  line-height: 1.7;
+  font-size: 1.02rem;
+  color: rgba(210, 218, 230, 0.82);
+}
+
+.yacht-enquiry__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
 }
 
 .yacht-modal {

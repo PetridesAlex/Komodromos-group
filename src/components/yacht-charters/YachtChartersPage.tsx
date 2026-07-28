@@ -265,30 +265,36 @@ export default function YachtChartersPage() {
 
       <section className="yacht-section yacht-popular" aria-labelledby="yacht-popular-title">
         <div className="container">
-          <motion.h2
-            id="yacht-popular-title"
-            className="yacht-section__title"
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
-          >
-            {popularExperiences.title}
-          </motion.h2>
+          <header className="yacht-section__head">
+            <p className="yacht-section__eyebrow">Curated days at sea</p>
+            <motion.h2
+              id="yacht-popular-title"
+              className="yacht-section__title"
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
+            >
+              {popularExperiences.title}
+            </motion.h2>
+          </header>
           <ul className="yacht-popular__list">
             {popularExperiences.items.map((label, i) => (
               <motion.li
                 key={label}
                 className="yacht-popular__item"
-                initial={reduceMotion ? false : { opacity: 0, x: -12 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
-                  duration: reduceMotion ? 0.01 : 0.45,
+                  duration: reduceMotion ? 0.01 : 0.5,
                   delay: reduceMotion ? 0 : i * 0.05,
                 }}
               >
-                {label}
+                <span className="yacht-popular__index" aria-hidden>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span className="yacht-popular__label">{label}</span>
               </motion.li>
             ))}
           </ul>
@@ -304,10 +310,20 @@ export default function YachtChartersPage() {
             viewport={{ once: true }}
             transition={{ duration: reduceMotion ? 0.01 : 0.55 }}
           >
-            <h2 id="yacht-events-title" className="yacht-events__title">
-              {privateEvents.title}
-            </h2>
-            <p className="yacht-events__text">{privateEvents.text}</p>
+            <div className="yacht-events__copy">
+              <p className="yacht-section__eyebrow">Occasions</p>
+              <h2 id="yacht-events-title" className="yacht-events__title">
+                {privateEvents.title}
+              </h2>
+              <p className="yacht-events__text">{privateEvents.text}</p>
+            </div>
+            <ul className="yacht-events__tags" aria-label="Event types">
+              {['Birthdays', 'Proposals', 'Anniversaries', 'Pre-wedding', 'Corporate', 'Executive'].map(
+                (tag) => (
+                  <li key={tag}>{tag}</li>
+                ),
+              )}
+            </ul>
           </motion.div>
         </div>
       </section>
@@ -324,6 +340,7 @@ export default function YachtChartersPage() {
             viewport={{ once: true }}
             transition={{ duration: reduceMotion ? 0.01 : 0.55 }}
           >
+            <p className="yacht-section__eyebrow">Begin your charter</p>
             <h2 id="yacht-enquiry-title" className="yacht-enquiry__title">
               Charter enquiry
             </h2>
@@ -331,23 +348,25 @@ export default function YachtChartersPage() {
               Share dates, guest count, and preferred coast — we’ll respond with tailored options and
               transparent pricing.
             </p>
-            <Link
-              to="/contact"
-              className="yacht-btn yacht-btn--gold yacht-btn--wide"
-              state={{
-                serviceInterest: 'VIP Services',
-                vipSubService: 'Luxury yacht charter — enquiry',
-              }}
-            >
-              Open enquiry form
-            </Link>
-            <button
-              type="button"
-              className="yacht-enquiry__terms"
-              onClick={() => setTermsOpen(true)}
-            >
-              Read terms & conditions of carriage & charter
-            </button>
+            <div className="yacht-enquiry__actions">
+              <Link
+                to="/contact"
+                className="yacht-btn yacht-btn--gold yacht-btn--wide"
+                state={{
+                  serviceInterest: 'VIP Services',
+                  vipSubService: 'Luxury yacht charter — enquiry',
+                }}
+              >
+                Open enquiry form
+              </Link>
+              <button
+                type="button"
+                className="yacht-enquiry__terms"
+                onClick={() => setTermsOpen(true)}
+              >
+                Read terms & conditions of carriage & charter
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>

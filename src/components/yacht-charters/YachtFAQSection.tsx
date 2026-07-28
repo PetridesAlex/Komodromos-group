@@ -18,17 +18,20 @@ export default function YachtFAQSection({
 
   return (
     <section className="yacht-section yacht-faq" aria-labelledby="yacht-faq-title">
-      <div className="container">
-        <motion.h2
-          id="yacht-faq-title"
-          className="yacht-section__title"
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
-        >
-          {title}
-        </motion.h2>
+      <div className="container yacht-faq__inner">
+        <header className="yacht-section__head">
+          <p className="yacht-section__eyebrow">Clarity</p>
+          <motion.h2
+            id="yacht-faq-title"
+            className="yacht-section__title"
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.5 }}
+          >
+            {title}
+          </motion.h2>
+        </header>
         <div className="yacht-faq__list">
           {items.map((item, i) => {
             const isOpen = open === i
@@ -43,7 +46,7 @@ export default function YachtFAQSection({
                   aria-expanded={isOpen}
                   onClick={() => setOpen(isOpen ? null : i)}
                 >
-                  {item.q}
+                  <span className="yacht-faq__q-text">{item.q}</span>
                   <span className="yacht-faq__icon" aria-hidden />
                 </button>
                 <div className="yacht-faq__a-wrap">
