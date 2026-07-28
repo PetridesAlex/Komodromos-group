@@ -8,9 +8,7 @@
  * Legacy placeholder covers remain under `yacht-cards/onassis/` where noted.
  */
 
-const ONASSIS_DIR = '/images/services/maritime-services/yacht-cards/onassis'
 const CHRISTINA_O_DIR = '/images/services/maritime-services/Christina-O'
-const asset = (file: string) => `${ONASSIS_DIR}/${file}`
 /** Build a public URL for a Christina O asset (encodes spaces & special characters). */
 const christinaAsset = (folder: string, file: string) =>
   `${CHRISTINA_O_DIR}/${folder}/${encodeURIComponent(file)}`
