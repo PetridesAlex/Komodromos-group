@@ -87,21 +87,37 @@ export default function VipTourIslandPage() {
               </p>
             ))}
           </div>
+        </div>
 
-          <div className="vip-tour-intro__vehicles reveal">
+        <div className="vip-tour-intro__vehicles reveal">
+          <div className="vip-tour-intro__vehicles-shell">
             <p className="vip-tour-intro__vehicles-lead">{vipTourIntro.vehicleLead}</p>
             <ul className="vip-tour-intro__vehicle-grid">
               {vipTourIntro.vehicles.map((vehicle) => (
                 <li key={vehicle.id} className="vip-tour-intro__vehicle">
-                  <p className="vip-tour-intro__vehicle-badge">{vehicle.badge}</p>
-                  <h3 className="vip-tour-intro__vehicle-title">{vehicle.title}</h3>
-                  <span className="vip-tour-intro__vehicle-divider" aria-hidden />
-                  <p className="vip-tour-intro__vehicle-body">{vehicle.body}</p>
+                  <div className="vip-tour-intro__vehicle-media">
+                    <img
+                      className="vip-tour-intro__vehicle-img"
+                      src={vehicle.image}
+                      alt={vehicle.imageAlt}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span className="vip-tour-intro__vehicle-media-scrim" aria-hidden />
+                  </div>
+                  <div className="vip-tour-intro__vehicle-content">
+                    <p className="vip-tour-intro__vehicle-badge">{vehicle.badge}</p>
+                    <h3 className="vip-tour-intro__vehicle-title">{vehicle.title}</h3>
+                    <span className="vip-tour-intro__vehicle-divider" aria-hidden />
+                    <p className="vip-tour-intro__vehicle-body">{vehicle.body}</p>
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
+        </div>
 
+        <div className="container vip-tour-intro__inner">
           <div className="vip-tour-intro__closing">
             {vipTourIntro.closing.map((paragraph) => (
               <p key={paragraph.slice(0, 48)} className="vip-tour-intro__p reveal">

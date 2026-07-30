@@ -46503,7 +46503,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .vip-tour-intro {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: clip;
   padding: clamp(3.75rem, 9vw, 6.5rem) 0 clamp(3.25rem, 7vw, 5rem);
   border-top: 1px solid rgba(197, 160, 89, 0.22);
   background:
@@ -46526,7 +46526,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .vip-tour-intro__inner {
   position: relative;
   z-index: 1;
-  width: min(900px, calc(100% - 1.5rem));
+  width: min(1260px, calc(100% - 1.5rem));
   max-width: none;
 }
 
@@ -46601,16 +46601,17 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
 .vip-tour-intro__vehicles {
   position: relative;
+  z-index: 1;
+  width: 100%;
   margin: clamp(2.75rem, 6vw, 3.75rem) 0;
-  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.35rem, 3.2vw, 2.15rem);
-  border-radius: 2px;
-  border: 1px solid rgba(197, 160, 89, 0.38);
+  padding: clamp(1.75rem, 4vw, 2.65rem) 0;
+  border-block: 1px solid rgba(197, 160, 89, 0.32);
   background:
-    linear-gradient(180deg, rgba(197, 160, 89, 0.08) 0%, transparent 28%),
-    linear-gradient(165deg, rgba(14, 20, 34, 0.96) 0%, rgba(8, 12, 22, 0.98) 100%);
+    linear-gradient(180deg, rgba(197, 160, 89, 0.09) 0%, transparent 30%),
+    linear-gradient(165deg, rgba(12, 16, 28, 0.98) 0%, rgba(6, 10, 18, 0.99) 100%);
   box-shadow:
-    0 22px 48px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(230, 205, 150, 0.14);
+    inset 0 1px 0 rgba(230, 205, 150, 0.12),
+    inset 0 -1px 0 rgba(230, 205, 150, 0.08);
 }
 
 .vip-tour-intro__vehicles::before {
@@ -46618,27 +46619,33 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   position: absolute;
   top: 0;
   left: 50%;
-  width: min(12rem, 42%);
+  width: min(16rem, 36%);
   height: 1px;
   transform: translateX(-50%);
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(230, 200, 130, 0.85),
+    rgba(230, 200, 130, 0.9),
     transparent
   );
 }
 
+.vip-tour-intro__vehicles-shell {
+  width: min(1480px, calc(100% - 1.25rem));
+  margin: 0 auto;
+}
+
 .vip-tour-intro__vehicles-lead {
   font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.28rem, 2.8vw, 1.55rem);
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
   font-weight: 400;
   font-style: italic;
   line-height: 1.4;
   letter-spacing: 0.01em;
   color: rgba(242, 236, 222, 0.96);
   text-align: center;
-  margin: 0 0 clamp(1.55rem, 3.5vw, 2.15rem);
+  margin: 0 auto clamp(1.65rem, 3.5vw, 2.35rem);
+  max-width: 40rem;
 }
 
 .vip-tour-intro__vehicle-grid {
@@ -46649,10 +46656,10 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   gap: 1.25rem;
 }
 
-@media (min-width: 780px) {
+@media (min-width: 900px) {
   .vip-tour-intro__vehicle-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.4rem;
+    gap: 1.75rem;
   }
 }
 
@@ -46660,17 +46667,17 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  padding: 1.55rem 1.4rem 1.65rem;
+  gap: 0;
+  padding: 0;
   border-radius: 2px;
-  border: 1px solid rgba(197, 160, 89, 0.28);
+  border: 1px solid rgba(197, 160, 89, 0.34);
   background:
     linear-gradient(155deg, rgba(28, 34, 48, 0.72) 0%, rgba(10, 14, 24, 0.92) 100%);
   box-shadow: inset 0 1px 0 rgba(230, 205, 150, 0.08);
   overflow: hidden;
   transition:
     border-color 0.35s ease,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.35s ease;
 }
 
@@ -46681,27 +46688,89 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   left: 0;
   right: 0;
   height: 2px;
+  z-index: 2;
   background: linear-gradient(
     90deg,
     rgba(197, 160, 89, 0.15) 0%,
     rgba(230, 200, 130, 0.9) 50%,
     rgba(197, 160, 89, 0.15) 100%
   );
-  opacity: 0.85;
+  opacity: 0.9;
   transition: opacity 0.35s ease;
+}
+
+.vip-tour-intro__vehicle-media {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  height: clamp(20rem, 38vw, 30rem);
+  overflow: hidden;
+  background: #0a0e16;
+}
+
+.vip-tour-intro__vehicle-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transform: scale(1.12);
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), filter 1s ease;
+  animation: vipTourVehicleDrift 11s ease-in-out infinite alternate;
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.vip-tour-intro__vehicle-media-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(6, 9, 16, 0.04) 0%, transparent 42%, rgba(8, 12, 22, 0.42) 78%, rgba(8, 12, 22, 0.82) 100%),
+    linear-gradient(90deg, rgba(197, 160, 89, 0.1) 0%, transparent 38%);
+  transition: opacity 0.45s ease;
+}
+
+.vip-tour-intro__vehicle-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.45rem 1.45rem 1.7rem;
+  flex: 1 1 auto;
+}
+
+@keyframes vipTourVehicleDrift {
+  0% {
+    transform: scale(1.12) translate3d(-2.2%, 0.4%, 0);
+  }
+  100% {
+    transform: scale(1.2) translate3d(2.2%, -2%, 0);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
   .vip-tour-intro__vehicle:hover {
-    transform: translateY(-4px);
-    border-color: rgba(220, 188, 120, 0.55);
+    transform: translateY(-8px);
+    border-color: rgba(220, 188, 120, 0.6);
     box-shadow:
-      0 18px 40px rgba(0, 0, 0, 0.4),
+      0 26px 54px rgba(0, 0, 0, 0.48),
       inset 0 1px 0 rgba(230, 205, 150, 0.16);
   }
 
   .vip-tour-intro__vehicle:hover::before {
     opacity: 1;
+  }
+
+  .vip-tour-intro__vehicle:hover .vip-tour-intro__vehicle-img {
+    animation-play-state: paused;
+    transform: scale(1.26) translate3d(0, -2.5%, 0);
+    filter: saturate(1.14) contrast(1.07) brightness(1.05);
+  }
+
+  .vip-tour-intro__vehicle:hover .vip-tour-intro__vehicle-media-scrim {
+    opacity: 0.65;
   }
 }
 
@@ -46712,7 +46781,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(212, 180, 112, 0.92);
-  margin: 0.15rem 0 0;
+  margin: 0;
 }
 
 .vip-tour-intro__vehicle-title {
@@ -46730,7 +46799,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   display: block;
   width: 2.75rem;
   height: 1px;
-  margin: 0.1rem 0 0.15rem;
+  margin: 0.05rem 0 0.1rem;
   background: linear-gradient(
     90deg,
     rgba(212, 180, 112, 0.85),
@@ -46751,7 +46820,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 }
 
 .vip-tour-intro__closing {
-  margin-top: clamp(0.35rem, 2vw, 0.75rem);
+  margin-top: clamp(0.5rem, 2vw, 1rem);
 }
 
 .vip-tour-intro__finale {
@@ -46776,6 +46845,17 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
   .vip-tour-intro__vehicle:hover {
     transform: none;
+  }
+
+  .vip-tour-intro__vehicle-img {
+    transition: none;
+    animation: none;
+    transform: scale(1.06);
+  }
+
+  .vip-tour-intro__vehicle:hover .vip-tour-intro__vehicle-img {
+    transform: scale(1.06);
+    filter: none;
   }
 }
 
@@ -46818,7 +46898,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .vip-tour-destination-detail__inner {
   position: relative;
   z-index: 1;
-  width: min(880px, calc(100% - 1.5rem));
+  width: min(1100px, calc(100% - 1.5rem));
   max-width: none;
 }
 
