@@ -19,10 +19,11 @@ import StorageUsefulTipsSection from './StorageUsefulTipsSection'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
 
 const STORAGE_PLANS: { title: string; price: number }[] = [
-  { title: '10 ft Container', price: 60 },
+  { title: '10 ft Container Share', price: 60 },
+  { title: '10 ft Container Individual', price: 80 },
   { title: '20 ft Container', price: 100 },
   { title: '20 ft Insulated warehouse', price: 110 },
-  { title: '30 ft Insulated warehouse', price: 145 },
+  { title: '30 ft Insulated warehouse', price: 155 },
   { title: '40 ft Container', price: 190 },
 ]
 
