@@ -15,6 +15,7 @@ import { STORAGE_USEFUL_TIPS } from '../data/storageUsefulTipsContent'
 import { weddingPackages } from '../data/weddingPackages'
 import { yachtFleet } from '../data/yachtChartersData'
 import { onassisCategories } from '../data/onassisExperience'
+import { vipTourDestinations } from '../data/vipTourDestinations'
 import { DEFAULT_DESCRIPTION, HOMEPAGE_TITLE } from './siteConfig'
 import { normalizeServiceSeoEntry, finalDocumentTitle } from './metaCopy'
 
@@ -587,6 +588,22 @@ function buildDynamicRoutes(): SeoRouteEntry[] {
         index: true,
         priority: 0.5,
         ogImage: cat.cover,
+      }),
+    )
+  }
+
+  for (const destination of vipTourDestinations) {
+    if (!destination.description?.length) continue
+    routes.push(
+      route({
+        path: `/services/vip-tour-around-island/${destination.id}`,
+        title: destination.title,
+        description:
+          destination.description[0]?.slice(0, 155) ||
+          detailDescription(destination.title, 'VIP island tour Cyprus'),
+        index: true,
+        priority: 0.55,
+        ogImage: destination.image,
       }),
     )
   }

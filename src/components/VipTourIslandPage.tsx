@@ -5,6 +5,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { vipTourDestinations } from '../data/vipTourDestinations'
+import { vipTourIntro } from '../data/vipTourIntro'
 
 const CONTACT_STATE = {
   serviceInterest: 'VIP Services',
@@ -66,6 +67,53 @@ export default function VipTourIslandPage() {
       </section>
 
       <section
+        className="vip-tour-intro"
+        id="vip-tour-intro"
+        aria-labelledby="vip-tour-intro-heading"
+      >
+        <div className="container vip-tour-intro__inner">
+          <header className="vip-tour-intro__header reveal">
+            <p className="vip-tour-intro__brand">{vipTourIntro.brand}</p>
+            <h2 id="vip-tour-intro-heading" className="vip-tour-intro__headline">
+              {vipTourIntro.headline}
+            </h2>
+            <span className="vip-tour-intro__rule" aria-hidden />
+          </header>
+
+          <div className="vip-tour-intro__prose">
+            {vipTourIntro.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)} className="vip-tour-intro__p reveal">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          <div className="vip-tour-intro__vehicles reveal">
+            <p className="vip-tour-intro__vehicles-lead">{vipTourIntro.vehicleLead}</p>
+            <ul className="vip-tour-intro__vehicle-grid">
+              {vipTourIntro.vehicles.map((vehicle) => (
+                <li key={vehicle.id} className="vip-tour-intro__vehicle">
+                  <p className="vip-tour-intro__vehicle-badge">{vehicle.badge}</p>
+                  <h3 className="vip-tour-intro__vehicle-title">{vehicle.title}</h3>
+                  <span className="vip-tour-intro__vehicle-divider" aria-hidden />
+                  <p className="vip-tour-intro__vehicle-body">{vehicle.body}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="vip-tour-intro__closing">
+            {vipTourIntro.closing.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)} className="vip-tour-intro__p reveal">
+                {paragraph}
+              </p>
+            ))}
+            <p className="vip-tour-intro__finale reveal">{vipTourIntro.finale}</p>
+          </div>
+        </div>
+      </section>
+
+      <section
         className="vip-tour-destinations"
         id="vip-tour-content"
         aria-labelledby="vip-tour-destinations-heading"
@@ -85,16 +133,19 @@ export default function VipTourIslandPage() {
           <ol className="vip-tour-destinations__grid">
             {vipTourDestinations.map((destination, index) => {
               const num = String(index + 1).padStart(2, '0')
+              const hasDetailPage = Boolean(destination.description?.length)
+              const cardTo = hasDetailPage
+                ? `/services/vip-tour-around-island/${destination.id}`
+                : '/contact'
+              const cardState = hasDetailPage
+                ? undefined
+                : {
+                    ...CONTACT_STATE,
+                    destinationInterest: destination.title,
+                  }
               return (
                 <li key={destination.id} className="vip-tour-dest-card reveal">
-                  <Link
-                    to="/contact"
-                    state={{
-                      ...CONTACT_STATE,
-                      destinationInterest: destination.title,
-                    }}
-                    className="vip-tour-dest-card__link"
-                  >
+                  <Link to={cardTo} state={cardState} className="vip-tour-dest-card__link">
                     <span
                       className={`vip-tour-dest-card__media vip-tour-dest-card__media--tone-${index % 5}`}
                       aria-hidden={!destination.image}
@@ -125,7 +176,7 @@ export default function VipTourIslandPage() {
                       <span className="vip-tour-dest-card__title">{destination.title}</span>
                       <span className="vip-tour-dest-card__blurb">{destination.blurb}</span>
                       <span className="vip-tour-dest-card__cta">
-                        Request this stop
+                        {hasDetailPage ? 'Discover more' : 'Request this stop'}
                         <span aria-hidden>→</span>
                       </span>
                     </span>

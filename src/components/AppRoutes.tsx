@@ -38,6 +38,7 @@ import Porsche911Carrera4SDetailPage from './Porsche911Carrera4SDetailPage'
 import CasinoExperiencesPage from './CasinoExperiencesPage'
 import VipSecurityProtectionPage from './VipSecurityProtectionPage'
 import VipTourIslandPage from './VipTourIslandPage'
+import VipTourDestinationPage from './VipTourDestinationPage'
 import YachtChartersPage from './yacht-charters/YachtChartersPage'
 import YachtDetailPage from './yacht-charters/YachtDetailPage'
 import OnassisExperiencePage from './yacht-charters/OnassisExperiencePage'
@@ -145,6 +146,7 @@ function GroupRoutes() {
       <Route path="/services/fishing-scuba-diving" element={<FishingScubaPage />} />
       <Route path="/services/vip-security-protection" element={<VipSecurityProtectionPage />} />
       <Route path="/services/casino-experiences" element={<CasinoExperiencesPage />} />
+      <Route path="/services/vip-tour-around-island/:destinationId" element={<VipTourDestinationPage />} />
       <Route path="/services/vip-tour-around-island" element={<VipTourIslandPage />} />
       <Route path="/services/yacht-charters/onassis" element={<OnassisExperiencePage />} />
       <Route path="/services/yacht-charters/onassis/:categoryId" element={<OnassisCategoryPage />} />

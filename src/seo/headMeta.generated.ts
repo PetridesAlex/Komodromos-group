@@ -778,6 +778,146 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/maritime-services/Christina-O/Lifestyle/C-O-juin2018_65_stef-bravin.jpg",
     "index": true
   },
+  "/services/vip-tour-around-island/aggeloxtisti-kiti": {
+    "title": "Aggeloxtisti Kiti Village Cyprus | Komodromos Group",
+    "description": "Discover one of Cyprus' most treasured spiritual and historical landmarks, the breathtaking Church of Panagia Aggeloktisti, nestled in the charming traditi",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/aggeloxtisti-kiti",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/aphrodites-rock": {
+    "title": "Aphrodite's Rock (Petra tou Romiou) | Komodromos Group",
+    "description": "Few places in the world combine mythology, breathtaking natural beauty, and timeless romance as perfectly as Aphrodite's Rock (Petra tou Romiou). Rising ma",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/aphrodites-rock",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/avakas-gorge": {
+    "title": "Avakas Gorge Cyprus Services Premium | Komodromos Group",
+    "description": "Venture into one of the island's most breathtaking hidden treasures and experience the raw beauty of Avakas Gorge, a magnificent natural canyon nestled wit",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/avakas-gorge",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/ayia-napa-nightlife": {
+    "title": "Ayia Napa Night Life Cyprus Services | Komodromos Group",
+    "description": "When the sun sets, Ayia Napa transforms into one of Europe's most exciting nightlife capitals. Famous around the world for its electrifying atmosphere, wor",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/ayia-napa-nightlife",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/baths-of-adonis": {
+    "title": "Baths of Adonis Cyprus Services | Komodromos Group",
+    "description": "Hidden deep within the spectacular countryside of Paphos, surrounded by lush forests, dramatic cliffs, and untouched natural beauty, the Baths of Adonis of",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/baths-of-adonis",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/camel-park-mazotos": {
+    "title": "Camel Park Mazotos Cyprus Services | Komodromos Group",
+    "description": "Escape into a world of fun, nature, and unforgettable experiences at Camel Park Mazotos, one of Cyprus' most unique and beloved attractions. Nestled in the",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/camel-park-mazotos",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/limassol-marina": {
+    "title": "Limassol Marina Cyprus Services | Komodromos Group",
+    "description": "Welcome to Limassol Marina, Cyprus' most prestigious waterfront destination and one of the Mediterranean's finest luxury marinas. Combining world-class fac",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/limassol-marina",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/limassol-medieval-castle": {
+    "title": "Limassol Medieval Castle Area Cyprus | Komodromos Group",
+    "description": "Step into the enchanting Limassol Medieval Castle Area, where centuries of history blend seamlessly with vibrant culture, traditional architecture, and mod",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/limassol-medieval-castle",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/carob-mill-museum": {
+    "title": "Carob Mill Museum Cyprus Services | Komodromos Group",
+    "description": "Hidden in the heart of Limassol's historic old town, just steps away from the Medieval Castle and the picturesque Marina, the Carob Mill Museum offers a fa",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/carob-mill-museum",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/tombs-of-the-kings": {
+    "title": "Tombs of the Kings Cyprus Services | Komodromos Group",
+    "description": "Step into a world where history, mystery, and breathtaking architecture come together at the magnificent Tombs of the Kings, one of Cyprus' most remarkable",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/tombs-of-the-kings",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/medieval-castle-paphos": {
+    "title": "Medieval Castle of Paphos Cyprus | Komodromos Group",
+    "description": "Standing proudly at the edge of the picturesque Paphos Harbour, the Medieval Castle of Paphos is one of Cyprus' most iconic landmarks and a symbol of the i",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/medieval-castle-paphos",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/baths-of-aphrodite": {
+    "title": "Baths of Aphrodite Cyprus Services | Komodromos Group",
+    "description": "Hidden within the breathtaking Akamas Peninsula National Park, the enchanting Baths of Aphrodite are among Cyprus' most magical and legendary destinations.",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/baths-of-aphrodite",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/cape-greco": {
+    "title": "Cape Greco National Park Cyprus | Komodromos Group",
+    "description": "Prepare to experience one of the most breathtaking natural wonders in the Mediterranean. Cape Greco National Forest Park is a place where dramatic sea clif",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/cape-greco",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/nissi-beach": {
+    "title": "Nissi Beach Cyprus Services Premium | Komodromos Group",
+    "description": "Welcome to Nissi Beach, the most famous and award-winning beach in Cyprus, a world-renowned paradise celebrated for its powder-soft white sand, crystal-cle",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/nissi-beach",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/larnaca-salt-lake": {
+    "title": "Larnaca Salt Lake & Hala Sultan Tekke | Komodromos Group",
+    "description": "Discover one of Cyprus' most breathtaking destinations, where spectacular natural landscapes, rich cultural heritage, and unforgettable sunsets come togeth",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/larnaca-salt-lake",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/kamares-larnaca": {
+    "title": "Kamares Larnaca Cyprus Services | Komodromos Group",
+    "description": "Standing proudly on the outskirts of Larnaca, the Kamares Aqueduct is one of Cyprus' most iconic historical landmarks and one of the finest surviving examp",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/kamares-larnaca",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/kolossi-castle": {
+    "title": "Kolossi Castle Cyprus Services Premium | Komodromos Group",
+    "description": "Discover one of Cyprus' most impressive medieval landmarks, the magnificent Kolossi Castle, a remarkably well-preserved fortress that has stood proudly for",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/kolossi-castle",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/edro-iii-shipwreck": {
+    "title": "EDRO III Shipwreck Cyprus Services | Komodromos Group",
+    "description": "Perched dramatically on the rugged coastline of Peyia, near the breathtaking Sea Caves of Paphos, the EDRO III Shipwreck has become one of Cyprus' most ico",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/edro-iii-shipwreck",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/apollo-hylates": {
+    "title": "Sanctuary of Apollo Hylates (Kourion) | Komodromos Group",
+    "description": "Step into one of the most sacred places of ancient Cyprus and discover the enchanting Sanctuary of Apollo Hylates, a remarkable archaeological treasure nes",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/apollo-hylates",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/vip-tour-around-island/saint-lazaros": {
+    "title": "Saint Lazaros Cyprus Services Premium | Komodromos Group",
+    "description": "Step into one of the most extraordinary religious landmarks in the Christian world and experience the timeless beauty of the Church of Saint Lazarus, one o",
+    "canonical": "https://www.komodromosgroup.com/services/vip-tour-around-island/saint-lazaros",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
   "/services/storage/tips/business-items": {
     "title": "Moving Away for University: Practical | Komodromos Group",
     "description": "Starting university marks an exciting new chapter in life, bringing with it a sense of independence, opportunity, and new experiences. However, it also req",
