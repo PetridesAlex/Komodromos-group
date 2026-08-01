@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
@@ -22,8 +22,6 @@ export default function AstrealDevelopersPage() {
   const reduceMotion = useReducedMotion()
   const { isBrandDomain } = useSiteContext()
   const routes = getAstrealRoutes()
-  const [projectsMenuOpen, setProjectsMenuOpen] = useState(false)
-  const projectsPickerRef = useRef<HTMLDivElement>(null)
   const poolHref = isBrandDomain ? `${GROUP_SITE_URL}/services/pool` : '/services/pool'
   const servicesSectionHref = isBrandDomain ? buildGroupSiteReturnUrl('services') : '/#services'
 
@@ -31,37 +29,11 @@ export default function AstrealDevelopersPage() {
     window.scrollTo(0, 0)
   }, [])
 
-  useEffect(() => {
-    if (!projectsMenuOpen) return
-
-    function onPointerDown(e: PointerEvent) {
-      if (!projectsPickerRef.current?.contains(e.target as Node)) {
-        setProjectsMenuOpen(false)
-      }
-    }
-
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') setProjectsMenuOpen(false)
-    }
-
-    document.addEventListener('pointerdown', onPointerDown)
-    document.addEventListener('keydown', onKeyDown)
-    return () => {
-      document.removeEventListener('pointerdown', onPointerDown)
-      document.removeEventListener('keydown', onKeyDown)
-    }
-  }, [projectsMenuOpen])
-
   function scrollToProjectsSection() {
-    setProjectsMenuOpen(false)
     document.getElementById('astreal-projects')?.scrollIntoView({
       behavior: reduceMotion ? 'auto' : 'smooth',
       block: 'start',
     })
-  }
-
-  function toggleProjectsMenu() {
-    setProjectsMenuOpen((open) => !open)
   }
 
   /** Above-the-fold hero — mount-driven “live” entrance (not scroll) */
@@ -309,128 +281,21 @@ export default function AstrealDevelopersPage() {
           </h1>
         </div>
         <div className="astreal-hero__scroll-zone">
-          <div
-            ref={projectsPickerRef}
-            className={`astreal-hero__projects-picker${projectsMenuOpen ? ' is-open' : ''}`}
+          <button
+            type="button"
+            className="astreal-hero__scroll"
+            onClick={scrollToProjectsSection}
+            aria-label="Scroll down to latest projects"
           >
-            <button
-              type="button"
-              className="astreal-hero__projects-jump"
-              onClick={toggleProjectsMenu}
-              aria-expanded={projectsMenuOpen}
-              aria-controls="astreal-hero-projects-menu"
-              aria-haspopup="true"
-              aria-label={
-                projectsMenuOpen
-                  ? 'Close projects list'
-                  : 'See our projects — open project list'
-              }
-            >
-              <span className="astreal-hero__projects-jump-ring" aria-hidden />
-              <span className="astreal-hero__projects-jump-row">
-                <span className="astreal-hero__projects-jump-label">
-                  <span className="astreal-hero__projects-jump-kicker">See our</span>
-                  <span className="astreal-hero__projects-jump-title">projects</span>
-                </span>
-                <span className="astreal-hero__projects-jump-arrows" aria-hidden>
-                  <svg className="astreal-hero__projects-jump-svg" viewBox="0 0 20 40" width="18" height="32">
-                    <path
-                      className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--1"
-                      d="M5 8l5 5 5-5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--2"
-                      d="M5 17l5 5 5-5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      className="astreal-hero__projects-jump-chev astreal-hero__projects-jump-chev--3"
-                      d="M5 26l5 5 5-5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.45"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
+            <span className="astreal-hero__scroll-label">Scroll</span>
+            <span className="astreal-hero__scroll-orb" aria-hidden>
+              <span className="astreal-hero__scroll-ring" />
+              <span className="astreal-hero__scroll-mouse">
+                <span className="astreal-hero__scroll-dot" />
               </span>
-            </button>
-            <AnimatePresence initial={false}>
-              {projectsMenuOpen && (
-                <motion.div
-                  id="astreal-hero-projects-menu"
-                  className="astreal-hero__projects-menu"
-                  role="menu"
-                  aria-label="Astreal project portfolio"
-                  initial={
-                    reduceMotion
-                      ? { opacity: 1, height: 'auto' }
-                      : { opacity: 0, height: 0, y: -12 }
-                  }
-                  animate={{ opacity: 1, height: 'auto', y: 0 }}
-                  exit={
-                    reduceMotion
-                      ? { opacity: 0, height: 0 }
-                      : { opacity: 0, height: 0, y: -10 }
-                  }
-                  transition={{ duration: 0.38, ease: EASE }}
-                >
-                  <p className="astreal-hero__projects-menu-kicker">Latest developments</p>
-                  <ul className="astreal-hero__projects-menu-list">
-                    {astrealProjectCards.map((project, i) => (
-                      <motion.li
-                        key={project.id}
-                        className="astreal-hero__projects-menu-item"
-                        role="none"
-                        initial={reduceMotion ? false : { opacity: 0, x: -14, y: -6 }}
-                        animate={{ opacity: 1, x: 0, y: 0 }}
-                        transition={{
-                          duration: 0.42,
-                          ease: EASE,
-                          delay: reduceMotion ? 0 : 0.06 + i * 0.07,
-                        }}
-                      >
-                        <Link
-                          role="menuitem"
-                          to={routes.projects(project.id)}
-                          className="astreal-hero__projects-menu-link"
-                          onClick={() => setProjectsMenuOpen(false)}
-                        >
-                          <span className="astreal-hero__projects-menu-thumb">
-                            <img src={project.imageSrc} alt="" width={56} height={40} loading="lazy" decoding="async" />
-                          </span>
-                          <span className="astreal-hero__projects-menu-copy">
-                            <span className="astreal-hero__projects-menu-name">{project.title}</span>
-                            <span className="astreal-hero__projects-menu-sub">{project.subtitle}</span>
-                          </span>
-                          <span className="astreal-hero__projects-menu-go" aria-hidden>
-                            →
-                          </span>
-                        </Link>
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <button
-                    type="button"
-                    className="astreal-hero__projects-menu-all"
-                    onClick={scrollToProjectsSection}
-                  >
-                    Browse full portfolio
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+            </span>
+            <span className="astreal-hero__scroll-hint">Projects</span>
+          </button>
         </div>
       </header>
 

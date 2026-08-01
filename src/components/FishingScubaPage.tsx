@@ -56,7 +56,10 @@ export default function FishingScubaPage() {
             transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.25 }}
           >
             <button type="button" className="limo-hero-cta" onClick={scrollToCategories}>
-              Explore experiences
+              <span className="limo-hero-cta__label">Explore experiences</span>
+              <span className="limo-hero-cta__arrow" aria-hidden>
+                →
+              </span>
             </button>
           </motion.div>
         </div>

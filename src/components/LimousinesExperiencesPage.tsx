@@ -53,7 +53,10 @@ export default function LimousinesExperiencesPage() {
               className="limo-hero-cta"
               onClick={scrollToLimousines}
             >
-              Book now
+              <span className="limo-hero-cta__label">Book now</span>
+              <span className="limo-hero-cta__arrow" aria-hidden>
+                →
+              </span>
             </button>
           </motion.div>
         </div>
@@ -135,6 +138,9 @@ export default function LimousinesExperiencesPage() {
                 }}
               >
                 Request a private quote
+                <span className="limo-showcase__cta-arrow" aria-hidden>
+                  →
+                </span>
               </Link>
             </p>
           </motion.div>

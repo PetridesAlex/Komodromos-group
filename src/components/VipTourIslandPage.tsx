@@ -12,6 +12,12 @@ const CONTACT_STATE = {
   vipSubService: 'VIP Tour Around the Island & More',
 } as const
 
+const EASE = [0.22, 1, 0.36, 1] as const
+
+const HERO_TITLE = 'VIP Tour Around the Island & More'
+const HERO_SUB =
+  'Curated Cyprus destinations — privately chauffeured, discreetly timed, and tailored to your itinerary.'
+
 export default function VipTourIslandPage() {
   const pageRef = useReveal()
   const reduceMotion = useReducedMotion()
@@ -26,6 +32,9 @@ export default function VipTourIslandPage() {
     el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' })
   }
 
+  const titleWords = HERO_TITLE.split(' ')
+  const subWords = HERO_SUB.split(' ')
+
   return (
     <div className="page vip-tour-page" ref={pageRef}>
       <SiteTopbar
@@ -37,30 +46,116 @@ export default function VipTourIslandPage() {
 
       <section className="service-detail-hero service-detail-hero--vip-full" data-hero-parallax-root>
         <div
-          className="service-detail-hero-bg"
+          className="service-detail-hero-bg service-detail-hero-bg--vip-img"
           aria-hidden
           data-hero-parallax
-          style={{
-            backgroundImage:
-              'url("/images/services/vip-service/vip-transportation/vip-transportaion.webp")',
-          }}
-        />
+        >
+          <img
+            className="service-detail-hero-bg__img"
+            src="/images/services/vip-service/vip-transportation/vip-transportaion.webp"
+            alt=""
+            width={1920}
+            height={1080}
+            decoding="async"
+            fetchPriority="high"
+            sizes="100vw"
+          />
+        </div>
         <div className="service-detail-hero-scrim service-detail-hero-scrim--vip" />
         <div className="container service-detail-hero-inner">
-          <p className="eyebrow reveal">VIP Touring</p>
-          <h1 className="reveal reveal-delay-1">VIP Tour Around the Island & More</h1>
-          <p className="service-detail-hero-sub reveal reveal-delay-2">
-            Curated Cyprus destinations — privately chauffeured, discreetly timed, and tailored to
-            your itinerary.
-          </p>
-          <motion.div
-            className="vip-tour-hero-cta-wrap reveal reveal-delay-3"
-            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.25 }}
+          <motion.p
+            className="eyebrow vip-tour-hero__eyebrow"
+            initial={reduceMotion ? false : { opacity: 0, y: 14, letterSpacing: '0.28em' }}
+            animate={{ opacity: 1, y: 0, letterSpacing: '0.42em' }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: EASE }}
           >
-            <button type="button" className="vip-tour-hero-cta" onClick={scrollToTourSection}>
-              Explore destinations
+            VIP Touring
+          </motion.p>
+
+          <h1 className="vip-tour-hero__title">
+            {titleWords.map((word, index) => (
+              <motion.span
+                key={`${word}-${index}`}
+                className="vip-tour-hero__title-word"
+                initial={
+                  reduceMotion ? false : { opacity: 0, y: 32, filter: 'blur(10px)' }
+                }
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{
+                  duration: reduceMotion ? 0.01 : 0.72,
+                  delay: reduceMotion ? 0 : 0.12 + index * 0.065,
+                  ease: EASE,
+                }}
+              >
+                {word}
+                {index < titleWords.length - 1 ? '\u00A0' : ''}
+              </motion.span>
+            ))}
+          </h1>
+
+          <p className="service-detail-hero-sub vip-tour-hero__sub">
+            {subWords.map((word, index) => (
+              <motion.span
+                key={`${word}-${index}`}
+                className="vip-tour-hero__sub-word"
+                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: reduceMotion ? 0.01 : 0.55,
+                  delay: reduceMotion ? 0 : 0.55 + index * 0.028,
+                  ease: EASE,
+                }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </p>
+
+          <motion.div
+            className="vip-tour-hero-cta-wrap"
+            initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: reduceMotion ? 0.01 : 0.65,
+              delay: reduceMotion ? 0 : 1.05,
+              ease: EASE,
+            }}
+          >
+            <button
+              type="button"
+              className="vip-tour-hero-scroll"
+              onClick={scrollToTourSection}
+              aria-label="Scroll to explore destinations"
+            >
+              <motion.span
+                className="vip-tour-hero-scroll__label"
+                initial={reduceMotion ? false : { opacity: 0, letterSpacing: '0.2em' }}
+                animate={{ opacity: 1, letterSpacing: '0.32em' }}
+                transition={{
+                  duration: reduceMotion ? 0.01 : 0.7,
+                  delay: reduceMotion ? 0 : 1.15,
+                  ease: EASE,
+                }}
+              >
+                Explore destinations
+              </motion.span>
+              <span className="vip-tour-hero-scroll__orb" aria-hidden>
+                <span className="vip-tour-hero-scroll__ring" />
+                <svg
+                  className="vip-tour-hero-scroll__chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 9.5L12 15.5L18 9.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
             </button>
           </motion.div>
         </div>
@@ -93,7 +188,7 @@ export default function VipTourIslandPage() {
           <div className="vip-tour-intro__vehicles-shell">
             <p className="vip-tour-intro__vehicles-lead">{vipTourIntro.vehicleLead}</p>
             <ul className="vip-tour-intro__vehicle-grid">
-              {vipTourIntro.vehicles.map((vehicle) => (
+              {vipTourIntro.vehicles.map((vehicle, index) => (
                 <li key={vehicle.id} className="vip-tour-intro__vehicle">
                   <div className="vip-tour-intro__vehicle-media">
                     <img
@@ -102,8 +197,15 @@ export default function VipTourIslandPage() {
                       alt={vehicle.imageAlt}
                       loading="lazy"
                       decoding="async"
+                      fetchPriority="low"
+                      width={1600}
+                      height={1000}
+                      sizes="(max-width: 900px) 100vw, min(1480px, 100vw)"
                     />
                     <span className="vip-tour-intro__vehicle-media-scrim" aria-hidden />
+                    <span className="vip-tour-intro__vehicle-slide" aria-hidden>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
                   </div>
                   <div className="vip-tour-intro__vehicle-content">
                     <p className="vip-tour-intro__vehicle-badge">{vehicle.badge}</p>
@@ -173,8 +275,10 @@ export default function VipTourIslandPage() {
                           className="vip-tour-dest-card__img"
                           loading="lazy"
                           decoding="async"
+                          fetchPriority="low"
                           width={800}
                           height={1000}
+                          sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"
                         />
                       ) : (
                         <span className="vip-tour-dest-card__placeholder">
@@ -192,8 +296,12 @@ export default function VipTourIslandPage() {
                       <span className="vip-tour-dest-card__title">{destination.title}</span>
                       <span className="vip-tour-dest-card__blurb">{destination.blurb}</span>
                       <span className="vip-tour-dest-card__cta">
-                        {hasDetailPage ? 'Discover more' : 'Request this stop'}
-                        <span aria-hidden>→</span>
+                        <span className="vip-tour-dest-card__cta-label">
+                          {hasDetailPage ? 'Discover more' : 'Request this stop'}
+                        </span>
+                        <span className="vip-tour-dest-card__cta-arrow" aria-hidden>
+                          →
+                        </span>
                       </span>
                     </span>
                   </Link>

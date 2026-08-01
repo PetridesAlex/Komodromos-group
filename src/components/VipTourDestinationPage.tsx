@@ -40,15 +40,24 @@ export default function VipTourDestinationPage() {
 
       <section className="service-detail-hero service-detail-hero--vip-full" data-hero-parallax-root>
         <div
-          className="service-detail-hero-bg"
+          className="service-detail-hero-bg service-detail-hero-bg--vip-img"
           aria-hidden
           data-hero-parallax
-          style={{
-            backgroundImage: destination.image
-              ? `url("${destination.image}")`
-              : 'url("/images/services/vip-service/vip-transportation/vip-transportaion.webp")',
-          }}
-        />
+        >
+          <img
+            className="service-detail-hero-bg__img"
+            src={
+              destination.image ??
+              '/images/services/vip-service/vip-transportation/vip-transportaion.webp'
+            }
+            alt=""
+            width={1920}
+            height={1080}
+            decoding="async"
+            fetchPriority="high"
+            sizes="100vw"
+          />
+        </div>
         <div className="service-detail-hero-scrim service-detail-hero-scrim--vip" />
         <div className="container service-detail-hero-inner">
           <p className="eyebrow vip-tour-destination-hero__eyebrow reveal">{destination.region}</p>

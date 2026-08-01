@@ -54,7 +54,10 @@ export default function SuperLuxuryCarsPage() {
             transition={{ duration: reduceMotion ? 0.01 : 0.5, delay: reduceMotion ? 0 : 0.25 }}
           >
             <button type="button" className="limo-hero-cta" onClick={scrollToFleet}>
-              View fleet
+              <span className="limo-hero-cta__label">View fleet</span>
+              <span className="limo-hero-cta__arrow" aria-hidden>
+                →
+              </span>
             </button>
           </motion.div>
         </div>
@@ -148,6 +151,9 @@ export default function SuperLuxuryCarsPage() {
                 }}
               >
                 Request a private quote
+                <span className="limo-showcase__cta-arrow" aria-hidden>
+                  →
+                </span>
               </Link>
             </p>
             <p className="limo-showcase__back-wrap">

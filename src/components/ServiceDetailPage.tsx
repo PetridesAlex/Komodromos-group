@@ -332,44 +332,59 @@ export default function ServiceDetailPage({
 }
 
 function RelatedServicesSection({ currentSlug }: { currentSlug?: string }) {
-  const related = getPublicServiceCards()
-    .filter((card) => card.slug !== currentSlug && isServiceLinkableFromGroup(card.slug))
-    .slice(0, 6)
+  const related = getPublicServiceCards().filter(
+    (card) => card.slug !== currentSlug && isServiceLinkableFromGroup(card.slug),
+  )
 
   if (related.length === 0) return null
 
   return (
     <section className="section service-related" aria-labelledby="related-services-heading">
-      <div className="container">
-        <p className="eyebrow">Explore more</p>
-        <h2 id="related-services-heading">Related services</h2>
-        <p className="section-sub">Discover other Komodromos Group companies and solutions.</p>
+      <div className="container service-related__inner">
+        <p className="eyebrow service-related__eyebrow">Explore more</p>
+        <h2 id="related-services-heading" className="service-related__heading">
+          Related services
+        </h2>
+        <p className="section-sub service-related__intro">
+          Discover other Komodromos Group companies and solutions.
+        </p>
         <ul className="service-related__list">
           {related.map((card) => {
             const href = getServicePageHref(card.slug)
             const label = card.navTitle ?? card.title
+            const linkClassName = 'service-related__card'
+            const body = (
+              <>
+                <span className="service-related__card-title">{label}</span>
+                <span className="service-related__card-copy">{card.description}</span>
+                <span className="service-related__card-cta" aria-hidden>
+                  Explore
+                  <span className="service-related__card-arrow">→</span>
+                </span>
+              </>
+            )
             return (
-              <li key={card.slug}>
+              <li key={card.slug} className="service-related__item">
                 {isExternalServiceHref(card.slug) ? (
                   <a
                     href={href}
-                    className="service-related__link"
+                    className={linkClassName}
                     rel="noopener noreferrer"
                     onClick={() => {
                       if (card.slug === 'aviation') prepareGlobalWingsEntryNavigation()
                     }}
                   >
-                    {label}
+                    {body}
                   </a>
                 ) : (
                   <Link
                     to={href}
-                    className="service-related__link"
+                    className={linkClassName}
                     onClick={() => {
                       if (card.slug === 'aviation') prepareGlobalWingsEntryNavigation()
                     }}
                   >
-                    {label}
+                    {body}
                   </Link>
                 )}
               </li>
