@@ -33,11 +33,21 @@ export default function SuperLuxuryCarDetailPage({ car }: Props) {
 
       <section className="service-detail-hero service-detail-hero--vip-full" data-hero-parallax-root>
         <div
-          className="service-detail-hero-bg"
+          className="service-detail-hero-bg service-detail-hero-bg--vip-img"
           aria-hidden
           data-hero-parallax
-          style={{ backgroundImage: `url("${car.heroImage}")` }}
-        />
+        >
+          <img
+            className="service-detail-hero-bg__img"
+            src={car.heroImage}
+            alt=""
+            width={1920}
+            height={1080}
+            decoding="async"
+            fetchPriority="high"
+            sizes="100vw"
+          />
+        </div>
         <div className="service-detail-hero-scrim service-detail-hero-scrim--vip" />
         <div className="container service-detail-hero-inner">
           <p className="eyebrow reveal">{car.eyebrow}</p>

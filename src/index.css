@@ -16593,6 +16593,43 @@ a.contact-channel__value:focus-visible {
   transform: translateZ(0);
 }
 
+/* Live Ken Burns on all VIP full-bleed hero photos (parallax moves the wrapper) */
+.service-detail-hero--vip-full .service-detail-hero-bg--vip-img {
+  overflow: hidden;
+}
+
+.service-detail-hero--vip-full .service-detail-hero-bg__img {
+  transform: scale(1.12);
+  transform-origin: center center;
+  will-change: transform;
+  animation: vipServiceHeroLive 22s ease-in-out infinite;
+}
+
+@keyframes vipServiceHeroLive {
+  0% {
+    transform: scale(1.12) translate3d(-2.4%, 1%, 0);
+  }
+  25% {
+    transform: scale(1.18) translate3d(2%, -1.4%, 0);
+  }
+  50% {
+    transform: scale(1.22) translate3d(2.8%, 0.5%, 0);
+  }
+  75% {
+    transform: scale(1.16) translate3d(-1.4%, -1.8%, 0);
+  }
+  100% {
+    transform: scale(1.12) translate3d(-2.4%, 1%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-detail-hero--vip-full .service-detail-hero-bg__img {
+    animation: none;
+    transform: scale(1.06);
+  }
+}
+
 .service-detail-hero-scrim {
   position: absolute;
   inset: 0;
@@ -47032,13 +47069,19 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 42%;
-  transform: scale(1.1);
+  object-position: center 45%;
+  transform: scale(1.14);
   transform-origin: center center;
   will-change: transform;
-  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), filter 1s ease;
-  animation: vipTourVehicleDrift 12s ease-in-out infinite alternate;
+  transition: filter 0.9s ease;
+  animation: vipTourVehicleLive 18s ease-in-out infinite;
   filter: saturate(1.08) contrast(1.05);
+}
+
+.vip-tour-intro__vehicle:nth-child(2) .vip-tour-intro__vehicle-img {
+  animation-name: vipTourVehicleLiveAlt;
+  animation-duration: 20s;
+  animation-delay: -4s;
 }
 
 .vip-tour-intro__vehicle-media-scrim {
@@ -47079,12 +47122,39 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   text-align: left;
 }
 
-@keyframes vipTourVehicleDrift {
+@keyframes vipTourVehicleLive {
   0% {
-    transform: scale(1.1) translate3d(-1.8%, 0.3%, 0);
+    transform: scale(1.14) translate3d(-3.2%, 1.2%, 0);
+  }
+  25% {
+    transform: scale(1.2) translate3d(2.4%, -1.8%, 0);
+  }
+  50% {
+    transform: scale(1.26) translate3d(3.5%, 0.6%, 0);
+  }
+  75% {
+    transform: scale(1.18) translate3d(-1.6%, -2.4%, 0);
   }
   100% {
-    transform: scale(1.18) translate3d(1.8%, -1.6%, 0);
+    transform: scale(1.14) translate3d(-3.2%, 1.2%, 0);
+  }
+}
+
+@keyframes vipTourVehicleLiveAlt {
+  0% {
+    transform: scale(1.16) translate3d(3%, -1.4%, 0);
+  }
+  25% {
+    transform: scale(1.22) translate3d(-2.8%, 1.6%, 0);
+  }
+  50% {
+    transform: scale(1.28) translate3d(-3.4%, -0.8%, 0);
+  }
+  75% {
+    transform: scale(1.2) translate3d(1.8%, 2.2%, 0);
+  }
+  100% {
+    transform: scale(1.16) translate3d(3%, -1.4%, 0);
   }
 }
 
@@ -47102,8 +47172,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   }
 
   .vip-tour-intro__vehicle:hover .vip-tour-intro__vehicle-img {
-    animation-play-state: paused;
-    transform: scale(1.22) translate3d(0, -2%, 0);
+    animation-duration: 10s;
     filter: saturate(1.14) contrast(1.07) brightness(1.04);
   }
 
@@ -47189,11 +47258,11 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   .vip-tour-intro__vehicle-img {
     transition: none;
     animation: none;
-    transform: scale(1.06);
+    transform: scale(1.08);
   }
 
   .vip-tour-intro__vehicle:hover .vip-tour-intro__vehicle-img {
-    transform: scale(1.06);
+    transform: scale(1.08);
     filter: none;
   }
 }

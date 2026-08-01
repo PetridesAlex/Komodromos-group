@@ -125,7 +125,22 @@ export default function VipSecurityProtectionPage() {
       />
 
       <section className="service-detail-hero service-detail-hero--vip-full" data-hero-parallax-root>
-        <div className="service-detail-hero-bg limo-detail-hero-bg" aria-hidden data-hero-parallax />
+        <div
+          className="service-detail-hero-bg service-detail-hero-bg--vip-img"
+          aria-hidden
+          data-hero-parallax
+        >
+          <img
+            className="service-detail-hero-bg__img"
+            src={VIP_SECURITY_GALLERY[0]}
+            alt=""
+            width={1920}
+            height={1080}
+            decoding="async"
+            fetchPriority="high"
+            sizes="100vw"
+          />
+        </div>
         <div className="service-detail-hero-scrim service-detail-hero-scrim--vip" />
         <div className="container service-detail-hero-inner">
           <p className="eyebrow reveal">VIP Protection</p>

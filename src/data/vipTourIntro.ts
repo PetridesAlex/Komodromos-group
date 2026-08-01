@@ -14,7 +14,7 @@ export const vipTourIntro = {
       title: 'Mercedes S-Class (L) AMG Panoramic View',
       badge: 'Fully VIP Package',
       image:
-        '/images/services/vip-service/vip-transportation/intro-limousine/mercenes-benz-around.webp',
+        '/images/services/vip-service/luxury-cars/mercendez/mercedes-s-class-8.png',
       imageAlt: 'Mercedes S-Class AMG luxury saloon for VIP Cyprus tours',
       body: "Travel in one of the world's most prestigious luxury saloons, where handcrafted elegance, first-class comfort, panoramic views, whisper-quiet refinement, and executive-level luxury transform every journey into an unforgettable experience. Ideal for couples, families, business travellers, and guests seeking the ultimate in sophistication.",
     },
@@ -23,7 +23,7 @@ export const vipTourIntro = {
       title: 'Stretch Chrysler Limousine',
       badge: 'Fully VIP Package',
       image:
-        '/images/services/vip-service/vip-transportation/intro-limousine/limousine-around.webp',
+        '/images/services/vip-service/limousine-services/chrystler/chrysler6.webp',
       imageAlt: 'Stretch Chrysler limousine for VIP celebrations and island tours',
       body: 'For those who wish to make every journey a celebration, our luxurious Stretch Chrysler Limousine delivers an experience unlike any other. Accommodating up to 10 guests, it features an elegant private interior, luxurious leather seating, ambient lighting, climate control, premium entertainment system, and a fully stocked private bar with complimentary refreshments—creating the perfect atmosphere for birthdays, anniversaries, proposals, weddings, family gatherings, VIP celebrations, or simply an unforgettable day exploring Cyprus in true style.',
     },
