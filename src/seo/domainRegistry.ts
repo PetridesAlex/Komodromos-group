@@ -9,6 +9,12 @@ export type BrandDomainConfig = {
   siteName: string
   siteNameFull: string
   basePath: string
+  /**
+   * When false, keep `/services/{slug}` on the group site and do not 308 to the
+   * brand domain (use while brand DNS still points at a legacy host).
+   * Defaults to true.
+   */
+  brandDnsLive?: boolean
 }
 
 export const BRAND_DOMAINS: BrandDomainConfig[] = [
@@ -59,6 +65,9 @@ export const BRAND_DOMAINS: BrandDomainConfig[] = [
     siteName: 'Janchapelle',
     siteNameFull: 'Janchapelle — Luxury Bridal Collection',
     basePath: '/services/janchapelle',
+    // DNS still on legacy Apache (192.185.156.95). Keep group route public until
+    // janchapelle.com + www are pointed at this Vercel project, then set true.
+    brandDnsLive: false,
   },
   {
     slug: 'wedding',
@@ -204,6 +213,11 @@ export function getBrandRedirectUrl(
   return null
 }
 
+export function isBrandDnsLive(brand: BrandDomainConfig | undefined): boolean {
+  if (!brand) return false
+  return brand.brandDnsLive !== false
+}
+
 export function getGroupToBrandRedirectUrl(
   pathname: string,
   host: string | undefined | null,
@@ -213,6 +227,7 @@ export function getGroupToBrandRedirectUrl(
   const normalized = normalizeInternalPath(pathname)
 
   for (const brand of BRAND_DOMAINS) {
+    if (!isBrandDnsLive(brand)) continue
     if (normalized === brand.basePath || normalized.startsWith(`${brand.basePath}/`)) {
       const clean = internalPathToBrandPath(normalized, brand)
       const base = `https://${brand.host}${clean === '/' ? '' : clean}`
@@ -225,7 +240,7 @@ export function getGroupToBrandRedirectUrl(
 
 export function getServiceBrandUrl(slug: string): string | null {
   const brand = getBrandBySlug(slug)
-  if (!brand) return null
+  if (!brand || !isBrandDnsLive(brand)) return null
   const base = `https://${brand.host}/`
   return slug === 'aviation' ? withAviationEntryParam(base) : base
 }
@@ -254,6 +269,11 @@ export function getServicePageHref(slug: string, currentHost?: string | null): s
       return `/services/${slug}`
     }
 
+    // Brand DNS not on Vercel yet — keep users on the group SPA route.
+    if (!isBrandDnsLive(brand)) {
+      return `/services/${slug}`
+    }
+
     const base = `https://${brand.host}/`
     return slug === 'aviation' ? withAviationEntryParam(base) : base
   }
@@ -274,6 +294,7 @@ export function isExternalServiceHref(slug: string, currentHost?: string | null)
   const brand = getBrandBySlug(slug)
 
   if (brand) {
+    if (!isBrandDnsLive(brand)) return false
     return currentBrand?.slug !== slug
   }
 

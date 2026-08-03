@@ -40,9 +40,9 @@ export const SERVICE_HUB_SEO: Record<
       'TaxNex Cyprus tax and accounting services — company registration, tax residence, clearances, TAXISnet support, and corporate compliance with Komodromos Group.',
   },
   '/services/janchapelle': {
-    title: 'Janchapelle Bridal Couture Cyprus | Komodromos Group',
+    title: 'Janchapelle Bridal Atelier Cyprus | Couture Wedding Dresses',
     description:
-      'Janchapelle bridal and couture in Cyprus — wedding dresses, styling appointments, and premium bridal experiences within Komodromos Group wedding services.',
+      'Janchapelle bridal atelier in Cyprus — couture wedding dresses, private fittings, lookbook collections, and appointment booking for modern brides.',
   },
   '/services/adr-mediation': {
     title: 'ADR Mediation Dispute Center Cyprus | Komodromos Group',
