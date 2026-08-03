@@ -27,6 +27,8 @@ export type YachtCharter = {
   price6h: string
   priceFullDay: string
   image: string
+  /** SEO alt for fleet card / cover image */
+  imageAlt?: string
   gallery: string[]
   /** Optional detail-page grids (hero uses `gallery[0]` or `image`). */
   galleryExterior?: string[]

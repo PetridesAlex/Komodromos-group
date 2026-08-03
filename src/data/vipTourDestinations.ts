@@ -1,8 +1,21 @@
+import {
+  getVipTourLocationCover,
+  getVipTourLocationCoverAlt,
+  getVipTourLocationGalleryItems,
+  type VipTourGalleryImage,
+} from './vipTourLocationGalleries'
+
 export type VipTourDestination = {
   id: string
   title: string
   /** Optional cover when assets are added under public/images/... */
   image?: string
+  /** SEO alt text for the cover / card image */
+  imageAlt?: string
+  /** Destination photo gallery (WebP) for the detail page */
+  gallery?: string[]
+  /** Gallery images with SEO alt text */
+  galleryImages?: VipTourGalleryImage[]
   region: 'Paphos' | 'Limassol' | 'Larnaca' | 'Ayia Napa' | 'Island'
   /** Short card lead / tagline */
   blurb: string
@@ -11,7 +24,7 @@ export type VipTourDestination = {
 }
 
 /** VIP Tour Around the Island — one card per destination folder. */
-export const vipTourDestinations: VipTourDestination[] = [
+const vipTourDestinationsRaw: VipTourDestination[] = [
   {
     id: 'aggeloxtisti-kiti',
     title: 'Aggeloxtisti Kiti Village',
@@ -293,6 +306,17 @@ export const vipTourDestinations: VipTourDestination[] = [
     ],
   },
   {
+    id: 'lefkara-cyprus',
+    title: 'Lefkara Village',
+    region: 'Larnaca',
+    blurb: 'Discover the Timeless Charm of Lefkara',
+    description: [
+      "Step into the enchanting village of Lefkara, one of Cyprus' most picturesque destinations, where tradition, culture, and authentic hospitality come together. Begin your day with a delicious traditional Cypriot breakfast, featuring freshly baked village bread, local halloumi, olives, homemade jams, seasonal fruits, village honey, and rich Cypriot coffee, served in charming family-run cafés.",
+      "Wander through the village's narrow stone-paved streets, admire beautifully preserved stone houses adorned with colorful flowers, and discover the world-famous Lefkara lace (Lefkaritika) and exquisite handmade silverwork that have made the village internationally renowned. Take time to browse local artisan shops, meet skilled craftsmen, and experience a way of life that has remained beautifully unchanged for generations.",
+      "Whether you're seeking authentic flavors, rich history, unique shopping, stunning photography, or simply a peaceful escape into the heart of traditional Cyprus, Lefkara offers an unforgettable experience that captures the true soul of the island. A visit here is not just a journey—it is a memory you'll treasure long after you leave.",
+    ],
+  },
+  {
     id: 'saint-lazaros',
     title: 'Saint Lazaros',
     region: 'Larnaca',
@@ -307,6 +331,24 @@ export const vipTourDestinations: VipTourDestination[] = [
     ],
   },
 ]
+
+/** Destinations with WebP covers/galleries resolved from vip-limousine-location assets. */
+export const vipTourDestinations: VipTourDestination[] = vipTourDestinationsRaw.map(
+  (destination) => {
+    const galleryImages = getVipTourLocationGalleryItems(destination.id)
+    const gallery = galleryImages.map((item) => item.src)
+    return {
+      ...destination,
+      image: destination.image ?? getVipTourLocationCover(destination.id),
+      imageAlt:
+        destination.imageAlt ??
+        getVipTourLocationCoverAlt(destination.id) ??
+        `${destination.title} in ${destination.region}, Cyprus`,
+      gallery: gallery.length > 0 ? gallery : destination.gallery,
+      galleryImages: galleryImages.length > 0 ? galleryImages : destination.galleryImages,
+    }
+  },
+)
 
 export function getVipTourDestinationById(id: string | undefined): VipTourDestination | undefined {
   if (!id) return undefined

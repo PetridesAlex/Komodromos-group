@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import type { YachtCharter } from '../../data/yachtChartersData'
+import { getYachtCharterImageAlt } from '../../data/seo/yachtCharterImageAlts'
 
 const MotionLink = motion(Link)
 
@@ -47,7 +48,7 @@ export default function YachtCard({ yacht, index, reduceMotion }: Props) {
         <img
           className="yacht-card__img"
           src={yacht.image}
-          alt=""
+          alt={getYachtCharterImageAlt(yacht.image, yacht.imageAlt ?? `${yacht.name} luxury yacht charter in Cyprus`)}
           width={isFlagship ? 1600 : 800}
           height={isFlagship ? 900 : 450}
           loading={index === 0 ? 'eager' : 'lazy'}

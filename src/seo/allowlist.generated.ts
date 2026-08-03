@@ -129,6 +129,7 @@ export const SEO_ALLOWLIST = new Set<string>([
   "/services/vip-tour-around-island/kolossi-castle",
   "/services/vip-tour-around-island/edro-iii-shipwreck",
   "/services/vip-tour-around-island/apollo-hylates",
+  "/services/vip-tour-around-island/lefkara-cyprus",
   "/services/vip-tour-around-island/saint-lazaros",
   "/services/storage/tips/business-items",
   "/services/storage/tips/flexible-storage",

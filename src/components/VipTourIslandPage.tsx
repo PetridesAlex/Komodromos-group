@@ -240,7 +240,7 @@ export default function VipTourIslandPage() {
           <header className="vip-tour-destinations__header reveal">
             <p className="vip-tour-destinations__eyebrow">Signature destinations</p>
             <h2 id="vip-tour-destinations-heading" className="vip-tour-destinations__title">
-              Twenty places. One private journey.
+              Signature destinations. One private journey.
             </h2>
             <p className="vip-tour-destinations__lead">
               Select landmarks across Paphos, Limassol, Larnaca, and Ayia Napa — composed into a
@@ -266,12 +266,14 @@ export default function VipTourIslandPage() {
                   <Link to={cardTo} state={cardState} className="vip-tour-dest-card__link">
                     <span
                       className={`vip-tour-dest-card__media vip-tour-dest-card__media--tone-${index % 5}`}
-                      aria-hidden={!destination.image}
                     >
                       {destination.image ? (
                         <img
                           src={destination.image}
-                          alt=""
+                          alt={
+                            destination.imageAlt ??
+                            `${destination.title} in ${destination.region}, Cyprus`
+                          }
                           className="vip-tour-dest-card__img"
                           loading="lazy"
                           decoding="async"
@@ -281,11 +283,11 @@ export default function VipTourIslandPage() {
                           sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"
                         />
                       ) : (
-                        <span className="vip-tour-dest-card__placeholder">
+                        <span className="vip-tour-dest-card__placeholder" aria-hidden>
                           <span className="vip-tour-dest-card__watermark">{num}</span>
                         </span>
                       )}
-                      <span className="vip-tour-dest-card__scrim" />
+                      <span className="vip-tour-dest-card__scrim" aria-hidden />
                     </span>
 
                     <span className="vip-tour-dest-card__body">

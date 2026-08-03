@@ -29,6 +29,27 @@ const pillarIcons = [Home, Building2, Layers] as const
 
 const POOL_EASE = [0.22, 1, 0.36, 1] as const
 
+function poolCategoryCardAlt(item: { id: string; label: string }): string {
+  return (
+    POOL_CATEGORY_DETAILS[item.id]?.imageAlt ??
+    `${item.label} swimming pools by BlueSky Pools, Cyprus`
+  )
+}
+
+function poolLiningCardAlt(item: { id: string; label: string }): string {
+  return (
+    POOL_LINING_DETAILS[item.id]?.imageAlt ??
+    `${item.label} pool finishes by BlueSky Pools, Cyprus`
+  )
+}
+
+function poolServiceCardAlt(item: { id: string; label: string }): string {
+  return (
+    POOL_SERVICE_DETAILS[item.id]?.imageAlt ??
+    `${item.label} — BlueSky Pools service and renovation, Cyprus`
+  )
+}
+
 const repairGridContainerVariants = {
   hidden: {},
   visible: {
@@ -483,7 +504,7 @@ export default function PoolGardenServicesPage() {
                     aria-label={`Learn more about ${item.label} pools`}
                   >
                     <div className="pool-garden-showcase-card__media">
-                      <LazyPoolImage src={item.imageSrc} alt="" />
+                      <LazyPoolImage src={item.imageSrc} alt={poolCategoryCardAlt(item)} />
                       <span className="pool-garden-showcase-card__veil" aria-hidden />
                       <span className="pool-garden-showcase-card__detail-hint" aria-hidden>
                         View details
@@ -503,7 +524,7 @@ export default function PoolGardenServicesPage() {
                   ].join(' ')}
                 >
                   <div className="pool-garden-showcase-card__media">
-                    <LazyPoolImage src={item.imageSrc} alt="" />
+                    <LazyPoolImage src={item.imageSrc} alt={poolCategoryCardAlt(item)} />
                     <span className="pool-garden-showcase-card__veil" aria-hidden />
                   </div>
                   <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>
@@ -535,7 +556,7 @@ export default function PoolGardenServicesPage() {
                       aria-label={`Learn more about ${item.label} pools`}
                     >
                       <div className="pool-garden-showcase-card__media">
-                        <LazyPoolImage src={item.imageSrc} alt="" />
+                        <LazyPoolImage src={item.imageSrc} alt={poolCategoryCardAlt(item)} />
                         <span className="pool-garden-showcase-card__veil" aria-hidden />
                         <span className="pool-garden-showcase-card__detail-hint" aria-hidden>
                           View details
@@ -557,7 +578,7 @@ export default function PoolGardenServicesPage() {
                   variants={scrollGridItemVariants}
                 >
                   <div className="pool-garden-showcase-card__media">
-                    <LazyPoolImage src={item.imageSrc} alt="" />
+                    <LazyPoolImage src={item.imageSrc} alt={poolCategoryCardAlt(item)} />
                     <span className="pool-garden-showcase-card__veil" aria-hidden />
                   </div>
                   <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>
@@ -604,7 +625,7 @@ export default function PoolGardenServicesPage() {
                     aria-label={`Learn more about ${item.label}`}
                   >
                     <div className="pool-garden-showcase-card__media">
-                      <LazyPoolImage src={item.imageSrc} alt="" />
+                      <LazyPoolImage src={item.imageSrc} alt={poolServiceCardAlt(item)} />
                       <span className="pool-garden-showcase-card__veil" aria-hidden />
                       <span className="pool-garden-showcase-card__detail-hint" aria-hidden>
                         View details
@@ -618,7 +639,7 @@ export default function PoolGardenServicesPage() {
               return (
                 <figure key={item.id} className="pool-garden-showcase-card">
                   <div className="pool-garden-showcase-card__media">
-                    <LazyPoolImage src={item.imageSrc} alt="" />
+                    <LazyPoolImage src={item.imageSrc} alt={poolServiceCardAlt(item)} />
                     <span className="pool-garden-showcase-card__veil" aria-hidden />
                   </div>
                   <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>
@@ -650,7 +671,7 @@ export default function PoolGardenServicesPage() {
                       aria-label={`Learn more about ${item.label}`}
                     >
                       <div className="pool-garden-showcase-card__media">
-                        <LazyPoolImage src={item.imageSrc} alt="" />
+                        <LazyPoolImage src={item.imageSrc} alt={poolServiceCardAlt(item)} />
                         <span className="pool-garden-showcase-card__veil" aria-hidden />
                         <span className="pool-garden-showcase-card__detail-hint" aria-hidden>
                           View details
@@ -669,7 +690,7 @@ export default function PoolGardenServicesPage() {
                   variants={repairGridItemVariants}
                 >
                   <div className="pool-garden-showcase-card__media">
-                    <LazyPoolImage src={item.imageSrc} alt="" />
+                    <LazyPoolImage src={item.imageSrc} alt={poolServiceCardAlt(item)} />
                     <span className="pool-garden-showcase-card__veil" aria-hidden />
                   </div>
                   <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>
@@ -716,7 +737,7 @@ export default function PoolGardenServicesPage() {
                     aria-label={`Learn more about ${item.label}`}
                   >
                     <div className="pool-garden-showcase-card__media">
-                      <LazyPoolImage src={item.imageSrc} alt="" />
+                      <LazyPoolImage src={item.imageSrc} alt={poolLiningCardAlt(item)} />
                       <span className="pool-garden-showcase-card__veil" aria-hidden />
                       <span className="pool-garden-showcase-card__detail-hint" aria-hidden>
                         View details
@@ -730,7 +751,7 @@ export default function PoolGardenServicesPage() {
               return (
                 <figure key={item.id} className="pool-garden-showcase-card pool-garden-showcase-card--tall">
                   <div className="pool-garden-showcase-card__media">
-                    <LazyPoolImage src={item.imageSrc} alt="" />
+                    <LazyPoolImage src={item.imageSrc} alt={poolLiningCardAlt(item)} />
                     <span className="pool-garden-showcase-card__veil" aria-hidden />
                   </div>
                   <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>
@@ -758,7 +779,7 @@ export default function PoolGardenServicesPage() {
                       aria-label={`Learn more about ${item.label}`}
                     >
                       <div className="pool-garden-showcase-card__media">
-                        <LazyPoolImage src={item.imageSrc} alt="" />
+                        <LazyPoolImage src={item.imageSrc} alt={poolLiningCardAlt(item)} />
                         <span className="pool-garden-showcase-card__veil" aria-hidden />
                         <span className="pool-garden-showcase-card__detail-hint" aria-hidden>
                           View details
@@ -777,7 +798,7 @@ export default function PoolGardenServicesPage() {
                   variants={scrollGridItemVariants}
                 >
                   <div className="pool-garden-showcase-card__media">
-                    <LazyPoolImage src={item.imageSrc} alt="" />
+                    <LazyPoolImage src={item.imageSrc} alt={poolLiningCardAlt(item)} />
                     <span className="pool-garden-showcase-card__veil" aria-hidden />
                   </div>
                   <figcaption className="pool-garden-showcase-card__cap">{item.label}</figcaption>

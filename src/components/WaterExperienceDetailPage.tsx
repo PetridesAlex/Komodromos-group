@@ -6,6 +6,7 @@ import LimoGalleryLightbox from './LimoGalleryLightbox'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import type { WaterExperienceDetail } from '../data/fishingScubaPage'
+import { getFishingScubaImageAlt } from '../data/seo/fishingScubaImageAlts'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -165,7 +166,7 @@ export default function WaterExperienceDetailPage({ detail }: Props) {
               >
                 <img
                   src={src}
-                  alt={`${detail.title} gallery image ${index + 1}`}
+                  alt={getFishingScubaImageAlt(src, `${detail.title} gallery image ${index + 1}`)}
                   loading="lazy"
                   decoding="async"
                 />

@@ -144,7 +144,6 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/Bridal.webp`,
     brandLogo: `${SVC_CARD_LOGO}/jan-chapelle.png`,
     brandLogoBlend: 'lighten',
-    comingSoon: true,
     brandSlug: 'janchapelle',
   },
   {

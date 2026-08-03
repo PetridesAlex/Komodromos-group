@@ -2,6 +2,7 @@ import type { KeyboardEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { weddingPackages } from '../data/weddingPackages'
 import { weddingBrandHref } from '../lib/brandPaths'
+import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
 
 export default function WeddingPackagesSection() {
   const navigate = useNavigate()
@@ -52,7 +53,12 @@ export default function WeddingPackagesSection() {
               aria-label={`Open ${pkg.name} package details`}
             >
               <div className="wedding-packages-section__media">
-                <img src={pkg.image} alt="" loading="lazy" decoding="async" />
+                <img
+                  src={pkg.image}
+                  alt={getServiceCoverImageAlt(pkg.image, `Wedding Sky ${pkg.name} package`)}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="wedding-packages-section__media-scrim" aria-hidden />
               </div>
               <div className="wedding-packages-section__content">

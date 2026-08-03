@@ -5,6 +5,7 @@ import Footer from './Footer'
 import LimoGalleryLightbox from './LimoGalleryLightbox'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
+import { getLimousineImageAlt } from '../data/seo/limousineImageAlts'
 
 const CHRYSLER_GALLERY = [
   '/images/services/vip-service/limousine-services/chrystler/chrysler1.webp',
@@ -73,7 +74,7 @@ export default function LimousineDetailPage() {
                 >
                   <img
                     src={src}
-                    alt={`Chrysler 300 Super Stretch Limousine gallery image ${index + 1}`}
+                    alt={getLimousineImageAlt(src, `Chrysler 300 Super Stretch Limousine gallery image ${index + 1}`)}
                     loading={index === 0 ? 'eager' : 'lazy'}
                     decoding="async"
                   />
@@ -189,7 +190,7 @@ export default function LimousineDetailPage() {
         activeIndex={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onNavigate={setLightboxIndex}
-        altForIndex={(i) => `Chrysler 300 Super Stretch Limousine gallery image ${i + 1}`}
+        altForIndex={(i) => getLimousineImageAlt(CHRYSLER_GALLERY[i] ?? '', `Chrysler 300 Super Stretch Limousine gallery image ${i + 1}`)}
       />
 
       <Footer />

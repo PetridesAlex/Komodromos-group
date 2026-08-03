@@ -5,6 +5,7 @@ import Footer from './Footer'
 import LimoGalleryLightbox from './LimoGalleryLightbox'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
+import { getLimousineImageAlt } from '../data/seo/limousineImageAlts'
 
 const LINCOLN_GALLERY = [
   '/images/services/vip-service/limousine-services/Lincoln-30ft/limousine1.webp',
@@ -71,7 +72,7 @@ export default function LincolnLimousineDetailPage() {
                 >
                   <img
                     src={src}
-                    alt={`Lincoln 30ft Stretched Limousine gallery image ${index + 1}`}
+                    alt={getLimousineImageAlt(src, `Lincoln 30ft Stretched Limousine gallery image ${index + 1}`)}
                     loading={index === 0 ? 'eager' : 'lazy'}
                     decoding="async"
                   />
@@ -163,7 +164,7 @@ export default function LincolnLimousineDetailPage() {
         activeIndex={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onNavigate={setLightboxIndex}
-        altForIndex={(i) => `Lincoln 30ft Stretched Limousine gallery image ${i + 1}`}
+        altForIndex={(i) => getLimousineImageAlt(LINCOLN_GALLERY[i] ?? '', `Lincoln 30ft Stretched Limousine gallery image ${i + 1}`)}
       />
 
       <Footer />

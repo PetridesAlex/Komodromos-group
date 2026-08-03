@@ -6,6 +6,7 @@ import SiteTopbar from '../SiteTopbar'
 import { useReveal } from '../../hooks/useReveal'
 import { findOnassisCategory, onassisCategories } from '../../data/onassisExperience'
 import NotFoundPage from '../NotFoundPage'
+import { getOnassisImageAlt } from '../../data/seo/onassisImageAlts'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -176,7 +177,7 @@ export default function OnassisCategoryPage() {
                   >
                     <img
                       src={src}
-                      alt={`${category.title} — photo ${i + 1}`}
+                      alt={getOnassisImageAlt(src, `${category.title} — photo ${i + 1}`)}
                       loading="lazy"
                       decoding="async"
                       sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 360px"

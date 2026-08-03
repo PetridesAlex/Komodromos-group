@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
 
 const FALLBACK_IMAGE = '/images/services/vip-service/luxury-travel.webp'
 
@@ -54,7 +55,7 @@ export function ServiceCard({
         <img
           className="vip-service-card__img"
           src={src}
-          alt={title}
+          alt={getServiceCoverImageAlt(image, title)}
           loading="lazy"
           decoding="async"
           onError={() => {

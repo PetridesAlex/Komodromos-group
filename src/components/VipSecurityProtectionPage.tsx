@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
+import { getVipSecurityImageAlt } from '../data/seo/vipSecurityImageAlts'
 
 const VIP_SECURITY_GALLERY = [
   '/images/services/vip-service/Security-services/vip-security-1.webp',
@@ -133,7 +134,7 @@ export default function VipSecurityProtectionPage() {
           <img
             className="service-detail-hero-bg__img"
             src={VIP_SECURITY_GALLERY[0]}
-            alt=""
+            alt={getVipSecurityImageAlt(VIP_SECURITY_GALLERY[0], 'VIP security protection, Cyprus — photo 1')}
             width={1920}
             height={1080}
             decoding="async"
@@ -173,7 +174,7 @@ export default function VipSecurityProtectionPage() {
                 <div className="vip-security-story__img-shell vip-security-story__img-shell--drift">
                   <img
                     src={VIP_SECURITY_GALLERY[0]}
-                    alt=""
+                    alt={getVipSecurityImageAlt(VIP_SECURITY_GALLERY[0], 'VIP security protection, Cyprus — photo 1')}
                     className="vip-security-story__img"
                     loading="eager"
                     decoding="async"
@@ -188,7 +189,7 @@ export default function VipSecurityProtectionPage() {
                 <div className="vip-security-story__img-shell vip-security-story__img-shell--drift">
                   <img
                     src={VIP_SECURITY_GALLERY[1]}
-                    alt=""
+                    alt={getVipSecurityImageAlt(VIP_SECURITY_GALLERY[1], 'VIP security protection, Cyprus — photo 2')}
                     className="vip-security-story__img"
                     loading="lazy"
                     decoding="async"
@@ -219,7 +220,7 @@ export default function VipSecurityProtectionPage() {
                 <div className="vip-security-story__img-shell vip-security-story__img-shell--drift">
                   <img
                     src={VIP_SECURITY_GALLERY[2]}
-                    alt=""
+                    alt={getVipSecurityImageAlt(VIP_SECURITY_GALLERY[2], 'VIP security protection, Cyprus — photo 3')}
                     className="vip-security-story__img"
                     loading="lazy"
                     decoding="async"
@@ -250,7 +251,7 @@ export default function VipSecurityProtectionPage() {
                 <div className="vip-security-story__img-shell vip-security-story__img-shell--drift">
                   <img
                     src={VIP_SECURITY_GALLERY[3]}
-                    alt=""
+                    alt={getVipSecurityImageAlt(VIP_SECURITY_GALLERY[3], 'VIP security protection, Cyprus — photo 4')}
                     className="vip-security-story__img"
                     loading="lazy"
                     decoding="async"
@@ -280,7 +281,7 @@ export default function VipSecurityProtectionPage() {
                 <div className="vip-security-story__img-shell vip-security-story__img-shell--drift">
                   <img
                     src={VIP_SECURITY_GALLERY[4]}
-                    alt=""
+                    alt={getVipSecurityImageAlt(VIP_SECURITY_GALLERY[4], 'VIP security protection, Cyprus — photo 5')}
                     className="vip-security-story__img"
                     loading="lazy"
                     decoding="async"
@@ -311,7 +312,7 @@ export default function VipSecurityProtectionPage() {
                 <div className="vip-security-story__img-shell vip-security-story__img-shell--drift">
                   <img
                     src={VIP_SECURITY_GALLERY[5]}
-                    alt=""
+                    alt={getVipSecurityImageAlt(VIP_SECURITY_GALLERY[5], 'VIP security protection, Cyprus — photo 6')}
                     className="vip-security-story__img"
                     loading="lazy"
                     decoding="async"

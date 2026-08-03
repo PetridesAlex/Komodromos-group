@@ -9,6 +9,7 @@ import {
   getYachtDetailContent,
 } from '../../data/yachtChartersData'
 import NotFoundPage from '../NotFoundPage'
+import { getYachtCharterImageAlt } from '../../data/seo/yachtCharterImageAlts'
 
 export default function YachtDetailPage() {
   const { yachtId } = useParams<{ yachtId: string }>()
@@ -56,7 +57,7 @@ export default function YachtDetailPage() {
             <img
               className="yacht-detail-hero__img"
               src={heroSrc}
-              alt={`${yacht.name} — ${yacht.type}`}
+              alt={getYachtCharterImageAlt(heroSrc, yacht.imageAlt ?? `${yacht.name} — ${yacht.type}`)}
               width={1600}
               height={900}
               sizes="(max-width: 960px) 100vw, 900px"
@@ -124,7 +125,7 @@ export default function YachtDetailPage() {
                     <figure key={`${src}-${i}`} className="yacht-detail-gallery__cell" role="listitem">
                       <img
                         src={src}
-                        alt={`${yacht.name} — exterior photo ${i + 1}`}
+                        alt={getYachtCharterImageAlt(src, `${yacht.name} — exterior photo ${i + 1}`)}
                         loading="lazy"
                         decoding="async"
                         sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 320px"
@@ -145,7 +146,7 @@ export default function YachtDetailPage() {
                     <figure key={`${src}-${i}`} className="yacht-detail-gallery__cell" role="listitem">
                       <img
                         src={src}
-                        alt={`${yacht.name} — interior photo ${i + 1}`}
+                        alt={getYachtCharterImageAlt(src, `${yacht.name} — interior photo ${i + 1}`)}
                         loading="lazy"
                         decoding="async"
                         sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 320px"

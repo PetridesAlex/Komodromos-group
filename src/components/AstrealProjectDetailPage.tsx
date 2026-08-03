@@ -13,6 +13,7 @@ import NotFoundPage from './NotFoundPage'
 import { getAstrealRoutes } from '../lib/brandPaths'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
+import { getAstrealProjectImageAlt } from '../data/seo/astrealProjectImageAlts'
 
 type DetailCopyStreamItem =
   | { kind: 'paragraph'; para: string; index: number }
@@ -356,7 +357,7 @@ export default function AstrealProjectDetailPage() {
                                 <img
                                   className="astreal-detail-copy__inline-img"
                                   src={src}
-                                  alt={`${project.title} — image ${galleryIndex + 1}`}
+                                  alt={getAstrealProjectImageAlt(project.gallery[galleryIndex] ?? '', `${project.title} — image ${galleryIndex + 1}`)}
                                   width={1600}
                                   height={1067}
                                   loading="lazy"
@@ -414,7 +415,7 @@ export default function AstrealProjectDetailPage() {
                       <img
                         className="astreal-detail-gallery__img"
                         src={src}
-                        alt={`${project.title} — image ${galleryIndex + 1}`}
+                        alt={getAstrealProjectImageAlt(project.gallery[galleryIndex] ?? '', `${project.title} — image ${galleryIndex + 1}`)}
                         width={1600}
                         height={1067}
                         loading={i < 4 ? 'eager' : 'lazy'}
@@ -485,7 +486,7 @@ export default function AstrealProjectDetailPage() {
             <img
               className="astreal-detail-lightbox__img"
               src={project.gallery[lightboxIndex]}
-              alt={`${project.title} — image ${lightboxIndex + 1}`}
+              alt={getAstrealProjectImageAlt(project.gallery[lightboxIndex] ?? '', `${project.title} — image ${lightboxIndex + 1}`)}
               width={1920}
               height={1280}
               sizes="100vw"

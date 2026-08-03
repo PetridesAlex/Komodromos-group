@@ -38,7 +38,7 @@ export default function StorageUsefulTipsSection() {
                 <div className="storage-tips__media-frame">
                   <img
                     src={tip.image}
-                    alt=""
+                    alt={tip.imageAlt}
                     className="storage-tips__img"
                     loading="lazy"
                     decoding="async"

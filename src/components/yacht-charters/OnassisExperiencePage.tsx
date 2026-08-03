@@ -19,6 +19,7 @@ import {
 import OnassisPillarIcon from './OnassisPillarIcon'
 import ChristinaOBookModal from './ChristinaOBookModal'
 import OnassisCountUp from './OnassisCountUp'
+import { getOnassisImageAlt } from '../../data/seo/onassisImageAlts'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -371,7 +372,7 @@ export default function OnassisExperiencePage() {
                     <img
                       className="onassis-cat-card__img"
                       src={cat.cover}
-                      alt=""
+                      alt={getOnassisImageAlt(cat.cover, `${cat.label} — Christina O`)}
                       loading="lazy"
                       decoding="async"
                     />
@@ -596,7 +597,7 @@ export default function OnassisExperiencePage() {
                             <div className="onassis-island-tile__media">
                               <img
                                 src={image}
-                                alt=""
+                                alt={getOnassisImageAlt(image, `${name} stateroom — Christina O`)}
                                 className="onassis-island-tile__img"
                                 loading="lazy"
                                 decoding="async"

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import { weddingHighlightTiles } from '../data/weddingHighlightTiles'
+import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
 
 function TileContent({
   index,
@@ -24,7 +25,9 @@ function TileContent({
       <div className="wedding-highlight-tiles__media">
         <img
           src={image}
-          alt={decorativeImage ? '' : title}
+          alt={
+            decorativeImage ? '' : getServiceCoverImageAlt(image, title)
+          }
           loading="lazy"
           decoding="async"
         />

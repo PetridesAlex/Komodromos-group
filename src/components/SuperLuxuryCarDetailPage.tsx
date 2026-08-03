@@ -6,6 +6,7 @@ import LimoGalleryLightbox from './LimoGalleryLightbox'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import type { SuperLuxuryCarDetail } from '../data/superLuxuryCarsPage'
+import { getLuxuryCarsImageAlt } from '../data/seo/luxuryCarsImageAlts'
 
 type Props = {
   car: SuperLuxuryCarDetail
@@ -85,7 +86,7 @@ export default function SuperLuxuryCarDetailPage({ car }: Props) {
               >
                 <img
                   src={src}
-                  alt={`${car.title} gallery image ${index + 1}`}
+                  alt={getLuxuryCarsImageAlt(src, `${car.title} gallery image ${index + 1}`)}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                 />

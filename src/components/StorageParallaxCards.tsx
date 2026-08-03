@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from '
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'motion/react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { STORAGE_PARALLAX_SLIDES } from '../data/storagePageImages'
+import { getStorageGalleryImageAlt } from '../data/seo/storageGalleryImageAlts'
 
 /** Horizontal strip: parallax depth + subtle tilt (no overlapping cards) */
 type ParallaxLayout = {
@@ -115,7 +116,7 @@ function ParallaxCard({
       <div className="storage-parallax__card-inner">
         <img
           src={image}
-          alt=""
+          alt={getStorageGalleryImageAlt(image, title)}
           className="storage-parallax__card-img"
           loading={index < 3 ? 'eager' : 'lazy'}
           decoding="async"

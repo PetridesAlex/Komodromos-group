@@ -175,7 +175,7 @@ export default function StorageTipDetailPage() {
                     className="storage-tip-detail__nav-card storage-tip-detail__nav-card--prev"
                   >
                     <div className="storage-tip-detail__nav-card-media">
-                      <img src={prevTip.image} alt="" loading="lazy" decoding="async" />
+                      <img src={prevTip.image} alt={prevTip.imageAlt} loading="lazy" decoding="async" />
                     </div>
                     <div className="storage-tip-detail__nav-card-body">
                       <span className="storage-tip-detail__nav-label">
@@ -200,7 +200,7 @@ export default function StorageTipDetailPage() {
                       <span className="storage-tip-detail__nav-card-title">{nextTip.title}</span>
                     </div>
                     <div className="storage-tip-detail__nav-card-media">
-                      <img src={nextTip.image} alt="" loading="lazy" decoding="async" />
+                      <img src={nextTip.image} alt={nextTip.imageAlt} loading="lazy" decoding="async" />
                     </div>
                   </Link>
                 ) : null}
