@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import AppointmentModal from './AppointmentModal'
+import JanchapelleBridalNav from './JanchapelleBridalNav'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
@@ -16,9 +17,12 @@ import {
   JANCHAPELLE_HERO,
   JANCHAPELLE_HOUSES,
   JANCHAPELLE_MID_CTA,
+  JANCHAPELLE_NEWSLETTER,
   JANCHAPELLE_TIERS,
   type JanchapelleDressCard,
 } from '../data/janchapellePage'
+import { sendContactInquiry } from '../lib/sendContactInquiry'
+import { isValidContactEmail } from '../lib/contactFormValidation'
 
 function AnimatedHeading({
   id,
@@ -106,6 +110,11 @@ export default function JanchapelleBridalPage() {
   const pageRef = useReveal()
   const { isBrandDomain } = useSiteContext()
   const [appointmentOpen, setAppointmentOpen] = useState(false)
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterConsent, setNewsletterConsent] = useState(false)
+  const [newsletterBusy, setNewsletterBusy] = useState(false)
+  const [newsletterDone, setNewsletterDone] = useState(false)
+  const [newsletterError, setNewsletterError] = useState<string | null>(null)
   const servicesSectionHref = isBrandDomain
     ? buildGroupSiteReturnUrl('services')
     : '/#services'
@@ -116,6 +125,52 @@ export default function JanchapelleBridalPage() {
     }
   }, [location.pathname, location.hash])
 
+  async function handleNewsletterSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setNewsletterError(null)
+
+    const email = newsletterEmail.trim()
+    if (!email || !isValidContactEmail(email)) {
+      setNewsletterError('Please enter a valid email address.')
+      return
+    }
+    if (!newsletterConsent) {
+      setNewsletterError('Please accept the terms and conditions to continue.')
+      return
+    }
+
+    setNewsletterBusy(true)
+    try {
+      await sendContactInquiry({
+        source: 'Janchapelle — Newsletter',
+        name: 'Newsletter subscriber',
+        email,
+        service: JANCHAPELLE_CONTACT_STATE.serviceInterest,
+        message: [
+          'Newsletter subscription request from the Janchapelle bridal page.',
+          '',
+          'Terms & conditions accepted: Yes',
+        ].join('\n'),
+        detailsTitle: 'Newsletter',
+        details: [
+          { label: 'Email', value: email },
+          { label: 'Consent', value: 'Accepted terms and conditions' },
+        ],
+      })
+      setNewsletterDone(true)
+      setNewsletterEmail('')
+      setNewsletterConsent(false)
+    } catch (err) {
+      setNewsletterError(
+        err instanceof Error
+          ? err.message
+          : 'Could not complete your subscription. Please try again shortly.',
+      )
+    } finally {
+      setNewsletterBusy(false)
+    }
+  }
+
   return (
     <div className="page jc-page" ref={pageRef}>
       <SiteTopbar
@@ -123,6 +178,7 @@ export default function JanchapelleBridalPage() {
         homeHref="/"
         servicesSectionHref={servicesSectionHref}
       />
+      <JanchapelleBridalNav onBookAppointment={() => setAppointmentOpen(true)} />
 
       <section className="jc-hero" aria-labelledby="jc-hero-heading">
         <div
@@ -269,7 +325,7 @@ export default function JanchapelleBridalPage() {
         </div>
       </section>
 
-      <section className="jc-assist" aria-label="Appointment and atelier">
+      <section className="jc-assist" id="jc-assist" aria-label="Appointment and atelier">
         {JANCHAPELLE_ASSIST.map((card, index) => (
           <article key={card.id} className={`jc-assist__card reveal reveal-delay-${index}`}>
             <div
@@ -338,6 +394,7 @@ export default function JanchapelleBridalPage() {
       </section>
 
       <section
+        id="jc-tiers"
         className="jc-section jc-section--tiers"
         aria-labelledby="jc-tiers-heading"
       >
@@ -373,6 +430,77 @@ export default function JanchapelleBridalPage() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section
+        id="jc-newsletter"
+        className="jc-section jc-newsletter"
+        aria-labelledby="jc-newsletter-heading"
+      >
+        <div className="jc-newsletter__glow" aria-hidden />
+        <div className="jc-newsletter__inner reveal">
+          <JcSectionHeader
+            id="jc-newsletter-heading"
+            eyebrow={JANCHAPELLE_NEWSLETTER.eyebrow}
+            title={JANCHAPELLE_NEWSLETTER.title}
+            lead={JANCHAPELLE_NEWSLETTER.lead}
+          />
+
+          {newsletterDone ? (
+            <div className="jc-newsletter__success" role="status">
+              <p className="jc-newsletter__success-title">You’re on the list</p>
+              <p className="jc-newsletter__success-copy">
+                Thank you — we’ll share atelier news and lookbook moments with care.
+              </p>
+            </div>
+          ) : (
+            <form className="jc-newsletter__form" onSubmit={handleNewsletterSubmit} noValidate>
+              <div className="jc-newsletter__row">
+                <label className="jc-newsletter__email">
+                  <span className="visually-hidden">Email address</span>
+                  <input
+                    type="email"
+                    name="newsletter-email"
+                    autoComplete="email"
+                    placeholder="Your email address"
+                    value={newsletterEmail}
+                    onChange={(ev) => setNewsletterEmail(ev.target.value)}
+                    required
+                  />
+                </label>
+                <button
+                  type="submit"
+                  className="jc-newsletter__submit"
+                  disabled={newsletterBusy}
+                >
+                  {newsletterBusy ? 'Sending…' : 'Subscribe'}
+                </button>
+              </div>
+
+              <label className="jc-newsletter__consent">
+                <input
+                  type="checkbox"
+                  checked={newsletterConsent}
+                  onChange={(ev) => setNewsletterConsent(ev.target.checked)}
+                  required
+                />
+                <span>
+                  I accept the{' '}
+                  <Link to="/contact" state={{ ...JANCHAPELLE_CONTACT_STATE, topic: 'Terms' }}>
+                    terms and conditions
+                  </Link>{' '}
+                  of the Janchapelle website and agree to receive atelier updates by email.
+                </span>
+              </label>
+
+              {newsletterError ? (
+                <p className="jc-newsletter__error" role="alert">
+                  {newsletterError}
+                </p>
+              ) : null}
+            </form>
+          )}
         </div>
       </section>
 

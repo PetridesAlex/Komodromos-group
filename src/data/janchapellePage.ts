@@ -207,6 +207,13 @@ export const JANCHAPELLE_TIERS = [
   },
 ] as const
 
+export const JANCHAPELLE_NEWSLETTER = {
+  eyebrow: 'Stay close to the atelier',
+  title: 'Subscribe to our newsletter',
+  lead:
+    'New arrivals, private fittings, and seasonal lookbook moments — delivered with discretion to your inbox.',
+} as const
+
 export const JANCHAPELLE_EXPERIENCE = {
   eyebrow: 'The Janchapelle experience',
   title: 'What awaits in the atelier',

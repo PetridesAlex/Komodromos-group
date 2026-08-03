@@ -76552,8 +76552,667 @@ a.yacht-card {
   --jc-paper-deep: #ebe7e1;
   --jc-line: rgba(20, 20, 20, 0.12);
   --jc-cream: #faf8f5;
+  --jc-nav-h: 64px;
+  --jc-text-grad: linear-gradient(
+    120deg,
+    #1a1612 0%,
+    #8a4a62 32%,
+    #3d6f8c 62%,
+    #5a8a6a 82%,
+    #1a1612 100%
+  );
+  --jc-text-grad-light: linear-gradient(
+    120deg,
+    #ffffff 0%,
+    #ffc2d6 28%,
+    #a8d4f5 58%,
+    #c8e8d4 78%,
+    #ffffff 100%
+  );
   background: var(--jc-paper);
   color: var(--jc-ink);
+  scroll-padding-top: calc(72px + var(--jc-nav-h) + 12px);
+}
+
+.jc-text-grad {
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.jc-text-grad--light {
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Janchapelle bridal subnav (below SiteTopbar) ── */
+
+.jc-bridal-nav {
+  position: sticky;
+  top: 72px;
+  z-index: 28;
+  border-bottom: 1px solid rgba(20, 20, 20, 0.08);
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(16px) saturate(1.12);
+  -webkit-backdrop-filter: blur(16px) saturate(1.12);
+}
+
+.jc-bridal-nav__inner {
+  width: min(1240px, calc(100% - 1.75rem));
+  margin: 0 auto;
+  min-height: var(--jc-nav-h);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: clamp(0.65rem, 2vw, 1.5rem);
+  padding-block: 0.55rem;
+}
+
+.jc-bridal-nav__left,
+.jc-bridal-nav__right {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  flex-shrink: 0;
+}
+
+.jc-bridal-nav__right {
+  justify-content: flex-end;
+}
+
+.jc-bridal-nav__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 0;
+  text-align: center;
+}
+
+.jc-bridal-nav__icon {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border: 0;
+  background: transparent;
+  color: #1a1612;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.jc-bridal-nav__icon:hover,
+.jc-bridal-nav__icon:focus-visible {
+  background: rgba(20, 20, 20, 0.06);
+  outline: none;
+}
+
+.jc-bridal-nav__icon--heart .jc-bridal-nav__badge {
+  position: absolute;
+  top: 0.28rem;
+  right: 0.22rem;
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.22rem;
+  border-radius: 999px;
+  background: #1a1612;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  line-height: 1rem;
+  text-align: center;
+}
+
+.jc-bridal-nav__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  text-decoration: none;
+  color: inherit;
+  line-height: 1;
+}
+
+.jc-bridal-nav__brand-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.35rem, 3.4vw, 1.95rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.jc-bridal-nav__brand-line {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.58rem, 1.4vw, 0.7rem);
+  font-weight: 560;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.88;
+}
+
+.jc-bridal-nav__links {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.15rem;
+}
+
+.jc-bridal-nav__link {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: border-color 0.25s ease, filter 0.25s ease, background-position 0.45s ease;
+}
+
+.jc-bridal-nav__link:hover,
+.jc-bridal-nav__link:focus-visible {
+  border-bottom-color: rgba(138, 74, 98, 0.45);
+  filter: brightness(1.08);
+  background-position: 100% center;
+  outline: none;
+}
+
+.jc-bridal-nav__appt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.45rem;
+  padding: 0.55rem 1.15rem;
+  border: 1px solid rgba(20, 20, 20, 0.88);
+  background: #fff;
+  color: #1a1612;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.jc-bridal-nav__appt:hover,
+.jc-bridal-nav__appt:focus-visible {
+  background: #1a1612;
+  color: #fff;
+  outline: none;
+}
+
+.jc-bridal-nav__appt--block {
+  width: 100%;
+  margin-top: 1.25rem;
+  min-height: 2.75rem;
+}
+
+@media (min-width: 980px) {
+  .jc-page {
+    --jc-nav-h: 88px;
+  }
+
+  .jc-bridal-nav__inner {
+    padding-block: 0.7rem 0.65rem;
+  }
+
+  .jc-bridal-nav__links {
+    display: flex;
+  }
+
+  .jc-bridal-nav__brand-name {
+    font-size: clamp(1.7rem, 2.2vw, 2.05rem);
+    letter-spacing: 0.14em;
+  }
+
+  .jc-bridal-nav__brand-line {
+    font-size: 0.72rem;
+    letter-spacing: 0.38em;
+  }
+
+  .jc-bridal-nav__link {
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 979px) {
+  .jc-bridal-nav__appt {
+    min-height: 2.3rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 560px) {
+  .jc-bridal-nav__inner {
+    width: calc(100% - 1rem);
+    column-gap: 0.35rem;
+    padding-block: 0.45rem;
+  }
+
+  .jc-bridal-nav__icon {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .jc-bridal-nav__brand-name {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+  }
+
+  .jc-bridal-nav__brand-line {
+    font-size: 0.54rem;
+    letter-spacing: 0.26em;
+  }
+
+  .jc-bridal-nav__appt {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+.jc-newsletter {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(4rem, 9vw, 6.5rem);
+  background:
+    radial-gradient(ellipse 50% 45% at 15% 20%, rgba(244, 170, 190, 0.28) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 90% 80%, rgba(160, 200, 220, 0.25) 0%, transparent 55%),
+    linear-gradient(165deg, #fffaf8 0%, #f5f0ea 48%, #f8f6f2 100%);
+}
+
+.jc-newsletter__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 30% at 50% 0%, rgba(196, 140, 160, 0.12) 0%, transparent 60%);
+}
+
+.jc-newsletter__inner {
+  position: relative;
+  z-index: 1;
+  width: min(720px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.jc-newsletter__form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.jc-newsletter__row {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .jc-newsletter__row {
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+  }
+}
+
+.jc-newsletter__email {
+  display: block;
+  min-width: 0;
+}
+
+.jc-newsletter__email input {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.15rem;
+  border: 1px solid rgba(40, 30, 35, 0.18);
+  background: rgba(255, 255, 255, 0.88);
+  color: #1a1612;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.jc-newsletter__email input::placeholder {
+  color: rgba(40, 30, 35, 0.42);
+}
+
+.jc-newsletter__email input:focus {
+  border-color: rgba(140, 80, 110, 0.55);
+  box-shadow: 0 0 0 3px rgba(180, 110, 140, 0.15);
+}
+
+.jc-newsletter__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.65rem;
+  border: 1px solid #1a1612;
+  background: #1a1612;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.jc-newsletter__submit:hover:not(:disabled),
+.jc-newsletter__submit:focus-visible:not(:disabled) {
+  background: transparent;
+  color: #1a1612;
+  outline: none;
+}
+
+.jc-newsletter__submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.jc-newsletter__consent {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(40, 34, 38, 0.72);
+  cursor: pointer;
+}
+
+.jc-newsletter__consent input {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: 0.15rem;
+  accent-color: #8a4a62;
+  cursor: pointer;
+}
+
+.jc-newsletter__consent a {
+  color: #8a4a62;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.jc-newsletter__consent a:hover,
+.jc-newsletter__consent a:focus-visible {
+  color: #1a1612;
+}
+
+.jc-newsletter__error {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.84rem;
+  color: #a12e4a;
+}
+
+.jc-newsletter__success {
+  text-align: center;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 1px solid rgba(140, 100, 120, 0.22);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.jc-newsletter__success-title {
+  margin: 0 0 0.55rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-weight: 500;
+  color: #1a1612;
+}
+
+.jc-newsletter__success-copy {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: rgba(40, 34, 38, 0.72);
+}
+
+.jc-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(10, 8, 8, 0.42);
+  display: flex;
+  justify-content: flex-start;
+  backdrop-filter: blur(4px);
+}
+
+.jc-drawer--search {
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5.5rem 1rem 1.5rem;
+}
+
+.jc-drawer__panel {
+  width: min(360px, 92vw);
+  height: 100%;
+  background: #fff;
+  color: #1a1612;
+  padding: 1.15rem 1.15rem 1.75rem;
+  overflow: auto;
+  box-shadow: 18px 0 48px rgba(0, 0, 0, 0.18);
+  animation: jc-drawer-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jc-drawer__panel--search {
+  width: min(520px, 100%);
+  height: auto;
+  max-height: min(78vh, 640px);
+  border-radius: 2px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+  animation: jc-search-in 0.28s ease-out;
+}
+
+@keyframes jc-drawer-in {
+  from {
+    transform: translateX(-16px);
+    opacity: 0.4;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes jc-search-in {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.jc-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(20, 20, 20, 0.1);
+}
+
+.jc-drawer__title {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.jc-drawer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.jc-drawer__link,
+.jc-drawer__link--btn {
+  display: block;
+  width: 100%;
+  padding: 1rem 0.15rem;
+  border: 0;
+  border-bottom: 1px solid rgba(20, 20, 20, 0.08);
+  background: transparent;
+  text-align: left;
+  text-decoration: none;
+  color: #1a1612;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.jc-drawer__link:hover,
+.jc-drawer__link:focus-visible,
+.jc-drawer__link--btn:hover,
+.jc-drawer__link--btn:focus-visible {
+  color: #8a4a62;
+  outline: none;
+}
+
+.jc-search-field {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(20, 20, 20, 0.16);
+  margin-bottom: 1rem;
+}
+
+.jc-search-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #1a1612;
+  outline: none;
+}
+
+.jc-search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.jc-search-results__empty,
+.jc-wishlist-empty {
+  margin: 0.5rem 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(20, 20, 20, 0.58);
+}
+
+.jc-search-result {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 0.85rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.55rem;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.jc-search-result:hover,
+.jc-search-result:focus-visible {
+  background: rgba(20, 20, 20, 0.04);
+  outline: none;
+}
+
+.jc-search-result img {
+  width: 56px;
+  height: 72px;
+  object-fit: cover;
+  background: #ebe7e1;
+}
+
+.jc-search-result__house,
+.jc-search-result__name {
+  display: block;
+}
+
+.jc-search-result__house {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 20, 20, 0.5);
+  margin-bottom: 0.2rem;
+}
+
+.jc-search-result__name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  color: #1a1612;
+}
+
+.jc-search-result__heart {
+  color: rgba(20, 20, 20, 0.35);
+}
+
+.jc-search-result__heart.is-on {
+  color: #b04070;
+  fill: rgba(176, 64, 112, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jc-drawer__panel,
+  .jc-drawer__panel--search {
+    animation: none;
+  }
 }
 
 .jc-eyebrow {
@@ -76707,6 +77366,12 @@ a.yacht-card {
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: jc-heading-shimmer 5s ease-in-out infinite alternate;
 }
 
 .jc-hero__brand-line {
@@ -76715,7 +77380,12 @@ a.yacht-card {
   font-weight: 500;
   letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.92;
 }
 
 .jc-hero__title {
@@ -76736,7 +77406,11 @@ a.yacht-card {
   font-weight: 400;
   line-height: 1.75;
   letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.86);
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-hero__actions {
@@ -76945,13 +77619,7 @@ a.yacht-card {
     transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.65s ease;
   transition-delay: calc(0.08s + (var(--i, 0) * 0.07s));
-  background: linear-gradient(
-    120deg,
-    #1a1612 0%,
-    #8a4a62 35%,
-    #3d6f8c 65%,
-    #1a1612 100%
-  );
+  background-image: var(--jc-text-grad);
   background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -76989,17 +77657,25 @@ a.yacht-card {
   color: rgba(255, 210, 220, 0.92);
 }
 
-.jc-head--light .jc-heading,
 .jc-head--light .jc-heading__inner {
-  background: none;
-  color: rgba(255, 252, 248, 0.98);
-  -webkit-background-clip: unset;
-  background-clip: unset;
-  animation: none;
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: jc-heading-shimmer 4.5s ease-in-out 0.9s infinite alternate;
+}
+
+.jc-head--light .jc-heading {
+  color: transparent;
 }
 
 .jc-head--light .jc-head__lead {
-  color: rgba(255, 255, 255, 0.82);
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-head--light .jc-ornament {
@@ -77014,11 +77690,11 @@ a.yacht-card {
 }
 
 .jc-hero__title.jc-heading .jc-heading__inner {
-  background: none;
-  color: #fff;
-  -webkit-background-clip: unset;
-  background-clip: unset;
-  animation: none;
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-section__header {
