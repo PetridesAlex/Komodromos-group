@@ -16,6 +16,10 @@ type Props = {
   title?: string
   /** Supporting sentence under the title. */
   subtitle?: string
+  /** Split full name into first name + surname fields. */
+  splitName?: boolean
+  /** Require email (default: optional). */
+  requireEmail?: boolean
 }
 
 const TIME_SLOTS = [
@@ -79,13 +83,22 @@ export default function AppointmentModal({
   eyebrow = 'Private consultation',
   title = 'Book an appointment',
   subtitle = 'Choose a date and time that suits you — our team will confirm your appointment shortly.',
+  splitName = false,
+  requireEmail = false,
 }: Props) {
   const today = useMemo(() => startOfDay(new Date()), [])
   const [viewYear, setViewYear] = useState(today.getFullYear())
   const [viewMonth, setViewMonth] = useState(today.getMonth())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null)
-  const [form, setForm] = useState({ name: '', phone: '', email: '', notes: '' })
+  const [form, setForm] = useState({
+    name: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    notes: '',
+  })
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -111,11 +124,15 @@ export default function AppointmentModal({
     setViewMonth(today.getMonth())
     setSelectedDate(null)
     setSelectedSlot(null)
-    setForm({ name: '', phone: '', email: '', notes: '' })
+    setForm({ name: '', firstName: '', lastName: '', phone: '', email: '', notes: '' })
     setError(null)
     setSubmitted(false)
     if (dialogRef.current) dialogRef.current.focus()
   }, [open, today])
+
+  const displayName = splitName
+    ? `${form.firstName.trim()} ${form.lastName.trim()}`.trim()
+    : form.name.trim()
 
   const monthDays = useMemo(() => {
     const firstOfMonth = new Date(viewYear, viewMonth, 1)
@@ -167,7 +184,16 @@ export default function AppointmentModal({
       setError('Please choose a time for your appointment.')
       return
     }
-    if (!form.name.trim()) {
+    if (splitName) {
+      if (!form.firstName.trim()) {
+        setError('Please enter your first name.')
+        return
+      }
+      if (!form.lastName.trim()) {
+        setError('Please enter your surname.')
+        return
+      }
+    } else if (!form.name.trim()) {
       setError('Please enter your full name.')
       return
     }
@@ -175,8 +201,13 @@ export default function AppointmentModal({
       setError('Please enter a contact number.')
       return
     }
+    if (requireEmail && !form.email.trim()) {
+      setError('Please enter your email address.')
+      return
+    }
 
     const dateLabel = formatLongDate(selectedDate)
+    const fullName = displayName
 
     const message = [
       'New appointment request.',
@@ -188,20 +219,30 @@ export default function AppointmentModal({
       .filter((line) => line !== '')
       .join('\n')
 
+    const details = [
+      ...(splitName
+        ? [
+            { label: 'First name', value: form.firstName.trim() },
+            { label: 'Surname', value: form.lastName.trim() },
+          ]
+        : []),
+      { label: 'Preferred date', value: dateLabel },
+      { label: 'Preferred time', value: selectedSlot },
+      { label: 'Contact number', value: form.phone.trim() },
+      ...(form.email.trim() ? [{ label: 'Email', value: form.email.trim() }] : []),
+    ]
+
     setSubmitting(true)
     try {
       await sendContactInquiry({
         source,
-        name: form.name.trim(),
+        name: fullName,
         email: form.email.trim(),
         phone: form.phone.trim(),
         service,
         message,
         detailsTitle: 'Appointment details',
-        details: [
-          { label: 'Preferred date', value: dateLabel },
-          { label: 'Preferred time', value: selectedSlot },
-        ],
+        details,
       })
       setSubmitted(true)
     } catch (err) {
@@ -244,7 +285,7 @@ export default function AppointmentModal({
             </div>
             <h3>Appointment request received</h3>
             <p>
-              Thank you{form.name.trim() ? `, ${form.name.trim().split(' ')[0]}` : ''}. Our team will
+              Thank you{displayName ? `, ${displayName.split(' ')[0]}` : ''}. Our team will
               confirm your appointment
               {selectedDate ? ` for ${formatLongDate(selectedDate)}` : ''}
               {selectedSlot ? ` at ${selectedSlot}` : ''} and be in touch shortly.
@@ -358,19 +399,50 @@ export default function AppointmentModal({
               </div>
 
               <div className="appt__fields">
-                <div className="appt__field">
-                  <label htmlFor="appt-name">Full name</label>
-                  <input
-                    id="appt-name"
-                    name="name"
-                    type="text"
-                    required
-                    autoComplete="name"
-                    placeholder="Your name"
-                    value={form.name}
-                    onChange={handleChange}
-                  />
-                </div>
+                {splitName ? (
+                  <>
+                    <div className="appt__field">
+                      <label htmlFor="appt-first-name">First name</label>
+                      <input
+                        id="appt-first-name"
+                        name="firstName"
+                        type="text"
+                        required
+                        autoComplete="given-name"
+                        placeholder="First name"
+                        value={form.firstName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="appt__field">
+                      <label htmlFor="appt-last-name">Surname</label>
+                      <input
+                        id="appt-last-name"
+                        name="lastName"
+                        type="text"
+                        required
+                        autoComplete="family-name"
+                        placeholder="Surname"
+                        value={form.lastName}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <div className="appt__field">
+                    <label htmlFor="appt-name">Full name</label>
+                    <input
+                      id="appt-name"
+                      name="name"
+                      type="text"
+                      required
+                      autoComplete="name"
+                      placeholder="Your name"
+                      value={form.name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                )}
                 <div className="appt__field">
                   <label htmlFor="appt-phone">Contact number</label>
                   <input
@@ -386,12 +458,16 @@ export default function AppointmentModal({
                 </div>
                 <div className="appt__field">
                   <label htmlFor="appt-email">
-                    Email <span className="appt__optional">(optional)</span>
+                    Email
+                    {requireEmail ? null : (
+                      <span className="appt__optional"> (optional)</span>
+                    )}
                   </label>
                   <input
                     id="appt-email"
                     name="email"
                     type="email"
+                    required={requireEmail}
                     autoComplete="email"
                     placeholder="name@example.com"
                     value={form.email}

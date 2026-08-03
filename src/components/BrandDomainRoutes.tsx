@@ -35,6 +35,7 @@ import PoolCategoryDetailPage from './PoolCategoryDetailPage'
 import ServiceDetailPage from './ServiceDetailPage'
 import WeddingServicesPage from './WeddingServicesPage'
 import WeddingPackageDetailPage from './WeddingPackageDetailPage'
+import JanchapelleBridalPage from './JanchapelleBridalPage'
 
 function TaxBrandHome() {
   return (
@@ -159,7 +160,7 @@ function AdrBrandRoutes() {
 function JanchapelleBrandRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<ServiceDetailPage slugOverride="janchapelle" />} />
+      <Route path="/" element={<JanchapelleBridalPage />} />
       <Route path="/services/janchapelle/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
       <Route path="*" element={<NotFoundPage />} />

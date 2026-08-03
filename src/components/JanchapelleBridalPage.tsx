@@ -1,0 +1,394 @@
+import { useEffect, useState, type CSSProperties } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import Footer from './Footer'
+import SiteTopbar from './SiteTopbar'
+import AppointmentModal from './AppointmentModal'
+import { useReveal } from '../hooks/useReveal'
+import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { useSiteContext } from '../seo/SiteContext'
+import {
+  JANCHAPELLE_ASSIST,
+  JANCHAPELLE_CONTACT_STATE,
+  JANCHAPELLE_DONT_MISS,
+  JANCHAPELLE_EVENTS,
+  JANCHAPELLE_EXPERIENCE,
+  JANCHAPELLE_FEATURED,
+  JANCHAPELLE_HERO,
+  JANCHAPELLE_HOUSES,
+  JANCHAPELLE_MID_CTA,
+  JANCHAPELLE_TIERS,
+  type JanchapelleDressCard,
+} from '../data/janchapellePage'
+
+function AnimatedHeading({
+  id,
+  as: Tag = 'h2',
+  text,
+  className = '',
+}: {
+  id?: string
+  as?: 'h1' | 'h2'
+  text: string
+  className?: string
+}) {
+  const words = text.trim().split(/\s+/)
+  return (
+    <Tag id={id} className={`jc-heading ${className}`.trim()}>
+      {words.map((word, index) => (
+        <span
+          key={`${word}-${index}`}
+          className="jc-heading__word"
+          style={{ '--i': index } as CSSProperties}
+        >
+          <span className="jc-heading__inner">{word}</span>
+        </span>
+      ))}
+    </Tag>
+  )
+}
+
+function JcSectionHeader({
+  id,
+  eyebrow,
+  title,
+  lead,
+  tone = 'ink',
+}: {
+  id: string
+  eyebrow: string
+  title: string
+  lead?: string
+  tone?: 'ink' | 'light'
+}) {
+  return (
+    <header className={`jc-head reveal${tone === 'light' ? ' jc-head--light' : ''}`}>
+      <p className="jc-head__eyebrow">{eyebrow}</p>
+      <AnimatedHeading id={id} text={title} className="jc-head__title" />
+      <span className="jc-ornament" aria-hidden />
+      {lead ? <p className="jc-head__lead">{lead}</p> : null}
+    </header>
+  )
+}
+
+function DressCard({ dress, index }: { dress: JanchapelleDressCard; index: number }) {
+  return (
+    <li className={`jc-dress reveal reveal-delay-${Math.min(index % 3, 2)}`}>
+      <Link
+        to="/contact"
+        state={{ ...JANCHAPELLE_CONTACT_STATE, gownInterest: dress.name }}
+        className="jc-dress__link"
+      >
+        <span className="jc-dress__media">
+          <img
+            src={dress.image}
+            alt={dress.alt}
+            className="jc-dress__img"
+            loading={index < 3 ? 'eager' : 'lazy'}
+            decoding="async"
+            width={720}
+            height={960}
+            sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 280px"
+          />
+          <span className="jc-dress__veil" aria-hidden />
+          <span className="jc-dress__quick">Enquire</span>
+        </span>
+        <span className="jc-dress__meta">
+          <span className="jc-dress__house">{dress.house}</span>
+          <span className="jc-dress__name">{dress.name}</span>
+        </span>
+      </Link>
+    </li>
+  )
+}
+
+export default function JanchapelleBridalPage() {
+  const location = useLocation()
+  const pageRef = useReveal()
+  const { isBrandDomain } = useSiteContext()
+  const [appointmentOpen, setAppointmentOpen] = useState(false)
+  const servicesSectionHref = isBrandDomain
+    ? buildGroupSiteReturnUrl('services')
+    : '/#services'
+
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo(0, 0)
+    }
+  }, [location.pathname, location.hash])
+
+  return (
+    <div className="page jc-page" ref={pageRef}>
+      <SiteTopbar
+        logoPathname="/"
+        homeHref="/"
+        servicesSectionHref={servicesSectionHref}
+      />
+
+      <section className="jc-hero" aria-labelledby="jc-hero-heading">
+        <div
+          className="jc-hero__bg"
+          style={{ backgroundImage: `url("${JANCHAPELLE_HERO.image}")` }}
+          aria-hidden
+        />
+        <div className="jc-hero__scrim" aria-hidden />
+        <div className="jc-hero__inner">
+          <p className="jc-hero__brand reveal">
+            <span className="jc-hero__brand-name">{JANCHAPELLE_HERO.brand}</span>
+            <span className="jc-hero__brand-line">{JANCHAPELLE_HERO.brandLine}</span>
+          </p>
+          <div className="reveal reveal-delay-1">
+            <AnimatedHeading
+              id="jc-hero-heading"
+              as="h1"
+              text={JANCHAPELLE_HERO.title}
+              className="jc-hero__title"
+            />
+          </div>
+          <p className="jc-hero__lead reveal reveal-delay-1">{JANCHAPELLE_HERO.lead}</p>
+          <div className="jc-hero__actions reveal reveal-delay-2">
+            <button
+              type="button"
+              className="jc-btn jc-btn--solid"
+              onClick={() => setAppointmentOpen(true)}
+            >
+              {JANCHAPELLE_HERO.primaryCta}
+            </button>
+            <a href="#jc-featured" className="jc-btn jc-btn--ghost">
+              {JANCHAPELLE_HERO.secondaryCta}
+            </a>
+          </div>
+        </div>
+        <a href="#jc-events" className="jc-hero__scroll" aria-label="Scroll for more">
+          <span aria-hidden>↓</span>
+        </a>
+      </section>
+
+      <section id="jc-events" className="jc-events" aria-labelledby="jc-events-heading">
+        <div
+          className="jc-events__bg"
+          style={{ backgroundImage: `url("${JANCHAPELLE_EVENTS.image}")` }}
+          aria-hidden
+        />
+        <div className="jc-events__scrim" aria-hidden />
+        <div className="jc-events__inner">
+          <JcSectionHeader
+            id="jc-events-heading"
+            eyebrow={JANCHAPELLE_EVENTS.eyebrow}
+            title={JANCHAPELLE_EVENTS.title}
+            lead={JANCHAPELLE_EVENTS.lead}
+            tone="light"
+          />
+          <button
+            type="button"
+            onClick={() => setAppointmentOpen(true)}
+            className="jc-btn jc-btn--solid jc-btn--compact reveal"
+          >
+            {JANCHAPELLE_EVENTS.cta}
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="jc-featured"
+        className="jc-section jc-section--light"
+        aria-labelledby="jc-featured-heading"
+      >
+        <JcSectionHeader id="jc-featured-heading" eyebrow="Lookbook" title="Featured gowns" />
+        <ul className="jc-dress-grid">
+          {JANCHAPELLE_FEATURED.map((dress, index) => (
+            <DressCard key={dress.id} dress={dress} index={index} />
+          ))}
+        </ul>
+      </section>
+
+      <section className="jc-houses" aria-label="Signature collections">
+        {JANCHAPELLE_HOUSES.map((house, index) => (
+          <article
+            key={house.id}
+            className={`jc-house reveal${index % 2 === 1 ? ' jc-house--flip' : ''}`}
+          >
+            <div
+              className="jc-house__media"
+              style={{ backgroundImage: `url("${house.image}")` }}
+              role="img"
+              aria-label={house.alt}
+            />
+            <div className="jc-house__body">
+              <h3 className="jc-house__name">{house.name}</h3>
+              <p className="jc-house__lead">{house.lead}</p>
+              <Link
+                to="/contact"
+                state={{ ...JANCHAPELLE_CONTACT_STATE, collectionInterest: house.name }}
+                className="jc-btn jc-btn--outline"
+              >
+                {house.cta}
+              </Link>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section
+        className="jc-section jc-section--light"
+        aria-labelledby="jc-dont-miss-heading"
+      >
+        <JcSectionHeader
+          id="jc-dont-miss-heading"
+          eyebrow="Selected now"
+          title="Don’t miss these"
+        />
+        <ul className="jc-dress-grid jc-dress-grid--five">
+          {JANCHAPELLE_DONT_MISS.map((dress, index) => (
+            <DressCard key={dress.id} dress={dress} index={index} />
+          ))}
+        </ul>
+      </section>
+
+      <section className="jc-mid-cta" aria-labelledby="jc-mid-cta-heading">
+        <div
+          className="jc-mid-cta__bg"
+          style={{ backgroundImage: `url("${JANCHAPELLE_MID_CTA.image}")` }}
+          aria-hidden
+        />
+        <div className="jc-mid-cta__scrim" aria-hidden />
+        <div className="jc-mid-cta__inner">
+          <JcSectionHeader
+            id="jc-mid-cta-heading"
+            eyebrow="Private fitting"
+            title={JANCHAPELLE_MID_CTA.title}
+            lead={JANCHAPELLE_MID_CTA.lead}
+            tone="light"
+          />
+          <button
+            type="button"
+            onClick={() => setAppointmentOpen(true)}
+            className="jc-btn jc-btn--solid reveal"
+          >
+            {JANCHAPELLE_MID_CTA.cta}
+          </button>
+        </div>
+      </section>
+
+      <section className="jc-assist" aria-label="Appointment and atelier">
+        {JANCHAPELLE_ASSIST.map((card, index) => (
+          <article key={card.id} className={`jc-assist__card reveal reveal-delay-${index}`}>
+            <div
+              className="jc-assist__media"
+              style={{ backgroundImage: `url("${card.image}")` }}
+              role="img"
+              aria-label={card.alt}
+            />
+            <div className="jc-assist__body">
+              <h3 className="jc-assist__title">{card.title}</h3>
+              <p className="jc-assist__lead">{card.lead}</p>
+              <button
+                type="button"
+                onClick={() => setAppointmentOpen(true)}
+                className="jc-btn jc-btn--solid jc-btn--compact"
+              >
+                {card.cta}
+              </button>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section
+        className="jc-section jc-experience-section"
+        aria-labelledby="jc-experience-heading"
+      >
+        <div className="jc-experience-section__glow" aria-hidden />
+        <div className="jc-experience-section__inner">
+          <JcSectionHeader
+            id="jc-experience-heading"
+            eyebrow={JANCHAPELLE_EXPERIENCE.eyebrow}
+            title={JANCHAPELLE_EXPERIENCE.title}
+            lead={JANCHAPELLE_EXPERIENCE.lead}
+          />
+
+          <ol className="jc-experience-grid">
+            {JANCHAPELLE_EXPERIENCE.items.map((item, index) => (
+              <li
+                key={item.title}
+                className={`jc-experience reveal reveal-delay-${index}`}
+              >
+                <span className="jc-experience__index" aria-hidden>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div className="jc-experience__copy">
+                  <h3 className="jc-experience__title">{item.title}</h3>
+                  <p className="jc-experience__desc">{item.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <aside className="jc-assurances reveal" aria-label={JANCHAPELLE_EXPERIENCE.notesEyebrow}>
+            <p className="jc-assurances__eyebrow">{JANCHAPELLE_EXPERIENCE.notesEyebrow}</p>
+            <ul className="jc-assurances__list">
+              {JANCHAPELLE_EXPERIENCE.notes.map((note) => (
+                <li key={note} className="jc-assurances__item">
+                  <span className="jc-assurances__mark" aria-hidden />
+                  <span>{note}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section
+        className="jc-section jc-section--tiers"
+        aria-labelledby="jc-tiers-heading"
+      >
+        <div className="jc-tiers-glow" aria-hidden />
+        <div className="jc-tiers-inner">
+          <JcSectionHeader
+            id="jc-tiers-heading"
+            eyebrow="Collections by level"
+            title="Bridal categories"
+            lead="Four curated levels — from refined essentials to fully bespoke couture — each finished to the same atelier standard."
+          />
+          <ul className="jc-tiers">
+            {JANCHAPELLE_TIERS.map((tier, index) => (
+              <li
+                key={tier.id}
+                className={`jc-tier jc-tier--${tier.id} reveal reveal-delay-${Math.min(index, 2)}${
+                  'featured' in tier && tier.featured ? ' jc-tier--featured' : ''
+                }`}
+              >
+                <Link
+                  to="/contact"
+                  state={{ ...JANCHAPELLE_CONTACT_STATE, tierInterest: tier.name }}
+                  className="jc-tier__link"
+                >
+                  <span className="jc-tier__roman" aria-hidden>
+                    {tier.index}
+                  </span>
+                  <span className="jc-tier__name">{tier.name}</span>
+                  <span className="jc-tier__rule" aria-hidden />
+                  <span className="jc-tier__blurb">{tier.blurb}</span>
+                  <span className="jc-tier__cta">Enquire</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <Footer />
+
+      <AppointmentModal
+        open={appointmentOpen}
+        onClose={() => setAppointmentOpen(false)}
+        source="Janchapelle Appointment"
+        service={JANCHAPELLE_CONTACT_STATE.serviceInterest}
+        eyebrow="Bridal atelier"
+        title="Book a private appointment"
+        subtitle="Choose a date and time for your fitting — leave your details and our atelier will confirm shortly."
+        splitName
+        requireEmail
+      />
+    </div>
+  )
+}
