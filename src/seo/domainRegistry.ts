@@ -65,9 +65,6 @@ export const BRAND_DOMAINS: BrandDomainConfig[] = [
     siteName: 'Janchapelle',
     siteNameFull: 'Janchapelle — Luxury Bridal Collection',
     basePath: '/services/janchapelle',
-    // DNS still on legacy Apache (192.185.156.95). Keep group route public until
-    // janchapelle.com + www are pointed at this Vercel project, then set true.
-    brandDnsLive: false,
   },
   {
     slug: 'wedding',
