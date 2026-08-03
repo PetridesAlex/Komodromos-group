@@ -47283,7 +47283,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .vip-tour-destination-detail {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: clip;
   padding: clamp(3.75rem, 9vw, 6.5rem) 0 clamp(4.25rem, 9vw, 6.75rem);
   border-top: 1px solid rgba(197, 160, 89, 0.22);
   background:
@@ -47379,6 +47379,10 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   color: rgba(220, 188, 120, 0.95);
 }
 
+.vip-tour-destination-detail__inner--footer {
+  margin-top: 0;
+}
+
 .vip-tour-destination-detail__actions {
   display: flex;
   flex-wrap: wrap;
@@ -47393,15 +47397,21 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 /* ── VIP Tour destination gallery ── */
 
 .vip-tour-destination-gallery {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
   margin-top: clamp(2.75rem, 6vw, 4rem);
-  padding-top: clamp(2.25rem, 5vw, 3.25rem);
+  padding: clamp(2.25rem, 5vw, 3.25rem) clamp(0.65rem, 1.8vw, 1.5rem) 0;
   border-top: 1px solid rgba(197, 160, 89, 0.22);
 }
 
 .vip-tour-destination-gallery__header {
   text-align: center;
-  margin: 0 auto clamp(1.75rem, 4vw, 2.5rem);
-  max-width: 40rem;
+  margin: 0 auto clamp(1.75rem, 4vw, 2.75rem);
+  max-width: 42rem;
+  padding-inline: 0.5rem;
 }
 
 .vip-tour-destination-gallery__eyebrow {
@@ -47439,12 +47449,13 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(0.65rem, 1.5vw, 1.1rem);
+  gap: clamp(0.85rem, 2vw, 1.5rem);
 }
 
 .vip-tour-destination-gallery__item {
   grid-column: span 6;
   margin: 0;
+  min-width: 0;
 }
 
 .vip-tour-destination-gallery__item--feature {
@@ -47462,11 +47473,13 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   overflow: hidden;
   isolation: isolate;
   aspect-ratio: 4 / 3;
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+  min-height: clamp(260px, 36vw, 480px);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.4);
 }
 
 .vip-tour-destination-gallery__item--feature .vip-tour-destination-gallery__trigger {
   aspect-ratio: 16 / 9;
+  min-height: clamp(300px, 48vw, 720px);
 }
 
 .vip-tour-destination-gallery__img {
@@ -47530,19 +47543,24 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   outline-offset: 3px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
   .vip-tour-destination-gallery__item:not(.vip-tour-destination-gallery__item--feature) {
     grid-column: span 4;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 700px) {
   .vip-tour-destination-gallery__item {
     grid-column: span 12;
   }
 
+  .vip-tour-destination-gallery__trigger {
+    min-height: clamp(240px, 58vw, 360px);
+  }
+
   .vip-tour-destination-gallery__item--feature .vip-tour-destination-gallery__trigger {
     aspect-ratio: 4 / 3;
+    min-height: clamp(260px, 62vw, 420px);
   }
 }
 
@@ -47585,7 +47603,15 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .vip-tour-destinations__inner {
   position: relative;
   z-index: 1;
-  width: min(1480px, calc(100% - 1.25rem));
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(0.65rem, 1.8vw, 1.5rem);
+  box-sizing: border-box;
+}
+
+/* Beat global `.container` width so destinations use the full viewport */
+.vip-tour-destinations .container.vip-tour-destinations__inner {
+  width: 100%;
   max-width: none;
 }
 
@@ -47636,7 +47662,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(1.15rem, 2.6vw, 1.75rem);
+  gap: clamp(1.25rem, 2.8vw, 2rem);
   align-items: start;
 }
 
@@ -47646,7 +47672,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1400px) {
   .vip-tour-destinations__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -47655,7 +47681,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .vip-tour-dest-card {
   min-width: 0;
   content-visibility: auto;
-  contain-intrinsic-size: auto 480px;
+  contain-intrinsic-size: auto 620px;
 }
 
 .vip-tour-dest-card--featured {
@@ -47675,7 +47701,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 
   .vip-tour-dest-card--featured .vip-tour-dest-card__media {
     height: 100%;
-    min-height: 22rem;
+    min-height: 28rem;
   }
 
   .vip-tour-dest-card--featured .vip-tour-dest-card__body {
@@ -47690,7 +47716,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: clamp(26rem, 42vw, 30rem);
+  min-height: clamp(30rem, 52vw, 38rem);
   text-decoration: none;
   color: inherit;
   border-radius: 6px;
@@ -47768,9 +47794,24 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
 .vip-tour-dest-card__media {
   position: relative;
   display: block;
-  flex: 0 0 auto;
-  height: clamp(13.5rem, 22vw, 16.5rem);
+  flex: 1 1 auto;
+  min-height: clamp(18rem, 38vw, 26rem);
+  height: clamp(18rem, 38vw, 26rem);
   overflow: hidden;
+}
+
+@media (min-width: 700px) {
+  .vip-tour-dest-card__media {
+    min-height: clamp(20rem, 28vw, 28rem);
+    height: clamp(20rem, 28vw, 28rem);
+  }
+}
+
+@media (min-width: 1400px) {
+  .vip-tour-dest-card__media {
+    min-height: clamp(18rem, 22vw, 24rem);
+    height: clamp(18rem, 22vw, 24rem);
+  }
 }
 
 .vip-tour-dest-card__img,
@@ -49098,8 +49139,8 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(0.65rem, 2.5vw, 1.25rem);
-  background: rgba(2, 8, 18, 0.9);
+  padding: clamp(0.4rem, 1.5vw, 0.85rem);
+  background: rgba(2, 8, 18, 0.94);
   backdrop-filter: blur(12px);
   animation: limo-lightbox-in 0.24s ease-out;
 }
@@ -49136,7 +49177,7 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  max-width: min(96vw, 1280px);
+  max-width: min(99vw, 1920px);
   width: 100%;
 }
 
@@ -49153,12 +49194,12 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   display: block;
   flex: 1;
   min-width: 0;
-  max-width: min(88vw, 1120px);
-  max-height: min(84vh, 860px);
+  max-width: min(96vw, 1800px);
+  max-height: min(92vh, 1200px);
   width: auto;
   height: auto;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow:
     0 28px 90px rgba(0, 0, 0, 0.58),
     0 0 0 1px rgba(186, 230, 253, 0.18);
@@ -49205,8 +49246,8 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
   }
 
   .limo-lightbox__img {
-    max-height: min(68vh, 560px);
-    max-width: calc(100vw - 5.5rem);
+    max-height: min(82vh, 900px);
+    max-width: calc(100vw - 4.5rem);
   }
 }
 

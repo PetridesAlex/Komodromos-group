@@ -278,9 +278,9 @@ export default function VipTourIslandPage() {
                           loading="lazy"
                           decoding="async"
                           fetchPriority="low"
-                          width={800}
-                          height={1000}
-                          sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                          width={1200}
+                          height={900}
+                          sizes="(max-width: 700px) 100vw, (max-width: 1400px) 50vw, 33vw"
                         />
                       ) : (
                         <span className="vip-tour-dest-card__placeholder" aria-hidden>

@@ -100,76 +100,78 @@ export default function VipTourDestinationPage() {
               </p>
             ))}
           </div>
+        </div>
 
-          {galleryImages.length > 0 ? (
-            <section
-              className="vip-tour-destination-gallery"
-              aria-labelledby="vip-tour-destination-gallery-heading"
-            >
-              <header className="vip-tour-destination-gallery__header reveal">
-                <p className="vip-tour-destination-gallery__eyebrow">Visual journey</p>
-                <h3
-                  id="vip-tour-destination-gallery-heading"
-                  className="vip-tour-destination-gallery__title"
-                >
-                  Experience {destination.title}
-                </h3>
-                <p className="vip-tour-destination-gallery__lead">
-                  A curated gallery of this destination — open any frame for a full-screen
-                  preview.
-                </p>
-              </header>
+        {galleryImages.length > 0 ? (
+          <section
+            className="vip-tour-destination-gallery"
+            aria-labelledby="vip-tour-destination-gallery-heading"
+          >
+            <header className="vip-tour-destination-gallery__header reveal">
+              <p className="vip-tour-destination-gallery__eyebrow">Visual journey</p>
+              <h3
+                id="vip-tour-destination-gallery-heading"
+                className="vip-tour-destination-gallery__title"
+              >
+                Experience {destination.title}
+              </h3>
+              <p className="vip-tour-destination-gallery__lead">
+                A curated gallery of this destination — open any frame for a full-screen
+                preview.
+              </p>
+            </header>
 
-              <ul className="vip-tour-destination-gallery__grid">
-                {galleryImages.map((image, index) => {
-                  const isFeature = index === 0
-                  return (
-                    <motion.li
-                      key={image.src}
-                      className={`vip-tour-destination-gallery__item${
-                        isFeature ? ' vip-tour-destination-gallery__item--feature' : ''
-                      }`}
-                      initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: '-40px' }}
-                      transition={{
-                        duration: reduceMotion ? 0.01 : 0.55,
-                        delay: reduceMotion ? 0 : Math.min(index * 0.04, 0.28),
-                        ease: EASE,
-                      }}
+            <ul className="vip-tour-destination-gallery__grid">
+              {galleryImages.map((image, index) => {
+                const isFeature = index === 0
+                return (
+                  <motion.li
+                    key={image.src}
+                    className={`vip-tour-destination-gallery__item${
+                      isFeature ? ' vip-tour-destination-gallery__item--feature' : ''
+                    }`}
+                    initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{
+                      duration: reduceMotion ? 0.01 : 0.55,
+                      delay: reduceMotion ? 0 : Math.min(index * 0.04, 0.28),
+                      ease: EASE,
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className="vip-tour-destination-gallery__trigger"
+                      onClick={() => setLightboxIndex(index)}
+                      aria-label={`View larger: ${image.alt}`}
                     >
-                      <button
-                        type="button"
-                        className="vip-tour-destination-gallery__trigger"
-                        onClick={() => setLightboxIndex(index)}
-                        aria-label={`View larger: ${image.alt}`}
-                      >
-                        <img
-                          src={image.src}
-                          alt={image.alt}
-                          className="vip-tour-destination-gallery__img"
-                          loading={index < 2 ? 'eager' : 'lazy'}
-                          decoding="async"
-                          width={isFeature ? 1600 : 900}
-                          height={isFeature ? 1000 : 700}
-                          sizes={
-                            isFeature
-                              ? '(max-width: 900px) 100vw, 66vw'
-                              : '(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw'
-                          }
-                        />
-                        <span className="vip-tour-destination-gallery__frame" aria-hidden />
-                        <span className="vip-tour-destination-gallery__index" aria-hidden>
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                      </button>
-                    </motion.li>
-                  )
-                })}
-              </ul>
-            </section>
-          ) : null}
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="vip-tour-destination-gallery__img"
+                        loading={index < 2 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        width={isFeature ? 1920 : 1200}
+                        height={isFeature ? 1080 : 900}
+                        sizes={
+                          isFeature
+                            ? '100vw'
+                            : '(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                        }
+                      />
+                      <span className="vip-tour-destination-gallery__frame" aria-hidden />
+                      <span className="vip-tour-destination-gallery__index" aria-hidden>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </button>
+                  </motion.li>
+                )
+              })}
+            </ul>
+          </section>
+        ) : null}
 
+        <div className="container vip-tour-destination-detail__inner vip-tour-destination-detail__inner--footer">
           <div className="vip-tour-destination-detail__actions reveal">
             <Link
               to="/contact"
