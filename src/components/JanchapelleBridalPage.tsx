@@ -4,6 +4,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import AppointmentModal from './AppointmentModal'
 import JanchapelleBridalNav from './JanchapelleBridalNav'
+import JanchapelleSocialProof from './JanchapelleSocialProof'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
@@ -263,21 +264,37 @@ export default function JanchapelleBridalPage() {
             key={house.id}
             className={`jc-house reveal${index % 2 === 1 ? ' jc-house--flip' : ''}`}
           >
-            <div
-              className="jc-house__media"
-              style={{ backgroundImage: `url("${house.image}")` }}
-              role="img"
-              aria-label={house.alt}
-            />
+            <div className="jc-house__media-wrap">
+              <div
+                className="jc-house__media"
+                style={{ backgroundImage: `url("${house.image}")` }}
+                role="img"
+                aria-label={house.alt}
+              />
+              <span className="jc-house__media-veil" aria-hidden />
+              <span className="jc-house__index" aria-hidden>
+                {house.index}
+              </span>
+            </div>
             <div className="jc-house__body">
+              <p className="jc-house__eyebrow">{house.eyebrow}</p>
               <h3 className="jc-house__name">{house.name}</h3>
+              <span className="jc-house__rule" aria-hidden />
               <p className="jc-house__lead">{house.lead}</p>
+              <ul className="jc-house__features">
+                {house.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
               <Link
                 to="/contact"
                 state={{ ...JANCHAPELLE_CONTACT_STATE, collectionInterest: house.name }}
-                className="jc-btn jc-btn--outline"
+                className="jc-house__cta"
               >
-                {house.cta}
+                <span>{house.cta}</span>
+                <span className="jc-house__cta-arrow" aria-hidden>
+                  →
+                </span>
               </Link>
             </div>
           </article>
@@ -432,6 +449,8 @@ export default function JanchapelleBridalPage() {
           </ul>
         </div>
       </section>
+
+      <JanchapelleSocialProof />
 
       <section
         id="jc-newsletter"

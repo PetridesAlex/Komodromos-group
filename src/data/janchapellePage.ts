@@ -86,8 +86,11 @@ export const JANCHAPELLE_FEATURED: readonly JanchapelleDressCard[] = [
 
 export type JanchapelleHouse = {
   id: string
+  index: string
+  eyebrow: string
   name: string
   lead: string
+  features: readonly string[]
   cta: string
   image: string
   alt: string
@@ -96,18 +99,24 @@ export type JanchapelleHouse = {
 export const JANCHAPELLE_HOUSES: readonly JanchapelleHouse[] = [
   {
     id: 'maison-edition',
+    index: '01',
+    eyebrow: 'Signature house',
     name: 'Maison Édition',
     lead:
       'Aristocratic, feminine gowns with refined embroidery and couture finishing — for brides who want presence without excess.',
+    features: ['Hand embroidery', 'Silk & lace archives', 'Private fittings'],
     cta: 'View the collection',
     image: `${COVER}/wedding-sky.webp`,
     alt: 'Maison Édition bridal collection mood',
   },
   {
     id: 'atelier-moderne',
+    index: '02',
+    eyebrow: 'Contemporary house',
     name: 'Atelier Moderne',
     lead:
       'Handmade silhouettes for contemporary brides — clean lines, considered fabric, and individuality in every seam.',
+    features: ['Clean architecture', 'Limited editions', 'Bespoke finishing'],
     cta: 'View the collection',
     image: `${HIGHLIGHTS}/stories.webp`,
     alt: 'Atelier Moderne bridal collection mood',
@@ -212,6 +221,66 @@ export const JANCHAPELLE_NEWSLETTER = {
   title: 'Subscribe to our newsletter',
   lead:
     'New arrivals, private fittings, and seasonal lookbook moments — delivered with discretion to your inbox.',
+} as const
+
+export const JANCHAPELLE_SOCIAL_PROOF = {
+  eyebrow: 'Bride stories',
+  featured: {
+    quote:
+      'The fitting felt unhurried and precise — I left knowing the gown would move with me, not against me.',
+    name: 'Elena Constantinou',
+    role: 'Bride, Limassol ceremony',
+    avatar:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
+  },
+  wordmarksLabel: 'Houses we dress',
+  wordmarks: ['Maison Édition', 'Atelier Moderne', 'Gold Atelier', 'Haute Couture'],
+  posts: [
+    {
+      name: 'Sofia Marchetti',
+      handle: '@sofiamarchetti',
+      date: 'Mar 3',
+      text: 'Quiet rooms, honest advice, and a gown that photographs like silk in candlelight. Exactly what I hoped an atelier would feel like.',
+      replies: '48',
+      reposts: '212',
+      likes: '2.4k',
+      avatar:
+        'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80',
+    },
+    {
+      name: 'Amelia Rhodes',
+      handle: '@ameliarhodes',
+      date: 'Feb 24',
+      text: 'I came for one silhouette and left with the one I did not know I needed. The team never rushed the decision.',
+      replies: '31',
+      reposts: '96',
+      likes: '918',
+      avatar:
+        'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80',
+    },
+    {
+      name: 'Nour Haddad',
+      handle: '@nourhaddad',
+      date: 'Feb 18',
+      text: 'Clear enough for family, flexible enough for me. That balance is where most bridal shops fail — Janchapelle held it.',
+      replies: '57',
+      reposts: '144',
+      likes: '1.7k',
+      avatar:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',
+    },
+    {
+      name: 'Chloe Andreas',
+      handle: '@chloeandreas',
+      date: 'Feb 11',
+      text: 'The first bridal appointment my sister and I did not want to rebuild in a Pinterest board afterwards.',
+      replies: '19',
+      reposts: '63',
+      likes: '604',
+      avatar:
+        'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=200&q=80',
+    },
+  ],
 } as const
 
 export const JANCHAPELLE_EXPERIENCE = {

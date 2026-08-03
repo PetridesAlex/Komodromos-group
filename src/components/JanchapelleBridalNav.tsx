@@ -9,6 +9,7 @@ import {
 const NAV_LINKS = [
   { id: 'dresses', label: 'Wedding dresses', href: '#jc-featured' },
   { id: 'categories', label: 'Price categories', href: '#jc-tiers' },
+  { id: 'reviews', label: 'Reviews', href: '#jc-reviews' },
   { id: 'events', label: 'Events', href: '#jc-events' },
   { id: 'atelier', label: 'Atelier', href: '#jc-assist' },
 ] as const
