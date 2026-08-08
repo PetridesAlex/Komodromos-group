@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
 import { getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
-import { getPublicServiceCards } from '../lib/serviceMaintenance'
+import { getSolutionsMenuCards, isServiceLinkableFromGroup } from '../lib/serviceMaintenance'
 import { prepareGlobalWingsEntryNavigation } from '../lib/gwEntryNavigation'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
@@ -179,25 +179,37 @@ export default function SiteTopbar({
                 </Link>
               )}
               <ul className="nav-dropdown__list">
-                {getPublicServiceCards().map((card) => {
+                {getSolutionsMenuCards().map((card) => {
                   const external = isExternalServiceHref(card.slug)
                   const href = getServicePageHref(card.slug)
                   const isGlobalWings = card.slug === 'aviation'
+                  const underConstruction = Boolean(card.comingSoon)
+                  const linkable = isServiceLinkableFromGroup(card.slug)
                   const linkContent = (
                     <>
                       <span className="nav-dropdown__eyebrow">{card.eyebrow}</span>
                       <span className="nav-dropdown__title">
                         {card.navTitle ?? card.title}
                       </span>
+                      {underConstruction ? (
+                        <span className="nav-dropdown__status">Under construction</span>
+                      ) : null}
                     </>
                   )
 
                   return (
                     <li key={card.slug}>
-                      {external ? (
+                      {!linkable ? (
+                        <span
+                          className="nav-dropdown__link nav-dropdown__link--soon"
+                          aria-disabled="true"
+                        >
+                          {linkContent}
+                        </span>
+                      ) : external ? (
                         <a
                           href={href}
-                          className="nav-dropdown__link"
+                          className={`nav-dropdown__link${underConstruction ? ' nav-dropdown__link--soon' : ''}`}
                           rel="noopener noreferrer"
                           onClick={() => {
                             if (isGlobalWings) prepareGlobalWingsEntryNavigation()
@@ -209,7 +221,7 @@ export default function SiteTopbar({
                       ) : (
                         <Link
                           to={href}
-                          className="nav-dropdown__link"
+                          className={`nav-dropdown__link${underConstruction ? ' nav-dropdown__link--soon' : ''}`}
                           onClick={() => {
                             if (isGlobalWings) prepareGlobalWingsEntryNavigation()
                             close()

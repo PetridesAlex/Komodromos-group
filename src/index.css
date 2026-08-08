@@ -11392,6 +11392,33 @@ a {
     0 0 20px rgba(197, 160, 89, 0.2);
 }
 
+.nav-dropdown__status {
+  margin-top: 0.28rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(230, 190, 120, 0.92);
+}
+
+.nav-dropdown__link--soon {
+  cursor: default;
+  opacity: 0.88;
+}
+
+span.nav-dropdown__link--soon {
+  pointer-events: none;
+}
+
+.nav-dropdown__link--soon:hover,
+.nav-dropdown__link--soon:focus-visible {
+  transform: none;
+  padding-left: 1.35rem;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+
 .nav-dropdown .nav-dropdown__link::after {
   display: none;
 }

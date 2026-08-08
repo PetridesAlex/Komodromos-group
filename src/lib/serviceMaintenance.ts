@@ -42,9 +42,21 @@ export function isServiceLinkableFromGroup(slug: string): boolean {
   return isServicePubliclyAccessible(slug)
 }
 
+/**
+ * Homepage / contact / related lists — hide services that are offline in
+ * production (local preview still shows everything).
+ */
 export function getPublicServiceCards(): ServiceCard[] {
   if (isMaintenancePreviewEnabled()) return serviceCards
   return serviceCards.filter((card) => !card.comingSoon)
+}
+
+/**
+ * Solutions dropdown — include maintenance services so they can display an
+ * “Under construction” status instead of vanishing from the menu.
+ */
+export function getSolutionsMenuCards(): ServiceCard[] {
+  return serviceCards
 }
 
 function normalizePath(pathname: string): string {
