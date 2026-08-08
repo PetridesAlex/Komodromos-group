@@ -22,6 +22,15 @@ export function isServiceUnderMaintenance(slug: string | undefined): boolean {
   return getServiceBySlug(slug)?.comingSoon === true
 }
 
+/**
+ * Entire brand host is offline in production when the matching service card is
+ * marked comingSoon (e.g. weddingskycy.com including /packages/*).
+ */
+export function isBrandUnderMaintenance(brandSlug: string | undefined): boolean {
+  if (isMaintenancePreviewEnabled()) return false
+  return isServiceUnderMaintenance(brandSlug)
+}
+
 export function hasDedicatedBrandDomain(slug: string): boolean {
   return Boolean(getBrandBySlug(slug))
 }
@@ -90,7 +99,14 @@ export function isPathUnderMaintenance(pathname: string): boolean {
   return false
 }
 
-export function getMaintenanceServiceTitle(pathname: string): string | undefined {
+export function getMaintenanceServiceTitle(
+  pathname: string,
+  brandSlug?: string | undefined,
+): string | undefined {
+  if (brandSlug && isServiceUnderMaintenance(brandSlug)) {
+    return getServiceBySlug(brandSlug)?.title
+  }
+
   const normalized = normalizePath(pathname)
 
   for (const card of serviceCards) {
@@ -103,6 +119,12 @@ export function getMaintenanceServiceTitle(pathname: string): string | undefined
     for (const prefix of VIP_NESTED_PREFIXES) {
       if (matchesPrefix(normalized, prefix)) return 'VIP Services'
     }
+  }
+
+  // Brand remapped wedding package paths (only meaningful on the wedding host;
+  // callers should pass brandSlug when available).
+  if (isServiceUnderMaintenance('wedding') && matchesPrefix(normalized, '/packages')) {
+    return getServiceBySlug('wedding')?.title
   }
 
   return undefined

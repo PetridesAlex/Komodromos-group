@@ -3,7 +3,6 @@ export type WeddingPackageLongContent = {
   subtitle: string
   priceDisplay: string
   includes: string[]
-  contactPhone: string
   aboutTitle: string
   aboutCopy: string
   sections: Array<{
@@ -31,7 +30,6 @@ export const weddingBasicPackageContent: WeddingPackageLongContent = {
     'Traditional Allamata (Violarides)',
     'Ground Fireworks',
   ],
-  contactPhone: '+357 99045609',
   aboutTitle: 'About Our Team',
   aboutCopy:
     'My Special Event in Cyprus works with carefully selected professionals, each highly experienced in wedding planning, ensuring top-quality services combined with excellent value.',
@@ -222,7 +220,6 @@ export const weddingBasicPlusPackageContent: WeddingPackageLongContent = {
     'Wedding Day Coordination',
     'Groom Suit Package',
   ],
-  contactPhone: '+357 99045609',
   aboutTitle: 'About Our Team',
   aboutCopy:
     'My Special Event in Cyprus works with highly experienced professionals, carefully selected to deliver outstanding quality and excellent value.',
@@ -329,7 +326,6 @@ export const weddingClassicPackageContent: WeddingPackageLongContent = {
     'Bridal Package',
     'Wedding Day Coordination',
   ],
-  contactPhone: '+357 99045609',
   aboutTitle: 'About Our Team',
   aboutCopy:
     'My Special Event in Cyprus partners with experienced and trusted professionals, each specializing in their field. Our team is carefully selected to ensure exceptional service quality combined with competitive pricing.',
@@ -519,7 +515,6 @@ export const weddingClassicPlusPackageContent: WeddingPackageLongContent = {
     'Wedding Day Coordination',
     'Professional Lighting Setup',
   ],
-  contactPhone: '+357 99045609',
   aboutTitle: 'About Our Team',
   aboutCopy:
     'My Special Event in Cyprus brings together highly experienced professionals, each carefully selected to deliver exceptional quality services and a premium wedding experience tailored to your needs.',
@@ -695,7 +690,6 @@ export const weddingPremiumPackageContent: WeddingPackageLongContent = {
     'Preparation Equipment Setup',
     'Professional Lighting',
   ],
-  contactPhone: '+357 99045609',
   aboutTitle: 'About Our Team',
   aboutCopy:
     'Our team consists of highly skilled and experienced professionals, carefully selected to deliver exceptional service quality and a luxury wedding experience tailored to your vision.',
@@ -877,7 +871,6 @@ export const weddingCustomisedPackageContent: WeddingPackageLongContent = {
     'Budget-aware planning with transparent options',
     'One-to-one strategy meetings with our team',
   ],
-  contactPhone: '+357 99045609',
   aboutTitle: 'About Our Team',
   aboutCopy:
     'At My Special Event in Cyprus, we work with carefully selected professionals who are highly experienced in their field and have many years of expertise in wedding planning across Cyprus. Every collaborator has been chosen after extensive market research, allowing us to offer exceptional quality together with excellent value.',
@@ -898,7 +891,7 @@ export const weddingCustomisedPackageContent: WeddingPackageLongContent = {
     {
       title: 'How to Create Your Package',
       intro:
-        'To begin, simply contact us at +357 99045609 to arrange an appointment at our office in Larnaca. During the meeting, we will discuss every detail of your wedding, explore your ideas, and build your package together based on your preferences, style, and budget.',
+        'To begin, simply contact our team to arrange an appointment at our office in Larnaca. During the meeting, we will discuss every detail of your wedding, explore your ideas, and build your package together based on your preferences, style, and budget.',
       items: [
         'Once your selections are finalized, we will prepare a personalized quotation for you.',
         'Alternatively, you may complete the contact form and our team will get in touch with you.',

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Mail, MapPin, Phone, UserCircle2 } from 'lucide-react'
+import { Mail, MapPin, UserCircle2 } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import WeddingIntroSocial from './WeddingIntroSocial'
@@ -585,7 +585,7 @@ export default function WeddingServicesPage() {
               Location &amp; contact
             </h2>
             <p className="wedding-section__intro wedding-visit__intro">
-              Visit us in Limassol or reach the Wedding Sky team directly.
+              Visit us in Limassol or reach the Wedding Sky team by email.
             </p>
           </header>
           <div className="wedding-visit__grid">
@@ -610,39 +610,6 @@ export default function WeddingServicesPage() {
             <div
               className="wedding-visit__card reveal reveal-delay-2"
               style={{ ['--visit-i' as string]: '1' }}
-            >
-              <div className="wedding-visit__card-top">
-                <span className="wedding-visit__icon" aria-hidden>
-                  <Phone size={20} strokeWidth={1.75} />
-                </span>
-                <h3 className="wedding-visit__label">Telephone</h3>
-              </div>
-              <ul className="wedding-visit__list">
-                <li>
-                  <a href="tel:+35724333305">+357 24 333 305</a>
-                </li>
-                <li>
-                  <a href="tel:+35770002009">+357 7000 2009</a>
-                </li>
-                <li>
-                  <a href="tel:+35770003008">+357 7000 3008</a>
-                </li>
-              </ul>
-              <h3 className="wedding-visit__label wedding-visit__label--spaced">
-                Mobile
-              </h3>
-              <ul className="wedding-visit__list">
-                <li>
-                  <a href="tel:+35799243100">+357 99 24 3100</a>
-                </li>
-                <li>
-                  <a href="tel:+35799047978">+357 99 04 7978</a>
-                </li>
-              </ul>
-            </div>
-            <div
-              className="wedding-visit__card reveal reveal-delay-3"
-              style={{ ['--visit-i' as string]: '2' }}
             >
               <div className="wedding-visit__card-top">
                 <span className="wedding-visit__icon" aria-hidden>

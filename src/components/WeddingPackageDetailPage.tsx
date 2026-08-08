@@ -164,8 +164,11 @@ export default function WeddingPackageDetailPage() {
                 ))}
               </ul>
               <p className="wedding-basic-package__contact">
-                For appointments or more information, contact us at{' '}
-                <strong>{longContent.contactPhone}</strong>.
+                For appointments or more information,{' '}
+                <Link to="/contact" state={{ serviceInterest: 'Wedding Services' }}>
+                  contact our team
+                </Link>
+                .
               </p>
             </section>
 

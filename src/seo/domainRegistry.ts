@@ -1,3 +1,5 @@
+import { getServiceBySlug } from '../data/serviceCards'
+
 export const GROUP_HOST = 'www.komodromosgroup.com'
 export const GROUP_APEX_HOST = 'komodromosgroup.com'
 export const GROUP_SITE_URL = `https://${GROUP_HOST}`
@@ -215,6 +217,11 @@ export function isBrandDnsLive(brand: BrandDomainConfig | undefined): boolean {
   return brand.brandDnsLive !== false
 }
 
+function isBrandServiceUnderMaintenance(slug: string): boolean {
+  // Keep redirects/links on the group SPA while the service card is offline.
+  return getServiceBySlug(slug)?.comingSoon === true
+}
+
 export function getGroupToBrandRedirectUrl(
   pathname: string,
   host: string | undefined | null,
@@ -225,6 +232,7 @@ export function getGroupToBrandRedirectUrl(
 
   for (const brand of BRAND_DOMAINS) {
     if (!isBrandDnsLive(brand)) continue
+    if (isBrandServiceUnderMaintenance(brand.slug)) continue
     if (normalized === brand.basePath || normalized.startsWith(`${brand.basePath}/`)) {
       const clean = internalPathToBrandPath(normalized, brand)
       const base = `https://${brand.host}${clean === '/' ? '' : clean}`
@@ -238,6 +246,7 @@ export function getGroupToBrandRedirectUrl(
 export function getServiceBrandUrl(slug: string): string | null {
   const brand = getBrandBySlug(slug)
   if (!brand || !isBrandDnsLive(brand)) return null
+  if (isBrandServiceUnderMaintenance(slug)) return null
   const base = `https://${brand.host}/`
   return slug === 'aviation' ? withAviationEntryParam(base) : base
 }
@@ -266,8 +275,9 @@ export function getServicePageHref(slug: string, currentHost?: string | null): s
       return `/services/${slug}`
     }
 
-    // Brand DNS not on Vercel yet — keep users on the group SPA route.
-    if (!isBrandDnsLive(brand)) {
+    // Offline / under construction — keep users on the group SPA route so the
+    // maintenance gate can serve the under-construction page.
+    if (isBrandServiceUnderMaintenance(slug) || !isBrandDnsLive(brand)) {
       return `/services/${slug}`
     }
 
@@ -291,7 +301,7 @@ export function isExternalServiceHref(slug: string, currentHost?: string | null)
   const brand = getBrandBySlug(slug)
 
   if (brand) {
-    if (!isBrandDnsLive(brand)) return false
+    if (!isBrandDnsLive(brand) || isBrandServiceUnderMaintenance(slug)) return false
     return currentBrand?.slug !== slug
   }
 
