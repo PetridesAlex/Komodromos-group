@@ -9,7 +9,6 @@ import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
 import {
-  JANCHAPELLE_ASSIST,
   JANCHAPELLE_CONTACT_STATE,
   JANCHAPELLE_DONT_MISS,
   JANCHAPELLE_EVENTS,
@@ -19,7 +18,6 @@ import {
   JANCHAPELLE_HOUSES,
   JANCHAPELLE_MID_CTA,
   JANCHAPELLE_NEWSLETTER,
-  JANCHAPELLE_TIERS,
   type JanchapelleDressCard,
 } from '../data/janchapellePage'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
@@ -75,9 +73,41 @@ function JcSectionHeader({
   )
 }
 
-function DressCard({ dress, index }: { dress: JanchapelleDressCard; index: number }) {
+function splitCollectionName(name: string): { primary: string; accent: string } {
+  const words = name.trim().split(/\s+/)
+  if (words.length <= 1) {
+    return { primary: name, accent: '' }
+  }
+  const accent = words.pop() ?? ''
+  return { primary: words.join(' '), accent }
+}
+
+function splitCategoryWordmark(name: string): { primary: string; accent: string } {
+  const trimmed = name.trim()
+  const match = trimmed.match(/^Wedding\s+(.+)$/i)
+  if (match) {
+    return { primary: 'Wedding', accent: match[1] }
+  }
+  return splitCollectionName(trimmed)
+}
+
+function DressCard({
+  dress,
+  index,
+  featured = false,
+}: {
+  dress: JanchapelleDressCard
+  index: number
+  featured?: boolean
+}) {
+  const delayClass = featured
+    ? `reveal-delay-${Math.min(index, 3)}`
+    : `reveal-delay-${Math.min(index % 3, 2)}`
+
   return (
-    <li className={`jc-dress reveal reveal-delay-${Math.min(index % 3, 2)}`}>
+    <li
+      className={`jc-dress${featured ? ' jc-dress--featured' : ''} reveal ${delayClass}`}
+    >
       <Link
         to="/contact"
         state={{ ...JANCHAPELLE_CONTACT_STATE, gownInterest: dress.name }}
@@ -97,9 +127,53 @@ function DressCard({ dress, index }: { dress: JanchapelleDressCard; index: numbe
           <span className="jc-dress__veil" aria-hidden />
           <span className="jc-dress__quick">Enquire</span>
         </span>
-        <span className="jc-dress__meta">
-          <span className="jc-dress__house">{dress.house}</span>
-          <span className="jc-dress__name">{dress.name}</span>
+        <span
+          className={`jc-dress__meta${
+            dress.categoryWordmark
+              ? ' jc-dress__meta--brand'
+              : featured
+                ? ' jc-dress__meta--collection'
+                : ''
+          }`}
+        >
+          {dress.categoryWordmark ? (
+            (() => {
+              const { primary, accent } = splitCategoryWordmark(dress.name)
+              return (
+                <>
+                  {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
+                  <span className="jc-dress__wordmark" aria-label={dress.name}>
+                    <span className="jc-dress__wordmark-primary">{primary}</span>
+                    {accent ? (
+                      <span className="jc-dress__wordmark-accent">{accent}</span>
+                    ) : null}
+                  </span>
+                  <span className="jc-dress__wordmark-rule" aria-hidden />
+                </>
+              )
+            })()
+          ) : featured ? (
+            (() => {
+              const { primary, accent } = splitCollectionName(dress.name)
+              return (
+                <>
+                  {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
+                  <span className="jc-dress__wordmark" aria-label={dress.name}>
+                    <span className="jc-dress__wordmark-primary">{primary}</span>
+                    {accent ? (
+                      <span className="jc-dress__wordmark-accent">{accent}</span>
+                    ) : null}
+                  </span>
+                  <span className="jc-dress__wordmark-rule" aria-hidden />
+                </>
+              )
+            })()
+          ) : (
+            <>
+              {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
+              <span className="jc-dress__name">{dress.name}</span>
+            </>
+          )}
         </span>
       </Link>
     </li>
@@ -250,10 +324,14 @@ export default function JanchapelleBridalPage() {
         className="jc-section jc-section--light"
         aria-labelledby="jc-featured-heading"
       >
-        <JcSectionHeader id="jc-featured-heading" eyebrow="Lookbook" title="Featured gowns" />
-        <ul className="jc-dress-grid">
+        <JcSectionHeader
+          id="jc-featured-heading"
+          eyebrow="Curated collections"
+          title="Bride Categories"
+        />
+        <ul className="jc-dress-grid jc-dress-grid--four">
           {JANCHAPELLE_FEATURED.map((dress, index) => (
-            <DressCard key={dress.id} dress={dress} index={index} />
+            <DressCard key={dress.id} dress={dress} index={index} featured />
           ))}
         </ul>
       </section>
@@ -302,6 +380,7 @@ export default function JanchapelleBridalPage() {
       </section>
 
       <section
+        id="jc-dont-miss"
         className="jc-section jc-section--light"
         aria-labelledby="jc-dont-miss-heading"
       >
@@ -340,30 +419,6 @@ export default function JanchapelleBridalPage() {
             {JANCHAPELLE_MID_CTA.cta}
           </button>
         </div>
-      </section>
-
-      <section className="jc-assist" id="jc-assist" aria-label="Appointment and atelier">
-        {JANCHAPELLE_ASSIST.map((card, index) => (
-          <article key={card.id} className={`jc-assist__card reveal reveal-delay-${index}`}>
-            <div
-              className="jc-assist__media"
-              style={{ backgroundImage: `url("${card.image}")` }}
-              role="img"
-              aria-label={card.alt}
-            />
-            <div className="jc-assist__body">
-              <h3 className="jc-assist__title">{card.title}</h3>
-              <p className="jc-assist__lead">{card.lead}</p>
-              <button
-                type="button"
-                onClick={() => setAppointmentOpen(true)}
-                className="jc-btn jc-btn--solid jc-btn--compact"
-              >
-                {card.cta}
-              </button>
-            </div>
-          </article>
-        ))}
       </section>
 
       <section
@@ -407,46 +462,6 @@ export default function JanchapelleBridalPage() {
               ))}
             </ul>
           </aside>
-        </div>
-      </section>
-
-      <section
-        id="jc-tiers"
-        className="jc-section jc-section--tiers"
-        aria-labelledby="jc-tiers-heading"
-      >
-        <div className="jc-tiers-glow" aria-hidden />
-        <div className="jc-tiers-inner">
-          <JcSectionHeader
-            id="jc-tiers-heading"
-            eyebrow="Collections by level"
-            title="Bridal categories"
-            lead="Four curated levels — from refined essentials to fully bespoke couture — each finished to the same atelier standard."
-          />
-          <ul className="jc-tiers">
-            {JANCHAPELLE_TIERS.map((tier, index) => (
-              <li
-                key={tier.id}
-                className={`jc-tier jc-tier--${tier.id} reveal reveal-delay-${Math.min(index, 2)}${
-                  'featured' in tier && tier.featured ? ' jc-tier--featured' : ''
-                }`}
-              >
-                <Link
-                  to="/contact"
-                  state={{ ...JANCHAPELLE_CONTACT_STATE, tierInterest: tier.name }}
-                  className="jc-tier__link"
-                >
-                  <span className="jc-tier__roman" aria-hidden>
-                    {tier.index}
-                  </span>
-                  <span className="jc-tier__name">{tier.name}</span>
-                  <span className="jc-tier__rule" aria-hidden />
-                  <span className="jc-tier__blurb">{tier.blurb}</span>
-                  <span className="jc-tier__cta">Enquire</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

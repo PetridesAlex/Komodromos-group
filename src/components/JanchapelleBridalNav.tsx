@@ -5,19 +5,28 @@ import {
   JANCHAPELLE_FEATURED,
   type JanchapelleDressCard,
 } from '../data/janchapellePage'
+import { socialLinks } from '../data/socialLinks'
 
 const NAV_LINKS = [
   { id: 'dresses', label: 'Wedding dresses', href: '#jc-featured' },
-  { id: 'categories', label: 'Price categories', href: '#jc-tiers' },
   { id: 'reviews', label: 'Reviews', href: '#jc-reviews' },
   { id: 'events', label: 'Events', href: '#jc-events' },
-  { id: 'atelier', label: 'Atelier', href: '#jc-assist' },
 ] as const
 
 const LOOKBOOK: readonly JanchapelleDressCard[] = [
   ...JANCHAPELLE_FEATURED,
   ...JANCHAPELLE_DONT_MISS,
 ]
+
+const DRAWER_SOCIAL_LABELS = ['WhatsApp', 'Instagram', 'Viber', 'Facebook'] as const
+
+const DRAWER_SOCIALS = DRAWER_SOCIAL_LABELS.map((label) => {
+  const link = socialLinks.find((item) => item.label === label)
+  if (!link) {
+    throw new Error(`Missing social link for ${label}`)
+  }
+  return link
+})
 
 type Props = {
   onBookAppointment: () => void
@@ -124,7 +133,9 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
             </button>
             <button
               type="button"
-              className="jc-bridal-nav__icon jc-bridal-nav__icon--heart"
+              className={`jc-bridal-nav__icon jc-bridal-nav__icon--heart${
+                wishlistOpen ? ' is-active' : ''
+              }${wishlist.length > 0 ? ' has-saved' : ''}`}
               aria-label="Saved looks"
               aria-expanded={wishlistOpen}
               onClick={() => {
@@ -133,7 +144,13 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
                 setWishlistOpen(true)
               }}
             >
-              <Heart size={20} strokeWidth={1.55} aria-hidden />
+              <span className="jc-bridal-nav__heart-glow" aria-hidden />
+              <Heart
+                size={18}
+                strokeWidth={1.35}
+                className="jc-bridal-nav__heart-icon"
+                aria-hidden
+              />
               {wishlist.length > 0 ? (
                 <span className="jc-bridal-nav__badge" aria-hidden>
                   {wishlist.length > 9 ? '9+' : wishlist.length}
@@ -252,6 +269,25 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
                 </button>
               </li>
             </ul>
+            <div className="jc-drawer__social">
+              <p className="jc-drawer__social-label">Connect with us</p>
+              <ul className="jc-drawer__social-list" aria-label="Janchapelle social channels">
+                {DRAWER_SOCIALS.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className={`jc-drawer__social-link jc-drawer__social-link--${link.navClass}`}
+                      target={link.href !== '#' ? '_blank' : undefined}
+                      rel={link.href !== '#' ? 'noopener noreferrer' : undefined}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <span className="jc-drawer__social-icon">{link.svg}</span>
+                      <span className="jc-drawer__social-name">{link.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       ) : null}

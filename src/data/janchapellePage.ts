@@ -36,51 +36,39 @@ export type JanchapelleDressCard = {
   house: string
   image: string
   alt: string
+  /** Split as “Wedding” + remainder for premium wordmark labels. */
+  categoryWordmark?: boolean
 }
 
-/** Featured lookbook — interactive gown cards. */
+/** Featured lookbook — collection cards. */
 export const JANCHAPELLE_FEATURED: readonly JanchapelleDressCard[] = [
   {
-    id: 'aurelia',
-    name: 'Aurelia',
-    house: 'Maison Édition',
+    id: 'premium-collection',
+    name: 'Premium Collection',
+    house: '',
     image: `${PACKAGES}/tier-premium.webp`,
-    alt: 'Aurelia — structured ivory gown with soft train',
+    alt: 'Premium Collection — couture bridal gowns with refined finishing',
   },
   {
-    id: 'solenne',
-    name: 'Solenne',
-    house: 'Atelier Moderne',
-    image: `${HIGHLIGHTS}/bridal.webp`,
-    alt: 'Solenne — modern column silhouette in silk mikado',
-  },
-  {
-    id: 'vivienne',
-    name: 'Vivienne',
-    house: 'Maison Édition',
+    id: 'elegant-collection',
+    name: 'Elegant Collection',
+    house: '',
     image: `${PACKAGES}/tier-classic-plus.webp`,
-    alt: 'Vivienne — romantic lace bodice with fluid skirt',
+    alt: 'Elegant Collection — timeless silhouettes with elevated detail',
   },
   {
-    id: 'celeste',
-    name: 'Céleste',
-    house: 'Gold Atelier',
+    id: 'mini-party-dress',
+    name: 'Mini party dress',
+    house: '',
+    image: `${HIGHLIGHTS}/bridal.webp`,
+    alt: 'Mini party dress — shorter bridal styles for celebrations',
+  },
+  {
+    id: 'cocktail-dress',
+    name: 'Cocktail Dress',
+    house: '',
     image: `${PACKAGES}/tier-classic.webp`,
-    alt: 'Céleste — off-shoulder couture with crystal detail',
-  },
-  {
-    id: 'isabeau',
-    name: 'Isabeau',
-    house: 'Atelier Moderne',
-    image: `${PACKAGES}/tier-basic-plus.webp`,
-    alt: 'Isabeau — ethereal tulle layers for evening light',
-  },
-  {
-    id: 'marlowe',
-    name: 'Marlowe',
-    house: 'Haute Couture',
-    image: `${PACKAGES}/tier-customised.webp`,
-    alt: 'Marlowe — architectural draping in liquid satin',
+    alt: 'Cocktail Dress — polished evening looks for bridal events',
   },
 ] as const
 
@@ -98,66 +86,71 @@ export type JanchapelleHouse = {
 
 export const JANCHAPELLE_HOUSES: readonly JanchapelleHouse[] = [
   {
-    id: 'maison-edition',
+    id: 'luxury-shoes',
     index: '01',
-    eyebrow: 'Signature house',
-    name: 'Maison Édition',
+    eyebrow: 'Footwear',
+    name: 'Bride Luxury Shoes Collection',
     lead:
-      'Aristocratic, feminine gowns with refined embroidery and couture finishing — for brides who want presence without excess.',
-    features: ['Hand embroidery', 'Silk & lace archives', 'Private fittings'],
+      'Hand-finished bridal shoes in silk, satin, and crystal — designed for ceremony, reception, and every step in between.',
+    features: ['Heels & flats', 'Custom sizing', 'Comfort-first fit'],
     cta: 'View the collection',
     image: `${COVER}/wedding-sky.webp`,
-    alt: 'Maison Édition bridal collection mood',
+    alt: 'Bride Luxury Shoes Collection at Janchapelle',
   },
   {
-    id: 'atelier-moderne',
+    id: 'sparkling-accessories',
     index: '02',
-    eyebrow: 'Contemporary house',
-    name: 'Atelier Moderne',
+    eyebrow: 'Accessories',
+    name: 'Sparkling Accessories Collection',
     lead:
-      'Handmade silhouettes for contemporary brides — clean lines, considered fabric, and individuality in every seam.',
-    features: ['Clean architecture', 'Limited editions', 'Bespoke finishing'],
+      'Veils, tiaras, belts, and finishing pieces with refined sparkle — curated to complete your look without overpowering it.',
+    features: ['Crystal & pearl detail', 'Veils & headpieces', 'Matching sets'],
     cta: 'View the collection',
     image: `${HIGHLIGHTS}/stories.webp`,
-    alt: 'Atelier Moderne bridal collection mood',
+    alt: 'Sparkling Accessories Collection at Janchapelle',
   },
 ] as const
 
 export const JANCHAPELLE_DONT_MISS: readonly JanchapelleDressCard[] = [
   {
-    id: 'noemie',
-    name: 'Noémie',
-    house: 'Maison Édition',
-    image: `${PACKAGES}/tier-basic.webp`,
-    alt: 'Noémie — soft A-line with delicate lace overlays',
-  },
-  {
-    id: 'elowen',
-    name: 'Elowen',
-    house: 'Atelier Moderne',
-    image: `${HIGHLIGHTS}/consultation.webp`,
-    alt: 'Elowen — minimalist sheath with sculpted neckline',
-  },
-  {
-    id: 'seraphine',
-    name: 'Seraphine',
-    house: 'Gold Atelier',
+    id: 'wedding-packages',
+    name: 'Wedding Packages',
+    house: '',
+    categoryWordmark: true,
     image: `${HIGHLIGHTS}/packages.webp`,
-    alt: 'Seraphine — princess volume in layered tulle',
+    alt: 'Wedding Packages — curated celebration tiers',
   },
   {
-    id: 'amara',
-    name: 'Amara',
-    house: 'Ivory Collection',
-    image: `${HIGHLIGHTS}/planning.webp`,
-    alt: 'Amara — romantic sweetheart with pearl accents',
+    id: 'wedding-photographer',
+    name: 'Wedding Photographer',
+    house: '',
+    categoryWordmark: true,
+    image: `${HIGHLIGHTS}/stories.webp`,
+    alt: 'Wedding Photographer — editorial coverage and portraits',
   },
   {
-    id: 'lucienne',
-    name: 'Lucienne',
-    house: 'Haute Couture',
+    id: 'wedding-decorations',
+    name: 'Wedding Decorations',
+    house: '',
+    categoryWordmark: true,
     image: `${HIGHLIGHTS}/production.webp`,
-    alt: 'Lucienne — dramatic train and couture beadwork',
+    alt: 'Wedding Decorations — florals, styling, and venue design',
+  },
+  {
+    id: 'wedding-cakes-treats',
+    name: 'Wedding Cakes & Treats',
+    house: '',
+    categoryWordmark: true,
+    image: `${HIGHLIGHTS}/guests.webp`,
+    alt: 'Wedding Cakes & Treats — patisserie and dessert styling',
+  },
+  {
+    id: 'wedding-invitations',
+    name: 'Wedding Invitations',
+    house: '',
+    categoryWordmark: true,
+    image: `${HIGHLIGHTS}/planning.webp`,
+    alt: 'Wedding Invitations — stationery and calligraphy',
   },
 ] as const
 
@@ -168,53 +161,6 @@ export const JANCHAPELLE_MID_CTA = {
   cta: 'Book a private fitting',
   image: `${COVER}/Bridal.webp`,
 } as const
-
-export const JANCHAPELLE_ASSIST = [
-  {
-    id: 'help',
-    title: 'Need guidance?',
-    lead: 'Speak with our bridal consultants about silhouettes, timelines, and care for heirloom pieces.',
-    cta: 'Book an appointment',
-    image: `${HIGHLIGHTS}/guests.webp`,
-    alt: 'Bridal consultation at Janchapelle',
-  },
-  {
-    id: 'atelier',
-    title: 'The atelier',
-    lead: 'Visit for a private appointment — quiet fittings, honest counsel, and space to decide without hurry.',
-    cta: 'Request a visit',
-    image: `${HIGHLIGHTS}/destinations.webp`,
-    alt: 'Janchapelle atelier visit',
-  },
-] as const
-
-export const JANCHAPELLE_TIERS = [
-  {
-    id: 'edit',
-    index: 'I',
-    name: 'Atelier Edit',
-    blurb: 'Essential silhouettes with refined fabric — a polished start to your bridal wardrobe.',
-  },
-  {
-    id: 'ivory',
-    index: 'II',
-    name: 'Ivory Collection',
-    blurb: 'Signature gowns with elevated detailing for classic and contemporary ceremonies.',
-  },
-  {
-    id: 'gold',
-    index: 'III',
-    name: 'Gold Atelier',
-    blurb: 'Statement pieces with couture accents — embroidery, crystal, and considered volume.',
-  },
-  {
-    id: 'couture',
-    index: 'IV',
-    name: 'Haute Couture',
-    blurb: 'Fully bespoke creation: muslins, fittings, and finishing made exclusively for you.',
-    featured: true,
-  },
-] as const
 
 export const JANCHAPELLE_NEWSLETTER = {
   eyebrow: 'Stay close to the atelier',
