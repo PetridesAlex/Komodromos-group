@@ -184,41 +184,6 @@ export default function VipTourIslandPage() {
           </div>
         </div>
 
-        <div className="vip-tour-intro__vehicles reveal">
-          <div className="vip-tour-intro__vehicles-shell">
-            <p className="vip-tour-intro__vehicles-lead">{vipTourIntro.vehicleLead}</p>
-            <ul className="vip-tour-intro__vehicle-grid">
-              {vipTourIntro.vehicles.map((vehicle, index) => (
-                <li key={vehicle.id} className="vip-tour-intro__vehicle">
-                  <div className="vip-tour-intro__vehicle-media">
-                    <img
-                      className="vip-tour-intro__vehicle-img"
-                      src={vehicle.image}
-                      alt={vehicle.imageAlt}
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                      width={1600}
-                      height={1000}
-                      sizes="(max-width: 900px) 100vw, min(1480px, 100vw)"
-                    />
-                    <span className="vip-tour-intro__vehicle-media-scrim" aria-hidden />
-                    <span className="vip-tour-intro__vehicle-slide" aria-hidden>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <div className="vip-tour-intro__vehicle-content">
-                    <p className="vip-tour-intro__vehicle-badge">{vehicle.badge}</p>
-                    <h3 className="vip-tour-intro__vehicle-title">{vehicle.title}</h3>
-                    <span className="vip-tour-intro__vehicle-divider" aria-hidden />
-                    <p className="vip-tour-intro__vehicle-body">{vehicle.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
         <div className="container vip-tour-intro__inner">
           <div className="vip-tour-intro__closing">
             {vipTourIntro.closing.map((paragraph) => (
@@ -311,6 +276,41 @@ export default function VipTourIslandPage() {
               )
             })}
           </ol>
+
+          <div className="vip-tour-intro__vehicles reveal">
+            <div className="vip-tour-intro__vehicles-shell">
+              <p className="vip-tour-intro__vehicles-lead">{vipTourIntro.vehicleLead}</p>
+              <ul className="vip-tour-intro__vehicle-grid">
+                {vipTourIntro.vehicles.map((vehicle, index) => (
+                  <li key={vehicle.id} className="vip-tour-intro__vehicle">
+                    <div className="vip-tour-intro__vehicle-media">
+                      <img
+                        className="vip-tour-intro__vehicle-img"
+                        src={vehicle.image}
+                        alt={vehicle.imageAlt}
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
+                        width={1600}
+                        height={1000}
+                        sizes="(max-width: 900px) 100vw, min(1480px, 100vw)"
+                      />
+                      <span className="vip-tour-intro__vehicle-media-scrim" aria-hidden />
+                      <span className="vip-tour-intro__vehicle-slide" aria-hidden>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div className="vip-tour-intro__vehicle-content">
+                      <p className="vip-tour-intro__vehicle-badge">{vehicle.badge}</p>
+                      <h3 className="vip-tour-intro__vehicle-title">{vehicle.title}</h3>
+                      <span className="vip-tour-intro__vehicle-divider" aria-hidden />
+                      <p className="vip-tour-intro__vehicle-body">{vehicle.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
           <div className="vip-tour-destinations__footer reveal">
             <p className="vip-tour-destinations__footer-eyebrow">Bespoke itineraries</p>

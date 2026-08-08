@@ -46971,6 +46971,14 @@ a.air-hero__figure--nav:focus-visible .air-hero__frame {
     inset 0 -1px 0 rgba(230, 205, 150, 0.08);
 }
 
+/* Full-bleed when nested under destinations container padding */
+.vip-tour-destinations__inner > .vip-tour-intro__vehicles {
+  width: 100vw;
+  max-width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  box-sizing: border-box;
+}
+
 .vip-tour-intro__vehicles::before {
   content: '';
   position: absolute;
