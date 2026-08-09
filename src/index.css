@@ -76610,7 +76610,9 @@ a.yacht-card {
   );
   background: var(--jc-paper);
   color: var(--jc-ink);
-  scroll-padding-top: calc(72px + var(--jc-nav-h) + 12px);
+  overflow-x: clip;
+  --jc-topbar-h: 72px;
+  scroll-padding-top: calc(var(--jc-topbar-h) + var(--jc-nav-h) + 12px);
 }
 
 .jc-text-grad {
@@ -76633,7 +76635,7 @@ a.yacht-card {
 
 .jc-bridal-nav {
   position: sticky;
-  top: 72px;
+  top: var(--jc-topbar-h);
   z-index: 28;
   border-bottom: 1px solid rgba(20, 20, 20, 0.08);
   background: rgba(255, 255, 255, 0.97);
@@ -76901,6 +76903,94 @@ a.yacht-card {
   min-height: 2.75rem;
 }
 
+.jc-bridal-nav__appt-label--short {
+  display: none;
+}
+
+@media (max-width: 979px) {
+  .jc-page {
+    --jc-nav-h: 96px;
+  }
+
+  .jc-bridal-nav__inner {
+    width: min(1240px, calc(100% - 1rem));
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'brand brand'
+      'left right';
+    align-items: center;
+    row-gap: 0.35rem;
+    column-gap: 0.45rem;
+    padding-block: 0.5rem 0.55rem;
+  }
+
+  .jc-bridal-nav__center {
+    grid-area: brand;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .jc-bridal-nav__left {
+    grid-area: left;
+    min-width: 0;
+  }
+
+  .jc-bridal-nav__right {
+    grid-area: right;
+    min-width: 0;
+  }
+
+  .jc-bridal-nav__brand {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .jc-bridal-nav__brand-name {
+    max-width: 100%;
+    text-wrap: balance;
+    font-size: clamp(1.05rem, 4.8vw, 1.35rem);
+    letter-spacing: 0.08em;
+  }
+
+  .jc-bridal-nav__brand-line {
+    font-size: clamp(0.5rem, 2.6vw, 0.62rem);
+    letter-spacing: 0.22em;
+  }
+
+  .jc-bridal-nav__icon--heart {
+    width: 2.45rem;
+    height: 2.45rem;
+  }
+
+  .jc-bridal-nav__appt {
+    min-height: 2.3rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
+
+  .jc-drawer--search {
+    padding:
+      calc(var(--jc-topbar-h) + var(--jc-nav-h) + 0.75rem)
+      0.85rem
+      1rem;
+    align-items: flex-start;
+  }
+
+  .jc-hero__inner {
+    padding-top: clamp(4rem, 11vh, 5.75rem);
+  }
+
+  .jc-head__eyebrow {
+    letter-spacing: 0.24em;
+  }
+
+  .jc-house__name {
+    max-width: none;
+    text-wrap: balance;
+  }
+}
+
 @media (min-width: 980px) {
   .jc-page {
     --jc-nav-h: 88px;
@@ -76929,41 +77019,63 @@ a.yacht-card {
   }
 }
 
-@media (max-width: 979px) {
-  .jc-bridal-nav__appt {
-    min-height: 2.3rem;
-    padding: 0.5rem 0.8rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-  }
-}
-
 @media (max-width: 560px) {
+  .jc-page {
+    --jc-nav-h: 90px;
+  }
+
   .jc-bridal-nav__inner {
-    width: calc(100% - 1rem);
-    column-gap: 0.35rem;
-    padding-block: 0.45rem;
+    width: calc(100% - 0.75rem);
+    column-gap: 0.3rem;
+    row-gap: 0.3rem;
+    padding-block: 0.42rem 0.48rem;
   }
 
   .jc-bridal-nav__icon {
-    width: 2.35rem;
-    height: 2.35rem;
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .jc-bridal-nav__icon--heart {
+    width: 2.3rem;
+    height: 2.3rem;
   }
 
   .jc-bridal-nav__brand-name {
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
+    font-size: clamp(0.98rem, 5.2vw, 1.15rem);
+    letter-spacing: 0.06em;
   }
 
   .jc-bridal-nav__brand-line {
-    font-size: 0.54rem;
-    letter-spacing: 0.26em;
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
   }
 
   .jc-bridal-nav__appt {
-    padding: 0.45rem 0.65rem;
-    font-size: 0.58rem;
-    letter-spacing: 0.06em;
+    padding: 0.42rem 0.58rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.05em;
+  }
+
+  .jc-bridal-nav__appt-label--full {
+    display: none;
+  }
+
+  .jc-bridal-nav__appt-label--short {
+    display: inline;
+  }
+
+  .jc-section {
+    padding-inline: 0.85rem;
+  }
+
+  .jc-head {
+    margin-bottom: clamp(1.75rem, 5vw, 2.25rem);
+  }
+
+  #jc-dont-miss .jc-dress__wordmark-primary,
+  #jc-dont-miss .jc-dress__wordmark-accent {
+    font-size: clamp(0.95rem, 4.2vw, 1.15rem);
   }
 }
 
@@ -77469,12 +77581,19 @@ a.yacht-card {
 }
 
 .jc-drawer__panel {
-  width: min(360px, 92vw);
-  height: 100%;
+  width: min(360px, 100%);
+  height: 100dvh;
+  max-height: 100dvh;
   background: #fff;
   color: #1a1612;
-  padding: 1.15rem 1.15rem 1.75rem;
+  padding:
+    max(1.15rem, env(safe-area-inset-top))
+    max(1.15rem, env(safe-area-inset-right))
+    max(1.75rem, env(safe-area-inset-bottom))
+    max(1.15rem, env(safe-area-inset-left));
   overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   box-shadow: 18px 0 48px rgba(0, 0, 0, 0.18);
   animation: jc-drawer-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -78754,7 +78873,8 @@ a.yacht-card {
 
 .jc-house__name {
   margin: 0;
-  max-width: 12ch;
+  max-width: min(100%, 20ch);
+  text-wrap: balance;
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 500;
   font-size: clamp(1.9rem, 4vw, 2.65rem);
@@ -79291,6 +79411,7 @@ a.yacht-card {
 @media (max-width: 799px) {
   .jc-dress-grid--five {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.75rem;
   }
 
   .jc-dress-grid--five .jc-dress:last-child {
@@ -79298,6 +79419,49 @@ a.yacht-card {
     max-width: 22rem;
     justify-self: center;
     width: 100%;
+  }
+
+  #jc-featured .jc-dress__wordmark-primary,
+  #jc-featured .jc-dress__wordmark-accent {
+    font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .jc-drawer__link,
+  .jc-drawer__link--btn {
+    padding: 0.8rem 0.1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .jc-drawer__social-list {
+    grid-template-columns: 1fr;
+  }
+
+  .jc-drawer__social-link {
+    min-height: 2.85rem;
+  }
+
+  .jc-drawer__panel--search {
+    width: 100%;
+    max-height: min(82dvh, 640px);
+  }
+
+  .jc-hero__inner {
+    width: min(42rem, calc(100% - 1.25rem));
+    padding-top: clamp(3.25rem, 10vh, 4.75rem);
+  }
+
+  .jc-hero__actions {
+    width: 100%;
+  }
+
+  .jc-btn {
+    min-height: 2.85rem;
+    padding-inline: 1.15rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
   }
 }
 

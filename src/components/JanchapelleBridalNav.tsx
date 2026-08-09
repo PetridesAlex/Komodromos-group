@@ -208,7 +208,12 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
               className="jc-bridal-nav__appt"
               onClick={onBookAppointment}
             >
-              Book appointment
+              <span className="jc-bridal-nav__appt-label jc-bridal-nav__appt-label--full">
+                Book appointment
+              </span>
+              <span className="jc-bridal-nav__appt-label jc-bridal-nav__appt-label--short">
+                Book
+              </span>
             </button>
           </div>
         </div>
