@@ -36,6 +36,8 @@ import ServiceDetailPage from './ServiceDetailPage'
 import WeddingServicesPage from './WeddingServicesPage'
 import WeddingPackageDetailPage from './WeddingPackageDetailPage'
 import JanchapelleBridalPage from './JanchapelleBridalPage'
+import JanchapelleCollectionDetailPage from './JanchapelleCollectionDetailPage'
+import JanchapelleHouseDetailPage from './JanchapelleHouseDetailPage'
 
 function TaxBrandHome() {
   return (
@@ -161,6 +163,8 @@ function JanchapelleBrandRoutes() {
   return (
     <Routes>
       <Route path="/" element={<JanchapelleBridalPage />} />
+      <Route path="/collections/:collectionId" element={<JanchapelleCollectionDetailPage />} />
+      <Route path="/houses/:houseId" element={<JanchapelleHouseDetailPage />} />
       <Route path="/services/janchapelle/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
       <Route path="*" element={<NotFoundPage />} />

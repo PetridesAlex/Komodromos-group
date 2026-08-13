@@ -140,6 +140,26 @@ export function weddingBrandHref(internalPathWithHash: string): string {
   return `${weddingPath(path)}${hash}`
 }
 
+export function janchapellePath(subpath = ''): string {
+  const brand = currentBrand()
+  const clean = subpath.replace(/^\/services\/janchapelle\/?/, '').replace(/^\//, '')
+
+  if (brand?.slug === 'janchapelle') {
+    return clean ? `/${clean}` : '/'
+  }
+
+  if (!clean) return '/services/janchapelle'
+  return `/services/janchapelle/${clean}`
+}
+
+/** Converts an absolute internal Janchapelle path to the correct host target. */
+export function janchapelleBrandHref(internalPathWithHash: string): string {
+  const hashIdx = internalPathWithHash.indexOf('#')
+  const path = hashIdx === -1 ? internalPathWithHash : internalPathWithHash.slice(0, hashIdx)
+  const hash = hashIdx === -1 ? '' : internalPathWithHash.slice(hashIdx)
+  return `${janchapellePath(path)}${hash}`
+}
+
 export function toBrandPathIfNeeded(internalPath: string): string {
   const brand = currentBrand()
   if (!brand) return internalPath

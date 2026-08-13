@@ -4,9 +4,11 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import AppointmentModal from './AppointmentModal'
 import JanchapelleBridalNav from './JanchapelleBridalNav'
+import JanchapelleHeroVideo from './JanchapelleHeroVideo'
 import JanchapelleSocialProof from './JanchapelleSocialProof'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { janchapelleBrandHref } from '../lib/brandPaths'
 import { useSiteContext } from '../seo/SiteContext'
 import {
   JANCHAPELLE_CONTACT_STATE,
@@ -18,6 +20,8 @@ import {
   JANCHAPELLE_HOUSES,
   JANCHAPELLE_MID_CTA,
   JANCHAPELLE_NEWSLETTER,
+  JANCHAPELLE_ATELIER_STATS,
+  JANCHAPELLE_PHILOSOPHY,
   type JanchapelleDressCard,
 } from '../data/janchapellePage'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
@@ -109,8 +113,16 @@ function DressCard({
       className={`jc-dress${featured ? ' jc-dress--featured' : ''} reveal ${delayClass}`}
     >
       <Link
-        to="/contact"
-        state={{ ...JANCHAPELLE_CONTACT_STATE, gownInterest: dress.name }}
+        to={
+          featured
+            ? janchapelleBrandHref(`/services/janchapelle/collections/${dress.id}`)
+            : '/contact'
+        }
+        state={
+          featured
+            ? undefined
+            : { ...JANCHAPELLE_CONTACT_STATE, gownInterest: dress.name }
+        }
         className="jc-dress__link"
       >
         <span className="jc-dress__media">
@@ -125,7 +137,7 @@ function DressCard({
             sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 280px"
           />
           <span className="jc-dress__veil" aria-hidden />
-          <span className="jc-dress__quick">Enquire</span>
+          <span className="jc-dress__quick">{featured ? 'Explore' : 'Enquire'}</span>
         </span>
         <span
           className={`jc-dress__meta${
@@ -256,27 +268,21 @@ export default function JanchapelleBridalPage() {
       <JanchapelleBridalNav onBookAppointment={() => setAppointmentOpen(true)} />
 
       <section className="jc-hero" aria-labelledby="jc-hero-heading">
-        <div
-          className="jc-hero__bg"
-          style={{ backgroundImage: `url("${JANCHAPELLE_HERO.image}")` }}
-          aria-hidden
-        />
+        <JanchapelleHeroVideo />
         <div className="jc-hero__scrim" aria-hidden />
         <div className="jc-hero__inner">
-          <p className="jc-hero__brand reveal">
+          <p className="jc-hero__brand">
             <span className="jc-hero__brand-name">{JANCHAPELLE_HERO.brand}</span>
             <span className="jc-hero__brand-line">{JANCHAPELLE_HERO.brandLine}</span>
           </p>
-          <div className="reveal reveal-delay-1">
-            <AnimatedHeading
-              id="jc-hero-heading"
-              as="h1"
-              text={JANCHAPELLE_HERO.title}
-              className="jc-hero__title"
-            />
-          </div>
-          <p className="jc-hero__lead reveal reveal-delay-1">{JANCHAPELLE_HERO.lead}</p>
-          <div className="jc-hero__actions reveal reveal-delay-2">
+          <AnimatedHeading
+            id="jc-hero-heading"
+            as="h1"
+            text={JANCHAPELLE_HERO.title}
+            className="jc-hero__title"
+          />
+          <p className="jc-hero__lead">{JANCHAPELLE_HERO.lead}</p>
+          <div className="jc-hero__actions">
             <button
               type="button"
               className="jc-btn jc-btn--solid"
@@ -336,13 +342,17 @@ export default function JanchapelleBridalPage() {
         </ul>
       </section>
 
-      <section className="jc-houses" aria-label="Signature collections">
+      <section className="jc-houses" id="jc-houses" aria-label="Signature collections">
         {JANCHAPELLE_HOUSES.map((house, index) => (
           <article
             key={house.id}
             className={`jc-house reveal${index % 2 === 1 ? ' jc-house--flip' : ''}`}
           >
-            <div className="jc-house__media-wrap">
+            <Link
+              to={janchapelleBrandHref(`/services/janchapelle/houses/${house.id}`)}
+              className="jc-house__media-wrap"
+              aria-label={`View ${house.name}`}
+            >
               <div
                 className="jc-house__media"
                 style={{ backgroundImage: `url("${house.image}")` }}
@@ -353,7 +363,7 @@ export default function JanchapelleBridalPage() {
               <span className="jc-house__index" aria-hidden>
                 {house.index}
               </span>
-            </div>
+            </Link>
             <div className="jc-house__body">
               <p className="jc-house__eyebrow">{house.eyebrow}</p>
               <h3 className="jc-house__name">{house.name}</h3>
@@ -365,8 +375,7 @@ export default function JanchapelleBridalPage() {
                 ))}
               </ul>
               <Link
-                to="/contact"
-                state={{ ...JANCHAPELLE_CONTACT_STATE, collectionInterest: house.name }}
+                to={janchapelleBrandHref(`/services/janchapelle/houses/${house.id}`)}
                 className="jc-house__cta"
               >
                 <span>{house.cta}</span>
@@ -377,6 +386,90 @@ export default function JanchapelleBridalPage() {
             </div>
           </article>
         ))}
+      </section>
+
+      <section
+        id="jc-philosophy"
+        className="jc-philosophy"
+        aria-labelledby="jc-philosophy-heading"
+      >
+        <div className="jc-philosophy__glow" aria-hidden />
+        <div className="jc-philosophy__inner">
+          <header className="jc-philosophy__head reveal">
+            <p className="jc-philosophy__eyebrow">{JANCHAPELLE_PHILOSOPHY.eyebrow}</p>
+            <h2 id="jc-philosophy-heading" className="jc-philosophy__title">
+              <span className="jc-philosophy__title-primary">
+                {JANCHAPELLE_PHILOSOPHY.titlePrimary}
+              </span>
+              <span className="jc-philosophy__title-accent">
+                {JANCHAPELLE_PHILOSOPHY.titleAccent}
+              </span>
+            </h2>
+            <span className="jc-philosophy__rule" aria-hidden />
+            <p className="jc-philosophy__lead">{JANCHAPELLE_PHILOSOPHY.lead}</p>
+          </header>
+
+          <div className="jc-philosophy__grid">
+            <ul className="jc-philosophy__limits reveal reveal-delay-1">
+              {JANCHAPELLE_PHILOSOPHY.limitations.map((line) => (
+                <li key={line} className="jc-philosophy__limit">
+                  <span className="jc-philosophy__mark" aria-hidden />
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="jc-philosophy__actions reveal reveal-delay-2">
+              <ul className="jc-philosophy__verbs">
+                {JANCHAPELLE_PHILOSOPHY.actions.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+              <p className="jc-philosophy__closing">{JANCHAPELLE_PHILOSOPHY.closing}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="jc-atelier-stats"
+        className="jc-atelier-stats"
+        aria-labelledby="jc-atelier-stats-heading"
+      >
+        <div className="jc-atelier-stats__inner">
+          <header className="jc-atelier-stats__head reveal">
+            <p className="jc-atelier-stats__eyebrow">{JANCHAPELLE_ATELIER_STATS.eyebrow}</p>
+            <h2 id="jc-atelier-stats-heading" className="jc-atelier-stats__title">
+              <span className="jc-atelier-stats__title-primary">
+                {JANCHAPELLE_ATELIER_STATS.titlePrimary}
+              </span>
+              <span className="jc-atelier-stats__title-accent">
+                {JANCHAPELLE_ATELIER_STATS.titleAccent}
+              </span>
+            </h2>
+            <span className="jc-atelier-stats__rule" aria-hidden />
+          </header>
+
+          <ul className="jc-atelier-stats__grid">
+            {JANCHAPELLE_ATELIER_STATS.items.map((item, index) => (
+              <li
+                key={item.label}
+                className={`jc-atelier-stats__item reveal reveal-delay-${Math.min(index, 3)}`}
+              >
+                {'value' in item && item.value ? (
+                  <>
+                    <span className="jc-atelier-stats__value">{item.value}</span>
+                    <span className="jc-atelier-stats__label">{item.label}</span>
+                  </>
+                ) : (
+                  <span className="jc-atelier-stats__label jc-atelier-stats__label--solo">
+                    {item.label}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section

@@ -5,6 +5,8 @@ import ServiceDetailPage from './ServiceDetailPage'
 import WeddingServicesPage from './WeddingServicesPage'
 import WeddingPackageDetailPage from './WeddingPackageDetailPage'
 import JanchapelleBridalPage from './JanchapelleBridalPage'
+import JanchapelleCollectionDetailPage from './JanchapelleCollectionDetailPage'
+import JanchapelleHouseDetailPage from './JanchapelleHouseDetailPage'
 import BusinessConsultingPage from './BusinessConsultingPage'
 import PoolGardenServicesPage from './PoolGardenServicesPage'
 import PoolCategoryDetailPage from './PoolCategoryDetailPage'
@@ -109,6 +111,14 @@ function GroupRoutes() {
       <Route path="/services/wedding" element={<WeddingServicesPage />} />
       <Route path="/services/wedding/packages/:packageId" element={<WeddingPackageDetailPage />} />
       <Route path="/services/janchapelle" element={<JanchapelleBridalPage />} />
+      <Route
+        path="/services/janchapelle/collections/:collectionId"
+        element={<JanchapelleCollectionDetailPage />}
+      />
+      <Route
+        path="/services/janchapelle/houses/:houseId"
+        element={<JanchapelleHouseDetailPage />}
+      />
       <Route path="/services/consulting" element={<BusinessConsultingPage />} />
       <Route path="/services/pool" element={<PoolGardenServicesPage />} />
       <Route path="/services/pool/categories/:categoryId" element={<PoolCategoryDetailPage />} />
