@@ -76631,6 +76631,31 @@ a.yacht-card {
   color: transparent;
 }
 
+/* Janchapelle — unified gradient headline shimmer */
+.jc-page :is(
+  .jc-atelier-stats__title-primary,
+  .jc-atelier-stats__title-accent,
+  .jc-collection-hero__wordmark-primary,
+  .jc-collection-hero__wordmark-accent,
+  .jc-collection-gallery__title,
+  .jc-collection-nav__name,
+  .jc-philosophy__title-primary,
+  .jc-philosophy__title-accent,
+  .jc-experience__title,
+  .jc-tier__name,
+  .jc-collection-body__aside-title,
+  .jc-collection-body__paragraph:first-child,
+  .jc-collection-body__paragraph--closing,
+  .jc-social-proof__title,
+  .jc-house__name,
+  #jc-dont-miss .jc-dress__wordmark-primary,
+  #jc-featured .jc-dress__wordmark-primary,
+  #jc-dont-miss .jc-dress__wordmark-accent,
+  #jc-featured .jc-dress__wordmark-accent
+) {
+  animation: jc-heading-shimmer 4.5s ease-in-out infinite alternate;
+}
+
 /* ── Janchapelle bridal subnav (below SiteTopbar) ── */
 
 .jc-bridal-nav {
@@ -76872,29 +76897,13 @@ a.yacht-card {
 }
 
 .jc-bridal-nav__appt {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   min-height: 2.45rem;
+  margin-top: 0;
   padding: 0.55rem 1.15rem;
-  border: 1px solid rgba(20, 20, 20, 0.88);
-  background: #fff;
-  color: #1a1612;
-  font-family: 'Montserrat', sans-serif;
   font-size: 0.68rem;
-  font-weight: 650;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-
-.jc-bridal-nav__appt:hover,
-.jc-bridal-nav__appt:focus-visible {
-  background: #1a1612;
-  color: #fff;
-  outline: none;
 }
 
 .jc-bridal-nav__appt--block {
@@ -78733,7 +78742,11 @@ a.yacht-card {
   font-size: clamp(1.35rem, 2.6vw, 1.65rem);
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: var(--jc-ink);
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 #jc-dont-miss .jc-dress__wordmark-accent,
@@ -78770,6 +78783,10 @@ a.yacht-card {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  #jc-dont-miss .jc-dress__link:hover .jc-dress__wordmark-primary,
+  #jc-dont-miss .jc-dress__link:focus-visible .jc-dress__wordmark-primary,
+  #jc-featured .jc-dress__link:hover .jc-dress__wordmark-primary,
+  #jc-featured .jc-dress__link:focus-visible .jc-dress__wordmark-primary,
   #jc-dont-miss .jc-dress__link:hover .jc-dress__wordmark-accent,
   #jc-dont-miss .jc-dress__link:focus-visible .jc-dress__wordmark-accent,
   #jc-featured .jc-dress__link:hover .jc-dress__wordmark-accent,
@@ -79202,28 +79219,90 @@ a.jc-house__media-wrap {
   background: linear-gradient(90deg, rgba(138, 74, 98, 0.85), rgba(61, 111, 140, 0.65));
 }
 
-.jc-house__cta {
+:is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt) {
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   margin-top: 0.35rem;
   min-height: 3rem;
   padding: 0.75rem 1.35rem;
-  border: 1px solid #1a1612;
-  background: #1a1612;
-  color: #fff;
+  border: none;
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 252, 248, 0.92) 0%,
+      rgba(247, 241, 234, 0.88) 100%
+    );
   font-family: 'Montserrat', sans-serif;
   font-size: 0.68rem;
   font-weight: 650;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 14px 32px -24px rgba(138, 74, 98, 0.28);
   transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    background 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.jc-collection-body__actions .jc-btn {
+  width: 100%;
+  margin-top: 0;
+}
+
+:is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  background: var(--jc-text-grad);
+  background-size: 220% auto;
+  pointer-events: none;
+  animation: jc-heading-shimmer 4.5s ease-in-out infinite alternate;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+:is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.42) 50%,
+    transparent 58%
+  );
+  transform: translateX(-130%) skewX(-14deg);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:is(.jc-house__cta > span, .jc-collection-body__actions .jc-btn__label, .jc-collection-nav__home .jc-btn__label, .jc-bridal-nav__appt-label) {
+  position: relative;
+  z-index: 1;
+}
+
+:is(.jc-house__cta > span:first-of-type, .jc-house__cta-arrow, .jc-collection-body__actions .jc-btn__label, .jc-collection-nav__home .jc-btn__label, .jc-bridal-nav__appt-label) {
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: jc-heading-shimmer 4.5s ease-in-out infinite alternate;
 }
 
 .jc-house__cta-arrow {
@@ -79231,13 +79310,26 @@ a.jc-house__media-wrap {
   transition: transform 0.3s ease;
 }
 
-.jc-house__cta:hover,
-.jc-house__cta:focus-visible {
-  background: transparent;
-  color: #1a1612;
+:is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt):hover,
+:is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt):focus-visible {
   outline: none;
-  box-shadow: 0 14px 32px -22px rgba(26, 22, 18, 0.55);
-  transform: translateY(-1px);
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 252, 248, 0.98) 0%,
+      rgba(255, 248, 242, 0.96) 100%
+    );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 1) inset,
+    0 0 28px -8px rgba(196, 90, 136, 0.32),
+    0 0 24px -10px rgba(90, 142, 200, 0.26),
+    0 18px 40px -22px rgba(138, 74, 98, 0.3);
+  transform: translateY(-2px);
+}
+
+:is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt):hover::after,
+:is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt):focus-visible::after {
+  transform: translateX(130%) skewX(-14deg);
 }
 
 .jc-house__cta:hover .jc-house__cta-arrow,
@@ -79245,11 +79337,48 @@ a.jc-house__media-wrap {
   transform: translateX(4px);
 }
 
+.jc-collection-body__actions .jc-btn--solid {
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 252, 248, 0.96) 0%,
+      rgba(245, 238, 228, 0.94) 100%
+    );
+}
+
+.jc-collection-body__actions .jc-btn--ghost {
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.62) 0%,
+      rgba(255, 252, 248, 0.52) 100%
+    );
+  backdrop-filter: blur(8px);
+}
+
+.jc-collection-body__actions .jc-btn--ghost:hover,
+.jc-collection-body__actions .jc-btn--ghost:focus-visible {
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 252, 248, 0.92) 0%,
+      rgba(247, 241, 234, 0.88) 100%
+    );
+}
+
 @media (prefers-reduced-motion: reduce) {
   .jc-house__media,
-  .jc-house__cta,
-  .jc-house__cta-arrow {
+  :is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt),
+  .jc-house__cta-arrow,
+  :is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt)::before,
+  :is(.jc-house__cta > span:first-of-type, .jc-house__cta-arrow, .jc-collection-body__actions .jc-btn__label, .jc-collection-nav__home .jc-btn__label, .jc-bridal-nav__appt-label) {
     transition: none;
+    animation: none !important;
+  }
+
+  :is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt)::after {
+    transition: none;
+    transform: none;
   }
 
   .jc-house:hover .jc-house__media,
@@ -79257,8 +79386,8 @@ a.jc-house__media-wrap {
     transform: none;
   }
 
-  .jc-house__cta:hover,
-  .jc-house__cta:focus-visible {
+  :is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt):hover,
+  :is(.jc-house__cta, .jc-collection-body__actions .jc-btn, .jc-collection-nav__home, .jc-bridal-nav__appt):focus-visible {
     transform: none;
   }
 }
@@ -79324,7 +79453,11 @@ a.jc-house__media-wrap {
   font-size: clamp(2rem, 5.5vw, 3.25rem);
   font-weight: 500;
   letter-spacing: 0.03em;
-  color: rgba(255, 252, 248, 0.98);
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-philosophy__title-accent {
@@ -79497,7 +79630,11 @@ a.jc-house__media-wrap {
   font-size: clamp(1.85rem, 4.8vw, 2.85rem);
   font-weight: 500;
   letter-spacing: 0.03em;
-  color: var(--jc-ink);
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-atelier-stats__title-accent {
@@ -79506,7 +79643,8 @@ a.jc-house__media-wrap {
   font-size: clamp(1.55rem, 4vw, 2.35rem);
   font-style: italic;
   font-weight: 500;
-  background: linear-gradient(135deg, #8a4a62 0%, #4a6a8a 55%, #3a8a7a 100%);
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -79878,7 +80016,11 @@ a.jc-house__media-wrap {
   font-weight: 500;
   font-size: clamp(1.35rem, 2.8vw, 1.65rem);
   letter-spacing: 0.01em;
-  color: #1a1612;
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-experience__desc {
@@ -79910,7 +80052,7 @@ a.jc-house__media-wrap {
 
   .jc-experience.reveal.revealed:hover .jc-experience__title,
   .jc-experience.reveal.revealed:focus-within .jc-experience__title {
-    color: #8a4a62;
+    background-position: 100% center;
   }
 
   .jc-experience.reveal.revealed:hover .jc-experience__copy::before,
@@ -80226,7 +80368,11 @@ a.jc-house__media-wrap {
   font-size: clamp(1.35rem, 2.4vw, 1.55rem);
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: #1a1612;
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-tier__rule {
@@ -80411,7 +80557,11 @@ a.jc-house__media-wrap {
   font-size: clamp(2rem, 6vw, 3.35rem);
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: rgba(255, 252, 248, 0.98);
+  background-image: var(--jc-text-grad-light);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-collection-hero__wordmark-accent {
@@ -80425,6 +80575,21 @@ a.jc-house__media-wrap {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.jc-page .jc-collection-hero__wordmark-primary,
+.jc-page .jc-collection-hero__wordmark-accent {
+  background-size: 300% auto;
+  animation: jc-heading-shimmer 2.8s ease-in-out infinite alternate;
+}
+
+.jc-page .jc-collection-hero__wordmark-primary {
+  animation-delay: 0s;
+}
+
+.jc-page .jc-collection-hero__wordmark-accent {
+  animation-delay: 0.65s;
+  animation-direction: alternate-reverse;
 }
 
 .jc-collection-hero__rule {
@@ -80493,7 +80658,12 @@ a.jc-house__media-wrap {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.2rem, 2.8vw, 1.45rem);
   line-height: 1.65;
-  color: var(--jc-ink);
+  font-weight: 500;
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-collection-body__paragraph--closing {
@@ -80503,8 +80673,13 @@ a.jc-house__media-wrap {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.1rem, 2.5vw, 1.35rem);
   font-style: italic;
+  font-weight: 500;
   line-height: 1.6;
-  color: var(--jc-ink);
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   text-wrap: balance;
 }
 
@@ -80534,7 +80709,11 @@ a.jc-house__media-wrap {
   font-size: clamp(1.35rem, 3vw, 1.75rem);
   font-weight: 500;
   line-height: 1.2;
-  color: var(--jc-ink);
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   text-wrap: balance;
 }
 
@@ -80549,37 +80728,6 @@ a.jc-house__media-wrap {
 .jc-collection-body__actions {
   display: grid;
   gap: 0.65rem;
-}
-
-.jc-collection-body__actions .jc-btn--solid {
-  background: var(--jc-ink);
-  color: #fff;
-  border-color: var(--jc-ink);
-}
-
-.jc-collection-body__actions .jc-btn--solid:hover,
-.jc-collection-body__actions .jc-btn--solid:focus-visible {
-  background: #8a4a62;
-  color: #fff;
-  border-color: #8a4a62;
-  outline: none;
-  transform: translateY(-1px);
-  box-shadow: 0 14px 32px -16px rgba(138, 74, 98, 0.62);
-}
-
-.jc-collection-body__actions .jc-btn--ghost {
-  border-color: rgba(20, 20, 20, 0.22);
-  color: var(--jc-ink);
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.jc-collection-body__actions .jc-btn--ghost:hover,
-.jc-collection-body__actions .jc-btn--ghost:focus-visible {
-  background: var(--jc-ink);
-  color: #fff;
-  border-color: var(--jc-ink);
-  outline: none;
-  transform: translateY(-1px);
 }
 
 .jc-collection-gallery {
@@ -80621,7 +80769,11 @@ a.jc-house__media-wrap {
   font-size: clamp(1.85rem, 4.5vw, 2.75rem);
   font-weight: 500;
   line-height: 1.12;
-  color: var(--jc-ink);
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   text-wrap: balance;
 }
 
@@ -80822,23 +80974,21 @@ a.jc-house__media-wrap {
 .jc-collection-nav__name {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1rem, 2.4vw, 1.15rem);
-  color: var(--jc-ink);
+  background-image: var(--jc-text-grad);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .jc-collection-nav__home {
   justify-self: center;
-  padding: 0.65rem 1rem;
-  border: 1px solid rgba(20, 20, 20, 0.14);
-  background: #fff;
-  font-family: 'Montserrat', sans-serif;
+  min-height: 2.65rem;
+  margin-top: 0;
+  padding: 0.65rem 1.15rem;
   font-size: 0.62rem;
-  font-weight: 650;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--jc-ink);
   white-space: nowrap;
-  transition: background 0.25s ease, color 0.25s ease;
 }
 
 .jc-collection-nav__home:hover,
@@ -80849,15 +80999,9 @@ a.jc-house__media-wrap {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .jc-collection-nav__home:hover,
-  .jc-collection-nav__home:focus-visible {
-    background: var(--jc-ink);
-    color: #fff;
-  }
-
   .jc-collection-nav__link:hover .jc-collection-nav__name,
   .jc-collection-nav__link:focus-visible .jc-collection-nav__name {
-    color: #8a4a62;
+    background-position: 100% center;
   }
 }
 
@@ -81000,5 +81144,29 @@ a.jc-house__media-wrap {
     filter: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+
+  .jc-page :is(
+    .jc-atelier-stats__title-primary,
+    .jc-atelier-stats__title-accent,
+    .jc-collection-hero__wordmark-primary,
+    .jc-collection-hero__wordmark-accent,
+    .jc-collection-gallery__title,
+    .jc-collection-nav__name,
+    .jc-philosophy__title-primary,
+    .jc-philosophy__title-accent,
+    .jc-experience__title,
+    .jc-tier__name,
+    .jc-collection-body__aside-title,
+    .jc-collection-body__paragraph:first-child,
+    .jc-collection-body__paragraph--closing,
+    .jc-social-proof__title,
+    .jc-house__name,
+    #jc-dont-miss .jc-dress__wordmark-primary,
+    #jc-featured .jc-dress__wordmark-primary,
+    #jc-dont-miss .jc-dress__wordmark-accent,
+    #jc-featured .jc-dress__wordmark-accent
+  ) {
+    animation: none !important;
   }
 }

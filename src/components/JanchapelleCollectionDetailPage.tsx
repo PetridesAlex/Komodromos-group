@@ -132,7 +132,7 @@ export default function JanchapelleCollectionDetailPage() {
                 className="jc-btn jc-btn--solid jc-btn--compact"
                 onClick={() => setAppointmentOpen(true)}
               >
-                Book an appointment
+                <span className="jc-btn__label">Book an appointment</span>
               </button>
               <Link
                 to="/contact"
@@ -143,7 +143,7 @@ export default function JanchapelleCollectionDetailPage() {
                 }}
                 className="jc-btn jc-btn--ghost jc-btn--compact"
               >
-                Enquire online
+                <span className="jc-btn__label">Enquire online</span>
               </Link>
             </div>
           </aside>
@@ -211,7 +211,7 @@ export default function JanchapelleCollectionDetailPage() {
             <span className="jc-collection-nav__spacer" aria-hidden />
           )}
           <Link to={collectionsHome} className="jc-collection-nav__home reveal">
-            All collections
+            <span className="jc-btn__label">All collections</span>
           </Link>
           {nextCollection ? (
             <Link
