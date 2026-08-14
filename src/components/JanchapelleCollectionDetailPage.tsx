@@ -150,6 +150,51 @@ export default function JanchapelleCollectionDetailPage() {
         </div>
       </section>
 
+      {collection.gallery && collection.gallery.length > 0 ? (
+        <section
+          className="jc-collection-gallery"
+          aria-labelledby="jc-collection-gallery-heading"
+        >
+          <div className="jc-collection-gallery__inner">
+            <header className="jc-collection-gallery__head reveal">
+              <p className="jc-collection-gallery__eyebrow">
+                {collection.galleryEyebrow ?? 'Lookbook'}
+              </p>
+              <h2 id="jc-collection-gallery-heading" className="jc-collection-gallery__title">
+                {collection.galleryTitle ?? `${collection.name} gallery`}
+              </h2>
+              <span className="jc-collection-gallery__rule" aria-hidden />
+              <p className="jc-collection-gallery__lead">
+                {collection.galleryLead ??
+                  `A curated lookbook from the ${collection.name.toLowerCase()}.`}
+              </p>
+            </header>
+
+            <ul className="jc-collection-gallery__grid">
+              {collection.gallery.map((item, index) => (
+                <li
+                  key={item.src}
+                  className={`jc-collection-gallery__item reveal reveal-delay-${Math.min(index % 4, 3)}`}
+                >
+                  <figure className="jc-collection-gallery__figure">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="jc-collection-gallery__img"
+                      loading={index < 8 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      width={720}
+                      height={960}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
       {(prevCollection || nextCollection) && (
         <nav className="jc-collection-nav" aria-label="Other collections">
           {prevCollection ? (

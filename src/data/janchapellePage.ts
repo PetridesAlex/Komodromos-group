@@ -1,7 +1,6 @@
 /** Janchapelle bridal boutique landing — lookbook copy & imagery. */
 
 const COVER = '/images/services/companie-services-cover'
-const PACKAGES = '/images/services/wedding-packages'
 const JANCHAPELLE = '/images/services/janchapelle'
 
 export const JANCHAPELLE_CONTACT_STATE = {
@@ -41,6 +40,11 @@ export type JanchapelleDressCard = {
   categoryWordmark?: boolean
 }
 
+export type JanchapelleCollectionGalleryImage = {
+  src: string
+  alt: string
+}
+
 export type JanchapelleCollection = {
   id: string
   name: string
@@ -48,7 +52,22 @@ export type JanchapelleCollection = {
   alt: string
   tagline: string
   paragraphs: readonly string[]
+  galleryEyebrow?: string
+  galleryTitle?: string
+  galleryLead?: string
+  gallery?: readonly JanchapelleCollectionGalleryImage[]
 }
+
+const MINI_DRESS_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
+  { length: 37 },
+  (_, index) => {
+    const number = String(index + 1).padStart(2, '0')
+    return {
+      src: `${JANCHAPELLE}/mini-dress/mini-dress-${number}.webp`,
+      alt: `Mini party dress look ${index + 1} — Janchapelle Bridal Atelier`,
+    }
+  },
+)
 
 export const JANCHAPELLE_COLLECTIONS_EYEBROW = 'Discover our collections'
 
@@ -89,11 +108,16 @@ export const JANCHAPELLE_COLLECTIONS: readonly JanchapelleCollection[] = [
       'Playful silhouettes, couture detailing, sparkling finishes and irresistible bridal glamour come together in statement mini dresses designed for dancing, celebrating and turning heads until the very last champagne toast.',
       'Your wedding dress creates the entrance. Your party dress owns the night.',
     ],
+    galleryEyebrow: 'The collection',
+    galleryTitle: 'Mini party dress looks',
+    galleryLead:
+      'Explore the full range of mini party dresses — each look designed for celebration, movement, and unforgettable bridal glamour.',
+    gallery: MINI_DRESS_GALLERY,
   },
   {
     id: 'cocktail-dress',
     name: 'Cocktail Dress Collection',
-    image: `${PACKAGES}/tier-classic.webp`,
+    image: `${JANCHAPELLE}/cocktail-dress.webp`,
     alt: 'Cocktail Dress Collection — polished evening looks for bridal events',
     tagline: 'Couture Beyond the Wedding Day',
     paragraphs: [
@@ -120,6 +144,17 @@ export const JANCHAPELLE_FEATURED: readonly JanchapelleDressCard[] = JANCHAPELLE
   }),
 )
 
+const LUXURY_SHOES_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
+  { length: 13 },
+  (_, index) => {
+    const number = String(index).padStart(2, '0')
+    return {
+      src: `${JANCHAPELLE}/bride-luxury-shoes/luxury-shoes-${number}.webp`,
+      alt: `Bride luxury shoe look ${index + 1} — Janchapelle Bridal Atelier`,
+    }
+  },
+)
+
 export type JanchapelleHouse = {
   id: string
   index: string
@@ -132,6 +167,11 @@ export type JanchapelleHouse = {
   image: string
   alt: string
   paragraphs: readonly string[]
+  galleryEyebrow?: string
+  galleryTitle?: string
+  galleryLead?: string
+  galleryVariant?: 'default' | 'product'
+  gallery?: readonly JanchapelleCollectionGalleryImage[]
 }
 
 export const JANCHAPELLE_HOUSES_EYEBROW = 'Signature collections'
@@ -155,6 +195,12 @@ export const JANCHAPELLE_HOUSES: readonly JanchapelleHouse[] = [
       'From timeless elegance to sparkling statement designs, discover the finishing touch created to accompany you through one of the most unforgettable walks of your life.',
       'Walk towards forever in exceptional style.',
     ],
+    galleryEyebrow: 'The collection',
+    galleryTitle: 'Bride luxury shoe looks',
+    galleryLead:
+      'Discover hand-finished bridal shoes in silk, satin, and crystal — each pair selected to complement your gown and complete your walk down the aisle.',
+    galleryVariant: 'product',
+    gallery: LUXURY_SHOES_GALLERY,
   },
   {
     id: 'sparkling-accessories',

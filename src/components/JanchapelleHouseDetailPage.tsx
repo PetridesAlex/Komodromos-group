@@ -150,6 +150,53 @@ export default function JanchapelleHouseDetailPage() {
         </div>
       </section>
 
+      {house.gallery && house.gallery.length > 0 ? (
+        <section
+          className={`jc-collection-gallery${
+            house.galleryVariant === 'product' ? ' jc-collection-gallery--product' : ''
+          }`}
+          aria-labelledby="jc-house-gallery-heading"
+        >
+          <div className="jc-collection-gallery__inner">
+            <header className="jc-collection-gallery__head reveal">
+              <p className="jc-collection-gallery__eyebrow">
+                {house.galleryEyebrow ?? 'Lookbook'}
+              </p>
+              <h2 id="jc-house-gallery-heading" className="jc-collection-gallery__title">
+                {house.galleryTitle ?? `${house.name} gallery`}
+              </h2>
+              <span className="jc-collection-gallery__rule" aria-hidden />
+              <p className="jc-collection-gallery__lead">
+                {house.galleryLead ??
+                  `A curated lookbook from the ${house.name.toLowerCase()}.`}
+              </p>
+            </header>
+
+            <ul className="jc-collection-gallery__grid">
+              {house.gallery.map((item, index) => (
+                <li
+                  key={item.src}
+                  className={`jc-collection-gallery__item reveal reveal-delay-${Math.min(index % 4, 3)}`}
+                >
+                  <figure className="jc-collection-gallery__figure">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="jc-collection-gallery__img"
+                      loading={index < 8 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      width={720}
+                      height={720}
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
       {(prevHouse || nextHouse) && (
         <nav className="jc-collection-nav" aria-label="Other signature collections">
           {prevHouse ? (

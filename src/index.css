@@ -78023,27 +78023,25 @@ a.yacht-card {
 .jc-hero__poster {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  transform: scale(1.04);
-  opacity: 1;
-  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.jc-hero__poster--hidden {
-  opacity: 0;
+  transform: scale(1.06);
 }
 
 .jc-hero__video {
   position: absolute;
   inset: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
   object-position: center center;
   opacity: 0;
-  transform: scale(1.06);
+  transform: scale(1.08);
   filter: saturate(1.06) contrast(1.04);
   transition:
     opacity 1.25s cubic-bezier(0.22, 1, 0.36, 1),
@@ -78052,16 +78050,16 @@ a.yacht-card {
 
 .jc-hero__video--ready {
   opacity: 1;
-  transform: scale(1.04);
+  transform: scale(1.08);
   animation: jc-hero-video-ken 22s ease-in-out infinite alternate;
 }
 
 @keyframes jc-hero-video-ken {
   from {
-    transform: scale(1.04) translate3d(0, 0, 0);
+    transform: scale(1.08) translate3d(0, 0, 0);
   }
   to {
-    transform: scale(1.1) translate3d(-0.8%, -0.5%, 0);
+    transform: scale(1.14) translate3d(-0.8%, -0.5%, 0);
   }
 }
 
@@ -80242,6 +80240,149 @@ a.jc-house__media-wrap {
   border-color: var(--jc-ink);
   outline: none;
   transform: translateY(-1px);
+}
+
+.jc-collection-gallery {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(3.75rem, 8vw, 6rem) clamp(1rem, 3vw, 2rem);
+  background:
+    radial-gradient(ellipse 44% 38% at 88% 12%, rgba(196, 120, 148, 0.1) 0%, transparent 58%),
+    linear-gradient(180deg, #f3efe9 0%, #faf8f5 100%);
+}
+
+.jc-collection-gallery__inner {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.jc-collection-gallery__head {
+  max-width: 40rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.jc-collection-gallery__eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(138, 74, 98, 0.78);
+}
+
+.jc-collection-gallery__title {
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--jc-ink);
+  text-wrap: balance;
+}
+
+.jc-collection-gallery__rule {
+  display: block;
+  width: 3.25rem;
+  height: 1px;
+  margin: 1rem auto 1.1rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(138, 74, 98, 0.45) 25%,
+    rgba(74, 106, 138, 0.55) 75%,
+    transparent
+  );
+}
+
+.jc-collection-gallery__lead {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.92rem, 2vw, 1rem);
+  line-height: 1.75;
+  color: rgba(20, 20, 20, 0.68);
+  text-wrap: pretty;
+}
+
+.jc-collection-gallery__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.75rem, 2vw, 1.15rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .jc-collection-gallery__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .jc-collection-gallery__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.15rem;
+  }
+
+  .jc-collection-gallery--product .jc-collection-gallery__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.jc-collection-gallery--product .jc-collection-gallery__figure {
+  background: linear-gradient(180deg, #fff 0%, #f7f3ed 100%);
+}
+
+.jc-collection-gallery--product .jc-collection-gallery__img {
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  object-position: center;
+  padding: clamp(0.65rem, 2vw, 1rem);
+  background: transparent;
+}
+
+.jc-collection-gallery__item {
+  margin: 0;
+}
+
+.jc-collection-gallery__figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(138, 74, 98, 0.12);
+  background: #fff;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 14px 32px -24px rgba(138, 74, 98, 0.28);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.jc-collection-gallery__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  background: #f5f0ea;
+  transform: scale(1);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .jc-collection-gallery__figure:hover {
+    transform: translateY(-3px);
+    border-color: rgba(138, 74, 98, 0.24);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.92) inset,
+      0 20px 40px -22px rgba(138, 74, 98, 0.34);
+  }
+
+  .jc-collection-gallery__figure:hover .jc-collection-gallery__img {
+    transform: scale(1.04);
+  }
 }
 
 .jc-collection-nav {

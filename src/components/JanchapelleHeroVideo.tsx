@@ -43,10 +43,12 @@ export default function JanchapelleHeroVideo({
 
   return (
     <div className="jc-hero__media" aria-hidden>
-      <div
-        className={`jc-hero__poster${ready ? ' jc-hero__poster--hidden' : ''}`}
-        style={{ backgroundImage: `url("${poster}")` }}
-      />
+      {(reduceMotion || !ready) && (
+        <div
+          className="jc-hero__poster"
+          style={{ backgroundImage: `url("${poster}")` }}
+        />
+      )}
       {!reduceMotion ? (
         <video
           ref={videoRef}
@@ -57,7 +59,6 @@ export default function JanchapelleHeroVideo({
           loop
           playsInline
           preload="auto"
-          poster={poster}
           disablePictureInPicture
         />
       ) : null}
