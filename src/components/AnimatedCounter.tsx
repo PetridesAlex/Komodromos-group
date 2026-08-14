@@ -8,8 +8,10 @@ type Props = {
   duration?: number
   /** Delay before starting (stagger multiple counters) */
   delayMs?: number
-  /** Appended after the number (e.g. "%") */
+  /** Appended after the number (e.g. "%", "+") */
   suffix?: string
+  /** Format the number with thousands separators */
+  formatThousands?: boolean
   className?: string
 }
 
@@ -22,6 +24,7 @@ export default function AnimatedCounter({
   duration = 1700,
   delayMs = 0,
   suffix,
+  formatThousands = false,
   className,
 }: Props) {
   const [display, setDisplay] = useState(0)
@@ -84,9 +87,11 @@ export default function AnimatedCounter({
     }
   }, [value, duration, delayMs, reduceMotion])
 
+  const formatted = formatThousands ? display.toLocaleString('en-US') : String(display)
+
   return (
     <strong ref={ref} className={className}>
-      {display}
+      {formatted}
       {suffix}
     </strong>
   )

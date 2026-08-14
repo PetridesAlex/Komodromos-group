@@ -301,19 +301,24 @@ export const JANCHAPELLE_PHILOSOPHY = {
     'Because the most extraordinary wedding dress may be the one that has never been created before.',
 } as const
 
-export type JanchapelleAtelierStat = {
-  value?: string
-  label: string
-}
+export type JanchapelleAtelierStat =
+  | {
+      count: number
+      suffix?: string
+      label: string
+    }
+  | {
+      label: string
+    }
 
 export const JANCHAPELLE_ATELIER_STATS = {
   eyebrow: 'The atelier',
   titlePrimary: 'The Bridal House',
   titleAccent: 'Without Limits',
   items: [
-    { value: '1,400+', label: 'Luxury Bridal Creations' },
-    { value: '200+', label: 'Brides Every Year' },
-    { value: '35+', label: 'International Partners' },
+    { count: 1400, suffix: '+', label: 'Luxury Bridal Creations' },
+    { count: 200, suffix: '+', label: 'Brides Every Year' },
+    { count: 35, suffix: '+', label: 'International Partners' },
     { label: 'Limassol • Athens • Greece • Worldwide' },
     { label: 'Exclusive Parisian Haute Couture' },
     { label: 'Worldwide Orders' },

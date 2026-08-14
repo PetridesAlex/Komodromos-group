@@ -6,6 +6,7 @@ import AppointmentModal from './AppointmentModal'
 import JanchapelleBridalNav from './JanchapelleBridalNav'
 import JanchapelleHeroVideo from './JanchapelleHeroVideo'
 import JanchapelleSocialProof from './JanchapelleSocialProof'
+import AnimatedCounter from './AnimatedCounter'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { janchapelleBrandHref } from '../lib/brandPaths'
@@ -456,9 +457,16 @@ export default function JanchapelleBridalPage() {
                 key={item.label}
                 className={`jc-atelier-stats__item reveal reveal-delay-${Math.min(index, 3)}`}
               >
-                {'value' in item && item.value ? (
+                {'count' in item && item.count != null ? (
                   <>
-                    <span className="jc-atelier-stats__value">{item.value}</span>
+                    <AnimatedCounter
+                      value={item.count}
+                      suffix={item.suffix}
+                      formatThousands
+                      duration={2200}
+                      delayMs={index * 140}
+                      className="jc-atelier-stats__value"
+                    />
                     <span className="jc-atelier-stats__label">{item.label}</span>
                   </>
                 ) : (
@@ -545,12 +553,18 @@ export default function JanchapelleBridalPage() {
           </ol>
 
           <aside className="jc-assurances reveal" aria-label={JANCHAPELLE_EXPERIENCE.notesEyebrow}>
-            <p className="jc-assurances__eyebrow">{JANCHAPELLE_EXPERIENCE.notesEyebrow}</p>
+            <header className="jc-assurances__head">
+              <p className="jc-assurances__eyebrow">{JANCHAPELLE_EXPERIENCE.notesEyebrow}</p>
+              <span className="jc-assurances__rule" aria-hidden />
+            </header>
             <ul className="jc-assurances__list">
-              {JANCHAPELLE_EXPERIENCE.notes.map((note) => (
-                <li key={note} className="jc-assurances__item">
+              {JANCHAPELLE_EXPERIENCE.notes.map((note, index) => (
+                <li
+                  key={note}
+                  className={`jc-assurances__item reveal reveal-delay-${Math.min(index + 1, 3)}`}
+                >
                   <span className="jc-assurances__mark" aria-hidden />
-                  <span>{note}</span>
+                  <span className="jc-assurances__text">{note}</span>
                 </li>
               ))}
             </ul>
