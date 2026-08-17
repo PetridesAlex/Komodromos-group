@@ -57,7 +57,7 @@ export const serviceCards: ServiceCard[] = [
     description:
       'Tailored exterior environments designed for leisure, hospitality, and long-term property value.',
     tags: ['POOL CONCEPTS', 'LANDSCAPE PLANNING', 'OUTDOOR INFRASTRUCTURE'],
-    image: `${SVC_COVER}/Swimming-ppool.webp`,
+    image: '/images/services/swimming-pool-garden-services/Swim-Spas.webp',
     brandLogo: `${SVC_CARD_LOGO}/blue-sky.png`,
     brandLogoBlend: 'lighten',
     brandSlug: 'pool',

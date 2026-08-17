@@ -26,8 +26,8 @@ export const JANCHAPELLE_EVENTS = {
   lead:
     'Seasonal presentations, designer previews, and quiet appointment evenings — reserved for brides who prefer time, space, and undivided attention.',
   cta: 'View upcoming dates',
-  image: `${JANCHAPELLE}/bride-lifting-up-her-skirt.webp`,
-  imageAlt: 'Bride lifting her wedding gown skirt on a sunlit atelier terrace',
+  image: `${COVER}/Bridal.webp`,
+  imageAlt: 'Bridal couture atmosphere at Janchapelle',
 } as const
 
 export type JanchapelleDressCard = {
@@ -145,7 +145,7 @@ export const JANCHAPELLE_FEATURED: readonly JanchapelleDressCard[] = JANCHAPELLE
 )
 
 const LUXURY_SHOES_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
-  { length: 13 },
+  { length: 40 },
   (_, index) => {
     const number = String(index).padStart(2, '0')
     return {
@@ -275,8 +275,8 @@ export const JANCHAPELLE_MID_CTA = {
   lead:
     'From first sketch to final fitting, Janchapelle guides you with atelier discipline — fabrics, silhouette, and finishing chosen for how they read in motion.',
   cta: 'Book a private fitting',
-  image: `${JANCHAPELLE}/joyful-bride-looking-sky.webp`,
-  imageAlt: 'Joyful bride in a flowing gown looking toward the sky on a manicured lawn',
+  image: `${COVER}/Bridal.webp`,
+  imageAlt: 'Bridal couture atmosphere at Janchapelle',
 } as const
 
 export const JANCHAPELLE_PHILOSOPHY = {

@@ -9,7 +9,7 @@ export const serviceCoverImageAlts: Record<string, string> = {
   '/images/services/companie-services-cover/Bridal.webp': 'Janchapelle — All About Weddings — Komodromos Group service cover',
   '/images/services/companie-services-cover/Global-wings.webp': 'Aviation Agency Services — Komodromos Group service cover',
   '/images/services/companie-services-cover/Storage-rent.webp': 'Storage2Rent — Komodromos Group service cover',
-  '/images/services/companie-services-cover/Swimming-ppool.webp': 'Swimming Pool & Garden Services — Komodromos Group service cover',
+  '/images/services/swimming-pool-garden-services/Swim-Spas.webp': 'Swimming Pool & Garden Services — Komodromos Group service cover',
   '/images/services/companie-services-cover/justice-law.webp': 'A.D.R Dispute Mediation Center — Komodromos Group service cover',
   '/images/services/companie-services-cover/tax.webp': 'Tax & Accounting Services — Komodromos Group service cover',
   '/images/services/companie-services-cover/wedding-sky.webp': 'Wedding Services — Komodromos Group service cover',
