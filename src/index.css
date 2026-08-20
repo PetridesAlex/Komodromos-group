@@ -13469,8 +13469,8 @@ article[data-service-slug='pool'] .service-brand-logo {
 }
 
 article[data-service-slug='astreal'] .service-brand-logo {
-  height: clamp(50px, 7.8vw, 64px);
-  max-width: min(82%, 320px);
+  height: clamp(64px, 9.5vw, 82px);
+  max-width: min(88%, 360px);
   object-position: top right;
 }
 
