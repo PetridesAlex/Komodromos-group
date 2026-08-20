@@ -6,6 +6,7 @@ import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
 import { CONTACT_FIELD_LIMITS } from '../lib/contactFormValidation'
+import { useFormSpamProtection } from '../hooks/useFormSpamProtection'
 import { getPublicServiceCards } from '../lib/serviceMaintenance'
 import { vipSubServices } from '../data/vipSubServices'
 
@@ -21,6 +22,7 @@ function formatPhoneDisplay(phone: string): string {
 export default function ContactPage() {
   const location = useLocation()
   const pageRef = useReveal()
+  const { spamMeta, spamFields } = useFormSpamProtection()
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -135,6 +137,8 @@ export default function ContactPage() {
         company: form.company.trim(),
         service: form.service.trim(),
         message: form.message.trim(),
+        website: spamMeta.website,
+        formStartedAt: spamMeta.formStartedAt,
       })
       setSubmitted(true)
     } catch (err) {
@@ -290,6 +294,7 @@ export default function ContactPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="contact-form" noValidate>
+                {spamFields}
                 <header className="contact-form__head">
                   <p className="contact-form__eyebrow">Enquiry</p>
                   <h3 className="contact-form__title">Send a message</h3>

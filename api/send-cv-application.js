@@ -1,6 +1,9 @@
 /**
  * Vercel serverless — CV / résumé submissions with file attachment via Resend.
+ * Optional: TURNSTILE_SECRET_KEY for Cloudflare Turnstile spam protection.
  */
+
+import { evaluateSpam, getClientIp } from './lib/spamGuard.js'
 
 const SITE_URL = 'https://www.komodromosgroup.com'
 const INBOX_EMAIL = 'info@komodromosgroup.com'
@@ -195,6 +198,23 @@ export default async function handler(req, res) {
 
   if (!isValidEmail(email)) {
     return json(res, 400, { success: false, error: 'Invalid email address.' })
+  }
+
+  const spamVerdict = await evaluateSpam(body, { remoteip: getClientIp(req) })
+  if (spamVerdict.action === 'discard') {
+    return json(res, 200, {
+      success: true,
+      referenceId: `GW-CV-BLOCKED-${Date.now().toString(36)}`,
+      id: null,
+    })
+  }
+  if (spamVerdict.action === 'reject') {
+    return json(res, 400, {
+      success: false,
+      error:
+        spamVerdict.userMessage ||
+        'Could not verify your submission. Please try again or email info@komodromosgroup.com directly.',
+    })
   }
 
   const ext = getFileExtension(filename)

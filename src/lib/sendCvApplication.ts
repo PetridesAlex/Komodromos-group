@@ -3,6 +3,7 @@ import {
   validateCvApplicationPayload,
   type CvApplicationPayload,
 } from './cvApplicationValidation'
+import { getTurnstileToken } from './turnstile'
 
 type CvApplicationResponse = {
   success: boolean
@@ -37,10 +38,17 @@ export async function sendCvApplication(payload: CvApplicationPayload): Promise<
     throw new Error(validationError)
   }
 
+  const turnstileToken = await getTurnstileToken()
+
   const response = await fetch('/api/send-cv-application', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(sanitized),
+    body: JSON.stringify({
+      ...sanitized,
+      turnstileToken,
+      website: payload.website ?? '',
+      formStartedAt: payload.formStartedAt,
+    }),
   })
 
   let data: CvApplicationResponse | null = null

@@ -1,7 +1,10 @@
 /**
  * Vercel serverless — forward website form inquiries to info@komodromosgroup.com via Resend.
  * RESEND_API_KEY, CONTACT_TO_EMAIL, RESEND_FROM must be set in Vercel Environment Variables.
+ * Optional: TURNSTILE_SECRET_KEY for Cloudflare Turnstile spam protection.
  */
+
+import { evaluateSpam, getClientIp } from './lib/spamGuard.js'
 
 const SITE_URL = 'https://www.komodromosgroup.com'
 const LOGO_URL = `${SITE_URL}/images/services/companie-services-cover/cards-logos-services/main-logo.png`
@@ -463,6 +466,24 @@ export default async function handler(req, res) {
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   if (!emailOk) {
     return json(res, 400, { success: false, error: 'Invalid email address.' })
+  }
+
+  const spamVerdict = await evaluateSpam(body, { remoteip: getClientIp(req) })
+  if (spamVerdict.action === 'discard') {
+    // Silent success — do not teach bots which checks failed, and do not email.
+    return json(res, 200, {
+      success: true,
+      id: null,
+      referenceId: `KG-BLOCKED-${Date.now().toString(36)}`,
+    })
+  }
+  if (spamVerdict.action === 'reject') {
+    return json(res, 400, {
+      success: false,
+      error:
+        spamVerdict.userMessage ||
+        'Could not verify your submission. Please try again or email info@komodromosgroup.com directly.',
+    })
   }
 
   const apiKey = stripEnv(readEnv('RESEND_API_KEY'))

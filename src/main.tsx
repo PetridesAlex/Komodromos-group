@@ -17,6 +17,7 @@ import SocialHub from './components/SocialHub.tsx'
 import HeroParallaxEffect from './components/HeroParallaxEffect.tsx'
 import SectionLedScroll from './components/SectionLedScroll.tsx'
 import ServiceMaintenanceGate from './components/ServiceMaintenanceGate.tsx'
+import TurnstileHost from './components/TurnstileHost.tsx'
 import SeoManager, { SeoOverrideProvider } from './seo/SeoManager.tsx'
 import { SiteContextProvider } from './seo/SiteContext.tsx'
 import { AppRoutes } from './components/AppRoutes.tsx'
@@ -59,6 +60,7 @@ function Root() {
           <HeroParallaxEffect />
           <CookieBanner />
           <SocialHub />
+          <TurnstileHost />
         </SiteContextProvider>
       </BrowserRouter>
 

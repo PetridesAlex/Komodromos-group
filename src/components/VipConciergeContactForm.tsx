@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { vipSubServices } from '../data/vipSubServices'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
+import { useFormSpamProtection } from '../hooks/useFormSpamProtection'
 
 export default function VipConciergeContactForm() {
+  const { spamMeta, spamFields } = useFormSpamProtection()
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -35,6 +37,8 @@ export default function VipConciergeContactForm() {
         phone: form.phone.trim(),
         service: form.vipService.trim(),
         message: form.message.trim(),
+        website: spamMeta.website,
+        formStartedAt: spamMeta.formStartedAt,
       })
       setSubmitted(true)
     } catch (err) {
@@ -79,6 +83,7 @@ export default function VipConciergeContactForm() {
             </div>
           ) : (
             <form className="vip-form vip-form--premium" onSubmit={handleSubmit}>
+              {spamFields}
               <div className="form-row">
                 <div className="form-field">
                   <label htmlFor="vip-inquiry-name">Full name</label>

@@ -179,7 +179,9 @@ export default function KomodromosGroupHomePage() {
                 className="service-card reveal-scale reveal"
               >
                 <div
-                  className={`service-inner ${index % 2 !== 0 || card.slug === 'vip' ? 'img-left' : ''}`}
+                  className={`service-inner ${
+                    index === 0 || (index > 1 && index % 2 !== 0) ? 'img-left' : ''
+                  }`}
                 >
                   <div className="service-media">
                     <div className="service-card-badge" aria-hidden>

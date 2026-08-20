@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CalendarDays, Check, ChevronLeft, ChevronRight, Clock, X } from 'lucide-react'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
+import { useFormSpamProtection } from '../hooks/useFormSpamProtection'
 
 type Props = {
   open: boolean
@@ -86,6 +87,7 @@ export default function AppointmentModal({
   splitName = false,
   requireEmail = false,
 }: Props) {
+  const { spamMeta, spamFields, resetSpamProtection } = useFormSpamProtection()
   const today = useMemo(() => startOfDay(new Date()), [])
   const [viewYear, setViewYear] = useState(today.getFullYear())
   const [viewMonth, setViewMonth] = useState(today.getMonth())
@@ -120,6 +122,7 @@ export default function AppointmentModal({
 
   useEffect(() => {
     if (!open) return
+    resetSpamProtection()
     setViewYear(today.getFullYear())
     setViewMonth(today.getMonth())
     setSelectedDate(null)
@@ -128,7 +131,7 @@ export default function AppointmentModal({
     setError(null)
     setSubmitted(false)
     if (dialogRef.current) dialogRef.current.focus()
-  }, [open, today])
+  }, [open, today, resetSpamProtection])
 
   const displayName = splitName
     ? `${form.firstName.trim()} ${form.lastName.trim()}`.trim()
@@ -243,6 +246,8 @@ export default function AppointmentModal({
         message,
         detailsTitle: 'Appointment details',
         details,
+        website: spamMeta.website,
+        formStartedAt: spamMeta.formStartedAt,
       })
       setSubmitted(true)
     } catch (err) {
@@ -305,6 +310,7 @@ export default function AppointmentModal({
             </header>
 
             <form className="appt__body" onSubmit={handleSubmit}>
+              {spamFields}
               <div className="appt__grid">
                 <div className="appt__col">
                   <p className="appt__label">

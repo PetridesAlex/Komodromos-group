@@ -2,6 +2,7 @@ import {
   sanitizeContactPayload,
   validateContactPayload,
 } from './contactFormValidation'
+import { getTurnstileToken } from './turnstile'
 
 export type ContactInquiryDetail = {
   label: string
@@ -19,6 +20,10 @@ export type ContactInquiryPayload = {
   /** Optional structured detail rows (e.g. reservation date/time/guests). */
   detailsTitle?: string
   details?: ContactInquiryDetail[]
+  /** Honeypot — leave empty. Bots that fill it are discarded server-side. */
+  website?: string
+  /** Epoch ms when the form became interactive (for minimum fill-time check). */
+  formStartedAt?: number
 }
 
 type ContactInquiryResponse = {
@@ -33,10 +38,17 @@ export async function sendContactInquiry(payload: ContactInquiryPayload): Promis
     throw new Error(validationError)
   }
 
+  const turnstileToken = await getTurnstileToken()
+
   const response = await fetch('/api/send-contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(sanitized),
+    body: JSON.stringify({
+      ...sanitized,
+      turnstileToken,
+      website: payload.website ?? '',
+      formStartedAt: payload.formStartedAt,
+    }),
   })
 
   let data: ContactInquiryResponse | null = null

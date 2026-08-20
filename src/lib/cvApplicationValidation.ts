@@ -36,6 +36,10 @@ export type CvApplicationPayload = {
     contentType: string
     content: string
   }
+  /** Honeypot — leave empty. */
+  website?: string
+  /** Epoch ms when the form became interactive. */
+  formStartedAt?: number
 }
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

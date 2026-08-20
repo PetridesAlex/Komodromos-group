@@ -5,6 +5,7 @@ import GwImagePlaceholder from './GwImagePlaceholder'
 import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
 import { sendContactInquiry } from '../../lib/sendContactInquiry'
+import { useFormSpamProtection } from '../../hooks/useFormSpamProtection'
 import {
   contactForm,
   contactHero,
@@ -33,6 +34,7 @@ const initialForm: FormState = {
 export default function GwContactPage() {
   const pageRef = useReveal()
   const location = useLocation()
+  const { spamMeta, spamFields } = useFormSpamProtection()
   const [form, setForm] = useState<FormState>(initialForm)
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -87,6 +89,8 @@ export default function GwContactPage() {
         company: form.company.trim(),
         service: form.service.trim(),
         message: form.message.trim(),
+        website: spamMeta.website,
+        formStartedAt: spamMeta.formStartedAt,
       })
       setSubmitted(true)
     } catch (err) {
@@ -232,6 +236,7 @@ export default function GwContactPage() {
                 </div>
               ) : (
                 <form className="gw-contact-form" onSubmit={handleSubmit}>
+                  {spamFields}
                   <div className="gw-contact-form__row">
                     <div className="gw-contact-form__field">
                       <label htmlFor="gw-contact-name">Full Name</label>

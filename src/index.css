@@ -827,10 +827,25 @@ body {
 /* Home hero: full-viewport cover image; .hero-content / scroll hint stay above (z-index) */
 .home-page #home .hero-bg.hero-bg--static {
   background:
-    radial-gradient(ellipse 110% 85% at 72% 18%, rgba(22, 52, 98, 0.4) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 65% at 18% 78%, rgba(197, 160, 89, 0.1) 0%, transparent 50%),
-    linear-gradient(168deg, rgba(5, 10, 20, 0.35) 0%, rgba(5, 7, 10, 0.5) 45%, rgba(5, 10, 22, 0.55) 100%),
+    radial-gradient(ellipse 110% 85% at 72% 18%, rgba(22, 52, 98, 0.26) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 65% at 18% 78%, rgba(197, 160, 89, 0.12) 0%, transparent 50%),
+    linear-gradient(168deg, rgba(5, 10, 20, 0.12) 0%, rgba(5, 7, 10, 0.22) 45%, rgba(5, 10, 22, 0.28) 100%),
     url('/images/services/hero-section/hero-section-premium.webp') center / cover no-repeat #05070a;
+}
+
+.home-page #home .hero-bg.hero-bg--static::before {
+  background:
+    radial-gradient(ellipse 700px 500px at 50% 50%, rgba(5, 7, 10, 0.03) 0%, rgba(5, 7, 10, 0.14) 60%),
+    radial-gradient(ellipse 500px 350px at 25% 55%, rgba(197, 160, 89, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 400px 300px at 75% 35%, rgba(74, 144, 226, 0.03) 0%, transparent 60%);
+}
+
+.home-page #home .hero-bg.hero-bg--static::after {
+  background:
+    linear-gradient(to bottom, rgba(5, 7, 10, 0.18) 0%, transparent 26%),
+    linear-gradient(to top, rgba(5, 7, 10, 0.24) 0%, transparent 34%),
+    linear-gradient(to right, rgba(5, 7, 10, 0.12) 0%, transparent 22%),
+    linear-gradient(to left, rgba(5, 7, 10, 0.12) 0%, transparent 22%);
 }
 
 .home-page #home .hero-content {
