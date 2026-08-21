@@ -657,6 +657,7 @@ export default function JanchapelleBridalPage() {
         subtitle="Choose a date and time for your fitting — leave your details and our atelier will confirm shortly."
         splitName
         requireEmail
+        variant="janchapelle"
       />
     </div>
   )

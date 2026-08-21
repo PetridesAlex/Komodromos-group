@@ -1,10 +1,12 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Heart, Menu, Search, X } from 'lucide-react'
 import {
   JANCHAPELLE_DONT_MISS,
   JANCHAPELLE_FEATURED,
   type JanchapelleDressCard,
 } from '../data/janchapellePage'
+import { janchapelleBrandHref } from '../lib/brandPaths'
 import { socialLinks } from '../data/socialLinks'
 
 const NAV_LINKS = [
@@ -40,6 +42,8 @@ function scrollToHash(href: string) {
 export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
   const menuTitleId = useId()
   const searchTitleId = useId()
+  const location = useLocation()
+  const homeHref = janchapelleBrandHref('/services/janchapelle')
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [wishlistOpen, setWishlistOpen] = useState(false)
@@ -173,17 +177,22 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
           </div>
 
           <div className="jc-bridal-nav__center">
-            <a
-              href="#jc-hero-heading"
+            <Link
+              to={homeHref}
               className="jc-bridal-nav__brand"
-              onClick={(e) => {
-                e.preventDefault()
-                window.scrollTo({ top: 0, behavior: 'smooth' })
+              aria-label="Janchapelle home"
+              onClick={() => {
+                setMenuOpen(false)
+                setSearchOpen(false)
+                setWishlistOpen(false)
+                if (location.pathname === homeHref) {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
               }}
             >
               <span className="jc-bridal-nav__brand-name">Janchapelle</span>
               <span className="jc-bridal-nav__brand-line">Bridal Atelier</span>
-            </a>
+            </Link>
             <ul className="jc-bridal-nav__links" aria-label="Bridal sections">
               {NAV_LINKS.map((link) => (
                 <li key={link.id}>

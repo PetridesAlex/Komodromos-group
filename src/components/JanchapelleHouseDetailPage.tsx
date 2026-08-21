@@ -115,12 +115,13 @@ export default function JanchapelleHouseDetailPage() {
           <div className="jc-collection-body__copy">
             {house.paragraphs.map((paragraph, index) => {
               const isClosing = index === house.paragraphs.length - 1
+              const isLead = index === 0
               return (
                 <p
                   key={paragraph}
                   className={`jc-collection-body__paragraph reveal reveal-delay-${Math.min(index, 2)}${
-                    isClosing ? ' jc-collection-body__paragraph--closing' : ''
-                  }`}
+                    isLead ? ' jc-collection-body__paragraph--lead' : ''
+                  }${isClosing ? ' jc-collection-body__paragraph--closing' : ''}`}
                 >
                   {paragraph}
                 </p>
@@ -129,6 +130,8 @@ export default function JanchapelleHouseDetailPage() {
           </div>
 
           <aside className="jc-collection-body__aside reveal reveal-delay-2">
+            <span className="jc-collection-body__aside-glow" aria-hidden />
+            <span className="jc-collection-body__aside-ornament" aria-hidden />
             <p className="jc-collection-body__aside-eyebrow">Private fitting</p>
             <h2 className="jc-collection-body__aside-title">Explore this collection in the atelier</h2>
             <p className="jc-collection-body__aside-copy">
@@ -248,6 +251,7 @@ export default function JanchapelleHouseDetailPage() {
         subtitle="Choose a date and time for your private appointment — our consultants will confirm shortly."
         splitName
         requireEmail
+        variant="janchapelle"
       />
     </div>
   )

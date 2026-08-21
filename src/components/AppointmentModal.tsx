@@ -21,6 +21,8 @@ type Props = {
   splitName?: boolean
   /** Require email (default: optional). */
   requireEmail?: boolean
+  /** Visual theme — use `janchapelle` on bridal pages. */
+  variant?: 'default' | 'janchapelle'
 }
 
 const TIME_SLOTS = [
@@ -86,6 +88,7 @@ export default function AppointmentModal({
   subtitle = 'Choose a date and time that suits you — our team will confirm your appointment shortly.',
   splitName = false,
   requireEmail = false,
+  variant = 'default',
 }: Props) {
   const { spamMeta, spamFields, resetSpamProtection } = useFormSpamProtection()
   const today = useMemo(() => startOfDay(new Date()), [])
@@ -263,9 +266,11 @@ export default function AppointmentModal({
 
   if (!open) return null
 
+  const isJc = variant === 'janchapelle'
+
   return createPortal(
     <div
-      className="appt"
+      className={`appt${isJc ? ' appt--jc' : ''}`}
       role="presentation"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose()
