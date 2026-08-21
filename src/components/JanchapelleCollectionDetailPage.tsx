@@ -76,10 +76,19 @@ export default function JanchapelleCollectionDetailPage() {
       <section className="jc-collection-hero" aria-labelledby="jc-collection-heading">
         <div
           className="jc-collection-hero__media"
-          style={{ backgroundImage: `url("${collection.image}")` }}
           role="img"
           aria-label={collection.alt}
-        />
+        >
+          <img
+            src={collection.heroImage ?? collection.image}
+            alt=""
+            className="jc-collection-hero__img"
+            width={1213}
+            height={1600}
+            decoding="async"
+            fetchPriority="high"
+          />
+        </div>
         <div className="jc-collection-hero__scrim" aria-hidden />
         <div className="jc-collection-hero__inner">
           <nav className="jc-collection-hero__crumb" aria-label="Breadcrumb">

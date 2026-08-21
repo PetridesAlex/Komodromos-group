@@ -76,10 +76,19 @@ export default function JanchapelleHouseDetailPage() {
       <section className="jc-collection-hero" aria-labelledby="jc-house-heading">
         <div
           className="jc-collection-hero__media"
-          style={{ backgroundImage: `url("${house.image}")` }}
           role="img"
           aria-label={house.alt}
-        />
+        >
+          <img
+            src={house.heroImage ?? house.image}
+            alt=""
+            className="jc-collection-hero__img"
+            width={1213}
+            height={1600}
+            decoding="async"
+            fetchPriority="high"
+          />
+        </div>
         <div className="jc-collection-hero__scrim" aria-hidden />
         <div className="jc-collection-hero__inner">
           <nav className="jc-collection-hero__crumb" aria-label="Breadcrumb">

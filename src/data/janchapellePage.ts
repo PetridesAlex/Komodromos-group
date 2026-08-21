@@ -48,7 +48,10 @@ export type JanchapelleCollectionGalleryImage = {
 export type JanchapelleCollection = {
   id: string
   name: string
+  /** Card / listing cover (featured grid). */
   image: string
+  /** Full-bleed collection hero; falls back to `image` when omitted. */
+  heroImage?: string
   alt: string
   tagline: string
   paragraphs: readonly string[]
@@ -69,6 +72,39 @@ const MINI_DRESS_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.f
   },
 )
 
+const ELEGANT_COLLECTION_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
+  { length: 87 },
+  (_, index) => {
+    const number = String(index).padStart(2, '0')
+    return {
+      src: `${JANCHAPELLE}/elegant-collection/elegant-${number}.webp`,
+      alt: `Elegant Collection bridal look ${index + 1} — Janchapelle Bridal Atelier`,
+    }
+  },
+)
+
+const PREMIUM_COLLECTION_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
+  { length: 152 },
+  (_, index) => {
+    const number = String(index).padStart(2, '0')
+    return {
+      src: `${JANCHAPELLE}/premium-collection/premium-${number}.webp`,
+      alt: `Premium Collection bridal look ${index + 1} — Janchapelle Bridal Atelier`,
+    }
+  },
+)
+
+const COCKTAIL_DRESS_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
+  { length: 79 },
+  (_, index) => {
+    const number = String(index).padStart(2, '0')
+    return {
+      src: `${JANCHAPELLE}/cocktail-dress/cocktail-${number}.webp`,
+      alt: `Cocktail dress look ${index + 1} — Janchapelle Bridal Atelier`,
+    }
+  },
+)
+
 export const JANCHAPELLE_COLLECTIONS_EYEBROW = 'Discover our collections'
 
 export const JANCHAPELLE_COLLECTIONS: readonly JanchapelleCollection[] = [
@@ -76,17 +112,24 @@ export const JANCHAPELLE_COLLECTIONS: readonly JanchapelleCollection[] = [
     id: 'premium-collection',
     name: 'Premium Collection',
     image: `${JANCHAPELLE}/premium-collection.webp`,
+    heroImage: `${JANCHAPELLE}/premium-collection/premium-98.webp`,
     alt: 'Premium Collection — couture bridal gowns with refined finishing',
     tagline:
       'Exceptional bridal creations for brides who appreciate modern luxury, sophisticated design and extraordinary craftsmanship.',
     paragraphs: [
       'A collection where beautiful silhouettes, exquisite fabrics and couture detailing come together to create unforgettable bridal looks.',
     ],
+    galleryEyebrow: 'The collection',
+    galleryTitle: 'Premium Collection gallery',
+    galleryLead:
+      'Explore the full Premium Collection — couture silhouettes, exquisite fabrics, and refined bridal craftsmanship.',
+    gallery: PREMIUM_COLLECTION_GALLERY,
   },
   {
     id: 'elegant-collection',
     name: 'Elegant Collection',
     image: `${JANCHAPELLE}/elegant-collection.webp`,
+    heroImage: `${JANCHAPELLE}/elegant-collection/elegant-82.webp`,
     alt: 'Elegant Collection — timeless silhouettes with elevated detail',
     tagline: 'Timeless Beauty. Effortless Sophistication.',
     paragraphs: [
@@ -95,11 +138,17 @@ export const JANCHAPELLE_COLLECTIONS: readonly JanchapelleCollection[] = [
       'Sophisticated, graceful and beautifully balanced, each gown is designed for the bride who believes that the most powerful statement can sometimes be the simplest one.',
       'Because elegance is timeless.',
     ],
+    galleryEyebrow: 'The collection',
+    galleryTitle: 'Elegant Collection gallery',
+    galleryLead:
+      'Explore the full Elegant Collection — refined silhouettes and timeless bridal looks, curated for effortless sophistication.',
+    gallery: ELEGANT_COLLECTION_GALLERY,
   },
   {
     id: 'mini-party-dress',
     name: 'Mini Party Dress Collection',
     image: `${JANCHAPELLE}/party-dress.webp`,
+    heroImage: `${JANCHAPELLE}/mini-dress/mini-dress-07.webp`,
     alt: 'Mini Party Dress Collection — shorter bridal styles for celebrations',
     tagline: 'One Bride. Two Unforgettable Looks.',
     paragraphs: [
@@ -118,6 +167,7 @@ export const JANCHAPELLE_COLLECTIONS: readonly JanchapelleCollection[] = [
     id: 'cocktail-dress',
     name: 'Cocktail Dress Collection',
     image: `${JANCHAPELLE}/cocktail-dress.webp`,
+    heroImage: `${JANCHAPELLE}/cocktail-dress/cocktail-40.webp`,
     alt: 'Cocktail Dress Collection — polished evening looks for bridal events',
     tagline: 'Couture Beyond the Wedding Day',
     paragraphs: [
@@ -126,6 +176,11 @@ export const JANCHAPELLE_COLLECTIONS: readonly JanchapelleCollection[] = [
       'From understated sophistication to unforgettable statement pieces, discover creations designed to make every appearance feel exceptional.',
       'Because some moments deserve more than simply dressing up.',
     ],
+    galleryEyebrow: 'The collection',
+    galleryTitle: 'Cocktail Dress Collection gallery',
+    galleryLead:
+      'Explore sophisticated cocktail looks for engagement parties, bridal celebrations, receptions, and life\'s most elegant occasions.',
+    gallery: COCKTAIL_DRESS_GALLERY,
   },
 ] as const
 
@@ -155,6 +210,17 @@ const LUXURY_SHOES_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array
   },
 )
 
+const SPARKLING_ACCESSORIES_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
+  { length: 28 },
+  (_, index) => {
+    const number = String(index).padStart(2, '0')
+    return {
+      src: `${JANCHAPELLE}/sparkling-accesories-collection/sparkling-${number}.webp`,
+      alt: `Sparkling accessories look ${index + 1} — Janchapelle Bridal Atelier`,
+    }
+  },
+)
+
 export type JanchapelleHouse = {
   id: string
   index: string
@@ -164,7 +230,10 @@ export type JanchapelleHouse = {
   lead: string
   features: readonly string[]
   cta: string
+  /** Card / listing cover on the bridal landing page. */
   image: string
+  /** Full-bleed house hero; falls back to `image` when omitted. */
+  heroImage?: string
   alt: string
   paragraphs: readonly string[]
   galleryEyebrow?: string
@@ -188,6 +257,7 @@ export const JANCHAPELLE_HOUSES: readonly JanchapelleHouse[] = [
     features: ['Heels & flats', 'Custom sizing', 'Comfort-first fit'],
     cta: 'View the collection',
     image: `${JANCHAPELLE}/bridal-wedding-shoes.webp`,
+    heroImage: `${JANCHAPELLE}/bride-luxury-shoes/luxury-shoes-06.webp`,
     alt: 'Bride Luxury Shoes Collection at Janchapelle',
     paragraphs: [
       'The perfect bridal look continues all the way to your shoes.',
@@ -213,6 +283,7 @@ export const JANCHAPELLE_HOUSES: readonly JanchapelleHouse[] = [
     features: ['Crystal & pearl detail', 'Veils & headpieces', 'Matching sets'],
     cta: 'View the collection',
     image: `${JANCHAPELLE}/sparkling-accessories-collection.webp`,
+    heroImage: `${JANCHAPELLE}/sparkling-accesories-collection/sparkling-27.webp`,
     alt: 'Sparkling Accessories Collection at Janchapelle',
     paragraphs: [
       'Sometimes, the smallest detail creates the greatest impression.',
@@ -220,6 +291,12 @@ export const JANCHAPELLE_HOUSES: readonly JanchapelleHouse[] = [
       'From delicate sparkle to captivating statement details, every accessory is chosen to complement your gown without taking away from the woman wearing it.',
       "Because your bridal look isn't complete until every detail feels extraordinary.",
     ],
+    galleryEyebrow: 'The collection',
+    galleryTitle: 'Sparkling accessories looks',
+    galleryLead:
+      'Explore veils, tiaras, belts, and finishing pieces with refined sparkle — each selected to complete your bridal look.',
+    galleryVariant: 'product',
+    gallery: SPARKLING_ACCESSORIES_GALLERY,
   },
 ] as const
 
