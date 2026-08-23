@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import SiteLogo from './SiteLogo'
 import TopbarSocialLinks from './TopbarSocialLinks'
 import { getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
@@ -42,11 +43,12 @@ function NavHome({
   onNavigate: () => void
 }) {
   const location = useLocation()
+  const { t } = useTranslation()
 
   if (href.startsWith('#') || isExternalHref(href)) {
     return (
       <a href={href} onClick={onNavigate}>
-        Overview
+        {t('nav.overview')}
       </a>
     )
   }
@@ -61,7 +63,7 @@ function NavHome({
 
   return (
     <Link to={href} onClick={handleClick}>
-      Overview
+      {t('nav.overview')}
     </Link>
   )
 }
@@ -73,10 +75,12 @@ function NavServicesTrigger({
   href: string
   onNavigate: () => void
 }) {
+  const { t } = useTranslation()
+
   if (href.startsWith('#') || isExternalHref(href)) {
     return (
       <a href={href} className="nav-dropdown__trigger" onClick={onNavigate}>
-        Solutions
+        {t('nav.solutions')}
       </a>
     )
   }
@@ -90,13 +94,13 @@ function NavServicesTrigger({
         className="nav-dropdown__trigger"
         onClick={onNavigate}
       >
-        Solutions
+        {t('nav.solutions')}
       </Link>
     )
   }
   return (
     <Link to={href} className="nav-dropdown__trigger" onClick={onNavigate}>
-      Solutions
+      {t('nav.solutions')}
     </Link>
   )
 }
@@ -109,6 +113,7 @@ export default function SiteTopbar({
   className,
 }: SiteTopbarProps) {
   const { isBrandDomain } = useSiteContext()
+  const { t } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const close = useCallback(() => setMenuOpen(false), [])
   const resolvedHomeHref = isBrandDomain ? buildGroupSiteReturnUrl('home') : homeHref
@@ -146,7 +151,7 @@ export default function SiteTopbar({
       <button
         type="button"
         className={`nav-backdrop${menuOpen ? ' nav-backdrop--open' : ''}`}
-        aria-label="Close menu"
+        aria-label={t('nav.menu')}
         tabIndex={menuOpen ? 0 : -1}
         onClick={close}
       />
@@ -159,7 +164,7 @@ export default function SiteTopbar({
             <div
               className="nav-dropdown__panel"
               role="navigation"
-              aria-label="Group companies and services"
+              aria-label={t('nav.groupCompaniesAndServices')}
             >
               {isExternalHref(exploreAllHref) ? (
                 <a
@@ -167,7 +172,7 @@ export default function SiteTopbar({
                   className="nav-dropdown__link nav-dropdown__link--all"
                   onClick={close}
                 >
-                  Explore all solutions
+                  {t('nav.exploreAllSolutions')}
                 </a>
               ) : (
                 <Link
@@ -175,7 +180,7 @@ export default function SiteTopbar({
                   className="nav-dropdown__link nav-dropdown__link--all"
                   onClick={close}
                 >
-                  Explore all solutions
+                  {t('nav.exploreAllSolutions')}
                 </Link>
               )}
               <ul className="nav-dropdown__list">
@@ -238,11 +243,11 @@ export default function SiteTopbar({
           </div>
           {isExternalHref(contactHref) ? (
             <a href={contactHref} onClick={close} className="nav-links__cta">
-              Concierge Desk
+              {t('nav.conciergeDesk')}
             </a>
           ) : (
             <Link to="/contact" onClick={close} className="nav-links__cta">
-              Concierge Desk
+              {t('nav.conciergeDesk')}
             </Link>
           )}
           <TopbarSocialLinks variant="mobile" />
@@ -252,7 +257,7 @@ export default function SiteTopbar({
           type="button"
           className={`hamburger ${menuOpen ? 'hamburger-open' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
+          aria-label={t('nav.menu')}
           aria-expanded={menuOpen}
         >
           <span />

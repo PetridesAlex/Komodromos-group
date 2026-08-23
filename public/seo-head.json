@@ -412,13 +412,6 @@
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-basic.webp",
     "index": true
   },
-  "/services/wedding/packages/basic-plus": {
-    "title": "Basic Plus Wedding Package Cyprus | Komodromos Group",
-    "description": "Basic Plus — Expanded vendor access and styling support beyond the essentials.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
-    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/basic-plus",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-basic-plus.webp",
-    "index": true
-  },
   "/services/wedding/packages/classic": {
     "title": "Classic Wedding Package Cyprus Services | Komodromos Group",
     "description": "Classic — Full creative direction with refined production and guest care.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service",
@@ -426,18 +419,25 @@
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-classic.webp",
     "index": true
   },
-  "/services/wedding/packages/classic-plus": {
-    "title": "Classic Plus Wedding Package Cyprus | Komodromos Group",
-    "description": "Classic Plus — Premium staging, extended hours, and bespoke detail programming.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
-    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/classic-plus",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-classic-plus.webp",
-    "index": true
-  },
   "/services/wedding/packages/premium": {
     "title": "Premium Wedding Package Cyprus Services | Komodromos Group",
     "description": "Premium — Our signature tier — maximum craft, discretion, and white-glove execution.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
     "canonical": "https://www.komodromosgroup.com/services/wedding/packages/premium",
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-premium.webp",
+    "index": true
+  },
+  "/services/wedding/packages/basic-plus": {
+    "title": "Basic Plus Wedding Package Cyprus | Komodromos Group",
+    "description": "Basic Plus — Expanded vendor access and styling support beyond the essentials.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/basic-plus",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-basic-plus.webp",
+    "index": true
+  },
+  "/services/wedding/packages/classic-plus": {
+    "title": "Classic Plus Wedding Package Cyprus | Komodromos Group",
+    "description": "Classic Plus — Premium staging, extended hours, and bespoke detail programming.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/classic-plus",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-classic-plus.webp",
     "index": true
   },
   "/services/wedding/packages/customised": {

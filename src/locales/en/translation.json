@@ -2,9 +2,12 @@
   "common": {
     "language": {
       "en": "EN",
-      "gr": "GR",
+      "gr": "EL",
+      "ru": "RU",
       "switchToEnglish": "Switch language to English",
-      "switchToGreek": "Switch language to Greek"
+      "switchToGreek": "Switch language to Greek",
+      "switchToRussian": "Switch language to Russian",
+      "switcher": "Language switcher"
     }
   },
   "nav": {

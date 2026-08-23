@@ -1,35 +1,36 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import { weddingHighlightTiles } from '../data/weddingHighlightTiles'
+import { weddingTilesSectionCopy } from '../data/weddingPageCopy'
 import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
+import { useWeddingLocale } from '../lib/weddingLocale'
+import WeddingLazyImage from './WeddingLazyImage'
 
 function TileContent({
   index,
   kicker,
   title,
-  titleEl,
   image,
   decorativeImage,
   interactive,
+  exploreLabel,
 }: {
   index: number
-  kicker: string
+  kicker?: string
   title: string
-  titleEl: string
   image: string
   decorativeImage?: boolean
   interactive?: boolean
+  exploreLabel: string
 }) {
   return (
     <>
       <div className="wedding-highlight-tiles__media">
-        <img
+        <WeddingLazyImage
           src={image}
           alt={
             decorativeImage ? '' : getServiceCoverImageAlt(image, title)
           }
-          loading="lazy"
-          decoding="async"
         />
         <div className="wedding-highlight-tiles__scrim" aria-hidden />
         <span className="wedding-highlight-tiles__index" aria-hidden>
@@ -37,14 +38,11 @@ function TileContent({
         </span>
       </div>
       <div className="wedding-highlight-tiles__caption">
-        <p className="wedding-highlight-tiles__kicker">{kicker}</p>
+        {kicker ? <p className="wedding-highlight-tiles__kicker">{kicker}</p> : null}
         <p className="wedding-highlight-tiles__title">{title}</p>
-        <p className="wedding-highlight-tiles__title-el" lang="el">
-          {titleEl}
-        </p>
         {interactive ? (
           <span className="wedding-highlight-tiles__cta">
-            Explore
+            {exploreLabel}
             <ArrowUpRight size={15} strokeWidth={2.25} aria-hidden />
           </span>
         ) : null}
@@ -54,40 +52,42 @@ function TileContent({
 }
 
 export default function WeddingHighlightTiles() {
+  const { t, htmlLang } = useWeddingLocale()
+
   return (
     <section
+      id="wedding-services"
       className="wedding-section wedding-highlight-tiles"
       aria-labelledby="wedding-tiles-heading"
+      lang={htmlLang}
     >
       <div className="container">
         <header className="wedding-highlight-tiles__head reveal">
-          <p className="wedding-highlight-tiles__eyebrow">Discover Wedding Sky</p>
+          <p className="wedding-highlight-tiles__eyebrow">
+            {t(weddingTilesSectionCopy.eyebrow)}
+          </p>
           <h2 id="wedding-tiles-heading" className="wedding-highlight-tiles__h2">
-            What we craft with you
+            {t(weddingTilesSectionCopy.title)}
           </h2>
           <span className="wedding-highlight-tiles__rule" aria-hidden />
           <p className="wedding-highlight-tiles__intro">
-            Eight entry points into how we work — from destinations and production to packages,
-            love stories, and your first conversation with the team.
-          </p>
-          <p className="wedding-highlight-tiles__intro-el" lang="el">
-            Οκτώ σημεία για να γνωρίσετε τον τρόπο μας — από τους χώρους και την παραγωγή μέχρι τα
-            πακέτα, τις ιστορίες ζευγαριών και την πρώτη σας συνάντηση με την ομάδα.
+            {t(weddingTilesSectionCopy.intro)}
           </p>
         </header>
-        <div className="wedding-highlight-tiles__grid">
+      </div>
+      <div className="wedding-highlight-tiles__grid">
           {weddingHighlightTiles.map((tile, index) => {
             const isLink = Boolean(tile.contact || tile.hashHref)
             const delayClass = `reveal reveal-delay-${Math.min((index % 4) + 1, 4)}`
             const body = (
               <TileContent
                 index={index}
-                kicker={tile.kicker}
-                title={tile.title}
-                titleEl={tile.titleEl}
+                kicker={tile.kicker ? t(tile.kicker) : undefined}
+                title={t(tile.title)}
                 image={tile.image}
                 decorativeImage={isLink}
                 interactive={isLink}
+                exploreLabel={t(weddingTilesSectionCopy.explore)}
               />
             )
             const style = { ['--tile-i' as string]: String(index) }
@@ -100,7 +100,10 @@ export default function WeddingHighlightTiles() {
                   state={{ serviceInterest: 'Wedding Services' }}
                   className={`wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link ${delayClass}`}
                   style={style}
-                  aria-label={`${tile.title} — open contact page`}
+                  aria-label={t(weddingTilesSectionCopy.openContactAria).replace(
+                    '{{title}}',
+                    t(tile.title),
+                  )}
                 >
                   {body}
                 </Link>
@@ -114,7 +117,10 @@ export default function WeddingHighlightTiles() {
                   href={tile.hashHref}
                   className={`wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link ${delayClass}`}
                   style={style}
-                  aria-label={`${tile.title} — jump to section`}
+                  aria-label={t(weddingTilesSectionCopy.jumpSectionAria).replace(
+                    '{{title}}',
+                    t(tile.title),
+                  )}
                 >
                   {body}
                 </a>
@@ -131,7 +137,6 @@ export default function WeddingHighlightTiles() {
               </article>
             )
           })}
-        </div>
       </div>
     </section>
   )

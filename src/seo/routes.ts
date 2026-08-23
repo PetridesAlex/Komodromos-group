@@ -495,8 +495,8 @@ function buildDynamicRoutes(): SeoRouteEntry[] {
     routes.push(
       route({
         path: `/services/wedding/packages/${pkg.id}`,
-        title: `${pkg.name} Wedding Package`,
-        description: detailDescription(pkg.name, pkg.tagline),
+        title: `${pkg.name.en} Wedding Package`,
+        description: detailDescription(pkg.name.en, pkg.tagline.en),
         index: true,
         priority: 0.55,
         ogImage: pkg.image,

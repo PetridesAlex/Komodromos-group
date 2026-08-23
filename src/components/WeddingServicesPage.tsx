@@ -1,171 +1,71 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Mail, MapPin, UserCircle2 } from 'lucide-react'
+import { Mail, MapPin, Wallet, Users, ShieldCheck, Sparkles } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
+import LanguageSwitcher from './LanguageSwitcher'
 import WeddingIntroSocial from './WeddingIntroSocial'
 import WeddingHighlightTiles from './WeddingHighlightTiles'
 import WeddingPackagesSection from './WeddingPackagesSection'
+import WeddingLazyImage from './WeddingLazyImage'
+import WeddingSocialProof from './WeddingSocialProof'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
+import { weddingBrandHref } from '../lib/brandPaths'
 import { useSiteContext } from '../seo/SiteContext'
+import { useWeddingLocale } from '../lib/weddingLocale'
+import {
+  weddingAboutCopy,
+  weddingFaqItems,
+  weddingHeroCopy,
+  weddingKnowledgeCopy,
+  weddingPillarsCopy,
+  weddingTestimonialsCopy,
+  weddingVideoCopy,
+  weddingVisitCopy,
+  weddingWhyCopy,
+} from '../data/weddingPageCopy'
 
-const WHY_CHOOSE = [
-  'Transparent planning and disciplined investment across every budget line',
-  'Guidance from first enquiry through your wedding week — one accountable team',
-  'Thorough preparation and contingency thinking so surprises stay off the timeline',
-  'Bespoke execution and discreet luxury, shaped to your culture and guest list',
-] as const
+const WEDDING_WHY_ICONS = [Wallet, Users, ShieldCheck, Sparkles] as const
 
-const WEDDING_OFFERINGS = [
+const WEDDING_HERO_IMAGE = '/images/services/companie-services-cover/wedding-sky.webp'
+const WEDDING_SKY_LOGO =
+  '/images/services/companie-services-cover/cards-logos-services/wedding-sky.png'
+
+const WEDDING_ABOUT_MAIN = {
+  src: '/images/services/wedding-highlights/bridal.webp',
+  alt: 'Bride on her wedding day with Wedding Sky in Cyprus',
+} as const
+
+const WEDDING_ABOUT_SUPPORTING = [
   {
-    title: 'Full-service planning',
-    desc: 'Timeline, vendors, and creative direction from first sketch to farewell.',
-    image: '/images/services/wedding-highlights/planning.webp',
+    src: '/images/services/wedding-highlights/destinations.webp',
+    alt: 'Destination wedding setting in Cyprus',
   },
   {
-    title: 'Venue & production',
-    desc: 'Scenic Cyprus locations, staging, lighting, and flawless run-of-show.',
-    image: '/images/services/wedding-highlights/production.webp',
-  },
-  {
-    title: 'Guest experience',
-    desc: 'Travel, hospitality, and seating crafted for every attendee.',
-    image: '/images/services/wedding-highlights/guests.webp',
-  },
-  {
-    title: 'Styling & florals',
-    desc: 'Cohesive palettes, florals, and detail styling for photography-ready moments.',
-    image: '/images/services/wedding-highlights/bridal.webp',
-  },
-  {
-    title: 'Destination weddings',
-    desc: 'Local expertise and discreet coordination for international couples.',
-    image: '/images/services/wedding-highlights/destinations.webp',
-  },
-  {
-    title: 'Day-of coordination',
-    desc: 'Calm leadership on the day so you can stay present and celebrate.',
-    image: '/images/services/wedding-highlights/consultation.webp',
+    src: '/images/services/wedding-highlights/production.webp',
+    alt: 'Wedding styling and production details',
   },
 ] as const
 
-const TESTIMONIALS: { author: string; quote: string; lang?: string }[] = [
-  {
-    author: 'Κωνσταντίνα',
-    lang: 'el',
-    quote:
-      '«Δεν μπορούσα να φανταστώ τον γάμο μου καλύτερα. Είσασταν όλοι καταπληκτικοί επαγγελματίες. Όλοι μου είπαν τα καλύτερα λόγια για το νυφικό μου, τα κεραστικά και φυσικά για την υπέροχη διακόσμηση του Σέργιου. Και το πιο σημαντικό, χωρίς να κουραστώ. Σας προτείνω με 1000. Ευχαριστώ για όλα.»',
-  },
-  {
-    author: 'John',
-    lang: 'en',
-    quote:
-      '“Something like more than happy from you guys! Thank you very much for everything!”',
-  },
-  {
-    author: 'Μαρία και Γιάννης',
-    lang: 'el',
-    quote:
-      '«Ευχαριστούμε πολύ για όλα!!! Δεν θα μπορούσαμε να φανταστούμε τον γάμο μας καλύτερο. Όλα ήταν τέλεια!!!»',
-  },
-]
 
-const WEDDING_YOUTUBE_CHANNEL =
-  'https://www.youtube.com/@weddingskybykomodromosgrou3234'
-
-const WEDDING_ABOUT_CARDS = [
-  {
-    title: 'Wedding Sky',
-    copy:
-      'Wedding Sky is a leading company providing luxury weddings and event planning services in Cyprus. Our initiative is based on our love for weddings, passion for creating spectacular affairs, creativity, and commitment to our beloved clientele.',
-  },
-  {
-    title: 'Our approach',
-    tagline: 'Precision. Warmth. Discretion.',
-    copy:
-      'We believe in clear timelines, honest counsel, and calm leadership on the day. Every celebration is built around your story — with vendors, venues, and production aligned to one coherent plan.',
-    featured: true,
-  },
-  {
-    title: 'Production & creative',
-    copy:
-      'From styling and florals to lighting and run-of-show, our producers and partners work to one standard: seamless execution so you can stay present with family and guests.',
-  },
-  {
-    title: 'Our team',
-    copy:
-      'Planners, coordinators, and specialists across Cyprus — supported by a trusted network of venues, artisans, and hospitality partners who share our commitment to quality.',
-  },
-] as const
-
-const WEDDING_PILLARS = [
-  { label: 'Destination Weddings', href: '#wedding-packages-heading' },
-  { label: 'Full-Service Planning', href: '#wedding-about' },
-  { label: 'Styling & Production', href: '#wedding-packages-heading' },
-  { label: 'Films & Moments', href: WEDDING_YOUTUBE_CHANNEL, external: true },
-] as const
-
-const WEDDING_FAQ_ITEMS = [
-  {
-    title: '1. About My Special Event in Cyprus',
-    body: 'My Special Event in Cyprus is a wedding planning and coordination company based in Larnaca. It brings together a team of trusted and experienced wedding professionals, each recognized for their expertise in the industry. The company offers all-in-one wedding packages designed to make the planning process smooth, organized, and stress-free for couples across Cyprus.',
-  },
-  {
-    title: '2. Already Booked Some Services?',
-    body: 'Absolutely. Many couples come to us after already arranging some parts of their wedding, whether through other suppliers, friends, or family contacts. We can create a package that includes only the remaining services you still need, ensuring everything works together seamlessly.',
-  },
-  {
-    title: '3. Can I Combine Different Package Options?',
-    body: 'Yes, of course. Our packages are flexible and can be adjusted to suit your preferences. You can mix services from different packages or even build a completely new package from scratch based on your own style, needs, and priorities.',
-  },
-  {
-    title: '4. What Happens If I Remove a Service?',
-    body: 'The price is always adjusted based on the services included. Removing a service will reduce the overall cost, while adding extra services will increase it accordingly. A valid wedding package must include at least 5 services.',
-  },
-  {
-    title: '5. Why Choose an All-in-One Wedding Package?',
-    body: 'An all-in-one package helps you save valuable time, reduce costs, and avoid unnecessary stress. You benefit from professional planning, continuous support, and access to trusted suppliers. Everything is handled in one place, ensuring consistency, quality, and excellent value for money.',
-  },
-  {
-    title: '6. How Does the Company Operate Financially?',
-    body: 'My Special Event in Cyprus works through strong partnerships with experienced professionals. These partners provide commission arrangements, meaning clients do not pay anything extra. This structure allows us to offer premium services at competitive prices while maintaining high standards.',
-  },
-  {
-    title: '7. Are Wedding Packages Flexible?',
-    body: 'Yes. While we offer ready-made packages, all options can be modified, combined, or fully customized. Each couple can create a package that perfectly matches their vision and requirements.',
-  },
-  {
-    title: '8. Do I Need to Book Everything Through You?',
-    body: 'Not at all. You can choose only the services you need. If you already have some arrangements in place, we can build a package using the remaining services. A minimum of 5 services is required to form a complete package.',
-  },
-  {
-    title: '9. Where Do You Provide Wedding Services?',
-    body: 'We organize weddings across the entire island of Cyprus, covering all cities and regions.',
-  },
-  {
-    title: '10. Is the Quotation Binding?',
-    body: 'No. All quotations are provided without any obligation. The final decision to proceed with our services is entirely up to you.',
-  },
-  {
-    title: '11. Where Is Your Office Located?',
-    body: 'Our office is located in Larnaca, Cyprus.',
-  },
-  {
-    title: '12. Is an Office Visit Required for a Quote?',
-    body: 'Not necessarily. While we recommend meeting in person at our Larnaca office for a more detailed discussion, consultations can also be arranged via phone, Viber, or Skype. This allows us to understand your needs and provide a personalized offer wherever you are.',
-  },
-] as const
+const GOOGLE_REVIEWS_URL =
+  'https://www.google.com/search?q=Wedding+Sky+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLM0MDKyNLGwNDQwszA2NDE3t9zAyPiKUTg8NSUlMy9dITi7UiEotSwztbx4ESs2UQBgV4G0RwAAAA&rldimm=16902294891068314779&tbm=lcl&hl=en-CY#lkt=LocalPoiReviews'
+const WEDDING_YOUTUBE_WATCH_URL =
+  'https://www.youtube.com/watch?v=vKmpAXognnc&t=2s'
+const FACEBOOK_PAGE_URL = 'https://www.facebook.com/weddingsky'
 
 const NAV_SCROLL_THRESHOLD_PX = 28
 
 export default function WeddingServicesPage() {
   const [navScrolled, setNavScrolled] = useState(false)
   const [faqOpen, setFaqOpen] = useState(false)
-  const [openFaqIndex, setOpenFaqIndex] = useState<number>(0)
+  const [openFaqIndex, setOpenFaqIndex] = useState<number>(-1)
+  const [heroLoaded, setHeroLoaded] = useState(false)
   const location = useLocation()
   const pageRef = useReveal()
   const { isBrandDomain } = useSiteContext()
+  const { t, htmlLang } = useWeddingLocale()
   const servicesSectionHref = isBrandDomain
     ? buildGroupSiteReturnUrl('services')
     : '/#services'
@@ -210,7 +110,7 @@ export default function WeddingServicesPage() {
   }, [faqOpen])
 
   return (
-    <div className="page wedding-page" ref={pageRef}>
+    <div className="page wedding-page" ref={pageRef} lang={htmlLang}>
       <SiteTopbar
         logoPathname="/"
         logoScrollToId="home"
@@ -218,17 +118,29 @@ export default function WeddingServicesPage() {
         servicesSectionHref={servicesSectionHref}
         className={navScrolled ? 'topbar--scrolled' : undefined}
       />
+      <div className="wedding-language-switcher">
+        <LanguageSwitcher />
+      </div>
 
       <section className="wedding-hero" aria-labelledby="wedding-hero-heading" data-hero-parallax-root>
         <div className="wedding-hero__layers" aria-hidden>
           <div
-            className="wedding-hero__bg"
+            className={`wedding-hero__bg${heroLoaded ? ' wedding-hero__bg--loaded' : ''}`}
             data-hero-parallax
-            style={{
-              backgroundImage:
-                'url(/images/services/companie-services-cover/wedding-sky.webp)',
-            }}
-          />
+          >
+            <img
+              className="wedding-hero__bg-img"
+              src={WEDDING_HERO_IMAGE}
+              alt=""
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              onLoad={() => setHeroLoaded(true)}
+              ref={(node) => {
+                if (node?.complete && node.naturalWidth > 0) setHeroLoaded(true)
+              }}
+            />
+          </div>
           <div className="wedding-hero__vignette" />
           <div className="wedding-hero__scrim" />
           <div className="wedding-hero__grain" />
@@ -236,34 +148,37 @@ export default function WeddingServicesPage() {
 
         <div className="wedding-hero__frame">
           <div className="wedding-hero__brand-block">
-            <p className="wedding-hero__located">Located in Cyprus</p>
+            <p className="wedding-hero__located">{t(weddingHeroCopy.located)}</p>
             <h1 id="wedding-hero-heading" className="wedding-hero__brand">
               Wedding Sky
             </h1>
             <p className="wedding-hero__atelier">
-              Luxury Destination Wedding Planning Atelier
+              {t(weddingHeroCopy.atelier)}
             </p>
           </div>
 
           <div className="wedding-hero__footer-row">
             <div className="wedding-hero__footer-copy">
+              <span className="wedding-hero__footer-glow" aria-hidden />
+              <span className="wedding-hero__footer-accent" aria-hidden />
               <p className="wedding-hero__title">
-                Make your dream wedding come true
+                {t(weddingHeroCopy.title)}
               </p>
               <p className="wedding-hero__lead">
-                From intimate vows to grand celebrations, we design refined experiences in
-                Cyprus — guided by taste, precision, and love stories that feel unmistakably
-                yours.
+                {t(weddingHeroCopy.lead)}
               </p>
             </div>
             <div className="wedding-hero__meta">
-              <p className="wedding-hero__established">Komodromos Group</p>
+              <a href="#wedding-services" className="wedding-hero__owner">
+                <span className="wedding-hero__owner-kicker">{t(weddingHeroCopy.ownedBy)}</span>
+                <span className="wedding-hero__owner-name">Komodromos Group</span>
+              </a>
               <div className="wedding-hero__actions">
                 <a href="#wedding-packages-heading" className="wedding-hero__cta">
-                  Explore packages
+                  <span>{t(weddingHeroCopy.exploreServices)}</span>
                 </a>
                 <Link to="/contact" className="wedding-hero__cta wedding-hero__cta--ghost">
-                  Enquire
+                  <span>{t(weddingHeroCopy.enquire)}</span>
                 </Link>
               </div>
             </div>
@@ -271,80 +186,84 @@ export default function WeddingServicesPage() {
         </div>
       </section>
 
-      <section className="wedding-pillars" aria-label="Wedding Sky services">
-        <div className="container wedding-pillars__inner">
-          {WEDDING_PILLARS.map((pillar, index) =>
-            'external' in pillar && pillar.external ? (
-              <a
-                key={pillar.label}
-                href={pillar.href}
-                className={`wedding-pillars__item reveal reveal-delay-${Math.min(index + 1, 4)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="wedding-pillars__label">{pillar.label}</span>
-                <span className="wedding-pillars__plus" aria-hidden>
-                  +
-                </span>
-              </a>
-            ) : (
-              <a
-                key={pillar.label}
-                href={pillar.href}
-                className={`wedding-pillars__item reveal reveal-delay-${Math.min(index + 1, 4)}`}
-              >
-                <span className="wedding-pillars__label">{pillar.label}</span>
-                <span className="wedding-pillars__plus" aria-hidden>
-                  +
-                </span>
-              </a>
-            ),
-          )}
+      <section className="wedding-pillars" aria-label={t(weddingHeroCopy.exploreServices)}>
+        <div className="container">
+          <div className="wedding-pillars__inner">
+            {weddingPillarsCopy.map((pillar, index) => {
+              const isHash = pillar.href.startsWith('#')
+              const href = isHash ? pillar.href : weddingBrandHref(pillar.href)
+              const className = `wedding-pillars__item reveal reveal-delay-${Math.min(index + 1, 3)}`
+
+              if (isHash) {
+                return (
+                  <a key={pillar.id} href={href} className={className}>
+                    <span className="wedding-pillars__label">{t(pillar.label)}</span>
+                    <span className="wedding-pillars__plus" aria-hidden>
+                      +
+                    </span>
+                  </a>
+                )
+              }
+
+              return (
+                <Link key={pillar.id} to={href} className={className}>
+                  <span className="wedding-pillars__label">{t(pillar.label)}</span>
+                  <span className="wedding-pillars__plus" aria-hidden>
+                    +
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
         </div>
       </section>
-
-      <a
-        href={WEDDING_YOUTUBE_CHANNEL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="wedding-tv-ad-bar reveal"
-      >
-        <span className="wedding-tv-ad-bar__shine" aria-hidden />
-        <div className="container wedding-tv-ad-bar__inner">
-          <span className="wedding-tv-ad-bar__copy">
-            Click to visit our YouTube channel — films, ideas & Wedding Sky moments.
-          </span>
-          <span className="wedding-tv-ad-bar__cta">
-            <span className="wedding-tv-ad-bar__cta-yt" aria-hidden>
-              <svg
-                className="wedding-tv-ad-bar__cta-yt-svg"
-                viewBox="0 0 24 24"
-                width={22}
-                height={22}
-                aria-hidden
-                focusable="false"
-              >
-                <path
-                  fill="#FF0000"
-                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
-                />
-                <path fill="#FFFFFF" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
-            </span>
-            Open channel
-          </span>
-        </div>
-      </a>
 
       <WeddingIntroSocial />
       <WeddingHighlightTiles />
 
-      <section className="wedding-video-section">
+      <section
+        className="wedding-video-section"
+        aria-labelledby="wedding-video-heading"
+      >
         <div className="container">
+          <header className="wedding-video-section__head reveal">
+            <p className="wedding-video-section__eyebrow">
+              {t(weddingVideoCopy.eyebrow)}
+            </p>
+            <h2 id="wedding-video-heading" className="wedding-video-section__title">
+              {t(weddingVideoCopy.title)}
+            </h2>
+            <p className="wedding-video-section__lead">{t(weddingVideoCopy.lead)}</p>
+            <div className="wedding-video-section__actions">
+              <a
+                className="wedding-video-section__cta"
+                href={WEDDING_YOUTUBE_WATCH_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t(weddingVideoCopy.watchAria)}
+              >
+                <svg
+                  className="wedding-video-section__cta-icon"
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden
+                  focusable="false"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.5 15.6V8.4L15.8 12l-6.3 3.6z"
+                  />
+                </svg>
+                <span>{t(weddingVideoCopy.cta)}</span>
+              </a>
+            </div>
+          </header>
+
           <div className="wedding-video-frame reveal-scale">
             <div className="wedding-video-embed">
               <iframe
-                title="Wedding Sky — showcase video"
+                title={t(weddingVideoCopy.iframeTitle)}
                 src="https://www.youtube.com/embed/vKmpAXognnc?start=2&rel=0&modestbranding=1"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -358,18 +277,61 @@ export default function WeddingServicesPage() {
 
       <WeddingPackagesSection />
 
-      <section className="wedding-section wedding-knowledge-bar" aria-label="Wedding package FAQ access">
-        <div className="container">
-          <button
-            type="button"
-            className="wedding-knowledge-bar__trigger reveal"
-            onClick={() => setFaqOpen(true)}
-          >
-            <span className="wedding-knowledge-bar__line" aria-hidden />
-            <span className="wedding-knowledge-bar__text">Everything You Need to Know</span>
-            <span className="wedding-knowledge-bar__line" aria-hidden />
-          </button>
-        </div>
+      <section
+        className="wedding-knowledge-bar"
+        aria-label={t(weddingKnowledgeCopy.sectionAria)}
+      >
+        <button
+          type="button"
+          className="wedding-knowledge-bar__trigger reveal"
+          onClick={() => setFaqOpen(true)}
+        >
+          <span className="wedding-knowledge-bar__sr-only">
+            {t(weddingKnowledgeCopy.srOpen)}
+          </span>
+          <span className="wedding-knowledge-bar__glow" aria-hidden />
+          <span className="wedding-knowledge-bar__marquee" aria-hidden>
+            <span className="wedding-knowledge-bar__track">
+              <span className="wedding-knowledge-bar__phrase wedding-knowledge-bar__phrase--lead">
+                {t(weddingKnowledgeCopy.phraseKnow)}
+              </span>
+              <span className="wedding-knowledge-bar__sep" />
+              <span className="wedding-knowledge-bar__phrase wedding-knowledge-bar__phrase--accent">
+                {t(weddingKnowledgeCopy.phraseFaq)}
+              </span>
+              <span className="wedding-knowledge-bar__sep" />
+              <span className="wedding-knowledge-bar__phrase wedding-knowledge-bar__phrase--lead">
+                {t(weddingKnowledgeCopy.phraseKnow)}
+              </span>
+              <span className="wedding-knowledge-bar__sep" />
+              <span className="wedding-knowledge-bar__phrase wedding-knowledge-bar__phrase--soft">
+                {t(weddingKnowledgeCopy.phraseAnswers)}
+              </span>
+              <span className="wedding-knowledge-bar__sep" />
+            </span>
+            <span className="wedding-knowledge-bar__track">
+              <span className="wedding-knowledge-bar__phrase wedding-knowledge-bar__phrase--lead">
+                {t(weddingKnowledgeCopy.phraseKnow)}
+              </span>
+              <span className="wedding-knowledge-bar__sep" />
+              <span className="wedding-knowledge-bar__phrase wedding-knowledge-bar__phrase--accent">
+                {t(weddingKnowledgeCopy.phraseFaq)}
+              </span>
+              <span className="wedding-knowledge-bar__sep" />
+              <span className="wedding-knowledge-bar__phrase wedding-knowledge-bar__phrase--lead">
+                {t(weddingKnowledgeCopy.phraseKnow)}
+              </span>
+              <span className="wedding-knowledge-bar__sep" />
+              <span className="wedding-knowledge-bar__phrase wedding-knowledge-bar__phrase--soft">
+                {t(weddingKnowledgeCopy.phraseAnswers)}
+              </span>
+              <span className="wedding-knowledge-bar__sep" />
+            </span>
+          </span>
+          <span className="wedding-knowledge-bar__cue" aria-hidden>
+            <span className="wedding-knowledge-bar__cue-dot" />
+          </span>
+        </button>
       </section>
 
       {faqOpen ? (
@@ -377,24 +339,24 @@ export default function WeddingServicesPage() {
           <button
             type="button"
             className="wedding-knowledge-modal__backdrop"
-            aria-label="Close information popup"
+            aria-label={t(weddingKnowledgeCopy.closeBackdrop)}
             onClick={() => setFaqOpen(false)}
           />
           <div className="wedding-knowledge-modal__panel">
             <div className="wedding-knowledge-modal__head">
-              <h2 id="wedding-knowledge-title">Everything You Need to Know</h2>
+              <h2 id="wedding-knowledge-title">{t(weddingKnowledgeCopy.modalTitle)}</h2>
               <button
                 type="button"
                 className="wedding-knowledge-modal__close"
                 onClick={() => setFaqOpen(false)}
               >
-                Close
+                {t(weddingKnowledgeCopy.close)}
               </button>
             </div>
             <div className="wedding-knowledge-modal__list">
-              {WEDDING_FAQ_ITEMS.map((item, index) => (
+              {weddingFaqItems.map((item, index) => (
                 <article
-                  key={item.title}
+                  key={item.title.en}
                   className={`wedding-knowledge-modal__item${
                     openFaqIndex === index ? ' wedding-knowledge-modal__item--open' : ''
                   }`}
@@ -408,7 +370,7 @@ export default function WeddingServicesPage() {
                     aria-expanded={openFaqIndex === index}
                     aria-controls={`wedding-knowledge-item-${index}`}
                   >
-                    <h3>{item.title}</h3>
+                    <h3>{t(item.title)}</h3>
                     <span className="wedding-knowledge-modal__item-icon" aria-hidden>
                       {openFaqIndex === index ? '−' : '+'}
                     </span>
@@ -418,7 +380,7 @@ export default function WeddingServicesPage() {
                     className="wedding-knowledge-modal__item-body"
                   >
                     <div className="wedding-knowledge-modal__item-body-inner">
-                      <p>{item.body}</p>
+                      <p>{t(item.body)}</p>
                     </div>
                   </div>
                 </article>
@@ -428,65 +390,44 @@ export default function WeddingServicesPage() {
         </div>
       ) : null}
 
-      <section className="wedding-section wedding-services-block">
-        <div className="container">
-          <header className="wedding-section__head reveal">
-            <p className="wedding-section__eyebrow">Wedding Sky</p>
-            <h2 className="wedding-section__title">Our services</h2>
-            <p className="wedding-section__intro wedding-services-block__intro">
-              Planning, creative direction, and on-site production under one disciplined
-              structure — calibrated to your vision, traditions, and the experience you
-              want every guest to remember.
-            </p>
-          </header>
-          <div className="wedding-offerings">
-            {WEDDING_OFFERINGS.map((item, index) => (
-              <article
-                key={item.title}
-                className={`wedding-offering-card reveal reveal-delay-${Math.min((index % 3) + 1, 3)}`}
-                style={{ ['--offer-i' as string]: String(index) }}
-              >
-                <div className="wedding-offering-card__media">
-                  <img src={item.image} alt="" loading="lazy" decoding="async" />
-                  <div className="wedding-offering-card__media-scrim" aria-hidden />
-                  <span className="wedding-offering-card__index" aria-hidden>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                </div>
-                <div className="wedding-offering-card__body">
-                  <h3 className="wedding-offering-card__title">{item.title}</h3>
-                  <p className="wedding-offering-card__desc">{item.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="wedding-section wedding-why">
         <div className="container">
-          <header className="wedding-section__head reveal">
-            <p className="wedding-section__eyebrow">Our approach</p>
+          <header className="wedding-section__head wedding-why__head reveal">
+            <p className="wedding-section__eyebrow">{t(weddingWhyCopy.eyebrow)}</p>
+            <span className="wedding-why__rule" aria-hidden />
             <h2 className="wedding-section__title wedding-why__title">
-              Why couples choose Wedding Sky
+              {t(weddingWhyCopy.title)}
             </h2>
             <p className="wedding-section__intro wedding-why__intro">
-              Standards we apply to every mandate — whether your celebration is intimate or
-              full-scale.
+              {t(weddingWhyCopy.intro)}
             </p>
           </header>
           <div className="wedding-why__grid">
-            {WHY_CHOOSE.map((line, index) => (
-              <div
-                key={line}
-                className={`wedding-why__card reveal reveal-delay-${Math.min(index + 1, 4)}`}
-              >
-                <span className="wedding-why__num" aria-hidden>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <p className="wedding-why__text">{line}</p>
-              </div>
-            ))}
+            {weddingWhyCopy.items.map((item, index) => {
+              const Icon = WEDDING_WHY_ICONS[index] ?? Sparkles
+              return (
+                <article
+                  key={item.title.en}
+                  className={`wedding-why__card reveal reveal-delay-${Math.min(index + 1, 4)}`}
+                  style={{ '--why-i': index } as React.CSSProperties}
+                >
+                  <span className="wedding-why__ghost" aria-hidden>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div className="wedding-why__card-top">
+                    <span className="wedding-why__icon" aria-hidden>
+                      <Icon size={20} strokeWidth={1.75} />
+                    </span>
+                    <span className="wedding-why__index" aria-hidden>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <h3 className="wedding-why__card-title">{t(item.title)}</h3>
+                  <p className="wedding-why__text">{t(item.body)}</p>
+                  <span className="wedding-why__line" aria-hidden />
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -494,85 +435,166 @@ export default function WeddingServicesPage() {
       <section className="wedding-section wedding-testimonials" aria-labelledby="wedding-testimonials-heading">
         <div className="container">
           <header className="wedding-section__head wedding-testimonials__head reveal">
-            <p className="wedding-section__eyebrow">Love stories</p>
+            <div className="wedding-testimonials__brand">
+              <img
+                className="wedding-testimonials__brand-logo"
+                src={WEDDING_SKY_LOGO}
+                alt="Wedding Sky"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p className="wedding-section__eyebrow">{t(weddingTestimonialsCopy.eyebrow)}</p>
             <h2 id="wedding-testimonials-heading" className="wedding-section__title">
-              Testimonials
+              {t(weddingTestimonialsCopy.title)}
             </h2>
             <p className="wedding-section__intro wedding-testimonials__intro">
-              Kind words from couples who trusted Wedding Sky with their day.
+              {t(weddingTestimonialsCopy.intro)}
             </p>
-          </header>
-          <div className="wedding-testimonials__grid">
-            {TESTIMONIALS.map((t, index) => (
-              <blockquote
-                key={t.author}
-                className={`wedding-testimonial reveal reveal-delay-${Math.min(index + 1, 4)}`}
-                lang={t.lang}
-                style={{ ['--review-i' as string]: String(index) }}
+
+            <div className="wedding-testimonials__proof">
+              <a
+                className="wedding-testimonials__rating"
+                href={GOOGLE_REVIEWS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <div className="wedding-testimonial__header">
-                  <div
-                    className="wedding-testimonial__avatar"
-                    aria-hidden
-                  >
-                    <UserCircle2
-                      className="wedding-testimonial__avatar-icon"
-                      strokeWidth={1.15}
-                      size={32}
+                <span className="wedding-testimonials__rating-brand" aria-hidden>
+                  <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+                    <path
+                      fill="#4285F4"
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                     />
-                  </div>
-                  <span className="wedding-testimonial__deco-quote" aria-hidden>
-                    “
+                    <path
+                      fill="#34A853"
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    />
+                  </svg>
+                </span>
+                <span className="wedding-testimonials__rating-score">
+                  {t(weddingTestimonialsCopy.googleRating)}
+                </span>
+                <span className="wedding-testimonials__rating-stars" aria-hidden>
+                  ★★★★★
+                </span>
+                <span className="wedding-testimonials__rating-meta">
+                  {t(weddingTestimonialsCopy.googleReviewsCount)}
+                </span>
+              </a>
+              <div className="wedding-testimonials__platforms">
+                <a
+                  className="wedding-testimonials__platform wedding-testimonials__platform--google"
+                  href={GOOGLE_REVIEWS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="wedding-testimonials__platform-icon" aria-hidden>
+                    <svg viewBox="0 0 24 24" width="15" height="15" focusable="false">
+                      <path
+                        fill="#4285F4"
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                      />
+                      <path
+                        fill="#34A853"
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                      />
+                      <path
+                        fill="#FBBC05"
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                      />
+                      <path
+                        fill="#EA4335"
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                      />
+                    </svg>
                   </span>
-                </div>
-                <p className="wedding-testimonial__quote">{t.quote}</p>
-                <footer className="wedding-testimonial__footer">
-                  <span className="wedding-testimonial__author">{t.author}</span>
-                  <span className="wedding-testimonial__badge">Verified client</span>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
+                  {t(weddingTestimonialsCopy.viewOnGoogle)}
+                </a>
+                <a
+                  className="wedding-testimonials__platform wedding-testimonials__platform--facebook"
+                  href={FACEBOOK_PAGE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="wedding-testimonials__platform-icon" aria-hidden>
+                    <svg viewBox="0 0 24 24" width="15" height="15" focusable="false">
+                      <path
+                        fill="currentColor"
+                        d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"
+                      />
+                    </svg>
+                  </span>
+                  {t(weddingTestimonialsCopy.viewOnFacebook)}
+                </a>
+              </div>
+            </div>
+          </header>
+
+          <WeddingSocialProof />
         </div>
       </section>
 
-      <section className="wedding-section wedding-about" id="wedding-about">
+      <section className="wedding-section wedding-about" id="wedding-about" aria-labelledby="wedding-about-heading">
         <div className="container wedding-about__inner">
-          <header className="wedding-about__head reveal">
-            <p className="wedding-about__eyebrow">Wedding Sky</p>
-            <h2 className="wedding-section__title wedding-about__page-title">About us</h2>
-            <span className="wedding-about__rule" aria-hidden />
-            <p className="wedding-about__lead">
-              Luxury wedding planning in Cyprus — built on taste, precision, and care for every
-              couple we guide.
-            </p>
-          </header>
+          <div className="wedding-about__showcase">
+            <div className="wedding-about__visual reveal-left">
+              <figure className="wedding-about__photo-main">
+                <WeddingLazyImage src={WEDDING_ABOUT_MAIN.src} alt={WEDDING_ABOUT_MAIN.alt} />
+                <figcaption className="wedding-about__photo-caption">
+                  <span>{t(weddingAboutCopy.photoLabel)}</span>
+                  <strong>Cyprus</strong>
+                </figcaption>
+              </figure>
+              <div className="wedding-about__photo-row">
+                {WEDDING_ABOUT_SUPPORTING.map((photo) => (
+                  <figure key={photo.src} className="wedding-about__photo-secondary">
+                    <WeddingLazyImage src={photo.src} alt={photo.alt} />
+                  </figure>
+                ))}
+              </div>
+            </div>
 
-          <div className="wedding-about__grid">
-            {WEDDING_ABOUT_CARDS.map((card, index) => (
-              <article
-                key={card.title}
-                className={`wedding-about__card reveal reveal-delay-${Math.min(index + 1, 4)}${
-                  'featured' in card && card.featured ? ' wedding-about__card--featured' : ''
-                }`}
-                style={{ ['--about-i' as string]: String(index) }}
-              >
-                <span className="wedding-about__card-index" aria-hidden>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <h3 className="wedding-about__subhead">{card.title}</h3>
-                {'tagline' in card && card.tagline ? (
-                  <p className="wedding-about__tagline">{card.tagline}</p>
-                ) : null}
-                <p className="wedding-about__copy">{card.copy}</p>
-              </article>
-            ))}
+            <div className="wedding-about__intro reveal-right reveal-delay-2">
+              <p className="wedding-about__eyebrow">{t(weddingAboutCopy.eyebrow)}</p>
+              <h2 id="wedding-about-heading" className="wedding-section__title wedding-about__page-title">
+                {t(weddingAboutCopy.pageTitle)}
+              </h2>
+              <span className="wedding-about__rule" aria-hidden />
+              <p className="wedding-about__lead">{t(weddingAboutCopy.lead)}</p>
+              <p className="wedding-about__story">{t(weddingAboutCopy.story)}</p>
+              <Link to="/contact" className="wedding-about__cta">
+                {t(weddingAboutCopy.cta)}
+              </Link>
+            </div>
           </div>
 
-          <div className="wedding-about__cta-wrap reveal">
-            <Link to="/contact" className="wedding-about__cta">
-              Start a conversation
-            </Link>
+          <div className="wedding-about__pillars">
+            {weddingAboutCopy.pillars.map((pillar, index) => (
+              <article
+                key={pillar.title.en}
+                className={`wedding-about__pillar reveal reveal-delay-${Math.min(index + 1, 4)}`}
+                style={{ ['--about-i' as string]: String(index) }}
+              >
+                <span className="wedding-about__pillar-index" aria-hidden>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div className="wedding-about__pillar-body">
+                  <h3 className="wedding-about__subhead">{t(pillar.title)}</h3>
+                  {pillar.tagline ? (
+                    <p className="wedding-about__tagline">{t(pillar.tagline)}</p>
+                  ) : null}
+                  <p className="wedding-about__copy">{t(pillar.copy)}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -582,10 +604,10 @@ export default function WeddingServicesPage() {
           <header className="wedding-section__head wedding-visit__head reveal">
             <p className="wedding-section__eyebrow">Wedding Sky</p>
             <h2 id="wedding-visit-heading" className="wedding-section__title">
-              Location &amp; contact
+              {t(weddingVisitCopy.title)}
             </h2>
             <p className="wedding-section__intro wedding-visit__intro">
-              Visit us in Limassol or reach the Wedding Sky team by email.
+              {t(weddingVisitCopy.intro)}
             </p>
           </header>
           <div className="wedding-visit__grid">
@@ -597,14 +619,15 @@ export default function WeddingServicesPage() {
                 <span className="wedding-visit__icon" aria-hidden>
                   <MapPin size={20} strokeWidth={1.75} />
                 </span>
-                <h3 className="wedding-visit__label">Address</h3>
+                <h3 className="wedding-visit__label">{t(weddingVisitCopy.addressLabel)}</h3>
               </div>
               <address className="wedding-visit__address">
-                John Kennedy Street, Iris House, 4th Floor, 440A
-                <br />
-                Neapolis, 3106 Limassol
-                <br />
-                Cyprus
+                {weddingVisitCopy.addressLines.map((line, index) => (
+                  <span key={line.en}>
+                    {t(line)}
+                    {index < weddingVisitCopy.addressLines.length - 1 ? <br /> : null}
+                  </span>
+                ))}
               </address>
             </div>
             <div
@@ -615,7 +638,7 @@ export default function WeddingServicesPage() {
                 <span className="wedding-visit__icon" aria-hidden>
                   <Mail size={20} strokeWidth={1.75} />
                 </span>
-                <h3 className="wedding-visit__label">E-mail</h3>
+                <h3 className="wedding-visit__label">{t(weddingVisitCopy.emailLabel)}</h3>
               </div>
               <ul className="wedding-visit__list">
                 <li>
@@ -631,7 +654,7 @@ export default function WeddingServicesPage() {
           </div>
           <div className="wedding-visit__map-wrap reveal reveal-delay-4">
             <iframe
-              title="Wedding Sky — map"
+              title={t(weddingVisitCopy.mapTitle)}
               className="wedding-visit__map"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

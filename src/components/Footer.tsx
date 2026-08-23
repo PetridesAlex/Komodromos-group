@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-import i18n from '../i18n'
+import { useTranslation } from 'react-i18next'
 import { BRAND_MARK } from '../data/mainLogo'
 import { socialLinks } from '../data/socialLinks'
 
-/** Group footer (`footer2`) always uses English; TaxNex hub does not render this component. */
+/** Group footer (`footer2`); TaxNex hub does not render this component. */
 export default function Footer() {
-  const t = i18n.getFixedT('en')
+  const { t } = useTranslation()
   const footerLinks = [
     { label: t('footer.bookConsultation'), to: '/contact' },
     { label: t('footer.viewServices'), to: '/#services' },

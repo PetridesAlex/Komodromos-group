@@ -1,23 +1,13 @@
-export type WeddingPackageLongContent = {
-  title: string
-  subtitle: string
-  priceDisplay: string
-  includes: string[]
-  aboutTitle: string
-  aboutCopy: string
-  sections: Array<{
-    title: string
-    intro?: string
-    items?: string[]
-    groups?: Array<{
-      title: string
-      items: string[]
-    }>
-  }>
-  importantNote: string
-}
+import { weddingPackageLongTranslations } from './weddingPackageLong/translations'
+import {
+  localizeWeddingPackageLongContent,
+  resolveWeddingPackageLongContent,
+  type ResolvedWeddingPackageLongContent,
+  type WeddingPackageLongContent,
+  type WeddingPackageLongContentSource,
+} from './weddingPackageLong/types'
 
-export const weddingBasicPackageContent: WeddingPackageLongContent = {
+const weddingBasicPackageContentSource: WeddingPackageLongContentSource = {
   title: '"BASIC" Wedding Package',
   subtitle: 'The Essentials for a Unique Wedding Experience in Cyprus',
   priceDisplay: 'EUR6,900',
@@ -205,7 +195,7 @@ export const weddingBasicPackageContent: WeddingPackageLongContent = {
     'Any additional decoration by third parties must be approved in advance. Custom upgrades and changes are available with price adjustments.',
 }
 
-export const weddingBasicPlusPackageContent: WeddingPackageLongContent = {
+const weddingBasicPlusPackageContentSource: WeddingPackageLongContentSource = {
   title: '"BASIC PLUS+" Wedding Package',
   subtitle: 'Complete Wedding Experience with Premium Additions',
   priceDisplay: 'EUR8,950',
@@ -310,7 +300,7 @@ export const weddingBasicPlusPackageContent: WeddingPackageLongContent = {
     'Any additional services or custom requests can be arranged upon approval, with pricing adjusted according to your preferences.',
 }
 
-export const weddingClassicPackageContent: WeddingPackageLongContent = {
+const weddingClassicPackageContentSource: WeddingPackageLongContentSource = {
   title: '"CLASSIC" Wedding Package',
   subtitle: 'Everything You Need for a Dream Wedding in Cyprus',
   priceDisplay: 'EUR11,350',
@@ -497,7 +487,7 @@ export const weddingClassicPackageContent: WeddingPackageLongContent = {
     'Any additional decoration or third-party services must be approved in advance. Customizations and upgrades are available with price adjustments based on your preferences.',
 }
 
-export const weddingClassicPlusPackageContent: WeddingPackageLongContent = {
+const weddingClassicPlusPackageContentSource: WeddingPackageLongContentSource = {
   title: '"CLASSIC PLUS+" Wedding Package',
   subtitle: 'The Ultimate Luxury Wedding Experience in Cyprus',
   priceDisplay: 'EUR17,350',
@@ -668,7 +658,7 @@ export const weddingClassicPlusPackageContent: WeddingPackageLongContent = {
     'Any additional services or custom requests can be arranged upon approval, with pricing adjusted according to your preferences.',
 }
 
-export const weddingPremiumPackageContent: WeddingPackageLongContent = {
+const weddingPremiumPackageContentSource: WeddingPackageLongContentSource = {
   title: '"PREMIUM" Wedding Package',
   subtitle: 'A Truly Luxury Wedding Experience in Cyprus',
   priceDisplay: 'EUR28,950',
@@ -858,7 +848,7 @@ export const weddingPremiumPackageContent: WeddingPackageLongContent = {
     'Any additional services or custom requests can be arranged upon approval, with pricing adjusted according to your preferences.',
 }
 
-export const weddingCustomisedPackageContent: WeddingPackageLongContent = {
+const weddingCustomisedPackageContentSource: WeddingPackageLongContentSource = {
   title: '"CUSTOMISED" Wedding Package',
   subtitle:
     'Create a Wedding Package Designed Around Your Style, Needs, and Preferences',
@@ -900,6 +890,37 @@ export const weddingCustomisedPackageContent: WeddingPackageLongContent = {
   ],
   importantNote:
     'Custom packages are created only when at least five wedding services are included. All services are subject to availability, and final pricing depends on the combination of options selected.',
+}
+
+export const weddingBasicPackageContent = localizeWeddingPackageLongContent(
+  weddingBasicPackageContentSource,
+  weddingPackageLongTranslations,
+)
+export const weddingBasicPlusPackageContent = localizeWeddingPackageLongContent(
+  weddingBasicPlusPackageContentSource,
+  weddingPackageLongTranslations,
+)
+export const weddingClassicPackageContent = localizeWeddingPackageLongContent(
+  weddingClassicPackageContentSource,
+  weddingPackageLongTranslations,
+)
+export const weddingClassicPlusPackageContent = localizeWeddingPackageLongContent(
+  weddingClassicPlusPackageContentSource,
+  weddingPackageLongTranslations,
+)
+export const weddingPremiumPackageContent = localizeWeddingPackageLongContent(
+  weddingPremiumPackageContentSource,
+  weddingPackageLongTranslations,
+)
+export const weddingCustomisedPackageContent = localizeWeddingPackageLongContent(
+  weddingCustomisedPackageContentSource,
+  weddingPackageLongTranslations,
+)
+
+export {
+  resolveWeddingPackageLongContent,
+  type ResolvedWeddingPackageLongContent,
+  type WeddingPackageLongContent,
 }
 
 export const weddingPackageLongContentById: Partial<Record<string, WeddingPackageLongContent>> = {

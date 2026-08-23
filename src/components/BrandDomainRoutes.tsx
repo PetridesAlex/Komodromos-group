@@ -35,6 +35,7 @@ import PoolCategoryDetailPage from './PoolCategoryDetailPage'
 import ServiceDetailPage from './ServiceDetailPage'
 import WeddingServicesPage from './WeddingServicesPage'
 import WeddingPackageDetailPage from './WeddingPackageDetailPage'
+import WeddingPackageCategoryPage from './WeddingPackageCategoryPage'
 import JanchapelleBridalPage from './JanchapelleBridalPage'
 import JanchapelleCollectionDetailPage from './JanchapelleCollectionDetailPage'
 import JanchapelleHouseDetailPage from './JanchapelleHouseDetailPage'
@@ -176,6 +177,7 @@ function WeddingBrandRoutes() {
   return (
     <Routes>
       <Route path="/" element={<WeddingServicesPage />} />
+      <Route path="/categories/:categoryId" element={<WeddingPackageCategoryPage />} />
       <Route path="/packages/:packageId" element={<WeddingPackageDetailPage />} />
       <Route path="/services/wedding/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />

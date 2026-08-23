@@ -1,21 +1,25 @@
 import type { KeyboardEvent } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { weddingPackages } from '../data/weddingPackages'
+import { useNavigate } from 'react-router-dom'
+import { weddingPackageCategories } from '../data/weddingPackages'
+import { weddingPackagesSectionCopy } from '../data/weddingPageCopy'
 import { weddingBrandHref } from '../lib/brandPaths'
+import { useWeddingLocale } from '../lib/weddingLocale'
 import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
+import WeddingLazyImage from './WeddingLazyImage'
 
 export default function WeddingPackagesSection() {
   const navigate = useNavigate()
+  const { t, htmlLang } = useWeddingLocale()
 
-  const openPackage = (packageId: string) => {
-    navigate(weddingBrandHref(`/services/wedding/packages/${packageId}`))
+  const openCategory = (categoryId: string) => {
+    navigate(weddingBrandHref(`/services/wedding/categories/${categoryId}`))
   }
 
-  const onCardKeyDown = (event: KeyboardEvent<HTMLElement>, packageId: string) => {
+  const onCardKeyDown = (event: KeyboardEvent<HTMLElement>, categoryId: string) => {
     if (event.target !== event.currentTarget) return
     if (event.key !== 'Enter' && event.key !== ' ') return
     event.preventDefault()
-    openPackage(packageId)
+    openCategory(categoryId)
   }
 
   return (
@@ -23,71 +27,46 @@ export default function WeddingPackagesSection() {
       className="wedding-section wedding-packages-section"
       id="wedding-packages-heading"
       aria-labelledby="wedding-packages-section-title"
+      lang={htmlLang}
     >
-      <div className="container">
-        <header className="wedding-section__head reveal">
-          <p className="wedding-section__eyebrow">INVESTMENT LEVELS</p>
-          <h2 id="wedding-packages-section-title" className="wedding-section__title">
-            Wedding packages
+      <div className="wedding-packages-section__inner">
+        <header className="wedding-packages-section__head reveal">
+          <p className="wedding-packages-section__eyebrow">
+            {t(weddingPackagesSectionCopy.eyebrow)}
+          </p>
+          <h2 id="wedding-packages-section-title" className="wedding-packages-section__title">
+            {t(weddingPackagesSectionCopy.title)}
           </h2>
-          <p className="wedding-section__intro wedding-packages-section__intro">
-            Each tier reflects a different depth of planning, production, and on-site leadership.
-            Premium sits at the top of our fixed catalogue; Customised is quoted around your brief.
-          </p>
-          <p className="wedding-packages-section__intro-el" lang="el">
-            Κάθε επίπεδο αντιστοιχεί σε διαφορετικό βάθος σχεδιασμού και παραγωγής. Το Premium
-            βρίσκεται στην κορυφή του σταθερού καταλόγου· το Customised τιμολογείται ανάλογα με το
-            project σας.
-          </p>
+          <span className="wedding-packages-section__rule" aria-hidden />
         </header>
-        <div className="wedding-packages-section__grid">
-          {weddingPackages.map((pkg, index) => (
+
+        <div className="wedding-packages-section__categories">
+          {weddingPackageCategories.map((category, index) => (
             <article
-              key={pkg.id}
-              id={`wedding-package-${pkg.id}`}
-              className={`wedding-packages-section__card wedding-packages-section__card--interactive reveal reveal-delay-${Math.min((index % 4) + 1, 4)}`}
+              key={category.id}
+              id={`wedding-package-category-${category.id}`}
+              className={`wedding-packages-section__category reveal reveal-delay-${Math.min(index + 1, 4)}`}
               role="link"
               tabIndex={0}
-              onClick={() => openPackage(pkg.id)}
-              onKeyDown={(event) => onCardKeyDown(event, pkg.id)}
-              aria-label={`Open ${pkg.name} package details`}
+              onClick={() => openCategory(category.id)}
+              onKeyDown={(event) => onCardKeyDown(event, category.id)}
+              aria-label={t(weddingPackagesSectionCopy.openCategoryAria).replace(
+                '{{title}}',
+                t(category.name),
+              )}
             >
-              <div className="wedding-packages-section__media">
-                <img
-                  src={pkg.image}
-                  alt={getServiceCoverImageAlt(pkg.image, `Wedding Sky ${pkg.name} package`)}
-                  loading="lazy"
-                  decoding="async"
+              <div className="wedding-packages-section__category-media">
+                <WeddingLazyImage
+                  src={category.image}
+                  alt={getServiceCoverImageAlt(category.image, t(category.name))}
                 />
-                <div className="wedding-packages-section__media-scrim" aria-hidden />
+                <div className="wedding-packages-section__category-scrim" aria-hidden />
               </div>
-              <div className="wedding-packages-section__content">
-                <div className="wedding-packages-section__name-stack">
-                  <h3 className="wedding-packages-section__name">{pkg.name}</h3>
-                  <p className="wedding-packages-section__name-el" lang="el">
-                    {pkg.nameEl}
-                  </p>
-                </div>
-                <p className="wedding-packages-section__price">{pkg.priceDisplay}</p>
-                <p className="wedding-packages-section__tag">{pkg.tagline}</p>
-                <p className="wedding-packages-section__tag-el" lang="el">
-                  {pkg.taglineEl}
-                </p>
-                <Link
-                  to={weddingBrandHref(`/services/wedding/packages/${pkg.id}`)}
-                  className="wedding-packages-section__details"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  View package
-                </Link>
-                <Link
-                  to="/contact"
-                  state={{ serviceInterest: 'Wedding Services', weddingPackage: pkg.name }}
-                  className="wedding-packages-section__enquire"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  Enquire
-                </Link>
+              <div className="wedding-packages-section__category-caption">
+                <h3 className="wedding-packages-section__category-name">
+                  {t(category.name)}
+                </h3>
+                <span className="wedding-packages-section__category-line" aria-hidden />
               </div>
             </article>
           ))}

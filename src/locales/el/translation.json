@@ -2,9 +2,12 @@
   "common": {
     "language": {
       "en": "EN",
-      "gr": "GR",
+      "gr": "EL",
+      "ru": "RU",
       "switchToEnglish": "Αλλαγή γλώσσας σε Αγγλικά",
-      "switchToGreek": "Αλλαγή γλώσσας σε Ελληνικά"
+      "switchToGreek": "Αλλαγή γλώσσας σε Ελληνικά",
+      "switchToRussian": "Αλλαγή γλώσσας σε Ρωσικά",
+      "switcher": "Επιλογή γλώσσας"
     }
   },
   "nav": {

@@ -4,6 +4,7 @@ import ContactPage from './ContactPage'
 import ServiceDetailPage from './ServiceDetailPage'
 import WeddingServicesPage from './WeddingServicesPage'
 import WeddingPackageDetailPage from './WeddingPackageDetailPage'
+import WeddingPackageCategoryPage from './WeddingPackageCategoryPage'
 import JanchapelleBridalPage from './JanchapelleBridalPage'
 import JanchapelleCollectionDetailPage from './JanchapelleCollectionDetailPage'
 import JanchapelleHouseDetailPage from './JanchapelleHouseDetailPage'
@@ -109,6 +110,10 @@ function GroupRoutes() {
       <Route path="/" element={<KomodromosGroupHomePage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/services/wedding" element={<WeddingServicesPage />} />
+      <Route
+        path="/services/wedding/categories/:categoryId"
+        element={<WeddingPackageCategoryPage />}
+      />
       <Route path="/services/wedding/packages/:packageId" element={<WeddingPackageDetailPage />} />
       <Route path="/services/janchapelle" element={<JanchapelleBridalPage />} />
       <Route
