@@ -16,6 +16,11 @@ export type ServiceCard = {
   brandLogoBlend?: 'lighten' | 'normal'
   /** Homepage cover badge — service detail temporarily offline */
   comingSoon?: boolean
+  /**
+   * Show the under-maintenance badge on the homepage / nav, but keep the
+   * service linkable and publicly accessible (unlike `comingSoon`).
+   */
+  maintenanceNotice?: boolean
   /** When set, this service has a dedicated brand domain (see domainRegistry). */
   brandSlug?: string
 }
@@ -47,7 +52,7 @@ export const serviceCards: ServiceCard[] = [
     image: `${SVC_COVER}/wedding-sky.webp`,
     brandLogo: `${SVC_CARD_LOGO}/wedding-sky.png`,
     brandLogoBlend: 'lighten',
-    comingSoon: true,
+    maintenanceNotice: true,
     brandSlug: 'wedding',
   },
   {

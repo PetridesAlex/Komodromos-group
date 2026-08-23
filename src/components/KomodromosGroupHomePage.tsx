@@ -203,7 +203,7 @@ export default function KomodromosGroupHomePage() {
                       decoding="async"
                       {...(index < 2 ? { fetchPriority: 'high' as const } : {})}
                     />
-                    {card.comingSoon ? (
+                    {card.comingSoon || card.maintenanceNotice ? (
                       <div className="service-media__coming-soon" aria-hidden>
                         <div className="service-media__coming-soon-plaque">
                           <span className="service-media__coming-soon-kicker">Currently unavailable</span>

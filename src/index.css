@@ -81505,7 +81505,8 @@ a.jc-house__media-wrap {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .jc-collection-gallery__figure:hover {
+  .jc-collection-gallery__figure:hover,
+  .jc-collection-gallery__figure:has(.jc-collection-gallery__trigger:focus-visible) {
     transform: translateY(-4px);
     border-color: #fff;
     box-shadow:
@@ -81515,21 +81516,226 @@ a.jc-house__media-wrap {
       0 24px 48px -22px rgba(138, 74, 98, 0.38);
   }
 
-  .jc-collection-gallery__figure:hover::before {
+  .jc-collection-gallery__figure:hover::before,
+  .jc-collection-gallery__figure:has(.jc-collection-gallery__trigger:focus-visible)::before {
     inset: 9px;
     border-color: rgba(255, 255, 255, 0.95);
   }
 
-  .jc-collection-gallery__figure:hover::after {
+  .jc-collection-gallery__figure:hover::after,
+  .jc-collection-gallery__figure:has(.jc-collection-gallery__trigger:focus-visible)::after {
     opacity: 1;
   }
 
-  .jc-collection-gallery__figure:hover .jc-collection-gallery__img {
+  .jc-collection-gallery__figure:hover .jc-collection-gallery__img,
+  .jc-collection-gallery__figure:has(.jc-collection-gallery__trigger:focus-visible)
+    .jc-collection-gallery__img {
     transform: scale(1.04);
   }
 
-  .jc-collection-gallery--product .jc-collection-gallery__figure:hover .jc-collection-gallery__img {
+  .jc-collection-gallery--product .jc-collection-gallery__figure:hover .jc-collection-gallery__img,
+  .jc-collection-gallery--product
+    .jc-collection-gallery__figure:has(.jc-collection-gallery__trigger:focus-visible)
+    .jc-collection-gallery__img {
     transform: scale(1.03);
+  }
+}
+
+.jc-collection-gallery__trigger {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+  color: inherit;
+  text-align: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.jc-collection-gallery__trigger:focus-visible {
+  outline: 2px solid rgba(138, 74, 98, 0.55);
+  outline-offset: 3px;
+}
+
+.jc-collection-gallery__trigger .jc-collection-gallery__img {
+  pointer-events: none;
+}
+
+/* Janchapelle lookbook lightbox */
+@keyframes jc-gallery-lightbox-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.jc-gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(ellipse 55% 40% at 50% 20%, rgba(138, 74, 98, 0.22) 0%, transparent 58%),
+    rgba(18, 12, 14, 0.94);
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  animation: jc-gallery-lightbox-in 0.26s ease-out;
+}
+
+.jc-gallery-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: zoom-out;
+  background: transparent;
+}
+
+.jc-gallery-lightbox__close {
+  position: absolute;
+  top: max(0.75rem, env(safe-area-inset-top, 0px));
+  right: max(0.75rem, env(safe-area-inset-right, 0px));
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 230, 238, 0.35);
+  background: rgba(40, 24, 30, 0.72);
+  color: rgba(255, 248, 245, 0.96);
+  font-size: 1.65rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.jc-gallery-lightbox__close:hover {
+  background: rgba(138, 74, 98, 0.88);
+  border-color: rgba(255, 230, 238, 0.55);
+  transform: scale(1.05);
+}
+
+.jc-gallery-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 230, 238, 0.32);
+  background: rgba(40, 24, 30, 0.72);
+  color: rgba(255, 248, 245, 0.96);
+  font-size: 1.85rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.jc-gallery-lightbox__nav:hover {
+  background: rgba(138, 74, 98, 0.9);
+  border-color: rgba(255, 230, 238, 0.55);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.jc-gallery-lightbox__nav--prev {
+  left: max(0.45rem, env(safe-area-inset-left, 0px));
+}
+
+.jc-gallery-lightbox__nav--next {
+  right: max(0.45rem, env(safe-area-inset-right, 0px));
+}
+
+.jc-gallery-lightbox__stage {
+  position: absolute;
+  z-index: 2;
+  inset: max(3.5rem, calc(env(safe-area-inset-top, 0px) + 2.75rem))
+    max(3.75rem, calc(env(safe-area-inset-right, 0px) + 0.5rem))
+    max(2.5rem, calc(env(safe-area-inset-bottom, 0px) + 1.75rem))
+    max(3.75rem, calc(env(safe-area-inset-left, 0px) + 0.5rem));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  pointer-events: none;
+}
+
+.jc-gallery-lightbox__img {
+  display: block;
+  max-width: min(100%, 1180px);
+  max-height: calc(100% - 2rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  pointer-events: auto;
+  border-radius: 4px;
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.jc-gallery-lightbox__counter {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 236, 242, 0.82);
+  pointer-events: none;
+}
+
+@media (max-width: 719px) {
+  .jc-gallery-lightbox__nav {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+  }
+
+  .jc-gallery-lightbox__stage {
+    inset: max(3.25rem, calc(env(safe-area-inset-top, 0px) + 2.5rem))
+      max(2.85rem, calc(env(safe-area-inset-right, 0px) + 0.25rem))
+      max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1.5rem))
+      max(2.85rem, calc(env(safe-area-inset-left, 0px) + 0.25rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jc-gallery-lightbox {
+    animation: none;
+  }
+
+  .jc-gallery-lightbox__close:hover,
+  .jc-gallery-lightbox__nav:hover {
+    transform: none;
+  }
+
+  .jc-gallery-lightbox__nav:hover {
+    transform: translateY(-50%);
   }
 }
 

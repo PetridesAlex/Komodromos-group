@@ -183,7 +183,7 @@ export default function SiteTopbar({
                   const external = isExternalServiceHref(card.slug)
                   const href = getServicePageHref(card.slug)
                   const isGlobalWings = card.slug === 'aviation'
-                  const underConstruction = Boolean(card.comingSoon)
+                  const underConstruction = Boolean(card.comingSoon || card.maintenanceNotice)
                   const linkable = isServiceLinkableFromGroup(card.slug)
                   const linkContent = (
                     <>

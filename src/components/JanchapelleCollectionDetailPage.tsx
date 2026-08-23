@@ -4,6 +4,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import AppointmentModal from './AppointmentModal'
 import JanchapelleBridalNav from './JanchapelleBridalNav'
+import JanchapelleGalleryLightbox from './JanchapelleGalleryLightbox'
 import PageSeo from '../seo/PageSeo'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
@@ -31,6 +32,7 @@ export default function JanchapelleCollectionDetailPage() {
   const { collectionId } = useParams()
   const { isBrandDomain } = useSiteContext()
   const [appointmentOpen, setAppointmentOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const servicesSectionHref = isBrandDomain
     ? buildGroupSiteReturnUrl('services')
     : '/#services'
@@ -38,6 +40,14 @@ export default function JanchapelleCollectionDetailPage() {
   const collection = getJanchapelleCollectionById(collectionId)
   const { primary, accent } = useMemo(
     () => (collection ? splitCollectionName(collection.name) : { primary: '', accent: '' }),
+    [collection],
+  )
+  const galleryItems = useMemo(
+    () =>
+      (collection?.gallery ?? []).map((item) => ({
+        src: item.src,
+        alt: item.alt,
+      })),
     [collection],
   )
 
@@ -51,6 +61,7 @@ export default function JanchapelleCollectionDetailPage() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    setLightboxIndex(null)
   }, [collectionId])
 
   if (!collection) {
@@ -189,16 +200,23 @@ export default function JanchapelleCollectionDetailPage() {
                   className={`jc-collection-gallery__item reveal reveal-delay-${Math.min(index % 4, 3)}`}
                 >
                   <figure className="jc-collection-gallery__figure">
-                    <img
-                      src={item.src}
-                      alt={item.alt}
-                      className="jc-collection-gallery__img"
-                      loading={index < 8 ? 'eager' : 'lazy'}
-                      decoding="async"
-                      width={720}
-                      height={960}
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
+                    <button
+                      type="button"
+                      className="jc-collection-gallery__trigger"
+                      onClick={() => setLightboxIndex(index)}
+                      aria-label={`View ${item.alt}`}
+                    >
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="jc-collection-gallery__img"
+                        loading={index < 8 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        width={720}
+                        height={960}
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      />
+                    </button>
                   </figure>
                 </li>
               ))}
@@ -254,6 +272,14 @@ export default function JanchapelleCollectionDetailPage() {
         splitName
         requireEmail
         variant="janchapelle"
+      />
+
+      <JanchapelleGalleryLightbox
+        items={galleryItems}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onChangeIndex={setLightboxIndex}
+        label={`${collection.name} lookbook`}
       />
     </div>
   )
