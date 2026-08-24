@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Mail, MapPin, Wallet, Users, ShieldCheck, Sparkles } from 'lucide-react'
+import { Wallet, Users, ShieldCheck, Sparkles } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -10,6 +10,7 @@ import WeddingPackagesSection from './WeddingPackagesSection'
 import WeddingLazyImage from './WeddingLazyImage'
 import WeddingSocialProof from './WeddingSocialProof'
 import WeddingPlanEnquiryModal from './WeddingPlanEnquiryModal'
+import WeddingContactSection from './WeddingContactSection'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { weddingBrandHref } from '../lib/brandPaths'
@@ -23,28 +24,12 @@ import {
   weddingPillarsCopy,
   weddingTestimonialsCopy,
   weddingVideoCopy,
-  weddingVisitCopy,
   weddingWhyCopy,
 } from '../data/weddingPageCopy'
 
 const WEDDING_WHY_ICONS = [Wallet, Users, ShieldCheck, Sparkles] as const
 
-const WEDDING_HERO_SLIDES = [
-  {
-    src: '/images/services/wedding-packages/hero-section/wedding-day-08.webp',
-    position: 'center 62%',
-  },
-  {
-    src: '/images/services/wedding-packages/hero-section/wedding-day-10.webp',
-    position: 'center 42%',
-  },
-  {
-    src: '/images/services/wedding-packages/hero-section/wedding-day-09.webp',
-    position: 'center 48%',
-  },
-] as const
-
-const WEDDING_HERO_ROTATE_MS = 4000
+const WEDDING_HERO_IMAGE = '/images/services/companie-services-cover/wedding-sky.webp'
 
 const WEDDING_SKY_LOGO =
   '/images/services/companie-services-cover/cards-logos-services/wedding-sky.png'
@@ -72,8 +57,8 @@ const WEDDING_ABOUT_SUPPORTING = [
 
 const GOOGLE_REVIEWS_URL =
   'https://www.google.com/search?q=Wedding+Sky+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLM0MDKyNLGwNDQwszA2NDE3t9zAyPiKUTg8NSUlMy9dITi7UiEotSwztbx4ESs2UQBgV4G0RwAAAA&rldimm=16902294891068314779&tbm=lcl&hl=en-CY#lkt=LocalPoiReviews'
-const WEDDING_YOUTUBE_WATCH_URL =
-  'https://www.youtube.com/watch?v=vKmpAXognnc&t=2s'
+const WEDDING_YOUTUBE_CHANNEL_URL =
+  'https://www.youtube.com/@weddingskybykomodromosgrou3234'
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/weddingsky'
 
 const NAV_SCROLL_THRESHOLD_PX = 28
@@ -84,7 +69,6 @@ export default function WeddingServicesPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(-1)
   const [planEnquiryOpen, setPlanEnquiryOpen] = useState(false)
   const [heroLoaded, setHeroLoaded] = useState(false)
-  const [heroSlide, setHeroSlide] = useState(0)
   const location = useLocation()
   const pageRef = useReveal()
   const { isBrandDomain } = useSiteContext()
@@ -98,18 +82,6 @@ export default function WeddingServicesPage() {
       window.scrollTo(0, 0)
     }
   }, [location.pathname, location.hash])
-
-  useEffect(() => {
-    if (WEDDING_HERO_SLIDES.length < 2) return
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reducedMotion) return
-
-    const timer = window.setInterval(() => {
-      setHeroSlide((prev) => (prev + 1) % WEDDING_HERO_SLIDES.length)
-    }, WEDDING_HERO_ROTATE_MS)
-
-    return () => window.clearInterval(timer)
-  }, [])
 
   useEffect(() => {
     const onScroll = () => {
@@ -163,28 +135,18 @@ export default function WeddingServicesPage() {
             className={`wedding-hero__bg${heroLoaded ? ' wedding-hero__bg--loaded' : ''}`}
             data-hero-parallax
           >
-            {WEDDING_HERO_SLIDES.map((slide, index) => (
-              <img
-                key={slide.src}
-                className={`wedding-hero__bg-img${
-                  index === heroSlide ? ' wedding-hero__bg-img--active' : ''
-                }`}
-                src={slide.src}
-                alt=""
-                style={{ objectPosition: slide.position }}
-                loading={index === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-                fetchPriority={index === 0 ? 'high' : 'low'}
-                onLoad={() => {
-                  if (index === 0) setHeroLoaded(true)
-                }}
-                ref={(node) => {
-                  if (index === 0 && node?.complete && node.naturalWidth > 0) {
-                    setHeroLoaded(true)
-                  }
-                }}
-              />
-            ))}
+            <img
+              className="wedding-hero__bg-img"
+              src={WEDDING_HERO_IMAGE}
+              alt=""
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              onLoad={() => setHeroLoaded(true)}
+              ref={(node) => {
+                if (node?.complete && node.naturalWidth > 0) setHeroLoaded(true)
+              }}
+            />
           </div>
           <div className="wedding-hero__vignette" />
           <div className="wedding-hero__scrim" />
@@ -214,17 +176,17 @@ export default function WeddingServicesPage() {
               </p>
             </div>
             <div className="wedding-hero__meta">
-              <a href="#wedding-services" className="wedding-hero__owner">
+              <a href={servicesSectionHref} className="wedding-hero__owner">
                 <span className="wedding-hero__owner-kicker">{t(weddingHeroCopy.ownedBy)}</span>
                 <span className="wedding-hero__owner-name">Komodromos Group</span>
               </a>
               <div className="wedding-hero__actions">
-                <a href="#wedding-packages-heading" className="wedding-hero__cta">
+                <a href="#wedding-services" className="wedding-hero__cta">
                   <span>{t(weddingHeroCopy.exploreServices)}</span>
                 </a>
-                <Link to="/contact" className="wedding-hero__cta wedding-hero__cta--ghost">
+                <a href="#wedding-contact" className="wedding-hero__cta wedding-hero__cta--ghost">
                   <span>{t(weddingHeroCopy.enquire)}</span>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -267,56 +229,55 @@ export default function WeddingServicesPage() {
       <WeddingHighlightTiles />
 
       <section
-        className="wedding-video-section"
-        aria-labelledby="wedding-video-heading"
+        className="wedding-yt-bar"
+        aria-labelledby="wedding-yt-bar-heading"
       >
         <div className="container">
-          <header className="wedding-video-section__head reveal">
-            <p className="wedding-video-section__eyebrow">
-              {t(weddingVideoCopy.eyebrow)}
-            </p>
-            <h2 id="wedding-video-heading" className="wedding-video-section__title">
-              {t(weddingVideoCopy.title)}
-            </h2>
-            <p className="wedding-video-section__lead">{t(weddingVideoCopy.lead)}</p>
-            <div className="wedding-video-section__actions">
-              <a
-                className="wedding-video-section__cta"
-                href={WEDDING_YOUTUBE_WATCH_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={t(weddingVideoCopy.watchAria)}
-              >
-                <svg
-                  className="wedding-video-section__cta-icon"
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  aria-hidden
-                  focusable="false"
-                >
+          <a
+            className="wedding-yt-bar__link reveal"
+            href={WEDDING_YOUTUBE_CHANNEL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t(weddingVideoCopy.watchAria)}
+          >
+            <span className="wedding-yt-bar__sheen" aria-hidden />
+            <span className="wedding-yt-bar__pulse" aria-hidden />
+
+            <span className="wedding-yt-bar__mark" aria-hidden>
+              <span className="wedding-yt-bar__mark-ring" />
+              <svg viewBox="0 0 24 24" width="28" height="28" focusable="false">
+                <path
+                  fill="currentColor"
+                  d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.5 15.6V8.4L15.8 12l-6.3 3.6z"
+                />
+              </svg>
+            </span>
+
+            <span className="wedding-yt-bar__copy">
+              <span className="wedding-yt-bar__eyebrow">{t(weddingVideoCopy.eyebrow)}</span>
+              <h2 id="wedding-yt-bar-heading" className="wedding-yt-bar__title">
+                {t(weddingVideoCopy.title)}
+              </h2>
+              <span className="wedding-yt-bar__lead">{t(weddingVideoCopy.lead)}</span>
+            </span>
+
+            <span className="wedding-yt-bar__aside">
+              <span className="wedding-yt-bar__handle">{t(weddingVideoCopy.handle)}</span>
+              <span className="wedding-yt-bar__cta">
+                <span>{t(weddingVideoCopy.cta)}</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden focusable="false">
                   <path
-                    fill="currentColor"
-                    d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.5 15.6V8.4L15.8 12l-6.3 3.6z"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 12h14M13 6l6 6-6 6"
                   />
                 </svg>
-                <span>{t(weddingVideoCopy.cta)}</span>
-              </a>
-            </div>
-          </header>
-
-          <div className="wedding-video-frame reveal-scale">
-            <div className="wedding-video-embed">
-              <iframe
-                title={t(weddingVideoCopy.iframeTitle)}
-                src="https://www.youtube.com/embed/vKmpAXognnc?start=2&rel=0&modestbranding=1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
-            </div>
-          </div>
+              </span>
+            </span>
+          </a>
         </div>
       </section>
 
@@ -648,70 +609,7 @@ export default function WeddingServicesPage() {
         </div>
       </section>
 
-      <section className="wedding-section wedding-visit" aria-labelledby="wedding-visit-heading">
-        <div className="container wedding-visit__inner">
-          <header className="wedding-section__head wedding-visit__head reveal">
-            <p className="wedding-section__eyebrow">Wedding Sky</p>
-            <h2 id="wedding-visit-heading" className="wedding-section__title">
-              {t(weddingVisitCopy.title)}
-            </h2>
-            <p className="wedding-section__intro wedding-visit__intro">
-              {t(weddingVisitCopy.intro)}
-            </p>
-          </header>
-          <div className="wedding-visit__grid">
-            <div
-              className="wedding-visit__card reveal reveal-delay-1"
-              style={{ ['--visit-i' as string]: '0' }}
-            >
-              <div className="wedding-visit__card-top">
-                <span className="wedding-visit__icon" aria-hidden>
-                  <MapPin size={20} strokeWidth={1.75} />
-                </span>
-                <h3 className="wedding-visit__label">{t(weddingVisitCopy.addressLabel)}</h3>
-              </div>
-              <address className="wedding-visit__address">
-                {weddingVisitCopy.addressLines.map((line, index) => (
-                  <span key={line.en}>
-                    {t(line)}
-                    {index < weddingVisitCopy.addressLines.length - 1 ? <br /> : null}
-                  </span>
-                ))}
-              </address>
-            </div>
-            <div
-              className="wedding-visit__card reveal reveal-delay-2"
-              style={{ ['--visit-i' as string]: '1' }}
-            >
-              <div className="wedding-visit__card-top">
-                <span className="wedding-visit__icon" aria-hidden>
-                  <Mail size={20} strokeWidth={1.75} />
-                </span>
-                <h3 className="wedding-visit__label">{t(weddingVisitCopy.emailLabel)}</h3>
-              </div>
-              <ul className="wedding-visit__list">
-                <li>
-                  <a href="mailto:info@weddingskycy.com">info@weddingskycy.com</a>
-                </li>
-                <li>
-                  <a href="mailto:weddingskycy@gmail.com">
-                    weddingskycy@gmail.com
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="wedding-visit__map-wrap reveal reveal-delay-4">
-            <iframe
-              title={t(weddingVisitCopy.mapTitle)}
-              className="wedding-visit__map"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Iris+House+John+Kennedy+Limassol+Cyprus&output=embed"
-            />
-          </div>
-        </div>
-      </section>
+      <WeddingContactSection />
 
       <Footer />
 

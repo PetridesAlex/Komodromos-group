@@ -7,6 +7,18 @@ export const JANCHAPELLE_CONTACT_STATE = {
   serviceInterest: 'Janchapelle — All About Weddings',
 } as const
 
+/** Bridal atelier chat — WhatsApp & Viber */
+const JANCHAPELLE_CHAT_PHONE = '35799062236'
+const JANCHAPELLE_CHAT_MESSAGE =
+  'Hello Janchapelle, I would like to enquire about a bridal appointment.'
+
+export const JANCHAPELLE_CHAT = {
+  phoneDisplay: '+357 99 062 236',
+  phoneE164: `+${JANCHAPELLE_CHAT_PHONE}`,
+  whatsappHref: `https://wa.me/${JANCHAPELLE_CHAT_PHONE}?text=${encodeURIComponent(JANCHAPELLE_CHAT_MESSAGE)}`,
+  viberHref: `viber://chat?number=%2B${JANCHAPELLE_CHAT_PHONE}&draft=${encodeURIComponent(JANCHAPELLE_CHAT_MESSAGE)}`,
+} as const
+
 export const JANCHAPELLE_HERO = {
   brand: 'Janchapelle',
   brandLine: 'Bridal Atelier',
@@ -474,60 +486,121 @@ export const JANCHAPELLE_NEWSLETTER = {
 
 export const JANCHAPELLE_SOCIAL_PROOF = {
   eyebrow: 'Bride stories',
+  title: 'Words from the dressing room',
+  ratingsLead: 'Rated 5/5 by brides on Google & Facebook',
+  ratings: [
+    {
+      platform: 'google' as const,
+      score: '5.0',
+      label: '5/5 on Google',
+    },
+    {
+      platform: 'facebook' as const,
+      score: '5.0',
+      label: '5/5 on Facebook',
+    },
+  ],
   featured: {
     quote:
-      'The fitting felt unhurried and precise — I left knowing the gown would move with me, not against me.',
-    name: 'Elena Constantinou',
-    role: 'Bride, Limassol ceremony',
-    avatar:
-      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
+      'Exceptional service!!! She fully understood what I wanted from the first time!!! She was very helpful with her advice throughout my journey. She was always there for me and always wanted to help me out.',
+    name: 'Iwanna',
+    role: 'Google review · 5 stars',
+    initials: 'IW',
   },
   wordmarksLabel: 'Houses we dress',
   wordmarks: ['Maison Édition', 'Atelier Moderne', 'Gold Atelier', 'Haute Couture'],
   posts: [
     {
-      name: 'Sofia Marchetti',
-      handle: '@sofiamarchetti',
-      date: 'Mar 3',
-      text: 'Quiet rooms, honest advice, and a gown that photographs like silk in candlelight. Exactly what I hoped an atelier would feel like.',
-      replies: '48',
-      reposts: '212',
-      likes: '2.4k',
-      avatar:
-        'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80',
+      name: 'Valentina Fotiou',
+      handle: '@Google · Valentina',
+      date: 'Google review',
+      text: 'I had a wonderful experience at Jan Chapelle! The lady who served me was extremely kind, professional and very helpful throughout the entire process. She made me feel comfortable from the very beginning and guided me to find the perfect wedding dress much easier than I expected. I really appreciated her attention to detail and interest in understanding exactly what I wanted. I 100% recommend her to any bride-to-be!',
+      replies: '12',
+      reposts: '34',
+      likes: '186',
+      initials: 'VF',
     },
     {
-      name: 'Amelia Rhodes',
-      handle: '@ameliarhodes',
-      date: 'Feb 24',
-      text: 'I came for one silhouette and left with the one I did not know I needed. The team never rushed the decision.',
-      replies: '31',
-      reposts: '96',
-      likes: '918',
-      avatar:
-        'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80',
+      name: 'Sofia Lamari',
+      handle: '@Google · Sofia',
+      date: 'Google review',
+      text: 'Thank you to Jan Chapelle for the wonderful service and for making my dream come true. I found the wedding dress I had always dreamed of. They have beautiful wedding dresses for every taste! Thank you so, so much!',
+      replies: '8',
+      reposts: '21',
+      likes: '142',
+      initials: 'SL',
     },
     {
-      name: 'Nour Haddad',
-      handle: '@nourhaddad',
-      date: 'Feb 18',
-      text: 'Clear enough for family, flexible enough for me. That balance is where most bridal shops fail — Janchapelle held it.',
-      replies: '57',
-      reposts: '144',
-      likes: '1.7k',
-      avatar:
-        'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',
+      name: 'Elena Theodorou',
+      handle: '@Google · Elena',
+      date: 'Google review',
+      text: 'Excellent service and beautiful wedding dresses.',
+      replies: '5',
+      reposts: '14',
+      likes: '97',
+      initials: 'ET',
     },
     {
-      name: 'Chloe Andreas',
-      handle: '@chloeandreas',
-      date: 'Feb 11',
-      text: 'The first bridal appointment my sister and I did not want to rebuild in a Pinterest board afterwards.',
-      replies: '19',
-      reposts: '63',
-      likes: '604',
-      avatar:
-        'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=200&q=80',
+      name: 'Ioanna Hadjimarkou',
+      handle: '@Google · Ioanna',
+      date: 'Google review',
+      text: 'Thank you so much for the impeccable service and the wonderful wedding dress ❤️❤️❤️❤️🥰🥰🥰 100%',
+      replies: '7',
+      reposts: '16',
+      likes: '128',
+      initials: 'IH',
+    },
+    {
+      name: 'George Eglezos',
+      handle: '@Google · George',
+      date: 'Google review',
+      text: 'Thank you very much to Jan Chapelle Bridal for the excellent work on my fairytale wedding dress.',
+      replies: '6',
+      reposts: '18',
+      likes: '113',
+      initials: 'GE',
+    },
+    {
+      name: 'Dafni Galatsanou',
+      handle: '@Google · Dafni',
+      date: '5★ rating',
+      initials: 'DG',
+    },
+    {
+      name: 'Andrea Georgiadi',
+      handle: '@Google · Andrea',
+      date: '5★ rating',
+      initials: 'AG',
+    },
+    {
+      name: 'Kyriakos Michael',
+      handle: '@Google · Kyriakos',
+      date: '5★ rating',
+      initials: 'KM',
+    },
+    {
+      name: 'Andreas Komodromos',
+      handle: '@Google · Andreas',
+      date: '5★ rating',
+      initials: 'AK',
+    },
+    {
+      name: 'Zacharias Christofidis',
+      handle: '@Google · Zacharias',
+      date: '5★ rating',
+      initials: 'ZC',
+    },
+    {
+      name: 'Ourania Antoniou',
+      handle: '@Google · Ourania',
+      date: '5★ rating',
+      initials: 'OA',
+    },
+    {
+      name: 'Evdokia Louka',
+      handle: '@Google · Evdokia',
+      date: '5★ rating',
+      initials: 'EL',
     },
   ],
 } as const

@@ -881,43 +881,201 @@ export const weddingVisitCopy: {
   },
 }
 
+export const weddingContactCopy = {
+  title: {
+    en: 'Enquire with Wedding Sky',
+    el: 'Επικοινωνήστε με τη Wedding Sky',
+    ru: 'Свяжитесь с Wedding Sky',
+  } satisfies LocalizedText,
+  intro: {
+    en: 'Share a few details about your celebration — our planners will reply with care and next steps.',
+    el: 'Μοιραστείτε λίγες λεπτομέρειες για τη γιορτή σας — οι planners μας θα απαντήσουν με φροντίδα και επόμενα βήματα.',
+    ru: 'Расскажите немного о вашем торжестве — наши планировщики ответят внимательно и предложат следующие шаги.',
+  } satisfies LocalizedText,
+  optional: {
+    en: 'optional',
+    el: 'προαιρετικό',
+    ru: 'необязательно',
+  } satisfies LocalizedText,
+  selectPlaceholder: {
+    en: 'Select…',
+    el: 'Επιλέξτε…',
+    ru: 'Выберите…',
+  } satisfies LocalizedText,
+  fields: {
+    name: {
+      en: 'Your name',
+      el: 'Το όνομά σας',
+      ru: 'Ваше имя',
+    } satisfies LocalizedText,
+    email: {
+      en: 'Email',
+      el: 'Email',
+      ru: 'Email',
+    } satisfies LocalizedText,
+    phone: {
+      en: 'Phone',
+      el: 'Τηλέφωνο',
+      ru: 'Телефон',
+    } satisfies LocalizedText,
+    service: {
+      en: 'Interest',
+      el: 'Ενδιαφέρον',
+      ru: 'Интерес',
+    } satisfies LocalizedText,
+    message: {
+      en: 'Message',
+      el: 'Μήνυμα',
+      ru: 'Сообщение',
+    } satisfies LocalizedText,
+  },
+  placeholders: {
+    name: {
+      en: 'Full name',
+      el: 'Ονοματεπώνυμο',
+      ru: 'Полное имя',
+    } satisfies LocalizedText,
+    email: {
+      en: 'you@example.com',
+      el: 'you@example.com',
+      ru: 'you@example.com',
+    } satisfies LocalizedText,
+    phone: {
+      en: '+357 …',
+      el: '+357 …',
+      ru: '+357 …',
+    } satisfies LocalizedText,
+    message: {
+      en: 'Date ideas, guest count, venue preferences, or anything we should know…',
+      el: 'Ιδέες ημερομηνίας, αριθμός καλεσμένων, προτιμήσεις χώρου ή οτιδήποτε πρέπει να γνωρίζουμε…',
+      ru: 'Идеи по дате, число гостей, предпочтения по площадке или всё, что нам важно знать…',
+    } satisfies LocalizedText,
+  },
+  serviceOptions: [
+    {
+      value: 'wedding-planning',
+      label: {
+        en: 'Wedding planning',
+        el: 'Οργάνωση γάμου',
+        ru: 'Организация свадьбы',
+      } satisfies LocalizedText,
+    },
+    {
+      value: 'packages',
+      label: {
+        en: 'Wedding packages',
+        el: 'Πακέτα γάμου',
+        ru: 'Свадебные пакеты',
+      } satisfies LocalizedText,
+    },
+    {
+      value: 'christening',
+      label: {
+        en: 'Christening',
+        el: 'Βάπτιση',
+        ru: 'Крестины',
+      } satisfies LocalizedText,
+    },
+    {
+      value: 'general',
+      label: {
+        en: 'General enquiry',
+        el: 'Γενική ερώτηση',
+        ru: 'Общий запрос',
+      } satisfies LocalizedText,
+    },
+  ] as const,
+  submit: {
+    en: 'Send enquiry',
+    el: 'Αποστολή αιτήματος',
+    ru: 'Отправить запрос',
+  } satisfies LocalizedText,
+  submitting: {
+    en: 'Sending…',
+    el: 'Αποστολή…',
+    ru: 'Отправка…',
+  } satisfies LocalizedText,
+  note: {
+    en: 'We typically reply within 1–2 business days.',
+    el: 'Συνήθως απαντάμε εντός 1–2 εργάσιμων ημερών.',
+    ru: 'Обычно отвечаем в течение 1–2 рабочих дней.',
+  } satisfies LocalizedText,
+  successTitle: {
+    en: 'Enquiry received',
+    el: 'Το αίτημα ελήφθη',
+    ru: 'Запрос получен',
+  } satisfies LocalizedText,
+  successBody: {
+    en: 'Thank you — the Wedding Sky team will be in touch shortly.',
+    el: 'Ευχαριστούμε — η ομάδα της Wedding Sky θα επικοινωνήσει σύντομα.',
+    ru: 'Спасибо — команда Wedding Sky скоро свяжется с вами.',
+  } satisfies LocalizedText,
+  sendAnother: {
+    en: 'Send another message',
+    el: 'Νέο μήνυμα',
+    ru: 'Отправить ещё',
+  } satisfies LocalizedText,
+  errors: {
+    name: {
+      en: 'Please enter your name.',
+      el: 'Παρακαλώ εισάγετε το όνομά σας.',
+      ru: 'Пожалуйста, укажите ваше имя.',
+    } satisfies LocalizedText,
+    email: {
+      en: 'Please enter your email address.',
+      el: 'Παρακαλώ εισάγετε το email σας.',
+      ru: 'Пожалуйста, укажите email.',
+    } satisfies LocalizedText,
+    message: {
+      en: 'Please enter a message.',
+      el: 'Παρακαλώ εισάγετε ένα μήνυμα.',
+      ru: 'Пожалуйста, напишите сообщение.',
+    } satisfies LocalizedText,
+    generic: {
+      en: 'Could not send your enquiry. Please try again or email weddingskycy@gmail.com.',
+      el: 'Δεν ήταν δυνατή η αποστολή. Δοκιμάστε ξανά ή στείλτε email στο weddingskycy@gmail.com.',
+      ru: 'Не удалось отправить запрос. Попробуйте снова или напишите на weddingskycy@gmail.com.',
+    } satisfies LocalizedText,
+  },
+}
+
 export const weddingVideoCopy: {
   eyebrow: LocalizedText
   title: LocalizedText
   lead: LocalizedText
+  handle: LocalizedText
   cta: LocalizedText
-  iframeTitle: LocalizedText
   watchAria: LocalizedText
 } = {
   eyebrow: {
-    en: 'Wedding film',
-    el: 'Ταινία γάμου',
-    ru: 'Свадебный фильм',
+    en: 'On YouTube',
+    el: 'Στο YouTube',
+    ru: 'На YouTube',
   },
   title: {
-    en: 'Watch the day unfold',
-    el: 'Δείτε την ημέρα να ξετυλίγεται',
-    ru: 'Смотрите, как раскрывается день',
+    en: 'Wedding films & celebrations',
+    el: 'Ταινίες γάμου & δεξιώσεις',
+    ru: 'Свадебные фильмы и торжества',
   },
   lead: {
-    en: 'Real Wedding Sky celebrations in Cyprus — vows, atmosphere, and the refined production behind every moment.',
-    el: 'Πραγματικές δεξιώσεις Wedding Sky στην Κύπρο — όρκοι, ατμόσφαιρα και η εκλεπτυσμένη παραγωγή πίσω από κάθε στιγμή.',
-    ru: 'Настоящие торжества Wedding Sky на Кипре — клятвы, атмосфера и изысканная постановка каждого момента.',
+    en: 'Explore real Wedding Sky days in Cyprus — atmosphere, vows, and refined production.',
+    el: 'Εξερευνήστε πραγματικές ημέρες Wedding Sky στην Κύπρο — ατμόσφαιρα, όρκοι και εκλεπτυσμένη παραγωγή.',
+    ru: 'Смотрите настоящие дни Wedding Sky на Кипре — атмосфера, клятвы и изысканная постановка.',
+  },
+  handle: {
+    en: 'Wedding Sky channel',
+    el: 'Κανάλι Wedding Sky',
+    ru: 'Канал Wedding Sky',
   },
   cta: {
-    en: 'Watch on YouTube',
-    el: 'Δείτε στο YouTube',
-    ru: 'Смотреть на YouTube',
-  },
-  iframeTitle: {
-    en: 'Wedding Sky — showcase video',
-    el: 'Wedding Sky — βίντεο παρουσίασης',
-    ru: 'Wedding Sky — презентационное видео',
+    en: 'Visit channel',
+    el: 'Μετάβαση στο κανάλι',
+    ru: 'Открыть канал',
   },
   watchAria: {
-    en: 'Open Wedding Sky showcase video on YouTube',
-    el: 'Άνοιγμα βίντεο παρουσίασης της Wedding Sky στο YouTube',
-    ru: 'Открыть презентационное видео Wedding Sky на YouTube',
+    en: 'Open the Wedding Sky YouTube channel',
+    el: 'Άνοιγμα του καναλιού Wedding Sky στο YouTube',
+    ru: 'Открыть YouTube-канал Wedding Sky',
   },
 }
 
