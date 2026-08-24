@@ -1,5 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Heart, Menu, Search, X } from 'lucide-react'
 import {
   JANCHAPELLE_CHAT,
@@ -9,6 +9,10 @@ import {
 } from '../data/janchapellePage'
 import { janchapelleBrandHref } from '../lib/brandPaths'
 import { socialLinks } from '../data/socialLinks'
+import {
+  dressToWishlistItem,
+  useJanchapelleWishlist,
+} from '../hooks/useJanchapelleWishlist'
 
 const NAV_LINKS = [
   { id: 'dresses', label: 'Wedding dresses', href: '#jc-featured' },
@@ -81,30 +85,15 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
   const menuTitleId = useId()
   const searchTitleId = useId()
   const location = useLocation()
+  const navigate = useNavigate()
   const homeHref = janchapelleBrandHref('/services/janchapelle')
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [wishlistOpen, setWishlistOpen] = useState(false)
   const [query, setQuery] = useState('')
-  const [wishlist, setWishlist] = useState<string[]>([])
+  const { items: wishlistItems, count: wishlistCount, isSaved, toggle, remove } =
+    useJanchapelleWishlist()
   const searchInputRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem('jc-wishlist')
-      if (!raw) return
-      const parsed = JSON.parse(raw) as unknown
-      if (Array.isArray(parsed)) {
-        setWishlist(parsed.filter((id): id is string => typeof id === 'string'))
-      }
-    } catch {
-      /* ignore */
-    }
-  }, [])
-
-  useEffect(() => {
-    window.localStorage.setItem('jc-wishlist', JSON.stringify(wishlist))
-  }, [wishlist])
 
   useEffect(() => {
     if (!menuOpen && !searchOpen && !wishlistOpen) return
@@ -139,13 +128,22 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
     ).slice(0, 8)
   }, [query])
 
-  const wishlistItems = useMemo(
-    () => LOOKBOOK.filter((dress) => wishlist.includes(dress.id)),
-    [wishlist],
-  )
+  function toggleDressWishlist(dress: JanchapelleDressCard) {
+    toggle(dressToWishlistItem(dress))
+  }
 
-  function toggleWishlist(id: string) {
-    setWishlist((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
+  function openSavedItem(href: string) {
+    setWishlistOpen(false)
+    setMenuOpen(false)
+    setSearchOpen(false)
+
+    const [pathname, hash = ''] = href.split('#')
+    navigate(pathname)
+    if (hash) {
+      window.setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 120)
+    }
   }
 
   function go(href: string) {
@@ -177,7 +175,7 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
               type="button"
               className={`jc-bridal-nav__icon jc-bridal-nav__icon--heart${
                 wishlistOpen ? ' is-active' : ''
-              }${wishlist.length > 0 ? ' has-saved' : ''}`}
+              }${wishlistCount > 0 ? ' has-saved' : ''}`}
               aria-label="Saved looks"
               aria-expanded={wishlistOpen}
               onClick={() => {
@@ -193,9 +191,9 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
                 className="jc-bridal-nav__heart-icon"
                 aria-hidden
               />
-              {wishlist.length > 0 ? (
+              {wishlistCount > 0 ? (
                 <span className="jc-bridal-nav__badge" aria-hidden>
-                  {wishlist.length > 9 ? '9+' : wishlist.length}
+                  {wishlistCount > 9 ? '9+' : wishlistCount}
                 </span>
               ) : null}
             </button>
@@ -415,7 +413,7 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
                       type="button"
                       className="jc-search-result"
                       onClick={() => {
-                        toggleWishlist(dress.id)
+                        toggleDressWishlist(dress)
                         go('#jc-featured')
                       }}
                     >
@@ -428,7 +426,7 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
                         size={16}
                         strokeWidth={1.8}
                         className={
-                          wishlist.includes(dress.id)
+                          isSaved(dress.id)
                             ? 'jc-search-result__heart is-on'
                             : 'jc-search-result__heart'
                         }
@@ -470,28 +468,33 @@ export default function JanchapelleBridalNav({ onBookAppointment }: Props) {
             </div>
             {wishlistItems.length === 0 ? (
               <p className="jc-wishlist-empty">
-                Heart a gown from search or the lookbook to save it here.
+                Tap the heart on any gallery image or gown to save your favourite looks here.
               </p>
             ) : (
-              <ul className="jc-search-results">
-                {wishlistItems.map((dress) => (
-                  <li key={dress.id}>
+              <ul className="jc-search-results jc-wishlist-results">
+                {wishlistItems.map((item) => (
+                  <li key={item.id}>
                     <button
                       type="button"
                       className="jc-search-result"
-                      onClick={() => go('#jc-featured')}
+                      onClick={() => openSavedItem(item.href)}
                     >
-                      <img src={dress.image} alt="" width={56} height={72} />
+                      <img src={item.image} alt="" width={56} height={72} />
                       <span>
-                        <span className="jc-search-result__house">{dress.house}</span>
-                        <span className="jc-search-result__name">{dress.name}</span>
+                        <span className="jc-search-result__house">{item.subtitle}</span>
+                        <span className="jc-search-result__name">{item.title}</span>
                       </span>
-                      <Heart
-                        size={16}
-                        strokeWidth={1.8}
-                        className="jc-search-result__heart is-on"
-                        aria-hidden
-                      />
+                      <button
+                        type="button"
+                        className="jc-search-result__remove"
+                        aria-label={`Remove ${item.title} from saved looks`}
+                        onClick={(event) => {
+                          event.stopPropagation()
+                          remove(item.id)
+                        }}
+                      >
+                        <Heart size={16} strokeWidth={1.8} className="jc-search-result__heart is-on" aria-hidden />
+                      </button>
                     </button>
                   </li>
                 ))}

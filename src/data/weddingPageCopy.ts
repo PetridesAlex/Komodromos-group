@@ -6,11 +6,6 @@ type WeddingPillar = {
   href: string
 }
 
-type WeddingFaqItem = {
-  title: LocalizedText
-  body: LocalizedText
-}
-
 type WeddingOffering = {
   title: LocalizedText
   desc: LocalizedText
@@ -281,23 +276,20 @@ export const weddingPackagesSectionCopy: {
 
 export const weddingKnowledgeCopy: {
   sectionAria: LocalizedText
-  srOpen: LocalizedText
+  srLabel: LocalizedText
   phraseKnow: LocalizedText
   phraseFaq: LocalizedText
   phraseAnswers: LocalizedText
-  modalTitle: LocalizedText
-  close: LocalizedText
-  closeBackdrop: LocalizedText
 } = {
   sectionAria: {
-    en: 'Wedding package FAQ access',
-    el: 'Πρόσβαση στις συχνές ερωτήσεις για τα πακέτα γάμου',
-    ru: 'Доступ к вопросам о свадебных пакетах',
+    en: 'Everything you need to know for your wedding Day',
+    el: 'Όλα όσα χρειάζεται να γνωρίζετε για την ημέρα του γάμου σας',
+    ru: 'Всё, что нужно знать о дне вашей свадьбы',
   },
-  srOpen: {
-    en: 'Everything you need to know for your wedding Day — open FAQ',
-    el: 'Όλα όσα χρειάζεται να γνωρίζετε για την ημέρα του γάμου σας — άνοιγμα συχνών ερωτήσεων',
-    ru: 'Всё, что нужно знать о дне вашей свадьбы — открыть частые вопросы',
+  srLabel: {
+    en: 'Everything you need to know for your wedding Day — enquire with Wedding Sky',
+    el: 'Όλα όσα χρειάζεται να γνωρίζετε για την ημέρα του γάμου σας — επικοινωνήστε με τη Wedding Sky',
+    ru: 'Всё, что нужно знать о дне вашей свадьбы — свяжитесь с Wedding Sky',
   },
   phraseKnow: {
     en: 'Everything you need to know for your wedding Day',
@@ -314,157 +306,7 @@ export const weddingKnowledgeCopy: {
     el: 'Ανοίξτε για απαντήσεις',
     ru: 'Открыть ответы',
   },
-  modalTitle: {
-    en: 'Everything you need to know for your wedding Day',
-    el: 'Όλα όσα χρειάζεται να γνωρίζετε για την ημέρα του γάμου σας',
-    ru: 'Всё, что нужно знать о дне вашей свадьбы',
-  },
-  close: {
-    en: 'Close',
-    el: 'Κλείσιμο',
-    ru: 'Закрыть',
-  },
-  closeBackdrop: {
-    en: 'Close information popup',
-    el: 'Κλείσιμο αναδυόμενου παραθύρου πληροφοριών',
-    ru: 'Закрыть информационное окно',
-  },
 }
-
-export const weddingFaqItems: ReadonlyArray<WeddingFaqItem> = [
-  {
-    title: {
-      en: '1. Already Booked Some Services?',
-      el: '1. Έχετε ήδη κλείσει κάποιες υπηρεσίες;',
-      ru: '1. Вы уже забронировали некоторые услуги?',
-    },
-    body: {
-      en: 'Absolutely. Many couples come to us after already arranging some parts of their wedding, whether through other suppliers, friends, or family contacts. We can create a package that includes only the remaining services you still need, ensuring everything works together seamlessly.',
-      el: 'Βεβαίως. Πολλά ζευγάρια απευθύνονται σε εμάς έχοντας ήδη διευθετήσει ορισμένα μέρη του γάμου τους, είτε μέσω άλλων προμηθευτών είτε μέσω φίλων ή οικογενειακών γνωριμιών. Μπορούμε να δημιουργήσουμε ένα πακέτο που περιλαμβάνει μόνο τις υπόλοιπες υπηρεσίες που χρειάζεστε, διασφαλίζοντας ότι όλα θα συνδυαστούν αρμονικά.',
-      ru: 'Конечно. Многие пары обращаются к нам, уже организовав часть свадьбы самостоятельно, через других подрядчиков, друзей или родственников. Мы составим пакет только из тех услуг, которые вам ещё необходимы, и обеспечим их безупречную согласованность.',
-    },
-  },
-  {
-    title: {
-      en: '2. Can I Combine Different Package Options?',
-      el: '2. Μπορώ να συνδυάσω επιλογές από διαφορετικά πακέτα;',
-      ru: '2. Можно ли объединить услуги из разных пакетов?',
-    },
-    body: {
-      en: 'Yes, of course. Our packages are flexible and can be adjusted to suit your preferences. You can mix services from different packages or even build a completely new package from scratch based on your own style, needs, and priorities.',
-      el: 'Ναι, φυσικά. Τα πακέτα μας είναι ευέλικτα και μπορούν να προσαρμοστούν στις προτιμήσεις σας. Μπορείτε να συνδυάσετε υπηρεσίες από διαφορετικά πακέτα ή ακόμη και να δημιουργήσετε ένα εντελώς νέο πακέτο από την αρχή, σύμφωνα με το προσωπικό σας ύφος, τις ανάγκες και τις προτεραιότητές σας.',
-      ru: 'Да, разумеется. Наши пакеты гибкие и адаптируются под ваши пожелания. Вы можете объединить услуги из разных пакетов или создать совершенно новый пакет с нуля, исходя из своего стиля, потребностей и приоритетов.',
-    },
-  },
-  {
-    title: {
-      en: '3. What Happens If I Remove a Service?',
-      el: '3. Τι συμβαίνει αν αφαιρέσω μια υπηρεσία;',
-      ru: '3. Что произойдёт, если исключить услугу?',
-    },
-    body: {
-      en: 'The price is always adjusted based on the services included. Removing a service will reduce the overall cost, while adding extra services will increase it accordingly. A valid wedding package must include at least 5 services.',
-      el: 'Η τιμή προσαρμόζεται πάντοτε ανάλογα με τις υπηρεσίες που περιλαμβάνονται. Η αφαίρεση μιας υπηρεσίας μειώνει το συνολικό κόστος, ενώ η προσθήκη επιπλέον υπηρεσιών το αυξάνει αναλόγως. Για να θεωρείται ολοκληρωμένο, ένα πακέτο γάμου πρέπει να περιλαμβάνει τουλάχιστον 5 υπηρεσίες.',
-      ru: 'Стоимость всегда рассчитывается с учётом включённых услуг. Если исключить услугу, общая сумма уменьшится; при добавлении дополнительных услуг она соответственно возрастёт. Полноценный свадебный пакет должен включать не менее 5 услуг.',
-    },
-  },
-  {
-    title: {
-      en: '4. Why Choose an All-in-One Wedding Package?',
-      el: '4. Γιατί να επιλέξω ένα ολοκληρωμένο πακέτο γάμου;',
-      ru: '4. Почему стоит выбрать комплексный свадебный пакет?',
-    },
-    body: {
-      en: 'An all-in-one package helps you save valuable time, reduce costs, and avoid unnecessary stress. You benefit from professional planning, continuous support, and access to trusted suppliers. Everything is handled in one place, ensuring consistency, quality, and excellent value for money.',
-      el: 'Ένα ολοκληρωμένο πακέτο σας βοηθά να εξοικονομήσετε πολύτιμο χρόνο, να περιορίσετε το κόστος και να αποφύγετε το περιττό άγχος. Επωφελείστε από επαγγελματικό σχεδιασμό, συνεχή υποστήριξη και πρόσβαση σε έμπιστους προμηθευτές. Όλα συντονίζονται από ένα σημείο, εξασφαλίζοντας συνέπεια, ποιότητα και άριστη σχέση ποιότητας-τιμής.',
-      ru: 'Комплексный пакет экономит ваше время, помогает оптимизировать расходы и избежать лишнего стресса. Вы получаете профессиональное планирование, постоянную поддержку и доступ к проверенным подрядчикам. Всё координируется в одном месте, что обеспечивает согласованность, качество и оптимальное соотношение цены и результата.',
-    },
-  },
-  {
-    title: {
-      en: '5. How Does the Company Operate Financially?',
-      el: '5. Πώς λειτουργεί οικονομικά η εταιρεία;',
-      ru: '5. Как устроена финансовая модель компании?',
-    },
-    body: {
-      en: 'Wedding Sky works through strong partnerships with experienced professionals. These partners provide commission arrangements, meaning clients do not pay anything extra. This structure allows us to offer premium services at competitive prices while maintaining high standards.',
-      el: 'Η Wedding Sky συνεργάζεται στενά με έμπειρους επαγγελματίες. Οι συνεργασίες αυτές βασίζονται σε συμφωνίες προμήθειας, γεγονός που σημαίνει ότι οι πελάτες δεν επιβαρύνονται με επιπλέον κόστος. Αυτή η δομή μάς επιτρέπει να προσφέρουμε υπηρεσίες υψηλού επιπέδου σε ανταγωνιστικές τιμές, διατηρώντας παράλληλα αυστηρά πρότυπα ποιότητας.',
-      ru: 'Wedding Sky работает в тесном партнёрстве с опытными специалистами. Партнёры предоставляют компании комиссионные условия, поэтому клиенты не несут дополнительных расходов. Такая модель позволяет предлагать услуги премиального уровня по конкурентным ценам, сохраняя высокие стандарты качества.',
-    },
-  },
-  {
-    title: {
-      en: '6. Are Wedding Packages Flexible?',
-      el: '6. Είναι ευέλικτα τα πακέτα γάμου;',
-      ru: '6. Можно ли менять состав свадебных пакетов?',
-    },
-    body: {
-      en: 'Yes. While we offer ready-made packages, all options can be modified, combined, or fully customized. Each couple can create a package that perfectly matches their vision and requirements.',
-      el: 'Ναι. Παρόλο που προσφέρουμε έτοιμα πακέτα, όλες οι επιλογές μπορούν να τροποποιηθούν, να συνδυαστούν ή να εξατομικευτούν πλήρως. Κάθε ζευγάρι μπορεί να δημιουργήσει ένα πακέτο που ανταποκρίνεται απόλυτα στο όραμα και τις απαιτήσεις του.',
-      ru: 'Да. Помимо готовых пакетов, мы предлагаем возможность изменить, объединить или полностью персонализировать любой вариант. Каждая пара может создать пакет, который в точности соответствует её видению и требованиям.',
-    },
-  },
-  {
-    title: {
-      en: '7. Do I Need to Book Everything Through You?',
-      el: '7. Πρέπει να κλείσω όλες τις υπηρεσίες μέσω εσάς;',
-      ru: '7. Обязательно ли заказывать все услуги через вас?',
-    },
-    body: {
-      en: 'Not at all. You can choose only the services you need. If you already have some arrangements in place, we can build a package using the remaining services. A minimum of 5 services is required to form a complete package.',
-      el: 'Καθόλου. Μπορείτε να επιλέξετε μόνο τις υπηρεσίες που χρειάζεστε. Αν έχετε ήδη διευθετήσει ορισμένες παροχές, μπορούμε να δημιουργήσουμε ένα πακέτο με τις υπηρεσίες που απομένουν. Για τη διαμόρφωση ενός ολοκληρωμένου πακέτου απαιτούνται τουλάχιστον 5 υπηρεσίες.',
-      ru: 'Нет. Вы можете выбрать только необходимые вам услуги. Если часть подготовки уже организована, мы составим пакет из оставшихся услуг. Для формирования полноценного пакета необходимо выбрать не менее 5 услуг.',
-    },
-  },
-  {
-    title: {
-      en: '8. Where Do You Provide Wedding Services?',
-      el: '8. Σε ποιες περιοχές παρέχετε υπηρεσίες γάμου;',
-      ru: '8. Где вы оказываете свадебные услуги?',
-    },
-    body: {
-      en: 'We organize weddings across the entire island of Cyprus, covering all cities and regions.',
-      el: 'Διοργανώνουμε γάμους σε ολόκληρη την Κύπρο, καλύπτοντας όλες τις πόλεις και επαρχίες.',
-      ru: 'Мы организуем свадьбы по всему Кипру — во всех городах и регионах острова.',
-    },
-  },
-  {
-    title: {
-      en: '9. Is the Quotation Binding?',
-      el: '9. Είναι δεσμευτική η προσφορά;',
-      ru: '9. Обязывает ли вас полученное предложение?',
-    },
-    body: {
-      en: 'No. All quotations are provided without any obligation. The final decision to proceed with our services is entirely up to you.',
-      el: 'Όχι. Όλες οι προσφορές παρέχονται χωρίς καμία δέσμευση. Η τελική απόφαση για το αν θα προχωρήσετε με τις υπηρεσίες μας ανήκει αποκλειστικά σε εσάς.',
-      ru: 'Нет. Все предложения предоставляются без каких-либо обязательств. Окончательное решение о сотрудничестве всегда остаётся за вами.',
-    },
-  },
-  {
-    title: {
-      en: '10. Where Is Your Office Located?',
-      el: '10. Πού βρίσκεται το γραφείο σας;',
-      ru: '10. Где находится ваш офис?',
-    },
-    body: {
-      en: 'Our office is located in Larnaca, Cyprus.',
-      el: 'Το γραφείο μας βρίσκεται στη Λάρνακα, Κύπρος.',
-      ru: 'Наш офис находится в Ларнаке, Кипр.',
-    },
-  },
-  {
-    title: {
-      en: '11. Is an Office Visit Required for a Quote?',
-      el: '11. Απαιτείται επίσκεψη στο γραφείο για να λάβω προσφορά;',
-      ru: '11. Нужно ли посещать офис, чтобы получить предложение?',
-    },
-    body: {
-      en: 'Not necessarily. While we recommend meeting in person at our Larnaca office for a more detailed discussion, consultations can also be arranged via phone, Viber, or Skype. This allows us to understand your needs and provide a personalized offer wherever you are.',
-      el: 'Όχι απαραίτητα. Παρόλο που προτείνουμε μια προσωπική συνάντηση στο γραφείο μας στη Λάρνακα για πιο αναλυτική συζήτηση, μπορούν επίσης να διευθετηθούν συμβουλευτικές συναντήσεις μέσω τηλεφώνου, Viber ή Skype. Έτσι μπορούμε να κατανοήσουμε τις ανάγκες σας και να σας ετοιμάσουμε μια εξατομικευμένη προσφορά, όπου κι αν βρίσκεστε.',
-      ru: 'Необязательно. Для более подробного обсуждения мы рекомендуем личную встречу в нашем офисе в Ларнаке, однако консультацию также можно провести по телефону, Viber или Skype. Это позволяет нам понять ваши потребности и подготовить персональное предложение, где бы вы ни находились.',
-    },
-  },
-]
 
 export const weddingServicesCopy: {
   title: LocalizedText
@@ -882,6 +724,11 @@ export const weddingVisitCopy: {
 }
 
 export const weddingContactCopy = {
+  eyebrow: {
+    en: 'Wedding Sky',
+    el: 'Wedding Sky',
+    ru: 'Wedding Sky',
+  } satisfies LocalizedText,
   title: {
     en: 'Enquire with Wedding Sky',
     el: 'Επικοινωνήστε με τη Wedding Sky',

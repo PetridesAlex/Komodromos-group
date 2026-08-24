@@ -80,12 +80,13 @@ export default function WeddingContactSection() {
       aria-labelledby="wedding-contact-heading"
     >
       <div className="container wedding-visit__inner wedding-contact__inner">
-        <header className="wedding-section__head wedding-visit__head reveal">
-          <p className="wedding-section__eyebrow">Wedding Sky</p>
-          <h2 id="wedding-contact-heading" className="wedding-section__title">
+        <header className="wedding-section__head wedding-visit__head wedding-contact__head reveal">
+          <p className="wedding-contact__eyebrow">{t(copy.eyebrow)}</p>
+          <h2 id="wedding-contact-heading" className="wedding-section__title wedding-contact__title">
             {t(copy.title)}
           </h2>
-          <p className="wedding-section__intro wedding-visit__intro">
+          <span className="wedding-contact__rule" aria-hidden />
+          <p className="wedding-section__intro wedding-visit__intro wedding-contact__intro">
             {t(copy.intro)}
           </p>
         </header>

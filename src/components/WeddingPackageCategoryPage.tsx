@@ -66,7 +66,7 @@ export default function WeddingPackageCategoryPage() {
         servicesSectionHref={servicesSectionHref}
       />
       <div className="wedding-language-switcher">
-        <LanguageSwitcher />
+        <LanguageSwitcher dynamic />
       </div>
 
       <section className="wedding-package-category-hero">

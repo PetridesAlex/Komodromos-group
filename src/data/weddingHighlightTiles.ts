@@ -86,6 +86,14 @@ const TILE_SEEDS: TileSeed[] = [
     },
   },
   {
+    id: 'venue-selection',
+    title: {
+      en: 'Venue Selection',
+      el: 'Επιλογή Χώρου',
+      ru: 'Подбор площадки',
+    },
+  },
+  {
     id: 'electric-violin',
     title: {
       en: 'Electric Violin Performance',

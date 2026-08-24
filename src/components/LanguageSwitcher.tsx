@@ -26,21 +26,40 @@ type Props = {
   className?: string
   /** Restrict visible languages (defaults to all three). */
   languages?: readonly WeddingLocale[]
+  /** Sliding pill indicator (Wedding Sky and similar UIs). */
+  dynamic?: boolean
 }
 
 export default function LanguageSwitcher({
   className,
   languages = WEDDING_LOCALES,
+  dynamic = false,
 }: Props) {
   const { i18n, t } = useTranslation()
   const activeLanguage = resolveWeddingLocale(i18n.resolvedLanguage ?? i18n.language)
+  const activeIndex = Math.max(0, languages.indexOf(activeLanguage))
 
   return (
     <div
-      className={['lang-switch', className].filter(Boolean).join(' ')}
+      className={[
+        'lang-switch',
+        dynamic ? 'lang-switch--dynamic' : '',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
       role="group"
       aria-label={t('common.language.switcher')}
+      style={
+        dynamic
+          ? ({
+              ['--lang-active' as string]: String(activeIndex),
+              ['--lang-count' as string]: String(languages.length),
+            } as React.CSSProperties)
+          : undefined
+      }
     >
+      {dynamic ? <span className="lang-switch__glide" aria-hidden /> : null}
       {languages.map((lng) => {
         const meta = LANGUAGE_META[lng]
         return (

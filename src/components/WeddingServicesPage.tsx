@@ -18,7 +18,6 @@ import { useSiteContext } from '../seo/SiteContext'
 import { useWeddingLocale } from '../lib/weddingLocale'
 import {
   weddingAboutCopy,
-  weddingFaqItems,
   weddingHeroCopy,
   weddingKnowledgeCopy,
   weddingPillarsCopy,
@@ -65,8 +64,6 @@ const NAV_SCROLL_THRESHOLD_PX = 28
 
 export default function WeddingServicesPage() {
   const [navScrolled, setNavScrolled] = useState(false)
-  const [faqOpen, setFaqOpen] = useState(false)
-  const [openFaqIndex, setOpenFaqIndex] = useState<number>(-1)
   const [planEnquiryOpen, setPlanEnquiryOpen] = useState(false)
   const [heroLoaded, setHeroLoaded] = useState(false)
   const location = useLocation()
@@ -102,20 +99,6 @@ export default function WeddingServicesPage() {
     return () => window.clearTimeout(t)
   }, [location.hash])
 
-  useEffect(() => {
-    if (!faqOpen) return
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setFaqOpen(false)
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => {
-      document.body.style.overflow = previousOverflow
-      window.removeEventListener('keydown', onKeyDown)
-    }
-  }, [faqOpen])
-
   return (
     <div className="page wedding-page" ref={pageRef} lang={htmlLang}>
       <SiteTopbar
@@ -126,7 +109,7 @@ export default function WeddingServicesPage() {
         className={navScrolled ? 'topbar--scrolled' : undefined}
       />
       <div className="wedding-language-switcher">
-        <LanguageSwitcher />
+        <LanguageSwitcher dynamic />
       </div>
 
       <section className="wedding-hero" aria-labelledby="wedding-hero-heading" data-hero-parallax-root>
@@ -287,13 +270,9 @@ export default function WeddingServicesPage() {
         className="wedding-knowledge-bar"
         aria-label={t(weddingKnowledgeCopy.sectionAria)}
       >
-        <button
-          type="button"
-          className="wedding-knowledge-bar__trigger reveal"
-          onClick={() => setFaqOpen(true)}
-        >
+        <a href="#wedding-contact" className="wedding-knowledge-bar__trigger reveal">
           <span className="wedding-knowledge-bar__sr-only">
-            {t(weddingKnowledgeCopy.srOpen)}
+            {t(weddingKnowledgeCopy.srLabel)}
           </span>
           <span className="wedding-knowledge-bar__glow" aria-hidden />
           <span className="wedding-knowledge-bar__marquee" aria-hidden>
@@ -337,73 +316,17 @@ export default function WeddingServicesPage() {
           <span className="wedding-knowledge-bar__cue" aria-hidden>
             <span className="wedding-knowledge-bar__cue-dot" />
           </span>
-        </button>
+        </a>
       </section>
-
-      {faqOpen ? (
-        <div className="wedding-knowledge-modal" role="dialog" aria-modal="true" aria-labelledby="wedding-knowledge-title">
-          <button
-            type="button"
-            className="wedding-knowledge-modal__backdrop"
-            aria-label={t(weddingKnowledgeCopy.closeBackdrop)}
-            onClick={() => setFaqOpen(false)}
-          />
-          <div className="wedding-knowledge-modal__panel">
-            <div className="wedding-knowledge-modal__head">
-              <h2 id="wedding-knowledge-title">{t(weddingKnowledgeCopy.modalTitle)}</h2>
-              <button
-                type="button"
-                className="wedding-knowledge-modal__close"
-                onClick={() => setFaqOpen(false)}
-              >
-                {t(weddingKnowledgeCopy.close)}
-              </button>
-            </div>
-            <div className="wedding-knowledge-modal__list">
-              {weddingFaqItems.map((item, index) => (
-                <article
-                  key={item.title.en}
-                  className={`wedding-knowledge-modal__item${
-                    openFaqIndex === index ? ' wedding-knowledge-modal__item--open' : ''
-                  }`}
-                >
-                  <button
-                    type="button"
-                    className="wedding-knowledge-modal__item-toggle"
-                    onClick={() =>
-                      setOpenFaqIndex((current) => (current === index ? -1 : index))
-                    }
-                    aria-expanded={openFaqIndex === index}
-                    aria-controls={`wedding-knowledge-item-${index}`}
-                  >
-                    <h3>{t(item.title)}</h3>
-                    <span className="wedding-knowledge-modal__item-icon" aria-hidden>
-                      {openFaqIndex === index ? '−' : '+'}
-                    </span>
-                  </button>
-                  <div
-                    id={`wedding-knowledge-item-${index}`}
-                    className="wedding-knowledge-modal__item-body"
-                  >
-                    <div className="wedding-knowledge-modal__item-body-inner">
-                      <p>{t(item.body)}</p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : null}
 
       <section className="wedding-section wedding-why">
         <div className="container">
           <header className="wedding-section__head wedding-why__head reveal">
-            <p className="wedding-section__eyebrow">{t(weddingWhyCopy.eyebrow)}</p>
-            <span className="wedding-why__rule" aria-hidden />
+            <p className="wedding-why__eyebrow">{t(weddingWhyCopy.eyebrow)}</p>
             <h2 className="wedding-section__title wedding-why__title">
               {t(weddingWhyCopy.title)}
             </h2>
+            <span className="wedding-why__rule" aria-hidden />
             <p className="wedding-section__intro wedding-why__intro">
               {t(weddingWhyCopy.intro)}
             </p>

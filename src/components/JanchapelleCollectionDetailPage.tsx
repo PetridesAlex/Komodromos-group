@@ -5,8 +5,14 @@ import SiteTopbar from './SiteTopbar'
 import AppointmentModal from './AppointmentModal'
 import JanchapelleBridalNav from './JanchapelleBridalNav'
 import JanchapelleGalleryLightbox from './JanchapelleGalleryLightbox'
+import JanchapelleGallerySaveButton from './JanchapelleGallerySaveButton'
 import PageSeo from '../seo/PageSeo'
 import { useReveal } from '../hooks/useReveal'
+import {
+  galleryToWishlistItem,
+  makeGalleryWishlistId,
+  useJanchapelleWishlist,
+} from '../hooks/useJanchapelleWishlist'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { janchapelleBrandHref } from '../lib/brandPaths'
 import { useSiteContext } from '../seo/SiteContext'
@@ -19,7 +25,7 @@ import {
 } from '../data/janchapellePage'
 
 const JANCHAPELLE_MARK_LOGO =
-  '/images/services/companie-services-cover/cards-logos-services/jan-chapelle.png'
+  '/images/services/janchapelle/logo/janchapelle-logo.png'
 
 function splitCollectionName(name: string): { primary: string; accent: string } {
   const words = name.trim().split(/\s+/)
@@ -36,6 +42,7 @@ export default function JanchapelleCollectionDetailPage() {
   const { isBrandDomain } = useSiteContext()
   const [appointmentOpen, setAppointmentOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const { isSaved, toggle: toggleSaved } = useJanchapelleWishlist()
   const servicesSectionHref = isBrandDomain
     ? buildGroupSiteReturnUrl('services')
     : '/#services'
@@ -228,6 +235,21 @@ export default function JanchapelleCollectionDetailPage() {
                   className={`jc-collection-gallery__item reveal reveal-delay-${Math.min(index % 4, 3)}`}
                 >
                   <figure className="jc-collection-gallery__figure">
+                    <JanchapelleGallerySaveButton
+                      saved={isSaved(makeGalleryWishlistId(collection.id, item.src))}
+                      label={item.alt}
+                      onToggle={() =>
+                        toggleSaved(
+                          galleryToWishlistItem({
+                            parentId: collection.id,
+                            parentName: collection.name,
+                            parentKind: 'collection',
+                            src: item.src,
+                            alt: item.alt,
+                          }),
+                        )
+                      }
+                    />
                     <button
                       type="button"
                       className="jc-collection-gallery__trigger"

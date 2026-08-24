@@ -70,7 +70,7 @@ export default function WeddingPackageDetailPage() {
         servicesSectionHref={servicesSectionHref}
       />
       <div className="wedding-language-switcher">
-        <LanguageSwitcher />
+        <LanguageSwitcher dynamic />
       </div>
 
       <section className="wedding-package-detail-hero">
