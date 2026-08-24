@@ -240,27 +240,49 @@ export const JANCHAPELLE_FEATURED: readonly JanchapelleDressCard[] = JANCHAPELLE
   }),
 )
 
-const LUXURY_SHOES_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
-  { length: 40 },
-  (_, index) => {
+const LUXURY_SHOES_FEATURED: readonly JanchapelleCollectionGalleryImage[] = [
+  {
+    src: `${JANCHAPELLE}/bride-luxury-shoes/luxury-shoes-featured-01.webp`,
+    alt: 'Pearl bridal sandal with tulle bow in a church aisle — Janchapelle Bridal Atelier',
+  },
+  {
+    src: `${JANCHAPELLE}/bride-luxury-shoes/luxury-shoes-featured-02.webp`,
+    alt: 'Lace floral bridal stilettos with wrap ankle ties — Janchapelle Bridal Atelier',
+  },
+]
+
+const LUXURY_SHOES_GALLERY: readonly JanchapelleCollectionGalleryImage[] = [
+  ...LUXURY_SHOES_FEATURED,
+  ...Array.from({ length: 40 }, (_, index) => {
     const number = String(index).padStart(2, '0')
     return {
       src: `${JANCHAPELLE}/bride-luxury-shoes/luxury-shoes-${number}.webp`,
       alt: `Bride luxury shoe look ${index + 1} — Janchapelle Bridal Atelier`,
     }
-  },
-)
+  }),
+]
 
-const SPARKLING_ACCESSORIES_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
-  { length: 28 },
-  (_, index) => {
+const SPARKLING_ACCESSORIES_FEATURED: readonly JanchapelleCollectionGalleryImage[] = [
+  {
+    src: `${JANCHAPELLE}/sparkling-accesories-collection/sparkling-featured-01.webp`,
+    alt: 'Silver pearl and crystal floral bridal hair comb — Janchapelle Bridal Atelier',
+  },
+  {
+    src: `${JANCHAPELLE}/sparkling-accesories-collection/sparkling-featured-02.webp`,
+    alt: 'Crystal and pearl bridal hair vine in a soft low bun — Janchapelle Bridal Atelier',
+  },
+]
+
+const SPARKLING_ACCESSORIES_GALLERY: readonly JanchapelleCollectionGalleryImage[] = [
+  ...SPARKLING_ACCESSORIES_FEATURED,
+  ...Array.from({ length: 28 }, (_, index) => {
     const number = String(index).padStart(2, '0')
     return {
       src: `${JANCHAPELLE}/sparkling-accesories-collection/sparkling-${number}.webp`,
       alt: `Sparkling accessories look ${index + 1} — Janchapelle Bridal Atelier`,
     }
-  },
-)
+  }),
+]
 
 export type JanchapelleHouse = {
   id: string

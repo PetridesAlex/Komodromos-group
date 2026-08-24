@@ -18,6 +18,9 @@ import {
   getJanchapelleCollectionById,
 } from '../data/janchapellePage'
 
+const JANCHAPELLE_MARK_LOGO =
+  '/images/services/companie-services-cover/cards-logos-services/jan-chapelle.png'
+
 function splitCollectionName(name: string): { primary: string; accent: string } {
   const words = name.trim().split(/\s+/)
   if (words.length <= 1) {
@@ -138,6 +141,31 @@ export default function JanchapelleCollectionDetailPage() {
                 </p>
               )
             })}
+            <div className="jc-collection-body__mark reveal reveal-delay-2" aria-label="Janchapelle">
+              <div className="jc-collection-body__mark-seal">
+                <span className="jc-collection-body__mark-orbit" aria-hidden />
+                <span className="jc-collection-body__mark-glow" aria-hidden />
+                <div className="jc-collection-body__mark-frame">
+                  <img
+                    src={JANCHAPELLE_MARK_LOGO}
+                    alt=""
+                    className="jc-collection-body__mark-logo"
+                    loading="lazy"
+                    decoding="async"
+                    width={180}
+                    height={180}
+                  />
+                </div>
+              </div>
+              <div className="jc-collection-body__mark-copy">
+                <p className="jc-collection-body__mark-eyebrow">Bridal atelier</p>
+                <p className="jc-collection-body__mark-title">Janchapelle</p>
+                <span className="jc-collection-body__mark-rule" aria-hidden />
+                <p className="jc-collection-body__mark-caption">
+                  Couture craftsmanship · Cyprus
+                </p>
+              </div>
+            </div>
           </div>
 
           <aside className="jc-collection-body__aside reveal reveal-delay-2">
