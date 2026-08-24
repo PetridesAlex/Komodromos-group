@@ -27,7 +27,6 @@ export type WeddingPackageCategory = {
 }
 
 const PKG_IMG = '/images/services/wedding-packages'
-const HIGHLIGHT_IMG = '/images/services/wedding-highlights'
 
 /** Top-level package families shown on the Wedding Sky homepage. */
 export const weddingPackageCategories: WeddingPackageCategory[] = [
