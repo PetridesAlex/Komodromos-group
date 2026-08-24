@@ -62,13 +62,7 @@ function hasReviewText(post: SocialPost): post is SocialPost & { text: string } 
 }
 
 function postInitials(post: SocialPost): string {
-  if ('initials' in post && typeof post.initials === 'string') return post.initials
-  return post.name
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase() ?? '')
-    .join('')
+  return post.initials
 }
 
 export default function JanchapelleSocialProof() {
