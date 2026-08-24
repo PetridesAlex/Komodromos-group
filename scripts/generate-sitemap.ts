@@ -5,6 +5,7 @@ import {
   BRAND_DOMAINS,
   GROUP_SITE_URL,
   internalPathToBrandPath,
+  isBrandManagedInternalPath,
 } from '../src/seo/domainRegistry.ts'
 
 const root = resolve(import.meta.dirname, '..')
@@ -31,14 +32,16 @@ ${entries.join('\n')}
 `
 }
 
-const groupEntries = indexableRoutes.map((entry) =>
-  buildUrlEntry(
-    GROUP_SITE_URL,
-    entry.path,
-    entry.priority ?? 0.6,
-    entry.changefreq ?? 'monthly',
-  ),
-)
+const groupEntries = indexableRoutes
+  .filter((entry) => !isBrandManagedInternalPath(entry.path))
+  .map((entry) =>
+    buildUrlEntry(
+      GROUP_SITE_URL,
+      entry.path,
+      entry.priority ?? 0.6,
+      entry.changefreq ?? 'monthly',
+    ),
+  )
 
 const brandSitemaps: Array<{ filename: string; siteUrl: string; entries: string[] }> = []
 

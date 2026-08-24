@@ -51,6 +51,24 @@ export function absoluteUrl(path: string, siteUrl: string = SITE_URL): string {
 
 export function absoluteImageUrl(image?: string, siteUrl: string = SITE_URL): string {
   if (!image) return `${siteUrl}${MAIN_LOGO.src}`
-  if (image.startsWith('http://') || image.startsWith('https://')) return image
+  if (image.startsWith('http://') || image.startsWith('https://')) {
+    // Same SPA assets are served on every brand host — keep OG images same-origin
+    // so brand domains never advertise komodromosgroup.com assets.
+    try {
+      const parsed = new URL(image)
+      if (
+        parsed.hostname === 'www.komodromosgroup.com' ||
+        parsed.hostname === 'komodromosgroup.com'
+      ) {
+        const target = new URL(siteUrl)
+        if (target.hostname !== parsed.hostname) {
+          return `${target.origin}${parsed.pathname}${parsed.search}`
+        }
+      }
+    } catch {
+      // keep original
+    }
+    return image
+  }
   return `${siteUrl}${image.startsWith('/') ? image : `/${image}`}`
 }

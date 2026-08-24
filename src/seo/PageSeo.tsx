@@ -5,6 +5,7 @@ import {
   absoluteImageUrl,
   formatPageTitle,
 } from './siteConfig'
+import { MAIN_LOGO } from '../data/mainLogo'
 import type { JsonLd } from './schema'
 import { combineSchemas, organizationSchema, websiteSchema } from './schema'
 import { useSiteContext } from './SiteContext'
@@ -35,12 +36,29 @@ export default function PageSeo({
   const { siteUrl, absoluteUrl, brand } = useSiteContext()
   const pageTitle = formatPageTitle(title, brand?.siteName)
   const canonical = absoluteUrl(path)
-  const ogImage = absoluteImageUrl(image, siteUrl)
+  const brandDefaultImage =
+    brand?.slug === 'wedding'
+      ? '/images/services/companie-services-cover/wedding-sky.webp'
+      : undefined
+  const ogImage = absoluteImageUrl(image ?? brandDefaultImage, siteUrl)
   const robots = noindex ? 'noindex, nofollow' : 'index, follow'
   const siteName = brand?.siteNameFull ?? SITE_NAME
+  const brandLogoPath =
+    brand?.slug === 'wedding'
+      ? '/images/services/companie-services-cover/cards-logos-services/wedding-sky.png'
+      : brand
+        ? MAIN_LOGO.src
+        : undefined
 
   const globalSchema = includeGlobalSchema
-    ? combineSchemas(organizationSchema(siteUrl), websiteSchema(siteUrl, siteName))
+    ? combineSchemas(
+        organizationSchema(siteUrl, {
+          name: siteName,
+          logoPath: brandLogoPath,
+          isBrandSite: Boolean(brand),
+        }),
+        websiteSchema(siteUrl, siteName),
+      )
     : null
 
   const schemaPayload =

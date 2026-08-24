@@ -43,7 +43,7 @@ export const weddingPackageCategories: WeddingPackageCategory[] = [
       el: 'Τρία επίπεδα γιορτής — από τον βασικό συντονισμό έως την κορυφαία παραγωγή white-glove.',
       ru: 'Три уровня организации торжества — от базовой координации до фирменного сервиса высочайшего класса.',
     },
-    image: `${HIGHLIGHT_IMG}/packages.webp`,
+    image: '/images/services/wedding-packages/about-us/wedding-day-07.webp',
   },
   {
     id: 'christian',
@@ -57,7 +57,7 @@ export const weddingPackageCategories: WeddingPackageCategory[] = [
       el: 'Εκλεπτυσμένα προγράμματα για βάπτιση — από αναβαθμισμένο styling έως πλήρως προσαρμοσμένα briefs.',
       ru: 'Изысканные программы для крещения — от утончённого стиля до полностью индивидуальной концепции.',
     },
-    image: `${HIGHLIGHT_IMG}/stories.webp`,
+    image: '/images/services/wedding-packages/about-us/wedding-day-06.webp',
   },
 ]
 

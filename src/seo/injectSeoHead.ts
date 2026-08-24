@@ -6,6 +6,8 @@ export type SeoHeadMeta = {
   canonical: string
   ogImage: string
   index: boolean
+  /** Brand / site name for og:site_name — must match the serving host. */
+  siteName?: string
 }
 
 function escapeAttr(value: string): string {
@@ -38,6 +40,7 @@ export function injectSeoHead(html: string, meta: SeoHeadMeta): string {
   const canonical = escapeAttr(meta.canonical)
   const ogImage = escapeAttr(meta.ogImage)
   const titleAttr = escapeAttr(meta.title)
+  const siteName = escapeAttr(meta.siteName ?? 'Komodromos Group of Companies')
 
   let out = html
 
@@ -59,6 +62,11 @@ export function injectSeoHead(html: string, meta: SeoHeadMeta): string {
     `<link rel="canonical" href="${canonical}" data-seo-shell="1" />`,
   )
 
+  out = replaceOrInsert(
+    out,
+    /<meta\b[^>]*\bproperty=["']og:site_name["'][^>]*>/i,
+    `<meta property="og:site_name" content="${siteName}" data-seo-shell="1" />`,
+  )
   out = replaceOrInsert(
     out,
     /<meta\b[^>]*\bproperty=["']og:type["'][^>]*>/i,
@@ -105,6 +113,14 @@ export function injectSeoHead(html: string, meta: SeoHeadMeta): string {
     /<meta\b[^>]*\bname=["']twitter:image["'][^>]*>/i,
     `<meta name="twitter:image" content="${ogImage}" data-seo-shell="1" />`,
   )
+
+  // Brand hosts must not preload the group homepage hero — looks like a spoofed shell.
+  if (meta.siteName && meta.siteName !== 'Komodromos Group of Companies') {
+    out = out.replace(
+      /<link\b[^>]*\brel=["']preload["'][^>]*hero-section-premium\.webp[^>]*>\s*/gi,
+      '',
+    )
+  }
 
   return out
 }

@@ -31,6 +31,10 @@ export const serviceCoverImageAlts: Record<string, string> = {
   '/images/services/wedding-highlights/planning.webp': 'Concept, timeline & vendor orchestration — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/production.webp': 'Venue design, lighting & run of show — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/stories.webp': 'Words from couples we walked beside — Wedding Sky Cyprus',
+  '/images/services/wedding-packages/about-us/wedding-day-06.webp':
+    'Bride with nest bouquet on her wedding day — Wedding Sky Cyprus',
+  '/images/services/wedding-packages/about-us/wedding-day-07.webp':
+    'Just-married couple celebrating in a white convertible — Wedding Sky Cyprus',
   '/images/services/wedding-packages/tier-basic-plus.webp': 'Wedding Sky Basic Plus package, Cyprus',
   '/images/services/wedding-packages/tier-basic.webp': 'Wedding Sky Basic package, Cyprus',
   '/images/services/wedding-packages/tier-classic-plus.webp': 'Wedding Sky Classic Plus package, Cyprus',

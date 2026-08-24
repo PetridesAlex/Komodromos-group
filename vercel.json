@@ -31,6 +31,24 @@
       "permanent": true
     },
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "bluesky-pools.com" }],
+      "destination": "https://www.bluesky-pools.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "adrcentercy.com" }],
+      "destination": "https://www.adrcentercy.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "weddingskycy.com" }],
+      "destination": "https://www.weddingskycy.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/:path+/",
       "destination": "/:path+",
       "permanent": true

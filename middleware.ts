@@ -8,6 +8,7 @@ import {
   getBrandAllowlistPaths,
   getBrandRedirectUrl,
   getGroupToBrandRedirectUrl,
+  GROUP_SITE_URL,
   internalPathToBrandPath,
   isGroupHost,
   normalizeInternalPath,
@@ -104,11 +105,26 @@ export default async function middleware(request: Request) {
       let headMeta = meta
       if (brand) {
         const brandPath = internalPathToBrandPath(internalPath, brand)
+        const brandOrigin = `https://${brand.host}`
         const canonical =
-          brandPath === '/'
-            ? `https://${brand.host}/`
-            : `https://${brand.host}${brandPath}`
-        headMeta = { ...meta, canonical }
+          brandPath === '/' ? `${brandOrigin}/` : `${brandOrigin}${brandPath}`
+
+        // Never serve komodromosgroup.com asset URLs from a brand host — Chrome
+        // Safe Browsing can treat cross-brand identity as a lookalike / phishing signal.
+        let ogImage = meta.ogImage.replace(GROUP_SITE_URL, brandOrigin)
+        if (
+          brand.slug === 'wedding' &&
+          (brandPath === '/' || ogImage.includes('/cards-logos-services/main-logo.png'))
+        ) {
+          ogImage = `${brandOrigin}/images/services/companie-services-cover/wedding-sky.webp`
+        }
+
+        headMeta = {
+          ...meta,
+          canonical,
+          ogImage,
+          siteName: brand.siteNameFull,
+        }
       }
 
       try {

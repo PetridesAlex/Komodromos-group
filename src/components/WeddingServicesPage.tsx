@@ -9,6 +9,7 @@ import WeddingHighlightTiles from './WeddingHighlightTiles'
 import WeddingPackagesSection from './WeddingPackagesSection'
 import WeddingLazyImage from './WeddingLazyImage'
 import WeddingSocialProof from './WeddingSocialProof'
+import WeddingPlanEnquiryModal from './WeddingPlanEnquiryModal'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { weddingBrandHref } from '../lib/brandPaths'
@@ -28,23 +29,43 @@ import {
 
 const WEDDING_WHY_ICONS = [Wallet, Users, ShieldCheck, Sparkles] as const
 
-const WEDDING_HERO_IMAGE = '/images/services/companie-services-cover/wedding-sky.webp'
+const WEDDING_HERO_SLIDES = [
+  {
+    src: '/images/services/wedding-packages/hero-section/wedding-day-08.webp',
+    position: 'center 62%',
+  },
+  {
+    src: '/images/services/wedding-packages/hero-section/wedding-day-10.webp',
+    position: 'center 42%',
+  },
+  {
+    src: '/images/services/wedding-packages/hero-section/wedding-day-09.webp',
+    position: 'center 48%',
+  },
+] as const
+
+const WEDDING_HERO_ROTATE_MS = 4000
+
 const WEDDING_SKY_LOGO =
   '/images/services/companie-services-cover/cards-logos-services/wedding-sky.png'
 
 const WEDDING_ABOUT_MAIN = {
-  src: '/images/services/wedding-highlights/bridal.webp',
-  alt: 'Bride on her wedding day with Wedding Sky in Cyprus',
+  src: '/images/services/wedding-packages/about-us/wedding-day-04.webp',
+  alt: 'Bride and groom embracing beside a vintage blue convertible in Cyprus',
 } as const
 
 const WEDDING_ABOUT_SUPPORTING = [
   {
-    src: '/images/services/wedding-highlights/destinations.webp',
-    alt: 'Destination wedding setting in Cyprus',
+    src: '/images/services/wedding-packages/about-us/wedding-day-02.webp',
+    alt: 'Bride and groom cutting a floral wedding cake at a Cyprus reception',
   },
   {
-    src: '/images/services/wedding-highlights/production.webp',
-    alt: 'Wedding styling and production details',
+    src: '/images/services/wedding-packages/about-us/wedding-day-05.webp',
+    alt: 'Floral ribbon detailing being tied to a bridal car door handle',
+  },
+  {
+    src: '/images/services/wedding-packages/about-us/wedding-day-03.webp',
+    alt: 'Bridal shoes, florals, and champagne details styled for a luxury wedding',
   },
 ] as const
 
@@ -61,7 +82,9 @@ export default function WeddingServicesPage() {
   const [navScrolled, setNavScrolled] = useState(false)
   const [faqOpen, setFaqOpen] = useState(false)
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(-1)
+  const [planEnquiryOpen, setPlanEnquiryOpen] = useState(false)
   const [heroLoaded, setHeroLoaded] = useState(false)
+  const [heroSlide, setHeroSlide] = useState(0)
   const location = useLocation()
   const pageRef = useReveal()
   const { isBrandDomain } = useSiteContext()
@@ -75,6 +98,18 @@ export default function WeddingServicesPage() {
       window.scrollTo(0, 0)
     }
   }, [location.pathname, location.hash])
+
+  useEffect(() => {
+    if (WEDDING_HERO_SLIDES.length < 2) return
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reducedMotion) return
+
+    const timer = window.setInterval(() => {
+      setHeroSlide((prev) => (prev + 1) % WEDDING_HERO_SLIDES.length)
+    }, WEDDING_HERO_ROTATE_MS)
+
+    return () => window.clearInterval(timer)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => {
@@ -128,18 +163,28 @@ export default function WeddingServicesPage() {
             className={`wedding-hero__bg${heroLoaded ? ' wedding-hero__bg--loaded' : ''}`}
             data-hero-parallax
           >
-            <img
-              className="wedding-hero__bg-img"
-              src={WEDDING_HERO_IMAGE}
-              alt=""
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              onLoad={() => setHeroLoaded(true)}
-              ref={(node) => {
-                if (node?.complete && node.naturalWidth > 0) setHeroLoaded(true)
-              }}
-            />
+            {WEDDING_HERO_SLIDES.map((slide, index) => (
+              <img
+                key={slide.src}
+                className={`wedding-hero__bg-img${
+                  index === heroSlide ? ' wedding-hero__bg-img--active' : ''
+                }`}
+                src={slide.src}
+                alt=""
+                style={{ objectPosition: slide.position }}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchPriority={index === 0 ? 'high' : 'low'}
+                onLoad={() => {
+                  if (index === 0) setHeroLoaded(true)
+                }}
+                ref={(node) => {
+                  if (index === 0 && node?.complete && node.naturalWidth > 0) {
+                    setHeroLoaded(true)
+                  }
+                }}
+              />
+            ))}
           </div>
           <div className="wedding-hero__vignette" />
           <div className="wedding-hero__scrim" />
@@ -570,9 +615,13 @@ export default function WeddingServicesPage() {
               <span className="wedding-about__rule" aria-hidden />
               <p className="wedding-about__lead">{t(weddingAboutCopy.lead)}</p>
               <p className="wedding-about__story">{t(weddingAboutCopy.story)}</p>
-              <Link to="/contact" className="wedding-about__cta">
+              <button
+                type="button"
+                className="wedding-about__cta"
+                onClick={() => setPlanEnquiryOpen(true)}
+              >
                 {t(weddingAboutCopy.cta)}
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -665,6 +714,11 @@ export default function WeddingServicesPage() {
       </section>
 
       <Footer />
+
+      <WeddingPlanEnquiryModal
+        open={planEnquiryOpen}
+        onClose={() => setPlanEnquiryOpen(false)}
+      />
     </div>
   )
 }

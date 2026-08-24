@@ -2,7 +2,15 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { useLocation } from 'react-router-dom'
 import PageSeo, { type PageSeoProps } from './PageSeo'
 import { getSeoForPath } from './routes'
-import { breadcrumbSchema, combineSchemas, contactPageSchema, serviceSchema, webPageSchema } from './schema'
+import {
+  breadcrumbSchema,
+  buildGroupHomeNavigationItems,
+  combineSchemas,
+  contactPageSchema,
+  serviceSchema,
+  siteNavigationListSchema,
+  webPageSchema,
+} from './schema'
 import { resolveInternalPath } from './domainRegistry'
 import { useSiteContext } from './SiteContext'
 import { SERVICE_HUB_SEO } from './metaCopy'
@@ -50,6 +58,13 @@ function buildPageSchema(
   siteUrl: string,
   siteName: string,
 ) {
+  if (path === '/') {
+    return combineSchemas(
+      webPageSchema({ title, description, path, siteUrl, siteName }),
+      siteNavigationListSchema(buildGroupHomeNavigationItems()),
+    )
+  }
+
   if (path === '/contact') {
     return combineSchemas(
       contactPageSchema(siteUrl),

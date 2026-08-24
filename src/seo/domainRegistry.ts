@@ -387,3 +387,15 @@ export function getBrandAllowlistPaths(brand: BrandDomainConfig): string[] {
 export function getAllBrandAllowlistPaths(): string[] {
   return BRAND_DOMAINS.flatMap((brand) => getBrandAllowlistPaths(brand))
 }
+
+/** Paths on the group site that 308 to a live brand domain — exclude from group sitemap. */
+export function isBrandManagedInternalPath(path: string): boolean {
+  const normalized = normalizeInternalPath(path)
+  for (const brand of BRAND_DOMAINS) {
+    if (!isBrandDnsLive(brand)) continue
+    if (normalized === brand.basePath || normalized.startsWith(`${brand.basePath}/`)) {
+      return true
+    }
+  }
+  return false
+}

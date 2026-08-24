@@ -38,8 +38,10 @@ function TileContent({
         </span>
       </div>
       <div className="wedding-highlight-tiles__caption">
+        <span className="wedding-highlight-tiles__rail" aria-hidden />
         {kicker ? <p className="wedding-highlight-tiles__kicker">{kicker}</p> : null}
         <p className="wedding-highlight-tiles__title">{title}</p>
+        <span className="wedding-highlight-tiles__title-rule" aria-hidden />
         {interactive ? (
           <span className="wedding-highlight-tiles__cta">
             {exploreLabel}

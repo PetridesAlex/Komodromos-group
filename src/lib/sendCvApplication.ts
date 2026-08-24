@@ -39,6 +39,8 @@ export async function sendCvApplication(payload: CvApplicationPayload): Promise<
   }
 
   const turnstileToken = await getTurnstileToken()
+  const originHost =
+    typeof window !== 'undefined' ? window.location.hostname || undefined : undefined
 
   const response = await fetch('/api/send-cv-application', {
     method: 'POST',
@@ -48,6 +50,7 @@ export async function sendCvApplication(payload: CvApplicationPayload): Promise<
       turnstileToken,
       website: payload.website ?? '',
       formStartedAt: payload.formStartedAt,
+      originHost,
     }),
   })
 

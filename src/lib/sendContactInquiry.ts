@@ -31,6 +31,11 @@ type ContactInquiryResponse = {
   error?: string
 }
 
+function getOriginHost(): string | undefined {
+  if (typeof window === 'undefined') return undefined
+  return window.location.hostname || undefined
+}
+
 export async function sendContactInquiry(payload: ContactInquiryPayload): Promise<void> {
   const sanitized = sanitizeContactPayload(payload)
   const validationError = validateContactPayload(sanitized)
@@ -48,6 +53,7 @@ export async function sendContactInquiry(payload: ContactInquiryPayload): Promis
       turnstileToken,
       website: payload.website ?? '',
       formStartedAt: payload.formStartedAt,
+      originHost: getOriginHost(),
     }),
   })
 

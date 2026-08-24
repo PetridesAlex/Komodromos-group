@@ -402,7 +402,7 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
   },
   "/services/janchapelle": {
     "title": "Janchapelle Bridal Atelier Cyprus | Couture Wedding Dresses",
-    "description": "Janchapelle bridal atelier in Cyprus — couture wedding dresses, private fittings, lookbook collections, and appointment booking for modern brides.",
+    "description": "Janchapelle bridal atelier in Cyprus — couture wedding dresses, private fittings, lookbook collections, and appointments for modern brides from Komodromos.",
     "canonical": "https://www.komodromosgroup.com/services/janchapelle",
     "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/Bridal.webp",
     "index": true

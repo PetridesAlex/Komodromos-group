@@ -42,7 +42,7 @@ export const SERVICE_HUB_SEO: Record<
   '/services/janchapelle': {
     title: 'Janchapelle Bridal Atelier Cyprus | Couture Wedding Dresses',
     description:
-      'Janchapelle bridal atelier in Cyprus — couture wedding dresses, private fittings, lookbook collections, and appointment booking for modern brides.',
+      'Janchapelle bridal atelier in Cyprus — couture wedding dresses, private fittings, lookbook collections, and appointments for modern brides from Komodromos.',
   },
   '/services/adr-mediation': {
     title: 'ADR Mediation Dispute Center Cyprus | Komodromos Group',

@@ -61,16 +61,27 @@ export type JanchapelleCollection = {
   gallery?: readonly JanchapelleCollectionGalleryImage[]
 }
 
-const MINI_DRESS_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
-  { length: 37 },
-  (_, index) => {
+const MINI_DRESS_FEATURED: readonly JanchapelleCollectionGalleryImage[] = [
+  {
+    src: `${JANCHAPELLE}/mini-dress/mini-party-dress-01.webp`,
+    alt: 'Mini party dress with beaded V-neck and flared skirt — Janchapelle Bridal Atelier',
+  },
+  {
+    src: `${JANCHAPELLE}/mini-dress/mini-party-dress-02.webp`,
+    alt: 'Mini party dress with floral lace and sequin overlay — Janchapelle Bridal Atelier',
+  },
+]
+
+const MINI_DRESS_GALLERY: readonly JanchapelleCollectionGalleryImage[] = [
+  ...MINI_DRESS_FEATURED,
+  ...Array.from({ length: 37 }, (_, index) => {
     const number = String(index + 1).padStart(2, '0')
     return {
       src: `${JANCHAPELLE}/mini-dress/mini-dress-${number}.webp`,
       alt: `Mini party dress look ${index + 1} — Janchapelle Bridal Atelier`,
     }
-  },
-)
+  }),
+]
 
 const ELEGANT_COLLECTION_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
   { length: 87 },
@@ -83,27 +94,57 @@ const ELEGANT_COLLECTION_GALLERY: readonly JanchapelleCollectionGalleryImage[] =
   },
 )
 
-const PREMIUM_COLLECTION_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
-  { length: 152 },
-  (_, index) => {
+const PREMIUM_COLLECTION_FEATURED: readonly JanchapelleCollectionGalleryImage[] = [
+  {
+    src: `${JANCHAPELLE}/premium-collection/premium-collection-01.webp`,
+    alt: 'Premium Collection lace bridal gown with hooded veil — Janchapelle Bridal Atelier',
+  },
+  {
+    src: `${JANCHAPELLE}/premium-collection/premium-collection-02.webp`,
+    alt: 'Premium Collection lace bodice and veil detail — Janchapelle Bridal Atelier',
+  },
+  {
+    src: `${JANCHAPELLE}/premium-collection/premium-collection-03.webp`,
+    alt: 'Premium Collection lace gown back with button detail — Janchapelle Bridal Atelier',
+  },
+  {
+    src: `${JANCHAPELLE}/premium-collection/premium-collection-04.webp`,
+    alt: 'Premium Collection lace gown and veil in profile — Janchapelle Bridal Atelier',
+  },
+]
+
+const PREMIUM_COLLECTION_GALLERY: readonly JanchapelleCollectionGalleryImage[] = [
+  ...PREMIUM_COLLECTION_FEATURED,
+  ...Array.from({ length: 152 }, (_, index) => {
     const number = String(index).padStart(2, '0')
     return {
       src: `${JANCHAPELLE}/premium-collection/premium-${number}.webp`,
       alt: `Premium Collection bridal look ${index + 1} — Janchapelle Bridal Atelier`,
     }
-  },
-)
+  }),
+]
 
-const COCKTAIL_DRESS_GALLERY: readonly JanchapelleCollectionGalleryImage[] = Array.from(
-  { length: 79 },
-  (_, index) => {
+const COCKTAIL_DRESS_FEATURED: readonly JanchapelleCollectionGalleryImage[] = [
+  {
+    src: `${JANCHAPELLE}/cocktail-dress/cocktail-dress-01.webp`,
+    alt: 'Champagne strapless cocktail dress with pleated skirt — Janchapelle Bridal Atelier',
+  },
+  {
+    src: `${JANCHAPELLE}/cocktail-dress/cocktail-dress-02.webp`,
+    alt: 'Ruby red strapless satin cocktail dress — Janchapelle Bridal Atelier',
+  },
+]
+
+const COCKTAIL_DRESS_GALLERY: readonly JanchapelleCollectionGalleryImage[] = [
+  ...COCKTAIL_DRESS_FEATURED,
+  ...Array.from({ length: 79 }, (_, index) => {
     const number = String(index).padStart(2, '0')
     return {
       src: `${JANCHAPELLE}/cocktail-dress/cocktail-${number}.webp`,
       alt: `Cocktail dress look ${index + 1} — Janchapelle Bridal Atelier`,
     }
-  },
-)
+  }),
+]
 
 export const JANCHAPELLE_COLLECTIONS_EYEBROW = 'Discover our collections'
 

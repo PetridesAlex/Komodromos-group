@@ -1,10 +1,12 @@
 /**
- * Vercel serverless — forward website form inquiries to info@komodromosgroup.com via Resend.
- * RESEND_API_KEY, CONTACT_TO_EMAIL, RESEND_FROM must be set in Vercel Environment Variables.
+ * Vercel serverless — forward website form inquiries via Resend.
+ * Recipients are resolved by brand/service (see api/lib/contactRouting.js).
+ * RESEND_API_KEY, CONTACT_TO_EMAIL*, RESEND_FROM must be set in Vercel Environment Variables.
  * Optional: TURNSTILE_SECRET_KEY for Cloudflare Turnstile spam protection.
  */
 
 import { evaluateSpam, getClientIp } from './lib/spamGuard.js'
+import { resolveContactRecipient, sanitizeOriginHost } from './lib/contactRouting.js'
 
 const SITE_URL = 'https://www.komodromosgroup.com'
 const LOGO_URL = `${SITE_URL}/images/services/companie-services-cover/cards-logos-services/main-logo.png`
@@ -487,7 +489,8 @@ export default async function handler(req, res) {
   }
 
   const apiKey = stripEnv(readEnv('RESEND_API_KEY'))
-  const toEmail = normalizeRecipient(readEnv('CONTACT_TO_EMAIL') || INBOX_EMAIL)
+  const originHost = sanitizeOriginHost(body.originHost)
+  const { to: toEmail, routeKey } = resolveContactRecipient({ source, service, originHost })
   const fromEmail = normalizeFromAddress(readEnv('RESEND_FROM'))
 
   if (!apiKey) {
@@ -563,6 +566,7 @@ export default async function handler(req, res) {
       status: resendResponse.status,
       from: fromEmail,
       to: toEmail,
+      routeKey,
       resendMessage,
       resendData,
     })
@@ -573,7 +577,12 @@ export default async function handler(req, res) {
     })
   }
 
-  console.info('[send-contact] Delivered inquiry', { referenceId, to: toEmail, resendId: resendData?.id })
+  console.info('[send-contact] Delivered inquiry', {
+    referenceId,
+    to: toEmail,
+    routeKey,
+    resendId: resendData?.id,
+  })
 
   return json(res, 200, {
     success: true,

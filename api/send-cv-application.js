@@ -4,6 +4,7 @@
  */
 
 import { evaluateSpam, getClientIp } from './lib/spamGuard.js'
+import { resolveContactRecipient, sanitizeOriginHost } from './lib/contactRouting.js'
 
 const SITE_URL = 'https://www.komodromosgroup.com'
 const INBOX_EMAIL = 'info@komodromosgroup.com'
@@ -241,7 +242,12 @@ export default async function handler(req, res) {
   }
 
   const apiKey = stripEnv(readEnv('RESEND_API_KEY'))
-  const toEmail = stripEnv(readEnv('CONTACT_TO_EMAIL') || INBOX_EMAIL)
+  const originHost = sanitizeOriginHost(body.originHost)
+  const { to: toEmail, routeKey } = resolveContactRecipient({
+    source,
+    service: 'Aviation Agency Services',
+    originHost,
+  })
   const fromRaw = stripEnv(readEnv('RESEND_FROM'))
   const fromEmail = fromRaw && isValidEmail(fromRaw.replace(/^.*<([^>]+)>$/, '$1'))
     ? fromRaw
@@ -322,6 +328,7 @@ export default async function handler(req, res) {
   console.info('[send-cv-application] Delivered CV submission', {
     referenceId,
     to: toEmail,
+    routeKey,
     filename,
     resendId: resendData?.id,
   })

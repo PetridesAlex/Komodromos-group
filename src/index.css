@@ -11143,43 +11143,43 @@ a {
 
 .nav-dropdown__panel {
   position: absolute;
-  top: calc(100% - 4px);
+  top: calc(100% - 2px);
   left: 0;
   z-index: 45;
-  min-width: min(380px, calc(100vw - 2rem));
-  max-height: min(78vh, 680px);
+  min-width: min(420px, calc(100vw - 2rem));
+  max-height: min(78vh, 720px);
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
   margin: 0;
-  padding: 0.55rem 0;
-  border-radius: 14px;
-  border: 1px solid rgba(130, 176, 220, 0.42);
+  padding: 0.85rem 0 0.75rem;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 165, 106, 0.28);
   background:
-    radial-gradient(120% 80% at 50% -20%, rgba(197, 160, 89, 0.14) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(232, 215, 175, 0.07) 0%, transparent 18%),
     linear-gradient(
       165deg,
-      rgba(12, 22, 44, 0.98) 0%,
-      rgba(5, 12, 26, 0.99) 48%,
-      rgba(4, 8, 18, 0.995) 100%
+      rgba(14, 24, 46, 0.985) 0%,
+      rgba(7, 14, 28, 0.992) 52%,
+      rgba(4, 9, 18, 0.996) 100%
     );
-  backdrop-filter: blur(22px) saturate(1.45);
-  -webkit-backdrop-filter: blur(22px) saturate(1.45);
+  backdrop-filter: blur(24px) saturate(1.35);
+  -webkit-backdrop-filter: blur(24px) saturate(1.35);
   box-shadow:
-    0 28px 64px rgba(0, 4, 18, 0.62),
-    0 0 0 1px rgba(255, 255, 255, 0.055) inset,
-    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    0 36px 80px rgba(0, 4, 16, 0.58),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    inset 0 1px 0 rgba(232, 215, 175, 0.1);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-8px) scale(0.99);
+  transform: translateY(-10px);
   transform-origin: 50% 0;
   transition:
-    opacity 0.22s var(--nav-drop-ease),
-    transform 0.26s var(--nav-drop-ease),
-    visibility 0s linear 0.26s,
-    box-shadow 0.25s ease;
+    opacity 0.28s var(--nav-drop-ease),
+    transform 0.32s var(--nav-drop-ease),
+    visibility 0s linear 0.32s,
+    box-shadow 0.28s ease;
   pointer-events: none;
 }
 
@@ -11187,17 +11187,17 @@ a {
 .nav-dropdown:focus-within .nav-dropdown__panel {
   visibility: visible;
   transition:
-    opacity 0.2s var(--nav-drop-ease),
-    transform 0.24s var(--nav-drop-ease),
+    opacity 0.24s var(--nav-drop-ease),
+    transform 0.3s var(--nav-drop-ease),
     visibility 0s linear 0s,
-    box-shadow 0.25s ease;
+    box-shadow 0.28s ease;
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
   pointer-events: auto;
   box-shadow:
-    0 32px 72px rgba(0, 6, 24, 0.68),
-    0 0 0 1px rgba(197, 160, 89, 0.12) inset,
-    0 1px 0 rgba(255, 255, 255, 0.07) inset;
+    0 40px 90px rgba(0, 6, 20, 0.64),
+    0 0 0 1px rgba(201, 165, 106, 0.18) inset,
+    inset 0 1px 0 rgba(232, 215, 175, 0.14);
 }
 
 .nav-dropdown__list {
@@ -11209,16 +11209,16 @@ a {
 /* Desktop: staggered reveal (premium, calm) */
 @media (min-width: 981px) {
   .nav-dropdown__panel {
-    min-width: min(640px, calc(100vw - 2rem));
-    max-height: min(78vh, 720px);
-    padding-bottom: 0.55rem;
+    min-width: min(720px, calc(100vw - 2.5rem));
+    max-height: min(78vh, 760px);
+    padding: 1rem 0 0.9rem;
   }
 
   .nav-dropdown__list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.55rem 0.65rem;
-    padding: 0 0.6rem 0.55rem;
+    gap: 0.55rem 0.6rem;
+    padding: 0.15rem 0.9rem 0.35rem;
     align-items: stretch;
   }
 
@@ -11229,92 +11229,98 @@ a {
 
   .nav-dropdown__list .nav-dropdown__link {
     flex: 1;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     justify-content: center;
-    padding: 0.78rem 0.85rem 0.82rem;
-    border-radius: 13px;
-    border: 1px solid rgba(130, 175, 225, 0.28);
+    gap: 0.28rem;
+    min-height: 4.6rem;
+    padding: 0.95rem 1.05rem 1rem 1.15rem;
+    border-radius: 3px;
+    border: 1px solid rgba(201, 165, 106, 0.16);
     background:
-      radial-gradient(125% 120% at 100% 0%, rgba(197, 160, 89, 0.1) 0%, transparent 52%),
-      rgba(255, 255, 255, 0.045);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 4px 14px rgba(0, 6, 18, 0.28);
+      linear-gradient(135deg, rgba(232, 215, 175, 0.06) 0%, transparent 42%),
+      rgba(255, 255, 255, 0.028);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
     transition:
-      transform 0.38s var(--nav-drop-ease),
+      transform 0.4s var(--nav-drop-ease),
       border-color 0.35s ease,
-      box-shadow 0.38s ease,
-      background 0.38s ease;
+      box-shadow 0.4s ease,
+      background 0.4s ease;
   }
 
   .nav-dropdown__list .nav-dropdown__link:hover,
   .nav-dropdown__list .nav-dropdown__link:focus-visible {
-    border-color: rgba(197, 160, 89, 0.52);
-    transform: translateY(-4px) scale(1.02);
-    padding-left: 0.85rem;
+    border-color: rgba(201, 165, 106, 0.48);
+    background:
+      linear-gradient(135deg, rgba(232, 215, 175, 0.12) 0%, transparent 48%),
+      rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px);
+    padding-left: 1.15rem;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 12px 32px rgba(0, 10, 28, 0.45),
-      0 0 28px rgba(197, 160, 89, 0.18);
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 14px 36px rgba(0, 8, 22, 0.4);
   }
 
   .nav-dropdown__list .nav-dropdown__link::before {
-    left: 0.42rem;
-    top: 0.48rem;
-    bottom: 0.48rem;
-    width: 3px;
+    left: 0;
+    top: 0.7rem;
+    bottom: 0.7rem;
+    width: 2px;
+    border-radius: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(245, 230, 200, 0.95) 0%,
+      rgba(201, 165, 106, 0.55) 55%,
+      rgba(201, 165, 106, 0.08) 100%
+    );
   }
 
   .nav-dropdown__list .nav-dropdown__title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.92rem, 1.05vw, 1.02rem);
-    font-weight: 700;
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.12rem, 1.35vw, 1.32rem);
+    font-weight: 500;
     font-style: normal;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1.35;
+    line-height: 1.22;
     max-width: 100%;
-    text-align: center;
+    text-align: left;
     width: 100%;
-    color: rgba(250, 252, 255, 0.98);
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+    color: rgba(252, 250, 246, 0.98);
+    text-shadow: none;
     transition:
       color 0.28s ease,
-      text-shadow 0.28s ease,
       letter-spacing 0.28s ease;
   }
 
   .nav-dropdown__list .nav-dropdown__eyebrow {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.48rem, 0.58vw, 0.54rem);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    margin-bottom: 0.42rem;
-    text-align: center;
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    margin-bottom: 0.1rem;
+    text-align: left;
     width: 100%;
-    color: #4a90e2;
+    color: #8eb8e8;
     opacity: 1;
-    text-shadow: 0 0 14px rgba(74, 144, 226, 0.42);
+    text-shadow: none;
   }
 
   .nav-dropdown__list .nav-dropdown__link:hover .nav-dropdown__title,
   .nav-dropdown__list .nav-dropdown__link:focus-visible .nav-dropdown__title {
-    color: rgba(255, 255, 255, 1);
-    letter-spacing: 0.045em;
-    text-shadow:
-      0 1px 12px rgba(0, 0, 0, 0.42),
-      0 0 22px rgba(197, 160, 89, 0.22);
+    color: #fffef9;
+    letter-spacing: 0.018em;
+    text-shadow: none;
   }
 
   .nav-dropdown__list .nav-dropdown__link:hover .nav-dropdown__eyebrow,
   .nav-dropdown__list .nav-dropdown__link:focus-visible .nav-dropdown__eyebrow {
-    color: #a5d2ff;
+    color: #b5d4f5;
     opacity: 1;
-    text-shadow: 0 0 18px rgba(165, 210, 255, 0.55);
+    text-shadow: none;
   }
 
   .nav-dropdown__link--all {
@@ -11468,16 +11474,16 @@ a {
 
 .nav-dropdown__link--all {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.7rem, 0.8vw, 0.76rem);
-  font-weight: 750;
+  font-size: 0.62rem;
+  font-weight: 600;
   font-style: normal;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(220, 236, 255, 0.96);
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
-  border-bottom: none;
-  margin-bottom: 0.28rem;
-  padding-bottom: 0.88rem;
+  color: rgba(232, 215, 175, 0.9);
+  text-shadow: none;
+  border-bottom: 1px solid rgba(201, 165, 106, 0.2);
+  margin: 0 0.9rem 0.55rem;
+  padding: 0.35rem 0.35rem 0.95rem;
 }
 
 .nav-dropdown__link--all::before {
@@ -11486,68 +11492,67 @@ a {
 
 .nav-dropdown__link--all:hover,
 .nav-dropdown__link--all:focus-visible {
-  transform: translateX(2px);
-  padding-left: 1.38rem;
+  transform: none;
+  padding-left: 0.35rem;
+  color: #fffef9;
+  background: transparent;
+  box-shadow: none;
+  border-bottom-color: rgba(232, 215, 175, 0.45);
 }
 
 .nav-dropdown__eyebrow {
   display: block;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.48rem, 0.62vw, 0.54rem);
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  line-height: 1.4;
-  color: #4a90e2;
+  line-height: 1.45;
+  color: #8eb8e8;
   opacity: 1;
-  text-shadow: 0 0 14px rgba(74, 144, 226, 0.42);
+  text-shadow: none;
   transition:
     color 0.32s ease,
-    opacity 0.32s ease,
-    letter-spacing 0.32s ease,
-    text-shadow 0.32s ease;
+    letter-spacing 0.32s ease;
 }
 
 .nav-dropdown__link:hover .nav-dropdown__eyebrow,
 .nav-dropdown__link:focus-visible .nav-dropdown__eyebrow {
-  color: #a5d2ff;
-  letter-spacing: 0.16em;
+  color: #b5d4f5;
+  letter-spacing: 0.22em;
   opacity: 1;
-  text-shadow: 0 0 18px rgba(165, 210, 255, 0.55);
+  text-shadow: none;
 }
 
 .nav-dropdown__title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-weight: 500;
   font-style: normal;
-  font-size: clamp(0.9rem, 1.05vw, 1rem);
-  letter-spacing: 0.02em;
-  line-height: 1.35;
-  color: rgba(250, 252, 255, 0.98);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+  font-size: clamp(1.05rem, 1.2vw, 1.22rem);
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: rgba(252, 250, 246, 0.98);
+  text-shadow: none;
   transition:
     color 0.28s ease,
-    text-shadow 0.28s ease,
     letter-spacing 0.28s ease;
 }
 
 .nav-dropdown__link:hover .nav-dropdown__title,
 .nav-dropdown__link:focus-visible .nav-dropdown__title {
-  color: #ffffff;
-  letter-spacing: 0.025em;
-  text-shadow:
-    0 1px 10px rgba(0, 0, 0, 0.35),
-    0 0 16px rgba(111, 176, 255, 0.18);
+  color: #fffef9;
+  letter-spacing: 0.015em;
+  text-shadow: none;
 }
 
 .nav-dropdown__status {
-  margin-top: 0.28rem;
+  margin-top: 0.35rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.58rem;
-  font-weight: 650;
+  font-size: 0.52rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(230, 190, 120, 0.92);
+  color: rgba(201, 165, 106, 0.78);
 }
 
 .nav-dropdown__link--soon {
@@ -16025,7 +16030,7 @@ a.contact-channel__value:focus-visible {
     margin: 0 0 0.5rem;
     padding: 0 0 0.75rem 0.85rem;
     border: none;
-    border-left: 2px solid rgba(197, 160, 89, 0.28);
+    border-left: 2px solid rgba(201, 165, 106, 0.28);
     border-radius: 0;
     background: rgba(0, 0, 0, 0.18);
     box-shadow: none;
@@ -16036,38 +16041,39 @@ a.contact-channel__value:focus-visible {
   }
 
   .nav-dropdown__link {
-    padding: 0.72rem 0.4rem 0.72rem 0.35rem;
+    padding: 0.78rem 0.4rem 0.78rem 0.35rem;
     font-size: 0.88rem;
     min-height: 2.85rem;
     align-items: flex-start;
   }
 
   .nav-dropdown__eyebrow {
-    font-size: clamp(0.46rem, 2vw, 0.52rem);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    margin-bottom: 0.32rem;
-    color: #4a90e2;
-    text-shadow: 0 0 14px rgba(74, 144, 226, 0.42);
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.22rem;
+    color: #8eb8e8;
+    text-shadow: none;
   }
 
   .nav-dropdown__title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(0.88rem, 3.2vw, 0.98rem);
-    font-weight: 700;
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.05rem, 4vw, 1.2rem);
+    font-weight: 500;
     font-style: normal;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1.35;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.32);
+    line-height: 1.25;
+    text-shadow: none;
   }
 
   .nav-dropdown__link--all {
-    margin-bottom: 0.35rem;
-    padding-bottom: 0.55rem;
+    margin: 0 0 0.45rem;
+    padding: 0.25rem 0 0.7rem;
+    border-bottom-color: rgba(201, 165, 106, 0.22);
   }
 
   .nav-dropdown__list li,
@@ -26400,15 +26406,25 @@ a.action {
 }
 
 .wedding-hero__bg--loaded {
-  opacity: 0.78;
+  opacity: 0.92;
 }
 
 .wedding-hero__bg-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 28%;
+  object-position: center 40%;
   display: block;
+  opacity: 0;
+  transition: opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
+}
+
+.wedding-hero__bg-img--active {
+  opacity: 1;
+  z-index: 1;
 }
 
 .wedding-hero__vignette {
@@ -26417,8 +26433,8 @@ a.action {
   background: radial-gradient(
     ellipse 90% 75% at 50% 42%,
     transparent 0%,
-    rgba(12, 12, 12, 0.35) 55%,
-    rgba(12, 12, 12, 0.82) 100%
+    rgba(12, 12, 12, 0.28) 55%,
+    rgba(12, 12, 12, 0.72) 100%
   );
   pointer-events: none;
 }
@@ -26430,10 +26446,10 @@ a.action {
   background:
     linear-gradient(
       180deg,
-      rgba(18, 18, 18, 0.55) 0%,
-      rgba(18, 18, 18, 0.18) 32%,
-      rgba(18, 18, 18, 0.42) 62%,
-      rgba(14, 14, 14, 0.88) 100%
+      rgba(18, 18, 18, 0.48) 0%,
+      rgba(18, 18, 18, 0.12) 34%,
+      rgba(18, 18, 18, 0.34) 64%,
+      rgba(14, 14, 14, 0.82) 100%
     );
   pointer-events: none;
 }
@@ -26947,7 +26963,7 @@ a.action {
   .wedding-hero__bg {
     transform: none;
     animation: none;
-    opacity: 0.78;
+    opacity: 0.92;
     transition: none;
   }
 
@@ -27683,6 +27699,12 @@ a.action {
   border-radius: 3px;
   box-shadow: 0 6px 24px rgba(45, 100, 150, 0.35);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+button.wedding-about__cta {
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .wedding-about__cta:hover {
@@ -31980,27 +32002,38 @@ article.wedding-highlight-tiles__tile {
 
 .wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__caption,
 .wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__caption {
-  background: linear-gradient(
-    180deg,
-    rgba(6, 14, 28, 0.05) 0%,
-    rgba(8, 20, 42, 0.62) 36%,
-    rgba(4, 10, 22, 0.94) 100%
-  );
-  backdrop-filter: blur(14px) saturate(1.25);
-  -webkit-backdrop-filter: blur(14px) saturate(1.25);
-  border-top-color: rgba(255, 255, 255, 0.28);
-  padding-top: clamp(1.25rem, 2.4vw, 1.75rem);
-  padding-bottom: clamp(1.25rem, 2.4vw, 1.7rem);
-  box-shadow: none;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(201, 165, 106, 0.18) 0%,
+      transparent 32%,
+      transparent 68%,
+      rgba(63, 127, 255, 0.14) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(6, 14, 28, 0.1) 0%,
+      rgba(8, 20, 42, 0.68) 38%,
+      rgba(4, 10, 22, 0.96) 100%
+    );
+  backdrop-filter: blur(16px) saturate(1.35);
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  border-top-color: rgba(232, 213, 176, 0.4);
+  padding-top: clamp(1.35rem, 2.6vw, 1.9rem);
+  padding-bottom: clamp(1.3rem, 2.5vw, 1.85rem);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 -22px 42px rgba(2, 8, 20, 0.36);
 }
 
 .wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__title,
 .wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__title {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  letter-spacing: 0.028em;
   color: #ffffff;
   text-shadow:
-    0 1px 0 rgba(255, 248, 235, 0.28),
-    0 0 24px rgba(201, 165, 106, 0.28),
+    0 1px 0 rgba(255, 248, 235, 0.32),
+    0 0 28px rgba(201, 165, 106, 0.35),
     0 2px 18px rgba(0, 12, 36, 0.5);
 }
 
@@ -32094,6 +32127,10 @@ article.wedding-highlight-tiles__tile {
 }
 
 .wedding-highlight-tiles__caption {
+  --caption-gold: #e8d5b0;
+  --caption-gold-deep: #c9a56a;
+  --caption-sky: #9ec4ff;
+  --caption-blue: #3f7fff;
   position: absolute;
   left: 0;
   right: 0;
@@ -32101,38 +32138,158 @@ article.wedding-highlight-tiles__tile {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  padding: clamp(1.1rem, 2.2vw, 1.55rem) clamp(1rem, 2vw, 1.45rem) clamp(1.15rem, 2.2vw, 1.6rem);
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding:
+    clamp(1.2rem, 2.4vw, 1.7rem)
+    clamp(1.15rem, 2.2vw, 1.6rem)
+    clamp(1.2rem, 2.4vw, 1.7rem)
+    clamp(1.35rem, 2.6vw, 1.85rem);
   border-radius: 0;
   border: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  background: linear-gradient(
-    180deg,
-    rgba(6, 14, 28, 0) 0%,
-    rgba(6, 14, 28, 0.55) 38%,
-    rgba(4, 10, 22, 0.88) 100%
-  );
-  backdrop-filter: blur(10px) saturate(1.15);
-  -webkit-backdrop-filter: blur(10px) saturate(1.15);
-  box-shadow: none;
+  border-top: 1px solid rgba(232, 213, 176, 0.22);
+  background:
+    linear-gradient(
+      105deg,
+      rgba(201, 165, 106, 0.12) 0%,
+      transparent 28%,
+      transparent 72%,
+      rgba(63, 127, 255, 0.1) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(6, 14, 28, 0.08) 0%,
+      rgba(6, 14, 28, 0.62) 42%,
+      rgba(4, 10, 22, 0.92) 100%
+    );
+  backdrop-filter: blur(14px) saturate(1.28);
+  -webkit-backdrop-filter: blur(14px) saturate(1.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 -18px 36px rgba(2, 8, 20, 0.28);
+  overflow: hidden;
   transition:
-    background 0.4s ease,
-    border-color 0.35s ease,
-    padding 0.4s ease,
-    backdrop-filter 0.4s ease;
+    background 0.45s ease,
+    border-color 0.4s ease,
+    padding 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    backdrop-filter 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.wedding-highlight-tiles__caption::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 62%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__caption::after,
+.wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__caption::after {
+  animation: weddingCaptionShine 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes weddingCaptionShine {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
 }
 
 .wedding-highlight-tiles__caption::before {
-  content: '';
+  content: none;
+}
+
+.wedding-highlight-tiles__rail {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 2px;
-  border-radius: 0;
-  background: linear-gradient(180deg, rgba(210, 228, 255, 0.2) 0%, rgba(180, 210, 255, 0.95) 45%, rgba(63, 127, 255, 0.65) 100%);
-  opacity: 0.95;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: linear-gradient(
+    180deg,
+    var(--caption-gold) 0%,
+    var(--caption-blue) 48%,
+    var(--caption-gold-deep) 100%
+  );
+  background-size: 100% 220%;
+  box-shadow:
+    0 0 14px rgba(63, 127, 255, 0.45),
+    0 0 18px rgba(201, 165, 106, 0.35);
+  animation: weddingCaptionRailShift 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--tile-i, 0) * -0.55s);
   pointer-events: none;
+}
+
+.wedding-highlight-tiles__rail::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 28%;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: weddingCaptionRailGlow 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--tile-i, 0) * -0.55s);
+  opacity: 0.85;
+}
+
+@keyframes weddingCaptionRailShift {
+  0%,
+  100% {
+    background-position: 0% 0%;
+    filter: hue-rotate(0deg) saturate(1);
+    box-shadow:
+      0 0 14px rgba(63, 127, 255, 0.35),
+      0 0 16px rgba(201, 165, 106, 0.4);
+  }
+  50% {
+    background-position: 0% 100%;
+    filter: hue-rotate(12deg) saturate(1.2);
+    box-shadow:
+      0 0 18px rgba(63, 127, 255, 0.55),
+      0 0 22px rgba(232, 213, 176, 0.35);
+  }
+}
+
+@keyframes weddingCaptionRailGlow {
+  0%,
+  100% {
+    top: 8%;
+  }
+  50% {
+    top: 58%;
+  }
+}
+
+.wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__rail,
+.wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__rail {
+  width: 4px;
+  animation-duration: 2.4s;
+  box-shadow:
+    0 0 20px rgba(63, 127, 255, 0.65),
+    0 0 26px rgba(201, 165, 106, 0.5);
 }
 
 .wedding-highlight-tiles__caption p {
@@ -32140,15 +32297,18 @@ article.wedding-highlight-tiles__tile {
 }
 
 .wedding-highlight-tiles__kicker {
-  padding-left: 0.7rem;
+  position: relative;
+  z-index: 1;
+  padding-left: 0.15rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-style: normal;
   font-weight: 750;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(210, 228, 255, 0.92);
-  margin: 0 0 0.2rem;
+  color: rgba(232, 213, 176, 0.92);
+  margin: 0 0 0.1rem;
+  text-shadow: 0 1px 10px rgba(4, 12, 28, 0.45);
 }
 
 .wedding-highlight-tiles__kicker::after {
@@ -32156,26 +32316,75 @@ article.wedding-highlight-tiles__tile {
 }
 
 .wedding-highlight-tiles__title {
-  padding-left: 0.7rem;
-  margin: 0.2rem 0 0;
+  position: relative;
+  z-index: 1;
+  padding-left: 0.15rem;
+  margin: 0.05rem 0 0;
   max-height: none;
   opacity: 1;
   overflow: visible;
   font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.18rem, 2.15vw, 1.55rem);
+  font-size: clamp(1.22rem, 2.25vw, 1.62rem);
   font-weight: 500;
   font-style: italic;
-  letter-spacing: 0.02em;
-  line-height: 1.22;
-  color: #f7efe0;
+  letter-spacing: 0.018em;
+  line-height: 1.2;
+  color: #faf4ea;
   text-shadow:
-    0 1px 0 rgba(255, 248, 235, 0.18),
-    0 2px 18px rgba(0, 12, 36, 0.55);
+    0 1px 0 rgba(255, 248, 235, 0.22),
+    0 2px 20px rgba(0, 12, 36, 0.55),
+    0 0 28px rgba(201, 165, 106, 0.12);
   transform: none;
   transition:
-    color 0.35s ease,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    text-shadow 0.35s ease;
+    color 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    text-shadow 0.4s ease,
+    letter-spacing 0.4s ease;
+}
+
+.wedding-highlight-tiles__title-rule {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 2.6rem;
+  height: 1px;
+  margin: 0.35rem 0 0.1rem 0.15rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--caption-gold) 0%,
+    var(--caption-blue) 55%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  box-shadow: 0 0 10px rgba(201, 165, 106, 0.35);
+  animation: weddingCaptionRuleShift 5.2s ease-in-out infinite;
+  animation-delay: calc(var(--tile-i, 0) * -0.4s);
+  transition:
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@keyframes weddingCaptionRuleShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.85;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+}
+
+.wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__title-rule,
+.wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__title-rule {
+  width: 4.25rem;
+  box-shadow:
+    0 0 14px rgba(63, 127, 255, 0.45),
+    0 0 12px rgba(201, 165, 106, 0.4);
+  animation-duration: 2.2s;
 }
 
 .wedding-highlight-tiles__title-el {
@@ -32205,7 +32414,7 @@ article.wedding-highlight-tiles__tile {
 
 .wedding-highlight-tiles__cta {
   align-self: flex-start;
-  margin: 0 0 0 0.7rem;
+  margin: 0 0 0 0.15rem;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
@@ -32280,6 +32489,13 @@ article.wedding-highlight-tiles__tile {
   .wedding-highlight-tiles__cta,
   .wedding-highlight-tiles__cta svg {
     transition: none;
+  }
+
+  .wedding-highlight-tiles__rail,
+  .wedding-highlight-tiles__rail::after,
+  .wedding-highlight-tiles__title-rule,
+  .wedding-highlight-tiles__caption::after {
+    animation: none !important;
   }
 
   .wedding-highlight-tiles__tile:hover,
@@ -33985,7 +34201,12 @@ article.wedding-highlight-tiles__tile {
 
   .wedding-hero__bg,
   .wedding-hero__bg--loaded {
-    opacity: 0.78;
+    opacity: 0.92;
+    transition: none;
+  }
+
+  .wedding-hero__bg-img,
+  .wedding-hero__bg-img--active {
     transition: none;
   }
 }
@@ -34743,19 +34964,27 @@ article.wedding-highlight-tiles__tile {
   gap: 0.15rem;
   min-height: 100%;
   padding: 1.55rem 1.45rem 1.6rem;
-  border: 1px solid rgba(63, 127, 255, 0.2);
+  border: 1px solid rgba(201, 165, 106, 0.28);
   border-radius: 18px;
   background:
-    linear-gradient(165deg, #ffffff 0%, #f4f8ff 100%);
+    linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(232, 241, 255, 0.06) 48%,
+      rgba(201, 165, 106, 0.07) 100%
+    );
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
   box-shadow:
-    0 22px 52px rgba(4, 12, 28, 0.28),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 22px 52px rgba(2, 8, 20, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
   overflow: hidden;
   transition:
     border-color 0.4s ease,
     box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.4s ease;
 }
 
 .wedding-visit__card::before {
@@ -34765,7 +34994,7 @@ article.wedding-highlight-tiles__tile {
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, #3f7fff 0%, #1a5bb8 100%);
+  background: linear-gradient(180deg, #e8d5b0 0%, #3f7fff 55%, #c9a56a 100%);
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -34778,17 +35007,25 @@ article.wedding-highlight-tiles__tile {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(63, 127, 255, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 165, 106, 0.16) 0%, transparent 70%);
   pointer-events: none;
   transition: opacity 0.4s ease, transform 0.5s ease;
-  opacity: 0.65;
+  opacity: 0.7;
 }
 
 .wedding-visit__card:hover {
-  border-color: rgba(63, 127, 255, 0.45);
+  border-color: rgba(232, 213, 176, 0.48);
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(232, 241, 255, 0.09) 48%,
+      rgba(201, 165, 106, 0.1) 100%
+    );
   box-shadow:
-    0 26px 56px rgba(25, 70, 150, 0.16),
-    0 0 0 1px rgba(63, 127, 255, 0.1);
+    0 28px 58px rgba(2, 8, 20, 0.42),
+    0 0 0 1px rgba(232, 213, 176, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
   transform: translateY(-6px);
 }
 
@@ -34823,10 +35060,10 @@ article.wedding-highlight-tiles__tile {
   border-radius: 12px;
   display: grid;
   place-items: center;
-  color: var(--ws-blue);
-  border: 1px solid rgba(63, 127, 255, 0.28);
-  background: linear-gradient(160deg, rgba(232, 241, 255, 0.95) 0%, #ffffff 100%);
-  box-shadow: 0 8px 18px rgba(25, 70, 150, 0.1);
+  color: #e8d5b0;
+  border: 1px solid rgba(201, 165, 106, 0.35);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.12) 0%, rgba(63, 127, 255, 0.14) 100%);
+  box-shadow: 0 8px 18px rgba(2, 8, 20, 0.25);
   transition:
     background 0.35s ease,
     color 0.35s ease,
@@ -34842,14 +35079,14 @@ article.wedding-highlight-tiles__tile {
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ws-blue);
+  color: #c9a56a;
 }
 
 .wedding-visit__label--spaced {
   margin-top: 1.35rem;
   margin-bottom: 0.75rem;
   padding-top: 1.1rem;
-  border-top: 1px solid var(--ws-line);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .wedding-visit__address {
@@ -34858,7 +35095,7 @@ article.wedding-highlight-tiles__tile {
   font-size: 0.94rem;
   font-style: normal;
   line-height: 1.72;
-  color: rgba(25, 45, 80, 0.82);
+  color: rgba(232, 241, 255, 0.88);
 }
 
 .wedding-visit__list {
@@ -34878,7 +35115,7 @@ article.wedding-highlight-tiles__tile {
   font-size: 0.92rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: var(--ws-blue-deep);
+  color: rgba(210, 228, 255, 0.95);
   text-decoration: none;
   padding: 0.35rem 0.55rem 0.35rem 0.7rem;
   margin-left: -0.7rem;
@@ -34897,9 +35134,9 @@ article.wedding-highlight-tiles__tile {
   width: 0.28rem;
   height: 0.28rem;
   border-radius: 50%;
-  background: #3f7fff;
+  background: #c9a56a;
   transform: translateY(-50%) scale(0.7);
-  opacity: 0.55;
+  opacity: 0.7;
   transition:
     transform 0.25s ease,
     opacity 0.25s ease,
@@ -34907,8 +35144,8 @@ article.wedding-highlight-tiles__tile {
 }
 
 .wedding-visit__list a:hover {
-  color: var(--ws-blue-bright);
-  background: rgba(63, 127, 255, 0.08);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
   transform: translateX(3px);
 }
 
@@ -36112,7 +36349,7 @@ article.wedding-highlight-tiles__tile {
     0 28px 64px rgba(15, 40, 90, 0.14),
     0 0 0 1px rgba(255, 255, 255, 0.65) inset;
   background: #0d1a33;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 5 / 4;
 }
 
 .wedding-about__photo-main img,
@@ -36120,6 +36357,7 @@ article.wedding-highlight-tiles__tile {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 68% 42%;
   display: block;
   transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -36164,7 +36402,7 @@ article.wedding-highlight-tiles__tile {
 
 .wedding-about__photo-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.85rem;
 }
 
@@ -36174,8 +36412,8 @@ article.wedding-highlight-tiles__tile {
   border-radius: 16px;
   border: 1px solid rgba(26, 91, 184, 0.12);
   box-shadow: 0 14px 32px rgba(15, 40, 90, 0.1);
-  background: #0d1a33;
   aspect-ratio: 4 / 3;
+  background: #0d1a33;
 }
 
 .wedding-about__photo-secondary img,
@@ -36183,8 +36421,24 @@ article.wedding-highlight-tiles__tile {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 45%;
   display: block;
   transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-about__photo-secondary:nth-child(1) img,
+.wedding-about__photo-secondary:nth-child(1) .wedding-lazy-img {
+  object-position: center 40%;
+}
+
+.wedding-about__photo-secondary:nth-child(2) img,
+.wedding-about__photo-secondary:nth-child(2) .wedding-lazy-img {
+  object-position: center 55%;
+}
+
+.wedding-about__photo-secondary:nth-child(3) img,
+.wedding-about__photo-secondary:nth-child(3) .wedding-lazy-img {
+  object-position: center 50%;
 }
 
 .wedding-about__photo-secondary:hover img,
@@ -36394,7 +36648,17 @@ article.wedding-highlight-tiles__tile {
   }
 
   .wedding-about__photo-main {
-    aspect-ratio: 5 / 6;
+    aspect-ratio: 4 / 3;
+  }
+
+  .wedding-about__photo-row {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 520px) {
+    .wedding-about__photo-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 }
 
@@ -79875,7 +80139,8 @@ a.yacht-card {
 }
 
 .appt__field input,
-.appt__field textarea {
+.appt__field textarea,
+.appt__field select {
   width: 100%;
   padding: 0.75rem 0.9rem;
   border-radius: 11px;
@@ -79885,6 +80150,24 @@ a.yacht-card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(130, 176, 255, 0.24);
   transition: border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+}
+
+.appt__field select {
+  cursor: pointer;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(196, 212, 232, 0.75) 50%),
+    linear-gradient(135deg, rgba(196, 212, 232, 0.75) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2.2rem;
+}
+
+.appt__field select option {
+  color: #0b1524;
+  background: #f4f7fc;
 }
 
 .appt__field textarea {
@@ -79898,11 +80181,16 @@ a.yacht-card {
 }
 
 .appt__field input:focus,
-.appt__field textarea:focus {
+.appt__field textarea:focus,
+.appt__field select:focus {
   outline: none;
   border-color: rgba(143, 186, 255, 0.7);
   background: rgba(63, 127, 255, 0.08);
   box-shadow: 0 0 0 3px rgba(63, 127, 255, 0.16);
+}
+
+.appt__fields--plan {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .appt__error {
@@ -79997,7 +80285,8 @@ a.yacht-card {
     grid-template-columns: 1fr;
   }
 
-  .appt__fields {
+  .appt__fields,
+  .appt__fields--plan {
     grid-template-columns: 1fr;
   }
 }
@@ -80012,6 +80301,167 @@ a.yacht-card {
   .appt__btn:hover:not(:disabled) {
     transform: none;
   }
+}
+
+/* ── Wedding Sky planning enquiry (pearl / sky / champagne) ── */
+
+.appt--ws {
+  --ws-plan-ink: #0c1a2e;
+  --ws-plan-muted: rgba(12, 26, 46, 0.62);
+  --ws-plan-blue: #2f6fad;
+  --ws-plan-blue-soft: #6fa3d4;
+  --ws-plan-sky: #d7e7f5;
+  --ws-plan-pearl: #f4f7fb;
+  --ws-plan-ivory: #fbf9f5;
+  --ws-plan-champagne: #b8924e;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 18%, rgba(111, 163, 212, 0.28) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 50% at 80% 90%, rgba(201, 165, 106, 0.14) 0%, transparent 55%),
+    linear-gradient(165deg, rgba(18, 42, 72, 0.78) 0%, rgba(8, 18, 34, 0.88) 100%);
+}
+
+.appt--ws .appt__dialog {
+  border-radius: 4px;
+  color: var(--ws-plan-ink);
+  border: 1px solid rgba(111, 163, 212, 0.28);
+  background:
+    linear-gradient(180deg, rgba(215, 231, 245, 0.55) 0%, transparent 28%),
+    linear-gradient(
+      155deg,
+      var(--ws-plan-ivory) 0%,
+      var(--ws-plan-pearl) 42%,
+      #e8f0f8 100%
+    );
+  box-shadow:
+    0 40px 110px -36px rgba(8, 28, 56, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.55) inset,
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.appt--ws .appt__close {
+  color: rgba(12, 26, 46, 0.55);
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(111, 163, 212, 0.28);
+}
+
+.appt--ws .appt__close:hover {
+  color: var(--ws-plan-ink);
+  background: rgba(215, 231, 245, 0.95);
+}
+
+.appt--ws .appt__head {
+  padding-bottom: 1.15rem;
+  margin-bottom: 1.35rem;
+  border-bottom: 1px solid rgba(111, 163, 212, 0.22);
+}
+
+.appt--ws .appt__eyebrow {
+  color: var(--ws-plan-champagne);
+  letter-spacing: 0.28em;
+}
+
+.appt--ws .appt__title {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  color: var(--ws-plan-ink);
+  letter-spacing: 0.01em;
+}
+
+.appt--ws .appt__sub {
+  color: var(--ws-plan-muted);
+  max-width: 48ch;
+}
+
+.appt--ws .appt__field label {
+  color: rgba(12, 26, 46, 0.72);
+  letter-spacing: 0.12em;
+}
+
+.appt--ws .appt__optional {
+  color: rgba(12, 26, 46, 0.42);
+}
+
+.appt--ws .appt__field input,
+.appt--ws .appt__field textarea,
+.appt--ws .appt__field select {
+  color: var(--ws-plan-ink);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(111, 163, 212, 0.28);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.appt--ws .appt__field input::placeholder,
+.appt--ws .appt__field textarea::placeholder {
+  color: rgba(12, 26, 46, 0.38);
+}
+
+.appt--ws .appt__field select {
+  background-image: linear-gradient(45deg, transparent 50%, rgba(47, 111, 173, 0.7) 50%),
+    linear-gradient(135deg, rgba(47, 111, 173, 0.7) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.72);
+}
+
+.appt--ws .appt__field select option {
+  color: var(--ws-plan-ink);
+  background: #f7fafc;
+}
+
+.appt--ws .appt__field input:focus,
+.appt--ws .appt__field textarea:focus,
+.appt--ws .appt__field select:focus {
+  border-color: rgba(47, 111, 173, 0.55);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(111, 163, 212, 0.22);
+}
+
+.appt--ws .appt__error {
+  color: #7a2430;
+  background: rgba(190, 70, 80, 0.1);
+  border-color: rgba(190, 70, 80, 0.28);
+}
+
+.appt--ws .appt__btn {
+  border-radius: 3px;
+  color: #f8fbff;
+  background: linear-gradient(155deg, #163a68 0%, #2f6fad 48%, #4a8fc4 100%);
+  border: 1px solid rgba(184, 146, 78, 0.45);
+  box-shadow:
+    0 12px 28px -12px rgba(22, 58, 104, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.appt--ws .appt__btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 34px -12px rgba(22, 58, 104, 0.65),
+    0 0 0 1px rgba(184, 146, 78, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.appt--ws .appt__note {
+  color: rgba(12, 26, 46, 0.45);
+}
+
+.appt--ws .appt__success-icon {
+  color: #2f6fad;
+  background: rgba(215, 231, 245, 0.9);
+  border: 1px solid rgba(111, 163, 212, 0.35);
+}
+
+.appt--ws .appt__success h3 {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  color: var(--ws-plan-ink);
+}
+
+.appt--ws .appt__success p {
+  color: var(--ws-plan-muted);
 }
 
 /* ── Janchapelle appointment theme (bridal cream / rose) ── */

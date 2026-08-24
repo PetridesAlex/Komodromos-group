@@ -1054,3 +1054,235 @@ export const weddingDetailPageCopy: {
     ru: 'Важно',
   },
 }
+
+export const weddingPlanEnquiryCopy = {
+  eyebrow: {
+    en: 'Wedding Sky',
+    el: 'Wedding Sky',
+    ru: 'Wedding Sky',
+  } satisfies LocalizedText,
+  title: {
+    en: 'Plan your wedding',
+    el: 'Οργανώστε τον γάμο σας',
+    ru: 'Спланировать свадьбу',
+  } satisfies LocalizedText,
+  subtitle: {
+    en: 'Tell us a little about your celebration — our planners will follow up with tailored ideas and next steps.',
+    el: 'Πείτε μας λίγα για τη γιορτή σας — οι planners μας θα επικοινωνήσουν με εξατομικευμένες ιδέες και επόμενα βήματα.',
+    ru: 'Расскажите немного о вашем торжестве — наши планировщики свяжутся с персональными идеями и следующими шагами.',
+  } satisfies LocalizedText,
+  optional: {
+    en: 'optional',
+    el: 'προαιρετικό',
+    ru: 'необязательно',
+  } satisfies LocalizedText,
+  selectPlaceholder: {
+    en: 'Select…',
+    el: 'Επιλέξτε…',
+    ru: 'Выберите…',
+  } satisfies LocalizedText,
+  fields: {
+    name: {
+      en: 'Your name',
+      el: 'Το όνομά σας',
+      ru: 'Ваше имя',
+    } satisfies LocalizedText,
+    partnerName: {
+      en: 'Partner’s name',
+      el: 'Όνομα συντρόφου',
+      ru: 'Имя партнёра',
+    } satisfies LocalizedText,
+    email: {
+      en: 'Email',
+      el: 'Email',
+      ru: 'Email',
+    } satisfies LocalizedText,
+    phone: {
+      en: 'Phone',
+      el: 'Τηλέφωνο',
+      ru: 'Телефон',
+    } satisfies LocalizedText,
+    preferredDate: {
+      en: 'Preferred date',
+      el: 'Επιθυμητή ημερομηνία',
+      ru: 'Желаемая дата',
+    } satisfies LocalizedText,
+    guestCount: {
+      en: 'Estimated guests',
+      el: 'Εκτιμώμενοι καλεσμένοι',
+      ru: 'Ориентировочное число гостей',
+    } satisfies LocalizedText,
+    ceremonyType: {
+      en: 'Ceremony type',
+      el: 'Τύπος τελετής',
+      ru: 'Тип церемонии',
+    } satisfies LocalizedText,
+    venue: {
+      en: 'Venue preference',
+      el: 'Προτίμηση χώρου',
+      ru: 'Предпочтения по площадке',
+    } satisfies LocalizedText,
+    packageInterest: {
+      en: 'Package interest',
+      el: 'Ενδιαφέρον για πακέτο',
+      ru: 'Интерес к пакету',
+    } satisfies LocalizedText,
+    budget: {
+      en: 'Budget range',
+      el: 'Εύρος προϋπολογισμού',
+      ru: 'Бюджет',
+    } satisfies LocalizedText,
+    notes: {
+      en: 'Planning notes',
+      el: 'Σημειώσεις οργάνωσης',
+      ru: 'Заметки по организации',
+    } satisfies LocalizedText,
+  },
+  placeholders: {
+    name: {
+      en: 'Full name',
+      el: 'Ονοματεπώνυμο',
+      ru: 'Полное имя',
+    } satisfies LocalizedText,
+    partnerName: {
+      en: 'Partner’s full name',
+      el: 'Ονοματεπώνυμο συντρόφου',
+      ru: 'Полное имя партнёра',
+    } satisfies LocalizedText,
+    email: {
+      en: 'you@example.com',
+      el: 'you@example.com',
+      ru: 'you@example.com',
+    } satisfies LocalizedText,
+    phone: {
+      en: '+357 …',
+      el: '+357 …',
+      ru: '+357 …',
+    } satisfies LocalizedText,
+    guestCount: {
+      en: 'e.g. 80',
+      el: 'π.χ. 80',
+      ru: 'напр. 80',
+    } satisfies LocalizedText,
+    venue: {
+      en: 'Beach, hotel, estate, still deciding…',
+      el: 'Παραλία, ξενοδοχείο, κτήμα, ακόμη αποφασίζουμε…',
+      ru: 'Пляж, отель, усадьба, ещё выбираем…',
+    } satisfies LocalizedText,
+    packageInterest: {
+      en: 'Wedding, christening, or a specific package',
+      el: 'Γάμος, βάπτιση ή συγκεκριμένο πακέτο',
+      ru: 'Свадьба, крестины или конкретный пакет',
+    } satisfies LocalizedText,
+    notes: {
+      en: 'Style, must-haves, timing, or anything we should know…',
+      el: 'Στυλ, must-haves, timing ή οτιδήποτε πρέπει να γνωρίζουμε…',
+      ru: 'Стиль, обязательные детали, сроки или всё, что нам важно знать…',
+    } satisfies LocalizedText,
+  },
+  ceremonyOptions: [
+    {
+      value: 'wedding',
+      label: { en: 'Wedding', el: 'Γάμος', ru: 'Свадьба' } satisfies LocalizedText,
+    },
+    {
+      value: 'christening',
+      label: { en: 'Christening', el: 'Βάπτιση', ru: 'Крестины' } satisfies LocalizedText,
+    },
+    {
+      value: 'civil',
+      label: {
+        en: 'Civil ceremony',
+        el: 'Πολιτική τελετή',
+        ru: 'Гражданская церемония',
+      } satisfies LocalizedText,
+    },
+    {
+      value: 'other',
+      label: { en: 'Other celebration', el: 'Άλλη εκδήλωση', ru: 'Другое торжество' } satisfies LocalizedText,
+    },
+  ] as const,
+  budgetOptions: [
+    {
+      value: 'under-5k',
+      label: { en: 'Under €5,000', el: 'Κάτω από €5.000', ru: 'До €5 000' } satisfies LocalizedText,
+    },
+    {
+      value: '5-10k',
+      label: { en: '€5,000 – €10,000', el: '€5.000 – €10.000', ru: '€5 000 – €10 000' } satisfies LocalizedText,
+    },
+    {
+      value: '10-20k',
+      label: { en: '€10,000 – €20,000', el: '€10.000 – €20.000', ru: '€10 000 – €20 000' } satisfies LocalizedText,
+    },
+    {
+      value: '20k-plus',
+      label: { en: '€20,000+', el: '€20.000+', ru: '€20 000+' } satisfies LocalizedText,
+    },
+    {
+      value: 'undecided',
+      label: {
+        en: 'Still deciding',
+        el: 'Ακόμη αποφασίζουμε',
+        ru: 'Ещё решаем',
+      } satisfies LocalizedText,
+    },
+  ] as const,
+  submit: {
+    en: 'Send enquiry',
+    el: 'Αποστολή αιτήματος',
+    ru: 'Отправить запрос',
+  } satisfies LocalizedText,
+  submitting: {
+    en: 'Sending…',
+    el: 'Αποστολή…',
+    ru: 'Отправка…',
+  } satisfies LocalizedText,
+  note: {
+    en: 'We’ll reply by email within 1–2 business days.',
+    el: 'Θα απαντήσουμε με email εντός 1–2 εργάσιμων ημερών.',
+    ru: 'Ответим по email в течение 1–2 рабочих дней.',
+  } satisfies LocalizedText,
+  successTitle: {
+    en: 'Enquiry received',
+    el: 'Το αίτημα ελήφθη',
+    ru: 'Запрос получен',
+  } satisfies LocalizedText,
+  successBody: {
+    en: 'Thank you — the Wedding Sky team will be in touch shortly to begin planning your celebration.',
+    el: 'Ευχαριστούμε — η ομάδα της Wedding Sky θα επικοινωνήσει σύντομα για να ξεκινήσουμε τον σχεδιασμό της γιορτής σας.',
+    ru: 'Спасибо — команда Wedding Sky скоро свяжется с вами, чтобы начать планирование вашего торжества.',
+  } satisfies LocalizedText,
+  done: {
+    en: 'Done',
+    el: 'Έτοιμο',
+    ru: 'Готово',
+  } satisfies LocalizedText,
+  close: {
+    en: 'Close',
+    el: 'Κλείσιμο',
+    ru: 'Закрыть',
+  } satisfies LocalizedText,
+  errors: {
+    name: {
+      en: 'Please enter your name.',
+      el: 'Παρακαλώ εισάγετε το όνομά σας.',
+      ru: 'Пожалуйста, укажите ваше имя.',
+    } satisfies LocalizedText,
+    email: {
+      en: 'Please enter your email address.',
+      el: 'Παρακαλώ εισάγετε το email σας.',
+      ru: 'Пожалуйста, укажите email.',
+    } satisfies LocalizedText,
+    phone: {
+      en: 'Please enter a contact number.',
+      el: 'Παρακαλώ εισάγετε αριθμό επικοινωνίας.',
+      ru: 'Пожалуйста, укажите номер телефона.',
+    } satisfies LocalizedText,
+    generic: {
+      en: 'Could not send your enquiry. Please try again or email weddingskycy@gmail.com.',
+      el: 'Δεν ήταν δυνατή η αποστολή. Δοκιμάστε ξανά ή στείλτε email στο weddingskycy@gmail.com.',
+      ru: 'Не удалось отправить запрос. Попробуйте снова или напишите на weddingskycy@gmail.com.',
+    } satisfies LocalizedText,
+  },
+}
