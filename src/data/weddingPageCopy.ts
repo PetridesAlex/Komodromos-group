@@ -499,6 +499,7 @@ export const weddingTestimonialsCopy: {
   pageLabel: LocalizedText
   pageAria: LocalizedText
   reviewsShown: LocalizedText
+  verifiedClient: LocalizedText
 } = {
   eyebrow: {
     en: 'Love stories',
@@ -584,6 +585,11 @@ export const weddingTestimonialsCopy: {
     en: '{count} couple reviews',
     el: '{count} κριτικές ζευγαριών',
     ru: '{count} отзывов пар',
+  },
+  verifiedClient: {
+    en: 'Verified client',
+    el: 'Επαληθευμένος πελάτης',
+    ru: 'Подтверждённый клиент',
   },
 }
 

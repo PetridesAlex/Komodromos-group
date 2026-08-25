@@ -131,8 +131,15 @@ export default function WeddingIntroSocial() {
               </div>
             </div>
             <figcaption className="wedding-intro-social__media-caption reveal reveal-delay-4">
-              <span>Wedding Sky</span>
-              <strong>{t(weddingIntroCopy.captionStrong)}</strong>
+              <div className="wedding-intro-social__media-caption-inner">
+                <span className="wedding-intro-social__media-caption-mark" aria-hidden />
+                <div className="wedding-intro-social__media-caption-copy">
+                  <span className="wedding-intro-social__media-caption-brand">Wedding Sky</span>
+                  <strong className="wedding-intro-social__media-caption-tagline">
+                    {t(weddingIntroCopy.captionStrong)}
+                  </strong>
+                </div>
+              </div>
             </figcaption>
           </figure>
 

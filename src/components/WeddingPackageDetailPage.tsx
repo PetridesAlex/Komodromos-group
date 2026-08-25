@@ -14,6 +14,9 @@ import {
   resolveWeddingPackageLongContent,
   weddingPackageLongContentById,
 } from '../data/weddingBasicPackageContent'
+import WeddingLazyImage from './WeddingLazyImage'
+import WeddingLazyReveal from './WeddingLazyReveal'
+import WeddingPackageLongContentBlock from './WeddingPackageLongContent'
 import NotFoundPage from './NotFoundPage'
 import { weddingBrandHref } from '../lib/brandPaths'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
@@ -78,8 +81,20 @@ export default function WeddingPackageDetailPage() {
       </div>
 
       <section className="wedding-package-detail-hero">
-        <div className="wedding-package-detail-hero__bg" aria-hidden />
-        <div className="container wedding-package-detail-hero__content">
+        <div className="wedding-package-detail-hero__bg" aria-hidden>
+          <WeddingLazyImage
+            src={packageTier.image}
+            alt=""
+            aria-hidden
+            priority
+            className="wedding-package-detail-hero__photo"
+          />
+          <span className="wedding-package-detail-hero__mesh" />
+          <span className="wedding-package-detail-hero__glow wedding-package-detail-hero__glow--gold" />
+          <span className="wedding-package-detail-hero__glow wedding-package-detail-hero__glow--blue" />
+        </div>
+        <div className="wedding-package-detail-hero__scrim" aria-hidden />
+        <div className="container wedding-package-detail-hero__content wedding-package-detail-hero__content--enter">
           <div className="wedding-package-detail-hero__kicker">
             <span className="wedding-package-detail-hero__eyebrow">
               {category ? t(category.name) : t(weddingDetailPageCopy.packageEyebrow)}{' '}
@@ -103,17 +118,19 @@ export default function WeddingPackageDetailPage() {
             <p className="wedding-package-detail-hero__subtitle">{longContent.subtitle}</p>
           ) : null}
 
-          <div className="wedding-package-detail-hero__price-row">
-            <p className="wedding-package-detail-hero__price">
-              {longContent ? longContent.priceDisplay : t(packageTier.priceDisplay)}
-            </p>
-            <span className="wedding-package-detail-hero__price-note">
-              {t(weddingDetailPageCopy.investmentFrom)}
-            </span>
-          </div>
+          <div className="wedding-package-detail-hero__spotlight">
+            <div className="wedding-package-detail-hero__price-row">
+              <p className="wedding-package-detail-hero__price">
+                {longContent ? longContent.priceDisplay : t(packageTier.priceDisplay)}
+              </p>
+              <span className="wedding-package-detail-hero__price-note">
+                {t(weddingDetailPageCopy.investmentFrom)}
+              </span>
+            </div>
 
-          <div className="wedding-package-detail-hero__copy">
-            <p className="wedding-package-detail-hero__summary">{t(detail.summary)}</p>
+            <div className="wedding-package-detail-hero__copy">
+              <p className="wedding-package-detail-hero__summary">{t(detail.summary)}</p>
+            </div>
           </div>
 
           <div className="wedding-package-detail-hero__actions">
@@ -140,8 +157,13 @@ export default function WeddingPackageDetailPage() {
       </section>
 
       <section className="wedding-package-detail-content">
+        <div className="wedding-package-detail-content__ambient" aria-hidden>
+          <span className="wedding-package-detail-content__orb wedding-package-detail-content__orb--one" />
+          <span className="wedding-package-detail-content__orb wedding-package-detail-content__orb--two" />
+        </div>
+
         <div className="container wedding-package-detail-content__grid">
-          <article className="wedding-package-detail-panel reveal reveal-delay-1">
+          <WeddingLazyReveal as="article" className="wedding-package-detail-panel" delay={0}>
             <h2 className="wedding-package-detail-panel__title">
               {t(weddingDetailPageCopy.idealFor)}
             </h2>
@@ -149,21 +171,23 @@ export default function WeddingPackageDetailPage() {
             <div className="wedding-package-detail-panel__meta">
               <p>{t(detail.planningWindow)}</p>
             </div>
-          </article>
+          </WeddingLazyReveal>
 
-          <article className="wedding-package-detail-panel reveal reveal-delay-2">
+          <WeddingLazyReveal as="article" className="wedding-package-detail-panel" delay={90}>
             <h2 className="wedding-package-detail-panel__title">
               {t(weddingDetailPageCopy.includedScope)}
             </h2>
             <ul className="wedding-package-detail-panel__list">
-              {detail.inclusions.map((item) => (
-                <li key={item.en}>{t(item)}</li>
+              {detail.inclusions.map((item, index) => (
+                <li key={item.en} style={{ '--item-i': index } as React.CSSProperties}>
+                  {t(item)}
+                </li>
               ))}
             </ul>
-          </article>
+          </WeddingLazyReveal>
         </div>
 
-        <div className="container wedding-package-detail-nav reveal reveal-delay-3">
+        <WeddingLazyReveal className="container wedding-package-detail-nav" delay={140}>
           {prevTier ? (
             <Link
               to={weddingBrandHref(`/services/wedding/packages/${prevTier.id}`)}
@@ -187,63 +211,11 @@ export default function WeddingPackageDetailPage() {
           ) : (
             <div />
           )}
-        </div>
+        </WeddingLazyReveal>
 
         {longContent ? (
-          <div
-            className={`container wedding-basic-package reveal reveal-delay-4 wedding-basic-package--${packageTier.id}`}
-          >
-            <section className="wedding-basic-package__intro">
-              <h2>{t(weddingDetailPageCopy.packageIncludes)}</h2>
-              <ul className="wedding-basic-package__includes">
-                {longContent.includes.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <p className="wedding-basic-package__contact">
-                {t(weddingDetailPageCopy.contactPrefix)}
-                <Link to="/contact" state={{ serviceInterest: 'Wedding Services' }}>
-                  {t(weddingDetailPageCopy.contactLink)}
-                </Link>
-                {t(weddingDetailPageCopy.contactSuffix)}
-              </p>
-            </section>
-
-            <section className="wedding-basic-package__about">
-              <h2>{longContent.aboutTitle}</h2>
-              <p>{longContent.aboutCopy}</p>
-            </section>
-
-            <div className="wedding-basic-package__sections">
-              {longContent.sections.map((section) => (
-                <article key={section.title} className="wedding-basic-package__section-card">
-                  <h3>{section.title}</h3>
-                  {section.intro ? <p>{section.intro}</p> : null}
-                  {section.items ? (
-                    <ul>
-                      {section.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                  {section.groups?.map((group) => (
-                    <div key={group.title} className="wedding-basic-package__subgroup">
-                      <h4>{group.title}</h4>
-                      <ul>
-                        {group.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </article>
-              ))}
-            </div>
-
-            <section className="wedding-basic-package__important">
-              <h3>{t(weddingDetailPageCopy.important)}</h3>
-              <p>{longContent.importantNote}</p>
-            </section>
+          <div className="container wedding-package-detail-long">
+            <WeddingPackageLongContentBlock packageId={packageTier.id} content={longContent} />
           </div>
         ) : null}
       </section>

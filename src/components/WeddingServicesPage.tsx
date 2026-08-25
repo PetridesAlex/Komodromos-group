@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Wallet, Users, ShieldCheck, Sparkles } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
 import WeddingIntroSocial from './WeddingIntroSocial'
 import WeddingHighlightTiles from './WeddingHighlightTiles'
 import WeddingPackagesSection from './WeddingPackagesSection'
-import WeddingLazyImage from './WeddingLazyImage'
+import WeddingAboutGallery from './WeddingAboutGallery'
+import WeddingWhyCards from './WeddingWhyCards'
 import WeddingSocialProof from './WeddingSocialProof'
 import WeddingPlanEnquiryModal from './WeddingPlanEnquiryModal'
 import WeddingContactSection from './WeddingContactSection'
@@ -26,33 +26,10 @@ import {
   weddingWhyCopy,
 } from '../data/weddingPageCopy'
 
-const WEDDING_WHY_ICONS = [Wallet, Users, ShieldCheck, Sparkles] as const
-
 const WEDDING_HERO_IMAGE = '/images/services/companie-services-cover/wedding-sky.webp'
 
 const WEDDING_SKY_LOGO =
   '/images/services/companie-services-cover/cards-logos-services/wedding-sky.png'
-
-const WEDDING_ABOUT_MAIN = {
-  src: '/images/services/wedding-packages/about-us/wedding-day-04.webp',
-  alt: 'Bride and groom embracing beside a vintage blue convertible in Cyprus',
-} as const
-
-const WEDDING_ABOUT_SUPPORTING = [
-  {
-    src: '/images/services/wedding-packages/about-us/wedding-day-02.webp',
-    alt: 'Bride and groom cutting a floral wedding cake at a Cyprus reception',
-  },
-  {
-    src: '/images/services/wedding-packages/about-us/wedding-day-05.webp',
-    alt: 'Floral ribbon detailing being tied to a bridal car door handle',
-  },
-  {
-    src: '/images/services/wedding-packages/about-us/wedding-day-03.webp',
-    alt: 'Bridal shoes, florals, and champagne details styled for a luxury wedding',
-  },
-] as const
-
 
 const GOOGLE_REVIEWS_URL =
   'https://www.google.com/search?q=Wedding+Sky+Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLM0MDKyNLGwNDQwszA2NDE3t9zAyPiKUTg8NSUlMy9dITi7UiEotSwztbx4ESs2UQBgV4G0RwAAAA&rldimm=16902294891068314779&tbm=lcl&hl=en-CY#lkt=LocalPoiReviews'
@@ -331,33 +308,7 @@ export default function WeddingServicesPage() {
               {t(weddingWhyCopy.intro)}
             </p>
           </header>
-          <div className="wedding-why__grid">
-            {weddingWhyCopy.items.map((item, index) => {
-              const Icon = WEDDING_WHY_ICONS[index] ?? Sparkles
-              return (
-                <article
-                  key={item.title.en}
-                  className={`wedding-why__card reveal reveal-delay-${Math.min(index + 1, 4)}`}
-                  style={{ '--why-i': index } as React.CSSProperties}
-                >
-                  <span className="wedding-why__ghost" aria-hidden>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className="wedding-why__card-top">
-                    <span className="wedding-why__icon" aria-hidden>
-                      <Icon size={20} strokeWidth={1.75} />
-                    </span>
-                    <span className="wedding-why__index" aria-hidden>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <h3 className="wedding-why__card-title">{t(item.title)}</h3>
-                  <p className="wedding-why__text">{t(item.body)}</p>
-                  <span className="wedding-why__line" aria-hidden />
-                </article>
-              )
-            })}
-          </div>
+          <WeddingWhyCards />
         </div>
       </section>
 
@@ -474,22 +425,7 @@ export default function WeddingServicesPage() {
       <section className="wedding-section wedding-about" id="wedding-about" aria-labelledby="wedding-about-heading">
         <div className="container wedding-about__inner">
           <div className="wedding-about__showcase">
-            <div className="wedding-about__visual reveal-left">
-              <figure className="wedding-about__photo-main">
-                <WeddingLazyImage src={WEDDING_ABOUT_MAIN.src} alt={WEDDING_ABOUT_MAIN.alt} />
-                <figcaption className="wedding-about__photo-caption">
-                  <span>{t(weddingAboutCopy.photoLabel)}</span>
-                  <strong>Cyprus</strong>
-                </figcaption>
-              </figure>
-              <div className="wedding-about__photo-row">
-                {WEDDING_ABOUT_SUPPORTING.map((photo) => (
-                  <figure key={photo.src} className="wedding-about__photo-secondary">
-                    <WeddingLazyImage src={photo.src} alt={photo.alt} />
-                  </figure>
-                ))}
-              </div>
-            </div>
+            <WeddingAboutGallery photoLabel={t(weddingAboutCopy.photoLabel)} />
 
             <div className="wedding-about__intro reveal-right reveal-delay-2">
               <p className="wedding-about__eyebrow">{t(weddingAboutCopy.eyebrow)}</p>

@@ -6,6 +6,44 @@ import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
 import { useWeddingLocale } from '../lib/weddingLocale'
 import WeddingLazyImage from './WeddingLazyImage'
 
+/** Split service titles into a display mark + refined rest line. */
+function splitServiceTitle(title: string): { mark: string; rest: string | null } {
+  const trimmed = title.trim()
+  if (!trimmed) return { mark: '', rest: null }
+
+  const ampSplit = trimmed.split(/\s&\s/)
+  if (ampSplit.length === 2) {
+    const mark = ampSplit[0]?.trim() ?? ''
+    const rest = ampSplit[1]?.trim()
+    return rest ? { mark, rest: `& ${rest}` } : { mark: trimmed, rest: null }
+  }
+
+  const words = trimmed.split(/\s+/).filter(Boolean)
+  if (words.length <= 1) return { mark: trimmed, rest: null }
+  if (words.length === 2) {
+    return { mark: words[0] ?? trimmed, rest: words[1] ?? null }
+  }
+
+  const mark = words.slice(0, 2).join(' ')
+  const rest = words.slice(2).join(' ')
+  return rest ? { mark, rest } : { mark: trimmed, rest: null }
+}
+
+function ServiceTitle({ title }: { title: string }) {
+  const { mark, rest } = splitServiceTitle(title)
+
+  return (
+    <p className="wedding-highlight-tiles__title">
+      <span className="wedding-highlight-tiles__title-stack">
+        <span className="wedding-highlight-tiles__title-mark">{mark}</span>
+        {rest ? (
+          <span className="wedding-highlight-tiles__title-rest">{rest}</span>
+        ) : null}
+      </span>
+    </p>
+  )
+}
+
 function TileContent({
   index,
   kicker,
@@ -46,7 +84,7 @@ function TileContent({
       <div className="wedding-highlight-tiles__caption">
         <span className="wedding-highlight-tiles__rail" aria-hidden />
         {kicker ? <p className="wedding-highlight-tiles__kicker">{kicker}</p> : null}
-        <p className="wedding-highlight-tiles__title">{title}</p>
+        <ServiceTitle title={title} />
         <span className="wedding-highlight-tiles__title-rule" aria-hidden />
         {interactive ? (
           <span className="wedding-highlight-tiles__cta">

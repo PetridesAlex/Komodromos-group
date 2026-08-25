@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { weddingTestimonialsCopy } from '../data/weddingPageCopy'
 import { WEDDING_REVIEWS, type WeddingReview } from '../data/weddingReviews'
@@ -7,7 +6,32 @@ import { useWeddingLocale } from '../lib/weddingLocale'
 
 const PAGE_SIZE = 4
 
-const GoogleGlyph = ({ size = 12 }: { size?: number }) => (
+const NavArrow = ({ direction }: { direction: 'prev' | 'next' }) => (
+  <svg
+    className={`wedding-social-proof__nav-arrow wedding-social-proof__nav-arrow--${direction}`}
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    aria-hidden
+    focusable="false"
+  >
+    {direction === 'prev' ? (
+      <>
+        <path d="M19 12H6" />
+        <path d="M11 7 6 12l5 5" />
+        <path className="wedding-social-proof__nav-arrow-tail" d="M4 12H2" />
+      </>
+    ) : (
+      <>
+        <path d="M5 12h13" />
+        <path d="M13 7l5 5-5 5" />
+        <path className="wedding-social-proof__nav-arrow-tail" d="M20 12h2" />
+      </>
+    )}
+  </svg>
+)
+
+const GoogleGlyph = ({ size = 16 }: { size?: number }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} focusable="false" aria-hidden>
     <path
       fill="#4285F4"
@@ -28,7 +52,7 @@ const GoogleGlyph = ({ size = 12 }: { size?: number }) => (
   </svg>
 )
 
-const FacebookGlyph = ({ size = 12 }: { size?: number }) => (
+const FacebookGlyph = ({ size = 16 }: { size?: number }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} focusable="false" aria-hidden>
     <path
       fill="currentColor"
@@ -37,47 +61,77 @@ const FacebookGlyph = ({ size = 12 }: { size?: number }) => (
   </svg>
 )
 
-function ReviewSourceBadge({ source }: { source: WeddingReview['source'] }) {
-  const { t } = useWeddingLocale()
-  return (
-    <span className={`wedding-social-proof__source wedding-social-proof__source--${source}`}>
-      <span className="wedding-social-proof__source-icon" aria-hidden>
-        {source === 'google' ? <GoogleGlyph /> : <FacebookGlyph />}
-      </span>
-      {source === 'google'
-        ? t(weddingTestimonialsCopy.reviewedOnGoogle)
-        : t(weddingTestimonialsCopy.reviewedOnFacebook)}
-    </span>
-  )
-}
-
-function ReviewAuthor({
-  review,
-  size = 'md',
-}: {
-  review: WeddingReview
-  size?: 'md' | 'lg'
-}) {
-  return (
-    <div className={`wedding-social-proof__person wedding-social-proof__person--${size}`}>
-      <span className="wedding-social-proof__avatar" aria-hidden>
-        {review.initials}
-      </span>
-      <div>
-        <cite className="wedding-social-proof__name">{review.author}</cite>
-        <span className="wedding-social-proof__stars" aria-label="5 out of 5 stars">
-          ★★★★★
-        </span>
-      </div>
-    </div>
-  )
-}
-
 function truncateQuote(quote: string, max = 220): string {
   if (quote.length <= max) return quote
   const cut = quote.slice(0, max)
   const lastSpace = cut.lastIndexOf(' ')
   return `${cut.slice(0, lastSpace > 140 ? lastSpace : max).trim()}…`
+}
+
+function ReviewPost({
+  review,
+  variant = 'card',
+  quoteText,
+}: {
+  review: WeddingReview
+  variant?: 'featured' | 'card'
+  quoteText: string
+}) {
+  const { t } = useWeddingLocale()
+  const sourceLabel =
+    review.source === 'google'
+      ? t(weddingTestimonialsCopy.reviewedOnGoogle)
+      : t(weddingTestimonialsCopy.reviewedOnFacebook)
+
+  return (
+    <blockquote
+      className={`wedding-social-proof__post wedding-social-proof__post--${variant} wedding-testimonial wedding-testimonial--${review.source}`}
+      lang={review.lang}
+    >
+      <header className="wedding-social-proof__post-head">
+        <div className="wedding-social-proof__identity">
+          <span className="wedding-social-proof__avatar" aria-hidden>
+            {review.initials}
+          </span>
+          <div className="wedding-social-proof__identity-copy">
+            <cite className="wedding-social-proof__name">{review.author}</cite>
+            <span className="wedding-social-proof__handle">
+              <span className="wedding-social-proof__handle-source">{sourceLabel}</span>
+              <span className="wedding-social-proof__handle-dot" aria-hidden>
+                ·
+              </span>
+              <span className="wedding-social-proof__stars" aria-label="5 out of 5 stars">
+                ★★★★★
+              </span>
+            </span>
+          </div>
+        </div>
+        <span
+          className={`wedding-social-proof__platform wedding-social-proof__platform--${review.source}`}
+          aria-hidden
+        >
+          {review.source === 'google' ? <GoogleGlyph /> : <FacebookGlyph />}
+        </span>
+      </header>
+
+      <p className="wedding-social-proof__post-text">{quoteText}</p>
+
+      <footer className="wedding-social-proof__post-foot">
+        <span className="wedding-social-proof__verified">
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden focusable="false">
+            <path
+              fill="currentColor"
+              d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.156-.156-.156-.408 0-.564l.707-.707c.156-.156.408-.156.564 0L10.5 14.09l3.836-5.745c.156-.235.408-.235.571 0l.707.707c.156.156.156.408 0 .564z"
+            />
+          </svg>
+          {t(weddingTestimonialsCopy.verifiedClient)}
+        </span>
+        <span className="wedding-social-proof__post-score" aria-hidden>
+          5.0
+        </span>
+      </footer>
+    </blockquote>
+  )
 }
 
 export default function WeddingSocialProof() {
@@ -124,12 +178,14 @@ export default function WeddingSocialProof() {
       <div className="wedding-social-proof__toolbar" role="navigation" aria-label={t(weddingTestimonialsCopy.carouselAria)}>
         <button
           type="button"
-          className="wedding-social-proof__nav"
+          className="wedding-social-proof__nav wedding-social-proof__nav--prev"
           onClick={goPrev}
           aria-label={t(weddingTestimonialsCopy.prevAria)}
         >
-          <ChevronLeft size={18} strokeWidth={2.25} aria-hidden />
-          <span>{t(weddingTestimonialsCopy.prev)}</span>
+          <span className="wedding-social-proof__nav-icon" aria-hidden>
+            <NavArrow direction="prev" />
+          </span>
+          <span className="wedding-social-proof__nav-label">{t(weddingTestimonialsCopy.prev)}</span>
         </button>
 
         <p className="wedding-social-proof__status" aria-live="polite">
@@ -146,12 +202,14 @@ export default function WeddingSocialProof() {
 
         <button
           type="button"
-          className="wedding-social-proof__nav"
+          className="wedding-social-proof__nav wedding-social-proof__nav--next"
           onClick={goNext}
           aria-label={t(weddingTestimonialsCopy.nextAria)}
         >
-          <span>{t(weddingTestimonialsCopy.next)}</span>
-          <ChevronRight size={18} strokeWidth={2.25} aria-hidden />
+          <span className="wedding-social-proof__nav-label">{t(weddingTestimonialsCopy.next)}</span>
+          <span className="wedding-social-proof__nav-icon" aria-hidden>
+            <NavArrow direction="next" />
+          </span>
         </button>
       </div>
 
@@ -165,35 +223,17 @@ export default function WeddingSocialProof() {
           transition={{ duration: reduceMotion ? 0.01 : 0.4 }}
         >
           {featured ? (
-            <blockquote
-              className={`wedding-social-proof__featured wedding-testimonial wedding-testimonial--${featured.source}`}
-              lang={featured.lang}
-            >
-              <div className="wedding-social-proof__featured-top">
-                <ReviewAuthor review={featured} size="lg" />
-                <ReviewSourceBadge source={featured.source} />
-              </div>
-              <p className="wedding-social-proof__featured-quote">
-                &ldquo;{featured.quote}&rdquo;
-              </p>
-            </blockquote>
+            <ReviewPost review={featured} variant="featured" quoteText={featured.quote} />
           ) : null}
 
           <div className="wedding-social-proof__cards">
             {supporting.map((review) => (
-              <blockquote
+              <ReviewPost
                 key={`${review.source}-${review.author}-${review.quote.slice(0, 24)}`}
-                className={`wedding-social-proof__card wedding-testimonial wedding-testimonial--${review.source}`}
-                lang={review.lang}
-              >
-                <p className="wedding-social-proof__card-quote">
-                  &ldquo;{truncateQuote(review.quote)}&rdquo;
-                </p>
-                <footer className="wedding-social-proof__card-foot">
-                  <ReviewAuthor review={review} />
-                  <ReviewSourceBadge source={review.source} />
-                </footer>
-              </blockquote>
+                review={review}
+                variant="card"
+                quoteText={truncateQuote(review.quote)}
+              />
             ))}
           </div>
         </motion.div>
