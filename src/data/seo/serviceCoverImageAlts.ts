@@ -65,6 +65,44 @@ export const serviceCoverImageAlts: Record<string, string> = {
     'Wedding florals and decorations — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/wedding-services/first-dance-choreography.webp':
     'First dance choreography — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/luxury-supercars.webp':
+    'Luxury and supercar fleet — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/mobile-cocktail-bar.webp':
+    'Mobile cocktail and lemonade bar — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/daouli-toumperleki.webp':
+    'Daouli and toumperleki percussion show — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/party-platters.webp':
+    'Gourmet wedding party platters — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/luxury-limousine.webp':
+    'Luxury wedding limousine — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/church-choir.webp':
+    'Sacred church choir — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/photo-booth.webp':
+    'Luxury photo booth setup — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/cold-spark-fireworks.webp':
+    'Cold spark fireworks display — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/groom-suits.webp':
+    'Groom suits and formal menswear — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/private-jet-honeymoon.webp':
+    'Private jet honeymoon departure — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/luxury-shisha-lounge.webp':
+    'Luxury shisha lounge at a wedding — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/live-saxophone.webp':
+    'Live saxophone performance — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-planning-coordination.webp':
+    'Wedding planning and coordination — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/vintage-wedding-bus.webp':
+    'Vintage wedding bus decorated for the couple — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/ring-for-a-drink.webp':
+    'Ring for a drink champagne service — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-photo-video.webp':
+    'Wedding photography and videography — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/confetti-machine.webp':
+    'Confetti machine celebration — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/3d-couple-figurines.webp':
+    '3D couple figurines — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/professional-wedding-dj.webp':
+    'Professional wedding DJ — Wedding Sky Cyprus',
   '/images/services/wedding-packages/about-us/wedding-day-06.webp':
     'Bride with nest bouquet on her wedding day — Wedding Sky Cyprus',
   '/images/services/wedding-packages/about-us/wedding-day-07.webp':
