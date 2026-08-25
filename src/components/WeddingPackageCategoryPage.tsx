@@ -89,7 +89,10 @@ export default function WeddingPackageCategoryPage() {
               to={weddingBrandHref('/services/wedding#wedding-packages-heading')}
               className="wedding-package-category-hero__back"
             >
-              {t(weddingCategoryPageCopy.allCollections)}
+              <span className="wedding-package-category-hero__btn-sheen" aria-hidden />
+              <span className="wedding-package-category-hero__btn-label">
+                {t(weddingCategoryPageCopy.allCollections)}
+              </span>
             </Link>
             <Link
               to="/contact"
@@ -99,7 +102,10 @@ export default function WeddingPackageCategoryPage() {
               }}
               className="wedding-package-category-hero__enquire"
             >
-              {t(weddingCategoryPageCopy.enquire)}
+              <span className="wedding-package-category-hero__btn-sheen" aria-hidden />
+              <span className="wedding-package-category-hero__btn-label">
+                {t(weddingCategoryPageCopy.enquire)}
+              </span>
             </Link>
           </div>
         </div>
@@ -110,12 +116,18 @@ export default function WeddingPackageCategoryPage() {
         aria-labelledby="wedding-category-packages-title"
       >
         <div className="container">
-          <header className="wedding-section__head reveal">
-            <p className="wedding-section__eyebrow">{t(weddingCategoryPageCopy.tiersEyebrow)}</p>
-            <h2 id="wedding-category-packages-title" className="wedding-section__title">
+          <header className="wedding-section__head wedding-package-category-list__head reveal">
+            <p className="wedding-package-category-list__eyebrow">
+              {t(weddingCategoryPageCopy.tiersEyebrow)}
+            </p>
+            <h2
+              id="wedding-category-packages-title"
+              className="wedding-section__title wedding-package-category-list__title"
+            >
               {t(weddingCategoryPageCopy.chooseTitle)}
             </h2>
-            <p className="wedding-section__intro">
+            <span className="wedding-package-category-list__rule" aria-hidden />
+            <p className="wedding-section__intro wedding-package-category-list__intro">
               {t(weddingCategoryPageCopy.chooseIntro)}
             </p>
           </header>
@@ -161,7 +173,10 @@ export default function WeddingPackageCategoryPage() {
                       className="wedding-package-category-list__details"
                       onClick={(event) => event.stopPropagation()}
                     >
-                      {t(weddingCategoryPageCopy.viewPackage)}
+                      <span className="wedding-package-category-list__btn-sheen" aria-hidden />
+                      <span className="wedding-package-category-list__btn-label">
+                        {t(weddingCategoryPageCopy.viewPackage)}
+                      </span>
                     </Link>
                     <Link
                       to="/contact"
@@ -172,7 +187,10 @@ export default function WeddingPackageCategoryPage() {
                       className="wedding-package-category-list__enquire"
                       onClick={(event) => event.stopPropagation()}
                     >
-                      {t(weddingCategoryPageCopy.enquire)}
+                      <span className="wedding-package-category-list__btn-sheen" aria-hidden />
+                      <span className="wedding-package-category-list__btn-label">
+                        {t(weddingCategoryPageCopy.enquire)}
+                      </span>
                     </Link>
                   </div>
                 </div>

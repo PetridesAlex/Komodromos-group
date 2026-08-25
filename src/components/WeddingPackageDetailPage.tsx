@@ -56,6 +56,10 @@ export default function WeddingPackageDetailPage() {
   const categoryHref = weddingBrandHref(
     `/services/wedding/categories/${packageTier.category}`,
   )
+  const heroTitle = longContent ? longContent.title : t(packageTier.name)
+  const titleMatch = heroTitle.match(/^("[^"]+"|«[^»]+»)\s*(.*)$/)
+  const titleMark = titleMatch?.[1] ?? null
+  const titleRest = titleMatch?.[2]?.trim() || null
 
   return (
     <div
@@ -85,7 +89,14 @@ export default function WeddingPackageDetailPage() {
           </div>
 
           <h1 className="wedding-package-detail-hero__title">
-            {longContent ? longContent.title : t(packageTier.name)}
+            {titleMark && titleRest ? (
+              <span className="wedding-package-detail-hero__title-stack">
+                <span className="wedding-package-detail-hero__title-mark">{titleMark}</span>
+                <span className="wedding-package-detail-hero__title-rest">{titleRest}</span>
+              </span>
+            ) : (
+              heroTitle
+            )}
           </h1>
 
           {longContent ? (

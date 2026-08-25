@@ -1,11 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ChevronRight, Phone } from 'lucide-react'
 import { socialLinks } from '../data/socialLinks'
 import { weddingIntroCopy } from '../data/weddingPageCopy'
 import { useWeddingLocale } from '../lib/weddingLocale'
-import WeddingLazyImage from './WeddingLazyImage'
 
-const INTRO_IMAGE = '/images/services/wedding-highlights/destinations.webp'
+const INTRO_SLIDES = [
+  '/images/services/wedding-highlights/thumbnail/1.webp',
+  '/images/services/wedding-highlights/thumbnail/2.webp',
+  '/images/services/wedding-highlights/thumbnail/3.webp',
+  '/images/services/wedding-highlights/thumbnail/4.webp',
+  '/images/services/wedding-highlights/thumbnail/5.webp',
+  '/images/services/wedding-highlights/thumbnail/6.webp',
+] as const
+
+const SLIDE_INTERVAL_MS = 3000
 
 const WEDDING_SKY_PHONES = [
   {
@@ -49,6 +57,21 @@ const WEDDING_SKY_SOCIALS = socialLinks
 export default function WeddingIntroSocial() {
   const { t, htmlLang } = useWeddingLocale()
   const [revealedId, setRevealedId] = useState<string | null>(null)
+  const [activeSlide, setActiveSlide] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    if (paused) return
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % INTRO_SLIDES.length)
+    }, SLIDE_INTERVAL_MS)
+
+    return () => window.clearInterval(timer)
+  }, [paused])
 
   return (
     <section
@@ -59,14 +82,53 @@ export default function WeddingIntroSocial() {
       <div className="wedding-intro-social__ambient" aria-hidden />
       <div className="container wedding-intro-social__shell">
         <div className="wedding-intro-social__layout">
-          <figure className="wedding-intro-social__media reveal-scale">
+          <figure
+            className="wedding-intro-social__media reveal-scale"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                setPaused(false)
+              }
+            }}
+          >
             <div className="wedding-intro-social__media-shell" aria-hidden />
             <div className="wedding-intro-social__media-frame">
-              <WeddingLazyImage
-                src={INTRO_IMAGE}
-                alt={t(weddingIntroCopy.imageAlt)}
-              />
+              <div
+                className="wedding-intro-social__slides"
+                aria-roledescription="carousel"
+                aria-label={t(weddingIntroCopy.imageAlt)}
+              >
+                {INTRO_SLIDES.map((src, index) => {
+                  const isActive = index === activeSlide
+                  return (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={isActive ? t(weddingIntroCopy.imageAlt) : ''}
+                      className={`wedding-intro-social__slide${
+                        isActive ? ' is-active' : ''
+                      }`}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                      aria-hidden={!isActive}
+                    />
+                  )
+                })}
+              </div>
               <div className="wedding-intro-social__media-scrim" aria-hidden />
+              <div className="wedding-intro-social__slide-progress" aria-hidden>
+                {INTRO_SLIDES.map((src, index) => (
+                  <span
+                    key={src}
+                    className={`wedding-intro-social__slide-dot${
+                      index === activeSlide ? ' is-active' : ''
+                    }${paused && index === activeSlide ? ' is-paused' : ''}`}
+                  />
+                ))}
+              </div>
             </div>
             <figcaption className="wedding-intro-social__media-caption reveal reveal-delay-4">
               <span>Wedding Sky</span>
