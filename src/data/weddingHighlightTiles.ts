@@ -8,12 +8,46 @@ export type WeddingHighlightTile = {
   kicker?: LocalizedText
   title: LocalizedText
   image: string
+  /** Prefer contain for product mockups so the full subject stays visible. */
+  imageFit?: 'cover' | 'contain'
   hashHref?: string
   contact?: boolean
 }
 
 const TILE_IMG = '/images/services/wedding-highlights'
+const SERVICE_IMG = `${TILE_IMG}/wedding-services`
 
+/** Dedicated covers from wedding-services/ — keyed by tile id. */
+const TILE_COVERS: Partial<
+  Record<string, { src: string; fit?: 'cover' | 'contain' }>
+> = {
+  'luxury-bridal-gowns': { src: `${SERVICE_IMG}/luxury-bridal-gowns.webp` },
+  'bridal-makeup': { src: `${SERVICE_IMG}/bridal-makeup.webp` },
+  'bridal-hairstyling': { src: `${SERVICE_IMG}/bridal-hairstyling.webp` },
+  'luxury-dance-floor': { src: `${SERVICE_IMG}/luxury-dance-floor.webp` },
+  'vintage-wedding-car': { src: `${SERVICE_IMG}/vintage-wedding-car.webp` },
+  'wedding-content-creator': { src: `${SERVICE_IMG}/wedding-content-creator.webp` },
+  'live-loukoumades': { src: `${SERVICE_IMG}/live-loukoumades.webp` },
+  'electric-violin': { src: `${SERVICE_IMG}/electric-violin.webp` },
+  'personalized-wedding-website': {
+    src: `${SERVICE_IMG}/personalized-wedding-website.webp`,
+    fit: 'contain',
+  },
+  'wedding-invitations': { src: `${SERVICE_IMG}/wedding-invitations.webp` },
+  '360-video-booth': { src: `${SERVICE_IMG}/360-video-booth.webp` },
+  'wedding-orchestra': { src: `${SERVICE_IMG}/wedding-orchestra.webp` },
+  'honeymoon-planning': { src: `${SERVICE_IMG}/honeymoon-planning.webp` },
+  'wedding-christening-favours': {
+    src: `${SERVICE_IMG}/wedding-christening-favours.webp`,
+  },
+  'wedding-treats-cake': { src: `${SERVICE_IMG}/wedding-treats-cake.webp` },
+  'florals-decoration': { src: `${SERVICE_IMG}/florals-decoration.webp` },
+  'first-dance-choreography': {
+    src: `${SERVICE_IMG}/first-dance-choreography.webp`,
+  },
+}
+
+/** Fallback imagery for tiles that do not yet have a dedicated cover. */
 const TILE_IMAGES = [
   `${TILE_IMG}/destinations.webp`,
   `${TILE_IMG}/planning.webp`,
@@ -25,9 +59,9 @@ const TILE_IMAGES = [
   `${TILE_IMG}/consultation.webp`,
 ] as const
 
-type TileSeed = Omit<WeddingHighlightTile, 'image'>
+type TileSeed = Omit<WeddingHighlightTile, 'image' | 'imageFit'>
 
-/** Full Wedding Sky services — EN / EL from catalogue; RU aligned. Imagery cycles. */
+/** Full Wedding Sky services — EN / EL from catalogue; RU aligned. */
 const TILE_SEEDS: TileSeed[] = [
   {
     id: 'luxury-bridal-gowns',
@@ -439,7 +473,13 @@ const TILE_SEEDS: TileSeed[] = [
   },
 ]
 
-export const weddingHighlightTiles: WeddingHighlightTile[] = TILE_SEEDS.map((seed, index) => ({
-  ...seed,
-  image: TILE_IMAGES[index % TILE_IMAGES.length],
-}))
+export const weddingHighlightTiles: WeddingHighlightTile[] = TILE_SEEDS.map(
+  (seed, index) => {
+    const cover = TILE_COVERS[seed.id]
+    return {
+      ...seed,
+      image: cover?.src ?? TILE_IMAGES[index % TILE_IMAGES.length],
+      imageFit: cover?.fit,
+    }
+  },
+)

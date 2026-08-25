@@ -31,6 +31,40 @@ export const serviceCoverImageAlts: Record<string, string> = {
   '/images/services/wedding-highlights/planning.webp': 'Concept, timeline & vendor orchestration — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/production.webp': 'Venue design, lighting & run of show — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/stories.webp': 'Words from couples we walked beside — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/luxury-bridal-gowns.webp':
+    'Luxury bridal gown portrait — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/bridal-makeup.webp':
+    'Bridal make-up preparation — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/bridal-hairstyling.webp':
+    'Bridal hairstyling at the vanity — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/luxury-dance-floor.webp':
+    'Luxury wedding dance floor under floral chandelier — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/vintage-wedding-car.webp':
+    'Vintage wedding car — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-content-creator.webp':
+    'Wedding content creator camera setup — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/live-loukoumades.webp':
+    'Live loukoumades station — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/electric-violin.webp':
+    'Electric violin performance — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/personalized-wedding-website.webp':
+    'Personalized wedding website on mobile — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-invitations.webp':
+    'Wedding invitations and save-the-date stationery — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/360-video-booth.webp':
+    '360° video booth — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-orchestra.webp':
+    'Live wedding orchestra — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/honeymoon-planning.webp':
+    'Honeymoon planning — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-christening-favours.webp':
+    'Wedding and christening favours — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-treats-cake.webp':
+    'Wedding treats and cake — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/florals-decoration.webp':
+    'Wedding florals and decorations — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/first-dance-choreography.webp':
+    'First dance choreography — Wedding Sky Cyprus',
   '/images/services/wedding-packages/about-us/wedding-day-06.webp':
     'Bride with nest bouquet on her wedding day — Wedding Sky Cyprus',
   '/images/services/wedding-packages/about-us/wedding-day-07.webp':

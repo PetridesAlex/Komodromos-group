@@ -32307,6 +32307,11 @@ article.wedding-highlight-tiles__tile {
   transform: scale(1.1);
 }
 
+.wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__media--contain img,
+.wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__media--contain img {
+  transform: none;
+}
+
 .wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__scrim,
 .wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__scrim {
   opacity: 1;
@@ -32398,6 +32403,17 @@ article.wedding-highlight-tiles__tile {
   display: block;
   transform: scale(1.02);
   transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-highlight-tiles__media--contain {
+  background: #f4f1ec;
+}
+
+.wedding-highlight-tiles__media--contain img {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  padding: 0.65rem;
 }
 
 .wedding-highlight-tiles__scrim {

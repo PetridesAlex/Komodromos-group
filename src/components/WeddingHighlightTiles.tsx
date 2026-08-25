@@ -11,6 +11,7 @@ function TileContent({
   kicker,
   title,
   image,
+  imageFit = 'cover',
   decorativeImage,
   interactive,
   exploreLabel,
@@ -19,13 +20,18 @@ function TileContent({
   kicker?: string
   title: string
   image: string
+  imageFit?: 'cover' | 'contain'
   decorativeImage?: boolean
   interactive?: boolean
   exploreLabel: string
 }) {
   return (
     <>
-      <div className="wedding-highlight-tiles__media">
+      <div
+        className={`wedding-highlight-tiles__media${
+          imageFit === 'contain' ? ' wedding-highlight-tiles__media--contain' : ''
+        }`}
+      >
         <WeddingLazyImage
           src={image}
           alt={
@@ -87,6 +93,7 @@ export default function WeddingHighlightTiles() {
                 kicker={tile.kicker ? t(tile.kicker) : undefined}
                 title={t(tile.title)}
                 image={tile.image}
+                imageFit={tile.imageFit}
                 decorativeImage={isLink}
                 interactive={isLink}
                 exploreLabel={t(weddingTilesSectionCopy.explore)}
