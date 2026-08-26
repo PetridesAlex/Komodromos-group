@@ -67,6 +67,9 @@ export default function WeddingPackagesSection() {
                   {t(category.name)}
                 </h3>
                 <span className="wedding-packages-section__category-line" aria-hidden />
+                <p className="wedding-packages-section__category-tagline">
+                  {t(category.tagline)}
+                </p>
               </div>
             </article>
           ))}

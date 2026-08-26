@@ -66,6 +66,15 @@ export const weddingHeroCopy: {
 
 export const weddingPillarsCopy: ReadonlyArray<WeddingPillar> = [
   {
+    id: 'wedding-services',
+    label: {
+      en: 'Wedding Services',
+      el: 'Υπηρεσίες Γάμου',
+      ru: 'Свадебные услуги',
+    },
+    href: '#wedding-services',
+  },
+  {
     id: 'wedding-packages',
     label: {
       en: 'Wedding Packages',
@@ -82,15 +91,6 @@ export const weddingPillarsCopy: ReadonlyArray<WeddingPillar> = [
       ru: 'Пакеты для крещения',
     },
     href: '/services/wedding/categories/christian',
-  },
-  {
-    id: 'wedding-services',
-    label: {
-      en: 'Wedding Services',
-      el: 'Υπηρεσίες Γάμου',
-      ru: 'Свадебные услуги',
-    },
-    href: '#wedding-services',
   },
 ]
 

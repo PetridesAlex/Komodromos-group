@@ -103,6 +103,38 @@ export const serviceCoverImageAlts: Record<string, string> = {
     '3D couple figurines — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/wedding-services/professional-wedding-dj.webp':
     'Professional wedding DJ — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/drone-videography.webp':
+    'Drone videography — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/live-setup-cake-100cm.webp':
+    '100 cm live-setup wedding cake — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/home-security.webp':
+    'Home security for wedding preparations — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/yacht-bachelor-hen.webp':
+    'Yacht bachelor and hen party — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/audio-guest-book.webp':
+    'Audio guest book — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/draft-beer-station.webp':
+    'Draft beer station — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/dancing-on-the-clouds.webp':
+    'Dancing on the clouds effect — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/traditional-wedding-preparations.webp':
+    'Traditional wedding preparations — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/co2-led-guns.webp':
+    'CO₂ LED guns — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/proposal-in-the-air.webp':
+    'Proposal in the air — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-equipment.webp':
+    'Wedding equipment hire — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/luxury-yacht-wedding.webp':
+    'Luxury yacht wedding — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/greek-island-weddings.webp':
+    'Greek island weddings — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/venue-selection.webp':
+    'Venue selection — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-christening-packages/wedding-packages.webp':
+    'Wedding Sky wedding packages collection — luxury celebration tiers, Cyprus',
+  '/images/services/wedding-highlights/wedding-christening-packages/christening-packages.webp':
+    'Wedding Sky christening packages collection — refined baptism celebrations, Cyprus',
   '/images/services/wedding-packages/about-us/wedding-day-06.webp':
     'Bride with nest bouquet on her wedding day — Wedding Sky Cyprus',
   '/images/services/wedding-packages/about-us/wedding-day-07.webp':

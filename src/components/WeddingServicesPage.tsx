@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
 import WeddingIntroSocial from './WeddingIntroSocial'
+import WeddingPillars from './WeddingPillars'
 import WeddingHighlightTiles from './WeddingHighlightTiles'
 import WeddingPackagesSection from './WeddingPackagesSection'
 import WeddingAboutGallery from './WeddingAboutGallery'
@@ -13,14 +14,12 @@ import WeddingPlanEnquiryModal from './WeddingPlanEnquiryModal'
 import WeddingContactSection from './WeddingContactSection'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
-import { weddingBrandHref } from '../lib/brandPaths'
 import { useSiteContext } from '../seo/SiteContext'
 import { useWeddingLocale } from '../lib/weddingLocale'
 import {
   weddingAboutCopy,
   weddingHeroCopy,
   weddingKnowledgeCopy,
-  weddingPillarsCopy,
   weddingTestimonialsCopy,
   weddingVideoCopy,
   weddingWhyCopy,
@@ -153,37 +152,7 @@ export default function WeddingServicesPage() {
         </div>
       </section>
 
-      <section className="wedding-pillars" aria-label={t(weddingHeroCopy.exploreServices)}>
-        <div className="container">
-          <div className="wedding-pillars__inner">
-            {weddingPillarsCopy.map((pillar, index) => {
-              const isHash = pillar.href.startsWith('#')
-              const href = isHash ? pillar.href : weddingBrandHref(pillar.href)
-              const className = `wedding-pillars__item reveal reveal-delay-${Math.min(index + 1, 3)}`
-
-              if (isHash) {
-                return (
-                  <a key={pillar.id} href={href} className={className}>
-                    <span className="wedding-pillars__label">{t(pillar.label)}</span>
-                    <span className="wedding-pillars__plus" aria-hidden>
-                      +
-                    </span>
-                  </a>
-                )
-              }
-
-              return (
-                <Link key={pillar.id} to={href} className={className}>
-                  <span className="wedding-pillars__label">{t(pillar.label)}</span>
-                  <span className="wedding-pillars__plus" aria-hidden>
-                    +
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+      <WeddingPillars />
 
       <WeddingIntroSocial />
       <WeddingHighlightTiles />

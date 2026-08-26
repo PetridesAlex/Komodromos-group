@@ -27,6 +27,7 @@ export type WeddingPackageCategory = {
 }
 
 const PKG_IMG = '/images/services/wedding-packages'
+const CATEGORY_IMG = '/images/services/wedding-highlights/wedding-christening-packages'
 
 /** Top-level package families shown on the Wedding Sky homepage. */
 export const weddingPackageCategories: WeddingPackageCategory[] = [
@@ -42,7 +43,7 @@ export const weddingPackageCategories: WeddingPackageCategory[] = [
       el: 'Τρία επίπεδα γιορτής — από τον βασικό συντονισμό έως την κορυφαία παραγωγή white-glove.',
       ru: 'Три уровня организации торжества — от базовой координации до фирменного сервиса высочайшего класса.',
     },
-    image: '/images/services/wedding-packages/about-us/wedding-day-07.webp',
+    image: `${CATEGORY_IMG}/wedding-packages.webp`,
   },
   {
     id: 'christian',
@@ -56,7 +57,7 @@ export const weddingPackageCategories: WeddingPackageCategory[] = [
       el: 'Εκλεπτυσμένα προγράμματα για βάπτιση — από αναβαθμισμένο styling έως πλήρως προσαρμοσμένα briefs.',
       ru: 'Изысканные программы для крещения — от утончённого стиля до полностью индивидуальной концепции.',
     },
-    image: '/images/services/wedding-packages/about-us/wedding-day-06.webp',
+    image: `${CATEGORY_IMG}/christening-packages.webp`,
   },
 ]
 
