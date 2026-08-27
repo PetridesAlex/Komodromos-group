@@ -10,7 +10,9 @@ export function useReveal() {
     if (!root) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reducedMotion) {
+    /* Skip reveal transforms on phones/tablets — WebKit often crashes while scrolling */
+    const isCoarsePointer = window.matchMedia('(hover: none), (max-width: 900px)').matches
+    if (reducedMotion || isCoarsePointer) {
       root.querySelectorAll(REVEAL_SELECTOR).forEach((node) => {
         node.classList.add('revealed')
       })

@@ -11,8 +11,9 @@ type WeddingLazyImageProps = Omit<
 }
 
 /**
- * Smooth fade + un-blur once the image has painted.
+ * Fade-in once the image has painted.
  * Uses native lazy loading for below-the-fold media.
+ * Avoid filter/blur transitions — they crash Safari/iOS while scrolling.
  */
 export default function WeddingLazyImage({
   src,

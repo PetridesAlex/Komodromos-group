@@ -88,11 +88,10 @@ export default function WeddingServicesPage() {
         <LanguageSwitcher dynamic />
       </div>
 
-      <section className="wedding-hero" aria-labelledby="wedding-hero-heading" data-hero-parallax-root>
+      <section className="wedding-hero" aria-labelledby="wedding-hero-heading">
         <div className="wedding-hero__layers" aria-hidden>
           <div
             className={`wedding-hero__bg${heroLoaded ? ' wedding-hero__bg--loaded' : ''}`}
-            data-hero-parallax
           >
             <img
               className="wedding-hero__bg-img"

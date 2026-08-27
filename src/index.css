@@ -32568,7 +32568,6 @@ article.wedding-highlight-tiles__tile {
   z-index: 4;
   transform: none;
   outline-color: rgba(255, 255, 255, 0.42);
-  filter: brightness(1.04);
   box-shadow: none;
 }
 
@@ -32609,8 +32608,6 @@ article.wedding-highlight-tiles__tile {
       rgba(8, 20, 42, 0.68) 38%,
       rgba(4, 10, 22, 0.96) 100%
     );
-  backdrop-filter: blur(16px) saturate(1.35);
-  -webkit-backdrop-filter: blur(16px) saturate(1.35);
   border-top-color: rgba(232, 213, 176, 0.4);
   padding-top: clamp(1.35rem, 2.6vw, 1.9rem);
   padding-bottom: clamp(1.3rem, 2.5vw, 1.85rem);
@@ -32628,7 +32625,6 @@ article.wedding-highlight-tiles__tile {
 .wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__title-mark {
   letter-spacing: 0.02em;
   background-position: 100% 50%;
-  filter: brightness(1.08);
 }
 
 .wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__title-rest,
@@ -32725,10 +32721,8 @@ article.wedding-highlight-tiles__tile {
   letter-spacing: 0.14em;
   color: #ffffff;
   text-shadow: 0 2px 12px rgba(0, 20, 60, 0.45);
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(8, 28, 60, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border-radius: 999px;
   min-width: 2.45rem;
   height: 2.45rem;
@@ -32774,8 +32768,7 @@ article.wedding-highlight-tiles__tile {
       rgba(6, 14, 28, 0.62) 42%,
       rgba(4, 10, 22, 0.92) 100%
     );
-  backdrop-filter: blur(14px) saturate(1.28);
-  -webkit-backdrop-filter: blur(14px) saturate(1.28);
+  /* No backdrop-filter — dozens of tiles + blur crash Safari/iOS on scroll */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     0 -18px 36px rgba(2, 8, 20, 0.28);
@@ -32784,7 +32777,6 @@ article.wedding-highlight-tiles__tile {
     background 0.45s ease,
     border-color 0.4s ease,
     padding 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    backdrop-filter 0.45s ease,
     box-shadow 0.45s ease;
 }
 
@@ -33108,6 +33100,16 @@ article.wedding-highlight-tiles__tile {
       rgba(6, 14, 28, 0.55) 38%,
       rgba(4, 10, 22, 0.9) 100%
     );
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .wedding-highlight-tiles__tile:hover,
+  .wedding-highlight-tiles__tile:focus-within,
+  .wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__media img,
+  .wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__media img {
+    filter: none;
+    transform: none;
   }
 
   .wedding-highlight-tiles__title-el {
@@ -35152,33 +35154,24 @@ article.wedding-highlight-tiles__tile {
   text-transform: uppercase;
 }
 
-/* Smooth lazy image fade + soft un-blur */
+/* Smooth lazy image fade — no blur/filter (Safari/iOS crash risk) */
 .wedding-page .wedding-lazy-img {
   opacity: 0;
-  filter: blur(10px);
-  transform: scale(1.08);
-  transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
-    filter 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
-    transform 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
-  will-change: opacity, filter, transform;
+  transition: opacity 0.45s ease;
 }
 
 .wedding-page .wedding-lazy-img--loaded {
   opacity: 1;
-  filter: blur(0);
-  transform: scale(1.02);
 }
 
 .wedding-page .wedding-intro-social__media .wedding-lazy-img--loaded {
-  transform: scale(1.02);
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .wedding-page .wedding-lazy-img,
   .wedding-page .wedding-lazy-img--loaded {
     opacity: 1;
-    filter: none;
     transition: none;
   }
 
@@ -35186,6 +35179,106 @@ article.wedding-highlight-tiles__tile {
   .wedding-hero__bg--loaded {
     opacity: 0.92;
     transition: none;
+  }
+}
+
+
+/* ============================================================
+   Wedding Sky — Safari / iOS scroll stability
+   Kill GPU-heavy infinite animations, blur filters, and reveal
+   transforms that crash WebKit while scrolling on mobile.
+   ============================================================ */
+@media (max-width: 900px) {
+  .wedding-page .reveal,
+  .wedding-page .reveal-left,
+  .wedding-page .reveal-right,
+  .wedding-page .reveal-scale,
+  .wedding-page .reveal.revealed,
+  .wedding-page .reveal-left.revealed,
+  .wedding-page .reveal-right.revealed,
+  .wedding-page .reveal-scale.revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    transition-delay: 0s !important;
+  }
+
+  .wedding-page .wedding-lazy-img,
+  .wedding-page .wedding-lazy-img--loaded {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .wedding-page *,
+  .wedding-page *::before,
+  .wedding-page *::after {
+    animation: none !important;
+    animation-delay: 0s !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .wedding-page .topbar.topbar--scrolled {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .wedding-hero__footer-copy,
+  .wedding-pillars__item,
+  .wedding-highlight-tiles__caption,
+  .wedding-highlight-tiles__index,
+  .wedding-intro-social__media-caption-inner,
+  .wedding-packages-section__category-caption,
+  .wedding-language-switcher .lang-switch,
+  .wedding-testimonial__source--google,
+  .wedding-about__photo-caption,
+  .wedding-contact__panel {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .wedding-highlight-tiles__tile:hover,
+  .wedding-highlight-tiles__tile:focus-within,
+  .wedding-highlight-tiles__tile:hover .wedding-highlight-tiles__media img,
+  .wedding-highlight-tiles__tile:focus-within .wedding-highlight-tiles__media img {
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .wedding-highlight-tiles__media img {
+    transform: none !important;
+  }
+
+  .wedding-knowledge-bar__marquee {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .wedding-hero__footer-glow,
+  .wedding-hero__footer-accent,
+  .wedding-hero__cta::after,
+  .wedding-yt-bar__sheen,
+  .wedding-yt-bar__pulse,
+  .wedding-yt-bar__mark-ring {
+    display: none !important;
+  }
+}
+
+@media (hover: none) {
+  .wedding-page .wedding-lazy-img,
+  .wedding-page .wedding-lazy-img--loaded {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  .wedding-highlight-tiles__tile:hover,
+  .wedding-highlight-tiles__tile:focus-within {
+    filter: none !important;
   }
 }
 

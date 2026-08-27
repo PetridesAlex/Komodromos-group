@@ -75,6 +75,7 @@ function TileContent({
           alt={
             decorativeImage ? '' : getServiceCoverImageAlt(image, title)
           }
+          sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 33vw"
         />
         <div className="wedding-highlight-tiles__scrim" aria-hidden />
         <span className="wedding-highlight-tiles__index" aria-hidden>
@@ -124,7 +125,7 @@ export default function WeddingHighlightTiles() {
       <div className="wedding-highlight-tiles__grid">
           {weddingHighlightTiles.map((tile, index) => {
             const isLink = Boolean(tile.contact || tile.hashHref)
-            const delayClass = `reveal reveal-delay-${Math.min((index % 4) + 1, 4)}`
+            /* No per-tile reveal — 50+ transform/opacity layers crash Safari on scroll */
             const body = (
               <TileContent
                 index={index}
@@ -145,7 +146,7 @@ export default function WeddingHighlightTiles() {
                   key={tile.id}
                   to="/contact"
                   state={{ serviceInterest: 'Wedding Services' }}
-                  className={`wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link ${delayClass}`}
+                  className="wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link"
                   style={style}
                   aria-label={t(weddingTilesSectionCopy.openContactAria).replace(
                     '{{title}}',
@@ -162,7 +163,7 @@ export default function WeddingHighlightTiles() {
                 <a
                   key={tile.id}
                   href={tile.hashHref}
-                  className={`wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link ${delayClass}`}
+                  className="wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link"
                   style={style}
                   aria-label={t(weddingTilesSectionCopy.jumpSectionAria).replace(
                     '{{title}}',
@@ -177,7 +178,7 @@ export default function WeddingHighlightTiles() {
             return (
               <article
                 key={tile.id}
-                className={`wedding-highlight-tiles__tile ${delayClass}`}
+                className="wedding-highlight-tiles__tile"
                 style={style}
               >
                 {body}
