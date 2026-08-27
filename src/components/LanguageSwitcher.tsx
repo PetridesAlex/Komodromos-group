@@ -11,7 +11,7 @@ const LANGUAGE_META: Record<
     switchKey: 'common.language.switchToEnglish',
   },
   el: {
-    short: 'EL',
+    short: 'GR',
     labelKey: 'common.language.gr',
     switchKey: 'common.language.switchToGreek',
   },
