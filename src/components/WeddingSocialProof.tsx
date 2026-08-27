@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { weddingTestimonialsCopy } from '../data/weddingPageCopy'
 import { WEDDING_REVIEWS, type WeddingReview } from '../data/weddingReviews'
 import { useWeddingLocale } from '../lib/weddingLocale'
@@ -136,18 +135,23 @@ function ReviewPost({
 
 export default function WeddingSocialProof() {
   const { t } = useWeddingLocale()
-  const reduceMotion = useReducedMotion()
   const totalPages = Math.max(1, Math.ceil(WEDDING_REVIEWS.length / PAGE_SIZE))
   const [page, setPage] = useState(0)
   const [paused, setPaused] = useState(false)
 
   useEffect(() => {
-    if (reduceMotion || paused || totalPages < 2) return
+    if (paused || totalPages < 2) return
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return
+    }
     const id = window.setInterval(() => {
       setPage((current) => (current + 1) % totalPages)
     }, 9000)
     return () => window.clearInterval(id)
-  }, [reduceMotion, paused, totalPages])
+  }, [paused, totalPages])
 
   const start = page * PAGE_SIZE
   const pageReviews = WEDDING_REVIEWS.slice(start, start + PAGE_SIZE)
@@ -213,31 +217,22 @@ export default function WeddingSocialProof() {
         </button>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={page}
-          className="wedding-social-proof__stage"
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? undefined : { opacity: 0, y: -12 }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.4 }}
-        >
-          {featured ? (
-            <ReviewPost review={featured} variant="featured" quoteText={featured.quote} />
-          ) : null}
+      <div className="wedding-social-proof__stage" key={page}>
+        {featured ? (
+          <ReviewPost review={featured} variant="featured" quoteText={featured.quote} />
+        ) : null}
 
-          <div className="wedding-social-proof__cards">
-            {supporting.map((review) => (
-              <ReviewPost
-                key={`${review.source}-${review.author}-${review.quote.slice(0, 24)}`}
-                review={review}
-                variant="card"
-                quoteText={truncateQuote(review.quote)}
-              />
-            ))}
-          </div>
-        </motion.div>
-      </AnimatePresence>
+        <div className="wedding-social-proof__cards">
+          {supporting.map((review) => (
+            <ReviewPost
+              key={`${review.source}-${review.author}-${review.quote.slice(0, 24)}`}
+              review={review}
+              variant="card"
+              quoteText={truncateQuote(review.quote)}
+            />
+          ))}
+        </div>
+      </div>
 
       <div className="wedding-social-proof__dots" role="tablist" aria-label={t(weddingTestimonialsCopy.carouselAria)}>
         {Array.from({ length: totalPages }, (_, index) => (
