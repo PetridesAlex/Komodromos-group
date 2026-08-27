@@ -21,11 +21,11 @@ const gridVariants = {
 const itemVariants = {
   hidden: {
     opacity: 0,
-    filter: 'blur(8px)',
+    y: 22,
   },
   visible: {
     opacity: 1,
-    filter: 'blur(0px)',
+    y: 0,
     transition: {
       duration: 0.72,
       ease: EASE,
@@ -83,11 +83,9 @@ function PillarItem({
 
   const content = (
     <>
-      <span className="wedding-pillars__border-glow" aria-hidden />
       <span className="wedding-pillars__accent" aria-hidden />
       <span className="wedding-pillars__glow" aria-hidden />
       <span className="wedding-pillars__sheen" aria-hidden />
-      <span className="wedding-pillars__sheen wedding-pillars__sheen--loop" aria-hidden />
 
       <motion.span className="wedding-pillars__index" variants={partVariants} aria-hidden>
         {indexLabel}
@@ -102,7 +100,6 @@ function PillarItem({
 
       <motion.span className="wedding-pillars__action" variants={partVariants} aria-hidden>
         <span className="wedding-pillars__action-ring" />
-        <span className="wedding-pillars__action-pulse" aria-hidden />
         <span className="wedding-pillars__action-icon">+</span>
       </motion.span>
     </>
@@ -133,13 +130,6 @@ export default function WeddingPillars() {
       aria-label={t(weddingHeroCopy.exploreServices)}
     >
       <div className="wedding-pillars__ambient" aria-hidden />
-      <div className="wedding-pillars__ambient wedding-pillars__ambient--reverse" aria-hidden />
-      <div className="wedding-pillars__light-band" aria-hidden />
-      <div className="wedding-pillars__orbs" aria-hidden>
-        <span className="wedding-pillars__orb wedding-pillars__orb--gold" />
-        <span className="wedding-pillars__orb wedding-pillars__orb--blue" />
-        <span className="wedding-pillars__orb wedding-pillars__orb--mix" />
-      </div>
       <div className="container">
         <motion.div
           className="wedding-pillars__inner"
