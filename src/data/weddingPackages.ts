@@ -13,6 +13,8 @@ export type WeddingPackageTier = {
   tagline: LocalizedText
   /** Display e.g. "from €8,500" or "Quoted on request" */
   priceDisplay: LocalizedText
+  /** Detail page hero backdrop; omit to use `image`, set `null` for gradient-only hero */
+  detailHeroImage?: string | null
   /** Sort / value order within its category (1 = entry) */
   sortOrder: number
   image: string
@@ -117,6 +119,7 @@ export const weddingPackages: WeddingPackageTier[] = [
     priceDisplay: { en: '€850', el: '€850', ru: '€850' },
     sortOrder: 1,
     image: `${CATEGORY_IMG}/christening-package-1.webp`,
+    detailHeroImage: null,
     category: 'christian',
   },
   {
@@ -134,6 +137,7 @@ export const weddingPackages: WeddingPackageTier[] = [
     priceDisplay: { en: '€1,100', el: '€1.100', ru: '€1 100' },
     sortOrder: 2,
     image: `${CATEGORY_IMG}/christening-package-2.webp`,
+    detailHeroImage: null,
     category: 'christian',
   },
   {
@@ -151,6 +155,7 @@ export const weddingPackages: WeddingPackageTier[] = [
     priceDisplay: { en: '€1,900', el: '€1.900', ru: '€1 900' },
     sortOrder: 3,
     image: `${CATEGORY_IMG}/christening-package-3.webp`,
+    detailHeroImage: null,
     category: 'christian',
   },
   {
@@ -168,6 +173,7 @@ export const weddingPackages: WeddingPackageTier[] = [
     priceDisplay: { en: '€2,300', el: '€2.300', ru: '€2 300' },
     sortOrder: 4,
     image: `${CATEGORY_IMG}/christening-package-4.webp`,
+    detailHeroImage: null,
     category: 'christian',
   },
 ]

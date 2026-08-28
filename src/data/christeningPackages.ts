@@ -452,3 +452,77 @@ export const christeningPackages: readonly ChristeningPackage[] = [
 export function getChristeningPackage(id: string | undefined) {
   return christeningPackages.find((pkg) => pkg.id === id)
 }
+
+/** Summaries that roll up prior tiers — expanded on detail pages. */
+function isPriorPackageRollup(item: LocalizedText): boolean {
+  const en = item.en.toLowerCase()
+  return (
+    en.includes('all package 1') ||
+    en.includes('packages 1–2') ||
+    en.includes('packages 1-2') ||
+    en.includes('all of package 3')
+  )
+}
+
+function getChristeningTierItems(id: string): LocalizedText[] {
+  const pkg = getChristeningPackage(id)
+  if (!pkg) return []
+  return pkg.sections.flatMap((section) => section.items)
+}
+
+const CHURCH_RECEPTION_DECOR_TITLE = L(
+  'Church & reception décor',
+  'Διακόσμηση εκκλησίας και αίθουσας δεξίωσης',
+  'Декор храма и зала приёма',
+)
+
+const SIGNATURE_EXTRAS_TITLE = L(
+  'Signature hospitality extras',
+  'Επιπλέον υπογραφή φιλοξενίας',
+  'Дополнения фирменного гостеприимства',
+)
+
+/** Full flyer inclusions with prior-tier rollups expanded for package detail pages. */
+export function getChristeningPackageExpandedSections(
+  id: string | undefined,
+): ChristeningPackageSection[] | undefined {
+  const pkg = getChristeningPackage(id)
+  if (!pkg) return undefined
+
+  const pkg1Items = getChristeningTierItems('christening-1')
+  const pkg2Extras = getChristeningTierItems('christening-2').filter(
+    (item) => !isPriorPackageRollup(item),
+  )
+
+  if (id === 'christening-1') {
+    return pkg.sections
+  }
+
+  if (id === 'christening-2') {
+    return [
+      {
+        title: CHURCH_RECEPTION_DECOR_TITLE,
+        items: [...pkg1Items, ...pkg2Extras],
+      },
+    ]
+  }
+
+  if (id === 'christening-3') {
+    const decorExtra = pkg.sections[0].items.filter((item) => !isPriorPackageRollup(item))
+    return [
+      {
+        title: pkg.sections[0].title,
+        items: [...pkg1Items, ...pkg2Extras, ...decorExtra],
+      },
+      ...pkg.sections.slice(1),
+    ]
+  }
+
+  if (id === 'christening-4') {
+    const pkg3Sections = getChristeningPackageExpandedSections('christening-3') ?? []
+    const pkg4Extras = pkg.sections[0].items.filter((item) => !isPriorPackageRollup(item))
+    return [...pkg3Sections, { title: SIGNATURE_EXTRAS_TITLE, items: pkg4Extras }]
+  }
+
+  return pkg.sections
+}

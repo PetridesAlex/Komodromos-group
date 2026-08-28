@@ -984,11 +984,20 @@ export const weddingCategoryPageCopy: {
   collectionEyebrow: LocalizedText
   allCollections: LocalizedText
   enquire: LocalizedText
+  enquireShort: LocalizedText
   tiersEyebrow: LocalizedText
   chooseTitle: LocalizedText
+  chooseTitleLine1: LocalizedText
+  chooseTitleLine2: LocalizedText
   chooseIntro: LocalizedText
   viewPackage: LocalizedText
   openPackageAria: LocalizedText
+  includesLabel: LocalizedText
+  includedServices: LocalizedText
+  featuredBadge: LocalizedText
+  previewFlyer: LocalizedText
+  previewHint: LocalizedText
+  catalogueNote: LocalizedText
 } = {
   collectionEyebrow: {
     en: 'Wedding Sky collection',
@@ -1005,6 +1014,11 @@ export const weddingCategoryPageCopy: {
     el: 'Ιδιωτική επικοινωνία',
     ru: 'Частный запрос',
   },
+  enquireShort: {
+    en: 'Enquire now',
+    el: 'Εκδήλωση ενδιαφέροντος',
+    ru: 'Оставить заявку',
+  },
   tiersEyebrow: {
     en: 'TIERS',
     el: 'ΕΠΙΠΕΔΑ',
@@ -1014,6 +1028,16 @@ export const weddingCategoryPageCopy: {
     en: 'Choose your package',
     el: 'Επιλέξτε το πακέτο σας',
     ru: 'Выберите свой пакет',
+  },
+  chooseTitleLine1: {
+    en: 'Choose your',
+    el: 'Επιλέξτε το',
+    ru: 'Выберите',
+  },
+  chooseTitleLine2: {
+    en: 'Wedding tier',
+    el: 'επίπεδο γάμου',
+    ru: 'уровень свадьбы',
   },
   chooseIntro: {
     en: 'Three investment levels in this collection. Open a package for full scope and inclusions.',
@@ -1030,6 +1054,36 @@ export const weddingCategoryPageCopy: {
     el: 'Άνοιγμα λεπτομερειών πακέτου {{title}}',
     ru: 'Открыть подробности пакета {{title}}',
   },
+  includesLabel: {
+    en: 'What is included',
+    el: 'Τι περιλαμβάνεται',
+    ru: 'Что входит',
+  },
+  includedServices: {
+    en: 'Core services',
+    el: 'Βασικές υπηρεσίες',
+    ru: 'Основные услуги',
+  },
+  featuredBadge: {
+    en: 'Signature tier',
+    el: 'Υπογραφή επιλογή',
+    ru: 'Фирменный уровень',
+  },
+  previewFlyer: {
+    en: 'View package cover',
+    el: 'Προβολή εξωφύλλου πακέτου',
+    ru: 'Открыть обложку пакета',
+  },
+  previewHint: {
+    en: 'Tap to preview',
+    el: 'Πατήστε για προβολή',
+    ru: 'Нажмите для просмотра',
+  },
+  catalogueNote: {
+    en: 'Every programme can be tailored with additional Wedding Sky services.',
+    el: 'Κάθε πρόγραμμα μπορεί να προσαρμοστεί με επιπλέον υπηρεσίες Wedding Sky.',
+    ru: 'Каждую программу можно дополнить услугами Wedding Sky.',
+  },
 }
 
 export const weddingDetailPageCopy: {
@@ -1041,11 +1095,16 @@ export const weddingDetailPageCopy: {
   includedScope: LocalizedText
   previous: LocalizedText
   next: LocalizedText
+  explorePackage: LocalizedText
+  previousPackageAria: LocalizedText
+  nextPackageAria: LocalizedText
   packageIncludes: LocalizedText
   contactPrefix: LocalizedText
   contactLink: LocalizedText
   contactSuffix: LocalizedText
   important: LocalizedText
+  packageOverview: LocalizedText
+  atAGlance: LocalizedText
 } = {
   packageEyebrow: {
     en: 'Wedding package',
@@ -1087,6 +1146,21 @@ export const weddingDetailPageCopy: {
     el: 'Επόμενο',
     ru: 'Следующий',
   },
+  explorePackage: {
+    en: 'Explore package',
+    el: 'Δείτε το πακέτο',
+    ru: 'Смотреть пакет',
+  },
+  previousPackageAria: {
+    en: 'View previous package: {{title}}',
+    el: 'Προηγούμενο πακέτο: {{title}}',
+    ru: 'Предыдущий пакет: {{title}}',
+  },
+  nextPackageAria: {
+    en: 'View next package: {{title}}',
+    el: 'Επόμενο πακέτο: {{title}}',
+    ru: 'Следующий пакет: {{title}}',
+  },
   packageIncludes: {
     en: 'Package includes',
     el: 'Το πακέτο περιλαμβάνει',
@@ -1111,6 +1185,16 @@ export const weddingDetailPageCopy: {
     en: 'Important',
     el: 'Σημαντικό',
     ru: 'Важно',
+  },
+  packageOverview: {
+    en: 'Package overview',
+    el: 'Επισκόπηση πακέτου',
+    ru: 'Обзор пакета',
+  },
+  atAGlance: {
+    en: 'At a glance',
+    el: 'Εν συντομία',
+    ru: 'Кратко',
   },
 }
 

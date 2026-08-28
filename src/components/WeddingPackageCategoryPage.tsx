@@ -1,11 +1,10 @@
-import type { KeyboardEvent } from 'react'
 import { useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
-import WeddingLazyImage from './WeddingLazyImage'
 import WeddingChristeningPackagesPage from './WeddingChristeningPackagesPage'
+import WeddingPackagePricingGrid from './WeddingPackagePricingGrid'
 import NotFoundPage from './NotFoundPage'
 import { useReveal } from '../hooks/useReveal'
 import {
@@ -13,7 +12,6 @@ import {
   getWeddingPackageCategory,
   type WeddingPackageCategoryId,
 } from '../data/weddingPackages'
-import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
 import { weddingBrandHref } from '../lib/brandPaths'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
@@ -22,7 +20,6 @@ import { useWeddingLocale } from '../lib/weddingLocale'
 
 export default function WeddingPackageCategoryPage() {
   const pageRef = useReveal()
-  const navigate = useNavigate()
   const { categoryId } = useParams()
   const { isBrandDomain } = useSiteContext()
   const { t, htmlLang } = useWeddingLocale()
@@ -45,17 +42,6 @@ export default function WeddingPackageCategoryPage() {
 
   if (category.id === 'christian') {
     return <WeddingChristeningPackagesPage />
-  }
-
-  const openPackage = (packageId: string) => {
-    navigate(weddingBrandHref(`/services/wedding/packages/${packageId}`))
-  }
-
-  const onCardKeyDown = (event: KeyboardEvent<HTMLElement>, packageId: string) => {
-    if (event.target !== event.currentTarget) return
-    if (event.key !== 'Enter' && event.key !== ' ') return
-    event.preventDefault()
-    openPackage(packageId)
   }
 
   return (
@@ -117,91 +103,19 @@ export default function WeddingPackageCategoryPage() {
       </section>
 
       <section
-        className="wedding-section wedding-packages-section wedding-package-category-list"
+        className="wedding-christening-catalogue wedding-package-category-catalogue"
         aria-labelledby="wedding-category-packages-title"
       >
-        <div className="container">
-          <header className="wedding-section__head wedding-package-category-list__head reveal">
-            <p className="wedding-package-category-list__eyebrow">
-              {t(weddingCategoryPageCopy.tiersEyebrow)}
-            </p>
-            <h2
-              id="wedding-category-packages-title"
-              className="wedding-section__title wedding-package-category-list__title"
-            >
-              {t(weddingCategoryPageCopy.chooseTitle)}
-            </h2>
-            <span className="wedding-package-category-list__rule" aria-hidden />
-            <p className="wedding-section__intro wedding-package-category-list__intro">
-              {t(weddingCategoryPageCopy.chooseIntro)}
-            </p>
-          </header>
-
-          <div className="wedding-package-category-list__grid">
-            {packages.map((pkg, index) => (
-              <article
-                key={pkg.id}
-                id={`wedding-package-${pkg.id}`}
-                className={`wedding-package-category-list__card reveal reveal-delay-${Math.min(index + 1, 4)}`}
-                role="link"
-                tabIndex={0}
-                onClick={() => openPackage(pkg.id)}
-                onKeyDown={(event) => onCardKeyDown(event, pkg.id)}
-                aria-label={t(weddingCategoryPageCopy.openPackageAria).replace(
-                  '{{title}}',
-                  t(pkg.name),
-                )}
-              >
-                <div className="wedding-package-category-list__media">
-                  <WeddingLazyImage
-                    src={pkg.image}
-                    alt={getServiceCoverImageAlt(
-                      pkg.image,
-                      `Wedding Sky ${t(pkg.name)} package`,
-                    )}
-                  />
-                  <div className="wedding-package-category-list__media-scrim" aria-hidden />
-                  <span className="wedding-package-category-list__index" aria-hidden>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                </div>
-                <div className="wedding-package-category-list__content">
-                  <p className="wedding-package-category-list__tier">
-                    {t(weddingCategoryPageCopy.tiersEyebrow)} {String(index + 1).padStart(2, '0')}
-                  </p>
-                  <h3 className="wedding-package-category-list__name">{t(pkg.name)}</h3>
-                  <p className="wedding-package-category-list__price">{t(pkg.priceDisplay)}</p>
-                  <p className="wedding-package-category-list__tag">{t(pkg.tagline)}</p>
-                  <div className="wedding-package-category-list__actions">
-                    <Link
-                      to={weddingBrandHref(`/services/wedding/packages/${pkg.id}`)}
-                      className="wedding-package-category-list__details"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      <span className="wedding-package-category-list__btn-sheen" aria-hidden />
-                      <span className="wedding-package-category-list__btn-label">
-                        {t(weddingCategoryPageCopy.viewPackage)}
-                      </span>
-                    </Link>
-                    <Link
-                      to="/contact"
-                      state={{
-                        serviceInterest: 'Wedding Services',
-                        weddingPackage: t(pkg.name),
-                      }}
-                      className="wedding-package-category-list__enquire"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      <span className="wedding-package-category-list__btn-sheen" aria-hidden />
-                      <span className="wedding-package-category-list__btn-label">
-                        {t(weddingCategoryPageCopy.enquire)}
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+        <div className="wedding-christening-catalogue__backdrop" aria-hidden>
+          <span className="wedding-christening-catalogue__orb wedding-christening-catalogue__orb--gold" />
+          <span className="wedding-christening-catalogue__orb wedding-christening-catalogue__orb--blue" />
+          <span className="wedding-christening-catalogue__orb wedding-christening-catalogue__orb--azure" />
+          <span className="wedding-christening-catalogue__mesh" />
+          <span className="wedding-christening-catalogue__sheen" />
+          <span className="wedding-christening-catalogue__grain" />
+        </div>
+        <div className="container wedding-christening-catalogue__inner">
+          <WeddingPackagePricingGrid packages={packages} />
         </div>
       </section>
 
