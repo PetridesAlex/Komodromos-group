@@ -120,18 +120,16 @@ export default function WeddingPackageDetailPage() {
           ) : null}
 
           <div className="wedding-package-detail-hero__spotlight">
-            <div className="wedding-package-detail-hero__price-row">
-              <p className="wedding-package-detail-hero__price">
-                {longContent ? longContent.priceDisplay : t(packageTier.priceDisplay)}
-              </p>
+            <div className="wedding-package-detail-hero__investment">
               <span className="wedding-package-detail-hero__price-note">
                 {t(weddingDetailPageCopy.investmentFrom)}
               </span>
+              <p className="wedding-package-detail-hero__price">
+                {longContent ? longContent.priceDisplay : t(packageTier.priceDisplay)}
+              </p>
             </div>
-
-            <div className="wedding-package-detail-hero__copy">
-              <p className="wedding-package-detail-hero__summary">{summaryText}</p>
-            </div>
+            <span className="wedding-package-detail-hero__spotlight-rule" aria-hidden />
+            <p className="wedding-package-detail-hero__summary">{summaryText}</p>
           </div>
 
           <div className="wedding-package-detail-hero__actions">

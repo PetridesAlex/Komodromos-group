@@ -8,197 +8,197 @@ import {
 } from './weddingPackageLong/types'
 
 const weddingBasicPackageContentSource: WeddingPackageLongContentSource = {
-  title: '"BASIC" Wedding Package',
-  subtitle: 'The Essentials for a Unique Wedding Experience in Cyprus',
-  priceDisplay: 'EUR6,900',
+  title: '"BASIC" Wedding Programme',
+  subtitle: 'A composed Cyprus wedding foundation with the services couples request most',
+  priceDisplay: '€6,900',
   includes: [
-    'Floral Design and Decoration',
-    'Photography and Videography',
-    'Wedding Invitations',
-    'Wedding Favors and Cake',
-    'Music Entertainment (DJ)',
-    'Traditional Allamata (Violarides)',
-    'Ground Fireworks',
+    'Florals and venue styling',
+    'Photography and cinematic film',
+    'Invitation stationery suite',
+    'Guest favours and celebration cake',
+    'Evening reception music (DJ)',
+    'Traditional violari procession',
+    'Ground celebration pyrotechnics',
   ],
-  aboutTitle: 'About Our Team',
+  aboutTitle: 'The Wedding Sky Atelier',
   aboutCopy:
-    'My Special Event in Cyprus works with carefully selected professionals, each highly experienced in wedding planning, ensuring top-quality services combined with excellent value.',
+    'Wedding Sky assembles trusted Cyprus wedding specialists — planners, stylists, and production partners — held to one standard: refined celebrations delivered with clarity, composure, and enduring value.',
   sections: [
     {
-      title: 'Floral Design and Decoration (Fresh Flowers)',
+      title: 'Florals & Styling (Fresh Blooms)',
       intro:
-        'All arrangements are created using fresh flowers such as roses, lisianthus, gerberas, chrysanthemums, gypsophila, seasonal flowers, eucalyptus, and greenery.',
+        'Compositions combine seasonal and classic blooms such as roses, lisianthus, gerbera, chrysanthemum, gypsophila, eucalyptus, and complementary foliage.',
       groups: [
         {
-          title: 'Church Decoration',
+          title: 'Ceremony styling',
           items: [
-            '2 floral columns placed beside the couple',
-            '10 floral aisle or chair arrangements',
-            '4 flower stands at the church entrance',
-            'Table with 30 rice/petal cones',
-            'Bridal bouquet plus second bouquet for tossing',
-            '10 boutonnieres',
-            'Decoration of 2 wedding cars with ribbons',
+            'Pair of floral columns flanking the couple',
+            'Ten aisle or pew floral accents',
+            'Four entrance pedestal arrangements',
+            'Display table with thirty rice or petal cones',
+            'Bridal bouquet plus keepsake toss bouquet',
+            'Ten buttonholes for the wedding party',
+            'Ribbon styling for two wedding vehicles',
           ],
         },
         {
-          title: 'Reception Decoration',
+          title: 'Reception styling',
           items: [
-            'Transfer of floral columns to reception area',
-            'Welcome aisle with flowers and candles',
-            "Floral setup for couple's table",
-            'Decoration of 10 guest tables',
+            'Ceremony columns repositioned at the reception',
+            'Guest arrival aisle with florals and candlelight',
+            'Head-table floral composition',
+            'Styling for ten guest tables',
           ],
         },
       ],
     },
     {
-      title: 'Floral Design and Decoration (Mixed Flowers)',
+      title: 'Florals & Styling (Blended Blooms)',
       intro:
-        'High-quality artificial flowers are used, with selected elements upgraded to fresh flowers where specified.',
+        'Premium artificial florals form the base, with selected details elevated to fresh blooms where noted.',
       groups: [
         {
-          title: 'Church Decoration',
+          title: 'Ceremony styling',
           items: [
-            '2 floral columns beside the couple',
-            'Floral arch at the entrance',
-            '2 decorative stands at entrance',
-            'Bridal bouquet (fresh flowers)',
-            'Second bouquet for tossing (fresh)',
-            '10 boutonnieres (fresh)',
-            '30 rice/petal cones (with real flowers)',
-            '10 aisle arrangements',
-            'Decoration of 2 cars with ribbons',
+            'Pair of floral columns beside the couple',
+            'Entrance floral arch',
+            'Two entrance display pedestals',
+            'Bridal bouquet in fresh blooms',
+            'Toss bouquet in fresh blooms',
+            'Ten fresh buttonholes',
+            'Thirty rice or petal cones with fresh accents',
+            'Ten aisle floral accents',
+            'Ribbon styling for two vehicles',
           ],
         },
         {
-          title: 'Reception Decoration',
+          title: 'Reception styling',
           items: [
-            'Transfer of floral columns to reception',
-            'Arch behind the couple',
-            'Welcome aisle with 10 decorative stands',
-            'Floral and candle setup for main table',
-            'Decoration of 15 guest tables',
-          ],
-        },
-      ],
-    },
-    {
-      title: 'Photography and Videography',
-      items: [
-        'Full wedding day photo and video coverage',
-        '3 albums (1 large plus 2 for parents)',
-        'Full-length wedding video',
-        'Highlight video',
-        'Outdoor photoshoot',
-        'Gift: 1 canvas',
-        'Gift: 50 printed photos',
-        'All files delivered in high-resolution on USB',
-      ],
-      groups: [
-        {
-          title: 'Optional Upgrades',
-          items: [
-            'Drone coverage (+EUR300)',
-            'Extra photographer/videographer',
-            'Same-day video',
-            'Pre-wedding shoot',
+            'Ceremony columns transferred to reception',
+            'Backdrop arch behind the couple',
+            'Welcome aisle with ten display pedestals',
+            'Head-table florals with candlelight',
+            'Styling for fifteen guest tables',
           ],
         },
       ],
     },
     {
-      title: 'Wedding Invitations',
+      title: 'Photography & Cinematic Film',
       items: [
-        'Up to 1000 invitation cards',
-        'A5 size format',
-        'Fully customizable design',
-        'Printed on premium 350g Bristol paper',
-        'Single-sided printing',
-        'Envelopes not included',
+        'Complete wedding-day photo and film capture',
+        'Three albums (one master volume plus two parent editions)',
+        'Full ceremony and reception film',
+        'Edited highlight reel',
+        'Location portrait session',
+        'Complimentary canvas print',
+        'Complimentary set of fifty printed images',
+        'High-resolution archive supplied on USB',
       ],
       groups: [
         {
-          title: 'Optional Upgrades',
+          title: 'Available enhancements',
           items: [
-            'Envelopes',
-            'Alternative paper types',
-            'Custom invitation formats',
-            'Embossed printing',
+            'Aerial drone filming (+€300)',
+            'Additional photo or film crew member',
+            'Same-day highlight film',
+            'Pre-wedding portrait session',
           ],
         },
       ],
     },
     {
-      title: 'Wedding Favors and Cake',
+      title: 'Invitation Stationery',
       items: [
-        'Up to 1000 sweet favors',
-        'Various flavor options available',
-        'Custom color wrapping',
-        'Gift: 2-tier wedding cake',
-        'Gift: fresh flower cake decoration',
+        'Up to one thousand invitation cards',
+        'A5 format',
+        'Fully bespoke design',
+        'Printed on premium 350g board stock',
+        'Single-sided print finish',
+        'Envelopes quoted separately',
       ],
       groups: [
         {
-          title: 'Optional Desserts',
+          title: 'Available enhancements',
           items: [
-            'Loukoumi varieties',
+            'Matching envelopes',
+            'Alternative paper stocks',
+            'Custom formats and sizes',
+            'Embossed or foil detailing',
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Guest Favours & Celebration Cake',
+      items: [
+        'Up to one thousand sweet favours',
+        'Choice of flavour profiles',
+        'Wrap colours matched to your palette',
+        'Complimentary two-tier wedding cake',
+        'Complimentary fresh-floral cake styling',
+      ],
+      groups: [
+        {
+          title: 'Additional sweet options',
+          items: [
+            'Loukoumi selections',
             'Alepiano pastries',
             'Roditiko sweets',
-            'Brownies and praline options',
+            'Brownie and praline assortments',
           ],
         },
       ],
     },
     {
-      title: 'Music and DJ',
+      title: 'Reception Music & DJ',
       items: [
         'Professional sound system',
-        'Music from dinner until end of event',
-        'No time restrictions',
+        'Music programme from dinner through to close',
+        'No hourly time cap on performance',
       ],
       groups: [
         {
-          title: 'Optional',
-          items: ['Lighting and smoke effects (+EUR150)'],
+          title: 'Available additions',
+          items: ['Atmospheric lighting and haze effects (+€150)'],
         },
       ],
     },
     {
-      title: 'Traditional Allamata',
-      items: ['Traditional outfits for bride and groom'],
+      title: 'Traditional Violari Procession',
+      items: ['Traditional attire styling for bride and groom'],
       groups: [
         {
-          title: 'Optional',
-          items: ['Bride escort to church (+EUR50)'],
+          title: 'Available additions',
+          items: ['Escorted bride arrival at ceremony (+€50)'],
         },
       ],
     },
     {
-      title: 'Ground Fireworks',
+      title: 'Ground Celebration Pyrotechnics',
       items: [
-        '6 fountain fireworks',
-        '45 seconds duration each',
-        'Smokeless and odor-free',
-        'Height: 3-4 meters',
-        'Setup and removal included',
+        'Six fountain-style ground effects',
+        'Approximately forty-five seconds per effect',
+        'Low-smoke, low-odour formulation',
+        'Display height of three to four metres',
+        'Installation and removal included',
       ],
       groups: [
         {
-          title: 'Optional Upgrade',
-          items: ['Sparkler machines for key moments (+EUR150)'],
+          title: 'Available enhancements',
+          items: ['Cold-spark machines for signature moments (+€150)'],
         },
       ],
     },
   ],
   importantNote:
-    'Any additional decoration by third parties must be approved in advance. Custom upgrades and changes are available with price adjustments.',
+    'External décor or styling must be confirmed with Wedding Sky before installation. Tailored upgrades and programme revisions can be arranged with updated pricing.',
 }
 
 const weddingBasicPlusPackageContentSource: WeddingPackageLongContentSource = {
   title: '"BASIC PLUS+" Wedding Package',
   subtitle: 'Complete Wedding Experience with Premium Additions',
-  priceDisplay: 'EUR8,950',
+  priceDisplay: '€8,950',
   includes: [
     'Floral Design and Decoration',
     'Photography and Videography',
@@ -212,7 +212,7 @@ const weddingBasicPlusPackageContentSource: WeddingPackageLongContentSource = {
   ],
   aboutTitle: 'About Our Team',
   aboutCopy:
-    'My Special Event in Cyprus works with highly experienced professionals, carefully selected to deliver outstanding quality and excellent value.',
+    'Wedding Sky works with highly experienced professionals, carefully selected to deliver outstanding quality and excellent value.',
   sections: [
     {
       title: 'Floral Design and Decoration',
@@ -303,7 +303,7 @@ const weddingBasicPlusPackageContentSource: WeddingPackageLongContentSource = {
 const weddingClassicPackageContentSource: WeddingPackageLongContentSource = {
   title: '"CLASSIC" Wedding Package',
   subtitle: 'Everything You Need for a Dream Wedding in Cyprus',
-  priceDisplay: 'EUR11,350',
+  priceDisplay: '€11,350',
   includes: [
     'Floral Design and Decoration',
     'Photography and Videography',
@@ -318,7 +318,7 @@ const weddingClassicPackageContentSource: WeddingPackageLongContentSource = {
   ],
   aboutTitle: 'About Our Team',
   aboutCopy:
-    'My Special Event in Cyprus partners with experienced and trusted professionals, each specializing in their field. Our team is carefully selected to ensure exceptional service quality combined with competitive pricing.',
+    'Wedding Sky partners with experienced and trusted professionals, each specializing in their field. Our team is carefully selected to ensure exceptional service quality combined with competitive pricing.',
   sections: [
     {
       title: 'Floral Design and Decoration',
@@ -490,7 +490,7 @@ const weddingClassicPackageContentSource: WeddingPackageLongContentSource = {
 const weddingClassicPlusPackageContentSource: WeddingPackageLongContentSource = {
   title: '"CLASSIC PLUS+" Wedding Package',
   subtitle: 'The Ultimate Luxury Wedding Experience in Cyprus',
-  priceDisplay: 'EUR17,350',
+  priceDisplay: '€17,350',
   includes: [
     'Floral Design and Decoration',
     'Photography and Videography',
@@ -507,7 +507,7 @@ const weddingClassicPlusPackageContentSource: WeddingPackageLongContentSource = 
   ],
   aboutTitle: 'About Our Team',
   aboutCopy:
-    'My Special Event in Cyprus brings together highly experienced professionals, each carefully selected to deliver exceptional quality services and a premium wedding experience tailored to your needs.',
+    'Wedding Sky brings together highly experienced professionals, each carefully selected to deliver exceptional quality services and a premium wedding experience tailored to your needs.',
   sections: [
     {
       title: 'Floral Design and Decoration',
@@ -661,7 +661,7 @@ const weddingClassicPlusPackageContentSource: WeddingPackageLongContentSource = 
 const weddingPremiumPackageContentSource: WeddingPackageLongContentSource = {
   title: '"PREMIUM" Wedding Package',
   subtitle: 'A Truly Luxury Wedding Experience in Cyprus',
-  priceDisplay: 'EUR28,950',
+  priceDisplay: '€28,950',
   includes: [
     'Floral Design and Decoration',
     'Photography and Videography',
@@ -863,7 +863,7 @@ const weddingCustomisedPackageContentSource: WeddingPackageLongContentSource = {
   ],
   aboutTitle: 'About Our Team',
   aboutCopy:
-    'At My Special Event in Cyprus, we work with carefully selected professionals who are highly experienced in their field and have many years of expertise in wedding planning across Cyprus. Every collaborator has been chosen after extensive market research, allowing us to offer exceptional quality together with excellent value.',
+    'At Wedding Sky, we work with carefully selected professionals who are highly experienced in their field and have many years of expertise in wedding planning across Cyprus. Every collaborator has been chosen after extensive market research, allowing us to offer exceptional quality together with excellent value.',
   sections: [
     {
       title: 'Custom Wedding Experience',
@@ -873,7 +873,7 @@ const weddingCustomisedPackageContentSource: WeddingPackageLongContentSource = {
     {
       title: 'How It Works',
       intro:
-        'You may choose from all of the wedding services offered by My Special Event in Cyprus and combine them into a package tailored specifically to your event.',
+        'You may choose from all of the wedding services offered by Wedding Sky and combine them into a package tailored specifically to your event.',
       items: [
         'To create a custom wedding package, a minimum of 5 wedding services must be selected.',
       ],

@@ -42384,22 +42384,46 @@ article.wedding-highlight-tiles__tile {
 .wedding-package-detail-hero__spotlight {
   margin-top: 1.35rem;
   max-width: 42rem;
-  padding: clamp(1.15rem, 2.4vw, 1.45rem) clamp(1.25rem, 2.6vw, 1.65rem);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.82);
+  padding: clamp(1.35rem, 2.8vw, 1.75rem) clamp(1.35rem, 2.8vw, 1.85rem);
+  border-radius: 22px;
+  border: 1px solid rgba(201, 165, 106, 0.32);
   background:
     linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.88) 0%,
-      rgba(255, 255, 255, 0.72) 52%,
-      rgba(232, 241, 255, 0.68) 100%
+      152deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(248, 251, 255, 0.92) 48%,
+      rgba(241, 247, 255, 0.88) 100%
     );
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   box-shadow:
-    0 24px 60px rgba(10, 30, 60, 0.1),
-    0 8px 24px rgba(63, 127, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    0 28px 64px rgba(10, 30, 60, 0.12),
+    0 10px 28px rgba(63, 127, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
+}
+
+.wedding-package-detail-hero__investment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.wedding-package-detail-hero__spotlight-rule {
+  display: block;
+  width: 3.25rem;
+  height: 1.5px;
+  margin: 1rem 0 0.85rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c9a56a 0%, #3f7fff 55%, rgba(26, 91, 184, 0.2) 100%);
+  box-shadow: 0 0 14px rgba(201, 165, 106, 0.28);
+}
+
+.wedding-package-detail-hero__spotlight .wedding-package-detail-hero__price-note {
+  order: unset;
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  color: rgba(26, 91, 184, 0.68);
 }
 
 .wedding-package-detail-hero__spotlight .wedding-package-detail-hero__price-row {
@@ -43323,9 +43347,30 @@ article.wedding-highlight-tiles__tile {
 }
 
 .wedding-package-detail-hero__spotlight .wedding-package-detail-hero__price {
-  font-size: clamp(2rem, 4.8vw, 2.75rem);
-  letter-spacing: 0.02em;
-  color: var(--ws-blue-deep);
+  order: unset;
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.15rem, 5vw, 3rem);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: #0a2a5c;
+  text-shadow: none;
+}
+
+.wedding-package-detail-hero__spotlight .wedding-package-detail-hero__summary {
+  margin: 0;
+  max-width: none;
+  padding: 0;
+  border-left: 0;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.12rem, 2vw, 1.32rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.58;
+  letter-spacing: 0.01em;
+  color: rgba(12, 32, 62, 0.88);
 }
 
 .wedding-package-detail-hero__photo.wedding-lazy-img {

@@ -1053,9 +1053,9 @@ export const weddingDetailPageCopy: {
     ru: 'Свадебный пакет',
   },
   investmentFrom: {
-    en: 'Investment from',
-    el: 'Επένδυση από',
-    ru: 'Стоимость от',
+    en: 'Indicative investment from',
+    el: 'Ενδεικτική επένδυση από',
+    ru: 'Ориентировочная стоимость от',
   },
   bookConsultation: {
     en: 'Book consultation',
@@ -1093,14 +1093,14 @@ export const weddingDetailPageCopy: {
     ru: 'В пакет входит',
   },
   contactPrefix: {
-    en: 'For appointments or more information, ',
-    el: 'Για ραντεβού ή περισσότερες πληροφορίες, ',
-    ru: 'Для записи на встречу или получения дополнительной информации ',
+    en: 'For a private consultation or bespoke proposal, ',
+    el: 'Για ιδιωτική συνάντηση ή εξατομικευμένη πρόταση, ',
+    ru: 'Для частной консультации или индивидуального предложения ',
   },
   contactLink: {
-    en: 'contact our team',
-    el: 'επικοινωνήστε με την ομάδα μας',
-    ru: 'свяжитесь с нашей командой',
+    en: 'connect with our Wedding Sky atelier',
+    el: 'επικοινωνήστε με το atelier της Wedding Sky',
+    ru: 'свяжитесь с нашим atelier Wedding Sky',
   },
   contactSuffix: {
     en: '.',

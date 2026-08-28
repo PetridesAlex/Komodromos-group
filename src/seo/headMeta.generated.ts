@@ -423,21 +423,21 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
   },
   "/services/wedding/packages/basic": {
     "title": "Basic Wedding Package Cyprus Services | Komodromos Group",
-    "description": "Basic — Essential planning and coordination for an elegant Cyprus celebration.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
+    "description": "Basic — Structured planning support and assured day-of coordination for a polished Cyprus wedding.. Part of Komodromos Group premium services in Cyprus.",
     "canonical": "https://www.komodromosgroup.com/services/wedding/packages/basic",
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-basic.webp",
     "index": true
   },
   "/services/wedding/packages/classic": {
     "title": "Classic Wedding Package Cyprus Services | Komodromos Group",
-    "description": "Classic — Full creative direction with refined production and guest care.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service",
+    "description": "Classic — Expanded design oversight, curated suppliers, and cohesive production for a richer celebration.. Part of Komodromos Group premium services in Cyprus.",
     "canonical": "https://www.komodromosgroup.com/services/wedding/packages/classic",
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-classic.webp",
     "index": true
   },
   "/services/wedding/packages/premium": {
     "title": "Premium Wedding Package Cyprus Services | Komodromos Group",
-    "description": "Premium — Our signature tier — maximum craft, discretion, and white-glove execution.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
+    "description": "Premium — Wedding Sky's most elevated commission — tailored concept, premium partners, and dedicated stewardship throughout.. Part of Komodromos Group premium",
     "canonical": "https://www.komodromosgroup.com/services/wedding/packages/premium",
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-premium.webp",
     "index": true
