@@ -4,6 +4,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
 import WeddingAboutManifesto from './WeddingAboutManifesto'
+import WeddingAboutServicesCarousel from './WeddingAboutServicesCarousel'
 import WeddingPlanEnquiryModal from './WeddingPlanEnquiryModal'
 import WeddingLazyImage from './WeddingLazyImage'
 import { useReveal } from '../hooks/useReveal'
@@ -86,7 +87,8 @@ export default function WeddingAboutPage() {
       </section>
 
       <section className="wedding-about-page__body" aria-label={t(weddingAboutCopy.pageTitle)}>
-        <div className="container wedding-about-page__body-inner">
+        <WeddingAboutServicesCarousel />
+        <div className="wedding-about-page__body-inner">
           <WeddingAboutManifesto
             standalone
             onEnquire={() => setPlanEnquiryOpen(true)}

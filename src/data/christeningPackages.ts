@@ -98,9 +98,19 @@ export const christeningPackagesPageCopy = {
     ru: 'Нажмите для просмотра',
   } satisfies LocalizedText,
   catalogueHeading: {
-    en: 'Choose your celebration tier',
+    en: 'Choose your Celebration tier',
     el: 'Επιλέξτε το επίπεδο της γιορτής σας',
     ru: 'Выберите уровень торжества',
+  } satisfies LocalizedText,
+  catalogueHeadingLine1: {
+    en: 'Choose your',
+    el: 'Επιλέξτε το',
+    ru: 'Выберите',
+  } satisfies LocalizedText,
+  catalogueHeadingLine2: {
+    en: 'Celebration tier',
+    el: 'επίπεδο γιορτής',
+    ru: 'уровень торжества',
   } satisfies LocalizedText,
   catalogueEyebrow: {
     en: 'The christening edit',

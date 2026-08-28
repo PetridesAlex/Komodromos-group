@@ -668,6 +668,10 @@ export const weddingAboutCopy: {
   cta: LocalizedText
   photoLabel: LocalizedText
   backToAtelier: LocalizedText
+  servicesCarouselEyebrow: LocalizedText
+  servicesCarouselTitle: LocalizedText
+  servicesCarouselLead: LocalizedText
+  servicesCarouselHint: LocalizedText
 } = {
   eyebrow: {
     en: 'Our story',
@@ -698,6 +702,26 @@ export const weddingAboutCopy: {
     en: 'Back to Wedding Sky',
     el: 'Επιστροφή στη Wedding Sky',
     ru: 'Назад к Wedding Sky',
+  },
+  servicesCarouselEyebrow: {
+    en: 'Services & experiences',
+    el: 'Υπηρεσίες & εμπειρίες',
+    ru: 'Услуги и впечатления',
+  },
+  servicesCarouselTitle: {
+    en: 'Every detail. Every emotion. Every unforgettable moment.',
+    el: 'Κάθε λεπτομέρεια. Κάθε συναίσθημα. Κάθε αξέχαστη στιγμή.',
+    ru: 'Каждая деталь. Каждая эмоция. Каждый незабываемый момент.',
+  },
+  servicesCarouselLead: {
+    en: 'A living gallery of Wedding Sky signatures — from island vows and yacht celebrations to cinematic production, florals, and show-stopping reception moments.',
+    el: 'Ζωντανή γκαλερί με τις υπογραφές της Wedding Sky — από νησιώτικους γάμους και γιορτές σε σκάφος, μέχρι κινηματογραφική παραγωγή, ανθοστολισμό και στιγμές που κλέβουν την παράσταση.',
+    ru: 'Живая галерея фирменных решений Wedding Sky — от островных церемоний и праздников на яхте до кинематографичной съёмки, флористики и ярких моментов банкета.',
+  },
+  servicesCarouselHint: {
+    en: 'Drag or scroll to explore',
+    el: 'Σύρετε ή κυλήστε για να εξερευνήσετε',
+    ru: 'Прокрутите или перетащите',
   },
 }
 

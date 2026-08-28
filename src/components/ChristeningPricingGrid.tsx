@@ -81,9 +81,15 @@ export default function ChristeningPricingGrid({
           <span>{t(christeningPackagesPageCopy.catalogueEyebrow)}</span>
           <span className="christening-pricing-grid__eyebrow-line" aria-hidden />
         </p>
-        <h2 className="christening-pricing-grid__title">
-          <span className="christening-pricing-grid__title-text">
-            {t(christeningPackagesPageCopy.catalogueHeading)}
+        <h2
+          className="christening-pricing-grid__title"
+          aria-label={t(christeningPackagesPageCopy.catalogueHeading)}
+        >
+          <span className="christening-pricing-grid__title-line christening-pricing-grid__title-line--primary">
+            {t(christeningPackagesPageCopy.catalogueHeadingLine1)}
+          </span>
+          <span className="christening-pricing-grid__title-line christening-pricing-grid__title-line--secondary">
+            {t(christeningPackagesPageCopy.catalogueHeadingLine2)}
           </span>
         </h2>
         <span className="christening-pricing-grid__rule" aria-hidden />

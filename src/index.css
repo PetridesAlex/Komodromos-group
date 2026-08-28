@@ -28012,7 +28012,6 @@ a.action {
   max-width: 38rem;
   padding: clamp(1.35rem, 3vw, 1.85rem) clamp(1.25rem, 3vw, 1.65rem);
   border-radius: 22px;
-  border: 1px solid rgba(201, 165, 106, 0.32);
   background:
     linear-gradient(
       145deg,
@@ -28021,9 +28020,7 @@ a.action {
     );
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  box-shadow:
-    0 28px 64px rgba(0, 0, 0, 0.32),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.32);
 }
 
 .wedding-christening-hero__title {
@@ -28121,11 +28118,204 @@ a.action {
 
 .wedding-christening-catalogue {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3.5rem, 8vw, 5.5rem);
+  background:
+    linear-gradient(
+      168deg,
+      #061222 0%,
+      #0a1f42 24%,
+      #0c2347 48%,
+      #071628 72%,
+      #040d1a 100%
+    );
+}
+
+.wedding-christening-catalogue::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(3rem, 8vw, 6rem);
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 13, 26, 0.75) 0%,
+    rgba(7, 22, 40, 0.25) 55%,
+    transparent 100%
+  );
+}
+
+.wedding-christening-catalogue__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.wedding-christening-catalogue__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.wedding-christening-catalogue__orb--gold {
+  top: -8%;
+  left: -6%;
+  width: min(42vw, 28rem);
+  height: min(42vw, 28rem);
+  background: radial-gradient(circle, rgba(201, 165, 106, 0.75) 0%, rgba(201, 165, 106, 0) 68%);
+  animation: wedding-christening-catalogue-drift-a 22s ease-in-out infinite;
+}
+
+.wedding-christening-catalogue__orb--blue {
+  top: 18%;
+  right: -8%;
+  width: min(48vw, 32rem);
+  height: min(48vw, 32rem);
+  background: radial-gradient(circle, rgba(63, 127, 255, 0.62) 0%, rgba(26, 91, 184, 0) 70%);
+  animation: wedding-christening-catalogue-drift-b 26s ease-in-out infinite;
+}
+
+.wedding-christening-catalogue__orb--azure {
+  bottom: -12%;
+  left: 28%;
+  width: min(56vw, 36rem);
+  height: min(56vw, 36rem);
+  background: radial-gradient(circle, rgba(26, 91, 184, 0.55) 0%, rgba(7, 22, 40, 0) 72%);
+  animation: wedding-christening-catalogue-drift-c 20s ease-in-out infinite;
+}
+
+.wedding-christening-catalogue__mesh {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 42% at 14% 18%, rgba(201, 165, 106, 0.14), transparent 68%),
+    radial-gradient(ellipse 48% 38% at 88% 24%, rgba(63, 127, 255, 0.18), transparent 66%),
+    radial-gradient(ellipse 70% 52% at 50% 100%, rgba(26, 91, 184, 0.2), transparent 72%),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.03) 0%, transparent 42%, rgba(63, 127, 255, 0.06) 100%);
+}
+
+.wedding-christening-catalogue__sheen {
+  position: absolute;
+  inset: -40% -20%;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.04) 48%,
+    rgba(201, 165, 106, 0.08) 52%,
+    transparent 62%
+  );
+  transform: rotate(-8deg);
+  animation: wedding-christening-catalogue-sheen 14s ease-in-out infinite;
+}
+
+.wedding-christening-catalogue__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes wedding-christening-catalogue-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(4%, 6%) scale(1.08);
+  }
+}
+
+@keyframes wedding-christening-catalogue-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-5%, 4%) scale(1.06);
+  }
+}
+
+@keyframes wedding-christening-catalogue-drift-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(3%, -5%) scale(1.1);
+  }
+}
+
+@keyframes wedding-christening-catalogue-sheen {
+  0%,
+  100% {
+    transform: rotate(-8deg) translateX(-6%);
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: rotate(-8deg) translateX(6%);
+    opacity: 1;
+  }
 }
 
 .wedding-christening-catalogue__inner {
+  position: relative;
+  z-index: 2;
   max-width: min(1280px, 100%);
+}
+
+.wedding-christening-catalogue .christening-pricing-grid__eyebrow {
+  color: rgba(232, 213, 176, 0.88);
+}
+
+.wedding-christening-catalogue .christening-pricing-grid__eyebrow-line {
+  background: linear-gradient(90deg, transparent, rgba(201, 165, 106, 0.95), transparent);
+}
+
+.wedding-christening-catalogue .christening-pricing-grid__title-line--primary {
+  color: rgba(232, 213, 176, 0.92);
+}
+
+.wedding-christening-catalogue .christening-pricing-grid__title-line--secondary {
+  background: linear-gradient(
+    118deg,
+    #ffffff 0%,
+    #f3e6c8 30%,
+    #ffffff 56%,
+    #b8d4ff 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: none;
+}
+
+.wedding-christening-catalogue .christening-pricing-grid__rule {
+  box-shadow: 0 0 22px rgba(201, 165, 106, 0.45);
+}
+
+.wedding-christening-catalogue .christening-pricing-grid__lead {
+  color: rgba(214, 228, 248, 0.84);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-christening-catalogue__orb,
+  .wedding-christening-catalogue__sheen {
+    animation: none;
+  }
 }
 
 /* ── Christening pricing grid (Pricing6-inspired, wedding atelier) ── */
@@ -28134,7 +28324,7 @@ a.action {
 }
 
 .christening-pricing-grid__intro {
-  max-width: 44rem;
+  max-width: min(52rem, 100%);
   margin: 0 auto clamp(2.25rem, 4.5vw, 3.25rem);
   text-align: center;
 }
@@ -28160,7 +28350,45 @@ a.action {
 }
 
 .christening-pricing-grid__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
   margin: 0;
+}
+
+.christening-pricing-grid__title-line {
+  display: block;
+}
+
+.christening-pricing-grid__title-line--primary {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.58rem, 1.1vw, 0.68rem);
+  font-weight: 800;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(26, 91, 184, 0.72);
+}
+
+.christening-pricing-grid__title-line--secondary {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4.6vw, 3.15rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 0.04em;
+  text-wrap: balance;
+  background: linear-gradient(
+    118deg,
+    #0a2a5c 0%,
+    #1a5bb8 38%,
+    #0a2a5c 68%,
+    #3f7fff 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: christening-pricing-title-shimmer 8s ease-in-out infinite;
 }
 
 .christening-pricing-grid__title-text {
@@ -28182,7 +28410,6 @@ a.action {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 10px 28px rgba(26, 91, 184, 0.12));
   animation: christening-pricing-title-shimmer 8s ease-in-out infinite;
 }
 
@@ -28218,6 +28445,7 @@ a.action {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .christening-pricing-grid__title-line--secondary,
   .christening-pricing-grid__title-text {
     animation: none;
     background-position: 0% 50%;
@@ -41252,11 +41480,100 @@ article.wedding-highlight-tiles__tile {
 }
 
 .wedding-about-page__body-inner {
-  max-width: min(1180px, 100%);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .wedding-about-page__body-inner .wedding-about-manifesto__inner {
   max-width: none;
+  width: 100%;
+}
+
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__copy {
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(1.25rem, 4vw, 2.75rem);
+  box-sizing: border-box;
+}
+
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__body,
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__stanza,
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__accent,
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__section-head {
+  max-width: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__stanza--lead {
+  max-width: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__stanza--lead .wedding-about-manifesto__stanza-lines {
+  max-width: min(52rem, 100%);
+}
+
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__stanza--epigraph {
+  max-width: none;
+  width: 100%;
+}
+
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__figure--banner {
+  width: calc(100vw - 80px);
+  max-width: calc(100vw - 80px);
+  margin-left: calc(50% - 50vw + 40px);
+  margin-right: calc(50% - 50vw + 40px);
+  padding-inline: 0;
+  box-sizing: border-box;
+}
+
+.wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__close {
+  max-width: min(52rem, calc(100% - clamp(2rem, 8vw, 4rem)));
+  margin-inline: auto;
+}
+
+@media (min-width: 900px) {
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__copy {
+    padding-inline: clamp(2rem, 5vw, 4rem);
+  }
+
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__body,
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__stanza,
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__accent {
+    max-width: none;
+    justify-self: stretch;
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__section-head {
+    max-width: none;
+    justify-self: stretch;
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__figure--split-left,
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__figure--split-right {
+    max-width: none;
+    width: 100%;
+  }
+
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__figure--split-left {
+    grid-column: 1;
+    justify-self: stretch;
+  }
+
+  .wedding-about-page .wedding-about-manifesto--standalone .wedding-about-manifesto__figure--split-right {
+    grid-column: 2;
+    justify-self: stretch;
+  }
 }
 
 .wedding-about-page__hero {
@@ -41519,15 +41836,162 @@ article.wedding-highlight-tiles__tile {
 
 .wedding-about-page__body {
   position: relative;
-  padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(3rem, 7vw, 5rem);
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(3rem, 7vw, 5rem);
 }
 
-.wedding-about-page__body-inner {
-  max-width: min(1180px, 100%);
+/* ── About page services parallax gallery ── */
+.parallax-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
 }
 
-.wedding-about-page__body-inner .wedding-about-manifesto__inner {
-  max-width: none;
+.parallax-carousel__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.parallax-carousel__progress {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 8rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgb(255 255 255 / 0.15);
+  pointer-events: none;
+}
+
+.parallax-carousel__progress-bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: rgb(255 255 255 / 0.82);
+}
+
+.wedding-about-services-carousel {
+  position: relative;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.wedding-about-services-carousel__head {
+  text-align: center;
+  max-width: min(46rem, 100%);
+  margin: 0 auto clamp(1.75rem, 4vw, 2.75rem);
+  padding-inline: clamp(1rem, 3vw, 1.5rem);
+}
+
+.wedding-about-services-carousel__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 0 0.85rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #5b7194;
+  font-weight: 600;
+}
+
+.wedding-about-services-carousel__eyebrow-line {
+  display: block;
+  width: clamp(1.5rem, 4vw, 2.75rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8fa8cc 45%, transparent);
+}
+
+.wedding-about-services-carousel__title {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.65rem, 3.8vw, 2.45rem);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #0f2744;
+}
+
+.wedding-about-services-carousel__lead {
+  margin: 0;
+  max-width: 38rem;
+  margin-inline: auto;
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  line-height: 1.65;
+  color: #4a607d;
+}
+
+.wedding-about-services-carousel__stage {
+  position: relative;
+  width: 100%;
+}
+
+.wedding-about-services-carousel__canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: clamp(22rem, 52vw, 34rem);
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 38%, rgb(196 214 238 / 0.45), transparent 68%),
+    linear-gradient(180deg, #eef3fa 0%, #e4ebf5 52%, #eef3fa 100%);
+  border-block: 1px solid rgb(143 168 204 / 0.28);
+}
+
+.wedding-about-services-carousel__fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(12vw, 7rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wedding-about-services-carousel__fade--left {
+  left: 0;
+  background: linear-gradient(90deg, #eef3fa 8%, transparent);
+}
+
+.wedding-about-services-carousel__fade--right {
+  right: 0;
+  background: linear-gradient(270deg, #eef3fa 8%, transparent);
+}
+
+.wedding-about-services-carousel__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.85rem;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(15 39 68 / 0.62);
+  background: rgb(255 255 255 / 0.72);
+  border: 1px solid rgb(143 168 204 / 0.35);
+  backdrop-filter: blur(8px);
+  z-index: 3;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .wedding-about-services-carousel__canvas-wrap {
+    height: clamp(18rem, 62vw, 24rem);
+  }
+
+  .wedding-about-services-carousel__fade {
+    width: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-about-services-carousel__hint {
+    display: none;
+  }
 }
 
 @media (max-width: 800px) {

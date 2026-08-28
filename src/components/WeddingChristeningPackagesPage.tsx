@@ -97,6 +97,14 @@ export default function WeddingChristeningPackagesPage() {
         className="wedding-christening-catalogue"
         aria-label={t(christeningPackagesPageCopy.title)}
       >
+        <div className="wedding-christening-catalogue__backdrop" aria-hidden>
+          <span className="wedding-christening-catalogue__orb wedding-christening-catalogue__orb--gold" />
+          <span className="wedding-christening-catalogue__orb wedding-christening-catalogue__orb--blue" />
+          <span className="wedding-christening-catalogue__orb wedding-christening-catalogue__orb--azure" />
+          <span className="wedding-christening-catalogue__mesh" />
+          <span className="wedding-christening-catalogue__sheen" />
+          <span className="wedding-christening-catalogue__grain" />
+        </div>
         <div className="container wedding-christening-catalogue__inner">
           <ChristeningPricingGrid />
         </div>
