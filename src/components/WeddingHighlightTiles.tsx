@@ -3,6 +3,9 @@ import { ArrowUpRight } from 'lucide-react'
 import { weddingHighlightTiles } from '../data/weddingHighlightTiles'
 import { weddingTilesSectionCopy } from '../data/weddingPageCopy'
 import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
+import { getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
+import { useSiteContext } from '../seo/SiteContext'
+import { GROUP_SITE_URL } from '../seo/domainRegistry'
 import { useWeddingLocale } from '../lib/weddingLocale'
 import WeddingLazyImage from './WeddingLazyImage'
 
@@ -100,6 +103,14 @@ function TileContent({
 
 export default function WeddingHighlightTiles() {
   const { t, htmlLang } = useWeddingLocale()
+  const { isBrandDomain } = useSiteContext()
+
+  function resolveGroupPageHref(path: string): { href: string; external: boolean } {
+    if (isBrandDomain && !import.meta.env.DEV) {
+      return { href: `${GROUP_SITE_URL}${path}`, external: true }
+    }
+    return { href: path, external: false }
+  }
 
   return (
     <section
@@ -124,7 +135,9 @@ export default function WeddingHighlightTiles() {
       </div>
       <div className="wedding-highlight-tiles__grid">
           {weddingHighlightTiles.map((tile, index) => {
-            const isLink = Boolean(tile.contact || tile.hashHref)
+            const isLink = Boolean(
+              tile.contact || tile.hashHref || tile.serviceSlug || tile.pageHref,
+            )
             /* No per-tile reveal — 50+ transform/opacity layers crash Safari on scroll */
             const body = (
               <TileContent
@@ -139,6 +152,79 @@ export default function WeddingHighlightTiles() {
               />
             )
             const style = { ['--tile-i' as string]: String(index) }
+            const className =
+              'wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link'
+
+            if (tile.serviceSlug) {
+              const href = getServicePageHref(tile.serviceSlug)
+              const external = isExternalServiceHref(tile.serviceSlug)
+              const ariaLabel = t(weddingTilesSectionCopy.openServiceAria).replace(
+                '{{title}}',
+                t(tile.title),
+              )
+
+              if (external) {
+                return (
+                  <a
+                    key={tile.id}
+                    href={href}
+                    className={className}
+                    style={style}
+                    aria-label={ariaLabel}
+                    rel="noopener noreferrer"
+                  >
+                    {body}
+                  </a>
+                )
+              }
+
+              return (
+                <Link
+                  key={tile.id}
+                  to={href}
+                  className={className}
+                  style={style}
+                  aria-label={ariaLabel}
+                >
+                  {body}
+                </Link>
+              )
+            }
+
+            if (tile.pageHref) {
+              const { href, external } = resolveGroupPageHref(tile.pageHref)
+              const ariaLabel = t(weddingTilesSectionCopy.openServiceAria).replace(
+                '{{title}}',
+                t(tile.title),
+              )
+
+              if (external) {
+                return (
+                  <a
+                    key={tile.id}
+                    href={href}
+                    className={className}
+                    style={style}
+                    aria-label={ariaLabel}
+                    rel="noopener noreferrer"
+                  >
+                    {body}
+                  </a>
+                )
+              }
+
+              return (
+                <Link
+                  key={tile.id}
+                  to={href}
+                  className={className}
+                  style={style}
+                  aria-label={ariaLabel}
+                >
+                  {body}
+                </Link>
+              )
+            }
 
             if (tile.contact) {
               return (
@@ -146,7 +232,7 @@ export default function WeddingHighlightTiles() {
                   key={tile.id}
                   to="/contact"
                   state={{ serviceInterest: 'Wedding Services' }}
-                  className="wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link"
+                  className={className}
                   style={style}
                   aria-label={t(weddingTilesSectionCopy.openContactAria).replace(
                     '{{title}}',
@@ -163,7 +249,7 @@ export default function WeddingHighlightTiles() {
                 <a
                   key={tile.id}
                   href={tile.hashHref}
-                  className="wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link"
+                  className={className}
                   style={style}
                   aria-label={t(weddingTilesSectionCopy.jumpSectionAria).replace(
                     '{{title}}',

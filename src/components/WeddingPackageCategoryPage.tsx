@@ -5,6 +5,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
 import WeddingLazyImage from './WeddingLazyImage'
+import WeddingChristeningPackagesPage from './WeddingChristeningPackagesPage'
 import NotFoundPage from './NotFoundPage'
 import { useReveal } from '../hooks/useReveal'
 import {
@@ -40,6 +41,10 @@ export default function WeddingPackageCategoryPage() {
 
   if (!category) {
     return <NotFoundPage />
+  }
+
+  if (category.id === 'christian') {
+    return <WeddingChristeningPackagesPage />
   }
 
   const openPackage = (packageId: string) => {

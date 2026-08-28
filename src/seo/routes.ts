@@ -72,6 +72,14 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       priority: 0.8,
     }),
     route({
+      path: '/services/wedding/about',
+      title: 'About Wedding Sky',
+      description:
+        'Where your dream wedding becomes reality — the Wedding Sky story, luxury without limits, 50+ in-house wedding services, and the Komodromos Group promise in Cyprus, Mykonos, and Santorini.',
+      index: true,
+      priority: 0.7,
+    }),
+    route({
       path: '/services/consulting',
       title: 'Business Consulting',
       description:

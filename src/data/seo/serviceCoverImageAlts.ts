@@ -135,6 +135,24 @@ export const serviceCoverImageAlts: Record<string, string> = {
     'Wedding Sky wedding packages collection — luxury celebration tiers, Cyprus',
   '/images/services/wedding-highlights/wedding-christening-packages/christening-packages.webp':
     'Wedding Sky christening packages collection — refined baptism celebrations, Cyprus',
+  '/images/services/wedding-highlights/wedding-christening-packages/christening-package-1.webp':
+    'Wedding Sky Complete Christening Package 1 — church and reception décor programme, Cyprus',
+  '/images/services/wedding-highlights/wedding-christening-packages/christening-package-2.webp':
+    'Wedding Sky Complete Christening Package 2 — elevated floral baptism décor, Cyprus',
+  '/images/services/wedding-highlights/wedding-christening-packages/christening-package-3.webp':
+    'Wedding Sky Complete Christening Package 3 — décor, photography, and celebration hospitality, Cyprus',
+  '/images/services/wedding-highlights/wedding-christening-packages/christening-package-4.webp':
+    'Wedding Sky Complete Christening Package 4 — signature baptism hospitality and entertainment, Cyprus',
+  '/images/services/wedding-highlights/about-us/luxury-wedding-sparkler-sendoff-cyprus.webp':
+    'Guests holding sparklers around the couple at a luxury night wedding celebration in Cyprus — Wedding Sky',
+  '/images/services/wedding-highlights/about-us/luxury-cyprus-bride-veil-bouquet-portrait.webp':
+    'Smiling bride in a pearl veil with floral bouquet at a luxury Cyprus wedding ceremony — Wedding Sky',
+  '/images/services/wedding-highlights/about-us/intimate-bride-groom-under-veil-cyprus.webp':
+    'Intimate black-and-white portrait of bride and groom under a veil — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/about-us/luxury-wedding-couple-vintage-rolls-royce-cyprus.webp':
+    'Bride and groom posing with a vintage Rolls-Royce at a luxury Cyprus wedding — Wedding Sky',
+  '/images/services/wedding-highlights/about-us/vintage-wedding-car-floral-decoration-cyprus.webp':
+    'Vintage Packard wedding car decorated with roses and hydrangeas — Wedding Sky Cyprus',
   '/images/services/wedding-packages/about-us/wedding-day-06.webp':
     'Bride with nest bouquet on her wedding day — Wedding Sky Cyprus',
   '/images/services/wedding-packages/about-us/wedding-day-07.webp':

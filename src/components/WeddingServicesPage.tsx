@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -12,6 +12,7 @@ import WeddingWhyCards from './WeddingWhyCards'
 import WeddingSocialProof from './WeddingSocialProof'
 import WeddingPlanEnquiryModal from './WeddingPlanEnquiryModal'
 import WeddingContactSection from './WeddingContactSection'
+import { weddingBrandHref } from '../lib/brandPaths'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
@@ -157,6 +158,7 @@ export default function WeddingServicesPage() {
       <WeddingHighlightTiles />
 
       <section
+        id="wedding-inspiration"
         className="wedding-yt-bar"
         aria-labelledby="wedding-yt-bar-heading"
       >
@@ -402,36 +404,13 @@ export default function WeddingServicesPage() {
               </h2>
               <span className="wedding-about__rule" aria-hidden />
               <p className="wedding-about__lead">{t(weddingAboutCopy.lead)}</p>
-              <p className="wedding-about__story">{t(weddingAboutCopy.story)}</p>
-              <button
-                type="button"
+              <Link
+                to={weddingBrandHref('/services/wedding/about')}
                 className="wedding-about__cta"
-                onClick={() => setPlanEnquiryOpen(true)}
               >
                 {t(weddingAboutCopy.cta)}
-              </button>
+              </Link>
             </div>
-          </div>
-
-          <div className="wedding-about__pillars">
-            {weddingAboutCopy.pillars.map((pillar, index) => (
-              <article
-                key={pillar.title.en}
-                className={`wedding-about__pillar reveal reveal-delay-${Math.min(index + 1, 4)}`}
-                style={{ ['--about-i' as string]: String(index) }}
-              >
-                <span className="wedding-about__pillar-index" aria-hidden>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div className="wedding-about__pillar-body">
-                  <h3 className="wedding-about__subhead">{t(pillar.title)}</h3>
-                  {pillar.tagline ? (
-                    <p className="wedding-about__tagline">{t(pillar.tagline)}</p>
-                  ) : null}
-                  <p className="wedding-about__copy">{t(pillar.copy)}</p>
-                </div>
-              </article>
-            ))}
           </div>
         </div>
       </section>

@@ -359,12 +359,16 @@ export const POOL_ROUTE_SEGMENTS = [
 ] as const
 
 export const WEDDING_ROUTE_SEGMENTS = [
+  'about',
+  'categories/wedding',
+  'categories/christian',
   'packages/basic',
-  'packages/basic-plus',
   'packages/classic',
-  'packages/classic-plus',
   'packages/premium',
-  'packages/customised',
+  'packages/christening-1',
+  'packages/christening-2',
+  'packages/christening-3',
+  'packages/christening-4',
 ] as const
 
 function brandRouteSegments(brand: BrandDomainConfig): readonly string[] {

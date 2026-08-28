@@ -12,12 +12,6 @@ type WeddingOffering = {
   image: string
 }
 
-type WeddingAboutCard = {
-  title: LocalizedText
-  tagline?: LocalizedText
-  copy: LocalizedText
-}
-
 export const weddingHeroCopy: {
   located: LocalizedText
   atelier: LocalizedText
@@ -93,6 +87,74 @@ export const weddingPillarsCopy: ReadonlyArray<WeddingPillar> = [
     href: '/services/wedding/categories/christian',
   },
 ]
+
+type WeddingEditorialPillar = {
+  id: string
+  title: LocalizedText
+  tagline: LocalizedText
+  href: string
+}
+
+export const weddingEditorialPillarsCopy: {
+  sectionAria: LocalizedText
+  eyebrow: LocalizedText
+  items: ReadonlyArray<WeddingEditorialPillar>
+} = {
+  sectionAria: {
+    en: 'Wedding Sky editorial',
+    el: 'Editorial Wedding Sky',
+    ru: 'Редакция Wedding Sky',
+  },
+  eyebrow: {
+    en: 'Explore the atelier',
+    el: 'Εξερευνήστε το atelier',
+    ru: 'Откройте atelier',
+  },
+  items: [
+    {
+      id: 'wedding-edit',
+      title: {
+        en: 'The Wedding Edit',
+        el: 'The Wedding Edit',
+        ru: 'The Wedding Edit',
+      },
+      tagline: {
+        en: 'Inspiration, Expert Advice & Ideas for Your Perfect Day',
+        el: 'Έμπνευση, συμβουλές ειδικών και ιδέες για την τέλεια μέρα σας',
+        ru: 'Вдохновение, экспертные советы и идеи для вашего идеального дня',
+      },
+      href: '#wedding-inspiration',
+    },
+    {
+      id: 'wedding-concierge',
+      title: {
+        en: 'The Wedding Concierge',
+        el: 'The Wedding Concierge',
+        ru: 'The Wedding Concierge',
+      },
+      tagline: {
+        en: 'Your Questions. Our Expertise. Your Perfect Day.',
+        el: 'Οι ερωτήσεις σας. Η εμπειρία μας. Η τέλεια μέρα σας.',
+        ru: 'Ваши вопросы. Наш опыт. Ваш идеальный день.',
+      },
+      href: '#wedding-contact',
+    },
+    {
+      id: 'wedding-sky-difference',
+      title: {
+        en: 'The Wedding Sky Difference',
+        el: 'The Wedding Sky Difference',
+        ru: 'The Wedding Sky Difference',
+      },
+      tagline: {
+        en: 'More than a wedding. An experience designed entirely around you.',
+        el: 'Περισσότερο από ένας γάμος. Μια εμπειρία σχεδιασμένη εξ ολοκλήρου γύρω από εσάς.',
+        ru: 'Больше, чем свадьба. Опыт, созданный целиком вокруг вас.',
+      },
+      href: '/services/wedding/about',
+    },
+  ],
+}
 
 export const weddingIntroCopy: {
   imageAlt: LocalizedText
@@ -201,6 +263,7 @@ export const weddingTilesSectionCopy: {
   explore: LocalizedText
   openContactAria: LocalizedText
   jumpSectionAria: LocalizedText
+  openServiceAria: LocalizedText
 } = {
   eyebrow: {
     en: 'The atelier catalogue',
@@ -231,6 +294,11 @@ export const weddingTilesSectionCopy: {
     en: '{{title}} — jump to section',
     el: '{{title}} — μετάβαση στην ενότητα',
     ru: '{{title}} — перейти к разделу',
+  },
+  openServiceAria: {
+    en: '{{title}} — open page',
+    el: '{{title}} — άνοιγμα σελίδας',
+    ru: '{{title}} — открыть страницу',
   },
 }
 
@@ -597,84 +665,40 @@ export const weddingAboutCopy: {
   eyebrow: LocalizedText
   pageTitle: LocalizedText
   lead: LocalizedText
-  story: LocalizedText
   cta: LocalizedText
   photoLabel: LocalizedText
-  pillars: ReadonlyArray<WeddingAboutCard>
+  backToAtelier: LocalizedText
 } = {
   eyebrow: {
-    en: 'Luxury weddings in Cyprus',
-    el: 'Πολυτελείς γάμοι στην Κύπρο',
-    ru: 'Роскошные свадьбы на Кипре',
+    en: 'Our story',
+    el: 'Η ιστορία μας',
+    ru: 'Наша история',
   },
   pageTitle: {
-    en: 'About Wedding Sky',
-    el: 'Σχετικά με τη Wedding Sky',
-    ru: 'О Wedding Sky',
+    en: 'Where Your Dream Wedding Becomes Reality.',
+    el: 'Where Your Dream Wedding Becomes Reality.',
+    ru: 'Where Your Dream Wedding Becomes Reality.',
   },
   lead: {
-    en: 'We plan celebrations that feel personal, polished, and unmistakably yours — from intimate ceremonies to grand Cyprus weddings.',
-    el: 'Σχεδιάζουμε γιορτές που αισθάνονται προσωπικές, εκλεπτυσμένες και απολύτως δικές σας — από ιδιαίτερες τελετές μέχρι μεγαλοπρεπείς γάμους στην Κύπρο.',
-    ru: 'Мы создаём торжества, которые ощущаются личными, безупречными и по-настоящему вашими — от камерных церемоний до масштабных свадеб на Кипре.',
-  },
-  story: {
-    en: 'Wedding Sky is a leading luxury wedding and event planning studio in Cyprus. Born from a genuine love for weddings, we bring creativity, precision, and devoted care to every couple — crafting spectacular celebrations with warmth and discretion.',
-    el: 'Η Wedding Sky είναι ένα κορυφαίο studio πολυτελών γάμων και διοργάνωσης εκδηλώσεων στην Κύπρο. Γεννημένη από την αγάπη μας για τους γάμους, φέρνουμε δημιουργικότητα, ακρίβεια και αφοσιωμένη φροντίδα σε κάθε ζευγάρι — δημιουργώντας εντυπωσιακές γιορτές με ζεστασιά και διακριτικότητα.',
-    ru: 'Wedding Sky — ведущая студия организации роскошных свадеб и мероприятий на Кипре. Вдохновлённые любовью к свадьбам, мы сочетаем креативность, точность и искреннюю заботу о каждой паре, создавая впечатляющие торжества с теплотой и деликатностью.',
+    en: 'There are moments in life that pass.\nAnd there are moments that remain forever.\nYour wedding is one of them.',
+    el: 'Υπάρχουν στιγμές στη ζωή που περνούν.\nΚαι υπάρχουν στιγμές που μένουν για πάντα.\nΟ γάμος σας είναι μία από αυτές.',
+    ru: 'Есть мгновения, которые проходят.\nИ есть мгновения, которые остаются навсегда.\nВаша свадьба — одно из них.',
   },
   cta: {
-    en: 'Plan your wedding',
-    el: 'Οργανώστε τον γάμο σας',
-    ru: 'Спланировать свадьбу',
+    en: 'Read our story',
+    el: 'Διαβάστε την ιστορία μας',
+    ru: 'Читать нашу историю',
   },
   photoLabel: {
     en: 'Wedding Sky',
     el: 'Wedding Sky',
     ru: 'Wedding Sky',
   },
-  pillars: [
-    {
-      title: {
-        en: 'Our approach',
-        el: 'Η προσέγγισή μας',
-        ru: 'Наш подход',
-      },
-      tagline: {
-        en: 'Precision. Warmth. Discretion.',
-        el: 'Ακρίβεια. Ζεστασιά. Διακριτικότητα.',
-        ru: 'Точность. Теплота. Деликатность.',
-      },
-      copy: {
-        en: 'We believe in clear timelines, honest counsel, and calm leadership on the day. Every celebration is built around your story — with vendors, venues, and production aligned to one coherent plan.',
-        el: 'Πιστεύουμε στα σαφή χρονοδιαγράμματα, την ειλικρινή καθοδήγηση και τον ήρεμο συντονισμό την ημέρα της εκδήλωσης. Κάθε γιορτή χτίζεται γύρω από τη δική σας ιστορία — με συνεργάτες, χώρους και παραγωγή ευθυγραμμισμένα σε ένα ενιαίο, συνεκτικό πλάνο.',
-        ru: 'Мы ценим чёткие сроки, честные рекомендации и спокойное руководство в день торжества. Каждое событие строится вокруг вашей истории, а подрядчики, площадки и продакшн объединяются единым продуманным планом.',
-      },
-    },
-    {
-      title: {
-        en: 'Production & creative',
-        el: 'Παραγωγή & δημιουργικό',
-        ru: 'Продакшн и креатив',
-      },
-      copy: {
-        en: 'From styling and florals to lighting and run-of-show, our producers and partners work to one standard: seamless execution so you can stay present with family and guests.',
-        el: 'Από το styling και τον ανθοστολισμό μέχρι τον φωτισμό και τη ροή του προγράμματος, οι παραγωγοί και οι συνεργάτες μας υπηρετούν ένα κοινό πρότυπο: άψογη υλοποίηση, ώστε εσείς να είστε πραγματικά παρόντες με την οικογένεια και τους καλεσμένους σας.',
-        ru: 'От стилистики и флористики до света и сценария — наши продюсеры и партнёры работают по единому стандарту: безупречное воплощение, позволяющее вам провести этот день рядом с близкими и гостями.',
-      },
-    },
-    {
-      title: {
-        en: 'Our team',
-        el: 'Η ομάδα μας',
-        ru: 'Наша команда',
-      },
-      copy: {
-        en: 'Planners, coordinators, and specialists across Cyprus — supported by a trusted network of venues, artisans, and hospitality partners who share our commitment to quality.',
-        el: 'Wedding planners, συντονιστές και εξειδικευμένοι επαγγελματίες σε όλη την Κύπρο — με τη στήριξη ενός έμπιστου δικτύου χώρων, δημιουργών και συνεργατών φιλοξενίας που μοιράζονται τη δέσμευσή μας στην ποιότητα.',
-        ru: 'Организаторы, координаторы и профильные специалисты по всему Кипру, а также проверенная сеть площадок, мастеров и партнёров в сфере гостеприимства, разделяющих нашу приверженность качеству.',
-      },
-    },
-  ],
+  backToAtelier: {
+    en: 'Back to Wedding Sky',
+    el: 'Επιστροφή στη Wedding Sky',
+    ru: 'Назад к Wedding Sky',
+  },
 }
 
 export const weddingVisitCopy: {

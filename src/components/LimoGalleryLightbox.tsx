@@ -7,6 +7,9 @@ export type LimoGalleryLightboxProps = {
   onClose: () => void
   onNavigate: (index: number) => void
   altForIndex: (index: number) => string
+  captionForIndex?: (index: number) => string
+  rootClassName?: string
+  ariaLabel?: string
 }
 
 export default function LimoGalleryLightbox({
@@ -15,6 +18,9 @@ export default function LimoGalleryLightbox({
   onClose,
   onNavigate,
   altForIndex,
+  captionForIndex,
+  rootClassName,
+  ariaLabel = 'Gallery preview',
 }: LimoGalleryLightboxProps) {
   const len = images.length
   const open = activeIndex !== null && len > 0 && activeIndex >= 0 && activeIndex < len
@@ -54,10 +60,10 @@ export default function LimoGalleryLightbox({
 
   const node = (
     <div
-      className="limo-lightbox"
+      className={['limo-lightbox', rootClassName].filter(Boolean).join(' ')}
       role="dialog"
       aria-modal="true"
-      aria-label="Gallery preview"
+      aria-label={ariaLabel}
       onClick={onClose}
     >
       <button
@@ -105,6 +111,9 @@ export default function LimoGalleryLightbox({
           <p className="limo-lightbox__counter">
             {activeIndex + 1} / {len}
           </p>
+        ) : null}
+        {captionForIndex ? (
+          <p className="limo-lightbox__caption">{captionForIndex(activeIndex)}</p>
         ) : null}
       </div>
     </div>

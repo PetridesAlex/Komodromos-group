@@ -29,6 +29,13 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
     "index": true
   },
+  "/services/wedding/about": {
+    "title": "About Wedding Sky Cyprus Services | Komodromos Group",
+    "description": "Where your dream wedding becomes reality — the Wedding Sky story, luxury without limits, 50+ in-house wedding services, and the Komodromos Group promise in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/about",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
   "/services/consulting": {
     "title": "Business Consulting Advisory Cyprus | Komodromos Group",
     "description": "Strategic business consulting in Cyprus from Komodromos Group — growth advisory, operations, corporate structuring, and tailored solutions for organisations.",
@@ -435,25 +442,32 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-premium.webp",
     "index": true
   },
-  "/services/wedding/packages/basic-plus": {
-    "title": "Basic Plus Wedding Package Cyprus | Komodromos Group",
-    "description": "Basic Plus — Expanded vendor access and styling support beyond the essentials.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
-    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/basic-plus",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-basic-plus.webp",
+  "/services/wedding/packages/christening-1": {
+    "title": "Complete Christening Package 1 Wedding | Komodromos Group",
+    "description": "Complete Christening Package 1 — Church and reception styling with refined decorative details.. Part of Komodromos Group premium services in Cyprus. Premium",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/christening-1",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-christening-packages/christening-package-1.webp",
     "index": true
   },
-  "/services/wedding/packages/classic-plus": {
-    "title": "Classic Plus Wedding Package Cyprus | Komodromos Group",
-    "description": "Classic Plus — Premium staging, extended hours, and bespoke detail programming.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group",
-    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/classic-plus",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-classic-plus.webp",
+  "/services/wedding/packages/christening-2": {
+    "title": "Complete Christening Package 2 Wedding | Komodromos Group",
+    "description": "Complete Christening Package 2 — Elevated décor with floral arches, columns, and guest-list styling.. Part of Komodromos Group premium services in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/christening-2",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-christening-packages/christening-package-2.webp",
     "index": true
   },
-  "/services/wedding/packages/customised": {
-    "title": "Customised Wedding Package Cyprus | Komodromos Group",
-    "description": "Customised — A fully tailored programme built around your vision and investment level.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
-    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/customised",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-customised.webp",
+  "/services/wedding/packages/christening-3": {
+    "title": "Complete Christening Package 3 Wedding | Komodromos Group",
+    "description": "Complete Christening Package 3 — Full celebration — décor, photography, treats, candy bar, invitations, and day coordination.. Part of Komodromos Group premium",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/christening-3",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-christening-packages/christening-package-3.webp",
+    "index": true
+  },
+  "/services/wedding/packages/christening-4": {
+    "title": "Complete Christening Package 4 Wedding | Komodromos Group",
+    "description": "Complete Christening Package 4 — Signature hospitality — expanded treats, 100 invitations, and live entertainment.. Part of Komodromos Group premium services in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/christening-4",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-christening-packages/christening-package-4.webp",
     "index": true
   },
   "/services/pool/categories/overflow": {

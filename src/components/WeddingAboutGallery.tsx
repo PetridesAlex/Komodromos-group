@@ -1,44 +1,38 @@
 import { useEffect, useState } from 'react'
 import WeddingLazyImage from './WeddingLazyImage'
 
-const SLIDE_INTERVAL_MS = 3000
+const SLIDE_INTERVAL_MS = 3800
 
 const WEDDING_ABOUT_SLIDES = [
   {
-    src: '/images/services/wedding-packages/about-us/wedding-day-04.webp',
-    alt: 'Bride and groom embracing beside a vintage blue convertible in Cyprus',
-    mainPosition: '68% 42%',
-    thumbPosition: 'center 45%',
+    src: '/images/services/wedding-highlights/about-us/luxury-wedding-sparkler-sendoff-cyprus.webp',
+    alt: 'Guests holding sparklers around the couple at a luxury night wedding celebration in Cyprus — Wedding Sky',
+    mainPosition: '55% 48%',
+    thumbPosition: 'center 50%',
   },
   {
-    src: '/images/services/wedding-packages/about-us/wedding-day-02.webp',
-    alt: 'Bride and groom cutting a floral wedding cake at a Cyprus reception',
+    src: '/images/services/wedding-highlights/about-us/luxury-cyprus-bride-veil-bouquet-portrait.webp',
+    alt: 'Smiling bride in a pearl veil with floral bouquet at a luxury Cyprus wedding ceremony — Wedding Sky',
+    mainPosition: 'center 28%',
+    thumbPosition: 'center 22%',
+  },
+  {
+    src: '/images/services/wedding-highlights/about-us/intimate-bride-groom-under-veil-cyprus.webp',
+    alt: 'Intimate black-and-white portrait of bride and groom under a veil — Wedding Sky Cyprus',
     mainPosition: 'center 42%',
     thumbPosition: 'center 40%',
   },
   {
-    src: '/images/services/wedding-packages/about-us/wedding-day-05.webp',
-    alt: 'Floral ribbon detailing being tied to a bridal car door handle',
+    src: '/images/services/wedding-highlights/about-us/luxury-wedding-couple-vintage-rolls-royce-cyprus.webp',
+    alt: 'Bride and groom posing with a vintage Rolls-Royce at a luxury Cyprus wedding — Wedding Sky',
+    mainPosition: 'center 35%',
+    thumbPosition: 'center 32%',
+  },
+  {
+    src: '/images/services/wedding-highlights/about-us/vintage-wedding-car-floral-decoration-cyprus.webp',
+    alt: 'Vintage Packard wedding car decorated with roses and hydrangeas — Wedding Sky Cyprus',
     mainPosition: 'center 48%',
     thumbPosition: 'center 55%',
-  },
-  {
-    src: '/images/services/wedding-packages/about-us/wedding-day-03.webp',
-    alt: 'Bridal shoes, florals, and champagne details styled for a luxury wedding',
-    mainPosition: 'center 50%',
-    thumbPosition: 'center 50%',
-  },
-  {
-    src: '/images/services/wedding-packages/about-us/wedding-day-06.webp',
-    alt: 'Bride with nest bouquet on her wedding day — Wedding Sky Cyprus',
-    mainPosition: 'center 38%',
-    thumbPosition: 'center 42%',
-  },
-  {
-    src: '/images/services/wedding-packages/about-us/wedding-day-07.webp',
-    alt: 'Just-married couple celebrating in a white convertible — Wedding Sky Cyprus',
-    mainPosition: '62% 40%',
-    thumbPosition: 'center 48%',
   },
 ] as const
 

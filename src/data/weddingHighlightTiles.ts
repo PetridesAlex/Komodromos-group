@@ -12,6 +12,10 @@ export type WeddingHighlightTile = {
   imageFit?: 'cover' | 'contain'
   hashHref?: string
   contact?: boolean
+  /** Group / brand service slug — resolves via getServicePageHref (e.g. janchapelle). */
+  serviceSlug?: string
+  /** Absolute group SPA path (e.g. /services/limousines-experiences). */
+  pageHref?: string
 }
 
 const TILE_IMG = '/images/services/wedding-highlights'
@@ -47,6 +51,7 @@ const TILE_SEEDS: TileSeed[] = [
       el: 'Πολυτελή Νυφικά',
       ru: 'Роскошные свадебные платья',
     },
+    serviceSlug: 'janchapelle',
   },
   {
     id: 'bridal-makeup',
@@ -119,6 +124,7 @@ const TILE_SEEDS: TileSeed[] = [
       el: 'Πολυτελή & Σπορ Αυτοκίνητα',
       ru: 'Люксовые и суперкары',
     },
+    pageHref: '/services/super-luxury-cars',
   },
   {
     id: 'wedding-invitations',
@@ -199,6 +205,7 @@ const TILE_SEEDS: TileSeed[] = [
       el: 'Πολυτελής Λιμουζίνα',
       ru: 'Роскошный лимузин',
     },
+    pageHref: '/services/limousines-experiences',
   },
   {
     id: 'church-choir',
@@ -255,6 +262,7 @@ const TILE_SEEDS: TileSeed[] = [
       el: 'Ταξίδι του Μέλιτος με Ιδιωτικό Αεροσκάφος',
       ru: 'Медовый месяц на частном самолёте',
     },
+    pageHref: '/services/air',
   },
   {
     id: 'luxury-shisha-lounge',
@@ -431,6 +439,7 @@ const TILE_SEEDS: TileSeed[] = [
       el: 'Γάμος σε Πολυτελές Σκάφος',
       ru: 'Свадьба на роскошной яхте',
     },
+    pageHref: '/services/yacht-charters',
   },
   {
     id: 'greek-island-weddings',

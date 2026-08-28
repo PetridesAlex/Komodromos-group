@@ -313,6 +313,99 @@ export const weddingPackageDetails: Record<string, WeddingPackageDetailCopy> = {
       },
     ],
   },
+
+  'christening-1': {
+    summary: {
+      en: 'An elegant décor foundation for church and reception — themed styling, arches, table décor, and refined baptism-day details.',
+      el: 'Κομψή βάση διακόσμησης για εκκλησία και δεξίωση — θεματικός στολισμός, αψίδες, τραπέζια και εκλεπτυσμένες λεπτομέρειες βάπτισης.',
+      ru: 'Элегантная основа декора для храма и приёма — тематическое оформление, арки, столы и изысканные детали дня крещения.',
+    },
+    idealFor: {
+      en: 'Families seeking a beautifully composed baptism with complete decorative coverage.',
+      el: 'Για οικογένειες που θέλουν μια όμορφα συντεθειμένη βάπτιση με πλήρη κάλυψη διακόσμησης.',
+      ru: 'Для семей, которым важно гармоничное крещение с полным декоративным сопровождением.',
+    },
+    planningWindow: {
+      en: 'Recommended planning window: 6–10 weeks',
+      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 6–10 εβδομάδες',
+      ru: 'Рекомендуемый срок подготовки: 6–10 недель',
+    },
+    inclusions: [
+      { en: 'Full church & reception décor programme', el: 'Πλήρες πρόγραμμα διακόσμησης εκκλησίας και δεξίωσης', ru: 'Полная программа декора храма и приёма' },
+      { en: 'Themed arches, fairy lights, and favour styling', el: 'Θεματικές αψίδες, fairy lights και styling μπομπονιέρων', ru: 'Тематические арки, гирлянды и оформление бонбоньерок' },
+      { en: '15 table décors and parents’ & godparents’ table', el: 'Στολισμός 15 τραπεζιών και τραπεζιού γονέων/νονού', ru: 'Декор 15 столов и стола родителей/крёстных' },
+      { en: 'Welcome frame and secure envelope box', el: 'Κορνίζα υποδοχής και ασφαλές κουτί φακέλων', ru: 'Рамка приветствия и ящик для конвертов' },
+    ],
+  },
+  'christening-2': {
+    summary: {
+      en: 'Package 1 elevated with floral architecture, decorative columns, and themed guest-list presentation.',
+      el: 'Το Πακέτο 1 αναβαθμισμένο με ανθοστολισμό, διακοσμητικές κολώνες και θεματική λίστα καλεσμένων.',
+      ru: 'Пакет 1 с цветочной архитектурой, декоративными колоннами и тематическим списком гостей.',
+    },
+    idealFor: {
+      en: 'Celebrations that want richer floral presence and guest presentation.',
+      el: 'Για γιορτές που θέλουν πιο πλούσιο ανθοστολισμό και παρουσίαση καλεσμένων.',
+      ru: 'Для торжеств с более насыщенным цветочным оформлением и презентацией гостей.',
+    },
+    planningWindow: {
+      en: 'Recommended planning window: 8–12 weeks',
+      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 8–12 εβδομάδες',
+      ru: 'Рекомендуемый срок подготовки: 8–12 недель',
+    },
+    inclusions: [
+      { en: 'Everything in Package 1', el: 'Όλα του Πακέτου 1', ru: 'Всё из Пакета 1' },
+      { en: 'Flower arch and floral columns', el: 'Αψίδα με λουλούδια και κολώνες με βάσεις λουλουδιών', ru: 'Цветочная арка и колонны' },
+      { en: 'Themed guest list styling', el: 'Λίστα καλεσμένων με βάση το θέμα', ru: 'Оформление списка гостей по теме' },
+    ],
+  },
+  'christening-3': {
+    summary: {
+      en: 'A complete baptism day — décor, photography & albums, treats, candy bar, invitations, and full coordination.',
+      el: 'Ολοκληρωμένη ημέρα βάπτισης — διακόσμηση, φωτογραφία και άλμπουμ, κεράσματα, candy bar, προσκλήσεις και πλήρης συντονισμός.',
+      ru: 'Полный день крещения — декор, фото и альбомы, угощения, candy bar, приглашения и координация.',
+    },
+    idealFor: {
+      en: 'Families who want memory-making and hospitality handled in one composed programme.',
+      el: 'Για οικογένειες που θέλουν αναμνήσεις και φιλοξενία σε ένα ενιαίο πρόγραμμα.',
+      ru: 'Для семей, которым важны воспоминания и гостеприимство в одной программе.',
+    },
+    planningWindow: {
+      en: 'Recommended planning window: 3–5 months',
+      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 3–5 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 3–5 месяцев',
+    },
+    inclusions: [
+      { en: 'Elevated décor from Packages 1–2', el: 'Αναβαθμισμένη διακόσμηση των Πακέτων 1–2', ru: 'Расширенный декор Пакетов 1–2' },
+      { en: 'Leather albums, HD video, canvas & prints', el: 'Δερμάτινα άλμπουμ, HD βίντεο, καμβάς και εκτυπώσεις', ru: 'Кожаные альбомы, HD-видео, холст и отпечатки' },
+      { en: 'Treats, themed cake, candy bar & drink fountains', el: 'Κεράσματα, θεματική τούρτα, candy bar και σιντριβάνια ποτών', ru: 'Угощения, торт, candy bar и фонтаны напитков' },
+      { en: '60 invitations and full day coordination', el: '60 προσκλήσεις και πλήρης συντονισμός ημέρας', ru: '60 приглашений и полная координация дня' },
+    ],
+  },
+  'christening-4': {
+    summary: {
+      en: 'Signature hospitality with expanded treats, 100 invitations, and entertainment — magician, clown, or DJ.',
+      el: 'Υπογραφή φιλοξενίας με περισσότερα κεράσματα, 100 προσκλήσεις και ψυχαγωγία — μάγος, κλόουν ή DJ.',
+      ru: 'Фирменное гостеприимство: больше угощений, 100 приглашений и развлечение — фокусник, клоун или DJ.',
+    },
+    idealFor: {
+      en: 'Larger celebrations seeking a festive, fully hosted baptism experience.',
+      el: 'Για μεγαλύτερες γιορτές που θέλουν εορταστική, πλήρως φιλοξενούμενη εμπειρία βάπτισης.',
+      ru: 'Для более крупных торжеств с праздничным, полностью организованным крещением.',
+    },
+    planningWindow: {
+      en: 'Recommended planning window: 4–6 months',
+      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 4–6 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 4–6 месяцев',
+    },
+    inclusions: [
+      { en: 'All of Package 3 inclusions', el: 'Όλες οι παροχές του Πακέτου 3', ru: 'Все позиции Пакета 3' },
+      { en: '150 treats and expanded sweet selection', el: '150 κεράσματα και πλουσιότερη επιλογή γλυκών', ru: '150 угощений и расширенный выбор сладостей' },
+      { en: '100 invitations from 150 designs', el: '100 προσκλήσεις από 150 σχέδια', ru: '100 приглашений из 150 дизайнов' },
+      { en: 'Entertainment choice: magician, clown, or DJ', el: 'Επιλογή ψυχαγωγίας: μάγος, κλόουν ή DJ', ru: 'Развлечение: фокусник, клоун или DJ' },
+    ],
+  },
+
 }
 
 export function getWeddingPackageDetail(

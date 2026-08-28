@@ -63,6 +63,7 @@ export default function WeddingPackageDetailPage() {
   const titleMatch = heroTitle.match(/^("[^"]+"|«[^»]+»)\s*(.*)$/)
   const titleMark = titleMatch?.[1] ?? null
   const titleRest = titleMatch?.[2]?.trim() || null
+  const summaryText = detail ? t(detail.summary) : t(packageTier.tagline)
 
   return (
     <div
@@ -129,7 +130,7 @@ export default function WeddingPackageDetailPage() {
             </div>
 
             <div className="wedding-package-detail-hero__copy">
-              <p className="wedding-package-detail-hero__summary">{t(detail.summary)}</p>
+              <p className="wedding-package-detail-hero__summary">{summaryText}</p>
             </div>
           </div>
 
@@ -163,28 +164,32 @@ export default function WeddingPackageDetailPage() {
         </div>
 
         <div className="container wedding-package-detail-content__grid">
-          <WeddingLazyReveal as="article" className="wedding-package-detail-panel" delay={0}>
-            <h2 className="wedding-package-detail-panel__title">
-              {t(weddingDetailPageCopy.idealFor)}
-            </h2>
-            <p className="wedding-package-detail-panel__copy">{t(detail.idealFor)}</p>
-            <div className="wedding-package-detail-panel__meta">
-              <p>{t(detail.planningWindow)}</p>
-            </div>
-          </WeddingLazyReveal>
+          {detail ? (
+            <WeddingLazyReveal as="article" className="wedding-package-detail-panel" delay={0}>
+              <h2 className="wedding-package-detail-panel__title">
+                {t(weddingDetailPageCopy.idealFor)}
+              </h2>
+              <p className="wedding-package-detail-panel__copy">{t(detail.idealFor)}</p>
+              <div className="wedding-package-detail-panel__meta">
+                <p>{t(detail.planningWindow)}</p>
+              </div>
+            </WeddingLazyReveal>
+          ) : null}
 
-          <WeddingLazyReveal as="article" className="wedding-package-detail-panel" delay={90}>
-            <h2 className="wedding-package-detail-panel__title">
-              {t(weddingDetailPageCopy.includedScope)}
-            </h2>
-            <ul className="wedding-package-detail-panel__list">
-              {detail.inclusions.map((item, index) => (
-                <li key={item.en} style={{ '--item-i': index } as React.CSSProperties}>
-                  {t(item)}
-                </li>
-              ))}
-            </ul>
-          </WeddingLazyReveal>
+          {detail ? (
+            <WeddingLazyReveal as="article" className="wedding-package-detail-panel" delay={90}>
+              <h2 className="wedding-package-detail-panel__title">
+                {t(weddingDetailPageCopy.includedScope)}
+              </h2>
+              <ul className="wedding-package-detail-panel__list">
+                {detail.inclusions.map((item, index) => (
+                  <li key={item.en} style={{ '--item-i': index } as React.CSSProperties}>
+                    {t(item)}
+                  </li>
+                ))}
+              </ul>
+            </WeddingLazyReveal>
+          ) : null}
         </div>
 
         <WeddingLazyReveal className="container wedding-package-detail-nav" delay={140}>
