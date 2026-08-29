@@ -37,6 +37,7 @@ import WeddingServicesPage from './WeddingServicesPage'
 import WeddingPackageDetailPage from './WeddingPackageDetailPage'
 import WeddingAboutPage from './WeddingAboutPage'
 import WeddingPackageCategoryPage from './WeddingPackageCategoryPage'
+import WeddingSkyLayout from './WeddingSkyLayout'
 import JanchapelleBridalPage from './JanchapelleBridalPage'
 import JanchapelleCollectionDetailPage from './JanchapelleCollectionDetailPage'
 import JanchapelleHouseDetailPage from './JanchapelleHouseDetailPage'
@@ -177,10 +178,12 @@ function JanchapelleBrandRoutes() {
 function WeddingBrandRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<WeddingServicesPage />} />
-      <Route path="/about" element={<WeddingAboutPage />} />
-      <Route path="/categories/:categoryId" element={<WeddingPackageCategoryPage />} />
-      <Route path="/packages/:packageId" element={<WeddingPackageDetailPage />} />
+      <Route element={<WeddingSkyLayout />}>
+        <Route path="/" element={<WeddingServicesPage />} />
+        <Route path="/about" element={<WeddingAboutPage />} />
+        <Route path="/categories/:categoryId" element={<WeddingPackageCategoryPage />} />
+        <Route path="/packages/:packageId" element={<WeddingPackageDetailPage />} />
+      </Route>
       <Route path="/services/wedding/about" element={<Navigate to="/about" replace />} />
       <Route path="/services/wedding/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />

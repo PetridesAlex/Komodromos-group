@@ -369,6 +369,7 @@ export const WEDDING_ROUTE_SEGMENTS = [
   'packages/christening-2',
   'packages/christening-3',
   'packages/christening-4',
+  'packages/christening-oceanic',
 ] as const
 
 function brandRouteSegments(brand: BrandDomainConfig): readonly string[] {

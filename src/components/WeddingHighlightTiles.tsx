@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import { weddingHighlightTiles } from '../data/weddingHighlightTiles'
+import { weddingHighlightTiles, type WeddingHighlightTile } from '../data/weddingHighlightTiles'
 import { weddingTilesSectionCopy } from '../data/weddingPageCopy'
 import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
 import { getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
@@ -8,6 +9,7 @@ import { useSiteContext } from '../seo/SiteContext'
 import { GROUP_SITE_URL } from '../seo/domainRegistry'
 import { useWeddingLocale } from '../lib/weddingLocale'
 import WeddingLazyImage from './WeddingLazyImage'
+import WeddingHighlightDetailModal from './WeddingHighlightDetailModal'
 
 /** Split service titles into a display mark + refined rest line. */
 function splitServiceTitle(title: string): { mark: string; rest: string | null } {
@@ -104,6 +106,7 @@ function TileContent({
 export default function WeddingHighlightTiles() {
   const { t, htmlLang } = useWeddingLocale()
   const { isBrandDomain } = useSiteContext()
+  const [detailTile, setDetailTile] = useState<WeddingHighlightTile | null>(null)
 
   function resolveGroupPageHref(path: string): { href: string; external: boolean } {
     if (isBrandDomain && !import.meta.env.DEV) {
@@ -135,6 +138,7 @@ export default function WeddingHighlightTiles() {
       </div>
       <div className="wedding-highlight-tiles__grid">
           {weddingHighlightTiles.map((tile, index) => {
+            const opensDetail = Boolean(tile.detail)
             const isLink = Boolean(
               tile.contact || tile.hashHref || tile.serviceSlug || tile.pageHref,
             )
@@ -146,14 +150,21 @@ export default function WeddingHighlightTiles() {
                 title={t(tile.title)}
                 image={tile.image}
                 imageFit={tile.imageFit}
-                decorativeImage={isLink}
-                interactive={isLink}
-                exploreLabel={t(weddingTilesSectionCopy.explore)}
+                decorativeImage={isLink || opensDetail}
+                interactive={isLink || opensDetail}
+                exploreLabel={t(
+                  opensDetail ? weddingTilesSectionCopy.discover : weddingTilesSectionCopy.explore,
+                )}
               />
             )
             const style = { ['--tile-i' as string]: String(index) }
-            const className =
-              'wedding-highlight-tiles__tile wedding-highlight-tiles__tile--link'
+            const className = [
+              'wedding-highlight-tiles__tile',
+              isLink || opensDetail ? 'wedding-highlight-tiles__tile--link' : '',
+              opensDetail ? 'wedding-highlight-tiles__tile--detail' : '',
+            ]
+              .filter(Boolean)
+              .join(' ')
 
             if (tile.serviceSlug) {
               const href = getServicePageHref(tile.serviceSlug)
@@ -261,6 +272,24 @@ export default function WeddingHighlightTiles() {
               )
             }
 
+            if (opensDetail) {
+              return (
+                <button
+                  key={tile.id}
+                  type="button"
+                  className={className}
+                  style={style}
+                  aria-label={t(weddingTilesSectionCopy.openDetailAria).replace(
+                    '{{title}}',
+                    t(tile.title),
+                  )}
+                  onClick={() => setDetailTile(tile)}
+                >
+                  {body}
+                </button>
+              )
+            }
+
             return (
               <article
                 key={tile.id}
@@ -272,6 +301,8 @@ export default function WeddingHighlightTiles() {
             )
           })}
       </div>
+
+      <WeddingHighlightDetailModal tile={detailTile} onClose={() => setDetailTile(null)} />
     </section>
   )
 }

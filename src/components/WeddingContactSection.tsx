@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
-import { Mail, MapPin, Check } from 'lucide-react'
+import { Mail, MapPin, Phone, Check } from 'lucide-react'
 import { sendContactInquiry } from '../lib/sendContactInquiry'
 import { useFormSpamProtection } from '../hooks/useFormSpamProtection'
 import { useWeddingLocale } from '../lib/weddingLocale'
@@ -208,24 +208,42 @@ export default function WeddingContactSection() {
 
           <aside className="wedding-contact__aside">
             <div
-              className="wedding-visit__card reveal reveal-delay-2"
+              className="wedding-visit__card wedding-visit__card--studios reveal reveal-delay-2"
               style={{ ['--visit-i' as string]: '0' }}
             >
               <div className="wedding-visit__card-top">
                 <span className="wedding-visit__icon" aria-hidden>
                   <MapPin size={20} strokeWidth={1.75} />
                 </span>
-                <h3 className="wedding-visit__label">{t(weddingVisitCopy.addressLabel)}</h3>
+                <h3 className="wedding-visit__label">{t(weddingVisitCopy.studiosLabel)}</h3>
               </div>
-              <address className="wedding-visit__address">
-                {weddingVisitCopy.addressLines.map((line, index) => (
-                  <span key={line.en}>
-                    {t(line)}
-                    {index < weddingVisitCopy.addressLines.length - 1 ? <br /> : null}
-                  </span>
+
+              <div className="wedding-visit__offices">
+                {weddingVisitCopy.offices.map((office, officeIndex) => (
+                  <div key={office.id} className="wedding-visit__office">
+                    {officeIndex > 0 ? (
+                      <span className="wedding-visit__office-divider" aria-hidden />
+                    ) : null}
+                    <p className="wedding-visit__office-city">{t(office.city)}</p>
+                    <address className="wedding-visit__address">
+                      {office.addressLines.map((line, index) => (
+                        <span key={line.en}>
+                          {t(line)}
+                          {index < office.addressLines.length - 1 ? <br /> : null}
+                        </span>
+                      ))}
+                    </address>
+                    {office.phone && office.phoneHref ? (
+                      <a href={office.phoneHref} className="wedding-visit__phone">
+                        <Phone size={15} strokeWidth={2} aria-hidden />
+                        <span>{office.phone}</span>
+                      </a>
+                    ) : null}
+                  </div>
                 ))}
-              </address>
+              </div>
             </div>
+
             <div
               className="wedding-visit__card reveal reveal-delay-3"
               style={{ ['--visit-i' as string]: '1' }}
@@ -248,14 +266,19 @@ export default function WeddingContactSection() {
           </aside>
         </div>
 
-        <div className="wedding-visit__map-wrap reveal reveal-delay-4">
-          <iframe
-            title={t(weddingVisitCopy.mapTitle)}
-            className="wedding-visit__map"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=Iris+House+John+Kennedy+Limassol+Cyprus&output=embed"
-          />
+        <div className="wedding-visit__maps reveal reveal-delay-4">
+          {weddingVisitCopy.offices.map((office) => (
+            <div key={office.id} className="wedding-visit__map-panel">
+              <p className="wedding-visit__map-label">{t(office.city)}</p>
+              <iframe
+                title={t(office.mapTitle)}
+                className="wedding-visit__map"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://www.google.com/maps?q=${office.mapQuery}&output=embed`}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

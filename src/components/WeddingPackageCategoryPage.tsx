@@ -4,6 +4,7 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
 import WeddingChristeningPackagesPage from './WeddingChristeningPackagesPage'
+import WeddingConsultationPromo from './WeddingConsultationPromo'
 import WeddingPackagePricingGrid from './WeddingPackagePricingGrid'
 import NotFoundPage from './NotFoundPage'
 import { useReveal } from '../hooks/useReveal'
@@ -101,6 +102,8 @@ export default function WeddingPackageCategoryPage() {
           </div>
         </div>
       </section>
+
+      <WeddingConsultationPromo collectionName={t(category.name)} />
 
       <section
         className="wedding-christening-catalogue wedding-package-category-catalogue"

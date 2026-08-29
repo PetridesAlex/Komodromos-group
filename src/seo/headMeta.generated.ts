@@ -470,6 +470,13 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-christening-packages/christening-package-4.webp",
     "index": true
   },
+  "/services/wedding/packages/christening-oceanic": {
+    "title": "Complete Oceanic Christening Package | Komodromos Group",
+    "description": "Complete Oceanic Christening Package — Enjoy the endless blue — a luxury yacht celebration for up to 150 guests.. Part of Komodromos Group premium services in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/christening-oceanic",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-christening-packages/christening-package-oceanic.webp",
+    "index": true
+  },
   "/services/pool/categories/overflow": {
     "title": "Overflow Cyprus Services Premium | Komodromos Group",
     "description": "Overflow — pool design and construction. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in Cyprus. Enquire for tailored",

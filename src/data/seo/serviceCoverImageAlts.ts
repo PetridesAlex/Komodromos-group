@@ -143,6 +143,8 @@ export const serviceCoverImageAlts: Record<string, string> = {
     'Wedding Sky Complete Christening Package 3 — décor, photography, and celebration hospitality, Cyprus',
   '/images/services/wedding-highlights/wedding-christening-packages/christening-package-4.webp':
     'Wedding Sky Complete Christening Package 4 — signature baptism hospitality and entertainment, Cyprus',
+  '/images/services/wedding-highlights/wedding-christening-packages/christening-package-oceanic.webp':
+    'Wedding Sky Complete Oceanic Christening Package — luxury yacht baptism celebration, Cyprus',
   '/images/services/wedding-highlights/about-us/luxury-wedding-sparkler-sendoff-cyprus.webp':
     'Guests holding sparklers around the couple at a luxury night wedding celebration in Cyprus — Wedding Sky',
   '/images/services/wedding-highlights/about-us/luxury-cyprus-bride-veil-bouquet-portrait.webp':

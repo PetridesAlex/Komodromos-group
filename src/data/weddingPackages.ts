@@ -176,6 +176,24 @@ export const weddingPackages: WeddingPackageTier[] = [
     detailHeroImage: null,
     category: 'christian',
   },
+  {
+    id: 'christening-oceanic',
+    name: {
+      en: 'Complete Oceanic Christening Package',
+      el: 'Ολοκληρωμένο Πακέτο Βάπτισης Oceanic',
+      ru: 'Полный пакет крещения Oceanic',
+    },
+    tagline: {
+      en: 'Enjoy the endless blue — a luxury yacht celebration for up to 150 guests.',
+      el: 'Απολαύστε το απέραντο γαλάζιο — πολυτελής γιορτή σε γιοτ για έως 150 καλεσμένους.',
+      ru: 'Насладитесь бескрайней синевой — роскошное торжество на яхте до 150 гостей.',
+    },
+    priceDisplay: { en: '€3,200', el: '€3.200', ru: '€3 200' },
+    sortOrder: 5,
+    image: `${CATEGORY_IMG}/christening-package-oceanic.webp`,
+    detailHeroImage: null,
+    category: 'christian',
+  },
 ]
 
 export function getWeddingPackageCategory(

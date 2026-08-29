@@ -6,6 +6,7 @@ import WeddingServicesPage from './WeddingServicesPage'
 import WeddingPackageDetailPage from './WeddingPackageDetailPage'
 import WeddingPackageCategoryPage from './WeddingPackageCategoryPage'
 import WeddingAboutPage from './WeddingAboutPage'
+import WeddingSkyLayout from './WeddingSkyLayout'
 import JanchapelleBridalPage from './JanchapelleBridalPage'
 import JanchapelleCollectionDetailPage from './JanchapelleCollectionDetailPage'
 import JanchapelleHouseDetailPage from './JanchapelleHouseDetailPage'
@@ -110,13 +111,12 @@ function GroupRoutes() {
     <Routes>
       <Route path="/" element={<KomodromosGroupHomePage />} />
       <Route path="/contact" element={<ContactPage />} />
-      <Route path="/services/wedding" element={<WeddingServicesPage />} />
-      <Route path="/services/wedding/about" element={<WeddingAboutPage />} />
-      <Route
-        path="/services/wedding/categories/:categoryId"
-        element={<WeddingPackageCategoryPage />}
-      />
-      <Route path="/services/wedding/packages/:packageId" element={<WeddingPackageDetailPage />} />
+      <Route path="/services/wedding" element={<WeddingSkyLayout />}>
+        <Route index element={<WeddingServicesPage />} />
+        <Route path="about" element={<WeddingAboutPage />} />
+        <Route path="categories/:categoryId" element={<WeddingPackageCategoryPage />} />
+        <Route path="packages/:packageId" element={<WeddingPackageDetailPage />} />
+      </Route>
       <Route path="/services/janchapelle" element={<JanchapelleBridalPage />} />
       <Route
         path="/services/janchapelle/collections/:collectionId"

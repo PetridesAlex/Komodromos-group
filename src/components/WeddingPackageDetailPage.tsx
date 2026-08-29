@@ -283,6 +283,11 @@ export default function WeddingPackageDetailPage() {
                 <p className="wedding-package-detail-panel__price">
                   {t(christeningPackage.priceDisplay)}
                 </p>
+                {christeningPackage.priceNote ? (
+                  <p className="wedding-package-detail-panel__price-surcharge">
+                    {t(christeningPackage.priceNote)}
+                  </p>
+                ) : null}
               </div>
 
               <div className="wedding-package-detail-panel__block">

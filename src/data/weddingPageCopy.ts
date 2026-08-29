@@ -264,6 +264,11 @@ export const weddingTilesSectionCopy: {
   openContactAria: LocalizedText
   jumpSectionAria: LocalizedText
   openServiceAria: LocalizedText
+  discover: LocalizedText
+  closeDetail: LocalizedText
+  detailEyebrow: LocalizedText
+  enquireService: LocalizedText
+  openDetailAria: LocalizedText
 } = {
   eyebrow: {
     en: 'The atelier catalogue',
@@ -299,6 +304,31 @@ export const weddingTilesSectionCopy: {
     en: '{{title}} — open page',
     el: '{{title}} — άνοιγμα σελίδας',
     ru: '{{title}} — открыть страницу',
+  },
+  discover: {
+    en: 'Discover',
+    el: 'Ανακαλύψτε',
+    ru: 'Узнать больше',
+  },
+  closeDetail: {
+    en: 'Close service details',
+    el: 'Κλείσιμο λεπτομερειών υπηρεσίας',
+    ru: 'Закрыть описание услуги',
+  },
+  detailEyebrow: {
+    en: 'Wedding Sky atelier',
+    el: 'Wedding Sky atelier',
+    ru: 'Atelier Wedding Sky',
+  },
+  enquireService: {
+    en: 'Enquire about this service',
+    el: 'Ενδιαφέρομαι για την υπηρεσία',
+    ru: 'Узнать об услуге',
+  },
+  openDetailAria: {
+    en: '{{title}} — read service details',
+    el: '{{title}} — ανάγνωση λεπτομερειών υπηρεσίας',
+    ru: '{{title}} — прочитать об услуге',
   },
 }
 
@@ -725,12 +755,23 @@ export const weddingAboutCopy: {
   },
 }
 
+export type WeddingOfficeLocation = {
+  id: string
+  city: LocalizedText
+  addressLines: ReadonlyArray<LocalizedText>
+  phone?: string
+  phoneHref?: string
+  mapQuery: string
+  mapTitle: LocalizedText
+}
+
 export const weddingVisitCopy: {
   title: LocalizedText
   intro: LocalizedText
-  addressLabel: LocalizedText
+  studiosLabel: LocalizedText
+  phoneLabel: LocalizedText
   emailLabel: LocalizedText
-  addressLines: ReadonlyArray<LocalizedText>
+  offices: ReadonlyArray<WeddingOfficeLocation>
   mapTitle: LocalizedText
 } = {
   title: {
@@ -739,41 +780,97 @@ export const weddingVisitCopy: {
     ru: 'Адрес и контакты',
   },
   intro: {
-    en: 'Visit us in Limassol or reach the Wedding Sky team by email.',
-    el: 'Επισκεφθείτε μας στη Λεμεσό ή επικοινωνήστε με την ομάδα της Wedding Sky μέσω email.',
-    ru: 'Посетите нас в Лимасоле или свяжитесь с командой Wedding Sky по электронной почте.',
+    en: 'Visit our studios in Larnaca or Limassol, or reach the Wedding Sky team by phone and email.',
+    el: 'Επισκεφθείτε τα ατελιέ μας στη Λάρνακα ή τη Λεμεσό, ή επικοινωνήστε με την ομάδα της Wedding Sky τηλεφωνικά και μέσω email.',
+    ru: 'Посетите наши студии в Ларнаке или Лимасоле или свяжитесь с командой Wedding Sky по телефону и email.',
   },
-  addressLabel: {
-    en: 'Address',
-    el: 'Διεύθυνση',
-    ru: 'Адрес',
+  studiosLabel: {
+    en: 'Our studios',
+    el: 'Τα ατελιέ μας',
+    ru: 'Наши студии',
+  },
+  phoneLabel: {
+    en: 'Telephone',
+    el: 'Τηλέφωνο',
+    ru: 'Телефон',
   },
   emailLabel: {
     en: 'E-mail',
     el: 'E-mail',
     ru: 'Электронная почта',
   },
-  addressLines: [
+  offices: [
     {
-      en: 'John Kennedy Street, Iris House, 4th Floor, 440A',
-      el: 'John Kennedy Street, Iris House, 4th Floor, 440A',
-      ru: 'John Kennedy Street, Iris House, 4th Floor, 440A',
+      id: 'larnaca',
+      city: {
+        en: 'Larnaca',
+        el: 'Λάρνακα',
+        ru: 'Ларнака',
+      },
+      addressLines: [
+        {
+          en: 'Ioannou Gladstonos 10',
+          el: 'Ioannou Gladstonos 10',
+          ru: 'Ioannou Gladstonos 10',
+        },
+        {
+          en: 'Larnaca, Larnaka 6023',
+          el: 'Λάρνακα, Larnaka 6023',
+          ru: 'Ларнака, Larnaka 6023',
+        },
+        {
+          en: 'Cyprus',
+          el: 'Κύπρος',
+          ru: 'Кипр',
+        },
+      ],
+      phone: '+357 99 243100',
+      phoneHref: 'tel:+35799243100',
+      mapQuery: 'Ioannou+Gladstonos+10+Larnaca+6023+Cyprus',
+      mapTitle: {
+        en: 'Wedding Sky — Larnaca studio',
+        el: 'Wedding Sky — ατελιέ Λάρνακας',
+        ru: 'Wedding Sky — студия в Ларнаке',
+      },
     },
     {
-      en: 'Neapolis, 3106 Limassol',
-      el: 'Neapolis, 3106 Limassol',
-      ru: 'Neapolis, 3106 Limassol',
-    },
-    {
-      en: 'Cyprus',
-      el: 'Κύπρος',
-      ru: 'Кипр',
+      id: 'limassol',
+      city: {
+        en: 'Limassol',
+        el: 'Λεμεσός',
+        ru: 'Лимасол',
+      },
+      addressLines: [
+        {
+          en: 'John Kennedy Street, Iris House, 4th Floor, 440A',
+          el: 'John Kennedy Street, Iris House, 4th Floor, 440A',
+          ru: 'John Kennedy Street, Iris House, 4th Floor, 440A',
+        },
+        {
+          en: 'Neapolis, 3106 Limassol',
+          el: 'Neapolis, 3106 Limassol',
+          ru: 'Neapolis, 3106 Limassol',
+        },
+        {
+          en: 'Cyprus',
+          el: 'Κύπρος',
+          ru: 'Кипр',
+        },
+      ],
+      phone: '+357 99 243100',
+      phoneHref: 'tel:+35799243100',
+      mapQuery: 'Iris+House+John+Kennedy+Limassol+Cyprus',
+      mapTitle: {
+        en: 'Wedding Sky — Limassol studio',
+        el: 'Wedding Sky — ατελιέ Λεμεσού',
+        ru: 'Wedding Sky — студия в Лимасоле',
+      },
     },
   ],
   mapTitle: {
-    en: 'Wedding Sky — map',
-    el: 'Wedding Sky — χάρτης',
-    ru: 'Wedding Sky — карта',
+    en: 'Wedding Sky — studio locations',
+    el: 'Wedding Sky — τοποθεσίες ατελιέ',
+    ru: 'Wedding Sky — расположение студий',
   },
 }
 
@@ -1424,6 +1521,257 @@ export const weddingPlanEnquiryCopy = {
     } satisfies LocalizedText,
     generic: {
       en: 'Could not send your enquiry. Please try again or email weddingskycy@gmail.com.',
+      el: 'Δεν ήταν δυνατή η αποστολή. Δοκιμάστε ξανά ή στείλτε email στο weddingskycy@gmail.com.',
+      ru: 'Не удалось отправить запрос. Попробуйте снова или напишите на weddingskycy@gmail.com.',
+    } satisfies LocalizedText,
+  },
+}
+
+export const weddingConsultationCopy = {
+  eyebrow: {
+    en: 'Private consultation',
+    el: 'Ιδιωτική συνάντηση',
+    ru: 'Частная консультация',
+  } satisfies LocalizedText,
+  headline: {
+    en: 'Book your next wedding appointment',
+    el: 'Κλείστε το επόμενο ραντεβού για τον γάμο σας',
+    ru: 'Запишитесь на свадебную консультацию',
+  } satisfies LocalizedText,
+  subline: {
+    en: 'Share your first ideas with our planners — a complimentary consultation to explore style, packages, and the day you imagine.',
+    el: 'Μοιραστείτε τις πρώτες σας ιδέες με τους planners μας — μια δωρεάν συνάντηση για στυλ, πακέτα και την ημέρα που ονειρεύεστε.',
+    ru: 'Поделитесь первыми идеями с нашими планировщиками — бесплатная консультация о стиле, пакетах и дне вашей мечты.',
+  } satisfies LocalizedText,
+  benefits: [
+    {
+      en: 'Free first consultation',
+      el: 'Δωρεάν πρώτη συνάντηση',
+      ru: 'Бесплатная первая консультация',
+    } satisfies LocalizedText,
+    {
+      en: 'Tailored ideas',
+      el: 'Εξατομικευμένες ιδέες',
+      ru: 'Персональные идеи',
+    } satisfies LocalizedText,
+    {
+      en: 'No obligation',
+      el: 'Χωρίς δέσμευση',
+      ru: 'Без обязательств',
+    } satisfies LocalizedText,
+  ] as const,
+  cta: {
+    en: 'Book a consultation',
+    el: 'Κλείστε ραντεβού',
+    ru: 'Записаться на консультацию',
+  } satisfies LocalizedText,
+  ctaSub: {
+    en: 'Takes under a minute',
+    el: 'Χρειάζεται λιγότερο από ένα λεπτό',
+    ru: 'Займёт меньше минуты',
+  } satisfies LocalizedText,
+  trustLine: {
+    en: 'Limited consultation slots this month',
+    el: 'Περιορισμένα ραντεβού αυτόν τον μήνα',
+    ru: 'Ограниченное число слотов в этом месяце',
+  } satisfies LocalizedText,
+  fabLabel: {
+    en: 'Book consultation',
+    el: 'Κλείστε ραντεβού',
+    ru: 'Записаться',
+  } satisfies LocalizedText,
+  fabAria: {
+    en: 'Open wedding consultation booking form',
+    el: 'Άνοιγμα φόρμας κράτησης ραντεβού γάμου',
+    ru: 'Открыть форму записи на свадебную консультацию',
+  } satisfies LocalizedText,
+  modalEyebrow: {
+    en: 'Wedding Sky',
+    el: 'Wedding Sky',
+    ru: 'Wedding Sky',
+  } satisfies LocalizedText,
+  title: {
+    en: 'Book a consultation',
+    el: 'Κλείστε ραντεβού',
+    ru: 'Записаться на консультацию',
+  } satisfies LocalizedText,
+  subtitle: {
+    en: 'Tell us when you’d like to meet — we’ll confirm a time to discuss your first ideas.',
+    el: 'Πείτε μας πότε θα θέλατε να συναντηθούμε — θα επιβεβαιώσουμε ώρα για να συζητήσουμε τις πρώτες σας ιδέες.',
+    ru: 'Укажите удобное время — мы подтвердим встречу, чтобы обсудить ваши первые идеи.',
+  } satisfies LocalizedText,
+  optional: {
+    en: 'optional',
+    el: 'προαιρετικό',
+    ru: 'необязательно',
+  } satisfies LocalizedText,
+  selectPlaceholder: {
+    en: 'Select…',
+    el: 'Επιλέξτε…',
+    ru: 'Выберите…',
+  } satisfies LocalizedText,
+  fields: {
+    name: {
+      en: 'Your name',
+      el: 'Το όνομά σας',
+      ru: 'Ваше имя',
+    } satisfies LocalizedText,
+    partnerName: {
+      en: 'Partner’s name',
+      el: 'Όνομα συντρόφου',
+      ru: 'Имя партнёра',
+    } satisfies LocalizedText,
+    email: {
+      en: 'Email',
+      el: 'Email',
+      ru: 'Email',
+    } satisfies LocalizedText,
+    phone: {
+      en: 'Phone',
+      el: 'Τηλέφωνο',
+      ru: 'Телефон',
+    } satisfies LocalizedText,
+    preferredDate: {
+      en: 'Preferred date',
+      el: 'Επιθυμητή ημερομηνία',
+      ru: 'Желаемая дата',
+    } satisfies LocalizedText,
+    timeSlot: {
+      en: 'Preferred time',
+      el: 'Προτιμώμενη ώρα',
+      ru: 'Предпочтительное время',
+    } satisfies LocalizedText,
+    meetingType: {
+      en: 'Meeting type',
+      el: 'Τύπος συνάντησης',
+      ru: 'Формат встречи',
+    } satisfies LocalizedText,
+    message: {
+      en: 'Message',
+      el: 'Μήνυμα',
+      ru: 'Сообщение',
+    } satisfies LocalizedText,
+  },
+  placeholders: {
+    name: {
+      en: 'Full name',
+      el: 'Ονοματεπώνυμο',
+      ru: 'Полное имя',
+    } satisfies LocalizedText,
+    partnerName: {
+      en: 'Partner’s full name',
+      el: 'Ονοματεπώνυμο συντρόφου',
+      ru: 'Полное имя партнёра',
+    } satisfies LocalizedText,
+    email: {
+      en: 'you@example.com',
+      el: 'you@example.com',
+      ru: 'you@example.com',
+    } satisfies LocalizedText,
+    phone: {
+      en: '+357 …',
+      el: '+357 …',
+      ru: '+357 …',
+    } satisfies LocalizedText,
+    message: {
+      en: 'First ideas, questions, or anything we should know…',
+      el: 'Πρώτες ιδέες, ερωτήσεις ή οτιδήποτε πρέπει να γνωρίζουμε…',
+      ru: 'Первые идеи, вопросы или всё, что нам важно знать…',
+    } satisfies LocalizedText,
+  },
+  timeSlotOptions: [
+    {
+      value: 'morning',
+      label: { en: 'Morning', el: 'Πρωί', ru: 'Утро' } satisfies LocalizedText,
+    },
+    {
+      value: 'afternoon',
+      label: { en: 'Afternoon', el: 'Απόγευμα', ru: 'День' } satisfies LocalizedText,
+    },
+    {
+      value: 'evening',
+      label: { en: 'Evening', el: 'Βράδυ', ru: 'Вечер' } satisfies LocalizedText,
+    },
+  ] as const,
+  meetingTypeOptions: [
+    {
+      value: 'studio',
+      label: {
+        en: 'Studio visit',
+        el: 'Επίσκεψη στο στούντιο',
+        ru: 'Визит в студию',
+      } satisfies LocalizedText,
+    },
+    {
+      value: 'video',
+      label: {
+        en: 'Video call',
+        el: 'Βιντεοκλήση',
+        ru: 'Видеозвонок',
+      } satisfies LocalizedText,
+    },
+    {
+      value: 'phone',
+      label: {
+        en: 'Phone call',
+        el: 'Τηλεφωνική κλήση',
+        ru: 'Телефонный звонок',
+      } satisfies LocalizedText,
+    },
+  ] as const,
+  submit: {
+    en: 'Request appointment',
+    el: 'Αίτημα ραντεβού',
+    ru: 'Запросить встречу',
+  } satisfies LocalizedText,
+  submitting: {
+    en: 'Sending…',
+    el: 'Αποστολή…',
+    ru: 'Отправка…',
+  } satisfies LocalizedText,
+  note: {
+    en: 'We’ll confirm your appointment by email within 1–2 business days.',
+    el: 'Θα επιβεβαιώσουμε το ραντεβού σας με email εντός 1–2 εργάσιμων ημερών.',
+    ru: 'Подтвердим встречу по email в течение 1–2 рабочих дней.',
+  } satisfies LocalizedText,
+  successTitle: {
+    en: 'Request received',
+    el: 'Το αίτημα ελήφθη',
+    ru: 'Запрос получен',
+  } satisfies LocalizedText,
+  successBody: {
+    en: 'Thank you — the Wedding Sky team will confirm your consultation shortly.',
+    el: 'Ευχαριστούμε — η ομάδα της Wedding Sky θα επιβεβαιώσει σύντομα τη συνάντησή σας.',
+    ru: 'Спасибо — команда Wedding Sky скоро подтвердит вашу консультацию.',
+  } satisfies LocalizedText,
+  done: {
+    en: 'Done',
+    el: 'Έτοιμο',
+    ru: 'Готово',
+  } satisfies LocalizedText,
+  close: {
+    en: 'Close',
+    el: 'Κλείσιμο',
+    ru: 'Закрыть',
+  } satisfies LocalizedText,
+  errors: {
+    name: {
+      en: 'Please enter your name.',
+      el: 'Παρακαλώ εισάγετε το όνομά σας.',
+      ru: 'Пожалуйста, укажите ваше имя.',
+    } satisfies LocalizedText,
+    email: {
+      en: 'Please enter your email address.',
+      el: 'Παρακαλώ εισάγετε το email σας.',
+      ru: 'Пожалуйста, укажите email.',
+    } satisfies LocalizedText,
+    phone: {
+      en: 'Please enter a contact number.',
+      el: 'Παρακαλώ εισάγετε αριθμό επικοινωνίας.',
+      ru: 'Пожалуйста, укажите номер телефона.',
+    } satisfies LocalizedText,
+    generic: {
+      en: 'Could not send your request. Please try again or email weddingskycy@gmail.com.',
       el: 'Δεν ήταν δυνατή η αποστολή. Δοκιμάστε ξανά ή στείλτε email στο weddingskycy@gmail.com.',
       ru: 'Не удалось отправить запрос. Попробуйте снова или напишите на weddingskycy@gmail.com.',
     } satisfies LocalizedText,

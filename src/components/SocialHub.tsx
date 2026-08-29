@@ -1,12 +1,22 @@
 import { useEffect, useId, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { socialLinks } from '../data/socialLinks'
+import { useSiteContext } from '../seo/SiteContext'
+
+function isWeddingSkyPath(pathname: string) {
+  return pathname === '/services/wedding' || pathname.startsWith('/services/wedding/')
+}
 
 export default function SocialHub() {
+  const { brand } = useSiteContext()
+  const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
   const id = useId()
   const panelId = `social-hub-panel-${id}`
+
+  const hideOnWeddingSky = brand?.slug === 'wedding' || isWeddingSkyPath(pathname)
 
   useEffect(() => {
     if (!open) return
@@ -30,6 +40,12 @@ export default function SocialHub() {
       document.removeEventListener('mousedown', onDoc)
     }
   }, [open])
+
+  useEffect(() => {
+    if (hideOnWeddingSky) setOpen(false)
+  }, [hideOnWeddingSky])
+
+  if (hideOnWeddingSky) return null
 
   return (
     <div className={`social-hub ${open ? 'social-hub--open' : ''}`}>

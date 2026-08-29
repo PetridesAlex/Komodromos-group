@@ -118,9 +118,9 @@ export const christeningPackagesPageCopy = {
     ru: 'Коллекция крещения',
   } satisfies LocalizedText,
   catalogueLead: {
-    en: 'Four composed programmes — from essential styling to signature hospitality.',
-    el: 'Τέσσερα ολοκληρωμένα προγράμματα — από βασικό στολισμό έως υπογραφή φιλοξενίας.',
-    ru: 'Четыре программы — от базового декора до фирменного гостеприимства.',
+    en: 'Five composed programmes — from essential styling to signature yacht hospitality.',
+    el: 'Πέντε ολοκληρωμένα προγράμματα — από βασικό στολισμό έως υπογραφή φιλοξενίας σε γιοτ.',
+    ru: 'Пять программ — от базового декора до фирменного гостеприимства на яхте.',
   } satisfies LocalizedText,
 } as const
 
@@ -288,7 +288,6 @@ export const christeningPackages: readonly ChristeningPackage[] = [
     ),
     priceDisplay: L('€1,900', '€1.900', '€1 900'),
     image: `${IMG}/christening-package-3.webp`,
-    featured: true,
     highlight: L(
       'The complete baptism experience with memory-making and sweet hospitality.',
       'Η ολοκληρωμένη εμπειρία βάπτισης με αναμνήσεις και γλυκιά φιλοξενία.',
@@ -447,6 +446,253 @@ export const christeningPackages: readonly ChristeningPackage[] = [
       },
     ],
   },
+  {
+    id: 'christening-oceanic',
+    sortOrder: 5,
+    name: L(
+      'Complete Oceanic Christening Package',
+      'Ολοκληρωμένο Πακέτο Βάπτισης Oceanic',
+      'Полный пакет крещения Oceanic',
+    ),
+    tagline: L(
+      'Enjoy the endless blue — a luxury yacht celebration for up to 150 guests.',
+      'Απολαύστε το απέραντο γαλάζιο — πολυτελής γιορτή σε γιοτ για έως 150 καλεσμένους.',
+      'Насладитесь бескрайней синевой — роскошное торжество на яхте до 150 гостей.',
+    ),
+    priceDisplay: L('€3,200', '€3.200', '€3 200'),
+    priceNote: L(
+      '+ €30 per person for food & drink',
+      '+ €30 ανά άτομο για φαγητό & ποτό',
+      '+ €30 с человека за еду и напитки',
+    ),
+    image: `${IMG}/christening-package-oceanic.webp`,
+    featured: true,
+    highlight: L(
+      'A signature yacht baptism — cruise hospitality, themed décor, photography, treats, and full-day coordination.',
+      'Υπογραφή βάπτισης σε γιοτ — κρουαζιέρα, θεματικός στολισμός, φωτογραφία, κεράσματα και πλήρης συντονισμός.',
+      'Фирменное крещение на яхте — круиз, тематический декор, фото, угощения и координация всего дня.',
+    ),
+    sections: [
+      {
+        title: L('Luxury yacht experience', 'Εμπειρία πολυτελούς γιοτ', 'Роскошная яхта'),
+        items: [
+          L(
+            'Luxury yacht for up to 150 guests',
+            'Πολυτελές σκάφος για έως 150 άτομα',
+            'Роскошная яхта до 150 гостей',
+          ),
+          L(
+            '4-hour cruise with option to extend (extra charge)',
+            'Κρουαζιέρα 4 ωρών με δυνατότητα παράτασης (επιπλέον χρέωση)',
+            '4-часовой круиз с возможностью продления (доп. плата)',
+          ),
+          L(
+            'Choice of two buffet menus with unlimited drinks',
+            'Επιλογή δύο μενού μπουφέ με απεριόριστα ποτά',
+            'Выбор двух меню шведского стола с безлимитными напитками',
+          ),
+          L(
+            'Professional lighting and smoke effects for an evening party',
+            'Επαγγελματικός φωτισμός και εφέ καπνού για βραδινό πάρτι',
+            'Профессиональное освещение и дым для вечеринки',
+          ),
+          L(
+            'Experienced security and safety crew',
+            'Έμπειρο προσωπικό ασφαλείας',
+            'Опытная команда безопасности',
+          ),
+          L(
+            'Luxury onboard restaurant and modern bar',
+            'Πολυτελές εστιατόριο και μοντέρνο bar στο σκάφος',
+            'Роскошный ресторан и современный бар на борту',
+          ),
+          L(
+            'Professional waiter service',
+            'Εξυπηρέτηση από σερβιτόρους',
+            'Обслуживание официантами',
+          ),
+          L(
+            'Yacht available from Larnaca and Protaras',
+            'Διαθεσιμότητα σκάφους από Λάρνακα και Πρωταρά',
+            'Яхта доступна из Ларнаки и Протараса',
+          ),
+        ],
+      },
+      {
+        title: L('Church & yacht décor', 'Διακόσμηση εκκλησίας & γιοτ', 'Декор храма и яхты'),
+        items: [
+          L(
+            'Themed decoration of the yacht restaurant',
+            'Θεματικός στολισμός του εστιατορίου του σκάφους',
+            'Тематическое оформление ресторана на яхте',
+          ),
+          L(
+            '3D polystyrene constructions based on the christening theme',
+            'Κατασκευές από πολυστερίνη με βάση το θέμα της βάπτισης',
+            '3D-конструкции из полистирола по теме крещения',
+          ),
+          L(
+            'Glass cylinders with candles suited to the venue',
+            'Γυάλινοι κύλινδροι με κεριά αναλόγως του χώρου',
+            'Стеклянные цилиндры со свечами под площадку',
+          ),
+          L(
+            'Dedicated decorated guest-book area',
+            'Ξεχωριστός διακοσμημένος χώρος βιβλίου ευχών',
+            'Отдельная оформленная зона книги пожеланий',
+          ),
+          L('Flower arch', 'Αψίδα με λουλούδια', 'Цветочная арка'),
+          L('Fabric arch', 'Αψίδα με υφάσματα', 'Арка с тканями'),
+          L('Themed christening arch', 'Αψίδα με θέμα βάπτισης', 'Тематическая арка крещения'),
+          L('Child photo arch', 'Αψίδα με φωτογραφίες παιδιού', 'Арка с фото ребёнка'),
+          L('Candlesticks and lanterns', 'Κηροπήγια και φαναράκια', 'Подсвечники и фонарики'),
+          L('Cake stand and Royal fairy lights', 'Βάση τούρτας και Royal fairy lights', 'Подставка для торта и королевская гирлянда'),
+          L(
+            'Columns with flower stands',
+            'Κολώνες με βάσεις λουλουδιών',
+            'Колонны с цветочными подставками',
+          ),
+          L(
+            'Decorative christening banner (2m × 1m) at the boat stern',
+            'Διακοσμητικό μπάνερ βάπτισης (2μ × 1μ) στο πίσω μέρος του σκάφους',
+            'Декоративный баннер крещения (2×1 м) на корме',
+          ),
+          L(
+            'Decorative bases for children’s and family favours',
+            'Διακοσμητικές βάσεις για μπομπονιέρες παιδιών και οικογένειας',
+            'Декоративные базы для детских и семейных бонбоньерок',
+          ),
+          L(
+            '2 large glass cylinders with refreshing drinks of your choice',
+            '2 μεγάλοι γυάλινοι κύλινδροι με δροσερά ποτά επιλογής σας',
+            '2 больших стеклянных цилиндра с прохладительными напитками на выбор',
+          ),
+          L(
+            'Themed guest list and welcome reception frame',
+            'Λίστα καλεσμένων με βάση το θέμα και κορνίζα υποδοχής',
+            'Тематический список гостей и рамка приветствия',
+          ),
+          L(
+            'Food and sweets buffet styling',
+            'Στολισμός μπουφέ φαγητών και γλυκών',
+            'Оформление фуршета с едой и сладостями',
+          ),
+          L('150 themed placemats', '150 θεματικά σουπλάν', '150 тематических плейсматов'),
+          L('Decoration of 15 tables', 'Στολισμός 15 τραπεζιών', 'Оформление 15 столов'),
+          L(
+            'Impressive décor for parents’ and godparents’ table',
+            'Εντυπωσιακός στολισμός τραπεζιού γονέων και νονού',
+            'Выразительное оформление стола родителей и крёстных',
+          ),
+          L('Secure envelope box', 'Ασφαλές κουτί φακέλων', 'Безопасный ящик для конвертов'),
+          L(
+            'Balloons (extra charge)',
+            'Μπαλόνια (επιπλέον χρέωση)',
+            'Шары (за дополнительную плату)',
+          ),
+        ],
+      },
+      {
+        title: L('Photography & albums', 'Φωτογραφίες και άλμπουμ', 'Фото и альбомы'),
+        items: [
+          L(
+            'Two leather digital albums (30×60cm & 20×40cm) with 100 photos',
+            'Δύο δερμάτινα ψηφιακά άλμπουμ (30×60εκ. & 20×40εκ.) με 100 φωτογραφίες',
+            'Два кожаных цифровых альбома (30×60 и 20×40 см) со 100 фото',
+          ),
+          L(
+            'Personalized album design with 150 leather cover options',
+            'Εξατομικευμένος σχεδιασμός άλμπουμ με 150 επιλογές δερμάτινου εξωφύλλου',
+            'Индивидуальный дизайн альбома с 150 вариантами кожаной обложки',
+          ),
+          L(
+            'Cover options in leather, wood, aluminium, or glass',
+            'Επιλογές εξωφύλλου σε δέρμα, ξύλο, αλουμίνιο ή γυαλί',
+            'Обложки: кожа, дерево, алюминий или стекло',
+          ),
+          L(
+            'HD USB video of ceremony and reception',
+            'Βίντεο υψηλής ανάλυσης τελετής και δεξίωσης σε USB',
+            'HD-видео церемонии и приёма на USB',
+          ),
+          L('One 40×60cm canvas print', 'Ένας καμβάς 40×60εκ.', 'Один холст 40×60 см'),
+          L(
+            'Two 30×30cm prints and fifty 15×20cm prints',
+            'Δύο εκτυπώσεις 30×30εκ. και πενήντα 15×20εκ.',
+            'Два отпечатка 30×30 см и пятьдесят 15×20 см',
+          ),
+          L(
+            '3-minute highlight trailer',
+            'Highlight trailer 3 λεπτών',
+            '3-минутный highlight-ролик',
+          ),
+          L(
+            'Unlimited high-resolution photos on USB without logos',
+            'Απεριόριστες φωτογραφίες υψηλής ανάλυσης σε USB χωρίς λογότυπα',
+            'Неограниченные фото высокого разрешения на USB без логотипов',
+          ),
+          L('Delivery within 4 days', 'Παράδοση εντός 4 ημερών', 'Доставка в течение 4 дней'),
+        ],
+      },
+      {
+        title: L('Treats & candy bar', 'Κεράσματα και candy bar', 'Угощения и candy bar'),
+        items: [
+          L(
+            '150 treats from 26 options with custom wrapping',
+            '150 κεράσματα από 26 επιλογές με εξατομικευμένο περιτύλιγμα',
+            '150 угощений из 26 вариантов с индивидуальной упаковкой',
+          ),
+          L('2-tier themed christening cake', 'Τούρτα 2 επιπέδων με θέμα βάπτισης', 'Двухъярусный тематический торт'),
+          L(
+            'Candy table with 10 glass cylinders and chocolate fountain',
+            'Τραπέζι γλυκών με 10 γυάλινους κυλίνδρους και σιντριβάνι σοκολάτας',
+            'Стол сладостей с 10 стеклянными цилиндрами и шоколадным фонтаном',
+          ),
+          L(
+            'Two drink fountains (lemonade, sour cherry, rose, etc.)',
+            'Δύο σιντριβάνια ποτών (λεμονάδα, βύσσινο, τριαντάφυλλο κ.λπ.)',
+            'Два фонтана напитков (лимонад, вишня, роза и т.д.)',
+          ),
+          L(
+            '15 cupcakes, 15 cake pops, 15 tarts & 15 cocktails',
+            '15 cupcakes, 15 cake pops, 15 τάρτες και 15 cocktails',
+            '15 капкейков, 15 кейк-попсов, 15 тарталеток и 15 коктейлей',
+          ),
+          L(
+            'Popcorn machine (extra charge)',
+            'Μηχανή ποπκόρν (επιπλέον χρέωση)',
+            'Аппарат попкорна (доп. плата)',
+          ),
+        ],
+      },
+      {
+        title: L('Invitations, entertainment & coordination', 'Προσκλήσεις, ψυχαγωγία & συντονισμός', 'Приглашения, развлечения и координация'),
+        items: [
+          L(
+            '100 invitations chosen from 150 designs',
+            '100 προσκλήσεις από 150 σχέδια',
+            '100 приглашений из 150 дизайнов',
+          ),
+          L('Guest book', 'Βιβλίο ευχών', 'Книга пожеланий'),
+          L(
+            'Entertainment choice: magician, clown with face painting, or DJ',
+            'Επιλογή ψυχαγωγίας: μάγος, κλόουν με face painting ή DJ',
+            'Развлечение на выбор: фокусник, клоун с аквагримом или DJ',
+          ),
+          L(
+            'Full day coordination by specialised Wedding Sky staff',
+            'Πλήρης συντονισμός της ημέρας από εξειδικευμένο προσωπικό Wedding Sky',
+            'Полная координация дня специалистами Wedding Sky',
+          ),
+          L(
+            'Services can be added or removed to suit your celebration',
+            'Οι υπηρεσίες μπορούν να προστεθούν ή να αφαιρεθούν ανάλογα με τη γιορτή σας',
+            'Услуги можно добавить или исключить под ваше торжество',
+          ),
+        ],
+      },
+    ],
+  },
 ]
 
 export function getChristeningPackage(id: string | undefined) {
@@ -522,6 +768,10 @@ export function getChristeningPackageExpandedSections(
     const pkg3Sections = getChristeningPackageExpandedSections('christening-3') ?? []
     const pkg4Extras = pkg.sections[0].items.filter((item) => !isPriorPackageRollup(item))
     return [...pkg3Sections, { title: SIGNATURE_EXTRAS_TITLE, items: pkg4Extras }]
+  }
+
+  if (id === 'christening-oceanic') {
+    return pkg.sections
   }
 
   return pkg.sections

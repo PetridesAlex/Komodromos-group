@@ -406,6 +406,30 @@ export const weddingPackageDetails: Record<string, WeddingPackageDetailCopy> = {
     ],
   },
 
+  'christening-oceanic': {
+    summary: {
+      en: 'A signature yacht baptism on the endless blue — luxury cruise hospitality, themed décor, photography, treats, and full coordination from Larnaca or Protaras.',
+      el: 'Υπογραφή βάπτισης σε γιοτ στο απέραντο γαλάζιο — πολυτελής κρουαζιέρα, θεματικός στολισμός, φωτογραφία, κεράσματα και πλήρης συντονισμός από Λάρνακα ή Πρωταρά.',
+      ru: 'Фирменное крещение на яхте в бескрайней синеве — роскошный круиз, тематический декор, фото, угощения и полная координация из Ларнаки или Протараса.',
+    },
+    idealFor: {
+      en: 'Families who want an unforgettable ocean-themed baptism aboard a luxury yacht for up to 150 guests.',
+      el: 'Για οικογένειες που θέλουν μια αξέχαστη βάπτιση με θέμα τη θάλασσα σε πολυτελές γιοτ για έως 150 καλεσμένους.',
+      ru: 'Для семей, мечтающих о незабываемом крещении в морской теме на роскошной яхте до 150 гостей.',
+    },
+    planningWindow: {
+      en: 'Recommended planning window: 5–8 months',
+      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 5–8 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 5–8 месяцев',
+    },
+    inclusions: [
+      { en: 'Luxury yacht cruise for up to 150 guests', el: 'Κρουαζιέρα σε πολυτελές γιοτ για έως 150 άτομα', ru: 'Круиз на роскошной яхте до 150 гостей' },
+      { en: 'Themed yacht décor, photography & albums', el: 'Θεματικός στολισμός γιοτ, φωτογραφία & άλμπουμ', ru: 'Тематический декор яхты, фото и альбомы' },
+      { en: '150 treats, themed cake, candy bar & drink fountains', el: '150 κεράσματα, θεματική τούρτα, candy bar & σιντριβάνια ποτών', ru: '150 угощений, торт, candy bar и фонтаны напитков' },
+      { en: '100 invitations, entertainment & full day coordination', el: '100 προσκλήσεις, ψυχαγωγία & πλήρης συντονισμός ημέρας', ru: '100 приглашений, развлечения и координация дня' },
+    ],
+  },
+
 }
 
 export function getWeddingPackageDetail(
