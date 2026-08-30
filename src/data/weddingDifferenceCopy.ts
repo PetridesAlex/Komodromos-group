@@ -38,6 +38,11 @@ export const weddingDifferenceCopy = {
     el: 'Γιατί Wedding Sky',
     ru: 'Почему Wedding Sky',
   } satisfies LocalizedText,
+  reasonsLabel: {
+    en: 'reasons that set us apart',
+    el: 'λόγοι που μας ξεχωρίζουν',
+    ru: 'причин, которые нас отличают',
+  } satisfies LocalizedText,
   lead: {
     en: 'Because the most beautiful day of your life deserves the best choice.',
     el: 'Γιατί η ομορφότερη ημέρα της ζωής σας αξίζει την καλύτερη επιλογή.',

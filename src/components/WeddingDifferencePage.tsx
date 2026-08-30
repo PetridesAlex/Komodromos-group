@@ -69,28 +69,59 @@ export default function WeddingDifferencePage() {
         className="wedding-difference-reasons"
         aria-label={t(copy.pageTitle)}
       >
-        <div className="container wedding-difference-reasons__inner">
-          {copy.reasons.map((reason, index) => (
-            <article
-              key={reason.id}
-              className={`wedding-difference-card wedding-difference-card--${reason.tone} reveal reveal-delay-${Math.min((index % 3) + 1, 3)}`}
-              style={{ ['--diff-i' as string]: String(index) }}
-            >
-              <header className="wedding-difference-card__head">
-                <span className="wedding-difference-card__index" aria-hidden>
-                  {reason.id}
-                </span>
-                <h2 className="wedding-difference-card__title">{t(reason.title)}</h2>
-              </header>
-              <div className="wedding-difference-card__body">
-                {reason.paragraphs.map((paragraph) => (
-                  <p key={paragraph.en} className="wedding-difference-card__p">
-                    {t(paragraph)}
-                  </p>
-                ))}
-              </div>
-            </article>
-          ))}
+        <div className="wedding-difference-reasons__atmosphere" aria-hidden>
+          <span className="wedding-difference-reasons__rail wedding-difference-reasons__rail--left" />
+          <span className="wedding-difference-reasons__rail wedding-difference-reasons__rail--right" />
+          <span className="wedding-difference-reasons__glow wedding-difference-reasons__glow--a" />
+          <span className="wedding-difference-reasons__glow wedding-difference-reasons__glow--b" />
+          <span className="wedding-difference-reasons__grain" />
+        </div>
+
+        <div className="container wedding-difference-reasons__shell">
+          <header className="wedding-difference-reasons__header reveal">
+            <p className="wedding-difference-reasons__kicker">
+              <span className="wedding-difference-reasons__kicker-line" aria-hidden />
+              <span>{t(copy.eyebrow)}</span>
+              <span className="wedding-difference-reasons__kicker-line" aria-hidden />
+            </p>
+            <p className="wedding-difference-reasons__count">
+              <span className="wedding-difference-reasons__count-num">{copy.reasons.length}</span>
+              <span className="wedding-difference-reasons__count-label">{t(copy.reasonsLabel)}</span>
+            </p>
+          </header>
+
+          <div className="wedding-difference-reasons__inner">
+            {copy.reasons.map((reason, index) => {
+              const delay = Math.min((index % 4) + 1, 4)
+              const sideClass = index % 2 === 0 ? 'reveal-left' : 'reveal-right'
+              return (
+                <article
+                  key={reason.id}
+                  className={`wedding-difference-card wedding-difference-card--${reason.tone} ${sideClass} reveal-delay-${delay}${index === 0 ? ' wedding-difference-card--lead' : ''}`}
+                  style={{ ['--diff-i' as string]: String(index) }}
+                >
+                  <span className="wedding-difference-card__watermark" aria-hidden>
+                    {reason.id}
+                  </span>
+                  <span className="wedding-difference-card__sheen" aria-hidden />
+                  <span className="wedding-difference-card__accent" aria-hidden />
+                  <header className="wedding-difference-card__head">
+                    <span className="wedding-difference-card__index" aria-hidden>
+                      {reason.id}
+                    </span>
+                    <h2 className="wedding-difference-card__title">{t(reason.title)}</h2>
+                  </header>
+                  <div className="wedding-difference-card__body">
+                    {reason.paragraphs.map((paragraph) => (
+                      <p key={paragraph.en} className="wedding-difference-card__p">
+                        {t(paragraph)}
+                      </p>
+                    ))}
+                  </div>
+                </article>
+              )
+            })}
+          </div>
         </div>
       </section>
 
