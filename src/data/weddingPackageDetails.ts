@@ -19,301 +19,446 @@ export type ResolvedWeddingPackageDetailCopy = {
 }
 
 export const weddingPackageDetails: Record<string, WeddingPackageDetailCopy> = {
-  basic: {
+  prestige: {
     summary: {
-      en: 'A composed entry point for couples who value clarity, trusted coordination, and an impeccably managed wedding day — shaped with precision, calm, and quiet luxury.',
-      el: 'Μια ολοκληρωμένη αφετηρία για ζευγάρια που εκτιμούν τη σαφήνεια, τον αξιόπιστο συντονισμό και μια άψογα διαχειριζόμενη ημέρα γάμου — με ακρίβεια, ηρεμία και διακριτική πολυτέλεια.',
-      ru: 'Продуманная отправная точка для пар, которым важны ясность, надёжная координация и безупречно организованный свадебный день — с точностью, спокойствием и сдержанной роскошью.',
+      en: 'A composed Prestige programme — photography, décor, entertainment, VIP transfer, and day coordination in one clear investment.',
+      el: 'Ένα ολοκληρωμένο πρόγραμμα Prestige — φωτογραφία, διακόσμηση, ψυχαγωγία, VIP μεταφορά και συντονισμός ημέρας σε μία καθαρή επένδυση.',
+      ru: 'Составленная программа Prestige — фото, декор, развлечения, VIP-трансфер и координация дня в одной ясной инвестиции.',
     },
     idealFor: {
-      en: 'Couples planning an intimate or medium-scale celebration who prefer a structured programme and a clear, confident planning rhythm.',
-      el: 'Για ζευγάρια που οργανώνουν μια οικεία ή μεσαίας κλίμακας γιορτή και επιθυμούν δομημένο πρόγραμμα με σαφή και σταθερό ρυθμό προετοιμασίας.',
-      ru: 'Для пар, планирующих камерное или среднее по масштабу торжество и предпочитающих структурированную программу с понятным уверенным темпом подготовки.',
+      en: 'Couples seeking a polished all-in foundation with Wedding Sky signature inclusions.',
+      el: 'Ζευγάρια που θέλουν μια κομψή all-in βάση με signature παροχές Wedding Sky.',
+      ru: 'Пары, которым нужна отточенная all-in основа с signature inclusions Wedding Sky.',
     },
     planningWindow: {
-      en: 'Suggested preparation lead time: 4–6 months',
-      el: 'Προτεινόμενος χρόνος προετοιμασίας: 4–6 μήνες',
-      ru: 'Рекомендуемый срок подготовки: 4–6 месяцев',
+      en: 'Suggested preparation lead time: 4–8 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 4–8 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 4–8 месяцев',
     },
     inclusions: [
-      {
-        en: 'Structured planning roadmap with monthly progress reviews',
-        el: 'Δομημένο χρονοδιάγραμμα σχεδιασμού με μηνιαίους ελέγχους προόδου',
-        ru: 'Структурированная дорожная карта подготовки с ежемесячным контролем прогресса',
-      },
-      {
-        en: 'Curated supplier recommendations across core categories',
-        el: 'Επιλεγμένες προτάσεις συνεργατών στις βασικές κατηγορίες',
-        ru: 'Отобранные рекомендации поставщиков по ключевым категориям',
-      },
-      {
-        en: 'Ceremony and reception timeline blueprint',
-        el: 'Αναλυτικό χρονοδιάγραμμα τελετής και δεξίωσης',
-        ru: 'Подробный план-график церемонии и приёма',
-      },
-      {
-        en: 'Guest movement and hospitality guidance',
-        el: 'Καθοδήγηση για τη ροή και φιλοξενία των καλεσμένων',
-        ru: 'Рекомендации по перемещению гостей и организации гостеприимства',
-      },
-      {
-        en: 'Final-week confirmations and rehearsal sequencing',
-        el: 'Τελικές επιβεβαιώσεις και ροή πρόβας την τελευταία εβδομάδα',
-        ru: 'Финальные подтверждения и сценарий репетиции на последней неделе',
-      },
-      {
-        en: 'Lead planner coordination on the wedding day',
-        el: 'Συντονισμός από τον επικεφαλής οργανωτή την ημέρα του γάμου',
-        ru: 'Координация ведущего организатора в день свадьбы',
-      },
+      { en: 'Artistic photography & 4K cinematography programme', el: 'Πρόγραμμα καλλιτεχνικής φωτογραφίας & 4K κινηματογράφησης', ru: 'Программа художественной фотографии и 4K-кинематографии' },
+      { en: 'Luxury invitations and full event décor styling', el: 'Πολυτελείς προσκλήσεις και πλήρες styling διακόσμησης', ru: 'Роскошные приглашения и полное styling декора' },
+      { en: 'Entertainment, reception effects & audio-video guest book', el: 'Ψυχαγωγία, εφέ δεξίωσης & τηλέφωνο ευχών', ru: 'Развлечения, эффекты приёма и аудио-видео книга пожеланий' },
+      { en: 'VIP newlywed transfer and personal day-of coordination', el: 'VIP μεταφορά νεονύμφων και προσωπικός συντονισμός ημέρας', ru: 'VIP-трансфер молодожёнов и персональная координация дня' },
     ],
   },
-  'basic-plus': {
+  grand: {
     summary: {
-      en: 'Builds on Basic with richer styling guidance, expanded partner curation, and tighter guest-flow orchestration from arrival to after-party.',
-      el: 'Επεκτείνει το Basic με πιο ολοκληρωμένο styling, επιλεγμένους συνεργάτες και καλύτερη ροή εμπειρίας για τους καλεσμένους.',
-      ru: 'Расширяет пакет Basic: более глубокая стилистическая проработка, широкий выбор партнёров и точная координация перемещений гостей от прибытия до афтепати.',
+      en: 'An elevated Grand Experience with bridal & groom attire, enriched media, treats & cake, and fuller décor architecture.',
+      el: 'Αναβαθμισμένη εμπειρία Grand με νυφικό & γαμπριάτικο, enriched media, κεράσματα & τούρτα και fuller διακόσμηση.',
+      ru: 'Расширенный Grand Experience с нарядами, enriched media, угощениями и тортом и fuller архитектурой декора.',
     },
     idealFor: {
-      en: 'Couples wanting stronger visual direction and support while keeping the production scope controlled.',
-      el: 'Για ζευγάρια που θέλουν πιο έντονη αισθητική κατεύθυνση χωρίς μεγάλη αύξηση παραγωγής.',
-      ru: 'Для пар, которым нужны более выразительная визуальная концепция и дополнительная поддержка при сохранении контролируемого масштаба.',
+      en: 'Couples ready for a richer programme spanning wardrobe, hospitality, and styling.',
+      el: 'Ζευγάρια έτοιμα για richer πρόγραμμα που καλύπτει γκαρνταρόμπα, φιλοξενία και styling.',
+      ru: 'Пары, готовые к richer программе: гардероб, гостеприимство и стиль.',
     },
     planningWindow: {
-      en: 'Recommended planning window: 6-8 months',
-      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 6-8 μήνες',
-      ru: 'Рекомендуемый срок подготовки: 6–8 месяцев',
+      en: 'Suggested preparation lead time: 6–10 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 6–10 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 6–10 месяцев',
     },
     inclusions: [
-      {
-        en: 'Everything in Basic',
-        el: 'Όλα όσα περιλαμβάνονται στο Basic',
-        ru: 'Всё, что входит в Basic',
-      },
-      {
-        en: 'Enhanced styling moodboards and palette curation',
-        el: 'Εμπλουτισμένα moodboards styling και επιμέλεια χρωματικής παλέτας',
-        ru: 'Расширенные стилистические мудборды и подбор цветовой палитры',
-      },
-      {
-        en: 'Expanded vendor negotiation support',
-        el: 'Εκτεταμένη υποστήριξη στις διαπραγματεύσεις με συνεργάτες',
-        ru: 'Расширенная поддержка в переговорах с подрядчиками',
-      },
-      {
-        en: 'Refined ceremony transitions and cue sheets',
-        el: 'Λεπτομερής επιμέλεια των μεταβάσεων και των cue sheets της τελετής',
-        ru: 'Тщательно проработанные переходы церемонии и листы технических сигналов',
-      },
-      {
-        en: 'Guest transport and hospitality touchpoint planning',
-        el: 'Σχεδιασμός μεταφορών και σημείων φιλοξενίας των καλεσμένων',
-        ru: 'Планирование трансферов и ключевых этапов обслуживания гостей',
-      },
-      {
-        en: 'Extended on-site coordination window',
-        el: 'Διευρυμένο ωράριο επιτόπιου συντονισμού',
-        ru: 'Расширенное время координации на площадке',
-      },
+      { en: 'Haute couture bridal selection and tailored groom suit', el: 'Νυφικό υψηλής ραπτικής και εφαρμοστό κοστούμι γαμπρού', ru: 'Haute couture платье и сшитый костюм жениха' },
+      { en: 'Expanded album, film, and invitation programme', el: 'Εμπλουτισμένο πρόγραμμα άλμπουμ, film και προσκλήσεων', ru: 'Расширенная программа альбомов, film и приглашений' },
+      { en: 'Premium treats, signature cake, and elevated décor', el: 'Premium κεράσματα, signature τούρτα και elevated διακόσμηση', ru: 'Premium-угощения, signature-торт и elevated-декор' },
+      { en: 'Reception effects, VIP transfer, and wedding planner', el: 'Εφέ δεξίωσης, VIP μεταφορά και wedding planner', ru: 'Эффекты приёма, VIP-трансфер и wedding planner' },
     ],
   },
-  classic: {
+  elite: {
     summary: {
-      en: 'A full creative-and-production tier where concept, guest experience, and execution are managed as one coherent luxury narrative.',
-      el: 'Πλήρες πακέτο δημιουργικού σχεδιασμού και παραγωγής, με ενιαία εμπειρία και αρμονική εκτέλεση.',
-      ru: 'Полный пакет креативного руководства и организации, в котором концепция, впечатления гостей и реализация объединены в цельную роскошную историю.',
+      en: 'Refined Elite luxury — curated couture, elevated hospitality, and seamless one-team Wedding Sky production.',
+      el: 'Εκλεπτυσμένη πολυτέλεια Elite — curated couture, elevated φιλοξενία και απρόσκοπτη παραγωγή από μία ομάδα Wedding Sky.',
+      ru: 'Изысканная роскошь Elite — curated couture, elevated-гостеприимство и безупречная постановка одной команды Wedding Sky.',
     },
     idealFor: {
-      en: 'Destination couples and larger celebrations requiring structured collaboration across many partners.',
-      el: 'Ιδανικό για destination γάμους και μεγαλύτερες εκδηλώσεις με πολλούς συνεργάτες.',
-      ru: 'Для свадеб за рубежом и масштабных торжеств, требующих системной работы множества партнёров.',
+      en: 'Couples seeking something truly special with elevated couture and hospitality.',
+      el: 'Ζευγάρια που αναζητούν κάτι πραγματικά ξεχωριστό με elevated couture και φιλοξενία.',
+      ru: 'Пары, ищущие нечто особенное с elevated couture и гостеприимством.',
     },
     planningWindow: {
-      en: 'Recommended planning window: 8-10 months',
-      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 8-10 μήνες',
-      ru: 'Рекомендуемый срок подготовки: 8–10 месяцев',
+      en: 'Suggested preparation lead time: 6–12 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 6–12 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 6–12 месяцев',
     },
     inclusions: [
-      {
-        en: 'Everything in Basic Plus',
-        el: 'Όλα όσα περιλαμβάνονται στο Basic Plus',
-        ru: 'Всё, что входит в Basic Plus',
-      },
-      {
-        en: 'Full creative direction and styling architecture',
-        el: 'Πλήρης δημιουργική κατεύθυνση και αρχιτεκτονική styling',
-        ru: 'Полное творческое руководство и разработка стилистической концепции',
-      },
-      {
-        en: 'Lighting and atmosphere concept supervision',
-        el: 'Επίβλεψη της ιδέας φωτισμού και ατμόσφαιρας',
-        ru: 'Контроль концепции освещения и атмосферы',
-      },
-      {
-        en: 'Detailed guest journey mapping',
-        el: 'Λεπτομερής σχεδιασμός της διαδρομής των καλεσμένων',
-        ru: 'Детальная проработка пути гостя',
-      },
-      {
-        en: 'Multi-vendor production meetings and sign-off',
-        el: 'Συναντήσεις παραγωγής με όλους τους συνεργάτες και τελική έγκριση',
-        ru: 'Организационные встречи со всеми подрядчиками и финальное согласование',
-      },
-      {
-        en: 'Dual coordinator presence on event day',
-        el: 'Παρουσία δύο συντονιστών την ημέρα της εκδήλωσης',
-        ru: 'Работа двух координаторов в день мероприятия',
-      },
+      { en: 'Bridal couture from up to 150 designs or bespoke', el: 'Νυφικό από έως 150 σχέδια ή bespoke', ru: 'Платье из до 150 дизайнов или bespoke' },
+      { en: '500 premium treats and 3-tier signature cake', el: '500 premium κεράσματα και τούρτα 3 επιπέδων', ru: '500 premium-угощений и 3-ярусный signature-торт' },
+      { en: 'Comprehensive décor with LOVE letters and fairy lights', el: 'Ολοκληρωμένη διακόσμηση με LOVE και fairy lights', ru: 'Полный декор с LOVE и fairy lights' },
+      { en: 'VIP transfer and personal wedding planner', el: 'VIP μεταφορά και προσωπικός wedding planner', ru: 'VIP-трансфер и персональный wedding planner' },
     ],
   },
-  'classic-plus': {
+  exclusive: {
     summary: {
-      en: 'Advanced production for elevated celebrations with deeper personalization, technical staging precision, and extended hosting coverage.',
-      el: 'Αναβαθμισμένη παραγωγή για πιο απαιτητικές εκδηλώσεις με εξατομίκευση, τεχνική ακρίβεια και εκτεταμένη υποστήριξη.',
-      ru: 'Организация торжеств высокого уровня с глубокой персонализацией, технически точной постановкой и расширенным сопровождением гостей.',
+      en: 'Exclusive signature care — expanded couture, jewellery programme, richer décor, and hospitality effects.',
+      el: 'Υπογραφή Exclusive — εμπλουτισμένη couture, πρόγραμμα κοσμημάτων, richer διακόσμηση και εφέ φιλοξενίας.',
+      ru: 'Фирменная забота Exclusive — расширенный couture, ювелирная программа, richer-декор и эффекты гостеприимства.',
     },
     idealFor: {
-      en: 'Couples hosting multi-part wedding weekends or high-touch guest programmes.',
-      el: 'Για ζευγάρια που οργανώνουν πολυήμερο γαμήλιο πρόγραμμα με υψηλές απαιτήσεις φιλοξενίας.',
-      ru: 'Для пар, планирующих свадебный уикенд из нескольких событий или программу с повышенным вниманием к гостям.',
+      en: 'Couples wanting a distinctive day with jewellery and statement styling.',
+      el: 'Ζευγάρια που θέλουν μια ξεχωριστή ημέρα με κοσμήματα και statement styling.',
+      ru: 'Пары, желающие особенный день с украшениями и statement-стилем.',
     },
     planningWindow: {
-      en: 'Recommended planning window: 10-12 months',
-      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 10-12 μήνες',
-      ru: 'Рекомендуемый срок подготовки: 10–12 месяцев',
+      en: 'Suggested preparation lead time: 8–12 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 8–12 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 8–12 месяцев',
     },
     inclusions: [
-      {
-        en: 'Everything in Classic',
-        el: 'Όλα όσα περιλαμβάνονται στο Classic',
-        ru: 'Всё, что входит в Classic',
-      },
-      {
-        en: 'Expanded run-of-show with technical sequencing',
-        el: 'Διευρυμένο πρόγραμμα εκδήλωσης με τεχνική αλληλουχία',
-        ru: 'Расширенный сценарный план с технической последовательностью',
-      },
-      {
-        en: 'Bespoke detail program and stationery alignment',
-        el: 'Εξατομικευμένο πρόγραμμα λεπτομερειών και εναρμόνιση εντύπων',
-        ru: 'Индивидуальная проработка деталей и единый стиль полиграфии',
-      },
-      {
-        en: 'Pre-event hosting experiences and briefings',
-        el: 'Εμπειρίες φιλοξενίας και ενημερώσεις πριν από την εκδήλωση',
-        ru: 'Приветственные мероприятия и инструктажи перед торжеством',
-      },
-      {
-        en: 'Extended supplier quality control',
-        el: 'Εκτεταμένος ποιοτικός έλεγχος προμηθευτών',
-        ru: 'Расширенный контроль качества работы поставщиков',
-      },
-      {
-        en: 'Post-event wrap-down and vendor closure',
-        el: 'Ολοκλήρωση παραγωγής και διευθέτηση συνεργατών μετά την εκδήλωση',
-        ru: 'Завершение работ на площадке и закрытие вопросов с подрядчиками после события',
-      },
+      { en: 'Bridal selection from 1,100 designs or bespoke', el: 'Νυφικό από 1.100 σχέδια ή bespoke', ru: 'Платье из 1 100 дизайнов или bespoke' },
+      { en: 'Wedding rings from 600 designs and jewellery discounts', el: 'Βέρες από 600 σχέδια και εκπτώσεις κοσμημάτων', ru: 'Кольца из 600 дизайнов и скидки на украшения' },
+      { en: '600 treats, 3-tier cake, and full décor programme', el: '600 κεράσματα, τούρτα 3 επιπέδων και πλήρες πρόγραμμα διακόσμησης', ru: '600 угощений, 3-ярусный торт и полная программа декора' },
+      { en: 'DJ/live entertainment, effects, and VIP transfer', el: 'DJ/live ψυχαγωγία, εφέ και VIP μεταφορά', ru: 'DJ/live, эффекты и VIP-трансфер' },
     ],
   },
-  premium: {
+  imperial: {
     summary: {
-      en: 'Our signature white-glove tier: complete discretion, maximum craftsmanship, and executive-level oversight from first brief to final farewell.',
-      el: 'Η κορυφαία επιλογή μας: απόλυτη διακριτικότητα, υψηλή αισθητική και πλήρης επίβλεψη μέχρι την τελευταία λεπτομέρεια.',
-      ru: 'Наш фирменный пакет безупречного персонального сервиса: полная конфиденциальность, высочайшее мастерство и руководство экспертного уровня от первого брифа до финального прощания.',
+      en: 'Imperial aristocratic elegance — same-day edit film, drone 4K, pyrotechnics, and richer floral architecture.',
+      el: 'Αριστοκρατική κομψότητα Imperial — same-day edit film, drone 4K, πυροτεχνήματα και richer ανθοστολισμός.',
+      ru: 'Аристократическая элегантность Imperial — same-day edit, дрон 4K, пиротехника и richer флористика.',
     },
     idealFor: {
-      en: 'Luxury celebrations where privacy, personalization, and flawless timing are non-negotiable.',
-      el: 'Για πολυτελείς γάμους όπου η ιδιωτικότητα, η εξατομίκευση και το άψογο timing είναι απαραίτητα.',
-      ru: 'Для роскошных торжеств, где конфиденциальность, персонализация и безупречный тайминг являются обязательными.',
+      en: 'Couples drawn to timeless grandeur with elevated media and effects.',
+      el: 'Ζευγάρια που εμπνέονται από διαχρονικό μεγαλείο με elevated media και εφέ.',
+      ru: 'Пары, вдохновлённые вневременным величием с elevated media и эффектами.',
     },
     planningWindow: {
-      en: 'Recommended planning window: 12+ months',
-      el: 'Προτεινόμενο παράθυρο προετοιμασίας: 12+ μήνες',
-      ru: 'Рекомендуемый срок подготовки: от 12 месяцев',
+      en: 'Suggested preparation lead time: 9–14 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 9–14 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 9–14 месяцев',
     },
     inclusions: [
-      {
-        en: 'Everything in Classic Plus',
-        el: 'Όλα όσα περιλαμβάνονται στο Classic Plus',
-        ru: 'Всё, что входит в Classic Plus',
-      },
-      {
-        en: 'Executive creative leadership and final approvals',
-        el: 'Δημιουργική ηγεσία ανώτατου επιπέδου και τελικές εγκρίσεις',
-        ru: 'Творческое руководство экспертного уровня и финальные согласования',
-      },
-      {
-        en: 'VIP hospitality and protocol handling',
-        el: 'VIP φιλοξενία και διαχείριση πρωτοκόλλου',
-        ru: 'VIP-гостеприимство и соблюдение протокола',
-      },
-      {
-        en: 'Priority vendor network and premium access',
-        el: 'Δίκτυο συνεργατών προτεραιότητας και premium πρόσβαση',
-        ru: 'Приоритетная сеть подрядчиков и премиальный доступ',
-      },
-      {
-        en: 'High-touch contingency and risk planning',
-        el: 'Ενισχυμένος σχεδιασμός εναλλακτικών σεναρίων και διαχείρισης κινδύνων',
-        ru: 'Детальная проработка резервных сценариев и управление рисками',
-      },
-      {
-        en: 'Full white-glove team coverage',
-        el: 'Πλήρης κάλυψη από ομάδα white-glove εξυπηρέτησης',
-        ru: 'Полное сопровождение командой персонального сервиса',
-      },
+      { en: 'Bridal couture from 1,200+ designs and flower-girl outfits', el: 'Νυφικό από 1.200+ σχέδια και φορέματα παρανυφάκιων', ru: 'Платье из 1 200+ дизайнов и наряды для подружек' },
+      { en: 'Same Day Edit, drone 4K, and luxury invitation suite', el: 'Same Day Edit, drone 4K και luxury προσκλήσεις', ru: 'Same Day Edit, дрон 4K и luxury-приглашения' },
+      { en: '650 treats, signature cake, and 13-variety florals', el: '650 κεράσματα, signature τούρτα και άνθη από 13 ποικιλίες', ru: '650 угощений, signature-торт и цветы из 13 сортов' },
+      { en: 'Pyrotechnics, guest book, and full planning', el: 'Πυροτεχνήματα, τηλέφωνο ευχών και πλήρης οργάνωση', ru: 'Пиротехника, книга пожеланий и полное планирование' },
+    ],
+  },
+  crown: {
+    summary: {
+      en: 'Crown exclusivity — designer couture, 5-tier cake, flower wall, fireworks, and a hotel or adrenaline experience.',
+      el: 'Αποκλειστικότητα Crown — designer couture, τούρτα 5 επιπέδων, flower wall, πυροτεχνήματα και εμπειρία ξενοδοχείου ή adrenaline.',
+      ru: 'Эксклюзивность Crown — designer couture, 5-ярусный торт, flower wall, фейерверк и отель или adrenaline.',
+    },
+    idealFor: {
+      en: 'Couples seeking prestige-level exclusivity with statement experiences.',
+      el: 'Ζευγάρια που αναζητούν αποκλειστικότητα prestige με statement εμπειρίες.',
+      ru: 'Пары, ищущие prestige-эксклюзивность со statement-опытами.',
+    },
+    planningWindow: {
+      en: 'Suggested preparation lead time: 10–16 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 10–16 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 10–16 месяцев',
+    },
+    inclusions: [
+      { en: 'Designer bridal gown from 1,300 designs or bespoke', el: 'Designer νυφικό από 1.300 σχέδια ή bespoke', ru: 'Designer-платье из 1 300 дизайнов или bespoke' },
+      { en: '800 luxury treats and 5-tier bespoke cake', el: '800 luxury κεράσματα και τούρτα 5 επιπέδων', ru: '800 luxury-угощений и 5-ярусный торт' },
+      { en: '3.4m flower wall and fireworks programme', el: 'Flower wall 3.4μ και πρόγραμμα πυροτεχνημάτων', ru: 'Flower wall 3,4 м и программа фейерверков' },
+      { en: '5-star hotel with spa or adrenaline experience', el: 'Ξενοδοχείο 5* με spa ή adrenaline εμπειρία', ru: '5★ отель со spa или adrenaline-опыт' },
+    ],
+  },
+  royal: {
+    summary: {
+      en: 'Royal magnificence — imperial-scale décor, yacht or adrenaline hospitality, spa retreat, and fully orchestrated production.',
+      el: 'Μεγαλοπρέπεια Royal — imperial-scale διακόσμηση, φιλοξενία yacht ή adrenaline, spa retreat και πλήρως ενορχηστρωμένη παραγωγή.',
+      ru: 'Великолепие Royal — imperial-масштаб декора, yacht или adrenaline, spa retreat и полностью оркестрованная постановка.',
+    },
+    idealFor: {
+      en: 'Couples wanting the ultimate Wedding Sky expression of luxury.',
+      el: 'Ζευγάρια που θέλουν την απόλυτη έκφραση πολυτέλειας της Wedding Sky.',
+      ru: 'Пары, желающие абсолютное выражение роскоши Wedding Sky.',
+    },
+    planningWindow: {
+      en: 'Suggested preparation lead time: 12–18 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 12–18 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 12–18 месяцев',
+    },
+    inclusions: [
+      { en: 'Luxury designer bridal collections and tailored groom wardrobe', el: 'Luxury designer νυφικά και εφαρμοστή γκαρνταρόμπα γαμπρού', ru: 'Luxury designer-платья и сшитый гардероб жениха' },
+      { en: 'Full 4K media with Same Day Edit and aerial drone', el: 'Πλήρες 4K media με Same Day Edit και aerial drone', ru: 'Полное 4K media с Same Day Edit и aerial-дроном' },
+      { en: 'Imperial décor, fireworks, and yacht or adrenaline hospitality', el: 'Imperial διακόσμηση, πυροτεχνήματα και φιλοξενία yacht ή adrenaline', ru: 'Imperial-декор, фейерверк и yacht или adrenaline' },
+      { en: 'VIP limousine options and dedicated wedding planner', el: 'Επιλογές VIP λιμουζίνας και αφοσιωμένος wedding planner', ru: 'Варианты VIP-лимузина и выделенный wedding planner' },
     ],
   },
   customised: {
     summary: {
-      en: 'A fully bespoke engagement shaped around your vision, cultural needs, timeline, and investment parameters with custom scoping.',
-      el: 'Πλήρως προσαρμοσμένο πρόγραμμα με βάση το όραμα, το ύφος, το χρονοδιάγραμμα και το budget σας.',
-      ru: 'Полностью индивидуальное сотрудничество, выстроенное вокруг вашего видения, культурных особенностей, сроков и бюджета.',
+      en: 'A fully bespoke Wedding Sky programme — composed with you around location, décor, florals, catering, photography, music, and more.',
+      el: 'Ένα πλήρως bespoke πρόγραμμα Wedding Sky — συντεθειμένο μαζί σας γύρω από τοποθεσία, διακόσμηση, άνθη, catering, φωτογραφία, μουσική και άλλα.',
+      ru: 'Полностью bespoke программа Wedding Sky — вместе с вами вокруг локации, декора, цветов, catering, фото, музыки и другого.',
     },
     idealFor: {
-      en: 'Couples with unique requirements, multi-location concepts, or non-standard production structures.',
-      el: 'Για ζευγάρια με μοναδικές απαιτήσεις, πολλαπλές τοποθεσίες ή μη τυπικές παραγωγικές ανάγκες.',
-      ru: 'Для пар с особыми требованиями, концепцией на нескольких площадках или нестандартной структурой организации.',
+      en: 'Couples who want every element shaped to their exact brief.',
+      el: 'Ζευγάρια που θέλουν κάθε στοιχείο να διαμορφωθεί στο ακριβές brief τους.',
+      ru: 'Пары, которые хотят сформировать каждый элемент под свой brief.',
     },
     planningWindow: {
-      en: 'Planning window and scope defined after private consultation',
-      el: 'Χρονοδιάγραμμα και εύρος ορίζονται μετά από ιδιωτική συνάντηση',
-      ru: 'Сроки подготовки и объём работ определяются после индивидуальной консультации',
+      en: 'Timeline composed after consultation',
+      el: 'Χρονοδιάγραμμα μετά από συνάντηση',
+      ru: 'Таймлайн после консультации',
     },
     inclusions: [
-      {
-        en: 'Private strategic briefing and discovery workshop',
-        el: 'Ιδιωτικό στρατηγικό briefing και εργαστήριο διερεύνησης αναγκών',
-        ru: 'Индивидуальный стратегический брифинг и установочная сессия',
-      },
-      {
-        en: 'Custom scope architecture and phased budget model',
-        el: 'Εξατομικευμένη δομή έργου και σταδιακό μοντέλο προϋπολογισμού',
-        ru: 'Индивидуальная структура проекта и поэтапная модель бюджета',
-      },
-      {
-        en: 'Tailored vendor ecosystem and contract strategy',
-        el: 'Προσαρμοσμένο δίκτυο συνεργατών και στρατηγική συμβάσεων',
-        ru: 'Персонально подобранная сеть подрядчиков и договорная стратегия',
-      },
-      {
-        en: 'Bespoke production design and guest-experience flow',
-        el: 'Εξατομικευμένος σχεδιασμός παραγωγής και ροής εμπειρίας καλεσμένων',
-        ru: 'Индивидуальный дизайн события и сценарий взаимодействия с гостями',
-      },
-      {
-        en: 'Flexible team structure aligned to project complexity',
-        el: 'Ευέλικτη δομή ομάδας προσαρμοσμένη στην πολυπλοκότητα του έργου',
-        ru: 'Гибкая структура команды с учётом сложности проекта',
-      },
-      {
-        en: 'Executive oversight and premium delivery governance',
-        el: 'Επίβλεψη ανώτατου επιπέδου και premium διαχείριση υλοποίησης',
-        ru: 'Экспертный контроль и управление реализацией премиального уровня',
-      },
+      { en: 'Private consultation to define priorities and investment', el: 'Ιδιωτική συνάντηση για προτεραιότητες και επένδυση', ru: 'Частная консультация по приоритетам и инвестиции' },
+      { en: 'Bespoke composition across décor, media, hospitality, and entertainment', el: 'Bespoke σύνθεση σε διακόσμηση, media, φιλοξενία και ψυχαγωγία', ru: 'Bespoke-композиция декора, media, гостеприимства и развлечений' },
+      { en: 'Clear written proposal with transparent inclusions', el: 'Καθαρή γραπτή πρόταση με διαφανείς παροχές', ru: 'Ясное письменное предложение с прозрачными inclusions' },
+      { en: 'Dedicated Wedding Sky coordination through the wedding day', el: 'Αφοσιωμένος συντονισμός Wedding Sky έως την ημέρα του γάμου', ru: 'Выделенная координация Wedding Sky до дня свадьбы' },
     ],
   },
 
+
+  'photoway-1': {
+    summary: {
+      en: 'Essential PhotoWay coverage — digital albums, reception film, Hollywood trailer, and 4-day delivery.',
+      el: 'Essential κάλυψη PhotoWay — ψηφιακά άλμπουμ, φιλμ δεξίωσης, Hollywood trailer και παράδοση σε 4 ημέρες.',
+      ru: 'Essential-съёмка PhotoWay — digital-альбомы, фильм приёма, Hollywood trailer и сдача за 4 дня.',
+    },
+    idealFor: {
+      en: 'Couples wanting a polished photography foundation with cinematic highlights.',
+      el: 'Ζευγάρια που θέλουν κομψή βάση φωτογραφίας με cinematic highlights.',
+      ru: 'Пары, которым нужна отточенная основа фотографии с cinematic highlights.',
+    },
+    planningWindow: {
+      en: 'Book ideally 3–6 months ahead',
+      el: 'Κλείστε ιδανικά 3–6 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 3–6 месяцев',
+    },
+    inclusions: [
+      { en: '200-photo luxury album plus 2 mini albums', el: 'Luxury άλμπουμ 200 φωτογραφιών και 2 mini άλμπουμ', ru: 'Luxury-альбом на 200 фото и 2 mini-альбома' },
+      { en: 'HD reception film, interviews, and Hollywood trailer', el: 'HD φιλμ δεξίωσης, συνεντεύξεις και Hollywood trailer', ru: 'HD-фильм приёма, интервью и Hollywood trailer' },
+      { en: 'Unlimited HD photos, prints, and canvas', el: 'Απεριόριστες φωτογραφίες HD, εκτυπώσεις και καμβάς', ru: 'Безлимитные HD-фото, отпечатки и холст' },
+      { en: 'Next-day location shoot and crystal USB in 4 days', el: 'Φωτογράφιση άλλης ημέρας και κρυστάλλινο USB σε 4 ημέρες', ru: 'Съёмка в другой день и crystal USB за 4 дня' },
+    ],
+  },
+  'photoway-2': {
+    summary: {
+      en: 'Elevated PhotoWay storytelling with drone panoramas, GoPro, and a dedicated photo–video crew.',
+      el: 'Αναβαθμισμένο storytelling PhotoWay με drone panoramas, GoPro και αφοσιωμένο πλήρωμα φωτο–video.',
+      ru: 'Расширенный storytelling PhotoWay с drone panoramas, GoPro и выделенной фото–видео командой.',
+    },
+    idealFor: {
+      en: 'Celebrations that want aerial film and fuller print deliverables.',
+      el: 'Γιορτές που θέλουν aerial film και fuller παραδοτέα εκτυπώσεων.',
+      ru: 'Торжества, которым нужны aerial film и fuller-отпечатки.',
+    },
+    planningWindow: {
+      en: 'Book ideally 4–7 months ahead',
+      el: 'Κλείστε ιδανικά 4–7 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 4–7 месяцев',
+    },
+    inclusions: [
+      { en: '200-photo album programme with premium cover options', el: 'Πρόγραμμα άλμπουμ 200 φωτογραφιών με premium εξώφυλλα', ru: 'Программа альбома на 200 фото с premium-обложками' },
+      { en: 'Drone panoramas, Instagram video, and 1 GoPro', el: 'Drone panoramas, Instagram video και 1 GoPro', ru: 'Drone panoramas, Instagram-видео и 1 GoPro' },
+      { en: '1 photographer and 2 videographers', el: '1 φωτογράφος και 2 βιντεογράφοι', ru: '1 фотограф и 2 видеографа' },
+      { en: 'Expanded prints and next-day location shoot', el: 'Εμπλουτισμένες εκτυπώσεις και φωτογράφιση άλλης ημέρας', ru: 'Расширенные отпечатки и съёмка в другой день' },
+    ],
+  },
+  'photoway-3': {
+    summary: {
+      en: 'Signature PhotoWay depth — 250-photo albums, same-day video, dual GoPros, and richer canvases.',
+      el: 'Υπογραφή βάθους PhotoWay — άλμπουμ 250 φωτογραφιών, same-day video, δύο GoPro και richer καμβάδες.',
+      ru: 'Фирменная глубина PhotoWay — альбомы на 250 фото, same-day video, два GoPro и richer-холсты.',
+    },
+    idealFor: {
+      en: 'Couples seeking the balanced cinematic signature with same-day film energy.',
+      el: 'Ζευγάρια που θέλουν την ισορροπημένη cinematic υπογραφή με same-day film energy.',
+      ru: 'Пары, которым нужна сбалансированная cinematic-подпись с энергией same-day film.',
+    },
+    planningWindow: {
+      en: 'Book ideally 5–8 months ahead',
+      el: 'Κλείστε ιδανικά 5–8 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 5–8 месяцев',
+    },
+    inclusions: [
+      { en: '250-photo album plus larger matching mini albums', el: 'Άλμπουμ 250 φωτογραφιών και μεγαλύτερα mini άλμπουμ', ru: 'Альбом на 250 фото и увеличенные mini-альбомы' },
+      { en: 'Same-day video, drone, and Hollywood + Instagram trailers', el: 'Same-day video, drone και Hollywood + Instagram trailers', ru: 'Same-day video, дрон и Hollywood + Instagram trailers' },
+      { en: '2 GoPro cameras with 1 photographer and 2 videographers', el: '2 κάμερες GoPro με 1 φωτογράφο και 2 βιντεογράφους', ru: '2 камеры GoPro, 1 фотограф и 2 видеографа' },
+      { en: 'Richer print suite including 2 canvases', el: 'Richer σειρά εκτυπώσεων με 2 καμβάδες', ru: 'Richer-набор отпечатков включая 2 холста' },
+    ],
+  },
+  'photoway-4': {
+    summary: {
+      en: 'Full PhotoWay production — 300-photo album, dual photographers, three videographers, and expanded cinematography.',
+      el: 'Πλήρης παραγωγή PhotoWay — άλμπουμ 300 φωτογραφιών, δύο φωτογράφοι, τρεις βιντεογράφοι και εμπλουτισμένο cinematography.',
+      ru: 'Полная постановка PhotoWay — альбом на 300 фото, два фотографа, три видеографа и расширенная cinematography.',
+    },
+    idealFor: {
+      en: 'Large celebrations wanting maximum storytelling scale and crew.',
+      el: 'Μεγάλες γιορτές που θέλουν μέγιστη κλίμακα storytelling και πλήρωμα.',
+      ru: 'Крупные торжества с максимальным масштабом storytelling и командой.',
+    },
+    planningWindow: {
+      en: 'Book ideally 6–10 months ahead',
+      el: 'Κλείστε ιδανικά 6–10 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 6–10 месяцев',
+    },
+    inclusions: [
+      { en: '300-photo luxury album with large companion albums', el: 'Luxury άλμπουμ 300 φωτογραφιών με μεγάλα companion άλμπουμ', ru: 'Luxury-альбом на 300 фото с крупными companion-альбомами' },
+      { en: 'Same-day video, cinematography, drone, and dual GoPros', el: 'Same-day video, cinematography, drone και δύο GoPro', ru: 'Same-day video, cinematography, дрон и два GoPro' },
+      { en: '2 photographers and 3 videographers', el: '2 φωτογράφοι και 3 βιντεογράφοι', ru: '2 фотографа и 3 видеографа' },
+      { en: 'Expanded print suite with 3 canvases and 4-day delivery', el: 'Εμπλουτισμένες εκτυπώσεις με 3 καμβάδες και παράδοση σε 4 ημέρες', ru: 'Расширенные отпечатки с 3 холстами и сдачей за 4 дня' },
+    ],
+  },
+
+  'decoway-1': {
+    summary: {
+      en: 'A polished DecoWay foundation — church, cars, illuminated LOVE letters, and reception tablescapes for up to 15 tables.',
+      el: 'Κομψή βάση DecoWay — εκκλησία, αυτοκίνητα, φωτιζόμενα LOVE και tablescapes δεξίωσης έως 15 τραπέζια.',
+      ru: 'Отточенная основа DecoWay — храм, авто, светящиеся LOVE и tablescapes зала до 15 столов.',
+    },
+    idealFor: {
+      en: 'Couples wanting complete floral coverage with a refined reception atmosphere.',
+      el: 'Ζευγάρια που θέλουν πλήρη ανθοστολισμό με refined ατμόσφαιρα δεξίωσης.',
+      ru: 'Пары, которым нужно полное флористическое покрытие с refined атмосферой приёма.',
+    },
+    planningWindow: {
+      en: 'Book ideally 3–6 months ahead',
+      el: 'Κλείστε ιδανικά 3–6 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 3–6 месяцев',
+    },
+    inclusions: [
+      { en: 'Church, car, and aisle floral architecture', el: 'Ανθοστολισμός εκκλησίας, αυτοκινήτων και διαδρόμου', ru: 'Флористика храма, авто и прохода' },
+      { en: 'Illuminated LOVE letters and candy table styling', el: 'Φωτιζόμενα LOVE και styling candy table', ru: 'Светящиеся LOVE и styling candy table' },
+      { en: 'Newlywed table, wish table, and up to 15 guest tables', el: 'Τραπέζι νεονύμφων, τραπέζι ευχών και έως 15 τραπέζια καλεσμένων', ru: 'Стол молодожёнов, стол пожеланий и до 15 гостевых столов' },
+      { en: 'Only real flowers unless paper flowers are requested', el: 'ΜΟΝΟ αληθινά λουλούδια, εκτός αν ζητηθούν χάρτινα', ru: 'ТОЛЬКО живые цветы, если не запрошены бумажные' },
+    ],
+  },
+  'decoway-exclusive': {
+    summary: {
+      en: 'Signature Deco Exclusive styling with personal wedding planner, flower wall, and curated hospitality tables.',
+      el: 'Υπογραφή Deco Exclusive με προσωπικό wedding planner, flower wall και curated τραπέζια φιλοξενίας.',
+      ru: 'Фирменный Deco Exclusive с персональным wedding planner, flower wall и curated-столами гостеприимства.',
+    },
+    idealFor: {
+      en: 'Couples seeking a distinctive décor path with day-of coordination included.',
+      el: 'Ζευγάρια που θέλουν ξεχωριστή διαδρομή διακόσμησης με συντονισμό ημέρας.',
+      ru: 'Пары, ищущие особый путь декора с координацией дня.',
+    },
+    planningWindow: {
+      en: 'Book ideally 4–7 months ahead',
+      el: 'Κλείστε ιδανικά 4–7 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 4–7 месяцев',
+    },
+    inclusions: [
+      { en: 'Decoration of 2 houses, church, and two wedding cars', el: 'Διακόσμηση 2 σπιτιών, εκκλησίας και δύο γαμήλιων αυτοκινήτων', ru: 'Декор 2 домов, храма и двух свадебных авто' },
+      { en: 'Dual flower arches, handmade flower wall, and royal fairy lights', el: 'Δύο ανθοστολισμένες αψίδες, χειροποίητος flower wall και royal fairy lights', ru: 'Две цветочные арки, handmade flower wall и royal fairy lights' },
+      { en: 'Candy table, pool décor, and up to 18 guest tables', el: 'Candy table, διακόσμηση πισίνας και έως 18 τραπέζια καλεσμένων', ru: 'Candy table, декор бассейна и до 18 гостевых столов' },
+      { en: 'Personal wedding planner for organisation and day coordination', el: 'Προσωπικός wedding planner για οργάνωση και συντονισμό ημέρας', ru: 'Персональный wedding planner для организации и координации дня' },
+    ],
+  },
+  'decoway-2': {
+    summary: {
+      en: 'Elevated DecoWay florals with house styling, bridal flower wall, and décor for up to 26 tables.',
+      el: 'Αναβαθμισμένος ανθοστολισμός DecoWay με στολισμό σπιτιών, bridal flower wall και διακόσμηση έως 26 τραπεζιών.',
+      ru: 'Расширенная флористика DecoWay с декором домов, bridal flower wall и оформлением до 26 столов.',
+    },
+    idealFor: {
+      en: 'Celebrations wanting richer ceremony architecture and planner support.',
+      el: 'Γιορτές που θέλουν richer αρχιτεκτονική τελετής και υποστήριξη planner.',
+      ru: 'Торжества с richer архитектурой церемонии и поддержкой planner.',
+    },
+    planningWindow: {
+      en: 'Book ideally 4–8 months ahead',
+      el: 'Κλείστε ιδανικά 4–8 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 4–8 месяцев',
+    },
+    inclusions: [
+      { en: 'Two-home décor, church florals, and dual-car styling', el: 'Διακόσμηση δύο σπιτιών, ανθοστολισμός εκκλησίας και δύο αυτοκινήτων', ru: 'Декор двух домов, флористика храма и двух авто' },
+      { en: 'Three grand arches, bridal flower wall, and illuminated LOVE', el: 'Τρεις μεγάλες αψίδες, bridal flower wall και φωτιζόμενα LOVE', ru: 'Три крупные арки, bridal flower wall и светящиеся LOVE' },
+      { en: 'Candy table with chocolate fountain and up to 26 tables', el: 'Candy table με συντριβάνι σοκολάτας και έως 26 τραπέζια', ru: 'Candy table с шоколадным фонтаном и до 26 столов' },
+      { en: 'Wedding planner included', el: 'Περιλαμβάνεται wedding planner', ru: 'Wedding planner включён' },
+    ],
+  },
+  'decoway-3': {
+    summary: {
+      en: 'Statement DecoWay florals — 3.4m flower wall, multi-car styling, dual chocolate fountains, and up to 35 tables.',
+      el: 'Statement ανθοστολισμός DecoWay — flower wall 3.4μ, στόλισμα πολλών αυτοκινήτων, δύο συντριβάνια σοκολάτας και έως 35 τραπέζια.',
+      ru: 'Statement-флористика DecoWay — flower wall 3,4 м, декор многих авто, два шоколадных фонтана и до 35 столов.',
+    },
+    idealFor: {
+      en: 'Couples seeking the balanced DecoWay signature with immersive reception presence.',
+      el: 'Ζευγάρια που θέλουν την ισορροπημένη υπογραφή DecoWay με immersive παρουσία στη δεξίωση.',
+      ru: 'Пары, которым нужна сбалансированная подпись DecoWay с immersive присутствием на приёме.',
+    },
+    planningWindow: {
+      en: 'Book ideally 5–9 months ahead',
+      el: 'Κλείστε ιδανικά 5–9 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 5–9 месяцев',
+    },
+    inclusions: [
+      { en: 'Large flower wall and illuminated LOVE letters', el: 'Μεγάλος flower wall και φωτιζόμενα LOVE', ru: 'Крупный flower wall и светящиеся LOVE' },
+      { en: 'Fleet styling for bride, groom, and 10 guest cars', el: 'Στόλισμα στόλου για νύφη, γαμπρό και 10 αυτοκίνητα καλεσμένων', ru: 'Стилизация флота для невесты, жениха и 10 гостевых авто' },
+      { en: 'Candy table with 14 cylinders and 2 chocolate fountains', el: 'Candy table με 14 κυλίνδρους και 2 συντριβάνια σοκολάτας', ru: 'Candy table с 14 цилиндрами и 2 шоколадными фонтанами' },
+      { en: 'Planner and coordinator included', el: 'Περιλαμβάνεται planner και coordinator', ru: 'Planner и coordinator включены' },
+    ],
+  },
+  'decoway-4': {
+    summary: {
+      en: 'Crystal DecoWay hospitality — floor chandeliers, guest-list mirror, cake styling, and décor for 40 tables.',
+      el: 'Κρυστάλλινη φιλοξενία DecoWay — πολυέλεοι εδάφους, καθρέφτης λίστας, styling τούρτας και διακόσμηση 40 τραπεζιών.',
+      ru: 'Кристальное гостеприимство DecoWay — напольные люстры, зеркало списка, styling торта и декор 40 столов.',
+    },
+    idealFor: {
+      en: 'Larger celebrations wanting crystal moments and fuller table presence.',
+      el: 'Μεγαλύτερες γιορτές που θέλουν κρυστάλλινες στιγμές και fuller παρουσία τραπεζιών.',
+      ru: 'Более крупные торжества с кристальными акцентами и fuller присутствием столов.',
+    },
+    planningWindow: {
+      en: 'Book ideally 6–10 months ahead',
+      el: 'Κλείστε ιδανικά 6–10 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 6–10 месяцев',
+    },
+    inclusions: [
+      { en: 'Carpet, candle cylinders, and crystal ceremony arrangements', el: 'Χαλί, κύλινδροι κεριών και κρυστάλλινα arrangements τελετής', ru: 'Ковёр, цилиндры со свечами и кристальные arrangements церемонии' },
+      { en: 'Crystal floor chandeliers at the newlywed table', el: 'Κρυστάλλινοι πολυέλεοι εδάφους στο τραπέζι νεονύμφων', ru: 'Напольные кристальные люстры у стола молодожёнов' },
+      { en: '40 tables, mirrors, cake base, and guest-list mirror', el: '40 τραπέζια, καθρέφτες, βάση τούρτας και καθρέφτης λίστας καλεσμένων', ru: '40 столов, зеркала, база торта и зеркало списка гостей' },
+      { en: 'Wedding planner and day coordinator', el: 'Wedding planner και συντονιστής ημέρας', ru: 'Wedding planner и координатор дня' },
+    ],
+  },
+  'decoway-5': {
+    summary: {
+      en: 'Grand DecoWay atmosphere — flower ceiling, champagne reveal, crystal chandeliers, and immersive aisle creation.',
+      el: 'Μεγάλη ατμόσφαιρα DecoWay — οροφή λουλουδιών, champagne reveal, κρυστάλλινοι πολυέλεοι και immersive δημιουργία διαδρόμου.',
+      ru: 'Большая атмосфера DecoWay — цветочный потолок, champagne reveal, кристальные люстры и immersive создание прохода.',
+    },
+    idealFor: {
+      en: 'Couples wanting a highly immersive floral production with statement ceiling moments.',
+      el: 'Ζευγάρια που θέλουν ιδιαίτερα immersive παραγωγή ανθοστολισμού με statement στιγμές οροφής.',
+      ru: 'Пары, которым нужна особенно immersive флористическая постановка со statement-моментами на потолке.',
+    },
+    planningWindow: {
+      en: 'Book ideally 7–12 months ahead',
+      el: 'Κλείστε ιδανικά 7–12 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 7–12 месяцев',
+    },
+    inclusions: [
+      { en: 'Outdoor aisle creation and five grand arches', el: 'Δημιουργία εξωτερικού διαδρόμου και πέντε μεγάλες αψίδες', ru: 'Создание внешнего прохода и пять крупных арок' },
+      { en: 'Flower ceiling 4×4m and crystal floor chandeliers', el: 'Οροφή λουλουδιών 4×4μ και κρυστάλλινοι πολυέλεοι εδάφους', ru: 'Цветочный потолок 4×4 м и напольные кристальные люстры' },
+      { en: 'Champagne opening outside the church', el: 'Άνοιγμα σαμπάνιας έξω από την εκκλησία', ru: 'Открытие шампанского у храма' },
+      { en: 'Full planning and coordination team', el: 'Πλήρης ομάδα οργάνωσης και συντονισμού', ru: 'Полная команда планирования и координации' },
+    ],
+  },
+  'decoway-6': {
+    summary: {
+      en: 'The fullest DecoWay production — ceiling chandeliers, fireworks, fairy-light tunnels, and décor for 45 tables.',
+      el: 'Η πληρέστερη παραγωγή DecoWay — πολυέλεοι οροφής, πυροτεχνήματα, τούνελ fairy lights και διακόσμηση 45 τραπεζιών.',
+      ru: 'Самая полная постановка DecoWay — потолочные люстры, пиротехника, тоннели fairy lights и декор 45 столов.',
+    },
+    idealFor: {
+      en: 'Large celebrations wanting maximum atmospheric scale and fully orchestrated décor.',
+      el: 'Μεγάλες γιορτές που θέλουν μέγιστη ατμοσφαιρική κλίμακα και πλήρως ενορχηστρωμένη διακόσμηση.',
+      ru: 'Крупные торжества с максимальным атмосферным масштабом и полностью оркестрованным декором.',
+    },
+    planningWindow: {
+      en: 'Book ideally 9–14 months ahead',
+      el: 'Κλείστε ιδανικά 9–14 μήνες νωρίτερα',
+      ru: 'Идеально бронировать за 9–14 месяцев',
+    },
+    inclusions: [
+      { en: 'Ceiling chandeliers, fairy lights, and ground fireworks', el: 'Πολυέλεοι οροφής, fairy lights και πυροτεχνήματα εδάφους', ru: 'Потолочные люстры, fairy lights и наземные фейерверки' },
+      { en: 'Popcorn hospitality and dual chocolate fountains', el: 'Φιλοξενία popcorn και δύο συντριβάνια σοκολάτας', ru: 'Popcorn-гостеприимство и два шоколадных фонтана' },
+      { en: 'Two fairy-light tunnels and décor for 45 tables', el: 'Δύο τούνελ fairy lights και διακόσμηση 45 τραπεζιών', ru: 'Два тоннеля fairy lights и декор 45 столов' },
+      { en: 'Dedicated wedding planner and day coordinator', el: 'Αφοσιωμένος wedding planner και συντονιστής ημέρας', ru: 'Выделенный wedding planner и координатор дня' },
+    ],
+  },
   'christening-1': {
     summary: {
       en: 'An elegant décor foundation for church and reception — themed styling, arches, table décor, and refined baptism-day details.',

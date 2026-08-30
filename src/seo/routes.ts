@@ -80,6 +80,52 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       priority: 0.7,
     }),
     route({
+      path: '/services/wedding/difference',
+      title: 'The Wedding Sky Difference',
+      description:
+        '18 reasons couples choose Wedding Sky — Cyprus’s largest wedding events company with 50+ in-house services, clear pricing, and one organised team behind your day.',
+      index: true,
+      priority: 0.75,
+    }),
+    route({
+      path: '/services/wedding/wedding-packages',
+      title: 'Wedding Packages',
+      description:
+        'Explore Wedding Sky package collections — complete wedding programmes, photography packages, and décor packages in Cyprus.',
+      index: true,
+      priority: 0.8,
+    }),
+    route({
+      path: '/services/wedding/wedding-packages/complete',
+      title: 'Complete Wedding Packages',
+      description:
+        'Wedding Sky complete Experience programmes — Prestige to Royal plus Customised — coordination, styling, and signature inclusions in Cyprus.',
+      index: true,
+      priority: 0.8,
+      ogImage:
+        '/images/services/wedding-highlights/wedding-christening-packages/wedding-packages.webp',
+    }),
+    route({
+      path: '/services/wedding/wedding-packages/photography',
+      title: 'Wedding Photography Packages',
+      description:
+        'Wedding Sky PhotoWay packages — cinematic photography and film programmes from essential coverage to full production in Cyprus.',
+      index: true,
+      priority: 0.8,
+      ogImage:
+        '/images/services/wedding-highlights/wedding-services/wedding-photo-video.webp',
+    }),
+    route({
+      path: '/services/wedding/wedding-packages/decor',
+      title: 'Wedding Décor Packages',
+      description:
+        'Wedding Sky DecoWay packages — floral architecture for church, cars, reception, and atmosphere from DecoWay 1 to DecoWay 6 plus Exclusive.',
+      index: true,
+      priority: 0.8,
+      ogImage:
+        '/images/services/wedding-highlights/wedding-services/florals-decoration.webp',
+    }),
+    route({
       path: '/services/consulting',
       title: 'Business Consulting',
       description:

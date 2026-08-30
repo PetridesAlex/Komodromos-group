@@ -6,6 +6,12 @@ import WeddingServicesPage from './WeddingServicesPage'
 import WeddingPackageDetailPage from './WeddingPackageDetailPage'
 import WeddingPackageCategoryPage from './WeddingPackageCategoryPage'
 import WeddingAboutPage from './WeddingAboutPage'
+import WeddingDifferencePage from './WeddingDifferencePage'
+import WeddingPackagesHubPage from './WeddingPackagesHubPage'
+import WeddingCompletePackagesPage from './WeddingCompletePackagesPage'
+import WeddingPhotographyPackagesPage from './WeddingPhotographyPackagesPage'
+import WeddingDecorPackagesPage from './WeddingDecorPackagesPage'
+import WeddingPackageFamilyPage from './WeddingPackageFamilyPage'
 import WeddingSkyLayout from './WeddingSkyLayout'
 import JanchapelleBridalPage from './JanchapelleBridalPage'
 import JanchapelleCollectionDetailPage from './JanchapelleCollectionDetailPage'
@@ -114,6 +120,12 @@ function GroupRoutes() {
       <Route path="/services/wedding" element={<WeddingSkyLayout />}>
         <Route index element={<WeddingServicesPage />} />
         <Route path="about" element={<WeddingAboutPage />} />
+        <Route path="difference" element={<WeddingDifferencePage />} />
+        <Route path="wedding-packages" element={<WeddingPackagesHubPage />} />
+        <Route path="wedding-packages/complete" element={<WeddingCompletePackagesPage />} />
+        <Route path="wedding-packages/photography" element={<WeddingPhotographyPackagesPage />} />
+        <Route path="wedding-packages/decor" element={<WeddingDecorPackagesPage />} />
+        <Route path="wedding-packages/:familyId" element={<WeddingPackageFamilyPage />} />
         <Route path="categories/:categoryId" element={<WeddingPackageCategoryPage />} />
         <Route path="packages/:packageId" element={<WeddingPackageDetailPage />} />
       </Route>

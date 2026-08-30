@@ -36,6 +36,41 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
     "index": true
   },
+  "/services/wedding/difference": {
+    "title": "The Wedding Sky Difference Cyprus | Komodromos Group",
+    "description": "18 reasons couples choose Wedding Sky — Cyprus’s largest wedding events company with 50+ in-house services, clear pricing, and one organised team behind your",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/difference",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/wedding/wedding-packages": {
+    "title": "Wedding Packages Cyprus Services | Komodromos Group",
+    "description": "Explore Wedding Sky package collections — complete wedding programmes, photography packages, and décor packages in Cyprus. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/wedding-packages",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
+  "/services/wedding/wedding-packages/complete": {
+    "title": "Complete Wedding Packages Cyprus | Komodromos Group",
+    "description": "Wedding Sky complete Experience programmes — Prestige to Royal plus Customised — coordination, styling, and signature inclusions in Cyprus. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/wedding-packages/complete",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-christening-packages/wedding-packages.webp",
+    "index": true
+  },
+  "/services/wedding/wedding-packages/photography": {
+    "title": "Wedding Photography Packages Cyprus | Komodromos Group",
+    "description": "Wedding Sky PhotoWay packages — cinematic photography and film programmes from essential coverage to full production in Cyprus. Premium Komodromos Group service",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/wedding-packages/photography",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-services/wedding-photo-video.webp",
+    "index": true
+  },
+  "/services/wedding/wedding-packages/decor": {
+    "title": "Wedding Décor Packages Cyprus Services | Komodromos Group",
+    "description": "Wedding Sky DecoWay packages — floral architecture for church, cars, reception, and atmosphere from DecoWay 1 to DecoWay 6 plus Exclusive. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/wedding-packages/decor",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-services/florals-decoration.webp",
+    "index": true
+  },
   "/services/consulting": {
     "title": "Business Consulting Advisory Cyprus | Komodromos Group",
     "description": "Strategic business consulting in Cyprus from Komodromos Group — growth advisory, operations, corporate structuring, and tailored solutions for organisations.",
@@ -421,25 +456,60 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/justice-law.webp",
     "index": true
   },
-  "/services/wedding/packages/basic": {
-    "title": "Basic Wedding Package Cyprus Services | Komodromos Group",
-    "description": "Basic — Structured planning support and assured day-of coordination for a polished Cyprus wedding.. Part of Komodromos Group premium services in Cyprus.",
-    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/basic",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-basic.webp",
+  "/services/wedding/packages/prestige": {
+    "title": "Prestige Wedding Experience Wedding | Komodromos Group",
+    "description": "Prestige Wedding Experience — Where beautiful beginnings become unforgettable memories.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/prestige",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/prestige-wedding-experience.webp",
     "index": true
   },
-  "/services/wedding/packages/classic": {
-    "title": "Classic Wedding Package Cyprus Services | Komodromos Group",
-    "description": "Classic — Expanded design oversight, curated suppliers, and cohesive production for a richer celebration.. Part of Komodromos Group premium services in Cyprus.",
-    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/classic",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-classic.webp",
+  "/services/wedding/packages/grand": {
+    "title": "Grand Wedding Experience Wedding Package | Komodromos Group",
+    "description": "Grand Wedding Experience — An upgraded wedding experience designed with elegance and style.. Part of Komodromos Group premium services in Cyprus. Premium",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/grand",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/grand-wedding-experience.webp",
     "index": true
   },
-  "/services/wedding/packages/premium": {
-    "title": "Premium Wedding Package Cyprus Services | Komodromos Group",
-    "description": "Premium — Wedding Sky's most elevated commission — tailored concept, premium partners, and dedicated stewardship throughout.. Part of Komodromos Group premium",
-    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/premium",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-packages/tier-premium.webp",
+  "/services/wedding/packages/elite": {
+    "title": "Elite Wedding Experience Wedding Package | Komodromos Group",
+    "description": "Elite Wedding Experience — Refined luxury for couples seeking something truly special.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/elite",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/elite-wedding-experience.webp",
+    "index": true
+  },
+  "/services/wedding/packages/exclusive": {
+    "title": "Exclusive Wedding Experience Wedding | Komodromos Group",
+    "description": "Exclusive Wedding Experience — Designed with unique care for a truly distinctive wedding day.. Part of Komodromos Group premium services in Cyprus. Premium",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/exclusive",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/exclusive-wedding-experience.webp",
+    "index": true
+  },
+  "/services/wedding/packages/imperial": {
+    "title": "Imperial Wedding Experience Wedding | Komodromos Group",
+    "description": "Imperial Wedding Experience — Aristocratic elegance inspired by timeless grandeur.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/imperial",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/imperial-wedding-experience.webp",
+    "index": true
+  },
+  "/services/wedding/packages/crown": {
+    "title": "Crown Wedding Experience Wedding Package | Komodromos Group",
+    "description": "Crown Wedding Experience — The ultimate expression of exclusivity, prestige, and timeless elegance.. Part of Komodromos Group premium services in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/crown",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/crown-wedding-experience.webp",
+    "index": true
+  },
+  "/services/wedding/packages/royal": {
+    "title": "Royal Wedding Experience Wedding Package | Komodromos Group",
+    "description": "Royal Wedding Experience — The ultimate expression of luxury, elegance, and unforgettable magnificence.. Part of Komodromos Group premium services in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/royal",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/royal-wedding-experience.webp",
+    "index": true
+  },
+  "/services/wedding/packages/customised": {
+    "title": "Customised Wedding Package Wedding | Komodromos Group",
+    "description": "Customised Wedding Package — Create your own wedding package — shaped entirely around your needs and wishes.. Part of Komodromos Group premium services in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/customised",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/customised-wedding-experience.webp",
     "index": true
   },
   "/services/wedding/packages/christening-1": {
@@ -475,6 +545,83 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "description": "Complete Oceanic Christening Package — Enjoy the endless blue — a luxury yacht celebration for up to 150 guests.. Part of Komodromos Group premium services in",
     "canonical": "https://www.komodromosgroup.com/services/wedding/packages/christening-oceanic",
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-christening-packages/christening-package-oceanic.webp",
+    "index": true
+  },
+  "/services/wedding/packages/photoway-1": {
+    "title": "PhotoWay 1 Wedding Package Cyprus | Komodromos Group",
+    "description": "PhotoWay 1 — Essential cinematic coverage — albums, reception film, and a Hollywood trailer.. Part of Komodromos Group premium services in Cyprus. Premium",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/photoway-1",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-1.webp",
+    "index": true
+  },
+  "/services/wedding/packages/photoway-2": {
+    "title": "PhotoWay 2 Wedding Package Cyprus | Komodromos Group",
+    "description": "PhotoWay 2 — Elevated coverage with drone panoramas, GoPro, and a fuller print suite.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/photoway-2",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-2.webp",
+    "index": true
+  },
+  "/services/wedding/packages/photoway-3": {
+    "title": "PhotoWay 3 Wedding Package Cyprus | Komodromos Group",
+    "description": "PhotoWay 3 — Signature cinematic depth — larger albums, same-day video, dual GoPros, and richer prints.. Part of Komodromos Group premium services in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/photoway-3",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-3.webp",
+    "index": true
+  },
+  "/services/wedding/packages/photoway-4": {
+    "title": "PhotoWay 4 Wedding Package Cyprus | Komodromos Group",
+    "description": "PhotoWay 4 — The fullest PhotoWay production — larger albums, dual photographers, and an expanded cinematic crew.. Part of Komodromos Group premium services in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/photoway-4",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-4.webp",
+    "index": true
+  },
+  "/services/wedding/packages/decoway-1": {
+    "title": "DecoWay 1 Wedding Package Cyprus | Komodromos Group",
+    "description": "DecoWay 1 — Polished church, cars, and reception florals with illuminated LOVE letters.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/decoway-1",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-1.webp",
+    "index": true
+  },
+  "/services/wedding/packages/decoway-exclusive": {
+    "title": "Deco Exclusive Package Wedding Package | Komodromos Group",
+    "description": "Deco Exclusive Package — Signature décor with personal wedding planner — flower wall, fairy lights, and curated hospitality tables.. Part of Komodromos Group",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/decoway-exclusive",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-exclusive.webp",
+    "index": true
+  },
+  "/services/wedding/packages/decoway-2": {
+    "title": "DecoWay 2 Wedding Package Cyprus | Komodromos Group",
+    "description": "DecoWay 2 — Elevated florals with house styling, flower wall, and wedding planner included.. Part of Komodromos Group premium services in Cyprus. Premium",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/decoway-2",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-2.webp",
+    "index": true
+  },
+  "/services/wedding/packages/decoway-3": {
+    "title": "DecoWay 3 Wedding Package Cyprus | Komodromos Group",
+    "description": "DecoWay 3 — Statement florals — 3.4m flower wall, multi-car styling, and décor for up to 35 tables.. Part of Komodromos Group premium services in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/decoway-3",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-3.webp",
+    "index": true
+  },
+  "/services/wedding/packages/decoway-4": {
+    "title": "DecoWay 4 Wedding Package Cyprus | Komodromos Group",
+    "description": "DecoWay 4 — Crystal hospitality — floor chandeliers, guest-list mirror, cake styling, and décor for 40 tables.. Part of Komodromos Group premium services in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/decoway-4",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-4.webp",
+    "index": true
+  },
+  "/services/wedding/packages/decoway-5": {
+    "title": "DecoWay 5 Wedding Package Cyprus | Komodromos Group",
+    "description": "DecoWay 5 — Grand atmospheric scale — flower ceiling, champagne reveal, and crystal chandelier moments.. Part of Komodromos Group premium services in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/decoway-5",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-5.webp",
+    "index": true
+  },
+  "/services/wedding/packages/decoway-6": {
+    "title": "DecoWay 6 Wedding Package Cyprus | Komodromos Group",
+    "description": "DecoWay 6 — The fullest DecoWay production — ceiling chandeliers, fireworks, fairy-light tunnels, and décor for 45 tables.. Part of Komodromos Group premium",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/decoway-6",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-6.webp",
     "index": true
   },
   "/services/pool/categories/overflow": {

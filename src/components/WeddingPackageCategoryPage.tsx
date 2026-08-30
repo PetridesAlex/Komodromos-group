@@ -4,6 +4,9 @@ import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
 import WeddingChristeningPackagesPage from './WeddingChristeningPackagesPage'
+import WeddingCompletePackagesPage from './WeddingCompletePackagesPage'
+import WeddingPhotographyPackagesPage from './WeddingPhotographyPackagesPage'
+import WeddingDecorPackagesPage from './WeddingDecorPackagesPage'
 import WeddingConsultationPromo from './WeddingConsultationPromo'
 import WeddingPackagePricingGrid from './WeddingPackagePricingGrid'
 import NotFoundPage from './NotFoundPage'
@@ -43,6 +46,18 @@ export default function WeddingPackageCategoryPage() {
 
   if (category.id === 'christian') {
     return <WeddingChristeningPackagesPage />
+  }
+
+  if (category.id === 'wedding') {
+    return <WeddingCompletePackagesPage />
+  }
+
+  if (category.id === 'photography') {
+    return <WeddingPhotographyPackagesPage />
+  }
+
+  if (category.id === 'decor') {
+    return <WeddingDecorPackagesPage />
   }
 
   return (

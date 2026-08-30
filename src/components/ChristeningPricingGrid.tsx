@@ -8,8 +8,8 @@ import Lightspeed from './Lightspeed'
 import {
   christeningPackages,
   christeningPackagesPageCopy,
-  type ChristeningPackage,
 } from '../data/christeningPackages'
+import type { LocalizedText } from '../lib/weddingLocale'
 import { getServiceCoverImageAlt } from '../data/seo/serviceCoverImageAlts'
 import { weddingBrandHref } from '../lib/brandPaths'
 import { useWeddingLocale } from '../lib/weddingLocale'
@@ -42,12 +42,46 @@ const itemVariantsReduced = {
   visible: { opacity: 1, transition: { duration: 0.18 } },
 } as const
 
+/** Shared flyer-package shape used by christening + complete wedding catalogues. */
+export type FlyerPackageCard = {
+  id: string
+  name: LocalizedText
+  tagline: LocalizedText
+  priceDisplay: LocalizedText
+  priceNote?: LocalizedText
+  image: string
+  highlight: LocalizedText
+  sections: ReadonlyArray<{ title: LocalizedText; items: readonly LocalizedText[] }>
+  featured?: boolean
+}
+
+export type FlyerPricingGridCopy = {
+  catalogueEyebrow: LocalizedText
+  catalogueHeading: LocalizedText
+  catalogueHeadingLine1: LocalizedText
+  catalogueHeadingLine2: LocalizedText
+  catalogueLead: LocalizedText
+  previewFlyer: LocalizedText
+  previewHint: LocalizedText
+  eyebrow: LocalizedText
+  featuredBadge: LocalizedText
+  includes: LocalizedText
+  enquireShort: LocalizedText
+  viewDetails: LocalizedText
+  note: LocalizedText
+}
+
 type ChristeningPricingGridProps = {
-  packages?: readonly ChristeningPackage[]
+  packages?: readonly FlyerPackageCard[]
+  copy?: FlyerPricingGridCopy
+  /** DOM id prefix for package cards */
+  idPrefix?: string
 }
 
 export default function ChristeningPricingGrid({
   packages = christeningPackages,
+  copy = christeningPackagesPageCopy,
+  idPrefix = 'christening-package',
 }: ChristeningPricingGridProps) {
   const { t } = useWeddingLocale()
   const reduceMotion = useReducedMotion()
@@ -78,23 +112,23 @@ export default function ChristeningPricingGrid({
       <header className="christening-pricing-grid__intro">
         <p className="christening-pricing-grid__eyebrow">
           <span className="christening-pricing-grid__eyebrow-line" aria-hidden />
-          <span>{t(christeningPackagesPageCopy.catalogueEyebrow)}</span>
+          <span>{t(copy.catalogueEyebrow)}</span>
           <span className="christening-pricing-grid__eyebrow-line" aria-hidden />
         </p>
         <h2
           className="christening-pricing-grid__title"
-          aria-label={t(christeningPackagesPageCopy.catalogueHeading)}
+          aria-label={t(copy.catalogueHeading)}
         >
           <span className="christening-pricing-grid__title-line christening-pricing-grid__title-line--primary">
-            {t(christeningPackagesPageCopy.catalogueHeadingLine1)}
+            {t(copy.catalogueHeadingLine1)}
           </span>
           <span className="christening-pricing-grid__title-line christening-pricing-grid__title-line--secondary">
-            {t(christeningPackagesPageCopy.catalogueHeadingLine2)}
+            {t(copy.catalogueHeadingLine2)}
           </span>
         </h2>
         <span className="christening-pricing-grid__rule" aria-hidden />
         <p className="christening-pricing-grid__lead">
-          {t(christeningPackagesPageCopy.catalogueLead)}
+          {t(copy.catalogueLead)}
         </p>
       </header>
 
@@ -111,7 +145,7 @@ export default function ChristeningPricingGrid({
           return (
             <motion.article
               key={pkg.id}
-              id={`christening-package-${pkg.id}`}
+              id={`${idPrefix}-${pkg.id}`}
               variants={reduceMotion ? itemVariantsReduced : itemVariants}
               className={[
                 'christening-pricing-card',
@@ -125,7 +159,7 @@ export default function ChristeningPricingGrid({
                   type="button"
                   className="christening-pricing-card__flyer-trigger"
                   onClick={() => setLightboxIndex(index)}
-                  aria-label={`${t(christeningPackagesPageCopy.previewFlyer)}: ${t(pkg.name)}`}
+                  aria-label={`${t(copy.previewFlyer)}: ${t(pkg.name)}`}
                 >
                   <span className="christening-pricing-card__flyer-frame">
                     <WeddingLazyImage
@@ -137,7 +171,7 @@ export default function ChristeningPricingGrid({
                   </span>
                   <span className="christening-pricing-card__flyer-zoom" aria-hidden>
                     <ZoomIn strokeWidth={2.25} />
-                    <span>{t(christeningPackagesPageCopy.previewHint)}</span>
+                    <span>{t(copy.previewHint)}</span>
                   </span>
                 </button>
                 <span className="christening-pricing-card__index" aria-hidden>
@@ -173,14 +207,14 @@ export default function ChristeningPricingGrid({
                 <div className="christening-pricing-card__body-content">
                 <header className="christening-pricing-card__head">
                   <p className="christening-pricing-card__eyebrow">
-                    {t(christeningPackagesPageCopy.eyebrow)} · {packageNo}
+                    {t(copy.eyebrow)} · {packageNo}
                   </p>
 
                   <div className="christening-pricing-card__title-row">
                     <h3 className="christening-pricing-card__name">{t(pkg.name)}</h3>
                     {featured ? (
                       <span className="christening-pricing-card__badge">
-                        {t(christeningPackagesPageCopy.featuredBadge)}
+                        {t(copy.featuredBadge)}
                       </span>
                     ) : null}
                   </div>
@@ -198,10 +232,10 @@ export default function ChristeningPricingGrid({
 
                 <section
                   className="christening-pricing-card__includes"
-                  aria-label={t(christeningPackagesPageCopy.includes)}
+                  aria-label={t(copy.includes)}
                 >
                   <h4 className="christening-pricing-card__includes-label">
-                    {t(christeningPackagesPageCopy.includes)}
+                    {t(copy.includes)}
                   </h4>
 
                   <div className="christening-pricing-card__includes-scroll">
@@ -246,7 +280,7 @@ export default function ChristeningPricingGrid({
                       <span className="christening-pricing-card__cta-fill" aria-hidden />
                       <span className="christening-pricing-card__cta-shine" aria-hidden />
                       <span className="christening-pricing-card__cta-label">
-                        {t(christeningPackagesPageCopy.enquireShort)}
+                        {t(copy.enquireShort)}
                       </span>
                       <ArrowRight
                         className="christening-pricing-card__cta-icon"
@@ -260,7 +294,7 @@ export default function ChristeningPricingGrid({
                     >
                       <span className="christening-pricing-card__cta-fill" aria-hidden />
                       <span className="christening-pricing-card__cta-label">
-                        {t(christeningPackagesPageCopy.viewDetails)}
+                        {t(copy.viewDetails)}
                       </span>
                       <ArrowRight
                         className="christening-pricing-card__cta-icon"
@@ -271,7 +305,7 @@ export default function ChristeningPricingGrid({
                   </div>
 
                   <p className="christening-pricing-card__note">
-                    {t(christeningPackagesPageCopy.note)}
+                    {t(copy.note)}
                   </p>
                 </footer>
                 </div>
@@ -289,7 +323,7 @@ export default function ChristeningPricingGrid({
         altForIndex={altForIndex}
         captionForIndex={captionForIndex}
         rootClassName="christening-flyer-lightbox"
-        ariaLabel={t(christeningPackagesPageCopy.previewFlyer)}
+        ariaLabel={t(copy.previewFlyer)}
       />
     </div>
   )

@@ -28,6 +28,21 @@ import {
   getChristeningPackage,
   getChristeningPackageExpandedSections,
 } from '../data/christeningPackages'
+import {
+  completeWeddingPackagesPageCopy,
+  getCompleteWeddingPackage,
+  getCompleteWeddingPackageExpandedSections,
+} from '../data/completeWeddingPackages'
+import {
+  photoWayPackagesPageCopy,
+  getPhotoWayPackage,
+  getPhotoWayPackageExpandedSections,
+} from '../data/photoWayPackages'
+import {
+  decoWayPackagesPageCopy,
+  getDecoWayPackage,
+  getDecoWayPackageExpandedSections,
+} from '../data/decoWayPackages'
 
 export default function WeddingPackageDetailPage() {
   const pageRef = useReveal()
@@ -59,6 +74,38 @@ export default function WeddingPackageDetailPage() {
   const christeningSections = christeningPackage
     ? getChristeningPackageExpandedSections(packageTier.id)
     : undefined
+  const completePackage =
+    packageTier.category === 'wedding'
+      ? getCompleteWeddingPackage(packageTier.id)
+      : undefined
+  const completeSections = completePackage
+    ? getCompleteWeddingPackageExpandedSections(packageTier.id)
+    : undefined
+  const photoWayPackage =
+    packageTier.category === 'photography'
+      ? getPhotoWayPackage(packageTier.id)
+      : undefined
+  const photoWaySections = photoWayPackage
+    ? getPhotoWayPackageExpandedSections(packageTier.id)
+    : undefined
+  const decoWayPackage =
+    packageTier.category === 'decor'
+      ? getDecoWayPackage(packageTier.id)
+      : undefined
+  const decoWaySections = decoWayPackage
+    ? getDecoWayPackageExpandedSections(packageTier.id)
+    : undefined
+  const flyerPackage =
+    completePackage ?? photoWayPackage ?? decoWayPackage ?? christeningPackage
+  const flyerSections =
+    completeSections ?? photoWaySections ?? decoWaySections ?? christeningSections
+  const flyerPageCopy = completePackage
+    ? completeWeddingPackagesPageCopy
+    : photoWayPackage
+      ? photoWayPackagesPageCopy
+      : decoWayPackage
+        ? decoWayPackagesPageCopy
+        : christeningPackagesPageCopy
   const localizedLongContent = weddingPackageLongContentById[packageTier.id]
   const longContent = localizedLongContent
     ? resolveWeddingPackageLongContent(localizedLongContent, locale)
@@ -69,7 +116,13 @@ export default function WeddingPackageDetailPage() {
   const prevTier = index > 0 ? ordered[index - 1] : null
   const nextTier = index < ordered.length - 1 ? ordered[index + 1] : null
   const categoryHref = weddingBrandHref(
-    `/services/wedding/categories/${packageTier.category}`,
+    packageTier.category === 'wedding'
+      ? '/services/wedding/wedding-packages/complete'
+      : packageTier.category === 'photography'
+        ? '/services/wedding/wedding-packages/photography'
+        : packageTier.category === 'decor'
+          ? '/services/wedding/wedding-packages/decor'
+          : `/services/wedding/categories/${packageTier.category}`,
   )
   const heroTitle = longContent ? longContent.title : t(packageTier.name)
   const titleMatch = heroTitle.match(/^("[^"]+"|«[^»]+»)\s*(.*)$/)
@@ -253,7 +306,7 @@ export default function WeddingPackageDetailPage() {
         </div>
 
         <div className="container wedding-package-detail-content__grid">
-          {christeningPackage && detail ? (
+          {flyerPackage && detail ? (
             <WeddingLazyReveal
               as="article"
               className="wedding-package-detail-panel wedding-package-detail-panel--overview"
@@ -264,14 +317,14 @@ export default function WeddingPackageDetailPage() {
                 · {String(packageTier.sortOrder).padStart(2, '0')}
               </p>
               <h2 className="wedding-package-detail-panel__title wedding-package-detail-panel__title--package">
-                {t(christeningPackage.name)}
+                {t(flyerPackage.name)}
               </h2>
-              <p className="wedding-package-detail-panel__lead">{t(christeningPackage.tagline)}</p>
+              <p className="wedding-package-detail-panel__lead">{t(flyerPackage.tagline)}</p>
 
               <div className="wedding-package-detail-panel__flyer">
                 <WeddingLazyImage
-                  src={christeningPackage.image}
-                  alt={t(christeningPackage.name)}
+                  src={flyerPackage.image}
+                  alt={t(flyerPackage.name)}
                   className="wedding-package-detail-panel__flyer-img"
                 />
               </div>
@@ -281,11 +334,11 @@ export default function WeddingPackageDetailPage() {
                   {t(weddingDetailPageCopy.investmentFrom)}
                 </span>
                 <p className="wedding-package-detail-panel__price">
-                  {t(christeningPackage.priceDisplay)}
+                  {t(flyerPackage.priceDisplay)}
                 </p>
-                {christeningPackage.priceNote ? (
+                {flyerPackage.priceNote ? (
                   <p className="wedding-package-detail-panel__price-surcharge">
-                    {t(christeningPackage.priceNote)}
+                    {t(flyerPackage.priceNote)}
                   </p>
                 ) : null}
               </div>
@@ -321,20 +374,20 @@ export default function WeddingPackageDetailPage() {
                   to="/contact"
                   state={{
                     serviceInterest: 'Wedding Services',
-                    weddingPackage: t(christeningPackage.name),
+                    weddingPackage: t(flyerPackage.name),
                   }}
                   className="wedding-package-detail-panel__cta"
                 >
                   <span className="wedding-package-detail-panel__cta-fill" aria-hidden />
                   <span className="wedding-package-detail-panel__cta-shine" aria-hidden />
                   <span className="wedding-package-detail-panel__cta-label">
-                    {t(christeningPackagesPageCopy.enquireShort)}
+                    {t(flyerPageCopy.enquireShort)}
                   </span>
                 </Link>
               </div>
 
               <p className="wedding-package-detail-panel__note">
-                {t(christeningPackagesPageCopy.note)}
+                {t(flyerPageCopy.note)}
               </p>
             </WeddingLazyReveal>
           ) : detail ? (
@@ -349,13 +402,13 @@ export default function WeddingPackageDetailPage() {
             </WeddingLazyReveal>
           ) : null}
 
-          {christeningSections ? (
+          {flyerSections ? (
             <WeddingLazyReveal as="article" className="wedding-package-detail-panel" delay={90}>
               <h2 className="wedding-package-detail-panel__title">
                 {t(weddingDetailPageCopy.includedScope)}
               </h2>
               <div className="wedding-package-detail-panel__sections">
-                {christeningSections.map((section) => (
+                {flyerSections.map((section) => (
                   <div
                     key={section.title.en}
                     className="wedding-package-detail-panel__section"

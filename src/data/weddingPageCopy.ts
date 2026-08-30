@@ -75,7 +75,7 @@ export const weddingPillarsCopy: ReadonlyArray<WeddingPillar> = [
       el: 'Πακέτα Γάμου',
       ru: 'Свадебные пакеты',
     },
-    href: '/services/wedding/categories/wedding',
+    href: '/services/wedding/wedding-packages',
   },
   {
     id: 'christening-packages',
@@ -151,7 +151,7 @@ export const weddingEditorialPillarsCopy: {
         el: 'Περισσότερο από ένας γάμος. Μια εμπειρία σχεδιασμένη εξ ολοκλήρου γύρω από εσάς.',
         ru: 'Больше, чем свадьба. Опыт, созданный целиком вокруг вас.',
       },
-      href: '/services/wedding/about',
+      href: '/services/wedding/difference',
     },
   ],
 }

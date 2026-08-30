@@ -133,6 +133,47 @@ export const serviceCoverImageAlts: Record<string, string> = {
     'Venue selection — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/wedding-christening-packages/wedding-packages.webp':
     'Wedding Sky wedding packages collection — luxury celebration tiers, Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/prestige-wedding-experience.webp':
+    'Wedding Sky Prestige Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/grand-wedding-experience.webp':
+    'Wedding Sky Grand Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/elite-wedding-experience.webp':
+    'Wedding Sky Elite Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/exclusive-wedding-experience.webp':
+    'Wedding Sky Exclusive Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/imperial-wedding-experience.webp':
+    'Wedding Sky Imperial Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/crown-wedding-experience.webp':
+    'Wedding Sky Crown Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/royal-wedding-experience.webp':
+    'Wedding Sky Royal Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/customised-wedding-experience.webp':
+    'Wedding Sky Customised wedding package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-1.webp':
+    'Wedding Sky PhotoWay 1 photography package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-2.webp':
+    'Wedding Sky PhotoWay 2 photography package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-3.webp':
+    'Wedding Sky PhotoWay 3 photography package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-4.webp':
+    'Wedding Sky PhotoWay 4 photography package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-1.webp':
+    'Wedding Sky DecoWay 1 décor package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-2.webp':
+    'Wedding Sky DecoWay 2 décor package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-3.webp':
+    'Wedding Sky DecoWay 3 décor package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-4.webp':
+    'Wedding Sky DecoWay 4 décor package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-5.webp':
+    'Wedding Sky DecoWay 5 décor package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-6.webp':
+    'Wedding Sky DecoWay 6 décor package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/decoway-wedding-packages/decoway-exclusive.webp':
+    'Wedding Sky Deco Exclusive décor package flyer — Cyprus',
+
+
+
   '/images/services/wedding-highlights/wedding-christening-packages/christening-packages.webp':
     'Wedding Sky christening packages collection — refined baptism celebrations, Cyprus',
   '/images/services/wedding-highlights/wedding-christening-packages/christening-package-1.webp':
