@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import { weddingHighlightTiles, type WeddingHighlightTile } from '../data/weddingHighlightTiles'
 import { weddingTilesSectionCopy } from '../data/weddingPageCopy'
@@ -106,7 +106,23 @@ function TileContent({
 export default function WeddingHighlightTiles() {
   const { t, htmlLang } = useWeddingLocale()
   const { isBrandDomain } = useSiteContext()
+  const location = useLocation()
   const [detailTile, setDetailTile] = useState<WeddingHighlightTile | null>(null)
+
+  useEffect(() => {
+    const hash = location.hash.replace(/^#/, '')
+    if (!hash) return
+
+    const match = weddingHighlightTiles.find((tile) => tile.id === hash)
+    if (match?.detail) {
+      setDetailTile(match)
+    }
+
+    const timer = window.setTimeout(() => {
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 120)
+    return () => window.clearTimeout(timer)
+  }, [location.hash, location.pathname])
 
   function resolveGroupPageHref(path: string): { href: string; external: boolean } {
     if (isBrandDomain && !import.meta.env.DEV) {
@@ -276,6 +292,7 @@ export default function WeddingHighlightTiles() {
               return (
                 <button
                   key={tile.id}
+                  id={tile.id}
                   type="button"
                   className={className}
                   style={style}
@@ -293,6 +310,7 @@ export default function WeddingHighlightTiles() {
             return (
               <article
                 key={tile.id}
+                id={tile.id}
                 className="wedding-highlight-tiles__tile"
                 style={style}
               >

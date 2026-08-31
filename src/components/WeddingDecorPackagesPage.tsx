@@ -16,7 +16,7 @@ import { useSiteContext } from '../seo/SiteContext'
 import { useWeddingLocale } from '../lib/weddingLocale'
 
 const HERO_IMAGE =
-  '/images/services/wedding-highlights/wedding-services/florals-decoration.webp'
+  '/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp'
 
 export default function WeddingDecorPackagesPage() {
   const pageRef = useReveal()

@@ -361,6 +361,7 @@ export const POOL_ROUTE_SEGMENTS = [
 export const WEDDING_ROUTE_SEGMENTS = [
   'about',
   'difference',
+  'concierge',
   'wedding-packages',
   'wedding-packages/complete',
   'wedding-packages/photography',

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { janchapelleBrandHref } from '../lib/brandPaths'
+import { janchapelleBrandHref, weddingSkyHref } from '../lib/brandPaths'
 import {
   JANCHAPELLE_COLLECTIONS,
   JANCHAPELLE_DONT_MISS,
@@ -44,7 +44,9 @@ export function dressToWishlistItem(dress: JanchapelleDressCard): JanchapelleWis
   const house = JANCHAPELLE_HOUSES.find((entry) => entry.id === dress.id)
 
   let href = janchapelleBrandHref('/services/janchapelle#jc-featured')
-  if (collection) {
+  if (dress.href) {
+    href = weddingSkyHref(dress.href)
+  } else if (collection) {
     href = janchapelleBrandHref(`/services/janchapelle/collections/${collection.id}`)
   } else if (house) {
     href = janchapelleBrandHref(`/services/janchapelle/houses/${house.id}`)
@@ -55,7 +57,7 @@ export function dressToWishlistItem(dress: JanchapelleDressCard): JanchapelleWis
     type: 'dress',
     image: dress.image,
     title: dress.name,
-    subtitle: dress.house || collection?.name || house?.name || 'Janchapelle',
+    subtitle: dress.house || collection?.name || house?.name || (dress.href ? 'Wedding Sky' : 'Janchapelle'),
     href,
   }
 }

@@ -68,8 +68,9 @@ export default function WeddingServicesPage() {
 
   useEffect(() => {
     const hash = location.hash
-    if (!hash || !hash.startsWith('#wedding-package-')) return
+    if (!hash || !hash.startsWith('#')) return
     const id = hash.slice(1)
+    if (!id) return
     const t = window.setTimeout(() => {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 80)

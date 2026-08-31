@@ -88,6 +88,14 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       priority: 0.75,
     }),
     route({
+      path: '/services/wedding/concierge',
+      title: 'The Wedding Concierge',
+      description:
+        'Your questions answered — Wedding Sky Concierge FAQ on packages, pricing, deposits, customisation, and how our in-house wedding team works in Cyprus and Greece.',
+      index: true,
+      priority: 0.75,
+    }),
+    route({
       path: '/services/wedding/wedding-packages',
       title: 'Wedding Packages',
       description:
@@ -123,7 +131,7 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       index: true,
       priority: 0.8,
       ogImage:
-        '/images/services/wedding-highlights/wedding-services/florals-decoration.webp',
+        '/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp',
     }),
     route({
       path: '/services/consulting',

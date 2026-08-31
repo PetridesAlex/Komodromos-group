@@ -43,6 +43,16 @@ export const weddingDifferenceCopy = {
     el: 'λόγοι που μας ξεχωρίζουν',
     ru: 'причин, которые нас отличают',
   } satisfies LocalizedText,
+  reasonsEyebrow: {
+    en: 'Why Wedding Sky',
+    el: 'Γιατί Wedding Sky',
+    ru: 'Почему Wedding Sky',
+  } satisfies LocalizedText,
+  reasonsTitle: {
+    en: 'What sets us apart',
+    el: 'Τι μας κάνει να ξεχωρίζουμε',
+    ru: 'Что нас отличает',
+  } satisfies LocalizedText,
   lead: {
     en: 'Because the most beautiful day of your life deserves the best choice.',
     el: 'Γιατί η ομορφότερη ημέρα της ζωής σας αξίζει την καλύτερη επιλογή.',
@@ -66,7 +76,7 @@ export const weddingDifferenceCopy = {
       tone: 'gold',
       title: {
         en: 'The greatest force in wedding events',
-        el: 'Η μεγαλύτερη δύναμη στον χώρο των γαμήλιων εκδηλώσεων',
+        el: 'Η μεγαλύτερη παρουσία στον χώρο των γαμήλιων εκδηλώσεων',
         ru: 'Ведущая сила в мире свадебных событий',
       },
       paragraphs: [
@@ -514,6 +524,21 @@ export const weddingDifferenceCopy = {
     en: 'Your entire wedding — just one click away.',
     el: 'Ολόκληρος ο γάμος σας, μόνο με ένα κλικ!',
     ru: 'Вся свадьба — в один клик!',
+  } satisfies LocalizedText,
+  logoCardSlogan: {
+    en: 'Your entire wedding… just one click away!',
+    el: 'Ολόκληρος ο γάμος σας… μόνο με ένα κλικ!',
+    ru: 'Вся свадьба… всего в один клик!',
+  } satisfies LocalizedText,
+  logoCardTagline: {
+    en: 'Elegant. Exclusive. Unforgettable.',
+    el: 'Elegant. Exclusive. Unforgettable.',
+    ru: 'Elegant. Exclusive. Unforgettable.',
+  } satisfies LocalizedText,
+  logoAlt: {
+    en: 'Wedding Sky',
+    el: 'Wedding Sky',
+    ru: 'Wedding Sky',
   } satisfies LocalizedText,
   bookCta: {
     en: 'Book a consultation',

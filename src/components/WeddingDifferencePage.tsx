@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
@@ -15,6 +15,7 @@ export default function WeddingDifferencePage() {
   const pageRef = useReveal()
   const { isBrandDomain } = useSiteContext()
   const { t, htmlLang } = useWeddingLocale()
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
   const servicesSectionHref = isBrandDomain
     ? buildGroupSiteReturnUrl('services')
     : '/#services'
@@ -37,8 +38,21 @@ export default function WeddingDifferencePage() {
         <LanguageSwitcher dynamic />
       </div>
 
-      <section className="wedding-difference-hero" aria-labelledby="wedding-difference-heading">
+      <section
+        className="wedding-difference-hero wedding-difference-hero--photo"
+        aria-labelledby="wedding-difference-heading"
+      >
         <div className="wedding-difference-hero__backdrop" aria-hidden>
+          <img
+            className="wedding-difference-hero__photo"
+            src="/images/services/wedding-highlights/wedding-services/live-setup-cake-100cm-hero.webp"
+            alt=""
+            width={1254}
+            height={1254}
+            decoding="async"
+            fetchPriority="high"
+          />
+          <span className="wedding-difference-hero__scrim" />
           <span className="wedding-difference-hero__orb wedding-difference-hero__orb--gold" />
           <span className="wedding-difference-hero__orb wedding-difference-hero__orb--blue" />
           <span className="wedding-difference-hero__mesh" />
@@ -66,62 +80,104 @@ export default function WeddingDifferencePage() {
       </section>
 
       <section
-        className="wedding-difference-reasons"
-        aria-label={t(copy.pageTitle)}
+        className="wedding-concierge-faq wedding-difference-reasons"
+        aria-labelledby="wedding-difference-reasons-title"
       >
-        <div className="wedding-difference-reasons__atmosphere" aria-hidden>
-          <span className="wedding-difference-reasons__rail wedding-difference-reasons__rail--left" />
-          <span className="wedding-difference-reasons__rail wedding-difference-reasons__rail--right" />
-          <span className="wedding-difference-reasons__glow wedding-difference-reasons__glow--a" />
-          <span className="wedding-difference-reasons__glow wedding-difference-reasons__glow--b" />
-          <span className="wedding-difference-reasons__grain" />
-        </div>
-
-        <div className="container wedding-difference-reasons__shell">
-          <header className="wedding-difference-reasons__header reveal">
-            <p className="wedding-difference-reasons__kicker">
-              <span className="wedding-difference-reasons__kicker-line" aria-hidden />
-              <span>{t(copy.eyebrow)}</span>
-              <span className="wedding-difference-reasons__kicker-line" aria-hidden />
-            </p>
-            <p className="wedding-difference-reasons__count">
-              <span className="wedding-difference-reasons__count-num">{copy.reasons.length}</span>
-              <span className="wedding-difference-reasons__count-label">{t(copy.reasonsLabel)}</span>
+        <div className="container wedding-concierge-faq__shell">
+          <header className="wedding-concierge-faq__header reveal">
+            <p className="wedding-concierge-faq__eyebrow">{t(copy.reasonsEyebrow)}</p>
+            <h2 id="wedding-difference-reasons-title" className="wedding-concierge-faq__title">
+              {t(copy.reasonsTitle)}
+            </h2>
+            <span className="wedding-concierge-faq__rule" aria-hidden />
+            <p className="wedding-concierge-faq__count">
+              <span className="wedding-concierge-faq__count-num">{copy.reasons.length}</span>
+              <span className="wedding-concierge-faq__count-label">{t(copy.reasonsLabel)}</span>
             </p>
           </header>
 
-          <div className="wedding-difference-reasons__inner">
-            {copy.reasons.map((reason, index) => {
-              const delay = Math.min((index % 4) + 1, 4)
-              const sideClass = index % 2 === 0 ? 'reveal-left' : 'reveal-right'
-              return (
-                <article
-                  key={reason.id}
-                  className={`wedding-difference-card wedding-difference-card--${reason.tone} ${sideClass} reveal-delay-${delay}${index === 0 ? ' wedding-difference-card--lead' : ''}`}
-                  style={{ ['--diff-i' as string]: String(index) }}
-                >
-                  <span className="wedding-difference-card__watermark" aria-hidden>
-                    {reason.id}
-                  </span>
-                  <span className="wedding-difference-card__sheen" aria-hidden />
-                  <span className="wedding-difference-card__accent" aria-hidden />
-                  <header className="wedding-difference-card__head">
-                    <span className="wedding-difference-card__index" aria-hidden>
-                      {reason.id}
-                    </span>
-                    <h2 className="wedding-difference-card__title">{t(reason.title)}</h2>
-                  </header>
-                  <div className="wedding-difference-card__body">
-                    {reason.paragraphs.map((paragraph) => (
-                      <p key={paragraph.en} className="wedding-difference-card__p">
-                        {t(paragraph)}
-                      </p>
-                    ))}
+          <div className="wedding-concierge-faq__panel reveal">
+            <div className="wedding-concierge-faq__list">
+              {copy.reasons.map((reason, index) => {
+                const isOpen = openIndex === index
+                const isAccent = index % 2 === 0
+                return (
+                  <div
+                    key={reason.id}
+                    className={[
+                      'wedding-concierge-faq__item',
+                      isAccent
+                        ? 'wedding-concierge-faq__item--accent'
+                        : 'wedding-concierge-faq__item--plain',
+                      isOpen ? 'is-open' : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
+                  >
+                    <button
+                      type="button"
+                      className="wedding-concierge-faq__trigger"
+                      onClick={() => setOpenIndex(isOpen ? null : index)}
+                      aria-expanded={isOpen}
+                      id={`wedding-difference-r-${reason.id}`}
+                      aria-controls={`wedding-difference-a-${reason.id}`}
+                    >
+                      <span className="wedding-concierge-faq__q-index" aria-hidden>
+                        {reason.id}
+                      </span>
+                      <span className="wedding-concierge-faq__q-text">{t(reason.title)}</span>
+                      <span className="wedding-concierge-faq__chevron" aria-hidden>
+                        <svg
+                          width="15"
+                          height="15"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                    </button>
+                    <div
+                      id={`wedding-difference-a-${reason.id}`}
+                      role="region"
+                      aria-labelledby={`wedding-difference-r-${reason.id}`}
+                      hidden={!isOpen}
+                      className="wedding-concierge-faq__answer"
+                    >
+                      {isOpen ? (
+                        <div className="wedding-concierge-faq__answer-inner">
+                          {reason.paragraphs.map((paragraph) => (
+                            <p key={paragraph.en}>{t(paragraph)}</p>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
-                </article>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
+
+          <aside
+            className="wedding-difference-logo-card wedding-difference-logo-card--after-faq reveal-scale"
+            aria-label={t(copy.logoAlt)}
+          >
+            <span className="wedding-difference-logo-card__glow" aria-hidden />
+            <span className="wedding-difference-logo-card__frame" aria-hidden />
+            <img
+              className="wedding-difference-logo-card__logo"
+              src="/images/services/wedding-highlights/wedding-sky-logo.webp"
+              alt={t(copy.logoAlt)}
+              width={480}
+              height={282}
+              decoding="async"
+              loading="lazy"
+            />
+            <p className="wedding-difference-logo-card__slogan">{t(copy.logoCardSlogan)}</p>
+            <p className="wedding-difference-logo-card__tagline">{t(copy.logoCardTagline)}</p>
+          </aside>
         </div>
       </section>
 

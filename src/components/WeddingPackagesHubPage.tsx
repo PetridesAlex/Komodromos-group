@@ -76,7 +76,7 @@ export default function WeddingPackagesHubPage() {
       </section>
 
       <section className="wedding-packages-hub-grid" aria-label={t(copy.title)}>
-        <div className="container wedding-packages-hub-grid__inner">
+        <div className="wedding-packages-hub-grid__inner">
           {copy.cards.map((card, index) => (
             <Link
               key={card.id}

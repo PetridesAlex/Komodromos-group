@@ -19,7 +19,10 @@ export type CompleteWeddingPackage = {
   tagline: LocalizedText
   priceDisplay: LocalizedText
   priceNote?: LocalizedText
+  /** Front cover flyer (shown by default). */
   image: string
+  /** Optional reverse flyer for 3D flip on the catalogue card. */
+  flipImage?: string
   highlight: LocalizedText
   sections: CompleteWeddingPackageSection[]
   /** Elevated card treatment in the pricing grid */
@@ -97,6 +100,21 @@ export const completeWeddingPackagesPageCopy = {
     el: 'Πατήστε για προβολή',
     ru: 'Нажмите для просмотра',
   } satisfies LocalizedText,
+  flipHint: {
+    en: 'Flip',
+    el: 'Γύρισμα',
+    ru: 'Переворот',
+  } satisfies LocalizedText,
+  coverSideLabel: {
+    en: 'Cover',
+    el: 'Εξώφυλλο',
+    ru: 'Обложка',
+  } satisfies LocalizedText,
+  detailsSideLabel: {
+    en: 'Full details',
+    el: 'Πλήρη στοιχεία',
+    ru: 'Полные детали',
+  } satisfies LocalizedText,
   catalogueHeading: {
     en: 'Choose your Experience tier',
     el: 'Επιλέξτε το επίπεδο Experience',
@@ -135,6 +153,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     tagline: L('Where beautiful beginnings become unforgettable memories.', 'Εκεί όπου τα όμορφα ξεκινήματα μετατρέπονται σε αξέχαστες αναμνήσεις.', 'Там, где прекрасные начинания становятся незабываемыми воспоминаниями.'),
     priceDisplay: L('€5,700', '€5.700', '€5 700'),
     image: `${IMG}/prestige-wedding-experience.webp`,
+    flipImage: `${IMG}/prestige-wedding-experience-back.webp`,
     highlight: L('Photography, décor, entertainment, VIP transfer, and day coordination — composed as one Prestige programme.', 'Φωτογραφία, διακόσμηση, ψυχαγωγία, VIP μεταφορά και συντονισμός ημέρας — σε ένα πρόγραμμα Prestige.', 'Фото, декор, развлечения, VIP-трансфер и координация дня — в одной программе Prestige.'),
     sections: [
       {
@@ -189,6 +208,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     tagline: L('An upgraded wedding experience designed with elegance and style.', 'Μια αναβαθμισμένη εμπειρία γάμου σχεδιασμένη με κομψότητα και στυλ.', 'Обновлённый свадебный опыт, созданный с элегантностью и стилем.'),
     priceDisplay: L('€8,500', '€8.500', '€8 500'),
     image: `${IMG}/grand-wedding-experience.webp`,
+    flipImage: `${IMG}/grand-wedding-experience-back.webp`,
     highlight: L('Haute couture bridal & groom attire, enriched media, treats & cake, and fuller décor architecture.', 'Νυφικό υψηλής ραπτικής & γαμπριάτικο κοστούμι, enriched media, κεράσματα & τούρτα, και fuller διακόσμηση.', 'Haute couture наряды, расширенные media, угощения и торт, более полная архитектура декора.'),
     sections: [
       {
@@ -233,6 +253,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     tagline: L('Refined luxury for couples seeking something truly special.', 'Εκλεπτυσμένη πολυτέλεια για ζευγάρια που αναζητούν κάτι πραγματικά ξεχωριστό.', 'Изысканная роскошь для пар, ищущих нечто по-настоящему особое.'),
     priceDisplay: L('€9,900', '€9.900', '€9 900'),
     image: `${IMG}/elite-wedding-experience.webp`,
+    flipImage: `${IMG}/elite-wedding-experience-back.webp`,
     highlight: L('Curated bridal couture from up to 150 designs, elevated treats & cake, and a seamless one-team Wedding Sky day.', 'Επιλεγμένο νυφικό από έως 150 σχέδια, elevated κεράσματα & τούρτα, και μία απρόσκοπτη ημέρα από μία ομάδα Wedding Sky.', 'Кураторское платье из до 150 дизайнов, elevated угощения и торт, и безупречный день одной команды Wedding Sky.'),
     sections: [
       {
@@ -269,6 +290,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     tagline: L('Designed with unique care for a truly distinctive wedding day.', 'Σχεδιασμένο με μοναδική φροντίδα για μια πραγματικά ξεχωριστή ημέρα γάμου.', 'Создано с особой заботой для по-настоящему особенного свадебного дня.'),
     priceDisplay: L('€11,300', '€11.300', '€11 300'),
     image: `${IMG}/exclusive-wedding-experience.webp`,
+    flipImage: `${IMG}/exclusive-wedding-experience-back.webp`,
     highlight: L('Expanded couture wardrobe, jewellery programme, richer décor, and signature hospitality effects.', 'Εμπλουτισμένη γκαρνταρόμπα couture, πρόγραμμα κοσμημάτων, richer διακόσμηση και signature εφέ φιλοξενίας.', 'Расширенный couture-гардероб, ювелирная программа, richer декор и signature-эффекты гостеприимства.'),
     featured: true,
     sections: [
@@ -306,6 +328,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     tagline: L('Aristocratic elegance inspired by timeless grandeur.', 'Αριστοκρατική κομψότητα εμπνευσμένη από διαχρονικό μεγαλείο.', 'Аристократическая элегантность, вдохновлённая вневременным величием.'),
     priceDisplay: L('€12,000', '€12.000', '€12 000'),
     image: `${IMG}/imperial-wedding-experience.webp`,
+    flipImage: `${IMG}/imperial-wedding-experience-back.webp`,
     highlight: L('Expanded couture, same-day edit film, drone 4K, pyrotechnics, and richer floral architecture.', 'Εμπλουτισμένο couture, same-day edit film, drone 4K, πυροτεχνήματα και richer ανθοστολισμός.', 'Расширенный couture, same-day edit, дрон 4K, пиротехника и richer цветочная архитектура.'),
     sections: [
       {
@@ -344,6 +367,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     tagline: L('The ultimate expression of exclusivity, prestige, and timeless elegance.', 'Η απόλυτη έκφραση αποκλειστικότητας, κύρους και διαχρονικής κομψότητας.', 'Абсолютное выражение эксклюзивности, престижа и вневременной элегантности.'),
     priceDisplay: L('€14,000', '€14.000', '€14 000'),
     image: `${IMG}/crown-wedding-experience.webp`,
+    flipImage: `${IMG}/crown-wedding-experience-back.webp`,
     highlight: L('Designer couture, 5-tier cake, 3.4m flower wall, fireworks programme, and a luxury hotel or adrenaline experience.', 'Designer couture, τούρτα 5 επιπέδων, flower wall 3.4μ, πρόγραμμα πυροτεχνημάτων και luxury hotel ή adrenaline εμπειρία.', 'Designer couture, 5-ярусный торт, flower wall 3,4 м, фейерверк и luxury hotel или adrenaline-опыт.'),
     sections: [
       {
@@ -381,6 +405,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     tagline: L('The ultimate expression of luxury, elegance, and unforgettable magnificence.', 'Η απόλυτη έκφραση πολυτέλειας, κομψότητας και αξέχαστης μεγαλοπρέπειας.', 'Абсолютное выражение роскоши, элегантности и незабываемого великолепия.'),
     priceDisplay: L('€18,400', '€18.400', '€18 400'),
     image: `${IMG}/royal-wedding-experience.webp`,
+    flipImage: `${IMG}/royal-wedding-experience-back.webp`,
     highlight: L('Imperial-scale décor, yacht or adrenaline hospitality, spa retreat, and a fully orchestrated royal production.', 'Imperial-scale διακόσμηση, φιλοξενία yacht ή adrenaline, spa retreat και πλήρως ενορχηστρωμένη royal παραγωγή.', 'Imperial-масштаб декора, yacht или adrenaline-гостеприимство, spa retreat и полностью оркестрованная royal-постановка.'),
     sections: [
       {

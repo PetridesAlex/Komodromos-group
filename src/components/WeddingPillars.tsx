@@ -32,7 +32,19 @@ export default function WeddingPillars() {
                     {indexLabel}
                   </span>
                   <span className="wedding-pillars__body">
-                    <span className="wedding-pillars__label">{t(pillar.label)}</span>
+                    {pillar.labelSecondary ? (
+                      <span className="wedding-pillars__label wedding-pillars__label--stack">
+                        <span className="wedding-pillars__label-main">{t(pillar.label)}</span>
+                        <span className="wedding-pillars__label-row">
+                          <span className="wedding-pillars__label-slash" aria-hidden>
+                            /
+                          </span>
+                          <span className="wedding-pillars__label-sub">{t(pillar.labelSecondary)}</span>
+                        </span>
+                      </span>
+                    ) : (
+                      <span className="wedding-pillars__label">{t(pillar.label)}</span>
+                    )}
                     <span className="wedding-pillars__rule" aria-hidden />
                   </span>
                   <span className="wedding-pillars__action" aria-hidden>

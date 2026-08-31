@@ -3,6 +3,7 @@ import type { LocalizedText } from '../lib/weddingLocale'
 type WeddingPillar = {
   id: string
   label: LocalizedText
+  labelSecondary?: LocalizedText
   href: string
 }
 
@@ -71,9 +72,14 @@ export const weddingPillarsCopy: ReadonlyArray<WeddingPillar> = [
   {
     id: 'wedding-packages',
     label: {
-      en: 'Wedding Packages',
-      el: 'Πακέτα Γάμου',
-      ru: 'Свадебные пакеты',
+      en: 'Wedding Experience',
+      el: 'Εμπειρία Γάμου',
+      ru: 'Свадебный опыт',
+    },
+    labelSecondary: {
+      en: 'Packages',
+      el: 'Πακέτα',
+      ru: 'Пакеты',
     },
     href: '/services/wedding/wedding-packages',
   },
@@ -137,7 +143,7 @@ export const weddingEditorialPillarsCopy: {
         el: 'Οι ερωτήσεις σας. Η εμπειρία μας. Η τέλεια μέρα σας.',
         ru: 'Ваши вопросы. Наш опыт. Ваш идеальный день.',
       },
-      href: '#wedding-contact',
+      href: '/services/wedding/concierge',
     },
     {
       id: 'wedding-sky-difference',
@@ -191,7 +197,7 @@ export const weddingIntroCopy: {
   },
   title: {
     en: 'Cyprus celebrations, composed with care.',
-    el: 'Γιορτές στην Κύπρο, σχεδιασμένες με φροντίδα.',
+    el: 'Γαμήλιες εκδηλώσεις σχεδιασμένες με φροντίδα.',
     ru: 'Торжества на Кипре — созданные с заботой.',
   },
   lead: {
@@ -277,7 +283,7 @@ export const weddingTilesSectionCopy: {
   },
   title: {
     en: 'Curated services',
-    el: 'Επιλεγμένες υπηρεσίες',
+    el: 'Επιλεγμένες υπηρεσίες γάμου',
     ru: 'Кураторские услуги',
   },
   intro: {

@@ -43,6 +43,13 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
     "index": true
   },
+  "/services/wedding/concierge": {
+    "title": "The Wedding Concierge Cyprus Services | Komodromos Group",
+    "description": "Your questions answered — Wedding Sky Concierge FAQ on packages, pricing, deposits, customisation, and how our in-house wedding team works in Cyprus and Greece.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/concierge",
+    "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
+    "index": true
+  },
   "/services/wedding/wedding-packages": {
     "title": "Wedding Packages Cyprus Services | Komodromos Group",
     "description": "Explore Wedding Sky package collections — complete wedding programmes, photography packages, and décor packages in Cyprus. Premium Komodromos Group service in",
@@ -68,7 +75,7 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "title": "Wedding Décor Packages Cyprus Services | Komodromos Group",
     "description": "Wedding Sky DecoWay packages — floral architecture for church, cars, reception, and atmosphere from DecoWay 1 to DecoWay 6 plus Exclusive. Premium Komodromos",
     "canonical": "https://www.komodromosgroup.com/services/wedding/wedding-packages/decor",
-    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-services/florals-decoration.webp",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp",
     "index": true
   },
   "/services/consulting": {

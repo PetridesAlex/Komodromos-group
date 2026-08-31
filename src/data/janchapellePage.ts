@@ -50,6 +50,8 @@ export type JanchapelleDressCard = {
   alt: string
   /** Split as “Wedding” + remainder for premium wordmark labels. */
   categoryWordmark?: boolean
+  /** Optional destination (Wedding Sky deep links for Don’t Miss cards). */
+  href?: string
 }
 
 export type JanchapelleCollectionGalleryImage = {
@@ -387,6 +389,7 @@ export const JANCHAPELLE_DONT_MISS: readonly JanchapelleDressCard[] = [
     categoryWordmark: true,
     image: `${JANCHAPELLE}/wedding-packages.webp`,
     alt: 'Wedding Packages — curated celebration tiers',
+    href: '/services/wedding/wedding-packages',
   },
   {
     id: 'wedding-photographer',
@@ -395,6 +398,7 @@ export const JANCHAPELLE_DONT_MISS: readonly JanchapelleDressCard[] = [
     categoryWordmark: true,
     image: `${JANCHAPELLE}/wedding-photographer.webp`,
     alt: 'Wedding Photographer — editorial coverage and portraits',
+    href: '/services/wedding/wedding-packages/photography',
   },
   {
     id: 'wedding-decorations',
@@ -403,6 +407,7 @@ export const JANCHAPELLE_DONT_MISS: readonly JanchapelleDressCard[] = [
     categoryWordmark: true,
     image: `${JANCHAPELLE}/wedding-decorations.webp`,
     alt: 'Wedding Decorations — florals, styling, and venue design',
+    href: '/services/wedding/wedding-packages/decor',
   },
   {
     id: 'wedding-cakes-treats',
@@ -411,6 +416,7 @@ export const JANCHAPELLE_DONT_MISS: readonly JanchapelleDressCard[] = [
     categoryWordmark: true,
     image: `${JANCHAPELLE}/wedding-cakes-treats.webp`,
     alt: 'Wedding Cakes & Treats — patisserie and dessert styling',
+    href: '/services/wedding#wedding-treats-cake',
   },
   {
     id: 'wedding-invitations',
@@ -419,6 +425,7 @@ export const JANCHAPELLE_DONT_MISS: readonly JanchapelleDressCard[] = [
     categoryWordmark: true,
     image: `${JANCHAPELLE}/wedding-invitations.webp`,
     alt: 'Wedding Invitations — stationery and calligraphy',
+    href: '/services/wedding#wedding-invitations',
   },
 ] as const
 

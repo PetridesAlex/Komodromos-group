@@ -3,8 +3,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { ArrowRight, Check, ZoomIn } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import WeddingLazyImage from './WeddingLazyImage'
-import LimoGalleryLightbox from './LimoGalleryLightbox'
-import Lightspeed from './Lightspeed'
+import FlyerFlipLightbox from './FlyerFlipLightbox'
 import {
   christeningPackages,
   christeningPackagesPageCopy,
@@ -50,6 +49,8 @@ export type FlyerPackageCard = {
   priceDisplay: LocalizedText
   priceNote?: LocalizedText
   image: string
+  /** Optional reverse flyer for a premium 3D flip on the catalogue card. */
+  flipImage?: string
   highlight: LocalizedText
   sections: ReadonlyArray<{ title: LocalizedText; items: readonly LocalizedText[] }>
   featured?: boolean
@@ -63,6 +64,11 @@ export type FlyerPricingGridCopy = {
   catalogueLead: LocalizedText
   previewFlyer: LocalizedText
   previewHint: LocalizedText
+  /** Short label for flipable flyer cards (e.g. “Flip”). */
+  flipHint?: LocalizedText
+  /** Lightbox labels for cover / details sides. */
+  coverSideLabel?: LocalizedText
+  detailsSideLabel?: LocalizedText
   eyebrow: LocalizedText
   featuredBadge: LocalizedText
   includes: LocalizedText
@@ -87,25 +93,24 @@ export default function ChristeningPricingGrid({
   const reduceMotion = useReducedMotion()
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
-  const flyerImages = useMemo(() => packages.map((pkg) => pkg.image), [packages])
-
-  const altForIndex = useCallback(
-    (index: number) => {
-      const pkg = packages[index]
-      if (!pkg) return ''
-      return getServiceCoverImageAlt(pkg.image, t(pkg.name))
-    },
+  const lightboxItems = useMemo(
+    () =>
+      packages.map((pkg) => ({
+        id: pkg.id,
+        name: t(pkg.name),
+        frontSrc: pkg.image,
+        frontAlt: getServiceCoverImageAlt(pkg.image, t(pkg.name)),
+        backSrc: pkg.flipImage,
+        backAlt: pkg.flipImage
+          ? getServiceCoverImageAlt(pkg.flipImage, t(pkg.name))
+          : undefined,
+      })),
     [packages, t],
   )
 
-  const captionForIndex = useCallback(
-    (index: number) => {
-      const pkg = packages[index]
-      if (!pkg) return ''
-      return t(pkg.name)
-    },
-    [packages, t],
-  )
+  const openPreview = useCallback((index: number) => {
+    setLightboxIndex(index)
+  }, [])
 
   return (
     <div className="christening-pricing-grid">
@@ -141,6 +146,12 @@ export default function ChristeningPricingGrid({
         {packages.map((pkg, index) => {
           const featured = pkg.featured === true
           const packageNo = String(index + 1).padStart(2, '0')
+          const flipSrc = pkg.flipImage
+          const canFlip = Boolean(flipSrc) && !reduceMotion
+          const frontAlt = getServiceCoverImageAlt(pkg.image, t(pkg.name))
+          const backAlt = flipSrc
+            ? getServiceCoverImageAlt(flipSrc, t(pkg.name))
+            : frontAlt
 
           return (
             <motion.article
@@ -150,30 +161,77 @@ export default function ChristeningPricingGrid({
               className={[
                 'christening-pricing-card',
                 featured ? 'christening-pricing-card--featured' : '',
+                canFlip ? 'christening-pricing-card--flip' : '',
               ]
                 .filter(Boolean)
                 .join(' ')}
             >
               <div className="christening-pricing-card__flyer">
-                <button
-                  type="button"
-                  className="christening-pricing-card__flyer-trigger"
-                  onClick={() => setLightboxIndex(index)}
-                  aria-label={`${t(copy.previewFlyer)}: ${t(pkg.name)}`}
-                >
-                  <span className="christening-pricing-card__flyer-frame">
-                    <WeddingLazyImage
-                      src={pkg.image}
-                      alt={getServiceCoverImageAlt(pkg.image, t(pkg.name))}
-                      priority={index < 2}
-                      className="christening-pricing-card__flyer-img"
-                    />
-                  </span>
-                  <span className="christening-pricing-card__flyer-zoom" aria-hidden>
-                    <ZoomIn strokeWidth={2.25} />
-                    <span>{t(copy.previewHint)}</span>
-                  </span>
-                </button>
+                {canFlip && flipSrc ? (
+                  <div className="christening-pricing-card__flyer-scene">
+                    <button
+                      type="button"
+                      className="christening-pricing-card__flyer-trigger"
+                      onClick={() => openPreview(index)}
+                      aria-label={`${t(copy.previewFlyer)}: ${t(pkg.name)}`}
+                    >
+                      <span className="christening-pricing-card__flyer-frame">
+                        <span className="christening-pricing-card__flyer-inner">
+                          <span className="christening-pricing-card__flyer-face christening-pricing-card__flyer-face--front">
+                            <WeddingLazyImage
+                              src={pkg.image}
+                              alt={frontAlt}
+                              priority={index < 2}
+                              className="christening-pricing-card__flyer-img"
+                            />
+                          </span>
+                          <span className="christening-pricing-card__flyer-face christening-pricing-card__flyer-face--back">
+                            <WeddingLazyImage
+                              src={flipSrc}
+                              alt={backAlt}
+                              priority={false}
+                              className="christening-pricing-card__flyer-img"
+                            />
+                          </span>
+                        </span>
+                      </span>
+                      <span className="christening-pricing-card__flyer-flip-hint" aria-hidden>
+                        <span>
+                          {t(copy.flipHint ?? { en: 'Flip', el: 'Γύρισμα', ru: 'Переворот' })}
+                        </span>
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      className="christening-pricing-card__flyer-zoom christening-pricing-card__flyer-zoom--action"
+                      onClick={() => openPreview(index)}
+                      aria-label={`${t(copy.previewFlyer)}: ${t(pkg.name)}`}
+                    >
+                      <ZoomIn strokeWidth={2.25} />
+                      <span>{t(copy.previewHint)}</span>
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    className="christening-pricing-card__flyer-trigger"
+                    onClick={() => openPreview(index)}
+                    aria-label={`${t(copy.previewFlyer)}: ${t(pkg.name)}`}
+                  >
+                    <span className="christening-pricing-card__flyer-frame">
+                      <WeddingLazyImage
+                        src={pkg.image}
+                        alt={frontAlt}
+                        priority={index < 2}
+                        className="christening-pricing-card__flyer-img"
+                      />
+                    </span>
+                    <span className="christening-pricing-card__flyer-zoom" aria-hidden>
+                      <ZoomIn strokeWidth={2.25} />
+                      <span>{t(copy.previewHint)}</span>
+                    </span>
+                  </button>
+                )}
                 <span className="christening-pricing-card__index" aria-hidden>
                   {packageNo}
                 </span>
@@ -181,26 +239,7 @@ export default function ChristeningPricingGrid({
 
               <div className="christening-pricing-card__body">
                 <div className="christening-pricing-card__body-backdrop" aria-hidden>
-                  {!reduceMotion ? (
-                    <Lightspeed
-                      className="christening-pricing-card__lightspeed"
-                      fill
-                      speed={featured ? 0.85 : 0.65}
-                      primaryColor="#c9a56a"
-                      secondaryColor="#3f7fff"
-                      tertiaryColor="#1a5bb8"
-                      streakCount={featured ? 72 : 56}
-                      stretchFactor={0.055}
-                      intensity={featured ? 0.95 : 0.78}
-                      opacity={featured ? 0.72 : 0.62}
-                      quality="low"
-                      maxFPS={24}
-                      interactionEnabled={false}
-                      pauseWhenOffscreen
-                      fadePower={1.85}
-                      rotation={0.08}
-                    />
-                  ) : null}
+                  <span className="christening-pricing-card__body-glow" />
                   <span className="christening-pricing-card__body-scrim" />
                 </div>
 
@@ -315,15 +354,23 @@ export default function ChristeningPricingGrid({
         })}
       </motion.div>
 
-      <LimoGalleryLightbox
-        images={flyerImages}
+      <FlyerFlipLightbox
+        items={lightboxItems}
         activeIndex={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onNavigate={setLightboxIndex}
-        altForIndex={altForIndex}
-        captionForIndex={captionForIndex}
-        rootClassName="christening-flyer-lightbox"
         ariaLabel={t(copy.previewFlyer)}
+        flipLabel={t(copy.flipHint ?? { en: 'Flip', el: 'Γύρισμα', ru: 'Переворот' })}
+        coverLabel={t(
+          copy.coverSideLabel ?? { en: 'Cover', el: 'Εξώφυλλο', ru: 'Обложка' },
+        )}
+        detailsLabel={t(
+          copy.detailsSideLabel ?? {
+            en: 'Full details',
+            el: 'Πλήρη στοιχεία',
+            ru: 'Полные детали',
+          },
+        )}
       />
     </div>
   )

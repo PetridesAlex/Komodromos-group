@@ -1,5 +1,6 @@
 import {
   getBrandByHost,
+  getBrandBySlug,
   internalPathToBrandPath,
   GROUP_SITE_URL,
   type BrandDomainConfig,
@@ -138,6 +139,43 @@ export function weddingBrandHref(internalPathWithHash: string): string {
   const path = hashIdx === -1 ? internalPathWithHash : internalPathWithHash.slice(0, hashIdx)
   const hash = hashIdx === -1 ? '' : internalPathWithHash.slice(hashIdx)
   return `${weddingPath(path)}${hash}`
+}
+
+/**
+ * Wedding Sky destination that works from any host:
+ * - on weddingskycy.com → brand-relative path
+ * - on the group site / local DEV → `/services/wedding/...`
+ * - on another brand domain (e.g. janchapelle) → absolute `https://www.weddingskycy.com/...`
+ */
+export function weddingSkyHref(internalPathWithHash: string): string {
+  const hashIdx = internalPathWithHash.indexOf('#')
+  const path = hashIdx === -1 ? internalPathWithHash : internalPathWithHash.slice(0, hashIdx)
+  const hash = hashIdx === -1 ? '' : internalPathWithHash.slice(hashIdx)
+
+  if (path !== '/services/wedding' && !path.startsWith('/services/wedding/')) {
+    return `${path}${hash}`
+  }
+
+  const brand = currentBrand()
+  if (brand?.slug === 'wedding') {
+    return `${weddingPath(path)}${hash}`
+  }
+
+  if (import.meta.env.DEV || !brand) {
+    return `${path}${hash}`
+  }
+
+  const wedding = getBrandBySlug('wedding')
+  if (wedding && wedding.brandDnsLive !== false) {
+    const clean = internalPathToBrandPath(path, wedding)
+    return `https://${wedding.host}${clean === '/' ? '' : clean}${hash}`
+  }
+
+  return `${GROUP_SITE_URL}${path}${hash}`
+}
+
+export function isAbsoluteHttpHref(href: string): boolean {
+  return /^https?:\/\//i.test(href)
 }
 
 export function janchapellePath(subpath = ''): string {

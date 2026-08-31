@@ -9,7 +9,7 @@ import JanchapelleSocialProof from './JanchapelleSocialProof'
 import AnimatedCounter from './AnimatedCounter'
 import { useReveal } from '../hooks/useReveal'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
-import { janchapelleBrandHref } from '../lib/brandPaths'
+import { janchapelleBrandHref, isAbsoluteHttpHref, weddingSkyHref } from '../lib/brandPaths'
 import { useSiteContext } from '../seo/SiteContext'
 import {
   JANCHAPELLE_CONTACT_STATE,
@@ -109,86 +109,105 @@ function DressCard({
     ? `reveal-delay-${Math.min(index, 3)}`
     : `reveal-delay-${Math.min(index % 3, 2)}`
 
+  const weddingHref = !featured && dress.href ? weddingSkyHref(dress.href) : null
+  const linkTo = featured
+    ? janchapelleBrandHref(`/services/janchapelle/collections/${dress.id}`)
+    : weddingHref ?? '/contact'
+  const isExternal = Boolean(weddingHref && isAbsoluteHttpHref(weddingHref))
+  const quickLabel = featured ? 'Explore' : weddingHref ? 'Explore' : 'Enquire'
+
+  const media = (
+    <>
+      <span className="jc-dress__media">
+        <img
+          src={dress.image}
+          alt={dress.alt}
+          className="jc-dress__img"
+          loading={index < 3 ? 'eager' : 'lazy'}
+          decoding="async"
+          width={720}
+          height={960}
+          sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 280px"
+        />
+        <span className="jc-dress__veil" aria-hidden />
+        <span className="jc-dress__quick">{quickLabel}</span>
+      </span>
+      <span
+        className={`jc-dress__meta${
+          dress.categoryWordmark
+            ? ' jc-dress__meta--brand'
+            : featured
+              ? ' jc-dress__meta--collection'
+              : ''
+        }`}
+      >
+        {dress.categoryWordmark ? (
+          (() => {
+            const { primary, accent } = splitCategoryWordmark(dress.name)
+            return (
+              <>
+                {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
+                <span className="jc-dress__wordmark" aria-label={dress.name}>
+                  <span className="jc-dress__wordmark-primary">{primary}</span>
+                  {accent ? (
+                    <span className="jc-dress__wordmark-accent">{accent}</span>
+                  ) : null}
+                </span>
+                <span className="jc-dress__wordmark-rule" aria-hidden />
+              </>
+            )
+          })()
+        ) : featured ? (
+          (() => {
+            const { primary, accent } = splitCollectionName(dress.name)
+            return (
+              <>
+                {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
+                <span className="jc-dress__wordmark" aria-label={dress.name}>
+                  <span className="jc-dress__wordmark-primary">{primary}</span>
+                  {accent ? (
+                    <span className="jc-dress__wordmark-accent">{accent}</span>
+                  ) : null}
+                </span>
+                <span className="jc-dress__wordmark-rule" aria-hidden />
+              </>
+            )
+          })()
+        ) : (
+          <>
+            {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
+            <span className="jc-dress__name">{dress.name}</span>
+          </>
+        )}
+      </span>
+    </>
+  )
+
   return (
     <li
       className={`jc-dress${featured ? ' jc-dress--featured' : ''} reveal ${delayClass}`}
     >
-      <Link
-        to={
-          featured
-            ? janchapelleBrandHref(`/services/janchapelle/collections/${dress.id}`)
-            : '/contact'
-        }
-        state={
-          featured
-            ? undefined
-            : { ...JANCHAPELLE_CONTACT_STATE, gownInterest: dress.name }
-        }
-        className="jc-dress__link"
-      >
-        <span className="jc-dress__media">
-          <img
-            src={dress.image}
-            alt={dress.alt}
-            className="jc-dress__img"
-            loading={index < 3 ? 'eager' : 'lazy'}
-            decoding="async"
-            width={720}
-            height={960}
-            sizes="(max-width: 700px) 50vw, (max-width: 1100px) 33vw, 280px"
-          />
-          <span className="jc-dress__veil" aria-hidden />
-          <span className="jc-dress__quick">{featured ? 'Explore' : 'Enquire'}</span>
-        </span>
-        <span
-          className={`jc-dress__meta${
-            dress.categoryWordmark
-              ? ' jc-dress__meta--brand'
-              : featured
-                ? ' jc-dress__meta--collection'
-                : ''
-          }`}
+      {isExternal ? (
+        <a
+          href={linkTo}
+          className="jc-dress__link"
+          rel="noopener noreferrer"
         >
-          {dress.categoryWordmark ? (
-            (() => {
-              const { primary, accent } = splitCategoryWordmark(dress.name)
-              return (
-                <>
-                  {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
-                  <span className="jc-dress__wordmark" aria-label={dress.name}>
-                    <span className="jc-dress__wordmark-primary">{primary}</span>
-                    {accent ? (
-                      <span className="jc-dress__wordmark-accent">{accent}</span>
-                    ) : null}
-                  </span>
-                  <span className="jc-dress__wordmark-rule" aria-hidden />
-                </>
-              )
-            })()
-          ) : featured ? (
-            (() => {
-              const { primary, accent } = splitCollectionName(dress.name)
-              return (
-                <>
-                  {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
-                  <span className="jc-dress__wordmark" aria-label={dress.name}>
-                    <span className="jc-dress__wordmark-primary">{primary}</span>
-                    {accent ? (
-                      <span className="jc-dress__wordmark-accent">{accent}</span>
-                    ) : null}
-                  </span>
-                  <span className="jc-dress__wordmark-rule" aria-hidden />
-                </>
-              )
-            })()
-          ) : (
-            <>
-              {dress.house ? <span className="jc-dress__house">{dress.house}</span> : null}
-              <span className="jc-dress__name">{dress.name}</span>
-            </>
-          )}
-        </span>
-      </Link>
+          {media}
+        </a>
+      ) : (
+        <Link
+          to={linkTo}
+          state={
+            featured || weddingHref
+              ? undefined
+              : { ...JANCHAPELLE_CONTACT_STATE, gownInterest: dress.name }
+          }
+          className="jc-dress__link"
+        >
+          {media}
+        </Link>
+      )}
     </li>
   )
 }

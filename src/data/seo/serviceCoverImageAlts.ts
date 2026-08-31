@@ -63,6 +63,8 @@ export const serviceCoverImageAlts: Record<string, string> = {
     'Wedding treats and cake — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/wedding-services/florals-decoration.webp':
     'Wedding florals and decorations — Wedding Sky Cyprus',
+  '/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp':
+    'Luxury wedding décor tablescape with florals and crystal — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/wedding-services/first-dance-choreography.webp':
     'First dance choreography — Wedding Sky Cyprus',
   '/images/services/wedding-highlights/wedding-services/luxury-supercars.webp':
@@ -135,18 +137,32 @@ export const serviceCoverImageAlts: Record<string, string> = {
     'Wedding Sky wedding packages collection — luxury celebration tiers, Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/prestige-wedding-experience.webp':
     'Wedding Sky Prestige Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/prestige-wedding-experience-back.webp':
+    'Wedding Sky Prestige Wedding Experience package reverse flyer — Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/grand-wedding-experience.webp':
     'Wedding Sky Grand Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/grand-wedding-experience-back.webp':
+    'Wedding Sky Grand Wedding Experience package reverse flyer — Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/elite-wedding-experience.webp':
     'Wedding Sky Elite Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/elite-wedding-experience-back.webp':
+    'Wedding Sky Elite Wedding Experience package reverse flyer — Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/exclusive-wedding-experience.webp':
     'Wedding Sky Exclusive Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/exclusive-wedding-experience-back.webp':
+    'Wedding Sky Exclusive Wedding Experience package reverse flyer — Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/imperial-wedding-experience.webp':
     'Wedding Sky Imperial Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/imperial-wedding-experience-back.webp':
+    'Wedding Sky Imperial Wedding Experience package reverse flyer — Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/crown-wedding-experience.webp':
     'Wedding Sky Crown Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/crown-wedding-experience-back.webp':
+    'Wedding Sky Crown Wedding Experience package reverse flyer — Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/royal-wedding-experience.webp':
     'Wedding Sky Royal Wedding Experience package flyer — Cyprus',
+  '/images/services/wedding-highlights/completed-wedding-packages/royal-wedding-experience-back.webp':
+    'Wedding Sky Royal Wedding Experience package reverse flyer — Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/customised-wedding-experience.webp':
     'Wedding Sky Customised wedding package flyer — Cyprus',
   '/images/services/wedding-highlights/completed-wedding-packages/photoway-wedding-packages/photoway-1.webp':

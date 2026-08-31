@@ -96,7 +96,7 @@ export const weddingPackagesHubCopy = {
         el: 'Ανθοστολισμός, tablescapes και ατμοσφαιρικές συνθέσεις διακόσμησης για τελετή και δεξίωση.',
         ru: 'Флористика, tablescapes и атмосферные композиции декора для церемонии и банкета.',
       },
-      image: `${SERVICE_IMG}/florals-decoration.webp`,
+      image: `${SERVICE_IMG}/wedding-decor-cover-hero.webp`,
       href: '/services/wedding/wedding-packages/decor',
       tone: 'champagne',
     },
