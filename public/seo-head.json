@@ -41,6 +41,13 @@
     "ogImage": "https://www.komodromosgroup.com/images/services/companie-services-cover/cards-logos-services/main-logo.png",
     "index": true
   },
+  "/services/wedding/edit": {
+    "title": "The Wedding Edit Cyprus Services | Komodromos Group",
+    "description": "Inspiration, expert advice and ideas for your perfect day — Wedding Sky editorial guides on ceremony timing, Cypriot traditions, guest lists, budgets and",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/edit",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp",
+    "index": true
+  },
   "/services/wedding/wedding-packages": {
     "title": "Wedding Packages Cyprus Services | Komodromos Group",
     "description": "Explore Wedding Sky package collections — complete wedding programmes, photography packages, and décor packages in Cyprus. Premium Komodromos Group service in",

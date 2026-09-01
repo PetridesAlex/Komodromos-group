@@ -42881,7 +42881,7 @@ button.wedding-highlight-tiles__tile {
 .wedding-testimonials__brand {
   display: flex;
   justify-content: center;
-  margin: 0 auto 1.15rem;
+  margin: -10px auto 1.15rem;
 }
 
 .wedding-testimonials__brand-logo {
@@ -42895,9 +42895,25 @@ button.wedding-highlight-tiles__tile {
 }
 
 .wedding-testimonials .wedding-section__eyebrow {
-  color: var(--wt-blue) !important;
-  font-weight: 800;
-  letter-spacing: 0.22em;
+  color: var(--wt-navy) !important;
+  font-family: var(--ws-display);
+  font-size: clamp(1rem, 2.1vw, 1.35rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  text-transform: none;
+  margin: 0 auto 0.9rem;
+  max-width: min(34rem, 92vw);
+  background: linear-gradient(
+    118deg,
+    var(--wt-navy) 0%,
+    var(--wt-blue) 42%,
+    var(--wt-champagne-deep) 88%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .wedding-testimonials .wedding-section__title {

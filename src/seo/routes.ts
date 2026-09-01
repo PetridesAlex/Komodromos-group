@@ -96,6 +96,16 @@ function buildStaticRoutes(): SeoRouteEntry[] {
       priority: 0.75,
     }),
     route({
+      path: '/services/wedding/edit',
+      title: 'The Wedding Edit',
+      description:
+        'Inspiration, expert advice and ideas for your perfect day — Wedding Sky editorial guides on ceremony timing, Cypriot traditions, guest lists, budgets and wedding day planning.',
+      index: true,
+      priority: 0.75,
+      ogImage:
+        '/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp',
+    }),
+    route({
       path: '/services/wedding/wedding-packages',
       title: 'Wedding Packages',
       description:

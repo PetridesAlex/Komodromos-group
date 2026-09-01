@@ -362,6 +362,7 @@ export const WEDDING_ROUTE_SEGMENTS = [
   'about',
   'difference',
   'concierge',
+  'edit',
   'wedding-packages',
   'wedding-packages/complete',
   'wedding-packages/photography',

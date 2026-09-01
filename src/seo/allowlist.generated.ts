@@ -6,6 +6,7 @@ export const SEO_ALLOWLIST = new Set<string>([
   "/services/wedding/about",
   "/services/wedding/difference",
   "/services/wedding/concierge",
+  "/services/wedding/edit",
   "/services/wedding/wedding-packages",
   "/services/wedding/wedding-packages/complete",
   "/services/wedding/wedding-packages/photography",

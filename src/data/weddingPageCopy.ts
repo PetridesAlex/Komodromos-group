@@ -129,7 +129,7 @@ export const weddingEditorialPillarsCopy: {
         el: 'Έμπνευση, συμβουλές ειδικών και ιδέες για την τέλεια μέρα σας',
         ru: 'Вдохновение, экспертные советы и идеи для вашего идеального дня',
       },
-      href: '#wedding-inspiration',
+      href: '/services/wedding/edit',
     },
     {
       id: 'wedding-concierge',
@@ -606,9 +606,9 @@ export const weddingTestimonialsCopy: {
   verifiedClient: LocalizedText
 } = {
   eyebrow: {
-    en: 'Love stories',
-    el: 'Ιστορίες αγάπης',
-    ru: 'Истории любви',
+    en: 'Your entire wedding… with just one click!',
+    el: 'Ολόκληρος ο γάμος σας… μόνο με ένα κλικ!',
+    ru: 'Вся свадьба… в один клик!',
   },
   title: {
     en: 'Reviews from real couples',

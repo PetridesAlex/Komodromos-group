@@ -55,9 +55,9 @@ export const weddingPackagesHubCopy = {
     {
       id: 'complete',
       title: {
-        en: 'Complete Wedding Packages',
-        el: 'Ολοκληρωμένα Πακέτα Γάμου',
-        ru: 'Полные свадебные пакеты',
+        en: 'Integrated Wedding Packages',
+        el: 'Ενιαία Πακέτα Γάμου',
+        ru: 'Интегрированные свадебные пакеты',
       },
       tagline: {
         en: 'Full Wedding Sky programmes — coordination, styling, and signature inclusions in one investment.',

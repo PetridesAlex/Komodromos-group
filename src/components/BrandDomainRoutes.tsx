@@ -38,6 +38,7 @@ import WeddingPackageDetailPage from './WeddingPackageDetailPage'
 import WeddingAboutPage from './WeddingAboutPage'
 import WeddingDifferencePage from './WeddingDifferencePage'
 import WeddingConciergePage from './WeddingConciergePage'
+import WeddingEditPage from './WeddingEditPage'
 import WeddingPackagesHubPage from './WeddingPackagesHubPage'
 import WeddingCompletePackagesPage from './WeddingCompletePackagesPage'
 import WeddingPhotographyPackagesPage from './WeddingPhotographyPackagesPage'
@@ -190,6 +191,7 @@ function WeddingBrandRoutes() {
         <Route path="/about" element={<WeddingAboutPage />} />
         <Route path="/difference" element={<WeddingDifferencePage />} />
         <Route path="/concierge" element={<WeddingConciergePage />} />
+        <Route path="/edit" element={<WeddingEditPage />} />
         <Route path="/wedding-packages" element={<WeddingPackagesHubPage />} />
         <Route path="/wedding-packages/complete" element={<WeddingCompletePackagesPage />} />
         <Route path="/wedding-packages/photography" element={<WeddingPhotographyPackagesPage />} />
@@ -201,6 +203,7 @@ function WeddingBrandRoutes() {
       <Route path="/services/wedding/about" element={<Navigate to="/about" replace />} />
       <Route path="/services/wedding/difference" element={<Navigate to="/difference" replace />} />
       <Route path="/services/wedding/concierge" element={<Navigate to="/concierge" replace />} />
+      <Route path="/services/wedding/edit" element={<Navigate to="/edit" replace />} />
       <Route path="/services/wedding/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
       <Route path="*" element={<NotFoundPage />} />

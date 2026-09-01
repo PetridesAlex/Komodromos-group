@@ -8,6 +8,7 @@ import WeddingPackageCategoryPage from './WeddingPackageCategoryPage'
 import WeddingAboutPage from './WeddingAboutPage'
 import WeddingDifferencePage from './WeddingDifferencePage'
 import WeddingConciergePage from './WeddingConciergePage'
+import WeddingEditPage from './WeddingEditPage'
 import WeddingPackagesHubPage from './WeddingPackagesHubPage'
 import WeddingCompletePackagesPage from './WeddingCompletePackagesPage'
 import WeddingPhotographyPackagesPage from './WeddingPhotographyPackagesPage'
@@ -123,6 +124,7 @@ function GroupRoutes() {
         <Route path="about" element={<WeddingAboutPage />} />
         <Route path="difference" element={<WeddingDifferencePage />} />
         <Route path="concierge" element={<WeddingConciergePage />} />
+        <Route path="edit" element={<WeddingEditPage />} />
         <Route path="wedding-packages" element={<WeddingPackagesHubPage />} />
         <Route path="wedding-packages/complete" element={<WeddingCompletePackagesPage />} />
         <Route path="wedding-packages/photography" element={<WeddingPhotographyPackagesPage />} />
