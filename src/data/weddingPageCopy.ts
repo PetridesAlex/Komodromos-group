@@ -1602,9 +1602,9 @@ export const weddingConsultationCopy = {
     ru: 'Записаться на консультацию',
   } satisfies LocalizedText,
   subtitle: {
-    en: 'Tell us when you’d like to meet — we’ll confirm a time to discuss your first ideas.',
-    el: 'Πείτε μας πότε θα θέλατε να συναντηθούμε — θα επιβεβαιώσουμε ώρα για να συζητήσουμε τις πρώτες σας ιδέες.',
-    ru: 'Укажите удобное время — мы подтвердим встречу, чтобы обсудить ваши первые идеи.',
+    en: 'Tell us when you would like to meet. We will confirm a time to discuss your first ideas.',
+    el: 'Πείτε μας πότε θα θέλατε να συναντηθούμε. Θα επιβεβαιώσουμε μια ώρα για να συζητήσουμε τις πρώτες σας ιδέες.',
+    ru: 'Укажите удобное время. Мы подтвердим встречу чтобы обсудить ваши первые идеи.',
   } satisfies LocalizedText,
   optional: {
     en: 'optional',
@@ -1612,9 +1612,9 @@ export const weddingConsultationCopy = {
     ru: 'необязательно',
   } satisfies LocalizedText,
   selectPlaceholder: {
-    en: 'Select…',
-    el: 'Επιλέξτε…',
-    ru: 'Выберите…',
+    en: 'Please select',
+    el: 'Επιλέξτε',
+    ru: 'Выберите',
   } satisfies LocalizedText,
   fields: {
     name: {
@@ -1623,39 +1623,39 @@ export const weddingConsultationCopy = {
       ru: 'Ваше имя',
     } satisfies LocalizedText,
     partnerName: {
-      en: 'Partner’s name',
-      el: 'Όνομα συντρόφου',
+      en: 'Partner name',
+      el: 'Το όνομα του συντρόφου σας',
       ru: 'Имя партнёра',
     } satisfies LocalizedText,
     email: {
-      en: 'Email',
-      el: 'Email',
-      ru: 'Email',
+      en: 'Email address',
+      el: 'Ηλεκτρονική διεύθυνση',
+      ru: 'Электронная почта',
     } satisfies LocalizedText,
     phone: {
-      en: 'Phone',
-      el: 'Τηλέφωνο',
-      ru: 'Телефон',
+      en: 'Phone number',
+      el: 'Αριθμός τηλεφώνου',
+      ru: 'Номер телефона',
     } satisfies LocalizedText,
     preferredDate: {
       en: 'Preferred date',
-      el: 'Επιθυμητή ημερομηνία',
+      el: 'Ημερομηνία που προτιμάτε',
       ru: 'Желаемая дата',
     } satisfies LocalizedText,
     timeSlot: {
       en: 'Preferred time',
-      el: 'Προτιμώμενη ώρα',
-      ru: 'Предпочтительное время',
+      el: 'Ώρα που προτιμάτε',
+      ru: 'Удобное время',
     } satisfies LocalizedText,
     meetingType: {
-      en: 'Meeting type',
-      el: 'Τύπος συνάντησης',
-      ru: 'Формат встречи',
+      en: 'How would you like to meet',
+      el: 'Πώς θα θέλατε να συναντηθούμε',
+      ru: 'Как вам удобнее встретиться',
     } satisfies LocalizedText,
     message: {
-      en: 'Message',
-      el: 'Μήνυμα',
-      ru: 'Сообщение',
+      en: 'Your message',
+      el: 'Το μήνυμά σας',
+      ru: 'Ваше сообщение',
     } satisfies LocalizedText,
   },
   placeholders: {
@@ -1665,7 +1665,7 @@ export const weddingConsultationCopy = {
       ru: 'Полное имя',
     } satisfies LocalizedText,
     partnerName: {
-      en: 'Partner’s full name',
+      en: 'Partner full name',
       el: 'Ονοματεπώνυμο συντρόφου',
       ru: 'Полное имя партнёра',
     } satisfies LocalizedText,
@@ -1680,9 +1680,9 @@ export const weddingConsultationCopy = {
       ru: '+357 …',
     } satisfies LocalizedText,
     message: {
-      en: 'First ideas, questions, or anything we should know…',
-      el: 'Πρώτες ιδέες, ερωτήσεις ή οτιδήποτε πρέπει να γνωρίζουμε…',
-      ru: 'Первые идеи, вопросы или всё, что нам важно знать…',
+      en: 'Share your first ideas or any questions you may have',
+      el: 'Μοιραστείτε τις πρώτες σας ιδέες ή όποιες ερωτήσεις έχετε',
+      ru: 'Поделитесь первыми идеями или любыми вопросами',
     } satisfies LocalizedText,
   },
   timeSlotOptions: [
@@ -1703,9 +1703,9 @@ export const weddingConsultationCopy = {
     {
       value: 'studio',
       label: {
-        en: 'Studio visit',
-        el: 'Επίσκεψη στο στούντιο',
-        ru: 'Визит в студию',
+        en: 'Visit our studio',
+        el: 'Επίσκεψη στο στούντιό μας',
+        ru: 'Визит в нашу студию',
       } satisfies LocalizedText,
     },
     {
@@ -1720,14 +1720,14 @@ export const weddingConsultationCopy = {
       value: 'phone',
       label: {
         en: 'Phone call',
-        el: 'Τηλεφωνική κλήση',
+        el: 'Τηλεφωνική επικοινωνία',
         ru: 'Телефонный звонок',
       } satisfies LocalizedText,
     },
   ] as const,
   submit: {
     en: 'Request appointment',
-    el: 'Αίτημα ραντεβού',
+    el: 'Αίτημα για ραντεβού',
     ru: 'Запросить встречу',
   } satisfies LocalizedText,
   submitting: {
@@ -1736,19 +1736,19 @@ export const weddingConsultationCopy = {
     ru: 'Отправка…',
   } satisfies LocalizedText,
   note: {
-    en: 'We’ll confirm your appointment by email within 1–2 business days.',
+    en: 'We will confirm your appointment by email within 1–2 business days.',
     el: 'Θα επιβεβαιώσουμε το ραντεβού σας με email εντός 1–2 εργάσιμων ημερών.',
-    ru: 'Подтвердим встречу по email в течение 1–2 рабочих дней.',
+    ru: 'Мы подтвердим встречу по email в течение 1–2 рабочих дней.',
   } satisfies LocalizedText,
   successTitle: {
     en: 'Request received',
-    el: 'Το αίτημα ελήφθη',
+    el: 'Το αίτημά σας καταχωρήθηκε',
     ru: 'Запрос получен',
   } satisfies LocalizedText,
   successBody: {
-    en: 'Thank you — the Wedding Sky team will confirm your consultation shortly.',
-    el: 'Ευχαριστούμε — η ομάδα της Wedding Sky θα επιβεβαιώσει σύντομα τη συνάντησή σας.',
-    ru: 'Спасибо — команда Wedding Sky скоро подтвердит вашу консультацию.',
+    en: 'Thank you. The Wedding Sky team will confirm your consultation shortly.',
+    el: 'Ευχαριστούμε. Η ομάδα της Wedding Sky θα επιβεβαιώσει σύντομα το ραντεβού σας.',
+    ru: 'Спасибо. Команда Wedding Sky скоро подтвердит вашу консультацию.',
   } satisfies LocalizedText,
   done: {
     en: 'Done',

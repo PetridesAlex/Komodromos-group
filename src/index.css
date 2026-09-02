@@ -90962,7 +90962,10 @@ a.yacht-card {
 
 .appt--ws .appt__field label {
   color: rgba(12, 26, 46, 0.72);
-  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .appt--ws .appt__optional {

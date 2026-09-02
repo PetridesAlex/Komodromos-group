@@ -218,9 +218,7 @@ export default function WeddingConsultationBookingModal({
 
               <div className="appt__fields appt__fields--consult">
                 <div className="appt__field">
-                  <label htmlFor="ws-consult-name">
-                    {t(copy.fields.name)} <span aria-hidden>*</span>
-                  </label>
+                  <label htmlFor="ws-consult-name">{t(copy.fields.name)}</label>
                   <input
                     id="ws-consult-name"
                     name="name"
@@ -234,10 +232,7 @@ export default function WeddingConsultationBookingModal({
                 </div>
 
                 <div className="appt__field">
-                  <label htmlFor="ws-consult-partner">
-                    {t(copy.fields.partnerName)}{' '}
-                    <span className="appt__optional">({t(copy.optional)})</span>
-                  </label>
+                  <label htmlFor="ws-consult-partner">{t(copy.fields.partnerName)}</label>
                   <input
                     id="ws-consult-partner"
                     name="partnerName"
@@ -250,9 +245,7 @@ export default function WeddingConsultationBookingModal({
                 </div>
 
                 <div className="appt__field">
-                  <label htmlFor="ws-consult-email">
-                    {t(copy.fields.email)} <span aria-hidden>*</span>
-                  </label>
+                  <label htmlFor="ws-consult-email">{t(copy.fields.email)}</label>
                   <input
                     id="ws-consult-email"
                     name="email"
@@ -266,9 +259,7 @@ export default function WeddingConsultationBookingModal({
                 </div>
 
                 <div className="appt__field">
-                  <label htmlFor="ws-consult-phone">
-                    {t(copy.fields.phone)} <span aria-hidden>*</span>
-                  </label>
+                  <label htmlFor="ws-consult-phone">{t(copy.fields.phone)}</label>
                   <input
                     id="ws-consult-phone"
                     name="phone"
@@ -282,10 +273,7 @@ export default function WeddingConsultationBookingModal({
                 </div>
 
                 <div className="appt__field">
-                  <label htmlFor="ws-consult-date">
-                    {t(copy.fields.preferredDate)}{' '}
-                    <span className="appt__optional">({t(copy.optional)})</span>
-                  </label>
+                  <label htmlFor="ws-consult-date">{t(copy.fields.preferredDate)}</label>
                   <input
                     id="ws-consult-date"
                     name="preferredDate"
@@ -296,10 +284,7 @@ export default function WeddingConsultationBookingModal({
                 </div>
 
                 <div className="appt__field">
-                  <label htmlFor="ws-consult-slot">
-                    {t(copy.fields.timeSlot)}{' '}
-                    <span className="appt__optional">({t(copy.optional)})</span>
-                  </label>
+                  <label htmlFor="ws-consult-slot">{t(copy.fields.timeSlot)}</label>
                   <select
                     id="ws-consult-slot"
                     name="timeSlot"
@@ -316,10 +301,7 @@ export default function WeddingConsultationBookingModal({
                 </div>
 
                 <div className="appt__field appt__field--full">
-                  <label htmlFor="ws-consult-meeting">
-                    {t(copy.fields.meetingType)}{' '}
-                    <span className="appt__optional">({t(copy.optional)})</span>
-                  </label>
+                  <label htmlFor="ws-consult-meeting">{t(copy.fields.meetingType)}</label>
                   <select
                     id="ws-consult-meeting"
                     name="meetingType"
@@ -336,10 +318,7 @@ export default function WeddingConsultationBookingModal({
                 </div>
 
                 <div className="appt__field appt__field--full">
-                  <label htmlFor="ws-consult-message">
-                    {t(copy.fields.message)}{' '}
-                    <span className="appt__optional">({t(copy.optional)})</span>
-                  </label>
+                  <label htmlFor="ws-consult-message">{t(copy.fields.message)}</label>
                   <textarea
                     id="ws-consult-message"
                     name="message"
