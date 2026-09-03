@@ -42163,7 +42163,7 @@ button.wedding-highlight-tiles__tile {
 .wedding-visit__map-panel {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(201, 165, 106, 0.28);
@@ -42174,15 +42174,48 @@ button.wedding-highlight-tiles__tile {
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
+@keyframes wedding-visit-map-label-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .wedding-visit__map-label {
   margin: 0;
-  padding: 0.85rem 1rem 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
+  padding: 1.05rem 1.25rem 1rem;
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-align: center;
   text-transform: uppercase;
-  color: rgba(26, 91, 184, 0.82);
+  color: #f3e4c4;
+  text-shadow:
+    0 1px 0 rgba(4, 12, 28, 0.35),
+    0 0 24px rgba(201, 165, 106, 0.28);
+  background: linear-gradient(
+    125deg,
+    #041428 0%,
+    #0a2a5c 16%,
+    #1247a0 34%,
+    #1a5bb8 48%,
+    #0d3d7a 62%,
+    #8b6914 78%,
+    #c9a56a 90%,
+    #041428 100%
+  );
+  background-size: 240% 240%;
+  animation: wedding-visit-map-label-shift 10s ease-in-out infinite;
+  border-bottom: 1px solid rgba(201, 165, 106, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .wedding-visit__map {
@@ -42215,6 +42248,11 @@ button.wedding-highlight-tiles__tile {
 
   .wedding-visit__list a:hover {
     transform: none;
+  }
+
+  .wedding-visit__map-label {
+    animation: none;
+    background-position: 40% 50%;
   }
 }
 
