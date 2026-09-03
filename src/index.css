@@ -27262,23 +27262,28 @@ a.action {
   min-height: 6.75rem;
   padding: 1.35rem 1.15rem 1.4rem 1.25rem;
   border-radius: 18px;
-  border: 1px solid rgba(185, 220, 255, 0.38);
+  border: 1px solid rgba(201, 165, 106, 0.42);
   background: linear-gradient(
-    155deg,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(55, 115, 205, 0.28) 44%,
-    rgba(10, 34, 74, 0.58) 100%
+    125deg,
+    #041428 0%,
+    #0a2a5c 16%,
+    #1247a0 34%,
+    #1a5bb8 48%,
+    #0d3d7a 62%,
+    #8b6914 78%,
+    #c9a56a 90%,
+    #041428 100%
   );
-  backdrop-filter: blur(8px) saturate(1.15);
-  -webkit-backdrop-filter: blur(8px) saturate(1.15);
+  background-size: 240% 240%;
+  animation: wedding-visit-map-label-shift 10s ease-in-out infinite;
+  animation-delay: calc(var(--pillar-i, 0) * -2.8s);
   box-shadow:
-    0 16px 36px rgba(4, 16, 40, 0.36),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    0 16px 36px rgba(4, 16, 40, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
   text-decoration: none;
   color: #f7faff;
   overflow: hidden;
   transition:
-    background 0.38s ease,
     color 0.3s ease,
     box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.35s ease,
@@ -27443,17 +27448,11 @@ a.action {
 .wedding-pillars__item:focus-visible {
   outline: none;
   color: #ffffff;
-  border-color: rgba(210, 235, 255, 0.62);
-  background: linear-gradient(
-    155deg,
-    rgba(255, 255, 255, 0.26) 0%,
-    rgba(80, 150, 245, 0.42) 48%,
-    rgba(22, 78, 160, 0.58) 100%
-  );
+  border-color: rgba(220, 200, 150, 0.62);
   box-shadow:
-    0 22px 44px rgba(8, 30, 80, 0.48),
-    0 0 0 1px rgba(160, 210, 255, 0.32),
-    inset 0 1px 0 rgba(255, 255, 255, 0.36);
+    0 22px 44px rgba(8, 30, 80, 0.52),
+    0 0 28px rgba(201, 165, 106, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: translate3d(0, -7px, 0) scale(1.018);
 }
 
@@ -27544,6 +27543,11 @@ a.action {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .wedding-pillars__item {
+    animation: none;
+    background-position: 40% 50%;
+  }
+
   .wedding-pillars__item:hover,
   .wedding-pillars__item:focus-visible {
     transform: none;
@@ -27675,23 +27679,28 @@ a.action {
   min-height: 8.75rem;
   padding: 1.35rem 1.15rem 1.4rem 1.25rem;
   border-radius: 18px;
-  border: 1px solid rgba(201, 165, 106, 0.34);
+  border: 1px solid rgba(201, 165, 106, 0.42);
   background: linear-gradient(
-    155deg,
-    rgba(255, 255, 255, 0.16) 0%,
-    rgba(55, 115, 205, 0.26) 44%,
-    rgba(10, 34, 74, 0.62) 100%
+    125deg,
+    #041428 0%,
+    #0a2a5c 16%,
+    #1247a0 34%,
+    #1a5bb8 48%,
+    #0d3d7a 62%,
+    #8b6914 78%,
+    #c9a56a 90%,
+    #041428 100%
   );
-  backdrop-filter: blur(8px) saturate(1.15);
-  -webkit-backdrop-filter: blur(8px) saturate(1.15);
+  background-size: 240% 240%;
+  animation: wedding-visit-map-label-shift 10s ease-in-out infinite;
+  animation-delay: calc(var(--edit-i, 0) * -2.8s);
   box-shadow:
-    0 16px 36px rgba(4, 16, 40, 0.36),
-    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+    0 16px 36px rgba(4, 16, 40, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
   text-decoration: none;
   color: #f7faff;
   overflow: hidden;
   transition:
-    background 0.38s ease,
     color 0.3s ease,
     box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.35s ease,
@@ -27860,17 +27869,11 @@ a.action {
 .wedding-editorial-pillars__item:focus-visible {
   outline: none;
   transform: translateY(-4px);
-  border-color: rgba(220, 200, 150, 0.55);
-  background: linear-gradient(
-    155deg,
-    rgba(255, 255, 255, 0.22) 0%,
-    rgba(70, 130, 220, 0.34) 44%,
-    rgba(12, 40, 85, 0.68) 100%
-  );
+  border-color: rgba(220, 200, 150, 0.62);
   box-shadow:
-    0 22px 44px rgba(4, 16, 40, 0.45),
-    0 0 28px rgba(201, 165, 106, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    0 22px 44px rgba(4, 16, 40, 0.5),
+    0 0 28px rgba(201, 165, 106, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .wedding-editorial-pillars__item:hover .wedding-editorial-pillars__glow,
@@ -27910,6 +27913,11 @@ a.action {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .wedding-editorial-pillars__item {
+    animation: none;
+    background-position: 40% 50%;
+  }
+
   .wedding-editorial-pillars__item:hover,
   .wedding-editorial-pillars__item:focus-visible {
     transform: none;
@@ -39541,11 +39549,35 @@ button.wedding-highlight-tiles__tile {
     box-shadow 0.28s ease;
 }
 
+@keyframes weddingConsultFabFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow:
+      0 16px 40px -12px rgba(0, 0, 0, 0.55),
+      0 0 28px -6px rgba(201, 165, 106, 0.5),
+      0 0 18px rgba(111, 176, 255, 0.18);
+  }
+
+  50% {
+    transform: translateY(-14px) scale(1.035);
+    box-shadow:
+      0 28px 56px -10px rgba(0, 0, 0, 0.48),
+      0 0 44px -2px rgba(201, 165, 106, 0.82),
+      0 0 32px rgba(111, 176, 255, 0.42);
+  }
+}
+
 .wedding-consult-fab--global.wedding-consult-fab--visible {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0) scale(1);
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    box-shadow 0.28s ease;
+  animation: weddingConsultFabFloat 2.6s ease-in-out infinite;
 }
 
 .wedding-consult-fab--global.wedding-consult-fab--hidden {
@@ -39553,6 +39585,7 @@ button.wedding-highlight-tiles__tile {
   visibility: hidden;
   pointer-events: none;
   transform: translateY(12px) scale(0.96);
+  animation: none;
 }
 
 .wedding-consult-fab--visible {
@@ -39560,13 +39593,20 @@ button.wedding-highlight-tiles__tile {
   visibility: visible;
   pointer-events: auto;
   transform: translateY(0) scale(1);
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    box-shadow 0.28s ease;
+  animation: weddingConsultFabFloat 2.6s ease-in-out infinite;
 }
 
 .wedding-consult-fab:hover {
+  animation: none;
   box-shadow:
-    0 22px 52px -10px rgba(0, 0, 0, 0.65),
-    0 0 36px -4px rgba(201, 165, 106, 0.65);
-  transform: translateY(-3px) scale(1.03);
+    0 26px 58px -10px rgba(0, 0, 0, 0.62),
+    0 0 42px -2px rgba(201, 165, 106, 0.78),
+    0 0 28px rgba(111, 176, 255, 0.4);
+  transform: translateY(-8px) scale(1.045);
 }
 
 .wedding-consult-fab:focus-visible {
@@ -39579,7 +39619,7 @@ button.wedding-highlight-tiles__tile {
   inset: -3px;
   border-radius: inherit;
   border: 1px solid rgba(201, 165, 106, 0.5);
-  animation: weddingConsultFabPulse 2.4s ease-out infinite;
+  animation: weddingConsultFabPulse 2.2s ease-out infinite;
   pointer-events: none;
   z-index: 0;
 }
@@ -39595,7 +39635,7 @@ button.wedding-highlight-tiles__tile {
     transparent 68%
   );
   transform: translateX(-130%);
-  animation: weddingConsultFabSheen 4.8s ease-in-out infinite;
+  animation: weddingConsultFabSheen 4.2s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -39731,6 +39771,11 @@ button.wedding-highlight-tiles__tile {
   .wedding-consult-fab__sheen,
   .wedding-consult-promo__chip,
   .wedding-consult-promo__chip-sheen {
+    animation: none;
+  }
+
+  .wedding-consult-fab--global.wedding-consult-fab--visible,
+  .wedding-consult-fab--visible {
     animation: none;
   }
 

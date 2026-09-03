@@ -848,14 +848,14 @@ export const weddingVisitCopy: {
       },
       addressLines: [
         {
-          en: 'John Kennedy Street, Iris House, 4th Floor, 440A',
-          el: 'Οδός Τζον Κένεντι, Iris House, 4ος όροφος, 440A',
-          ru: 'John Kennedy Street, Iris House, 4th Floor, 440A',
+          en: 'John F. Kennedy 8',
+          el: 'John F. Kennedy 8',
+          ru: 'John F. Kennedy 8',
         },
         {
-          en: 'Neapolis, 3106 Limassol',
-          el: 'Νεάπολη, 3106 Λεμεσός',
-          ru: 'Neapolis, 3106 Limassol',
+          en: 'Limassol 3106',
+          el: 'Λεμεσός 3106',
+          ru: 'Лимасол 3106',
         },
         {
           en: 'Cyprus',
@@ -865,7 +865,7 @@ export const weddingVisitCopy: {
       ],
       phone: '+357 99 243100',
       phoneHref: 'tel:+35799243100',
-      mapQuery: 'Iris+House+John+Kennedy+Limassol+Cyprus',
+      mapQuery: 'John+F.+Kennedy+8,+Limassol+3106,+Cyprus',
       mapTitle: {
         en: 'Wedding Sky — Limassol studio',
         el: 'Wedding Sky — στούντιο Λεμεσού',
