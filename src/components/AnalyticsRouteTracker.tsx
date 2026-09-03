@@ -1,10 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import { trackPageView } from '../lib/analytics'
+import {
+  hasAnalyticsConsent,
+  subscribeAnalyticsConsent,
+  trackPageView,
+} from '../lib/analytics'
 
 /**
- * Sends a GA4 page_view on every client-side route change (SPA).
- * Dedupes StrictMode double-invoke for the same path+search.
+ * Sends a GA4 page_view on every client-side route change (SPA),
+ * only after cookie consent has granted analytics storage.
  */
 export default function AnalyticsRouteTracker() {
   const location = useLocation()
@@ -12,9 +16,24 @@ export default function AnalyticsRouteTracker() {
 
   useEffect(() => {
     const path = `${location.pathname}${location.search}`
-    if (lastTracked.current === path) return
-    lastTracked.current = path
-    trackPageView(path)
+
+    const tryTrack = () => {
+      if (lastTracked.current === path) return
+      if (!hasAnalyticsConsent()) return
+      if (!trackPageView(path)) return
+      lastTracked.current = path
+    }
+
+    tryTrack()
+
+    return subscribeAnalyticsConsent((granted) => {
+      if (!granted) {
+        lastTracked.current = null
+        return
+      }
+      // page_view already sent by updateAnalyticsConsent on grant — sync only
+      lastTracked.current = path
+    })
   }, [location.pathname, location.search])
 
   return null

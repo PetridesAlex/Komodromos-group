@@ -36,6 +36,8 @@ declare global {
 }
 
 let initialized = false
+/** Mirrors Consent Mode analytics_storage for our SPA tracking gate. */
+let consentGranted = false
 
 function measurementId(): string {
   const fromEnv = import.meta.env.VITE_GA_MEASUREMENT_ID
@@ -48,8 +50,10 @@ function measurementId(): string {
 function ensureGtagStub(): void {
   window.dataLayer = window.dataLayer || []
   if (typeof window.gtag !== 'function') {
-    window.gtag = function gtag(...args: unknown[]) {
-      window.dataLayer.push(args)
+    // Official stub: push Arguments (not a rest-array) so gtag.js can replay the queue.
+    window.gtag = function gtag() {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer.push(arguments)
     } as GtagFunction
   }
 }
@@ -86,6 +90,10 @@ function applyConsentUpdate(granted: boolean): void {
   })
 }
 
+function currentPath(): string {
+  return `${window.location.pathname}${window.location.search}`
+}
+
 /**
  * One-time GA4 + Consent Mode bootstrap.
  * Defaults storage to denied until the cookie banner grants consent.
@@ -104,7 +112,7 @@ export function initAnalytics(): void {
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
-    wait_for_update: 500,
+    wait_for_update: 2000,
   })
 
   injectGtagScript(id)
@@ -118,32 +126,66 @@ export function initAnalytics(): void {
   const stored = consentFromStorage()
   if (stored === true) {
     applyConsentUpdate(true)
+    consentGranted = true
   } else if (stored === false) {
     applyConsentUpdate(false)
+    consentGranted = false
   }
 }
 
+export function hasAnalyticsConsent(): boolean {
+  return consentGranted
+}
+
+const CONSENT_EVENT = 'kg-analytics-consent'
+
+/**
+ * Sync Consent Mode with the cookie banner.
+ * When consent flips to granted, send a page_view (first hit after Accept).
+ */
 export function updateAnalyticsConsent(granted: boolean): void {
   if (typeof window === 'undefined') return
   ensureGtagStub()
+
+  const wasGranted = consentGranted
   applyConsentUpdate(granted)
+  consentGranted = granted
+
+  if (granted && !wasGranted && initialized) {
+    trackPageView(currentPath())
+  }
+
+  window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: { granted } }))
 }
 
-export function trackPageView(path: string): void {
-  if (typeof window === 'undefined' || !initialized) return
+export function trackPageView(path: string): boolean {
+  if (typeof window === 'undefined' || !initialized || !consentGranted) return false
 
   const pagePath = path.startsWith('/') ? path : `/${path}`
   window.gtag('event', 'page_view', {
     page_path: pagePath,
-    page_location: window.location.href,
+    page_location: `${window.location.origin}${pagePath}`,
     page_title: document.title,
   })
+  return true
 }
 
 export function trackEvent(
   name: AnalyticsConversionEvent | (string & {}),
   params?: Record<string, unknown>,
 ): void {
-  if (typeof window === 'undefined' || !initialized) return
+  if (typeof window === 'undefined' || !initialized || !consentGranted) return
   window.gtag('event', name, params)
+}
+
+/** Listen for cookie-banner consent changes (SPA page-view sync). */
+export function subscribeAnalyticsConsent(
+  listener: (granted: boolean) => void,
+): () => void {
+  const handler = (event: Event) => {
+    const detail = (event as CustomEvent<{ granted: boolean }>).detail
+    listener(Boolean(detail?.granted))
+  }
+  window.addEventListener(CONSENT_EVENT, handler)
+  return () => window.removeEventListener(CONSENT_EVENT, handler)
 }
