@@ -48,7 +48,7 @@ export const decoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   lead: {
     en: 'Seven floral architecture programmes — from DecoWay 1 to DecoWay 6, plus Exclusive — for church, cars, reception, and atmosphere.',
-    el: 'Επτά προγράμματα ανθοστολισμού — από DecoWay 1 έως DecoWay 6, συν Exclusive — για εκκλησία, αυτοκίνητα, δεξίωση και ατμόσφαιρα.',
+    el: 'Επτά προγράμματα ανθοστολισμού — από DecoWay 1 έως DecoWay 6, μαζί με το Exclusive — για εκκλησία, αυτοκίνητα, δεξίωση και ατμόσφαιρα.',
     ru: 'Семь программ флористики — от DecoWay 1 до DecoWay 6, плюс Exclusive — для храма, авто, зала и атмосферы.',
   } satisfies LocalizedText,
   backLabel: {
@@ -63,7 +63,7 @@ export const decoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   enquireShort: {
     en: 'Enquire now',
-    el: 'Εκδήλωση ενδιαφέροντος',
+    el: 'Επικοινωνήστε τώρα',
     ru: 'Оставить заявку',
   } satisfies LocalizedText,
   viewDetails: {
@@ -83,7 +83,7 @@ export const decoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   featuredBadge: {
     en: 'Signature choice',
-    el: 'Υπογραφή επιλογή',
+    el: 'Προτεινόμενη επιλογή',
     ru: 'Фирменный выбор',
   } satisfies LocalizedText,
   previewFlyer: {
@@ -108,7 +108,7 @@ export const decoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   catalogueHeadingLine2: {
     en: 'DecoWay tier',
-    el: 'επίπεδο DecoWay',
+    el: 'Επίπεδο DecoWay',
     ru: 'уровень DecoWay',
   } satisfies LocalizedText,
   catalogueEyebrow: {
@@ -118,7 +118,7 @@ export const decoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   catalogueLead: {
     en: 'Seven composed floral programmes — from polished church & reception foundations to the fullest DecoWay production.',
-    el: 'Επτά ολοκληρωμένα προγράμματα ανθοστολισμού — από κομψές βάσεις εκκλησίας & δεξίωσης έως την πληρέστερη παραγωγή DecoWay.',
+    el: 'Επτά ολοκληρωμένα προγράμματα ανθοστολισμού — από έναν κομψό στολισμό εκκλησίας και δεξίωσης μέχρι την πληρέστερη παραγωγή DecoWay.',
     ru: 'Семь программ флористики — от отточенной основы храма и зала до самой полной постановки DecoWay.',
   } satisfies LocalizedText,
 } as const
@@ -300,7 +300,7 @@ export const decoWayPackages: readonly DecoWayPackage[] = [
     name: L('DecoWay 4', 'DecoWay 4', 'DecoWay 4'),
     tagline: L(
       'Crystal hospitality — floor chandeliers, guest-list mirror, cake styling, and décor for 40 tables.',
-      'Κρυστάλλινη φιλοξενία — πολυέλεοι εδάφους, καθρέφτης λίστας καλεσμένων, styling τούρτας και διακόσμηση 40 τραπεζιών.',
+      'Κρυστάλλινη φιλοξενία — πολυέλεοι εδάφους, καθρέφτης λίστας καλεσμένων, στολισμό τούρτας και διακόσμηση 40 τραπεζιών.',
       'Кристальное гостеприимство — напольные люстры, зеркало списка гостей, styling торта и декор 40 столов.',
     ),
     priceDisplay: L('€3,500', '€3.500', '€3 500'),

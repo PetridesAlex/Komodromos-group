@@ -28,12 +28,12 @@ export type PhotoWayPackage = {
 export const photoWayPackagesPageCopy = {
   eyebrow: {
     en: 'Photography & film',
-    el: 'Φωτογραφία & film',
+    el: 'Φωτογραφία και βίντεο',
     ru: 'Фото и film',
   } satisfies LocalizedText,
   title: {
     en: 'Wedding Photography Packages',
-    el: 'Πακέτα Φωτογράφισης Γάμου',
+    el: 'Πακέτα φωτογράφισης γάμου',
     ru: 'Пакеты свадебной фотографии',
   } satisfies LocalizedText,
   heroTitleLine1: {
@@ -48,7 +48,7 @@ export const photoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   lead: {
     en: 'Four cinematic photography & film programmes — albums, trailers, drone, and same-day edits — composed to hold every glance and detail.',
-    el: 'Τέσσερα cinematic προγράμματα φωτογραφίας & film — άλμπουμ, trailers, drone και same-day edits — για να κρατήσουν κάθε βλέμμα και λεπτομέρεια.',
+    el: 'Τέσσερα κινηματογραφικά προγράμματα φωτογραφίας και βίντεο — με άλμπουμ, τρέιλερ, drone και μοντάζ την ίδια ημέρα — ώστε να μείνει κάθε βλέμμα και κάθε λεπτομέρεια.',
     ru: 'Четыре cinematic-программы фото и film — альбомы, трейлеры, дрон и same-day edits — чтобы сохранить каждый взгляд и деталь.',
   } satisfies LocalizedText,
   backLabel: {
@@ -63,7 +63,7 @@ export const photoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   enquireShort: {
     en: 'Enquire now',
-    el: 'Εκδήλωση ενδιαφέροντος',
+    el: 'Επικοινωνήστε τώρα',
     ru: 'Оставить заявку',
   } satisfies LocalizedText,
   viewDetails: {
@@ -83,7 +83,7 @@ export const photoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   featuredBadge: {
     en: 'Signature choice',
-    el: 'Υπογραφή επιλογή',
+    el: 'Προτεινόμενη επιλογή',
     ru: 'Фирменный выбор',
   } satisfies LocalizedText,
   previewFlyer: {
@@ -108,7 +108,7 @@ export const photoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   catalogueHeadingLine2: {
     en: 'PhotoWay tier',
-    el: 'επίπεδο PhotoWay',
+    el: 'Επίπεδο PhotoWay',
     ru: 'уровень PhotoWay',
   } satisfies LocalizedText,
   catalogueEyebrow: {
@@ -118,7 +118,7 @@ export const photoWayPackagesPageCopy = {
   } satisfies LocalizedText,
   catalogueLead: {
     en: 'Four composed programmes — from essential cinematic coverage to the fullest PhotoWay production.',
-    el: 'Τέσσερα ολοκληρωμένα προγράμματα — από essential cinematic κάλυψη έως την πληρέστερη παραγωγή PhotoWay.',
+    el: 'Τέσσερα ολοκληρωμένα προγράμματα — από την απαραίτητη κινηματογραφική κάλυψη μέχρι την πληρέστερη παραγωγή PhotoWay.',
     ru: 'Четыре программы — от essential cinematic-съёмки до самой полной постановки PhotoWay.',
   } satisfies LocalizedText,
 } as const
@@ -132,7 +132,7 @@ export const photoWayPackages: readonly PhotoWayPackage[] = [
     name: L('PhotoWay 1', 'PhotoWay 1', 'PhotoWay 1'),
     tagline: L(
       'Essential cinematic coverage — albums, reception film, and a Hollywood trailer.',
-      'Essential cinematic κάλυψη — άλμπουμ, φιλμ δεξίωσης και Hollywood trailer.',
+      'Βασική κινηματογραφική κάλυψη — άλμπουμ, φιλμ δεξίωσης και τρέιλερ Hollywood.',
       'Essential cinematic-съёмка — альбомы, фильм приёма и Hollywood trailer.',
     ),
     priceDisplay: L('€2,300', '€2.300', '€2 300'),
@@ -146,7 +146,7 @@ export const photoWayPackages: readonly PhotoWayPackage[] = [
       {
         title: L(
           'Photoshoots & albums',
-          'Φωτογραφήσεις και albums',
+          'Φωτογραφήσεις και άλμπουμ',
           'Съёмки и альбомы',
         ),
         items: [
@@ -221,7 +221,7 @@ export const photoWayPackages: readonly PhotoWayPackage[] = [
     name: L('PhotoWay 2', 'PhotoWay 2', 'PhotoWay 2'),
     tagline: L(
       'Elevated coverage with drone panoramas, GoPro, and a fuller print suite.',
-      'Αναβαθμισμένη κάλυψη με drone panoramas, GoPro και fuller σειρά εκτυπώσεων.',
+      'Αναβαθμισμένη κάλυψη με πανοραμικά πλάνα drone, GoPro και πληρέστερη σειρά εκτυπώσεων.',
       'Расширенная съёмка с drone panoramas, GoPro и fuller набором отпечатков.',
     ),
     priceDisplay: L('€2,600', '€2.600', '€2 600'),
@@ -235,7 +235,7 @@ export const photoWayPackages: readonly PhotoWayPackage[] = [
       {
         title: L(
           'Photoshoots & albums',
-          'Φωτογραφήσεις και albums',
+          'Φωτογραφήσεις και άλμπουμ',
           'Съёмки и альбомы',
         ),
         items: [
@@ -310,7 +310,7 @@ export const photoWayPackages: readonly PhotoWayPackage[] = [
     name: L('PhotoWay 3', 'PhotoWay 3', 'PhotoWay 3'),
     tagline: L(
       'Signature cinematic depth — larger albums, same-day video, dual GoPros, and richer prints.',
-      'Υπογραφή cinematic βάθους — μεγαλύτερα άλμπουμ, same-day video, δύο GoPro και richer εκτυπώσεις.',
+      'Υπογραφή με κινηματογραφικό βάθος — μεγαλύτερα άλμπουμ, βίντεο την ίδια ημέρα, δύο GoPro και πλουσιότερες εκτυπώσεις.',
       'Фирменная cinematic-глубина — большие альбомы, same-day video, два GoPro и richer-отпечатки.',
     ),
     priceDisplay: L('€2,900', '€2.900', '€2 900'),
@@ -325,7 +325,7 @@ export const photoWayPackages: readonly PhotoWayPackage[] = [
       {
         title: L(
           'Photoshoots & albums',
-          'Φωτογραφήσεις και albums',
+          'Φωτογραφήσεις και άλμπουμ',
           'Съёмки и альбомы',
         ),
         items: [
@@ -404,7 +404,7 @@ export const photoWayPackages: readonly PhotoWayPackage[] = [
     name: L('PhotoWay 4', 'PhotoWay 4', 'PhotoWay 4'),
     tagline: L(
       'The fullest PhotoWay production — larger albums, dual photographers, and an expanded cinematic crew.',
-      'Η πληρέστερη παραγωγή PhotoWay — μεγαλύτερα άλμπουμ, δύο φωτογράφοι και εμπλουτισμένο cinematic πλήρωμα.',
+      'Η πληρέστερη παραγωγή PhotoWay — μεγαλύτερα άλμπουμ, δύο φωτογράφοι και ενισχυμένο κινηματογραφικό συνεργείο.',
       'Самая полная постановка PhotoWay — большие альбомы, два фотографа и расширенная cinematic-команда.',
     ),
     priceDisplay: L('€3,600', '€3.600', '€3 600'),
@@ -418,7 +418,7 @@ export const photoWayPackages: readonly PhotoWayPackage[] = [
       {
         title: L(
           'Photoshoots & albums',
-          'Φωτογραφήσεις και albums',
+          'Φωτογραφήσεις και άλμπουμ',
           'Съёмки и альбомы',
         ),
         items: [

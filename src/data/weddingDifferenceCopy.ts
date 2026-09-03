@@ -82,7 +82,7 @@ export const weddingDifferenceCopy = {
       paragraphs: [
         {
           en: 'Wedding Sky is the largest wedding events company in Cyprus, offering one of the most complete portfolios of services for every aspect of a wedding.',
-          el: 'Η Wedding Sky αποτελεί τη μεγαλύτερη εταιρεία γαμήλιων εκδηλώσεων στην Κύπρο, προσφέροντας ένα από τα πληρέστερα portfolio υπηρεσιών για κάθε πτυχή ενός γάμου.',
+          el: 'Η Wedding Sky αποτελεί τη μεγαλύτερη εταιρεία γαμήλιων εκδηλώσεων στην Κύπρο, προσφέροντας ένα από τα πληρέστερα χαρτοφυλάκια υπηρεσιών για κάθε πτυχή ενός γάμου.',
           ru: 'Wedding Sky — крупнейшая компания свадебных событий на Кипре с одним из самых полных портфолио услуг для каждой грани свадьбы.',
         },
         {
@@ -108,7 +108,7 @@ export const weddingDifferenceCopy = {
         },
         {
           en: 'One destination. One team. One complete wedding experience.',
-          el: 'Ένας προορισμός. Μία ομάδα. Ένα ολοκληρωμένο wedding experience.',
+          el: 'Ένας προορισμός. Μία ομάδα. Μία ολοκληρωμένη γαμήλια εμπειρία.',
           ru: 'Один адрес. Одна команда. Один целостный свадебный опыт.',
         },
       ],
@@ -118,7 +118,7 @@ export const weddingDifferenceCopy = {
       tone: 'champagne',
       title: {
         en: 'Over 90% of our services are in-house',
-        el: 'Πάνω από το 90% των υπηρεσιών μας είναι in-house',
+        el: 'Πάνω από το 90% των υπηρεσιών μας παρέχονται εσωτερικά',
         ru: 'Более 90% наших услуг — in-house',
       },
       paragraphs: [
@@ -291,7 +291,7 @@ export const weddingDifferenceCopy = {
       paragraphs: [
         {
           en: 'The scale and breadth of our in-house services let us offer enormous variety in every category.',
-          el: 'Η μεγάλη δυναμική και το εύρος των in-house υπηρεσιών μας επιτρέπουν να σας προσφέρουμε τεράστια ποικιλία επιλογών σε κάθε κατηγορία.',
+          el: 'Η μεγάλη δυναμική και το εύρος των εσωτερικών υπηρεσιών μας επιτρέπουν να σας προσφέρουμε τεράστια ποικιλία επιλογών σε κάθε κατηγορία.',
           ru: 'Масштаб и широта наших in-house услуг позволяют предлагать огромное разнообразие в каждой категории.',
         },
         {
@@ -327,7 +327,7 @@ export const weddingDifferenceCopy = {
         },
         {
           en: 'Depending on the services that interest you, you can review photography and videography portfolios in detail, discover florals and decoration options, see more than 500 invitation choices, taste selected treats, explore bridal gowns and suits, and speak personally with the specialists on our team.',
-          el: 'Θα μπορείτε, ανάλογα με τις υπηρεσίες που σας ενδιαφέρουν, να δείτε αναλυτικά portfolios φωτογραφίας και βιντεογραφίας, να γνωρίσετε επιλογές ανθοστολισμού και διακόσμησης, να δείτε περισσότερες από 500 επιλογές προσκλητηρίων, να δοκιμάσετε επιλεγμένα κεράσματα, να εξερευνήσετε επιλογές νυφικών και κοστουμιών και να συζητήσετε προσωπικά με τους εξειδικευμένους ανθρώπους της ομάδας μας.',
+          el: 'Θα μπορείτε, ανάλογα με τις υπηρεσίες που σας ενδιαφέρουν, να δείτε αναλυτικά δείγματα φωτογραφίας και βιντεογραφίας, να γνωρίσετε επιλογές ανθοστολισμού και διακόσμησης, να δείτε περισσότερες από 500 επιλογές προσκλητηρίων, να δοκιμάσετε επιλεγμένα κεράσματα, να εξερευνήσετε επιλογές νυφικών και κοστουμιών και να συζητήσετε προσωπικά με τους εξειδικευμένους ανθρώπους της ομάδας μας.',
           ru: 'В зависимости от интересующих услуг вы сможете подробно увидеть портфолио фото и видео, варианты флористики и декора, более 500 вариантов приглашений, попробовать избранные угощения, изучить свадебные платья и костюмы и лично поговорить со специалистами нашей команды.',
         },
         {
@@ -363,7 +363,7 @@ export const weddingDifferenceCopy = {
       tone: 'ice',
       title: {
         en: 'Premium quality with real value',
-        el: 'Premium ποιότητα με πραγματική αξία',
+        el: 'Ποιότητα υψηλού επιπέδου με πραγματική αξία',
         ru: 'Премиум-качество с реальной ценностью',
       },
       paragraphs: [
@@ -379,7 +379,7 @@ export const weddingDifferenceCopy = {
         },
         {
           en: 'Thanks to the size of our company and our in-house operating model, we can offer an exceptional quality-to-price relationship without sacrificing the level of the experience.',
-          el: 'Χάρη στο μέγεθος της εταιρείας μας και στο in-house μοντέλο λειτουργίας μας, μπορούμε να προσφέρουμε εξαιρετική σχέση ποιότητας και τιμής, χωρίς να θυσιάζουμε το επίπεδο της εμπειρίας.',
+          el: 'Χάρη στο μέγεθος της εταιρείας μας και στο εσωτερικό μοντέλο λειτουργίας μας, μπορούμε να προσφέρουμε εξαιρετική σχέση ποιότητας και τιμής, χωρίς να θυσιάζουμε το επίπεδο της εμπειρίας.',
           ru: 'Благодаря масштабу компании и in-house модели мы предлагаем исключительное соотношение качества и цены, не жертвуя уровнем опыта.',
         },
       ],
@@ -452,7 +452,7 @@ export const weddingDifferenceCopy = {
       tone: 'platinum',
       title: {
         en: 'Luxury is not only what you see. It is what you feel.',
-        el: 'Luxury δεν είναι μόνο αυτό που βλέπετε. Είναι αυτό που αισθάνεστε.',
+        el: 'Η πολυτέλεια δεν είναι μόνο αυτό που βλέπετε. Είναι αυτό που αισθάνεστε.',
         ru: 'Luxury — не только то, что вы видите. Это то, что вы чувствуете.',
       },
       paragraphs: [
@@ -507,7 +507,7 @@ export const weddingDifferenceCopy = {
   } satisfies LocalizedText,
   closingBody: {
     en: 'Book your personal Wedding Experience Appointment and let us show you even more reasons why so many couples trust Wedding Sky with one of the most important days of their lives.',
-    el: 'Κλείστε το προσωπικό σας Wedding Experience Appointment και αφήστε μας να σας παρουσιάσουμε ακόμη περισσότερους λόγους για τους οποίους τόσα ζευγάρια εμπιστεύονται τη Wedding Sky για μία από τις σημαντικότερες ημέρες της ζωής τους.',
+    el: 'Κλείστε το προσωπικό σας ραντεβού γνωριμίας και αφήστε μας να σας παρουσιάσουμε ακόμη περισσότερους λόγους για τους οποίους τόσα ζευγάρια εμπιστεύονται τη Wedding Sky για μία από τις σημαντικότερες ημέρες της ζωής τους.',
     ru: 'Запишитесь на личный Wedding Experience Appointment — и мы покажем ещё больше причин, почему столько пар доверяют Wedding Sky один из важнейших дней своей жизни.',
   } satisfies LocalizedText,
   brandName: {
@@ -517,7 +517,7 @@ export const weddingDifferenceCopy = {
   } satisfies LocalizedText,
   brandTagline: {
     en: 'Luxury Weddings. One Team. Endless Possibilities.',
-    el: 'Luxury Weddings. One Team. Endless Possibilities.',
+    el: 'Πολυτελείς γάμοι. Μία ομάδα. Ατελείωτες δυνατότητες.',
     ru: 'Luxury Weddings. One Team. Endless Possibilities.',
   } satisfies LocalizedText,
   brandCtaLine: {
@@ -532,7 +532,7 @@ export const weddingDifferenceCopy = {
   } satisfies LocalizedText,
   logoCardTagline: {
     en: 'Elegant. Exclusive. Unforgettable.',
-    el: 'Elegant. Exclusive. Unforgettable.',
+    el: 'Κομψό. Αποκλειστικό. Αξέχαστο.',
     ru: 'Elegant. Exclusive. Unforgettable.',
   } satisfies LocalizedText,
   logoAlt: {

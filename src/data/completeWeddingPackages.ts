@@ -52,7 +52,7 @@ export const completeWeddingPackagesPageCopy = {
   } satisfies LocalizedText,
   lead: {
     en: 'Eight Wedding Sky Experience programmes — from Prestige to Royal, plus a fully Customised path — composed as one investment with coordination, styling, and signature inclusions.',
-    el: 'Οκτώ προγράμματα Wedding Sky Experience — από Prestige έως Royal, συν μία πλήρως Customised διαδρομή — ως μία επένδυση με συντονισμό, styling και signature παροχές.',
+    el: 'Οκτώ προγράμματα Wedding Sky Experience — από Prestige έως Royal, μαζί με μία πλήρως προσαρμοσμένη επιλογή — σε ένα ενιαίο πακέτο με συντονισμό, αισθητική και τις χαρακτηριστικές μας παροχές.',
     ru: 'Восемь программ Wedding Sky Experience — от Prestige до Royal, плюс полностью Customised путь — как одна инвестиция с координацией, стилем и signature inclusions.',
   } satisfies LocalizedText,
   backLabel: {
@@ -67,7 +67,7 @@ export const completeWeddingPackagesPageCopy = {
   } satisfies LocalizedText,
   enquireShort: {
     en: 'Enquire now',
-    el: 'Εκδήλωση ενδιαφέροντος',
+    el: 'Επικοινωνήστε τώρα',
     ru: 'Оставить заявку',
   } satisfies LocalizedText,
   viewDetails: {
@@ -87,7 +87,7 @@ export const completeWeddingPackagesPageCopy = {
   } satisfies LocalizedText,
   featuredBadge: {
     en: 'Signature choice',
-    el: 'Υπογραφή επιλογή',
+    el: 'Προτεινόμενη επιλογή',
     ru: 'Фирменный выбор',
   } satisfies LocalizedText,
   previewFlyer: {
@@ -102,7 +102,7 @@ export const completeWeddingPackagesPageCopy = {
   } satisfies LocalizedText,
   flipHint: {
     en: 'Flip',
-    el: 'Γύρισμα',
+    el: 'Αναστροφή',
     ru: 'Переворот',
   } satisfies LocalizedText,
   coverSideLabel: {
@@ -117,7 +117,7 @@ export const completeWeddingPackagesPageCopy = {
   } satisfies LocalizedText,
   catalogueHeading: {
     en: 'Choose your Experience tier',
-    el: 'Επιλέξτε το επίπεδο Experience',
+    el: 'Επιλέξτε το επίπεδό σας',
     ru: 'Выберите уровень Experience',
   } satisfies LocalizedText,
   catalogueHeadingLine1: {
@@ -127,7 +127,7 @@ export const completeWeddingPackagesPageCopy = {
   } satisfies LocalizedText,
   catalogueHeadingLine2: {
     en: 'Experience tier',
-    el: 'επίπεδο Experience',
+    el: 'Επίπεδο πακέτου',
     ru: 'уровень Experience',
   } satisfies LocalizedText,
   catalogueEyebrow: {
@@ -137,7 +137,7 @@ export const completeWeddingPackagesPageCopy = {
   } satisfies LocalizedText,
   catalogueLead: {
     en: 'Eight composed programmes — from Prestige foundations to Royal magnificence, or a Customised brief built only for you.',
-    el: 'Οκτώ ολοκληρωμένα προγράμματα — από βάσεις Prestige έως μεγαλοπρέπεια Royal, ή ένα Customised brief μόνο για εσάς.',
+    el: 'Οκτώ ολοκληρωμένα προγράμματα — από το Prestige μέχρι το Royal, ή ένα προσαρμοσμένο πρόγραμμα φτιαγμένο μόνο για εσάς.',
     ru: 'Восемь программ — от основ Prestige до великолепия Royal или Customised brief только для вас.',
   } satisfies LocalizedText,
 } as const

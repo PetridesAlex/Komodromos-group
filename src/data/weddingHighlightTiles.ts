@@ -134,7 +134,7 @@ const TILE_SEEDS: TileSeed[] = [
         },
         {
           en: 'Your hair. Your style. Your unforgettable bridal moment.',
-          el: 'Your hair. Your style. Your unforgettable bridal moment.',
+          el: 'Τα μαλλιά σας. Το στυλ σας. Η αξέχαστη νυφική σας στιγμή.',
           ru: 'Your hair. Your style. Your unforgettable bridal moment.',
         },
       ],
@@ -597,7 +597,7 @@ const TILE_SEEDS: TileSeed[] = [
         },
         {
           en: 'Your love story deserves its own signature cocktail.',
-          el: 'Your love story deserves its own signature cocktail.',
+          el: 'Η ιστορία αγάπης σας αξίζει το δικό της ιδιαίτερο cocktail.',
           ru: 'Your love story deserves its own signature cocktail.',
         },
       ],
@@ -639,7 +639,7 @@ const TILE_SEEDS: TileSeed[] = [
         },
         {
           en: 'And some love stories deserve to be captured from above.',
-          el: 'And some love stories deserve to be captured from above.',
+          el: 'Και κάποιες ιστορίες αγάπης αξίζουν να αποτυπωθούν από ψηλά.',
           ru: 'And some love stories deserve to be captured from above.',
         },
       ],
@@ -843,7 +843,7 @@ const TILE_SEEDS: TileSeed[] = [
         },
         {
           en: 'Because the best moments are often the ones you never planned.',
-          el: 'Because the best moments are often the ones you never planned.',
+          el: 'Γιατί οι καλύτερες στιγμές είναι συχνά αυτές που δεν σχεδιάσατε.',
           ru: 'Because the best moments are often the ones you never planned.',
         },
       ],
@@ -1745,7 +1745,7 @@ const TILE_SEEDS: TileSeed[] = [
         },
         {
           en: 'Because true luxury is when everything simply works — beautifully.',
-          el: 'Because true luxury is when everything simply works — beautifully.',
+          el: 'Γιατί πραγματική πολυτέλεια είναι όταν όλα απλώς δουλεύουν — όμορφα.',
           ru: 'Because true luxury is when everything simply works — beautifully.',
         },
       ],
@@ -1796,7 +1796,7 @@ const TILE_SEEDS: TileSeed[] = [
         },
         {
           en: 'Say “I do” where the blue has no end — and let Greece become part of your love story.',
-          el: 'Say “I do” where the blue has no end — and let Greece become part of your love story.',
+          el: 'Πείτε το «Ναι» εκεί όπου το γαλάζιο δεν τελειώνει — και αφήστε την Ελλάδα να γίνει μέρος της ιστορίας σας.',
           ru: 'Say “I do” where the blue has no end — and let Greece become part of your love story.',
         },
       ],

@@ -37,7 +37,7 @@ export const weddingEditCopy = {
     },
     {
       en: 'From ceremony timing and Cypriot traditions to guest lists, budgets and timelines — everything you need to shape a day that feels truly yours.',
-      el: 'Από την ώρα της τελετής και τις κυπριακές παραδόσεις μέχρι τη guest list, το budget και το πρόγραμμα — όσα χρειάζεστε για μια ημέρα που είναι πραγματικά δική σας.',
+      el: 'Από την ώρα της τελετής και τις κυπριακές παραδόσεις μέχρι τη λίστα καλεσμένων, τον προϋπολογισμό και το πρόγραμμα — όσα χρειάζεστε για μια ημέρα που είναι πραγματικά δική σας.',
       ru: 'От времени церемонии и кипрских традиций до списка гостей, бюджета и графика — всё для дня, который будет по-настоящему вашим.',
     },
   ] as const satisfies ReadonlyArray<LocalizedText>,
@@ -255,7 +255,7 @@ export const weddingEditCopy = {
   } satisfies LocalizedText,
   closingBody: {
     en: 'Book Your Private Wedding Consultation and speak with our team about your vision, priorities and choices for your own celebration.',
-    el: 'Book Your Private Wedding Consultation και μιλήστε με την ομάδα μας για το όραμα, τις προτεραιότητες και τις επιλογές για τη δική σας γιορτή.',
+    el: 'Κλείστε προσωπικό ραντεβού και μιλήστε με την ομάδα μας για το όραμα, τις προτεραιότητες και τις επιλογές για τη δική σας γιορτή.',
     ru: 'Запишитесь на Private Wedding Consultation и обсудите с нашей командой видение и приоритеты для вашего праздника.',
   } satisfies LocalizedText,
   brandName: {
@@ -265,7 +265,7 @@ export const weddingEditCopy = {
   } satisfies LocalizedText,
   brandTagline: {
     en: 'Inspiration. Expertise. Your Perfect Day.',
-    el: 'Inspiration. Expertise. Your Perfect Day.',
+    el: 'Έμπνευση. Εξειδίκευση. Η τέλεια σας ημέρα.',
     ru: 'Inspiration. Expertise. Your Perfect Day.',
   } satisfies LocalizedText,
   brandCtaLine: {

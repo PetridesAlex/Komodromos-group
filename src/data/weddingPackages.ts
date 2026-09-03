@@ -46,7 +46,7 @@ export const weddingPackageCategories: WeddingPackageCategory[] = [
     },
     tagline: {
       en: 'Eight Wedding Sky Experience programmes — from Prestige to Royal, plus a fully Customised path.',
-      el: 'Οκτώ προγράμματα Wedding Sky Experience — από Prestige έως Royal, συν μία πλήρως Customised διαδρομή.',
+      el: 'Οκτώ προγράμματα Wedding Sky Experience — από Prestige έως Royal, μαζί με μία πλήρως προσαρμοσμένη επιλογή.',
       ru: 'Восемь программ Wedding Sky Experience — от Prestige до Royal, плюс полностью Customised путь.',
     },
     image: `${CATEGORY_IMG}/wedding-packages.webp`,
@@ -60,7 +60,7 @@ export const weddingPackageCategories: WeddingPackageCategory[] = [
     },
     tagline: {
       en: 'Refined programmes for christening celebrations — from elevated styling to fully bespoke celebration briefs.',
-      el: 'Εκλεπτυσμένα προγράμματα για βάπτιση — από αναβαθμισμένο styling έως πλήρως προσαρμοσμένα briefs.',
+      el: 'Εκλεπτυσμένα προγράμματα για βάπτιση — από αναβαθμισμένο στολισμό έως πλήρως προσαρμοσμένα προγράμματα.',
       ru: 'Изысканные программы для крещения — от утончённого стиля до полностью индивидуальной концепции.',
     },
     image: `${CATEGORY_IMG}/christening-packages.webp`,
@@ -74,7 +74,7 @@ export const weddingPackageCategories: WeddingPackageCategory[] = [
     },
     tagline: {
       en: 'PhotoWay cinematic programmes — albums, film, drone, and same-day edits.',
-      el: 'Cinematic προγράμματα PhotoWay — άλμπουμ, film, drone και same-day edits.',
+      el: 'Κινηματογραφικά προγράμματα PhotoWay — άλμπουμ, βίντεο, drone και μοντάζ την ίδια ημέρα.',
       ru: 'Cinematic-программы PhotoWay — альбомы, film, дрон и same-day edits.',
     },
     image: '/images/services/wedding-highlights/wedding-services/wedding-photo-video.webp',
@@ -88,10 +88,10 @@ export const weddingPackageCategories: WeddingPackageCategory[] = [
     },
     tagline: {
       en: 'DecoWay floral programmes — church, cars, reception, and atmospheric styling.',
-      el: 'Προγράμματα ανθοστολισμού DecoWay — εκκλησία, αυτοκίνητα, δεξίωση και ατμοσφαιρικό styling.',
+      el: 'Προγράμματα ανθοστολισμού DecoWay — εκκλησία, αυτοκίνητα, δεξίωση και ατμοσφαιρικό στολισμό.',
       ru: 'Программы флористики DecoWay — храм, авто, зал и атмосферный styling.',
     },
-    image: '/images/services/wedding-highlights/wedding-services/florals-decoration.webp',
+    image: '/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp',
   },
 ]
 
@@ -227,7 +227,7 @@ export const weddingPackages: WeddingPackageTier[] = [
     id: 'customised',
     name: {
       en: 'Customised Wedding Package',
-      el: 'Πακέτο Γάμου Customised',
+      el: 'Εξατομικευμένο Πακέτο Γάμου',
       ru: 'Индивидуальный свадебный пакет',
     },
     tagline: {
@@ -454,7 +454,7 @@ export const weddingPackages: WeddingPackageTier[] = [
     name: { en: 'DecoWay 4', el: 'DecoWay 4', ru: 'DecoWay 4' },
     tagline: {
       en: 'Crystal hospitality — floor chandeliers, guest-list mirror, cake styling, and décor for 40 tables.',
-      el: 'Κρυστάλλινη φιλοξενία — πολυέλεοι εδάφους, καθρέφτης λίστας καλεσμένων, styling τούρτας και διακόσμηση 40 τραπεζιών.',
+      el: 'Κρυστάλλινη φιλοξενία — πολυέλεοι εδάφους, καθρέφτης λίστας καλεσμένων, στολισμό τούρτας και διακόσμηση 40 τραπεζιών.',
       ru: 'Кристальное гостеприимство — напольные люстры, зеркало списка гостей, styling торта и декор 40 столов.',
     },
     priceDisplay: { en: '€3,500', el: '€3.500', ru: '€3 500' },

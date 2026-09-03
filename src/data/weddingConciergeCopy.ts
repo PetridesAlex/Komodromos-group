@@ -21,7 +21,7 @@ export const weddingConciergeCopy = {
   } satisfies LocalizedText,
   lead: {
     en: 'Your Questions. Our Expertise. Your Perfect Day.',
-    el: 'Your Questions. Our Expertise. Your Perfect Day.',
+    el: 'Οι ερωτήσεις σας. Η εξειδίκευσή μας. Η τέλεια σας ημέρα.',
     ru: 'Your Questions. Our Expertise. Your Perfect Day.',
   } satisfies LocalizedText,
   intro: [
@@ -83,12 +83,12 @@ export const weddingConciergeCopy = {
         },
         {
           en: 'What sets us apart is the strength of our infrastructure: over 90% of our services are owned or managed in-house by Wedding Sky.',
-          el: 'Αυτό που μας διαφοροποιεί είναι η δυναμική της υποδομής μας: πάνω από το 90% των υπηρεσιών μας ανήκουν ή διαχειρίζονται in-house από τη Wedding Sky.',
+          el: 'Αυτό που μας διαφοροποιεί είναι η δυναμική της υποδομής μας: πάνω από το 90% των υπηρεσιών μας ανήκουν ή διαχειρίζονται εσωτερικά από τη Wedding Sky.',
           ru: 'Нас отличает сила инфраструктуры: более 90% услуг принадлежат Wedding Sky или управляются in-house.',
         },
         {
           en: 'That gives us greater quality control, better coordination, faster communication, and the ability to deliver a truly complete wedding experience through one company, one team, and one shared vision.',
-          el: 'Αυτό μας προσφέρει μεγαλύτερο έλεγχο στην ποιότητα, καλύτερο συντονισμό, άμεση επικοινωνία και τη δυνατότητα να προσφέρουμε μία πραγματικά ολοκληρωμένη wedding experience μέσα από μία εταιρεία, μία ομάδα και ένα κοινό όραμα.',
+          el: 'Αυτό μας προσφέρει μεγαλύτερο έλεγχο στην ποιότητα, καλύτερο συντονισμό, άμεση επικοινωνία και τη δυνατότητα να προσφέρουμε μία πραγματικά ολοκληρωμένη γαμήλια εμπειρία μέσα από μία εταιρεία, μία ομάδα και ένα κοινό όραμα.',
           ru: 'Это даёт больший контроль качества, лучшую координацию, быструю связь и возможность дать по-настоящему цельный wedding experience через одну компанию, одну команду и одно общее видение.',
         },
       ],
@@ -124,7 +124,7 @@ export const weddingConciergeCopy = {
         },
         {
           en: 'We evolve continuously, following international trends, fashion, technology, and the new expectations of the modern luxury wedding.',
-          el: 'Εξελισσόμαστε συνεχώς, παρακολουθώντας τις διεθνείς τάσεις, τη μόδα, την τεχνολογία και τις νέες απαιτήσεις του σύγχρονου luxury wedding.',
+          el: 'Εξελισσόμαστε συνεχώς, παρακολουθώντας τις διεθνείς τάσεις, τη μόδα, την τεχνολογία και τις νέες απαιτήσεις του σύγχρονου πολυτελούς γάμου.',
           ru: 'Мы постоянно развиваемся, следя за международными трендами, модой, технологиями и новыми требованиями современной luxury-свадьбы.',
         },
         {
@@ -313,7 +313,7 @@ export const weddingConciergeCopy = {
         },
         {
           en: 'You can add, remove, upgrade, or modify services according to the needs, style, and budget of your wedding.',
-          el: 'Μπορείτε να προσθέσετε, να αφαιρέσετε, να αναβαθμίσετε ή να τροποποιήσετε υπηρεσίες σύμφωνα με τις ανάγκες, το ύφος και το budget του γάμου σας.',
+          el: 'Μπορείτε να προσθέσετε, να αφαιρέσετε, να αναβαθμίσετε ή να τροποποιήσετε υπηρεσίες σύμφωνα με τις ανάγκες, το ύφος και τον προϋπολογισμό του γάμου σας.',
           ru: 'Можно добавить, убрать, повысить или изменить услуги под нужды, стиль и бюджет вашей свадьбы.',
         },
         {
@@ -328,7 +328,7 @@ export const weddingConciergeCopy = {
         },
         {
           en: 'Your Wedding. Your Choices. Your Way.',
-          el: 'Your Wedding. Your Choices. Your Way.',
+          el: 'Ο γάμος σας. Οι επιλογές σας. Με τον δικό σας τρόπο.',
           ru: 'Your Wedding. Your Choices. Your Way.',
         },
       ],
@@ -406,7 +406,7 @@ export const weddingConciergeCopy = {
         },
         {
           en: 'If you have already chosen a photographer, music, venue, or any other professional, we can take on only the services you still need.',
-          el: 'Εάν έχετε ήδη επιλέξει φωτογράφο, μουσική, venue ή οποιονδήποτε άλλο επαγγελματία, μπορούμε να αναλάβουμε μόνο τις υπηρεσίες που εξακολουθείτε να χρειάζεστε.',
+          el: 'Εάν έχετε ήδη επιλέξει φωτογράφο, μουσική, χώρο δεξίωσης ή οποιονδήποτε άλλο επαγγελματία, μπορούμε να αναλάβουμε μόνο τις υπηρεσίες που εξακολουθείτε να χρειάζεστε.',
           ru: 'Если вы уже выбрали фотографа, музыку, площадку или другого специалиста, мы можем взять только те услуги, которые вам ещё нужны.',
         },
         {
@@ -442,12 +442,12 @@ export const weddingConciergeCopy = {
         },
         {
           en: 'From an elegant city wedding to an impressive Mediterranean destination wedding, the philosophy remains the same:',
-          el: 'Από έναν elegant city wedding μέχρι ένα εντυπωσιακό Mediterranean destination wedding, η φιλοσοφία παραμένει η ίδια:',
+          el: 'Από έναν κομψό αστικό γάμο μέχρι έναν εντυπωσιακό γάμο προορισμού στη Μεσόγειο, η φιλοσοφία παραμένει η ίδια:',
           ru: 'От элегантной городской свадьбы до впечатляющего Mediterranean destination wedding философия та же:',
         },
         {
           en: 'One vision. One team. One unforgettable celebration.',
-          el: 'One vision. One team. One unforgettable celebration.',
+          el: 'Ένα όραμα. Μία ομάδα. Μία αξέχαστη γιορτή.',
           ru: 'One vision. One team. One unforgettable celebration.',
         },
       ],
@@ -468,7 +468,7 @@ export const weddingConciergeCopy = {
         },
         {
           en: 'For us, luxury service begins long before the wedding day — from the very first meeting.',
-          el: 'Για εμάς, το luxury service ξεκινά πολύ πριν από την ημέρα του γάμου — από την πρώτη κιόλας συνάντηση.',
+          el: 'Για εμάς, η πολυτελής εξυπηρέτηση ξεκινά πολύ πριν από την ημέρα του γάμου — από την πρώτη κιόλας συνάντηση.',
           ru: 'Для нас luxury-сервис начинается задолго до дня свадьбы — с самой первой встречи.',
         },
       ],
@@ -545,7 +545,7 @@ export const weddingConciergeCopy = {
         },
         {
           en: 'It is a curated wedding experience, designed to guide you through the different services of a wedding and let you discover them more meaningfully.',
-          el: 'Είναι μία curated wedding experience, σχεδιασμένη ώστε να σας ταξιδεύει μέσα στις διαφορετικές υπηρεσίες του γάμου και να σας δίνει τη δυνατότητα να τις γνωρίσετε πιο ουσιαστικά.',
+          el: 'Είναι μία επιμελημένη γαμήλια εμπειρία, σχεδιασμένη ώστε να σας ταξιδεύει μέσα στις διαφορετικές υπηρεσίες του γάμου και να σας δίνει τη δυνατότητα να τις γνωρίσετε πιο ουσιαστικά.',
           ru: 'Это curated wedding experience, созданный, чтобы провести вас через разные свадебные услуги и дать узнать их глубже.',
         },
         {
@@ -568,7 +568,7 @@ export const weddingConciergeCopy = {
   ] as const satisfies ReadonlyArray<WeddingConciergeQuestion>,
   closingEyebrow: {
     en: 'Still have questions?',
-    el: 'STILL HAVE QUESTIONS?',
+    el: 'Έχετε ακόμη ερωτήσεις;',
     ru: 'Остались вопросы?',
   } satisfies LocalizedText,
   closingLead: {
@@ -578,7 +578,7 @@ export const weddingConciergeCopy = {
   } satisfies LocalizedText,
   closingBody: {
     en: 'Book Your Private Wedding Consultation and discuss with our team the vision, needs, and choices for your own day.',
-    el: 'Book Your Private Wedding Consultation και συζητήστε με την ομάδα μας το όραμα, τις ανάγκες και τις επιλογές για τη δική σας ημέρα.',
+    el: 'Κλείστε προσωπικό ραντεβού και συζητήστε με την ομάδα μας το όραμα, τις ανάγκες και τις επιλογές για τη δική σας ημέρα.',
     ru: 'Запишитесь на Private Wedding Consultation и обсудите с нашей командой видение, нужды и выбор для вашего дня.',
   } satisfies LocalizedText,
   brandName: {
@@ -588,7 +588,7 @@ export const weddingConciergeCopy = {
   } satisfies LocalizedText,
   brandTagline: {
     en: 'Your Questions. Our Expertise. Your Perfect Day.',
-    el: 'Your Questions. Our Expertise. Your Perfect Day.',
+    el: 'Οι ερωτήσεις σας. Η εξειδίκευσή μας. Η τέλεια σας ημέρα.',
     ru: 'Your Questions. Our Expertise. Your Perfect Day.',
   } satisfies LocalizedText,
   brandCtaLine: {

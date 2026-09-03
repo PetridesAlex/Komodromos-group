@@ -64,7 +64,7 @@ export const christeningPackagesPageCopy = {
   } satisfies LocalizedText,
   enquireShort: {
     en: 'Enquire now',
-    el: 'Εκδήλωση ενδιαφέροντος',
+    el: 'Επικοινωνήστε τώρα',
     ru: 'Оставить заявку',
   } satisfies LocalizedText,
   viewDetails: {
@@ -84,7 +84,7 @@ export const christeningPackagesPageCopy = {
   } satisfies LocalizedText,
   featuredBadge: {
     en: 'Signature choice',
-    el: 'Υπογραφή επιλογή',
+    el: 'Προτεινόμενη επιλογή',
     ru: 'Фирменный выбор',
   } satisfies LocalizedText,
   previewFlyer: {

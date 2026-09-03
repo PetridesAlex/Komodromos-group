@@ -29,32 +29,32 @@ export const weddingHeroCopy: {
   },
   atelier: {
     en: 'Luxury Wedding Planning Experiences',
-    el: 'Πολυτελείς Εμπειρίες Διοργάνωσης Γάμου',
+    el: 'Πολυτελής οργάνωση γάμου',
     ru: 'Премиальная организация свадеб',
   },
   title: {
     en: 'Make your dream wedding come true',
-    el: 'Κάντε τον γάμο των ονείρων σας πραγματικότητα',
+    el: 'Ο γάμος που ονειρεύεστε γίνεται πραγματικότητα',
     ru: 'Воплотите свадьбу своей мечты',
   },
   lead: {
     en: 'From intimate vows to grand celebrations, we design refined experiences in Cyprus — guided by taste, precision, and love stories that feel unmistakably yours.',
-    el: 'Από μια λιτή, προσωπική τελετή μέχρι μια λαμπερή δεξίωση, δημιουργούμε εκλεπτυσμένες εμπειρίες στην Κύπρο — με αισθητική, ακρίβεια και επίκεντρο τη δική σας μοναδική ιστορία αγάπης.',
+    el: 'Από μια κλειστή, προσωπική τελετή μέχρι μια μεγάλη δεξίωση, σχεδιάζουμε εκλεπτυσμένες εμπειρίες στην Κύπρο — με καλό γούστο, ακρίβεια και μια ιστορία αγάπης που είναι πραγματικά δική σας.',
     ru: 'От камерной церемонии до масштабного торжества — мы создаём изысканные события на Кипре, где безупречный вкус, точность и ваша неповторимая история любви соединяются в единое целое.',
   },
   ownedBy: {
     en: 'Owned by',
-    el: 'Μέλος του',
+    el: 'Ανήκει στον',
     ru: 'В составе',
   },
   exploreServices: {
     en: 'Explore services',
-    el: 'Ανακαλύψτε τις υπηρεσίες',
+    el: 'Δείτε τις υπηρεσίες',
     ru: 'Узнать об услугах',
   },
   enquire: {
     en: 'Enquire',
-    el: 'Επικοινωνήστε μαζί μας',
+    el: 'Επικοινωνία',
     ru: 'Оставить запрос',
   },
 }
@@ -64,7 +64,7 @@ export const weddingPillarsCopy: ReadonlyArray<WeddingPillar> = [
     id: 'wedding-services',
     label: {
       en: 'Wedding Services',
-      el: 'Υπηρεσίες Γάμου',
+      el: 'Υπηρεσίες γάμου',
       ru: 'Свадебные услуги',
     },
     href: '#wedding-services',
@@ -73,7 +73,7 @@ export const weddingPillarsCopy: ReadonlyArray<WeddingPillar> = [
     id: 'wedding-packages',
     label: {
       en: 'Wedding Experience',
-      el: 'Εμπειρία Γάμου',
+      el: 'Γαμήλια εμπειρία',
       ru: 'Свадебный опыт',
     },
     labelSecondary: {
@@ -87,7 +87,7 @@ export const weddingPillarsCopy: ReadonlyArray<WeddingPillar> = [
     id: 'christening-packages',
     label: {
       en: 'Christening Packages',
-      el: 'Πακέτα Βάπτισης',
+      el: 'Πακέτα βάπτισης',
       ru: 'Пакеты для крещения',
     },
     href: '/services/wedding/categories/christian',
@@ -108,12 +108,12 @@ export const weddingEditorialPillarsCopy: {
 } = {
   sectionAria: {
     en: 'Wedding Sky editorial',
-    el: 'Editorial Wedding Sky',
+    el: 'Άρθρα και οδηγοί Wedding Sky',
     ru: 'Редакция Wedding Sky',
   },
   eyebrow: {
     en: 'Explore the atelier',
-    el: 'Εξερευνήστε το atelier',
+    el: 'Γνωρίστε τον κόσμο μας',
     ru: 'Откройте atelier',
   },
   items: [
@@ -126,7 +126,7 @@ export const weddingEditorialPillarsCopy: {
       },
       tagline: {
         en: 'Inspiration, Expert Advice & Ideas for Your Perfect Day',
-        el: 'Έμπνευση, συμβουλές ειδικών και ιδέες για την τέλεια μέρα σας',
+        el: 'Έμπνευση, πρακτικές συμβουλές και ιδέες για τη μεγάλη σας ημέρα',
         ru: 'Вдохновение, экспертные советы и идеи для вашего идеального дня',
       },
       href: '/services/wedding/edit',
@@ -140,7 +140,7 @@ export const weddingEditorialPillarsCopy: {
       },
       tagline: {
         en: 'Your Questions. Our Expertise. Your Perfect Day.',
-        el: 'Οι ερωτήσεις σας. Η εμπειρία μας. Η τέλεια μέρα σας.',
+        el: 'Οι ερωτήσεις σας. Η εξειδίκευσή μας. Η ημέρα σας, όπως την θέλετε.',
         ru: 'Ваши вопросы. Наш опыт. Ваш идеальный день.',
       },
       href: '/services/wedding/concierge',
@@ -154,7 +154,7 @@ export const weddingEditorialPillarsCopy: {
       },
       tagline: {
         en: 'More than a wedding. An experience designed entirely around you.',
-        el: 'Περισσότερο από ένας γάμος. Μια εμπειρία σχεδιασμένη εξ ολοκλήρου γύρω από εσάς.',
+        el: 'Περισσότερο από έναν γάμο. Μια εμπειρία σχεδιασμένη στα μέτρα σας.',
         ru: 'Больше, чем свадьба. Опыт, созданный целиком вокруг вас.',
       },
       href: '/services/wedding/difference',
@@ -182,32 +182,32 @@ export const weddingIntroCopy: {
 } = {
   imageAlt: {
     en: 'A refined Wedding Sky celebration setting in Cyprus',
-    el: 'Ένα εκλεπτυσμένο σκηνικό δεξίωσης της Wedding Sky στην Κύπρο',
+    el: 'Ένας χώρος δεξίωσης της Wedding Sky στην Κύπρο',
     ru: 'Изысканное оформление торжества Wedding Sky на Кипре',
   },
   captionStrong: {
     en: 'Composed in Cyprus',
-    el: 'Δημιουργημένο στην Κύπρο',
+    el: 'Σχεδιασμένο στην Κύπρο',
     ru: 'Создано на Кипре',
   },
   eyebrow: {
     en: 'The Wedding Sky standard',
-    el: 'Η φιλοσοφία της Wedding Sky',
+    el: 'Το επίπεδο της Wedding Sky',
     ru: 'Стандарт Wedding Sky',
   },
   title: {
     en: 'Cyprus celebrations, composed with care.',
-    el: 'Γαμήλιες εκδηλώσεις σχεδιασμένες με φροντίδα.',
+    el: 'Γιορτές στην Κύπρο, σχεδιασμένες με φροντίδα.',
     ru: 'Торжества на Кипре — созданные с заботой.',
   },
   lead: {
     en: 'From first concept to the last farewell, we compose celebrations that feel intentional — guided by hospitality, precise timing, and the quiet rhythm of a wedding week.',
-    el: 'Από την πρώτη ιδέα μέχρι τον αποχαιρετισμό, συνθέτουμε γιορτές με πρόθεση — με φιλοξενία, ακριβή συγχρονισμό και τον ήρεμο ρυθμό μιας εβδομάδας γάμου.',
+    el: 'Από την πρώτη ιδέα μέχρι τον αποχαιρετισμό, οργανώνουμε γιορτές που έχουν νόημα — με ζεστή φιλοξενία, σωστό πρόγραμμα και τον ήρεμο ρυθμό μιας εβδομάδας γάμου.',
     ru: 'От первой идеи до последнего прощания мы создаём торжества с замыслом — с гостеприимством, точным таймингом и спокойным ритмом свадебной недели.',
   },
   leadSecondary: {
     en: 'Every detail follows your story: atmospheric venues, vendors who hold under pressure, and a run of show that stays composed when the room is full.',
-    el: 'Κάθε λεπτομέρεια ακολουθεί τη δική σας ιστορία: χώροι με ατμόσφαιρα, συνεργάτες που αντέχουν την πίεση και μια ροή ημέρας που μένει ήρεμη όταν η αίθουσα γεμίζει.',
+    el: 'Κάθε λεπτομέρεια ακολουθεί τη δική σας ιστορία: χώροι με ατμόσφαιρα, συνεργάτες που δουλεύουν με υπευθυνότητα και ένα πρόγραμμα ημέρας που μένει σταθερό όταν ο χώρος γεμίζει.',
     ru: 'Каждая деталь следует вашей истории: атмосферные площадки, подрядчики, которые держат удар, и сценарий дня, остающийся спокойным, когда зал уже полон.',
   },
   contactAria: {
@@ -217,7 +217,7 @@ export const weddingIntroCopy: {
   },
   speakAtelier: {
     en: 'Speak with the atelier',
-    el: 'Μιλήστε με το ατελιέ μας',
+    el: 'Μιλήστε μαζί μας',
     ru: 'Связаться с ателье',
   },
   cyprusCode: {
@@ -227,7 +227,7 @@ export const weddingIntroCopy: {
   },
   cyprusLabel: {
     en: 'Cyprus atelier lines',
-    el: 'Γραμμές ατελιέ Κύπρου',
+    el: 'Τηλέφωνα Κύπρου',
     ru: 'Линии ателье на Кипре',
   },
   officeLabel: {
@@ -247,7 +247,7 @@ export const weddingIntroCopy: {
   },
   revealNumber: {
     en: 'Tap to reveal number',
-    el: 'Πατήστε για εμφάνιση αριθμού',
+    el: 'Πατήστε για να δείτε τον αριθμό',
     ru: 'Нажмите, чтобы показать номер',
   },
   follow: {
@@ -278,7 +278,7 @@ export const weddingTilesSectionCopy: {
 } = {
   eyebrow: {
     en: 'The atelier catalogue',
-    el: 'Ο κατάλογος του atelier',
+    el: 'Ο κατάλογος υπηρεσιών μας',
     ru: 'Каталог atelier',
   },
   title: {
@@ -323,7 +323,7 @@ export const weddingTilesSectionCopy: {
   },
   detailEyebrow: {
     en: 'Wedding Sky atelier',
-    el: 'Wedding Sky atelier',
+    el: 'Wedding Sky',
     ru: 'Atelier Wedding Sky',
   },
   enquireService: {
@@ -348,7 +348,7 @@ export const weddingPackagesSectionCopy: {
 } = {
   eyebrow: {
     en: 'INVESTMENT LEVELS',
-    el: 'ΕΠΙΠΕΔΑ ΕΠΕΝΔΥΣΗΣ',
+    el: 'ΕΠΙΠΕΔΑ ΠΑΚΕΤΩΝ',
     ru: 'УРОВНИ БЮДЖЕТА',
   },
   title: {
@@ -358,7 +358,7 @@ export const weddingPackagesSectionCopy: {
   },
   intro: {
     en: 'Choose a collection to explore its tiers — Wedding packages for celebration planning, or Christening packages shaped around sacred rites and extended styling.',
-    el: 'Επιλέξτε συλλογή για να δείτε τα επίπεδά της — πακέτα γάμου για τον σχεδιασμό της γιορτής, ή πακέτα βάπτισης με έμφαση στην ιερή τελετή και το styling.',
+    el: 'Επιλέξτε συλλογή για να δείτε τα επίπεδά της — πακέτα γάμου για τον σχεδιασμό της γιορτής, ή πακέτα βάπτισης με έμφαση στην ιερή τελετή και τον στολισμό.',
     ru: 'Выберите коллекцию и познакомьтесь с её уровнями: свадебные пакеты для организации торжества или пакеты для крещения с акцентом на таинство и расширенное оформление.',
   },
   viewPackages: {
@@ -470,7 +470,7 @@ export const weddingServicesCopy: {
     {
       title: {
         en: 'Styling & florals',
-        el: 'Styling & ανθοστολισμός',
+        el: 'Στολισμός & ανθοστολισμός',
         ru: 'Стилистика и флористика',
       },
       desc: {
@@ -530,55 +530,55 @@ export const weddingWhyCopy: {
   },
   intro: {
     en: 'Standards we apply to every mandate — whether your celebration is intimate or full-scale.',
-    el: 'Οι αρχές που εφαρμόζουμε σε κάθε διοργάνωση — είτε πρόκειται για μια προσωπική τελετή είτε για μια γιορτή μεγάλης κλίμακας.',
+    el: 'Τα πρότυπα που ακολουθούμε σε κάθε γάμο — είτε είναι μικρός και προσωπικός είτε μεγάλης κλίμακας.',
     ru: 'Стандарты, которых мы придерживаемся в каждом проекте — независимо от масштаба вашего торжества.',
   },
   items: [
     {
       title: {
         en: 'Transparent investment',
-        el: 'Διαφανής επένδυση',
+        el: 'Ξεκάθαρο κόστος',
         ru: 'Прозрачные инвестиции',
       },
       body: {
         en: 'Disciplined planning and clear accountability across every budget line — no surprises, no hidden scope.',
-        el: 'Προσεκτικός σχεδιασμός και σαφής ευθύνη σε κάθε γραμμή του προϋπολογισμού — χωρίς εκπλήξεις και κρυφές χρεώσεις.',
+        el: 'Προσεκτικός σχεδιασμός και σαφής εικόνα σε κάθε έξοδο — χωρίς εκπλήξεις και χωρίς κρυφές χρεώσεις.',
         ru: 'Дисциплинированное планирование и ясная ответственность по каждой статье бюджета — без сюрпризов и скрытых расходов.',
       },
     },
     {
       title: {
         en: 'Dedicated stewardship',
-        el: 'Αφοσιωμένη φροντίδα',
+        el: 'Προσωπική επίβλεψη',
         ru: 'Персональное сопровождение',
       },
       body: {
         en: 'One accountable team from first enquiry through your wedding week — consistent counsel, calm execution.',
-        el: 'Μία υπεύθυνη ομάδα από την πρώτη επικοινωνία μέχρι την εβδομάδα του γάμου σας — σταθερή καθοδήγηση, ήρεμη υλοποίηση.',
+        el: 'Μία σταθερή ομάδα από την πρώτη επικοινωνία μέχρι την εβδομάδα του γάμου — σαφείς συμβουλές και ήρεμη υλοποίηση.',
         ru: 'Одна команда от первого запроса до свадебной недели — последовательные рекомендации и спокойная реализация.',
       },
     },
     {
       title: {
         en: 'Contingency by design',
-        el: 'Προετοιμασία με εναλλακτικά πλάνα',
+        el: 'Έτοιμοι για το απρόοπτο',
         ru: 'Продуманные запасные сценарии',
       },
       body: {
         en: 'Thorough preparation and scenario planning so the unexpected never derails your timeline or guest experience.',
-        el: 'Ενδελεχής προετοιμασία και σενάρια, ώστε το απρόοπτο να μην επηρεάζει τη ροή ή την εμπειρία των καλεσμένων σας.',
+        el: 'Πλήρης προετοιμασία και εναλλακτικά σενάρια, ώστε τίποτα απρόσμενο να μην χαλάσει το πρόγραμμα ή την εμπειρία των καλεσμένων.',
         ru: 'Тщательная подготовка и проработка сценариев, чтобы неожиданности не нарушили тайминг и впечатления гостей.',
       },
     },
     {
       title: {
         en: 'Bespoke execution',
-        el: 'Εξατομικευμένη υλοποίηση',
+        el: 'Υλοποίηση στα μέτρα σας',
         ru: 'Индивидуальное воплощение',
       },
       body: {
         en: 'Discreet luxury shaped to your culture, guest list, and vision — never template, always considered.',
-        el: 'Διακριτική πολυτέλεια προσαρμοσμένη στην κουλτούρα σας, στους καλεσμένους και στο όραμά σας — ποτέ πρότυπο, πάντα μεθοδική.',
+        el: 'Διακριτική πολυτέλεια προσαρμοσμένη στην οικογένειά σας, στους καλεσμένους και στο όραμά σας — ποτέ έτοιμο καλούπι, πάντα στα μέτρα σας.',
         ru: 'Сдержанная роскошь с учётом вашей культуры, гостей и видения — никогда по шаблону, всегда продуманно.',
       },
     },
@@ -716,8 +716,13 @@ export const weddingAboutCopy: {
   },
   pageTitle: {
     en: 'Where Your Dream Wedding Becomes Reality.',
-    el: 'Where Your Dream Wedding Becomes Reality.',
+    el: 'Εκεί που ο γάμος που ονειρεύεστε γίνεται πραγματικότητα.',
     ru: 'Where Your Dream Wedding Becomes Reality.',
+  },
+  lead: {
+    en: 'There are moments in life that pass.\nAnd there are moments that remain forever.\nYour wedding is one of them.',
+    el: 'Υπάρχουν στιγμές στη ζωή που περνούν.\nΚαι υπάρχουν στιγμές που μένουν για πάντα.\nΟ γάμος σας είναι μία από αυτές.',
+    ru: 'Есть мгновения, которые проходят.\nИ есть мгновения, которые остаются навсегда.\nВаша свадьба — одно из них.',
   },
   lead: {
     en: 'There are moments in life that pass.\nAnd there are moments that remain forever.\nYour wedding is one of them.',
@@ -787,12 +792,12 @@ export const weddingVisitCopy: {
   },
   intro: {
     en: 'Visit our studios in Larnaca or Limassol, or reach the Wedding Sky team by phone and email.',
-    el: 'Επισκεφθείτε τα ατελιέ μας στη Λάρνακα ή τη Λεμεσό, ή επικοινωνήστε με την ομάδα της Wedding Sky τηλεφωνικά και μέσω email.',
+    el: 'Επισκεφθείτε τα στούντιό μας στη Λάρνακα ή τη Λεμεσό, ή επικοινωνήστε με την ομάδα της Wedding Sky τηλεφωνικά και μέσω email.',
     ru: 'Посетите наши студии в Ларнаке или Лимасоле или свяжитесь с командой Wedding Sky по телефону и email.',
   },
   studiosLabel: {
     en: 'Our studios',
-    el: 'Τα ατελιέ μας',
+    el: 'Τα στούντιό μας',
     ru: 'Наши студии',
   },
   phoneLabel: {
@@ -821,7 +826,7 @@ export const weddingVisitCopy: {
         },
         {
           en: 'Larnaca, Larnaka 6023',
-          el: 'Λάρνακα, Larnaka 6023',
+          el: 'Λάρνακα 6023',
           ru: 'Ларнака, Larnaka 6023',
         },
         {
@@ -835,7 +840,7 @@ export const weddingVisitCopy: {
       mapQuery: 'Ioannou+Gladstonos+10+Larnaca+6023+Cyprus',
       mapTitle: {
         en: 'Wedding Sky — Larnaca studio',
-        el: 'Wedding Sky — ατελιέ Λάρνακας',
+        el: 'Wedding Sky — στούντιο Λάρνακας',
         ru: 'Wedding Sky — студия в Ларнаке',
       },
     },
@@ -849,12 +854,12 @@ export const weddingVisitCopy: {
       addressLines: [
         {
           en: 'John Kennedy Street, Iris House, 4th Floor, 440A',
-          el: 'John Kennedy Street, Iris House, 4th Floor, 440A',
+          el: 'Οδός Τζον Κένεντι, Iris House, 4ος όροφος, 440A',
           ru: 'John Kennedy Street, Iris House, 4th Floor, 440A',
         },
         {
           en: 'Neapolis, 3106 Limassol',
-          el: 'Neapolis, 3106 Limassol',
+          el: 'Νεάπολη, 3106 Λεμεσός',
           ru: 'Neapolis, 3106 Limassol',
         },
         {
@@ -868,14 +873,14 @@ export const weddingVisitCopy: {
       mapQuery: 'Iris+House+John+Kennedy+Limassol+Cyprus',
       mapTitle: {
         en: 'Wedding Sky — Limassol studio',
-        el: 'Wedding Sky — ατελιέ Λεμεσού',
+        el: 'Wedding Sky — στούντιο Λεμεσού',
         ru: 'Wedding Sky — студия в Лимасоле',
       },
     },
   ],
   mapTitle: {
     en: 'Wedding Sky — studio locations',
-    el: 'Wedding Sky — τοποθεσίες ατελιέ',
+    el: 'Wedding Sky — τοποθεσίες στούντιο',
     ru: 'Wedding Sky — расположение студий',
   },
 }
@@ -888,12 +893,12 @@ export const weddingContactCopy = {
   } satisfies LocalizedText,
   title: {
     en: 'Enquire with Wedding Sky',
-    el: 'Επικοινωνήστε με τη Wedding Sky',
+    el: 'Επικοινωνήστε μαζί μας',
     ru: 'Свяжитесь с Wedding Sky',
   } satisfies LocalizedText,
   intro: {
     en: 'Share a few details about your celebration — our planners will reply with care and next steps.',
-    el: 'Μοιραστείτε λίγες λεπτομέρειες για τη γιορτή σας — οι planners μας θα απαντήσουν με φροντίδα και επόμενα βήματα.',
+    el: 'Πείτε μας λίγα λόγια για τη γιορτή σας. Η ομάδα μας θα σας απαντήσει με φροντίδα και θα σας καθοδηγήσει στα επόμενα βήματα.',
     ru: 'Расскажите немного о вашем торжестве — наши планировщики ответят внимательно и предложат следующие шаги.',
   } satisfies LocalizedText,
   optional: {
@@ -924,7 +929,7 @@ export const weddingContactCopy = {
     } satisfies LocalizedText,
     service: {
       en: 'Interest',
-      el: 'Ενδιαφέρον',
+      el: 'Τι σας ενδιαφέρει',
       ru: 'Интерес',
     } satisfies LocalizedText,
     message: {
@@ -951,7 +956,7 @@ export const weddingContactCopy = {
     } satisfies LocalizedText,
     message: {
       en: 'Date ideas, guest count, venue preferences, or anything we should know…',
-      el: 'Ιδέες ημερομηνίας, αριθμός καλεσμένων, προτιμήσεις χώρου ή οτιδήποτε πρέπει να γνωρίζουμε…',
+      el: 'Ιδέες για ημερομηνία, αριθμός καλεσμένων, προτιμήσεις χώρου ή ό,τι άλλο θέλετε να γνωρίζουμε',
       ru: 'Идеи по дате, число гостей, предпочтения по площадке или всё, что нам важно знать…',
     } satisfies LocalizedText,
   },
@@ -1114,12 +1119,12 @@ export const weddingCategoryPageCopy: {
   },
   enquire: {
     en: 'Private enquiry',
-    el: 'Ιδιωτική επικοινωνία',
+    el: 'Προσωπικό αίτημα',
     ru: 'Частный запрос',
   },
   enquireShort: {
     en: 'Enquire now',
-    el: 'Εκδήλωση ενδιαφέροντος',
+    el: 'Επικοινωνήστε τώρα',
     ru: 'Оставить заявку',
   },
   tiersEyebrow: {
@@ -1139,7 +1144,7 @@ export const weddingCategoryPageCopy: {
   },
   chooseTitleLine2: {
     en: 'Wedding tier',
-    el: 'επίπεδο γάμου',
+    el: 'Επίπεδο γάμου',
     ru: 'уровень свадьбы',
   },
   chooseIntro: {
@@ -1169,7 +1174,7 @@ export const weddingCategoryPageCopy: {
   },
   featuredBadge: {
     en: 'Signature tier',
-    el: 'Υπογραφή επιλογή',
+    el: 'Προτεινόμενη επιλογή',
     ru: 'Фирменный уровень',
   },
   previewFlyer: {
@@ -1276,7 +1281,7 @@ export const weddingDetailPageCopy: {
   },
   contactLink: {
     en: 'connect with our Wedding Sky atelier',
-    el: 'επικοινωνήστε με το atelier της Wedding Sky',
+    el: 'επικοινωνήστε με την ομάδα της Wedding Sky',
     ru: 'свяжитесь с нашим atelier Wedding Sky',
   },
   contactSuffix: {
@@ -1314,7 +1319,7 @@ export const weddingPlanEnquiryCopy = {
   } satisfies LocalizedText,
   subtitle: {
     en: 'Tell us a little about your celebration — our planners will follow up with tailored ideas and next steps.',
-    el: 'Πείτε μας λίγα για τη γιορτή σας — οι planners μας θα επικοινωνήσουν με εξατομικευμένες ιδέες και επόμενα βήματα.',
+    el: 'Πείτε μας λίγα για τη γιορτή σας — η ομάδα μας θα επικοινωνήσει με εξατομικευμένες ιδέες και τα επόμενα βήματα.',
     ru: 'Расскажите немного о вашем торжестве — наши планировщики свяжутся с персональными идеями и следующими шагами.',
   } satisfies LocalizedText,
   optional: {
@@ -1422,7 +1427,7 @@ export const weddingPlanEnquiryCopy = {
     } satisfies LocalizedText,
     notes: {
       en: 'Style, must-haves, timing, or anything we should know…',
-      el: 'Στυλ, must-haves, timing ή οτιδήποτε πρέπει να γνωρίζουμε…',
+      el: 'Στυλ, απαραίτητα, χρονοδιάγραμμα ή οτιδήποτε θέλετε να γνωρίζουμε…',
       ru: 'Стиль, обязательные детали, сроки или всё, что нам важно знать…',
     } satisfies LocalizedText,
   },
@@ -1546,7 +1551,7 @@ export const weddingConsultationCopy = {
   } satisfies LocalizedText,
   subline: {
     en: 'Share your first ideas with our planners — a complimentary consultation to explore style, packages, and the day you imagine.',
-    el: 'Μοιραστείτε τις πρώτες σας ιδέες με τους planners μας — μια δωρεάν συνάντηση για στυλ, πακέτα και την ημέρα που ονειρεύεστε.',
+    el: 'Μοιραστείτε τις πρώτες σας ιδέες με την ομάδα μας — μια δωρεάν συνάντηση για στυλ, πακέτα και την ημέρα που ονειρεύεστε.',
     ru: 'Поделитесь первыми идеями с нашими планировщиками — бесплатная консультация о стиле, пакетах и дне вашей мечты.',
   } satisfies LocalizedText,
   benefits: [
@@ -1583,7 +1588,7 @@ export const weddingConsultationCopy = {
   } satisfies LocalizedText,
   fabLabel: {
     en: 'Book consultation',
-    el: 'Κλείστε ραντεβού',
+    el: 'ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ',
     ru: 'Записаться',
   } satisfies LocalizedText,
   fabAria: {

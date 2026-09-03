@@ -38,7 +38,7 @@ export const weddingAboutFigures = {
     objectPosition: 'center 22%',
     caption: {
       en: 'Luxury without limits',
-      el: 'Luxury without limits',
+      el: 'Πολυτέλεια χωρίς όρια',
       ru: 'Luxury without limits',
     },
   },
@@ -49,7 +49,7 @@ export const weddingAboutFigures = {
     objectPosition: 'center 34%',
     caption: {
       en: 'One company. One standard.',
-      el: 'One company. One standard.',
+      el: 'Μία εταιρεία. Ένα επίπεδο.',
       ru: 'One company. One standard.',
     },
   },
@@ -85,7 +85,7 @@ const L = {
   } satisfies LocalizedText,
   tagline: {
     en: 'Where Your Dream Wedding Becomes Reality.',
-    el: 'Where Your Dream Wedding Becomes Reality.',
+    el: 'Εκεί που ο γάμος που ονειρεύεστε γίνεται πραγματικότητα.',
     ru: 'Where Your Dream Wedding Becomes Reality.',
   } satisfies LocalizedText,
   leadKicker: {
@@ -159,7 +159,7 @@ export const weddingAboutManifestoBlocks: readonly WeddingAboutBlock[] = [
     kind: 'section',
     title: {
       en: 'Luxury Without Limits',
-      el: 'Luxury Without Limits',
+      el: 'Πολυτέλεια χωρίς όρια',
       ru: 'Luxury Without Limits',
     },
   },
@@ -183,7 +183,7 @@ export const weddingAboutManifestoBlocks: readonly WeddingAboutBlock[] = [
     kind: 'accent',
     text: {
       en: 'You dream it. We create it.',
-      el: 'You dream it. We create it.',
+      el: 'Εσείς το ονειρεύεστε. Εμείς το δημιουργούμε.',
       ru: 'You dream it. We create it.',
     },
   },
@@ -231,7 +231,7 @@ export const weddingAboutManifestoBlocks: readonly WeddingAboutBlock[] = [
     kind: 'accent',
     text: {
       en: 'One company. One team. One vision. Your dream wedding.',
-      el: 'One company. One team. One vision. Your dream wedding.',
+      el: 'Μία εταιρεία. Μία ομάδα. Ένα όραμα. Ο γάμος που ονειρεύεστε.',
       ru: 'One company. One team. One vision. Your dream wedding.',
     },
   },
@@ -255,7 +255,7 @@ export const weddingAboutManifestoBlocks: readonly WeddingAboutBlock[] = [
     kind: 'body',
     text: {
       en: 'With Wedding Sky, you do not need that. By choosing one of our complete wedding packages, we take care of everything — from beginning to end, all in one.',
-      el: 'Με τη Wedding Sky, δεν χρειάζεται! Επιλέγοντας ένα από τα ολοκληρωμένα wedding packages μας, τα αναλαμβάνουμε όλα εμείς — από την αρχή μέχρι το τέλος, all in one!',
+      el: 'Με τη Wedding Sky, δεν χρειάζεται! Επιλέγοντας ένα από τα ολοκληρωμένα πακέτα γάμου μας, τα αναλαμβάνουμε όλα εμείς — από την αρχή μέχρι το τέλος, όλα σε ένα.',
       ru: 'С Wedding Sky это не нужно. Выбрав один из наших комплексных wedding packages, мы берём всё на себя — от начала до конца, all in one.',
     },
   },
@@ -409,7 +409,7 @@ export const weddingAboutManifestoBlocks: readonly WeddingAboutBlock[] = [
     kind: 'body',
     text: {
       en: 'You choose one of the largest and most prestigious wedding event companies in Cyprus — with the experience, infrastructure, and specialist team to handle every detail to the highest standards.',
-      el: 'Επιλέγετε μία από τις μεγαλύτερες και πιο prestigious εταιρείες γαμήλιων εκδηλώσεων στην Κύπρο, με την εμπειρία, την υποδομή και την εξειδικευμένη ομάδα που μπορεί να αναλάβει κάθε λεπτομέρεια με τα υψηλότερα standards.',
+      el: 'Επιλέγετε μία από τις μεγαλύτερες και πιο καταξιωμένες εταιρείες γαμήλιων εκδηλώσεων στην Κύπρο, με την εμπειρία, την υποδομή και την εξειδικευμένη ομάδα που μπορεί να αναλάβει κάθε λεπτομέρεια με τα υψηλότερα πρότυπα.',
       ru: 'Вы выбираете одну из крупнейших и самых престижных свадебных компаний Кипра — с опытом, инфраструктурой и специализированной командой, способной взять на себя каждую деталь по высочайшим стандартам.',
     },
   },

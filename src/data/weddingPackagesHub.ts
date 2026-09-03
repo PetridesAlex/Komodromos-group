@@ -38,7 +38,7 @@ export const weddingPackagesHubCopy = {
   } satisfies LocalizedText,
   lead: {
     en: 'Three composed collections — complete programmes, photography, and décor — crafted with clarity, restraint, and signature Wedding Sky stewardship.',
-    el: 'Τρεις συντεθειμένες συλλογές — ολοκληρωμένα προγράμματα, φωτογραφία και διακόσμηση — με σαφήνεια, μέτρο και την υπογραφή επιμέλειας της Wedding Sky.',
+    el: 'Τρεις επιμελημένες συλλογές — ολοκληρωμένα προγράμματα, φωτογραφία και διακόσμηση — με σαφήνεια, μέτρο και την υπογραφή φροντίδας της Wedding Sky.',
     ru: 'Три собранные коллекции — полные программы, фотография и декор — с ясностью, сдержанностью и фирменным сопровождением Wedding Sky.',
   } satisfies LocalizedText,
   backToAtelier: {
@@ -61,7 +61,7 @@ export const weddingPackagesHubCopy = {
       },
       tagline: {
         en: 'Full Wedding Sky programmes — coordination, styling, and signature inclusions in one investment.',
-        el: 'Ολοκληρωμένα προγράμματα Wedding Sky — συντονισμός, styling και signature παροχές σε μία επένδυση.',
+        el: 'Ολοκληρωμένα προγράμματα Wedding Sky — συντονισμός, στολισμός και χαρακτηριστικές παροχές σε ένα πακέτο.',
         ru: 'Полные программы Wedding Sky — координация, стиль и signature inclusions в одной инвестиции.',
       },
       image: `${CATEGORY_IMG}/wedding-packages.webp`,
@@ -77,7 +77,7 @@ export const weddingPackagesHubCopy = {
       },
       tagline: {
         en: 'Cinematic photography & film programmes designed to capture every glance, detail, and emotion.',
-        el: 'Κινηματογραφικά προγράμματα φωτογραφίας & film σχεδιασμένα να αποτυπώσουν κάθε βλέμμα, λεπτομέρεια και συναίσθημα.',
+        el: 'Κινηματογραφικά προγράμματα φωτογραφίας και βίντεο, σχεδιασμένα να αποτυπώσουν κάθε βλέμμα, λεπτομέρεια και συναίσθημα.',
         ru: 'Кинематографические программы фото и film, созданные сохранить каждый взгляд, деталь и эмоцию.',
       },
       image: `${SERVICE_IMG}/wedding-photo-video.webp`,
@@ -93,7 +93,7 @@ export const weddingPackagesHubCopy = {
       },
       tagline: {
         en: 'Florals, tablescapes, and atmospheric décor compositions for ceremony and reception.',
-        el: 'Ανθοστολισμός, tablescapes και ατμοσφαιρικές συνθέσεις διακόσμησης για τελετή και δεξίωση.',
+        el: 'Ανθοστολισμός, στολισμός τραπεζιών και ατμοσφαιρικές συνθέσεις διακόσμησης για τελετή και δεξίωση.',
         ru: 'Флористика, tablescapes и атмосферные композиции декора для церемонии и банкета.',
       },
       image: `${SERVICE_IMG}/wedding-decor-cover-hero.webp`,
@@ -123,12 +123,12 @@ export const weddingPackageFamilyCopy = {
     body: [
       {
         en: 'From elegant coverage of preparations and ceremony to cinematic evening film, Wedding Sky photography packages can be shaped around guest count, timeline, and the story you want to keep forever.',
-        el: 'Από elegant κάλυψη προετοιμασίας και τελετής έως cinematic evening film, τα πακέτα φωτογραφίας της Wedding Sky διαμορφώνονται γύρω από τον αριθμό καλεσμένων, το χρονοδιάγραμμα και την ιστορία που θέλετε να κρατήσετε για πάντα.',
+        el: 'Από κομψή κάλυψη προετοιμασίας και τελετής έως κινηματογραφικό βραδινό φιλμ, τα πακέτα φωτογραφίας της Wedding Sky διαμορφώνονται γύρω από τον αριθμό καλεσμένων, το χρονοδιάγραμμα και την ιστορία που θέλετε να κρατήσετε για πάντα.',
         ru: 'От elegant съёмки подготовки и церемонии до cinematic evening film — пакеты фотографии Wedding Sky формируются вокруг числа гостей, таймлайна и истории, которую вы хотите сохранить навсегда.',
       },
       {
         en: 'Book a consultation to review portfolios, discuss inclusions, and receive a clear proposal for your photography programme.',
-        el: 'Κλείστε ραντεβού για να δείτε portfolios, να συζητήσετε inclusions και να λάβετε ξεκάθαρη πρόταση για το πρόγραμμα φωτογραφίας σας.',
+        el: 'Κλείστε ραντεβού για να δείτε δείγματα δουλειάς, να συζητήσετε τι περιλαμβάνεται και να λάβετε ξεκάθαρη πρόταση για το πρόγραμμα φωτογραφίας σας.',
         ru: 'Запишитесь на консультацию, чтобы посмотреть портфолио, обсудить inclusions и получить ясное предложение по вашей фотопрограмме.',
       },
     ] as const satisfies ReadonlyArray<LocalizedText>,
@@ -146,13 +146,13 @@ export const weddingPackageFamilyCopy = {
     } satisfies LocalizedText,
     lead: {
       en: 'Floral architecture, tablescapes, lighting mood, and ceremony styling — composed as a complete décor language for your wedding.',
-      el: 'Ανθοστολισμός, tablescapes, φωτιστική ατμόσφαιρα και styling τελετής — συντεθειμένα ως μία ολοκληρωμένη γλώσσα διακόσμησης για τον γάμο σας.',
+      el: 'Ανθοστολισμός, στολισμός τραπεζιών, φωτιστική ατμόσφαιρα και στολισμός τελετής — ως μία ολοκληρωμένη γλώσσα διακόσμησης για τον γάμο σας.',
       ru: 'Флористика, tablescapes, свет и styling церемонии — как единый язык декора для вашей свадьбы.',
     } satisfies LocalizedText,
     body: [
       {
         en: 'Whether you need a refined church and reception foundation or a fully immersive signature setting, décor packages are designed around your venue, palette, and personality.',
-        el: 'Είτε χρειάζεστε refined βάση για εκκλησία και δεξίωση είτε ένα πλήρως immersive signature setting, τα πακέτα διακόσμησης σχεδιάζονται γύρω από τον χώρο, την παλέτα και την προσωπικότητά σας.',
+        el: 'Είτε χρειάζεστε κομψή βάση για εκκλησία και δεξίωση είτε ένα πλήρες, εντυπωσιακό σκηνικό υπογραφής, τα πακέτα διακόσμησης σχεδιάζονται γύρω από τον χώρο, την παλέτα και την προσωπικότητά σας.',
         ru: 'Нужна ли refined база для храма и банкета или immersive signature setting — пакеты декора создаются под площадку, палитру и ваш характер.',
       },
       {
