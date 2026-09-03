@@ -13,6 +13,7 @@ import {
 import { unlockDocumentScroll } from './lib/documentScrollLock.ts'
 import NavigationPathSync from './components/NavigationPathSync.tsx'
 import CookieBanner from './components/CookieBanner.tsx'
+import AnalyticsRouteTracker from './components/AnalyticsRouteTracker.tsx'
 import SocialHub from './components/SocialHub.tsx'
 import HeroParallaxEffect from './components/HeroParallaxEffect.tsx'
 import SectionLedScroll from './components/SectionLedScroll.tsx'
@@ -21,6 +22,9 @@ import TurnstileHost from './components/TurnstileHost.tsx'
 import SeoManager, { SeoOverrideProvider } from './seo/SeoManager.tsx'
 import { SiteContextProvider } from './seo/SiteContext.tsx'
 import { AppRoutes } from './components/AppRoutes.tsx'
+import { initAnalytics } from './lib/analytics.ts'
+
+initAnalytics()
 
 function Root() {
   const [bootPreloader, setBootPreloader] = useState(getBootPreloader)
@@ -50,6 +54,7 @@ function Root() {
       <BrowserRouter>
         <SiteContextProvider>
           <NavigationPathSync />
+          <AnalyticsRouteTracker />
           <SeoOverrideProvider>
             <SeoManager />
             <SectionLedScroll />

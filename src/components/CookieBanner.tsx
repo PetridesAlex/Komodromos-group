@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import {
+  COOKIE_CONSENT_KEY,
+  updateAnalyticsConsent,
+} from '../lib/analytics'
 
-const CONSENT_KEY = 'kg-cookie-consent'
+const CONSENT_KEY = COOKIE_CONSENT_KEY
 
 function CookieIcon() {
   return (
@@ -39,16 +43,19 @@ export default function CookieBanner() {
       const timer = setTimeout(() => setVisible(true), 1200)
       return () => clearTimeout(timer)
     }
+    updateAnalyticsConsent(consent === 'accepted')
     setShowButton(true)
   }, [])
 
   function handleAccept() {
     localStorage.setItem(CONSENT_KEY, 'accepted')
+    updateAnalyticsConsent(true)
     dismiss()
   }
 
   function handleDecline() {
     localStorage.setItem(CONSENT_KEY, 'declined')
+    updateAnalyticsConsent(false)
     dismiss()
   }
 
@@ -64,6 +71,7 @@ export default function CookieBanner() {
   function reopen() {
     setShowButton(false)
     localStorage.removeItem(CONSENT_KEY)
+    updateAnalyticsConsent(false)
     setVisible(true)
   }
 
