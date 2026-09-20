@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Mail, Phone, MapPin, Clock, ArrowUpRight, Check } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, ArrowUpRight, Check, ChevronDown } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import { useReveal } from '../hooks/useReveal'
@@ -9,23 +9,46 @@ import { CONTACT_FIELD_LIMITS } from '../lib/contactFormValidation'
 import { useFormSpamProtection } from '../hooks/useFormSpamProtection'
 import { getPublicServiceCards } from '../lib/serviceMaintenance'
 import { vipSubServices } from '../data/vipSubServices'
-
-const CONTACT_PHONES = ['24333305', '96000336', '99243100', '24333306'] as const
-
-function formatPhoneDisplay(phone: string): string {
-  if (phone.length === 8) {
-    return `+357 ${phone.slice(0, 2)} ${phone.slice(2, 5)} ${phone.slice(5)}`
-  }
-  return `+357 ${phone}`
-}
+import {
+  GROUP_BUSINESS_HOURS,
+  GROUP_CONTACT_EMAIL,
+  GROUP_CONTACT_OFFICES,
+  GROUP_CONTACT_PHONES,
+} from '../data/groupContact'
 
 export default function ContactPage() {
   const location = useLocation()
   const pageRef = useReveal()
   const { spamMeta, spamFields } = useFormSpamProtection()
+  const phoneMenuRef = useRef<HTMLDivElement>(null)
+  const [phonesOpen, setPhonesOpen] = useState(false)
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  useEffect(() => {
+    if (!phonesOpen) return
+
+    const onPointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null
+      if (phoneMenuRef.current && target && !phoneMenuRef.current.contains(target)) {
+        setPhonesOpen(false)
+      }
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setPhonesOpen(false)
+    }
+
+    document.addEventListener('mousedown', onPointerDown)
+    document.addEventListener('touchstart', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      document.removeEventListener('touchstart', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [phonesOpen])
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -232,8 +255,8 @@ export default function ContactPage() {
                 </span>
                 <div className="contact-channel__body">
                   <span className="contact-channel__label">Email</span>
-                  <a className="contact-channel__value" href="mailto:info@komodromosgroup.com">
-                    info@komodromosgroup.com
+                  <a className="contact-channel__value" href={`mailto:${GROUP_CONTACT_EMAIL}`}>
+                    {GROUP_CONTACT_EMAIL}
                   </a>
                 </div>
               </li>
@@ -244,12 +267,55 @@ export default function ContactPage() {
                 </span>
                 <div className="contact-channel__body">
                   <span className="contact-channel__label">Phone</span>
-                  <div className="contact-channel__phones">
-                    {CONTACT_PHONES.map((phone) => (
-                      <a key={phone} href={`tel:+357${phone}`} className="contact-channel__value">
-                        {formatPhoneDisplay(phone)}
-                      </a>
-                    ))}
+                  <div
+                    className={`contact-phone-menu${phonesOpen ? ' contact-phone-menu--open' : ''}`}
+                    ref={phoneMenuRef}
+                  >
+                    <button
+                      type="button"
+                      className="contact-phone-menu__trigger"
+                      aria-expanded={phonesOpen}
+                      aria-controls="contact-phone-menu-list"
+                      aria-haspopup="menu"
+                      onClick={() => setPhonesOpen((open) => !open)}
+                    >
+                      <span className="contact-phone-menu__trigger-icon" aria-hidden>
+                        <Phone size={15} strokeWidth={2.25} />
+                      </span>
+                      <span className="contact-phone-menu__trigger-copy">
+                        <span className="contact-phone-menu__trigger-label">Call our lines</span>
+                        <span className="contact-phone-menu__trigger-meta">
+                          {GROUP_CONTACT_PHONES.length} numbers
+                        </span>
+                      </span>
+                      <ChevronDown
+                        className="contact-phone-menu__chevron"
+                        size={16}
+                        strokeWidth={2.25}
+                        aria-hidden
+                      />
+                    </button>
+                    <ul
+                      id="contact-phone-menu-list"
+                      className="contact-phone-menu__list"
+                      role="menu"
+                      hidden={!phonesOpen}
+                    >
+                      {GROUP_CONTACT_PHONES.map((phone) => (
+                        <li key={phone.id} role="none">
+                          <a
+                            href={`tel:+357${phone.digits}`}
+                            className="contact-phone-menu__item"
+                            role="menuitem"
+                            aria-label={`${phone.label}: ${phone.display}`}
+                            onClick={() => setPhonesOpen(false)}
+                          >
+                            <span className="contact-phone-menu__item-label">{phone.label}</span>
+                            <span className="contact-phone-menu__item-number">{phone.display}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </li>
@@ -259,10 +325,39 @@ export default function ContactPage() {
                   <MapPin size={18} strokeWidth={2} />
                 </span>
                 <div className="contact-channel__body">
-                  <span className="contact-channel__label">Office</span>
-                  <span className="contact-channel__value contact-channel__value--static">
-                    Limassol, Cyprus
-                  </span>
+                  <span className="contact-channel__label">Offices</span>
+                  <ul className="contact-channel__offices">
+                    {GROUP_CONTACT_OFFICES.map((office, officeIndex) => (
+                      <li
+                        key={office.id}
+                        className="contact-office"
+                        style={{ ['--office-i' as string]: String(officeIndex) }}
+                      >
+                        <div className="contact-office__head">
+                          <span className="contact-office__badge">
+                            <MapPin size={12} strokeWidth={2.25} aria-hidden />
+                            Location
+                          </span>
+                          <p className="contact-office__city">{office.city}</p>
+                        </div>
+                        <address className="contact-office__address">
+                          {office.addressLines.map((line) => (
+                            <span key={line} className="contact-office__line">
+                              {line}
+                            </span>
+                          ))}
+                        </address>
+                        <a
+                          href={office.phoneHref}
+                          className="contact-office__phone"
+                          aria-label={`${office.city} studio phone: ${office.phone}`}
+                        >
+                          <Phone size={14} strokeWidth={2} aria-hidden />
+                          <span>{office.phone}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </li>
 
@@ -273,9 +368,9 @@ export default function ContactPage() {
                 <div className="contact-channel__body">
                   <span className="contact-channel__label">Business hours</span>
                   <span className="contact-channel__value contact-channel__value--static">
-                    Mon – Fri · 09:00 – 18:00
+                    {GROUP_BUSINESS_HOURS.primary}
                   </span>
-                  <span className="contact-channel__meta">Saturday by appointment</span>
+                  <span className="contact-channel__meta">{GROUP_BUSINESS_HOURS.note}</span>
                 </div>
               </li>
             </ul>
