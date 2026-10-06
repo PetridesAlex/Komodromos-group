@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -9,7 +9,6 @@ import WeddingPhotographyPackagesPage from './WeddingPhotographyPackagesPage'
 import WeddingDecorPackagesPage from './WeddingDecorPackagesPage'
 import WeddingConsultationPromo from './WeddingConsultationPromo'
 import WeddingPackagePricingGrid from './WeddingPackagePricingGrid'
-import NotFoundPage from './NotFoundPage'
 import { useReveal } from '../hooks/useReveal'
 import {
   getPackagesForCategory,
@@ -41,7 +40,7 @@ export default function WeddingPackageCategoryPage() {
   }, [categoryId])
 
   if (!category) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   if (category.id === 'christian') {

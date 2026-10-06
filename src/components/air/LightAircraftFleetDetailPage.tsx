@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
 import SiteTopbar from '../SiteTopbar'
 import { useReveal } from '../../hooks/useReveal'
 import { airCategoryPath, airLightFleet, airLightFleetDetails, airLightFleetPath } from '../../data/airServicesPage'
-import NotFoundPage from '../NotFoundPage'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -15,7 +14,7 @@ export default function LightAircraftFleetDetailPage() {
   const { aircraftId } = useParams<{ aircraftId: string }>()
 
   const aircraft = airLightFleet.aircraft.find((item) => item.id === aircraftId)
-  if (!aircraft) return <NotFoundPage />
+  if (!aircraft) return <Navigate to="/" replace />
 
   const detail = airLightFleetDetails[aircraft.id]
   const lightCategoryPath = `/services/air/${airCategoryPath.light}`

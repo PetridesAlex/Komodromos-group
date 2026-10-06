@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -17,7 +17,6 @@ import {
 import WeddingLazyImage from './WeddingLazyImage'
 import WeddingLazyReveal from './WeddingLazyReveal'
 import WeddingPackageLongContentBlock from './WeddingPackageLongContent'
-import NotFoundPage from './NotFoundPage'
 import { weddingBrandHref } from '../lib/brandPaths'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
@@ -63,7 +62,7 @@ export default function WeddingPackageDetailPage() {
   }, [packageTier?.id])
 
   if (!packageTier) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const detail = weddingPackageDetails[packageTier.id]

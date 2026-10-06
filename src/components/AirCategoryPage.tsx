@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
@@ -13,7 +13,6 @@ import {
 } from '../data/airServicesPage'
 import LightAircraftPremiumSection from './air/LightAircraftPremiumSection'
 import PrivateJetsInflightPremiumSection from './air/PrivateJetsInflightPremiumSection'
-import NotFoundPage from './NotFoundPage'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -32,7 +31,7 @@ export default function AirCategoryPage() {
   }, [categorySlug])
 
   if (!categoryId) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const content = airCategoryContent[categoryId]

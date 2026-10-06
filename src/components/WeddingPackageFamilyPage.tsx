@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import LanguageSwitcher from './LanguageSwitcher'
-import NotFoundPage from './NotFoundPage'
 import { useReveal } from '../hooks/useReveal'
 import { weddingBrandHref } from '../lib/brandPaths'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
@@ -37,7 +36,7 @@ export default function WeddingPackageFamilyPage() {
   }, [familyId])
 
   if (!isFamilyId(familyId)) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const family = weddingPackageFamilyCopy[familyId]

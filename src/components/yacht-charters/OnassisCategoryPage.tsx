@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from '../Footer'
 import SiteTopbar from '../SiteTopbar'
 import { useReveal } from '../../hooks/useReveal'
 import { findOnassisCategory, onassisCategories } from '../../data/onassisExperience'
-import NotFoundPage from '../NotFoundPage'
 import { getOnassisImageAlt } from '../../data/seo/onassisImageAlts'
 
 const EASE = [0.16, 1, 0.3, 1] as const
@@ -28,7 +27,7 @@ export default function OnassisCategoryPage() {
   const category = findOnassisCategory(categoryId)
 
   if (!category) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const index = onassisCategories.findIndex((c) => c.id === category.id)

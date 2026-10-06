@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowLeft, ArrowRight, ChevronRight, ZoomIn } from 'lucide-react'
 import Footer from './Footer'
@@ -10,7 +10,6 @@ import {
   getPoolGardenGallery,
   resolvePoolGardenDetailPage,
 } from '../data/poolGardenPage'
-import NotFoundPage from './NotFoundPage'
 import { poolBrandHref } from '../lib/brandPaths'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
@@ -69,7 +68,7 @@ export default function PoolCategoryDetailPage() {
   }, [categoryId, serviceId, liningId])
 
   if (!page) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const { detail } = page

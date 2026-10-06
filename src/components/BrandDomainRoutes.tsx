@@ -9,7 +9,6 @@ import GwCadetPage from './aviation/GwCadetPage'
 import GwContactPage from './aviation/GwContactPage'
 import GwPilotsPage from './aviation/GwPilotsPage'
 import GwTrainingsPage from './aviation/GwTrainingsPage'
-import NotFoundPage from './NotFoundPage'
 import TaxClearancesPage from './TaxClearancesPage'
 import TaxCompanyRegistrationPage from './TaxCompanyRegistrationPage'
 import TaxHowToTicPage from './TaxHowToTicPage'
@@ -101,7 +100,7 @@ function AviationBrandRoutes() {
         <Route path="cadet-programme" element={<GwCadetPage />} />
         <Route path=":sectionSlug" element={<GwAviationSectionPage />} />
       </Route>
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
@@ -125,7 +124,7 @@ function TaxBrandRoutes() {
       <Route path="/services/tax/*" element={<TaxGroupPathRedirect />} />
       <Route path="/services/tax" element={<TaxGroupPathRedirect />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
@@ -140,7 +139,7 @@ function AstrealBrandRoutes() {
       <Route path="/projects/:projectId" element={<AstrealProjectDetailPage />} />
       <Route path="/services/astreal/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
@@ -154,7 +153,7 @@ function PoolBrandRoutes() {
       <Route path="/linings/:liningId" element={<PoolCategoryDetailPage />} />
       <Route path="/services/pool/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
@@ -165,7 +164,7 @@ function AdrBrandRoutes() {
       <Route path="/" element={<ServiceDetailPage slugOverride="adr-mediation" />} />
       <Route path="/services/adr-mediation/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
@@ -178,7 +177,7 @@ function JanchapelleBrandRoutes() {
       <Route path="/houses/:houseId" element={<JanchapelleHouseDetailPage />} />
       <Route path="/services/janchapelle/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
@@ -206,7 +205,7 @@ function WeddingBrandRoutes() {
       <Route path="/services/wedding/edit" element={<Navigate to="/edit" replace />} />
       <Route path="/services/wedding/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }

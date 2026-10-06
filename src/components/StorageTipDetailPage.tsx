@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { ArrowLeft, ArrowRight, ChevronRight } from 'lucide-react'
 import Footer from './Footer'
@@ -10,7 +10,6 @@ import {
   getStorageTipById,
   storageTipDetailPath,
 } from '../data/storageUsefulTipsContent'
-import NotFoundPage from './NotFoundPage'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -31,7 +30,7 @@ export default function StorageTipDetailPage() {
   }, [tipId])
 
   if (!tip) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   return (

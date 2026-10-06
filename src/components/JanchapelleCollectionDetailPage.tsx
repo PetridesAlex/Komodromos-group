@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import AppointmentModal from './AppointmentModal'
@@ -16,7 +16,6 @@ import {
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { janchapelleBrandHref } from '../lib/brandPaths'
 import { useSiteContext } from '../seo/SiteContext'
-import NotFoundPage from './NotFoundPage'
 import {
   JANCHAPELLE_COLLECTIONS,
   JANCHAPELLE_COLLECTIONS_EYEBROW,
@@ -75,7 +74,7 @@ export default function JanchapelleCollectionDetailPage() {
   }, [collectionId])
 
   if (!collection) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const collectionsHome = janchapelleBrandHref('/services/janchapelle#jc-featured')

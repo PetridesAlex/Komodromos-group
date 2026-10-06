@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import Footer from './Footer'
 import LimoGalleryLightbox from './LimoGalleryLightbox'
 import SiteTopbar from './SiteTopbar'
-import NotFoundPage from './NotFoundPage'
 import { useReveal } from '../hooks/useReveal'
 import { getVipTourDestinationById } from '../data/vipTourDestinations'
 
@@ -27,7 +26,7 @@ export default function VipTourDestinationPage() {
   }, [destinationId])
 
   if (!destination) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const paragraphs =

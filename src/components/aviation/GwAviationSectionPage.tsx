@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import GwImagePlaceholder from './GwImagePlaceholder'
 import GwPageHero from './GwPageHero'
 import { useReveal } from '../../hooks/useReveal'
@@ -7,7 +7,6 @@ import {
   aviationSections,
   type AviationSectionSlug,
 } from '../../data/globalWingsPage'
-import NotFoundPage from '../NotFoundPage'
 
 function isAviationSectionSlug(slug: string | undefined): slug is AviationSectionSlug {
   return !!slug && aviationSectionSlugs.includes(slug as AviationSectionSlug)
@@ -18,7 +17,7 @@ export default function GwAviationSectionPage() {
   const { sectionSlug } = useParams<{ sectionSlug: string }>()
 
   if (!isAviationSectionSlug(sectionSlug)) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const section = aviationSections[sectionSlug]

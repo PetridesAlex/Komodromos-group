@@ -76,7 +76,6 @@ import AstrealProjectDetailPage from './AstrealProjectDetailPage'
 import StorageUnitSpecificationsPage from './StorageUnitSpecificationsPage'
 import StorageTipDetailPage from './StorageTipDetailPage'
 import StorageExtraServicesPage from './StorageExtraServicesPage'
-import NotFoundPage from './NotFoundPage'
 import BrandDomainRoutes from './BrandDomainRoutes'
 import { useSiteContext } from '../seo/SiteContext'
 
@@ -208,7 +207,7 @@ function GroupRoutes() {
       <Route path="/services/storage/extra-services/man-with-van" element={<StorageExtraServicesPage />} />
       <Route path="/services" element={<Navigate to="/#services" replace />} />
       <Route path="/services/:slug" element={<ServiceDetailPage />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }

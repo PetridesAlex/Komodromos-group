@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
 import AppointmentModal from './AppointmentModal'
@@ -16,7 +16,6 @@ import {
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { janchapelleBrandHref } from '../lib/brandPaths'
 import { useSiteContext } from '../seo/SiteContext'
-import NotFoundPage from './NotFoundPage'
 import {
   JANCHAPELLE_CONTACT_STATE,
   JANCHAPELLE_HOUSES,
@@ -74,7 +73,7 @@ export default function JanchapelleHouseDetailPage() {
   }, [houseId])
 
   if (!house) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const housesHome = janchapelleBrandHref('/services/janchapelle#jc-houses')

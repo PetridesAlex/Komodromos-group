@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 import Footer from './Footer'
 import SiteTopbar from './SiteTopbar'
@@ -16,7 +16,6 @@ import StoragePremiumSection from './StoragePremiumSection'
 import ServiceDefaultSections from './ServiceDefaultSections'
 import TaxNexCyprusPage from './TaxNexCyprusPage'
 import { Hero9 } from './hero-9'
-import NotFoundPage from './NotFoundPage'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { getPublicServiceCards, isServiceLinkableFromGroup } from '../lib/serviceMaintenance'
 import { prepareGlobalWingsEntryNavigation } from '../lib/gwEntryNavigation'
@@ -171,7 +170,7 @@ export default function ServiceDetailPage({
   }, [])
 
   if (!card) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const isVip = slug === 'vip'

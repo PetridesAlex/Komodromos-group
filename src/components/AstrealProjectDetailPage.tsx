@@ -9,7 +9,6 @@ import {
   getAstrealProjectById,
   type AstrealDetailCopyImageBreak,
 } from '../data/astrealDevelopersPage'
-import NotFoundPage from './NotFoundPage'
 import { getAstrealRoutes } from '../lib/brandPaths'
 import { buildGroupSiteReturnUrl } from '../lib/navigationHistory'
 import { useSiteContext } from '../seo/SiteContext'
@@ -187,7 +186,7 @@ export default function AstrealProjectDetailPage() {
   }
 
   if (!project) {
-    return <NotFoundPage />
+    return <Navigate to="/" replace />
   }
 
   const skipScrollMotion = Boolean(reduceMotion || isNarrowViewport)
