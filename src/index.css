@@ -47731,10 +47731,12 @@ button.wedding-highlight-tiles__tile {
 
 .wedding-package-detail-panel__lead {
   margin: 0;
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.05rem, 1.55vw, 1.18rem);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.92rem, 1.35vw, 1rem);
   font-weight: 500;
-  line-height: 1.55;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
   color: rgba(18, 38, 72, 0.78);
 }
 
@@ -47816,8 +47818,8 @@ button.wedding-highlight-tiles__tile {
 }
 
 .wedding-package-detail-panel__list--compact li {
-  font-size: clamp(0.98rem, 1.35vw, 1.06rem);
-  line-height: 1.5;
+  font-size: clamp(0.84rem, 1.2vw, 0.9rem);
+  line-height: 1.55;
 }
 
 .wedding-package-detail-panel__summary {
@@ -47896,11 +47898,12 @@ button.wedding-highlight-tiles__tile {
 
 .wedding-package-detail-panel__copy {
   margin: 0;
-  max-width: 38ch;
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.12rem, 1.8vw, 1.28rem);
+  max-width: 42ch;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.9rem, 1.35vw, 0.98rem);
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
+  letter-spacing: 0.01em;
   line-height: 1.65;
   color: rgba(18, 38, 72, 0.84);
 }
@@ -47956,11 +47959,13 @@ button.wedding-highlight-tiles__tile {
 .wedding-package-detail-panel__list li {
   position: relative;
   padding-left: 1.15rem;
-  line-height: 1.65;
+  line-height: 1.6;
   color: rgba(18, 38, 72, 0.82);
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.05rem, 1.55vw, 1.15rem);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.88rem, 1.25vw, 0.95rem);
   font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.01em;
   opacity: 0;
   transform: translateY(10px);
 }
@@ -48616,11 +48621,11 @@ button.wedding-highlight-tiles__tile {
   max-width: none;
   padding: 0;
   border-left: 0;
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.12rem, 2vw, 1.32rem);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.92rem, 1.35vw, 1.02rem);
   font-weight: 500;
-  font-style: italic;
-  line-height: 1.58;
+  font-style: normal;
+  line-height: 1.65;
   letter-spacing: 0.01em;
   color: rgba(12, 32, 62, 0.88);
 }
