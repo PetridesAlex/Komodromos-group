@@ -65,6 +65,52 @@ export const weddingPackageDetails: Record<string, WeddingPackageDetailCopy> = {
       { en: 'Reception effects, VIP transfer, and wedding planner', el: 'Εφέ δεξίωσης, VIP μεταφορά και wedding planner', ru: 'Эффекты приёма, VIP-трансфер и wedding planner' },
     ],
   },
+  eternal: {
+    summary: {
+      en: 'Timeless elegance meets absolute luxury — couture attire, artistic media, invitations, treats & cake, jewellery, entertainment, effects, and full day coordination.',
+      el: 'Διαχρονική κομψότητα συναντά απόλυτη πολυτέλεια — couture εμφάνιση, καλλιτεχνικά media, προσκλήσεις, κεράσματα & τούρτα, κοσμήματα, ψυχαγωγία, εφέ και πλήρης συντονισμός ημέρας.',
+      ru: 'Вневременная элегантность встречает абсолютную роскошь — couture, media, приглашения, угощения и торт, украшения, развлечения, эффекты и полная координация дня.',
+    },
+    idealFor: {
+      en: 'Couples seeking a sophisticated Eternal programme where jewellery, entertainment, and couture sit alongside a full media suite.',
+      el: 'Ζευγάρια που θέλουν ένα εκλεπτυσμένο πρόγραμμα Eternal όπου κοσμήματα, ψυχαγωγία και couture συνδυάζονται με πλήρες media suite.',
+      ru: 'Пары, ищущие изысканную программу Eternal, где украшения, развлечения и couture сочетаются с полным media suite.',
+    },
+    planningWindow: {
+      en: 'Suggested preparation lead time: 6–10 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 6–10 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 6–10 месяцев',
+    },
+    inclusions: [
+      { en: 'Haute couture bridal gown (400 designs or bespoke) and tailored groom suit', el: 'Νυφικό υψηλής ραπτικής (400 σχέδια ή bespoke) και εφαρμοστό κοστούμι γαμπρού', ru: 'Haute couture платье (400 дизайнов или bespoke) и сшитый костюм жениха' },
+      { en: 'Artistic photography & HD/4K film with Hollywood trailer and 4-day delivery', el: 'Καλλιτεχνική φωτογραφία & HD/4K film με Hollywood trailer και παράδοση σε 4 ημέρες', ru: 'Художественное фото и HD/4K film с Hollywood trailer и сдачей за 4 дня' },
+      { en: '450 premium treats, three-tier cake, and wedding rings from 700 designs', el: '450 premium κεράσματα, τρίπατη τούρτα και βέρες από 700 σχέδια', ru: '450 premium-угощений, трёхъярусный торт и кольца из 700 дизайнов' },
+      { en: 'Confetti & fountain effects, entertainment, and personal wedding planner', el: 'Εφέ confetti & συντριβανιών, ψυχαγωγία και προσωπικός wedding planner', ru: 'Эффекты confetti и fountain, развлечения и персональный wedding planner' },
+    ],
+  },
+  essential: {
+    summary: {
+      en: 'Everything you need, beautifully combined — bridal & groom attire, artistic media, invitations, treats & cake, Imperial décor, effects, entertainment, and day coordination.',
+      el: 'Όλα όσα χρειάζεστε, όμορφα συνδυασμένα — νυφικό & γαμπριάτικο, καλλιτεχνικά media, προσκλήσεις, κεράσματα & τούρτα, Imperial διακόσμηση, εφέ, ψυχαγωγία και συντονισμός ημέρας.',
+      ru: 'Всё необходимое, красиво собрано — наряды, художественные media, приглашения, угощения и торт, Imperial-декор, эффекты, развлечения и координация дня.',
+    },
+    idealFor: {
+      en: 'Couples wanting a complete Mediterranean wedding programme with clear inclusions at one investment.',
+      el: 'Ζευγάρια που θέλουν ένα ολοκληρωμένο μεσογειακό πρόγραμμα γάμου με καθαρές παροχές σε μία επένδυση.',
+      ru: 'Пары, которым нужна полная средиземноморская программа с ясными inclusions в одной инвестиции.',
+    },
+    planningWindow: {
+      en: 'Suggested preparation lead time: 6–10 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 6–10 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 6–10 месяцев',
+    },
+    inclusions: [
+      { en: 'Haute couture bridal gown (50 designs or bespoke) and tailored groom suit', el: 'Νυφικό υψηλής ραπτικής (50 σχέδια ή bespoke) και εφαρμοστό κοστούμι γαμπρού', ru: 'Haute couture платье (50 дизайнов или bespoke) и сшитый костюм жениха' },
+      { en: 'Artistic photography & HD/4K film with Hollywood trailer and 4-day delivery', el: 'Καλλιτεχνική φωτογραφία & HD/4K film με Hollywood trailer και παράδοση σε 4 ημέρες', ru: 'Художественное фото и HD/4K film с Hollywood trailer и сдачей за 4 дня' },
+      { en: '1,000 invitations, 1,000 signature treats, and two-tier bespoke cake', el: '1.000 προσκλήσεις, 1.000 signature κεράσματα και δίπατη bespoke τούρτα', ru: '1 000 приглашений, 1 000 signature-угощений и двухъярусный bespoke торт' },
+      { en: 'Imperial décor, reception effects, entertainment, and wedding planner', el: 'Imperial διακόσμηση, εφέ δεξίωσης, ψυχαγωγία και wedding planner', ru: 'Imperial-декор, эффекты приёма, развлечения и wedding planner' },
+    ],
+  },
   elite: {
     summary: {
       en: 'Refined Elite luxury — curated couture, elevated hospitality, and seamless one-team Wedding Sky production.',
@@ -134,6 +180,29 @@ export const weddingPackageDetails: Record<string, WeddingPackageDetailCopy> = {
       { en: 'Pyrotechnics, guest book, and full planning', el: 'Πυροτεχνήματα, τηλέφωνο ευχών και πλήρης οργάνωση', ru: 'Пиротехника, книга пожеланий и полное планирование' },
     ],
   },
+  select: {
+    summary: {
+      en: 'More choices, more special moments — couture attire, artistic media, invitations, treats & cake, Imperial décor, effects, entertainment, and full day coordination.',
+      el: 'Περισσότερες επιλογές, περισσότερες ξεχωριστές στιγμές — couture εμφάνιση, καλλιτεχνικά media, προσκλήσεις, κεράσματα & τούρτα, Imperial διακόσμηση, εφέ, ψυχαγωγία και πλήρης συντονισμός ημέρας.',
+      ru: 'Больше выбора, больше особенных моментов — couture, media, приглашения, угощения и торт, Imperial-декор, эффекты, развлечения и полная координация дня.',
+    },
+    idealFor: {
+      en: 'Couples wanting an elevated Select programme with richer décor capacity and fuller media inclusions.',
+      el: 'Ζευγάρια που θέλουν ένα αναβαθμισμένο πρόγραμμα Select με richer διακόσμηση και fuller media παροχές.',
+      ru: 'Пары, желающие elevated программу Select с richer декором и fuller media inclusions.',
+    },
+    planningWindow: {
+      en: 'Suggested preparation lead time: 8–12 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 8–12 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 8–12 месяцев',
+    },
+    inclusions: [
+      { en: 'Haute couture bridal gown (80 designs or bespoke) and tailored groom suit', el: 'Νυφικό υψηλής ραπτικής (80 σχέδια ή bespoke) και εφαρμοστό κοστούμι γαμπρού', ru: 'Haute couture платье (80 дизайнов или bespoke) и сшитый костюм жениха' },
+      { en: 'Artistic photography & HD/4K film with Hollywood trailer and 4-day delivery', el: 'Καλλιτεχνική φωτογραφία & HD/4K film με Hollywood trailer και παράδοση σε 4 ημέρες', ru: 'Художественное фото и HD/4K film с Hollywood trailer и сдачей за 4 дня' },
+      { en: '1,000 invitations, 1,000 signature treats, and 3-tier bespoke cake', el: '1.000 προσκλήσεις, 1.000 signature κεράσματα και τρίπατη bespoke τούρτα', ru: '1 000 приглашений, 1 000 signature-угощений и трёхъярусный bespoke торт' },
+      { en: 'Imperial décor for up to 30 tables, effects, entertainment, and wedding planner', el: 'Imperial διακόσμηση έως 30 τραπέζια, εφέ, ψυχαγωγία και wedding planner', ru: 'Imperial-декор до 30 столов, эффекты, развлечения и wedding planner' },
+    ],
+  },
   crown: {
     summary: {
       en: 'Crown exclusivity — designer couture, 5-tier cake, flower wall, fireworks, and a hotel or adrenaline experience.',
@@ -178,6 +247,29 @@ export const weddingPackageDetails: Record<string, WeddingPackageDetailCopy> = {
       { en: 'Full 4K media with Same Day Edit and aerial drone', el: 'Πλήρες 4K media με Same Day Edit και aerial drone', ru: 'Полное 4K media с Same Day Edit и aerial-дроном' },
       { en: 'Imperial décor, fireworks, and yacht or adrenaline hospitality', el: 'Imperial διακόσμηση, πυροτεχνήματα και φιλοξενία yacht ή adrenaline', ru: 'Imperial-декор, фейерверк и yacht или adrenaline' },
       { en: 'VIP limousine options and dedicated wedding planner', el: 'Επιλογές VIP λιμουζίνας και αφοσιωμένος wedding planner', ru: 'Варианты VIP-лимузина и выделенный wedding planner' },
+    ],
+  },
+  platinum: {
+    summary: {
+      en: 'Platinum magnificence — Imperial décor, 4K media with Same Day Edit & drone, photo booth, mobile cocktail bar, traditional home setup, and full wedding planning.',
+      el: 'Μεγαλοπρέπεια Platinum — Imperial διακόσμηση, 4K media με Same Day Edit & drone, photo booth, mobile cocktail bar, παραδοσιακό home setup και πλήρης οργάνωση γάμου.',
+      ru: 'Великолепие Platinum — Imperial-декор, 4K media с Same Day Edit и дроном, photo booth, mobile cocktail bar, traditional home setup и полное планирование.',
+    },
+    idealFor: {
+      en: 'Couples wanting the highest Wedding Sky expression of luxury hospitality and production.',
+      el: 'Ζευγάρια που θέλουν την υψηλότερη έκφραση πολυτέλειας φιλοξενίας και παραγωγής της Wedding Sky.',
+      ru: 'Пары, желающие высшее выражение роскоши гостеприимства и постановки Wedding Sky.',
+    },
+    planningWindow: {
+      en: 'Suggested preparation lead time: 12–18 months',
+      el: 'Προτεινόμενος χρόνος προετοιμασίας: 12–18 μήνες',
+      ru: 'Рекомендуемый срок подготовки: 12–18 месяцев',
+    },
+    inclusions: [
+      { en: 'Designer bridal gown from 1,400 designs and tailored groom wardrobe', el: 'Designer νυφικό από 1.400 σχέδια και εφαρμοστή γκαρνταρόμπα γαμπρού', ru: 'Designer-платье из 1 400 дизайнов и сшитый гардероб жениха' },
+      { en: '4K media with Same Day Edit, drone, and 350 foil invitations', el: '4K media με Same Day Edit, drone και 350 foil προσκλήσεις', ru: '4K media с Same Day Edit, дроном и 350 foil-приглашениями' },
+      { en: 'Imperial décor with flower wall, LOVE letters, and up to 40 tables', el: 'Imperial διακόσμηση με flower wall, LOVE και έως 40 τραπέζια', ru: 'Imperial-декор с flower wall, LOVE и до 40 столов' },
+      { en: 'Photo booth, mobile cocktail bar, traditional home setup, and full planning', el: 'Photo booth, mobile cocktail bar, παραδοσιακό home setup και πλήρης οργάνωση', ru: 'Photo booth, mobile cocktail bar, traditional home setup и полное планирование' },
     ],
   },
   customised: {

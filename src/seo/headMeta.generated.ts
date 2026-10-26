@@ -484,6 +484,20 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/grand-wedding-experience.webp",
     "index": true
   },
+  "/services/wedding/packages/eternal": {
+    "title": "Eternal Wedding Experience Wedding | Komodromos Group",
+    "description": "Eternal Wedding Experience — A love that lasts forever, a day that remains unforgettable.. Part of Komodromos Group premium services in Cyprus. Premium",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/eternal",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/eternal-wedding-experience.webp",
+    "index": true
+  },
+  "/services/wedding/packages/essential": {
+    "title": "Essential Wedding Package Wedding Package | Komodromos Group",
+    "description": "Essential Wedding Package — Everything you need, beautifully combined.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/essential",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/essential-wedding-experience.webp",
+    "index": true
+  },
   "/services/wedding/packages/elite": {
     "title": "Elite Wedding Experience Wedding Package | Komodromos Group",
     "description": "Elite Wedding Experience — Refined luxury for couples seeking something truly special.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos",
@@ -505,6 +519,13 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/imperial-wedding-experience.webp",
     "index": true
   },
+  "/services/wedding/packages/select": {
+    "title": "Select Wedding Package Wedding Package | Komodromos Group",
+    "description": "Select Wedding Package — Every detail attended to, every moment unique.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/select",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/select-wedding-experience.webp",
+    "index": true
+  },
   "/services/wedding/packages/crown": {
     "title": "Crown Wedding Experience Wedding Package | Komodromos Group",
     "description": "Crown Wedding Experience — The ultimate expression of exclusivity, prestige, and timeless elegance.. Part of Komodromos Group premium services in Cyprus.",
@@ -517,6 +538,13 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "description": "Royal Wedding Experience — The ultimate expression of luxury, elegance, and unforgettable magnificence.. Part of Komodromos Group premium services in Cyprus.",
     "canonical": "https://www.komodromosgroup.com/services/wedding/packages/royal",
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/royal-wedding-experience.webp",
+    "index": true
+  },
+  "/services/wedding/packages/platinum": {
+    "title": "Platinum Wedding Package Wedding Package | Komodromos Group",
+    "description": "Platinum Wedding Package — The glow of luxury, the magic of your day.. Part of Komodromos Group premium services in Cyprus. Premium Komodromos Group service in",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/packages/platinum",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/completed-wedding-packages/platinum-wedding-experience.webp",
     "index": true
   },
   "/services/wedding/packages/customised": {

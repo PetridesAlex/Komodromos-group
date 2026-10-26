@@ -51,9 +51,9 @@ export const completeWeddingPackagesPageCopy = {
     ru: 'свадебные пакеты',
   } satisfies LocalizedText,
   lead: {
-    en: 'Eight Wedding Sky Experience programmes — from Prestige to Royal, plus a fully Customised path — composed as one investment with coordination, styling, and signature inclusions.',
-    el: 'Οκτώ προγράμματα Wedding Sky Experience — από Prestige έως Royal, μαζί με μία πλήρως προσαρμοσμένη επιλογή — σε ένα ενιαίο πακέτο με συντονισμό, αισθητική και τις χαρακτηριστικές μας παροχές.',
-    ru: 'Восемь программ Wedding Sky Experience — от Prestige до Royal, плюс полностью Customised путь — как одна инвестиция с координацией, стилем и signature inclusions.',
+    en: 'Twelve Wedding Sky Experience programmes — from Prestige to Platinum, including Eternal, Essential and Select, plus a fully Customised path — composed as one investment with coordination, styling, and signature inclusions.',
+    el: 'Δώδεκα προγράμματα Wedding Sky Experience — από Prestige έως Platinum, συμπεριλαμβανομένων των Eternal, Essential και Select, μαζί με μία πλήρως προσαρμοσμένη επιλογή — σε ένα ενιαίο πακέτο με συντονισμό, αισθητική και τις χαρακτηριστικές μας παροχές.',
+    ru: 'Двенадцать программ Wedding Sky Experience — от Prestige до Platinum, включая Eternal, Essential и Select, плюс полностью Customised путь — как одна инвестиция с координацией, стилем и signature inclusions.',
   } satisfies LocalizedText,
   backLabel: {
     en: 'All wedding packages',
@@ -136,9 +136,9 @@ export const completeWeddingPackagesPageCopy = {
     ru: 'Полная коллекция',
   } satisfies LocalizedText,
   catalogueLead: {
-    en: 'Eight composed programmes — from Prestige foundations to Royal magnificence, or a Customised brief built only for you.',
-    el: 'Οκτώ ολοκληρωμένα προγράμματα — από το Prestige μέχρι το Royal, ή ένα προσαρμοσμένο πρόγραμμα φτιαγμένο μόνο για εσάς.',
-    ru: 'Восемь программ — от основ Prestige до великолепия Royal или Customised brief только для вас.',
+    en: 'Twelve composed programmes — from Prestige foundations through Eternal, Essential and Select to Platinum magnificence, or a Customised brief built only for you.',
+    el: 'Δώδεκα ολοκληρωμένα προγράμματα — από το Prestige μέσω Eternal, Essential και Select μέχρι το Platinum, ή ένα προσαρμοσμένο πρόγραμμα φτιαγμένο μόνο για εσάς.',
+    ru: 'Двенадцать программ — от основ Prestige через Eternal, Essential и Select до великолепия Platinum или Customised brief только для вас.',
   } satisfies LocalizedText,
 } as const
 
@@ -247,8 +247,96 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     ],
   },
   {
-    id: 'elite',
+    id: 'eternal',
     sortOrder: 3,
+    name: L('Eternal Wedding Experience', 'Eternal Wedding Experience', 'Eternal Wedding Experience'),
+    tagline: L('A love that lasts forever, a day that remains unforgettable.', 'Μια αγάπη που διαρκεί για πάντα, μια ημέρα που μένει αξέχαστη.', 'Любовь, которая длится вечно, день, который остаётся незабываемым.'),
+    priceDisplay: L('€8,600', '€8.600', '€8 600'),
+    image: `${IMG}/eternal-wedding-experience.webp`,
+    flipImage: `${IMG}/eternal-wedding-experience-back.webp`,
+    highlight: L('Timeless elegance meets absolute luxury — couture attire, artistic media, invitations, treats & cake, jewellery, entertainment, effects, and full day coordination.', 'Διαχρονική κομψότητα συναντά απόλυτη πολυτέλεια — couture εμφάνιση, καλλιτεχνικά media, προσκλήσεις, κεράσματα & τούρτα, κοσμήματα, ψυχαγωγία, εφέ και πλήρης συντονισμός ημέρας.', 'Вневременная элегантность встречает абсолютную роскошь — couture, media, приглашения, угощения и торт, украшения, развлечения, эффекты и полная координация дня.'),
+    sections: [
+      {
+        title: L('Bridal & groom attire', 'Νυφικό & γαμπριάτικο', 'Наряды жениха и невесты'),
+        items: [
+          L('Haute couture bridal gown — 400 designs or bespoke · luxury ceremony veil · sparkling hair accessories, crown or necklace · handmade wreaths from 60+ choices · handmade guest book & ceremony pillow · luxury champagne glasses · 4 flower-girl dresses', 'Νυφικό υψηλής ραπτικής — 400 σχέδια ή bespoke · πολυτελές πέπλο τελετής · λαμπερά αξεσουάρ μαλλιών, στέμμα ή κολιέ · χειροποίητα στεφάνια από 60+ επιλογές · χειροποίητο βιβλίο ευχών & μαξιλάρι τελετής · πολυτελή ποτήρια σαμπάνιας · 4 φορέματα παρανυφάκιων', 'Haute couture платье — 400 дизайнов или bespoke · роскошная вуаль · сверкающие аксессуары, корона или колье · handmade венки из 60+ вариантов · книга и подушка церемонии · бокалы · 4 платья для подружек'),
+          L('Tailored groom suit — jacket & trousers · formal shirt, vest, tie or bow tie · quality belt & luxury tie pin', 'Εφαρμοστό κοστούμι γαμπρού — σακάκι & παντελόνι · επίσημο πουκάμισο, γιλέκο, γραβάτα ή παπιγιόν · ποιοτική ζώνη & πολυτελής καρφίτσα γραβάτας', 'Сшитый костюм жениха — пиджак и брюки · рубашка, жилет, галстук или бабочка · ремень и luxury булавка'),
+        ],
+      },
+      {
+        title: L('Photography, film & invitations', 'Φωτογραφία, film & προσκλήσεις', 'Фото, film и приглашения'),
+        items: [
+          L('Luxury digital album 30×80cm in premium case (leather, wood, glass or aluminium) · 2 companion albums 20×40cm · personal designer for album editing', 'Πολυτελές digital άλμπουμ 30×80εκ. σε premium θήκη (δέρμα, ξύλο, γυαλί ή αλουμίνιο) · 2 companion άλμπουμ 20×40εκ. · προσωπικός designer για το editing', 'Роскошный digital-альбом 30×80 см в premium-кейсе · 2 companion-альбома 20×40 см · персональный дизайнер'),
+          L('Unlimited JPEGs on USB · prints: 2× 40×60, 50× 15×20 · 1 canvas 40×60 · outdoor shoot with boat or luxury car options', 'Απεριόριστα JPEG σε USB · εκτυπώσεις: 2× 40×60, 50× 15×20 · 1 καμβάς 40×60 · εξωτερική shoot με επιλογές σκάφους ή πολυτελούς αυτοκινήτου', 'Безлимитные JPEG на USB · отпечатки: 2× 40×60, 50× 15×20 · 1 холст 40×60 · съёмка с катером или люксовым авто'),
+          L('Full HD & 4K coverage · 1 cinematic HD film · Hollywood-style trailer · professional social media video · guest interviews · multi-camera incl. GoPro · 4-day delivery', 'Κάλυψη Full HD & 4K · 1 cinematic HD video · Hollywood-style trailer · professional social media video · συνεντεύξεις · multi-camera incl. GoPro · παράδοση σε 4 ημέρες', 'Покрытие Full HD и 4K · 1 cinematic HD · Hollywood trailer · social video · интервью · мультикамера вкл. GoPro · сдача за 4 дня'),
+          L('200 luxury invitations with envelopes — 30 premium papers · 370 designs or fully custom design', '200 πολυτελείς προσκλήσεις με φακέλους — 30 premium χαρτιά · 370 σχέδια ή πλήρως custom design', '200 роскошных приглашений с конвертами — 30 премиальных бумаг · 370 дизайнов или fully custom'),
+        ],
+      },
+      {
+        title: L('Treats, cake, jewellery & entertainment', 'Κεράσματα, τούρτα, κοσμήματα & ψυχαγωγία', 'Угощения, торт, украшения и развлечения'),
+        items: [
+          L('450 premium treats from a curated collection of 50 types · three-tier bespoke cake (10 flavours) with 3D design & real flowers · luxury cake cutting set', '450 premium κεράσματα από curated συλλογή 50 τύπων · τρίπατη bespoke τούρτα (10 γεύσεις) με 3D design & πραγματικά άνθη · πολυτελές σετ κοπής', '450 premium-угощений из curated коллекции 50 видов · трёхъярусный bespoke торт (10 вкусов) с 3D и живыми цветами · люксовый набор для разрезания'),
+          L('Wedding rings from 700 designs or bespoke · complimentary silver polishing · 10%–30% jewellery discount coupon', 'Βέρες από 700 σχέδια ή bespoke · δωρεάν γυάλισμα ασημιού · κουπόνι έκπτωσης 10%–30% για κοσμήματα', 'Обручальные кольца из 700 дизайнов или bespoke · бесплатная полировка серебра · купон 10%–30% на украшения'),
+          L('DJ or live violin/saxophone · traditional violin & lute during bridal and groom preparations', 'DJ ή live βιολί/σαξόφωνο · παραδοσιακό βιολί & λαούτο κατά την προετοιμασία νύφης και γαμπρού', 'DJ или live скрипка/саксофон · традиционные скрипка и лаут во время сборов'),
+        ],
+      },
+      {
+        title: L('Effects & planning', 'Εφέ & οργάνωση', 'Эффекты и планирование'),
+        items: [
+          L('12 premium confetti effects for church exit & first dance · 6 indoor floor fountain / fireworks effects', '12 premium confetti effects για έξοδο εκκλησίας & πρώτο χορό · 6 εσωτερικά εφέ συντριβανιών / πυροτεχνημάτων', '12 premium confetti для выхода из храма и первого танца · 6 внутренних fountain / fireworks'),
+          L('Personal wedding planner for full organisation and day coordination', 'Προσωπικός wedding planner για πλήρη οργάνωση και συντονισμό ημέρας', 'Персональный wedding planner для полной организации и координации дня'),
+        ],
+      },
+    ],
+  },
+  {
+    id: 'essential',
+    sortOrder: 4,
+    name: L('Essential Wedding Package', 'Essential Wedding Package', 'Essential Wedding Package'),
+    tagline: L('Everything you need, beautifully combined.', 'Όλα όσα χρειάζεστε, όμορφα συνδυασμένα.', 'Всё, что нужно — красиво собрано вместе.'),
+    priceDisplay: L('€9,300', '€9.300', '€9 300'),
+    image: `${IMG}/essential-wedding-experience.webp`,
+    flipImage: `${IMG}/essential-wedding-experience-back.webp`,
+    highlight: L('Bridal & groom attire, artistic photography & film, invitations, treats & cake, Imperial décor, effects, entertainment, and full day coordination.', 'Νυφικό & γαμπριάτικο, καλλιτεχνική φωτογραφία & film, προσκλήσεις, κεράσματα & τούρτα, Imperial διακόσμηση, εφέ, ψυχαγωγία και πλήρης συντονισμός ημέρας.', 'Наряды, художественное фото и film, приглашения, угощения и торт, Imperial-декор, эффекты, развлечения и полная координация дня.'),
+    sections: [
+      {
+        title: L('Bridal & groom attire', 'Νυφικό & γαμπριάτικο', 'Наряды жениха и невесты'),
+        items: [
+          L('Haute couture bridal gown — 50 designer looks or bespoke · luxury veil · 2 flower-girl dresses · handmade guest book, crowns, mystery pillow, champagne glasses & hair accessories', 'Νυφικό υψηλής ραπτικής — 50 designer σχέδια ή bespoke · πολυτελές πέπλο · 2 φορέματα παρανυφάκιων · χειροποίητο βιβλίο ευχών, στέφανα, mystery pillow, ποτήρια σαμπάνιας & αξεσουάρ μαλλιών', 'Haute couture платье — 50 designer образов или bespoke · роскошная вуаль · 2 платья для подружек · handmade книга, венцы, mystery pillow, бокалы и аксессуары для волос'),
+          L('Tailored groom suit — jacket, trousers, shirt, tie or bow tie, belt & cufflinks', 'Εφαρμοστό κοστούμι γαμπρού — σακάκι, παντελόνι, πουκάμισο, γραβάτα ή παπιγιόν, ζώνη & μανικετόκουμπα', 'Сшитый костюм жениха — пиджак, брюки, рубашка, галстук или бабочка, ремень и запонки'),
+        ],
+      },
+      {
+        title: L('Photography, film & invitations', 'Φωτογραφία, film & προσκλήσεις', 'Фото, film и приглашения'),
+        items: [
+          L('Luxury digital album 30×80cm with premium case · 2 companion albums 20×40cm · personal designer for editing', 'Πολυτελές digital άλμπουμ 30×80εκ. με premium θήκη · 2 companion άλμπουμ 20×40εκ. · προσωπικός designer για το editing', 'Роскошный digital-альбом 30×80 см с premium-кейсом · 2 companion-альбома 20×40 см · персональный дизайнер'),
+          L('Unlimited JPEGs on USB · 50 prints 15×20 · outdoor photography · Full HD / 4K coverage', 'Απεριόριστα JPEG σε USB · 50 εκτυπώσεις 15×20 · εξωτερική φωτογράφιση · κάλυψη Full HD / 4K', 'Безлимитные JPEG на USB · 50 отпечатков 15×20 · съёмка на локации · покрытие Full HD / 4K'),
+          L('1 cinematic HD film · 1 Hollywood-style trailer · 4-day delivery', '1 cinematic HD video · 1 Hollywood-style trailer · παράδοση σε 4 ημέρες', '1 cinematic HD-фильм · 1 Hollywood-style trailer · сдача за 4 дня'),
+          L('1,000 luxury invitations — from 450 designs or custom design', '1.000 πολυτελείς προσκλήσεις — από 450 σχέδια ή custom design', '1 000 роскошных приглашений — из 450 дизайнов или custom'),
+        ],
+      },
+      {
+        title: L('Treats, cake & Imperial décor', 'Κεράσματα, τούρτα & Imperial διακόσμηση', 'Угощения, торт и Imperial-декор'),
+        items: [
+          L('1,000 signature treats from a curated collection of 20 choices · two-tier bespoke wedding cake with real flowers', '1.000 signature κεράσματα από curated συλλογή 20 επιλογών · δίπατη bespoke τούρτα με πραγματικά άνθη', '1 000 signature-угощений из curated коллекции 20 вариантов · двухъярусный bespoke торт с живыми цветами'),
+          L('Car décor with bows & ribbons · 10 church aisle/chair arrangements · 2 large flower columns · 4 floral pedestals · 2 bridal bouquets', 'Διακόσμηση αυτοκινήτου με φιόγκους & κορδέλες · 10 στολισμοί διαδρόμου/καθισμάτων · 2 μεγάλες ανθοστήλες · 4 βάθρα με άνθη · 2 νυφικές ανθοδέσμες', 'Декор авто с бантами и лентами · 10 композиций прохода/скамей · 2 крупные цветочные колонны · 4 пьедестала · 2 букета'),
+          L('Entrance & reception aisle with 4 columns and 12 glass jars with candles · newlywed table with florals & crystals · up to 10 guest tables with vases & tealights', 'Είσοδος & διάδρομος δεξίωσης με 4 κολώνες και 12 γυάλινα βάζα με κεριά · τραπέζι νεονύμφων με άνθη & κρύσταλλα · έως 10 τραπέζια καλεσμένων με βάζα & tealights', 'Вход и проход зала с 4 колоннами и 12 стеклянными банками со свечами · стол молодожёнов с цветами и кристаллами · до 10 гостевых столов'),
+          L('Church entrance stand with 30 rice & rose-petal cones · envelope money box · fresh natural flowers throughout', 'Stand εισόδου εκκλησίας με 30 κουκουνάρια ρυζιού & ροδοπέταλα · κουτί φακέλων · φρέσκα φυσικά άνθη παντού', 'Стойка у входа в храм с 30 конусами риса и лепестков · коробка для конвертов · свежие натуральные цветы'),
+        ],
+      },
+      {
+        title: L('Effects, entertainment & planning', 'Εφέ, ψυχαγωγία & οργάνωση', 'Эффекты, развлечения и планирование'),
+        items: [
+          L('8 indoor fountain / fireworks effects for the reception', '8 εσωτερικά εφέ συντριβανιών / πυροτεχνημάτων για τη δεξίωση', '8 внутренних fountain / fireworks эффектов для приёма'),
+          L('Unlimited DJ or live violin/saxophone · traditional violin & lute during bridal and groom preparations', 'Απεριόριστος DJ ή live βιολί/σαξόφωνο · παραδοσιακό βιολί & λαούτο κατά την προετοιμασία νύφης και γαμπρού', 'Безлимитный DJ или live скрипка/саксофон · традиционные скрипка и лаут во время сборов'),
+          L('Personal wedding planner for full organisation and day coordination', 'Προσωπικός wedding planner για πλήρη οργάνωση και συντονισμό ημέρας', 'Персональный wedding planner для полной организации и координации дня'),
+        ],
+      },
+    ],
+  },
+  {
+    id: 'elite',
+    sortOrder: 5,
     name: L('Elite Wedding Experience', 'Elite Wedding Experience', 'Elite Wedding Experience'),
     tagline: L('Refined luxury for couples seeking something truly special.', 'Εκλεπτυσμένη πολυτέλεια για ζευγάρια που αναζητούν κάτι πραγματικά ξεχωριστό.', 'Изысканная роскошь для пар, ищущих нечто по-настоящему особое.'),
     priceDisplay: L('€9,900', '€9.900', '€9 900'),
@@ -285,7 +373,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
   },
   {
     id: 'exclusive',
-    sortOrder: 4,
+    sortOrder: 6,
     name: L('Exclusive Wedding Experience', 'Exclusive Wedding Experience', 'Exclusive Wedding Experience'),
     tagline: L('Designed with unique care for a truly distinctive wedding day.', 'Σχεδιασμένο με μοναδική φροντίδα για μια πραγματικά ξεχωριστή ημέρα γάμου.', 'Создано с особой заботой для по-настоящему особенного свадебного дня.'),
     priceDisplay: L('€11,300', '€11.300', '€11 300'),
@@ -323,7 +411,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
   },
   {
     id: 'imperial',
-    sortOrder: 5,
+    sortOrder: 7,
     name: L('Imperial Wedding Experience', 'Imperial Wedding Experience', 'Imperial Wedding Experience'),
     tagline: L('Aristocratic elegance inspired by timeless grandeur.', 'Αριστοκρατική κομψότητα εμπνευσμένη από διαχρονικό μεγαλείο.', 'Аристократическая элегантность, вдохновлённая вневременным величием.'),
     priceDisplay: L('€12,000', '€12.000', '€12 000'),
@@ -361,8 +449,51 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     ],
   },
   {
+    id: 'select',
+    sortOrder: 8,
+    name: L('Select Wedding Package', 'Select Wedding Package', 'Select Wedding Package'),
+    tagline: L('Every detail attended to, every moment unique.', 'Προσεγμένη κάθε λεπτομέρεια, ξεχωριστή κάθε στιγμή.', 'Каждая деталь продумана, каждый момент особенный.'),
+    priceDisplay: L('€12,500', '€12.500', '€12 500'),
+    image: `${IMG}/select-wedding-experience.webp`,
+    flipImage: `${IMG}/select-wedding-experience-back.webp`,
+    highlight: L('More choices, more special moments — couture attire, artistic media, invitations, treats & cake, Imperial décor, effects, entertainment, and full day coordination.', 'Περισσότερες επιλογές, περισσότερες ξεχωριστές στιγμές — couture εμφάνιση, καλλιτεχνικά media, προσκλήσεις, κεράσματα & τούρτα, Imperial διακόσμηση, εφέ, ψυχαγωγία και πλήρης συντονισμός ημέρας.', 'Больше выбора, больше особенных моментов — couture, media, приглашения, угощения и торт, Imperial-декор, эффекты, развлечения и полная координация дня.'),
+    sections: [
+      {
+        title: L('Bridal & groom attire', 'Νυφικό & γαμπριάτικο', 'Наряды жениха и невесты'),
+        items: [
+          L('Haute couture bridal gown — 80 luxury designer looks or bespoke · ceremony veil · 2 bridal robes · handmade guest book & personalised stefana · luxury ring pillow & champagne glasses · hair accessories, crown & high-end jewellery', 'Νυφικό υψηλής ραπτικής — 80 luxury designer σχέδια ή bespoke · πέπλο τελετής · 2 ρόμπες νύφης · χειροποίητο βιβλίο ευχών & εξατομικευμένα στέφανα · πολυτελές μαξιλάρι δαχτυλιδιών & ποτήρια σαμπάνιας · αξεσουάρ μαλλιών, στέμμα & high-end κοσμήματα', 'Haute couture платье — 80 luxury designer образов или bespoke · вуаль · 2 халата · handmade книга и персональные венцы · подушка для колец и бокалы · аксессуары, корона и high-end украшения'),
+          L('Tailored groom suit — jacket & trousers · formal shirt & matching vest · tie or bow tie, leather belt, cufflinks & wedding shoes', 'Εφαρμοστό κοστούμι γαμπρού — σακάκι & παντελόνι · επίσημο πουκάμισο & matching γιλέκο · γραβάτα ή παπιγιόν, δερμάτινη ζώνη, μανικετόκουμπα & παπούτσια γάμου', 'Сшитый костюм жениха — пиджак и брюки · рубашка и жилет · галстук или бабочка, кожаный ремень, запонки и свадебная обувь'),
+        ],
+      },
+      {
+        title: L('Photography, film & invitations', 'Φωτογραφία, film & προσκλήσεις', 'Фото, film и приглашения'),
+        items: [
+          L('Luxury digital album 30×80cm with 100 leather cover options · 2 companion albums 20×40cm · personal designer for editing · unlimited JPEGs on USB · 60 prints 15×20', 'Πολυτελές digital άλμπουμ 30×80εκ. με 100 επιλογές δερμάτινου εξωφύλλου · 2 companion άλμπουμ 20×40εκ. · προσωπικός designer · απεριόριστα JPEG σε USB · 60 εκτυπώσεις 15×20', 'Роскошный digital-альбом 30×80 см с 100 вариантами кожаной обложки · 2 companion · персональный дизайнер · безлимитные JPEG · 60 отпечатков 15×20'),
+          L('Outdoor artistic photoshoot (yacht or luxury car) · Full HD / 4K coverage · 1 cinematic HD film · Hollywood-style trailer · 4-day delivery', 'Εξωτερική καλλιτεχνική φωτογράφιση (yacht ή πολυτελές αυτοκίνητο) · κάλυψη Full HD / 4K · 1 cinematic HD video · Hollywood-style trailer · παράδοση σε 4 ημέρες', 'Съёмка на локации (yacht или люксовое авто) · Full HD / 4K · 1 cinematic HD · Hollywood trailer · сдача за 4 дня'),
+          L('1,000 luxury invitations on 5 premium papers · 400+ designs or fully custom design', '1.000 πολυτελείς προσκλήσεις σε 5 premium χαρτιά · 400+ σχέδια ή πλήρως custom design', '1 000 роскошных приглашений на 5 премиальных бумагах · 400+ дизайнов или fully custom'),
+        ],
+      },
+      {
+        title: L('Treats, cake & Imperial décor', 'Κεράσματα, τούρτα & Imperial διακόσμηση', 'Угощения, торт и Imperial-декор'),
+        items: [
+          L('1,000 signature treats from a curated collection of 60 types · 3-tier bespoke cake with 4 flavour options and fresh flower decoration', '1.000 signature κεράσματα από curated συλλογή 60 τύπων · τρίπατη bespoke τούρτα με 4 γεύσεις και διακόσμηση από φρέσκα άνθη', '1 000 signature-угощений из curated коллекции 60 видов · трёхъярусный bespoke торт с 4 вкусами и живыми цветами'),
+          L('Décor for 2 cars · church interior & exterior · 10 aisle/seating bouquets · 2 large altar floral stands · 4 floral columns · 2 bridal bouquets', 'Διακόσμηση 2 αυτοκινήτων · εκκλησία εσωτερικά & εξωτερικά · 10 ανθοδέσμες διαδρόμου/καθισμάτων · 2 μεγάλες ανθοστήλες ιερού · 4 ανθοστήλες · 2 νυφικές ανθοδέσμες', 'Декор 2 авто · храм внутри и снаружи · 10 букетов прохода · 2 крупные алтарные стойки · 4 цветочные колонны · 2 букета'),
+          L('Entrance & aisle with 4 floral stands and 12 glass jars with candles · bridal table décor · up to 30 guest tables · unlimited rice & rose-petal cones', 'Είσοδος & διάδρομος με 4 ανθοστήλες και 12 γυάλινα βάζα με κεριά · διακόσμηση τραπεζιού νύφης · έως 30 τραπέζια καλεσμένων · απεριόριστα κουκουνάρια ρυζιού & ροδοπέταλα', 'Вход и проход с 4 стойками и 12 стеклянными банками со свечами · стол невесты · до 30 гостевых столов · безлимитные конусы риса и лепестков'),
+        ],
+      },
+      {
+        title: L('Effects, entertainment & planning', 'Εφέ, ψυχαγωγία & οργάνωση', 'Эффекты, развлечения и планирование'),
+        items: [
+          L('8 indoor fountain / fireworks effects · low-fog effect for the first dance', '8 εσωτερικά εφέ συντριβανιών / πυροτεχνημάτων · low-fog για τον πρώτο χορό', '8 внутренних fountain / fireworks · low-fog для первого танца'),
+          L('Unlimited DJ or live violin/saxophone · professional lighting · traditional violin & lute for bridal/groom dressing and church procession', 'Απεριόριστος DJ ή live βιολί/σαξόφωνο · professional lighting · παραδοσιακό βιολί & λαούτο για ντύσιμο και πομπή εκκλησίας', 'Безлимитный DJ или live скрипка/саксофон · professional lighting · традиционные скрипка и лаут на сборы и церковную процессию'),
+          L('Personal wedding planner to oversee every detail', 'Προσωπικός wedding planner για κάθε λεπτομέρεια', 'Персональный wedding planner для каждой детали'),
+        ],
+      },
+    ],
+  },
+  {
     id: 'crown',
-    sortOrder: 6,
+    sortOrder: 9,
     name: L('Crown Wedding Experience', 'Crown Wedding Experience', 'Crown Wedding Experience'),
     tagline: L('The ultimate expression of exclusivity, prestige, and timeless elegance.', 'Η απόλυτη έκφραση αποκλειστικότητας, κύρους και διαχρονικής κομψότητας.', 'Абсолютное выражение эксклюзивности, престижа и вневременной элегантности.'),
     priceDisplay: L('€14,000', '€14.000', '€14 000'),
@@ -400,7 +531,7 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
   },
   {
     id: 'royal',
-    sortOrder: 7,
+    sortOrder: 10,
     name: L('Royal Wedding Experience', 'Royal Wedding Experience', 'Royal Wedding Experience'),
     tagline: L('The ultimate expression of luxury, elegance, and unforgettable magnificence.', 'Η απόλυτη έκφραση πολυτέλειας, κομψότητας και αξέχαστης μεγαλοπρέπειας.', 'Абсолютное выражение роскоши, элегантности и незабываемого великолепия.'),
     priceDisplay: L('€18,400', '€18.400', '€18 400'),
@@ -436,8 +567,54 @@ export const completeWeddingPackages: readonly CompleteWeddingPackage[] = [
     ],
   },
   {
+    id: 'platinum',
+    sortOrder: 11,
+    name: L('Platinum Wedding Package', 'Platinum Wedding Package', 'Platinum Wedding Package'),
+    tagline: L('The glow of luxury, the magic of your day.', 'Η λάμψη της πολυτέλειας, η μαγεία της δικής σας ημέρας.', 'Сияние роскоши, магия вашего дня.'),
+    priceDisplay: L('€19,900', '€19.900', '€19 900'),
+    image: `${IMG}/platinum-wedding-experience.webp`,
+    flipImage: `${IMG}/platinum-wedding-experience-back.webp`,
+    highlight: L('Imperial-scale décor, 4K media with Same Day Edit & drone, photo booth, mobile cocktail bar, traditional home setup, entertainment, and full wedding planning.', 'Imperial-scale διακόσμηση, 4K media με Same Day Edit & drone, photo booth, mobile cocktail bar, παραδοσιακό home setup, ψυχαγωγία και πλήρης οργάνωση γάμου.', 'Imperial-масштаб декора, 4K media с Same Day Edit и дроном, photo booth, mobile cocktail bar, traditional home setup, развлечения и полное планирование.'),
+    sections: [
+      {
+        title: L('Bridal & groom attire', 'Νυφικό & γαμπριάτικο', 'Наряды жениха и невесты'),
+        items: [
+          L('Luxury designer bridal gown — 1,400 designs or bespoke · ceremony veil · orthopedic bridal shoes · 12 bridesmaid robes · handmade guest book & crowns · champagne glasses & hair accessories', 'Luxury designer νυφικό — 1.400 σχέδια ή bespoke · πέπλο τελετής · ορθοπεδικά νυφικά παπούτσια · 12 ρόμπες παρανύμφων · χειροποίητο βιβλίο ευχών & στέφανα · ποτήρια σαμπάνιας & αξεσουάρ μαλλιών', 'Luxury designer платье — 1 400 дизайнов или bespoke · вуаль · ортопедические туфли · 12 халатов подружек · handmade книга и венцы · бокалы и аксессуары'),
+          L('Tailored groom suit — jacket & trousers · premium shirt, vest, tie or bow tie · quality belt, cufflinks & wedding shoes', 'Εφαρμοστό κοστούμι γαμπρού — σακάκι & παντελόνι · premium πουκάμισο, γιλέκο, γραβάτα ή παπιγιόν · ποιοτική ζώνη, μανικετόκουμπα & παπούτσια γάμου', 'Сшитый костюм жениха — пиджак и брюки · premium-рубашка, жилет, галстук или бабочка · ремень, запонки и свадебная обувь'),
+        ],
+      },
+      {
+        title: L('Photography, film & invitations', 'Φωτογραφία, film & προσκλήσεις', 'Фото, film и приглашения'),
+        items: [
+          L('Luxury digital album 30×80cm with 250 photos · premium covers (leather, wood, glass) · personalised design · unlimited JPEGs on USB · large prints 40×60 & 15×20', 'Πολυτελές digital άλμπουμ 30×80εκ. με 250 φωτογραφίες · premium εξώφυλλα (δέρμα, ξύλο, γυαλί) · εξατομικευμένος σχεδιασμός · απεριόριστα JPEG σε USB · μεγάλες εκτυπώσεις 40×60 & 15×20', 'Роскошный digital-альбом 30×80 см на 250 фото · premium-обложки · персональный дизайн · безлимитные JPEG · крупные отпечатки'),
+          L('4K cinematic coverage · 2 cinematographers · Same Day Edit · social media trailer · 4K drone footage', '4K cinematic κάλυψη · 2 κινηματογραφιστές · Same Day Edit · social media trailer · 4K drone footage', '4K cinematic · 2 оператора · Same Day Edit · social trailer · 4K дрон'),
+          L('350 invitations with envelopes — 40 premium papers · gold, silver or rose-gold foil', '350 προσκλήσεις με φακέλους — 40 premium χαρτιά · χρυσό, ασημί ή rose-gold foil', '350 приглашений с конвертами — 40 премиальных бумаг · золотая, серебряная или rose-gold фольга'),
+        ],
+      },
+      {
+        title: L('Treats, cake & Imperial décor', 'Κεράσματα, τούρτα & Imperial διακόσμηση', 'Угощения, торт и Imperial-декор'),
+        items: [
+          L('500 signature treats — 45 flavours · 100 wrapper options · six-tier bespoke cake (11 flavours) on a luxury 3-tier stand', '500 signature κεράσματα — 45 γεύσεις · 100 επιλογές συσκευασίας · εξάπατη bespoke τούρτα (11 γεύσεις) σε πολυτελή βάση 3 επιπέδων', '500 signature-угощений — 45 вкусов · 100 вариантов упаковки · шестиярусный bespoke торт (11 вкусов) на люксовой 3-ярусной подставке'),
+          L('Décor for two prep houses & two cars · church interior & exterior — floral arch or columns, 4 large flower stands, 6 columns with pots, bridal bouquets & 12 boutonnieres', 'Διακόσμηση δύο σπιτιών προετοιμασίας & δύο αυτοκινήτων · εκκλησία εσωτερικά & εξωτερικά — ανθοστολισμένη αψίδα ή κολώνες, 4 μεγάλες ανθοστήλες, 6 κολώνες με γλάστρες, νυφικές ανθοδέσμες & 12 boutonnieres', 'Декор двух домов подготовки и двух авто · храм внутри и снаружи — арка или колонны, 4 крупные стойки, 6 колонн с кашпо, букеты и 12 бутоньерок'),
+          L('Reception — flower wall 3.40×2.30m · LOVE flower letters with hidden lighting · candle styling (50 glass cylinders) · premium pool décor · centerpieces for up to 40 tables', 'Δεξίωση — flower wall 3.40×2.30μ · LOVE από άνθη με κρυφό φωτισμό · candle styling (50 γυάλινοι κύλινδροι) · premium διακόσμηση πισίνας · κέντρα τραπεζιών έως 40 τραπέζια', 'Зал — flower wall 3,40×2,30 м · LOVE из цветов со скрытой подсветкой · свечи (50 цилиндров) · premium декор бассейна · композиции до 40 столов'),
+        ],
+      },
+      {
+        title: L('Effects, hospitality & planning', 'Εφέ, φιλοξενία & οργάνωση', 'Эффекты, гостеприимство и планирование'),
+        items: [
+          L('8 indoor fountain / fireworks effects · confetti machine · low-fog machine for the first dance', '8 εσωτερικά εφέ συντριβανιών / πυροτεχνημάτων · confetti machine · low-fog για τον πρώτο χορό', '8 внутренних fountain / fireworks · confetti · low-fog для первого танца'),
+          L('Unlimited DJ · live violin or saxophone · traditional violin & lute during preparations', 'Απεριόριστος DJ · live βιολί ή σαξόφωνο · παραδοσιακό βιολί & λαούτο κατά την προετοιμασία', 'Безлимитный DJ · live скрипка или саксофон · традиционные скрипка и лаут на сборах'),
+          L('Photo booth experience — Classic, Retro, Vintage, 360 Video or Mirror · 2 hours · unlimited prints', 'Photo booth experience — Classic, Retro, Vintage, 360 Video ή Mirror · 2 ώρες · απεριόριστες εκτυπώσεις', 'Photo booth — Classic, Retro, Vintage, 360 Video или Mirror · 2 часа · безлимитные отпечатки'),
+          L('Luxury mobile cocktail bar — 4 signature cocktails · unlimited serving for up to 400 guests · professional bartenders', 'Luxury mobile cocktail bar — 4 signature cocktails · απεριόριστο σερβίρισμα έως 400 καλεσμένους · επαγγελματίες bartenders', 'Luxury mobile cocktail bar — 4 signature коктейля · безлимитная подача до 400 гостей · профессиональные бармены'),
+          L('Traditional home setup — white tent 3×3m, air cooler, display fridge, 25 Chiavari chairs, 12 metal stools, tables & linens', 'Παραδοσιακό home setup — λευκή τέντα 3×3μ, air cooler, βιτρίνα ψύξης, 25 καρέκλες Chiavari, 12 μεταλλικά σκαμπό, τραπέζια & υφάσματα', 'Traditional home setup — белый шатёр 3×3 м, охладитель, витрина, 25 Chiavari, 12 табуретов, столы и текстиль'),
+          L('10%–30% jewellery discount coupon · professional wedding planner & coordinator for the full event', 'Κουπόνι έκπτωσης 10%–30% για κοσμήματα · επαγγελματίας wedding planner & coordinator για όλη την εκδήλωση', 'Купон 10%–30% на украшения · профессиональный wedding planner и координатор на всё событие'),
+        ],
+      },
+    ],
+  },
+  {
     id: 'customised',
-    sortOrder: 8,
+    sortOrder: 12,
     name: L('Customised Wedding Package', 'Πακέτο Γάμου Customised', 'Индивидуальный свадебный пакет'),
     tagline: L('Create your own wedding package — shaped entirely around your needs and wishes.', 'Φτιάξτε το δικό σας πακέτο γάμου, ανάλογα με τις ανάγκες και τα θέλω σας.', 'Создайте свой свадебный пакет — полностью под ваши нужды и желания.'),
     priceDisplay: L('Quoted on request', 'Κατόπιν προσφοράς', 'По запросу'),
