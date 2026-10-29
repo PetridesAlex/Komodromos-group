@@ -9,6 +9,9 @@ import WeddingAboutPage from './WeddingAboutPage'
 import WeddingDifferencePage from './WeddingDifferencePage'
 import WeddingConciergePage from './WeddingConciergePage'
 import WeddingEditPage from './WeddingEditPage'
+import WeddingFeaturePage from './WeddingFeaturePage'
+import { weddingShishaLoungeCopy } from '../data/weddingShishaLoungeCopy'
+import { weddingMobileCocktailBarCopy } from '../data/weddingMobileCocktailBarCopy'
 import WeddingPackagesHubPage from './WeddingPackagesHubPage'
 import WeddingCompletePackagesPage from './WeddingCompletePackagesPage'
 import WeddingPhotographyPackagesPage from './WeddingPhotographyPackagesPage'
@@ -124,6 +127,11 @@ function GroupRoutes() {
         <Route path="difference" element={<WeddingDifferencePage />} />
         <Route path="concierge" element={<WeddingConciergePage />} />
         <Route path="edit" element={<WeddingEditPage />} />
+        <Route path="shisha-lounge" element={<WeddingFeaturePage content={weddingShishaLoungeCopy} />} />
+        <Route
+          path="mobile-cocktail-bar"
+          element={<WeddingFeaturePage content={weddingMobileCocktailBarCopy} />}
+        />
         <Route path="wedding-packages" element={<WeddingPackagesHubPage />} />
         <Route path="wedding-packages/complete" element={<WeddingCompletePackagesPage />} />
         <Route path="wedding-packages/photography" element={<WeddingPhotographyPackagesPage />} />

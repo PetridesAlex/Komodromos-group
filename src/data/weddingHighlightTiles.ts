@@ -24,6 +24,8 @@ export type WeddingHighlightTile = {
   serviceSlug?: string
   /** Absolute group SPA path (e.g. /services/limousines-experiences). */
   pageHref?: string
+  /** Wedding Sky internal page (e.g. /services/wedding/shisha-lounge) — resolves per host. */
+  weddingPageHref?: string
 }
 
 const TILE_IMG = '/images/services/wedding-highlights'
@@ -568,40 +570,7 @@ const TILE_SEEDS: TileSeed[] = [
       el: 'Κινητό Μπαρ Κοκτέιλ',
       ru: 'Мобильный коктейль-бар',
     },
-    detail: {
-      headline: {
-        en: 'Mobile Cocktail Bar',
-        el: 'Κινητό Μπαρ Κοκτέιλ | Mobile Cocktail Bar',
-        ru: 'Мобильный коктейль-бар | Mobile Cocktail Bar',
-      },
-      paragraphs: [
-        {
-          en: 'An exceptional cocktail is not simply a drink. It is taste, presentation, atmosphere — an entire experience in a glass.',
-          el: 'Ένα εξαιρετικό cocktail δεν είναι απλώς ένα ποτό. Είναι γεύση, παρουσίαση, ατμόσφαιρα — μια ολόκληρη εμπειρία σε ένα ποτήρι.',
-          ru: 'Исключительный cocktail — не просто напиток. Это вкус, подача, атмосфера — целый опыт в бокале.',
-        },
-        {
-          en: 'The Mobile Cocktail Bar brings the sophisticated aesthetic of a premium cocktail bar directly to your reception — creating a stylish meeting point where guests can enjoy impressive cocktails in an atmosphere full of character and energy.',
-          el: 'Το Mobile Cocktail Bar φέρνει τη sophisticated αισθητική ενός premium cocktail bar απευθείας στη δεξίωσή σας, δημιουργώντας ένα stylish σημείο συνάντησης όπου οι καλεσμένοι μπορούν να απολαύσουν εντυπωσιακά cocktails μέσα σε μια ατμόσφαιρα γεμάτη χαρακτήρα και ενέργεια.',
-          ru: 'Mobile Cocktail Bar приносит sophisticated эстетику premium cocktail bar прямо на ваш приём — создавая stylish точку встречи, где гости наслаждаются впечатляющими cocktails в атмосфере характера и энергии.',
-        },
-        {
-          en: 'From beloved classic choices to signature cocktails inspired by the couple, each creation can become part of your wedding identity and add another distinctive touch to the evening.',
-          el: 'Από αγαπημένες κλασικές επιλογές μέχρι signature cocktails εμπνευσμένα από το ζευγάρι, κάθε δημιουργία μπορεί να γίνει μέρος της προσωπικής ταυτότητας του γάμου σας και να προσθέσει ακόμη μία ξεχωριστή πινελιά στη βραδιά.',
-          ru: 'От любимой классики до signature cocktails, вдохновлённых парой — каждое творение может стать частью идентичности свадьбы и добавить ещё одну особую ноту вечеру.',
-        },
-        {
-          en: 'More than a bar, it is a social experience that invites guests to meet, celebrate, and raise a glass to you.',
-          el: 'Περισσότερο από ένα bar, είναι ένα social experience που προσκαλεί τους καλεσμένους να συναντηθούν, να γιορτάσουν και να σηκώσουν το ποτήρι τους για εσάς.',
-          ru: 'Больше, чем bar — это social experience, приглашающее гостей встретиться, праздновать и поднять бокал за вас.',
-        },
-        {
-          en: 'Your love story deserves its own signature cocktail.',
-          el: 'Η ιστορία αγάπης σας αξίζει το δικό της ιδιαίτερο cocktail.',
-          ru: 'Your love story deserves its own signature cocktail.',
-        },
-      ],
-    },
+    weddingPageHref: '/services/wedding/mobile-cocktail-bar',
   },
   {
     id: 'drone-videography',
@@ -976,35 +945,7 @@ const TILE_SEEDS: TileSeed[] = [
       el: 'Ναργιλές',
       ru: 'Лаунж с кальяном',
     },
-    detail: {
-      headline: {
-        en: 'Luxury Shisha Lounge',
-        el: 'Ναργιλές | Luxury Shisha Lounge',
-        ru: 'Лаунж с кальяном | Luxury Shisha Lounge',
-      },
-      paragraphs: [
-        {
-          en: 'As the evening unfolds, create a space where your guests can relax, converse, and enjoy a different side of the wedding experience.',
-          el: 'Καθώς η βραδιά εξελίσσεται, δημιουργήστε έναν χώρο όπου οι καλεσμένοι σας μπορούν να χαλαρώσουν, να συζητήσουν και να απολαύσουν μια διαφορετική πλευρά της γαμήλιας εμπειρίας.',
-          ru: 'По мере развития вечера создайте пространство, где гости могут расслабиться, пообщаться и насладиться другой стороной свадебного опыта.',
-        },
-        {
-          en: 'The Luxury Shisha Lounge adds a sophisticated lounge atmosphere to your reception — an elegant meeting point away from the rhythm of the dance floor. A distinctive setting where relaxation, company, and night-time ambience combine into a unique hospitality experience.',
-          el: 'Το Luxury Shisha Lounge προσθέτει στη δεξίωσή σας μια sophisticated lounge ατμόσφαιρα, δημιουργώντας ένα elegant σημείο συνάντησης μακριά από τον ρυθμό της πίστας. Ένα ιδιαίτερο setting όπου η χαλάρωση, η παρέα και η νυχτερινή ατμόσφαιρα συνδυάζονται σε μια ξεχωριστή εμπειρία φιλοξενίας.',
-          ru: 'Luxury Shisha Lounge добавляет sophisticated lounge атмосферу на банкет — elegant meeting point вдали от ритма танцпола. И distinctive setting, где расслабление, компания и ночная атмосфера сливаются в unique hospitality experience.',
-        },
-        {
-          en: 'More than an extra amenity, it becomes an exclusive after-dark experience that adds character and an unexpected luxury touch to the evening.',
-          el: 'Περισσότερο από μία επιπλέον παροχή, γίνεται ένα exclusive after-dark experience που προσθέτει χαρακτήρα και μια απρόσμενη luxury πινελιά στη βραδιά.',
-          ru: 'Больше, чем дополнительная услуга — это exclusive after-dark experience, добавляющий характер и неожиданный luxury штрих вечеру.',
-        },
-        {
-          en: 'Because an unforgettable wedding is not only made of moments that impress. It also has moments you simply want to last a little longer.',
-          el: 'Γιατί ένας αξέχαστος γάμος δεν έχει μόνο στιγμές που εντυπωσιάζουν. Έχει και στιγμές που θέλεις απλώς να κρατήσουν λίγο περισσότερο.',
-          ru: 'Потому что незабываемая свадьба — это не только моменты, которые впечатляют. Это и моменты, которые хочется просто продлить.',
-        },
-      ],
-    },
+    weddingPageHref: '/services/wedding/shisha-lounge',
   },
   {
     id: 'live-saxophone',

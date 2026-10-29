@@ -98041,3 +98041,543 @@ a.jc-house__media-wrap {
     animation: none !important;
   }
 }
+
+/* ── Wedding Sky — Luxury Shisha Lounge page ── */
+
+.wedding-feature-hero .wedding-concierge-hero__photo {
+  object-position: 50% 30%;
+}
+
+.wedding-feature-hero .wedding-concierge-hero__scrim {
+  background:
+    linear-gradient(
+      100deg,
+      rgba(4, 10, 22, 0.92) 0%,
+      rgba(4, 12, 26, 0.74) 30%,
+      rgba(4, 12, 26, 0.3) 58%,
+      rgba(4, 10, 20, 0.1) 80%,
+      rgba(4, 10, 20, 0.3) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(4, 10, 20, 0.35) 0%,
+      rgba(4, 10, 20, 0.05) 36%,
+      rgba(4, 10, 20, 0.45) 76%,
+      rgba(4, 13, 26, 0.9) 100%
+    );
+}
+
+.wedding-feature-eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #a88745;
+}
+
+.wedding-feature-eyebrow--light {
+  color: rgba(201, 165, 106, 0.95);
+}
+
+.wedding-feature-page .wedding-feature-title {
+  margin: 0 0 1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: #0a1628;
+}
+
+.wedding-feature-page .wedding-feature-title--light {
+  color: #f8f4ec;
+}
+
+.wedding-feature-rule {
+  display: block;
+  width: 4.5rem;
+  height: 1px;
+  margin: 0 0 1.5rem;
+  background: linear-gradient(90deg, #c9a56a, rgba(26, 91, 184, 0.55), transparent);
+}
+
+.wedding-feature-rule--center {
+  margin-inline: auto;
+  background: linear-gradient(90deg, transparent, #c9a56a, transparent);
+}
+
+.wedding-feature-head {
+  max-width: 44rem;
+  margin: 0 auto clamp(2rem, 5vw, 3.25rem);
+  text-align: center;
+}
+
+.wedding-feature-head__intro {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: #4a5a72;
+}
+
+/* Story */
+.wedding-feature-story {
+  position: relative;
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+  background: linear-gradient(180deg, #f8f4ec 0%, #f4f1ea 100%);
+  color: #0a1628;
+}
+
+.wedding-feature-story__grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.wedding-feature-story__p {
+  margin: 0 0 1.15rem;
+  font-size: clamp(1rem, 1.5vw, 1.08rem);
+  line-height: 1.85;
+  color: #33425a;
+}
+
+.wedding-feature-story__text .wedding-feature-story__p:nth-of-type(2)::first-letter {
+  float: left;
+  margin: 0.08em 0.12em 0 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.6em;
+  line-height: 0.82;
+  color: #a88745;
+}
+
+.wedding-feature-story__figure {
+  position: relative;
+  margin: 0;
+}
+
+.wedding-feature-story__frame {
+  position: absolute;
+  inset: 1.1rem -1.1rem -1.1rem 1.1rem;
+  border: 1px solid rgba(201, 165, 106, 0.6);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.wedding-feature-story__figure img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 30px 60px -28px rgba(4, 13, 26, 0.55);
+}
+
+@media (min-width: 900px) {
+  .wedding-feature-story__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
+}
+
+/* Pillars */
+.wedding-feature-pillars {
+  position: relative;
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 85% 0%, rgba(201, 165, 106, 0.12), transparent 62%),
+    radial-gradient(ellipse 50% 50% at 5% 100%, rgba(26, 91, 184, 0.14), transparent 60%),
+    linear-gradient(180deg, #061222 0%, #040d1a 100%);
+}
+
+.wedding-feature-pillars__grid {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: 1fr;
+}
+
+.wedding-feature-pillar {
+  position: relative;
+  padding: 2rem 1.6rem 1.8rem;
+  border: 1px solid rgba(201, 165, 106, 0.22);
+  border-radius: 6px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+.wedding-feature-pillar::before {
+  content: '';
+  position: absolute;
+  left: 1.6rem;
+  right: 1.6rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #c9a56a, transparent);
+}
+
+.wedding-feature-pillar:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 165, 106, 0.5);
+  background: linear-gradient(160deg, rgba(201, 165, 106, 0.1), rgba(255, 255, 255, 0.02));
+}
+
+.wedding-feature-pillar__index {
+  display: block;
+  margin-bottom: 1.1rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(201, 165, 106, 0.85);
+}
+
+.wedding-feature-page .wedding-feature-pillar__title {
+  margin: 0 0 0.7rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #f8f4ec;
+}
+
+.wedding-feature-pillar__body {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.75;
+  color: rgba(205, 218, 234, 0.88);
+}
+
+@media (min-width: 640px) {
+  .wedding-feature-pillars__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .wedding-feature-pillars__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Gallery */
+.wedding-feature-gallery {
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  background: linear-gradient(180deg, #f4f7fb 0%, #eef3f9 55%, #f7f9fc 100%);
+}
+
+.wedding-feature-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+.wedding-feature-gallery__column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+/* Last tile in each column absorbs any leftover height so columns end flush. */
+.wedding-feature-gallery__column > .wedding-feature-gallery__item:last-child {
+  flex: 1 1 auto;
+}
+
+.wedding-feature-gallery__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: #0a1628;
+  box-shadow: 0 18px 38px -26px rgba(4, 13, 26, 0.6);
+}
+
+.wedding-feature-gallery__item img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-feature-gallery__item:hover img,
+.wedding-feature-gallery__item:focus-visible img {
+  transform: scale(1.05);
+}
+
+.wedding-feature-gallery__item:focus-visible {
+  outline: 2px solid #c9a56a;
+  outline-offset: 3px;
+}
+
+.wedding-feature-gallery__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(4, 10, 20, 0.82) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.wedding-feature-gallery__caption {
+  position: absolute;
+  left: 1rem;
+  right: 3rem;
+  bottom: 0.9rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.3;
+  text-align: left;
+  color: #f8f4ec;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.wedding-feature-gallery__expand {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(201, 165, 106, 0.7);
+  border-radius: 50%;
+  color: #e8d5b0;
+  background: rgba(4, 13, 26, 0.55);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.wedding-feature-gallery__item:hover .wedding-feature-gallery__veil,
+.wedding-feature-gallery__item:hover .wedding-feature-gallery__caption,
+.wedding-feature-gallery__item:hover .wedding-feature-gallery__expand,
+.wedding-feature-gallery__item:focus-visible .wedding-feature-gallery__veil,
+.wedding-feature-gallery__item:focus-visible .wedding-feature-gallery__caption,
+.wedding-feature-gallery__item:focus-visible .wedding-feature-gallery__expand {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .wedding-feature-gallery__veil,
+  .wedding-feature-gallery__caption,
+  .wedding-feature-gallery__expand {
+    opacity: 1;
+    transform: none;
+  }
+
+  .wedding-feature-gallery__caption {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .wedding-feature-gallery__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+
+  .wedding-feature-gallery__column {
+    gap: 1.1rem;
+  }
+}
+
+/* Quote */
+.wedding-feature-quote {
+  position: relative;
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  background:
+    radial-gradient(ellipse 55% 70% at 50% 50%, rgba(201, 165, 106, 0.12), transparent 65%),
+    linear-gradient(180deg, #040d1a 0%, #061222 100%);
+  text-align: center;
+}
+
+.wedding-feature-quote__inner {
+  max-width: 50rem;
+}
+
+.wedding-feature-quote__mark {
+  display: block;
+  height: 3rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: rgba(201, 165, 106, 0.7);
+}
+
+.wedding-feature-quote__text {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 3.4vw, 2.3rem);
+  font-style: italic;
+  line-height: 1.45;
+  color: #f1e6cc;
+}
+
+/* Lightbox */
+.wedding-feature-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(3, 8, 16, 0.94);
+  animation: wedding-feature-lightbox-in 0.3s ease both;
+}
+
+@keyframes wedding-feature-lightbox-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.wedding-feature-lightbox__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: min(92vw, 1100px);
+  margin: 0;
+}
+
+.wedding-feature-lightbox__figure img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8);
+}
+
+.wedding-feature-lightbox__figure figcaption {
+  display: flex;
+  gap: 1.25rem;
+  align-items: baseline;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #e8d5b0;
+}
+
+.wedding-feature-lightbox__count {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(201, 165, 106, 0.85);
+}
+
+.wedding-feature-lightbox__close,
+.wedding-feature-lightbox__nav {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid rgba(201, 165, 106, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  color: #e8d5b0;
+  background: rgba(4, 13, 26, 0.6);
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.wedding-feature-lightbox__close:hover,
+.wedding-feature-lightbox__nav:hover {
+  color: #071018;
+  background: #c9a56a;
+}
+
+.wedding-feature-lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+@media (max-width: 640px) {
+  .wedding-feature-lightbox {
+    gap: 0;
+    padding: 0.5rem;
+  }
+
+  .wedding-feature-lightbox__nav {
+    position: absolute;
+    bottom: 1rem;
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .wedding-feature-lightbox__nav--prev {
+    left: 1rem;
+  }
+
+  .wedding-feature-lightbox__nav--next {
+    right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-feature-pillar,
+  .wedding-feature-gallery__item img,
+  .wedding-feature-gallery__veil,
+  .wedding-feature-gallery__caption,
+  .wedding-feature-lightbox {
+    transition: none;
+    animation: none;
+  }
+
+  .wedding-feature-pillar:hover,
+  .wedding-feature-gallery__item:hover img {
+    transform: none;
+  }
+}
+
+.wedding-feature-page .wedding-concierge-close__lead {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.wedding-feature-story__figure img {
+  max-height: 42rem;
+}
+
+.wedding-feature-quote--photo {
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(5rem, 12vw, 9rem) 0;
+  background-color: #040d1a;
+  background-image:
+    linear-gradient(180deg, #040d1a 0%, rgba(4, 13, 26, 0.55) 22%, rgba(4, 13, 26, 0.6) 78%, #061222 100%),
+    radial-gradient(ellipse 60% 70% at 50% 50%, rgba(4, 10, 20, 0.35), rgba(4, 10, 20, 0.75)),
+    var(--feature-quote-bg);
+  background-size: cover;
+  background-position: center;
+}
+
+.wedding-feature-quote--photo .wedding-feature-quote__text {
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+}

@@ -57,6 +57,20 @@ export const SEO_HEAD_META: Record<string, GeneratedHeadMeta> = {
     "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp",
     "index": true
   },
+  "/services/wedding/shisha-lounge": {
+    "title": "Luxury Shisha Lounge Cyprus Services | Komodromos Group",
+    "description": "Add an elegant after-dark lounge to your wedding reception — Wedding Sky’s Luxury Shisha Lounge with curated shisha, signature presentation and refined",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/shisha-lounge",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/shisha-card/wedding-party-smoke.webp",
+    "index": true
+  },
+  "/services/wedding/mobile-cocktail-bar": {
+    "title": "Mobile Cocktail Bar Cyprus Services | Komodromos Group",
+    "description": "A premium Mobile Cocktail Bar for your wedding reception — classic and signature cocktails, copper glassware and stylish bar service by Wedding Sky in Cyprus.",
+    "canonical": "https://www.komodromosgroup.com/services/wedding/mobile-cocktail-bar",
+    "ogImage": "https://www.komodromosgroup.com/images/services/wedding-highlights/mocktail-bar-card/sparkler-crowd-cart.webp",
+    "index": true
+  },
   "/services/wedding/wedding-packages": {
     "title": "Wedding Packages Cyprus Services | Komodromos Group",
     "description": "Explore Wedding Sky package collections — complete wedding programmes, photography packages, and décor packages in Cyprus. Premium Komodromos Group service in",

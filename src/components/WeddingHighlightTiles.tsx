@@ -8,6 +8,7 @@ import { getServicePageHref, isExternalServiceHref } from '../data/serviceCards'
 import { useSiteContext } from '../seo/SiteContext'
 import { GROUP_SITE_URL } from '../seo/domainRegistry'
 import { useWeddingLocale } from '../lib/weddingLocale'
+import { weddingBrandHref } from '../lib/brandPaths'
 import WeddingLazyImage from './WeddingLazyImage'
 import WeddingHighlightDetailModal from './WeddingHighlightDetailModal'
 
@@ -156,7 +157,11 @@ export default function WeddingHighlightTiles() {
           {weddingHighlightTiles.map((tile, index) => {
             const opensDetail = Boolean(tile.detail)
             const isLink = Boolean(
-              tile.contact || tile.hashHref || tile.serviceSlug || tile.pageHref,
+              tile.contact ||
+                tile.hashHref ||
+                tile.serviceSlug ||
+                tile.pageHref ||
+                tile.weddingPageHref,
             )
             /* No per-tile reveal — 50+ transform/opacity layers crash Safari on scroll */
             const body = (
@@ -212,6 +217,24 @@ export default function WeddingHighlightTiles() {
                   className={className}
                   style={style}
                   aria-label={ariaLabel}
+                >
+                  {body}
+                </Link>
+              )
+            }
+
+            if (tile.weddingPageHref) {
+              return (
+                <Link
+                  key={tile.id}
+                  id={tile.id}
+                  to={weddingBrandHref(tile.weddingPageHref)}
+                  className={className}
+                  style={style}
+                  aria-label={t(weddingTilesSectionCopy.openServiceAria).replace(
+                    '{{title}}',
+                    t(tile.title),
+                  )}
                 >
                   {body}
                 </Link>

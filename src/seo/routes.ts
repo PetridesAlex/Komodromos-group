@@ -106,6 +106,26 @@ function buildStaticRoutes(): SeoRouteEntry[] {
         '/images/services/wedding-highlights/wedding-services/wedding-decor-cover-hero.webp',
     }),
     route({
+      path: '/services/wedding/shisha-lounge',
+      title: 'Luxury Shisha Lounge',
+      description:
+        'Add an elegant after-dark lounge to your wedding reception — Wedding Sky’s Luxury Shisha Lounge with curated shisha, signature presentation and refined atmosphere in Cyprus.',
+      index: true,
+      priority: 0.7,
+      ogImage:
+        '/images/services/wedding-highlights/shisha-card/wedding-party-smoke.webp',
+    }),
+    route({
+      path: '/services/wedding/mobile-cocktail-bar',
+      title: 'Mobile Cocktail Bar',
+      description:
+        'A premium Mobile Cocktail Bar for your wedding reception — classic and signature cocktails, copper glassware and stylish bar service by Wedding Sky in Cyprus.',
+      index: true,
+      priority: 0.7,
+      ogImage:
+        '/images/services/wedding-highlights/mocktail-bar-card/sparkler-crowd-cart.webp',
+    }),
+    route({
       path: '/services/wedding/wedding-packages',
       title: 'Wedding Packages',
       description:

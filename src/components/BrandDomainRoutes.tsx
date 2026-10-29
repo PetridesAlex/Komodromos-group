@@ -38,6 +38,9 @@ import WeddingAboutPage from './WeddingAboutPage'
 import WeddingDifferencePage from './WeddingDifferencePage'
 import WeddingConciergePage from './WeddingConciergePage'
 import WeddingEditPage from './WeddingEditPage'
+import WeddingFeaturePage from './WeddingFeaturePage'
+import { weddingShishaLoungeCopy } from '../data/weddingShishaLoungeCopy'
+import { weddingMobileCocktailBarCopy } from '../data/weddingMobileCocktailBarCopy'
 import WeddingPackagesHubPage from './WeddingPackagesHubPage'
 import WeddingCompletePackagesPage from './WeddingCompletePackagesPage'
 import WeddingPhotographyPackagesPage from './WeddingPhotographyPackagesPage'
@@ -191,6 +194,11 @@ function WeddingBrandRoutes() {
         <Route path="/difference" element={<WeddingDifferencePage />} />
         <Route path="/concierge" element={<WeddingConciergePage />} />
         <Route path="/edit" element={<WeddingEditPage />} />
+        <Route path="/shisha-lounge" element={<WeddingFeaturePage content={weddingShishaLoungeCopy} />} />
+        <Route
+          path="/mobile-cocktail-bar"
+          element={<WeddingFeaturePage content={weddingMobileCocktailBarCopy} />}
+        />
         <Route path="/wedding-packages" element={<WeddingPackagesHubPage />} />
         <Route path="/wedding-packages/complete" element={<WeddingCompletePackagesPage />} />
         <Route path="/wedding-packages/photography" element={<WeddingPhotographyPackagesPage />} />
@@ -203,6 +211,11 @@ function WeddingBrandRoutes() {
       <Route path="/services/wedding/difference" element={<Navigate to="/difference" replace />} />
       <Route path="/services/wedding/concierge" element={<Navigate to="/concierge" replace />} />
       <Route path="/services/wedding/edit" element={<Navigate to="/edit" replace />} />
+      <Route path="/services/wedding/shisha-lounge" element={<Navigate to="/shisha-lounge" replace />} />
+      <Route
+        path="/services/wedding/mobile-cocktail-bar"
+        element={<Navigate to="/mobile-cocktail-bar" replace />}
+      />
       <Route path="/services/wedding/*" element={<Navigate to="/" replace />} />
       <Route path="/services/*" element={<Navigate to="/" replace />} />
       <Route path="*" element={<Navigate to="/" replace />} />
